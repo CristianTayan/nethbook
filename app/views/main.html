@@ -1,116 +1,40 @@
-<md-content>
-    <md-toolbar>
-        <div class="md-toolbar-tools">        
-          <span flex></span>
-          <md-button class="md-accent md-raised" aria-label="Learn More" ng-href="#/Home">
-            Iniciar Sesion
-          </md-button>
-        </div>
-    </md-toolbar>
-</md-content>
-<div flex layout="row" layout-align="center center">
-    <div flex-sm="100" flex-gt-sm="50" flex-gt-md="70" flex-gt-lg="30">
-        <h1 layout="column" layout-align="center center " class="title-next">Nextbook, Red de Negocios</h1>
-      <img ng-src="images/buscar/publi1.png" layout-align="center center">
-        <div layout="column" flex-sm="100" flex-gt-sm="100" flex-gt-md="100" flex-gt-lg="100" style="padding-top: 30px;">
-            <!-- <div ng-controller="appsCtrl as appsctrl">
-                <form ng-submit="$event.preventDefault()" class="input-buscador">
-                    <md-autocomplete 
-                        ng-disabled="isDisabled" 
-                        md-no-cache="Cache" 
-                        md-selected-item="selectedItem" 
-                        md-search-text-change="appsctrl.searchTextChange(searchText)" 
-                        md-search-text="searchText" 
-                        md-selected-item-change="appsctrl.selectedItemChange(item)" 
-                        md-items="item in items" 
-                        md-item-text="item.nombre_comercial" 
-                        md-min-length="0" 
-                        placeholder="Empresas,Servicios ....." 
-                        md-menu-class="autocomplete-custom-template">
-                        <md-item-template>
-                            <span class="item-title">
-                      <img alt="Img" ng-src="{{item.img}}" class="avatar-busqueda" />
-                      <span style="font-size:10px"> 
-                      {{item.nombre_comercial}}
-                      <md-icon md-svg-icon="img/icons/ic_comment_24px.svg" class="mensaje-autocomplete" ng-click="sendMensaje(item)"></md-icon>
-                      </span>
-                            </span>
-                        </md-item-template>
-                    </md-autocomplete>
-                </form>
-            </div> -->
-        </div>
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <span flex></span>
+    <!-- <md-button class="md-accent md-raised" aria-label="Learn More" ng-href="#/Home">
+      Iniciar Sesion
+    </md-button> -->
+  </div>
+</md-toolbar>
+<div layout="column" layout-align="center center">
+    <h1>Nextbook, Red de Negocios</h1>
+    <img ng-src="images/main/publi1.png">
+    <div ng-controller="main_Ctrl as main_Ctrl">
+      <form ng-submit="$event.preventDefault()" flex="100">
+          <md-autocomplete 
+              class="main-input-search"
+              ng-disabled="isDisabled" 
+              md-no-cache="Cache" 
+              md-selected-item="selectedItem" 
+              md-search-text-change="main_Ctrl.searchTextChange(searchText)" 
+              md-search-text="searchText" 
+              md-selected-item-change="main_Ctrl.selectedItemChange(item)" 
+              md-items="item in items" 
+              md-item-text="item.nombre_comercial" 
+              md-min-length="0" 
+              placeholder="Negocios, servicios, empresas" 
+              md-menu-class="autocomplete-custom-template">
+              <md-item-template>
+                <span class="item-title">
+                  <img ng-src="{{item.img.perfil}}" class="avatar-busqueda">
+                  <span class="search-text"> {{item.nombre_comercial}} </span>
+                </span>
+              </md-item-template>
+              <md-not-found>
+                No hay servicios, negocios con ese valor.
+              </md-not-found>
+          </md-autocomplete>
+      </form>    
     </div>
+    <p class="md-caption">Buscar por serviciosm negocios, empresas, provincias.</p>
 </div>
-
-
-<style type="text/css">
-    .md-toolbar-tools {
-        font-size: 20px;
-        letter-spacing: .005em;
-        box-sizing: border-box;
-        font-weight: 400;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        width: 100%;
-        height: 64px;
-        max-height: 64px;
-        padding: 0 110px!important;
-        margin: 0;
-    }
-    .title-next{
-        font-size: 35px;
-    }
-</style>
-<style type="text/css">
-    .toolbar-center {
-        padding-left: 2%;
-        /*padding-right: 10%;*/
-    }    
-    .toolbar-chat {
-        padding-left: 80%;
-        margin-top: -50px;
-    }    
-    .no-view {
-        font-weight: bold;
-    }    
-    .avatar-busqueda {
-
-        /*margin-top: 8px;*/
-        /*margin-bottom: 8px;*/
-        /*margin-right: 16px;*/
-        /*border-radius: 50%;*/
-        box-sizing: content-box;
-        width: 40px;
-    }    
-    .mensaje-autocomplete:hover {
-        color: #ff4081;
-    }    
-    md-badge {
-        margin: 0 0 0px -4px;
-        color: white;
-        padding: 1px 4px;
-        border-radius: 4px;
-    }    
-    #chat_mensajes md-tabs-canvas {
-        display: none;
-    }
-    .md-tab {
-        /*padding: 12px 12px;*/
-    }
-    .md-tab {
-        padding: 20px 20px;
-    }
-
-    .badge1 {
-   position:relative;
-}
-
-</style>

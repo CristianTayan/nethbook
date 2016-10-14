@@ -14,7 +14,6 @@ angular
     'ngAria',
     'ngCookies',
     'ngMessages',
-    'ngResource',
     'ngRoute', // Rutas
     'ngSanitize',
     'ngMaterial', // Estilo material desing con angular
@@ -30,15 +29,20 @@ angular
             
     // Also, we can add new item in a deep separately. This is useful when working with
     // routes in every module individually
-            
-    $routeSegmentProvider
-    
-        .when('/',    'search')
-        
-        .segment('search', {
+    // -------------------------------------------    Entrada principal    -------------------------------------------   
+    $routeSegmentProvider    
+        .when('/',    'main')        
+        .segment('main', {
             templateUrl: 'views/main.html',
-            // controller: 'MainCtrl'
-          });
-
-    $routeProvider.otherwise({redirectTo: '/'}); 
+            controller: 'main_Ctrl'
+        });
+    // -------------------------------------------    buscador    ----------------------------------------------------
+    $routeSegmentProvider
+        .when('/search/:id',    'search')
+        .segment('search', {
+            templateUrl: 'views/search.html',
+            controller: 'search_Ctrl'
+        });
+    // -------------------------------------------    Alternativa de no encontrar     --------------------------------
+    // $routeProvider.otherwise({redirectTo: '/'}); 
   });

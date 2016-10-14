@@ -1,0 +1,44 @@
+<md-toolbar flex-xs  layout="column">
+    <div class="md-toolbar-tools toolbar-center">
+        <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu" class="md-icon-button launch">
+            <ng-md-icon icon="menu"></ng-md-icon>
+        </md-button>
+        <a href="#/My-space/Inicio" title="">
+            <img src="images/logo/logo.fw.png"  alt="Logo">
+        </a>
+        <div ng-controller="main_Ctrl as main_Ctrl">
+	      <form ng-submit="$event.preventDefault()" flex="100">
+	          <md-autocomplete 
+	              class="main-input-search"
+	              ng-disabled="isDisabled" 
+	              md-no-cache="Cache" 
+	              md-selected-item="selectedItem" 
+	              md-search-text-change="main_Ctrl.searchTextChange(searchText)" 
+	              md-search-text="searchText" 
+	              md-selected-item-change="main_Ctrl.selectedItemChange(item)" 
+	              md-items="item in items" 
+	              md-item-text="item.nombre_comercial" 
+	              md-min-length="0" 
+	              placeholder="Negocios, servicios, empresas" 
+	              md-menu-class="autocomplete-custom-template">
+	              <md-item-template>
+	                <span class="item-title">
+	                  <img ng-src="{{item.img.perfil}}" class="avatar-busqueda">
+	                  <span class="search-text"> {{item.nombre_comercial}} </span>
+	                </span>
+	              </md-item-template>
+	              <md-not-found>
+	                No hay servicios, negocios con ese valor.
+	              </md-not-found>
+	          </md-autocomplete>
+	      </form>    
+	    </div>
+    </div>
+</md-toolbar>
+<div layout="row" layout-align="center center">
+  <div layout="70" flex>
+  	<md-content layout-padding layout-wrap>
+  	    Lorem ipsum dolor sit amet, ne quod novum mei
+  	</md-content>
+  </div>
+</div>

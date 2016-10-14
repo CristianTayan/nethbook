@@ -7,3 +7,23 @@ body, html {
     color: #757575!important;
     font-family: "Roboto";
 }
+
+/*main search*/
+  .md-toolbar-tools {
+      padding: 0 10%!important;
+  }
+
+  .main-input-search{
+    width: 500px!important;
+  }
+  .avatar-busqueda{ /*input search*/
+    padding-top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%
+  }
+  .search-text{ /*input search*/
+    position: relative;
+    padding-left: 10px;
+    top: -10px
+  }
