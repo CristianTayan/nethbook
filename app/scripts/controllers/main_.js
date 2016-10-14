@@ -11,11 +11,7 @@ angular.module('nextbook20App')
   	.controller('main_Ctrl', function ($scope, $location, mainService) {
   		$scope.items=[];
     	function sucesssearch(data) {
-            // for (var i = 0; i < data.respuesta.length; i++) {
-                // data.respuesta[i]['img'] = data.respuesta[i]['img'].perfil;
-            // }
             $scope.items = data.respuesta;
-            // console.log(data);
         }
         this.searchTextChange = function(text) {
             mainService.buscar_empresas().get({
@@ -23,9 +19,22 @@ angular.module('nextbook20App')
             }, sucesssearch);
         }
         this.selectedItemChange = function(item) {
-        	console.log('test');
             if (item) {
-                $location.path('/search/' + item.ruc);
+                
+                var resultado = '';
+                console.log(item);
+                if (item.nombre_comercial) {
+                	resultado = item.nombre_comercial.replace(/ /g, "_");
+                	// console.log(resultado);
+                	$location.path('/search/' + resultado);
+                }else if(item.razon_social){
+                	resultado = item.nombre_comercial.replace(/ /g, "_");
+                	// console.log(resultado);
+                	$location.path('/search/' + resultado);
+                }else{
+                	// console.log(resultado);
+                	$location.path('/search/' + item.ruc);
+                }
 
             }
         }
