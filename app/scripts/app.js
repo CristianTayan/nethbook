@@ -39,10 +39,33 @@ angular
     // -------------------------------------------    buscador    ----------------------------------------------------
     $routeSegmentProvider
         .when('/search/:id',    'search')
+            .when('/search/:id/Publicacion',    'search.publicacion')
+            .when('/search/:id/Info',    'search.info')
+            .when('/search/:id/Ubicacion',    'search.ubicacion')
+            .when('/search/:id/Similares',    'search.similares')
+            .when('/search/:id/Favoritos',    'search.favoritos')
         .segment('search', {
             templateUrl: 'views/search.html',
-            controller: 'search_Ctrl'
-        });
+            controller: 'search_Ctrl',
+            dependencies: ['id']
+        })
+            .within()                
+                .segment('publicacion', {
+                    'default': true,
+                    templateUrl: 'views/perfil/publicacion.html'})
+                    
+                .segment('info', {
+                    templateUrl: 'views/perfil/info.html'})
+
+                .segment('ubicacion', {
+                    templateUrl: 'views/perfil/ubicacion.html'})
+                .segment('similares', {
+                    templateUrl: 'views/perfil/similares.html'})
+                .segment('favoritos', {
+                    templateUrl: 'views/perfil/favoritos.html'})
+
+                
+            .up();
     // -------------------------------------------    Alternativa de no encontrar     --------------------------------
     // $routeProvider.otherwise({redirectTo: '/'}); 
   });

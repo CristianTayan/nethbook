@@ -9,24 +9,24 @@
         <div ng-controller="main_Ctrl as main_Ctrl">
 	      <form ng-submit="$event.preventDefault()" flex="100">
 	          <md-autocomplete 
-	              class="main-input-search"
-	              ng-disabled="isDisabled" 
-	              md-no-cache="Cache" 
-	              md-selected-item="selectedItem" 
-	              md-search-text-change="main_Ctrl.searchTextChange(searchText)" 
-	              md-search-text="searchText" 
-	              md-selected-item-change="main_Ctrl.selectedItemChange(item)" 
-	              md-items="item in items" 
-	              md-item-text="item.nombre_comercial" 
-	              md-min-length="0" 
-	              placeholder="Negocios, servicios, empresas" 
-	              md-menu-class="autocomplete-custom-template">
-	              <md-item-template>
-	                <span class="item-title">
-	                  <img ng-src="{{item.img.perfil}}" class="avatar-busqueda">
-	                  <span class="search-text"> {{item.nombre_comercial}} </span>
-	                </span>
-	              </md-item-template>
+                    class="main-input-search"
+                    ng-disabled="isDisabled" 
+                    md-no-cache="Cache" 
+                    md-selected-item="selectedItem" 
+                    md-search-text-change="main_Ctrl.searchTextChange(searchText)" 
+                    md-search-text="searchText" 
+                    md-selected-item-change="main_Ctrl.selectedItemChange(item)" 
+                    md-items="item in items" 
+                    md-item-text="item.nombre_comercial" 
+                    md-min-length="0" 
+                    placeholder="Negocios, servicios, empresas" 
+                    md-menu-class="autocomplete-custom-template">
+                    <md-item-template>
+                        <span class="item-title">
+                            <img ng-src="{{item.img.perfil}}" class="avatar-busqueda">
+                            <span class="search-text"> {{item.nombre_comercial}} </span>
+                        </span>
+                    </md-item-template>
 	              <md-not-found>
 	                No hay servicios, negocios con ese valor.
 	              </md-not-found>
@@ -38,121 +38,52 @@
 <div layout="row" layout-align="center center">
   <div flex-gt-sm="90" flex-gt-md="60">
   	<div layout="row" layout-fill>
-    <div layout="column" flex>
-        <div layout="row">
-            <div flex-xs layout="column" flex-gt-md="80">
-                <md-card style="background: #eeeeee;">
-                    <div class="div-controlcar-img">
-                        <img ng-src="{{data.img.portada}}" class="md-card-image" alt="Banner Perfil">
-                    </div>
-                    <md-tabs layout="column">
-                        <md-tab id="b-tab1" aria-controls="b-tab1-content" style="float:right!important;">
-                            Historia
-                        </md-tab>
-                        <md-tab id="b-tab2" aria-controls="b-tab2-content" style="float:right!important;">
-                             <md-icon>location_on</md-icon>
-                        </md-tab>
-                        <md-tab id="b-tab3" aria-controls="b-tab3-content" style="float:right!important;">
-                            Similares
-                        </md-tab>
-                        <md-tab id="b-tab4" aria-controls="b-tab4-content" style="float:right!important;">
-                            Favoritos
-                        </md-tab>
-                        <md-tab id="b-tab5" aria-controls="b-tab5-content" style="float:right!important;">
-                            Grupos
-                        </md-tab>
-                        <md-tab id="b-tab6" aria-controls="b-tab5-content" style="float:right!important;">
-                            Agenda
-                        </md-tab>
-                        <span flex></span>
-                        <md-button aria-label="More">
-                            hola mundio
-                        </md-button>
-                    </md-tabs>
-                </md-card>
-                <md-card>
-                    <md-card-header>
-                      <md-card-avatar>
-                        <img class="md-user-avatar" ng-src="{{data.img.perfil}}"/>
-                      </md-card-avatar>
-                      <md-card-header-text>
-                        <span class="md-title">CONOCES A</span>
-                        <span class="md-subhead">{{data.razon_social}}</span>
-                      </md-card-header-text>
-                    </md-card-header>
-                    <md-card-header>
-                      <md-card-avatar>
-                        <img class="md-user-avatar" ng-src="{{data.img.perfil}}"/>
-                      </md-card-avatar>
-                      <md-card-header-text>
-                        <span class="md-title">CONOCES A</span>
-                        <span class="md-subhead">{{data.razon_social}}</span>
-                      </md-card-header-text>
-                    </md-card-header>
-                    <md-card-header>
-                      <md-card-avatar>
-                        <img class="md-user-avatar" ng-src="{{data.img.perfil}}"/>
-                      </md-card-avatar>
-                      <md-card-header-text>
-                        <span class="md-title">CONOCES A</span>
-                        <span class="md-subhead">{{data.razon_social}}</span>
-                      </md-card-header-text>
-                    </md-card-header>
-                    <md-card-header>
-                      <md-card-avatar>
-                        <img class="md-user-avatar" ng-src="{{data.img.perfil}}"/>
-                      </md-card-avatar>
-                      <md-card-header-text>
-                        <span class="md-title">CONOCES A</span>
-                        <span class="md-subhead">{{data.razon_social}}</span>
-                      </md-card-header-text>
-                    </md-card-header>
-                    <md-card-content>
-                        Para ver lo que comparte con sus amigos, envíale una solicitud de amistad. 
-                        {{data.id}}
-                        <md-button class="md-raised md-primary">Agregar</md-button>
-                    </md-card-content>
-                </md-card>
-            </div>
-            <div flex-xs layout="column" flex-gt-md="20">
-                <md-card>
-                    <!-- <div layout="row" layout-align="center center"> -->
-                        <img ng-src="{{data.img.perfil}}" class="avatar" alt="Avatar Perfil">
-                    <!-- </div> -->
-                    <md-card-content>
-                        <md-list>
-                            <md-list-item class=" md-long-text">
-                                {{data.razon_social}}
-                            </md-list-item>
-                            <md-list-item class=" md-long-text">
-                                {{data.tipo_contribuyente}}
-                            </md-list-item>
-                            <md-list-item class=" md-long-text">
-                                {{data.actividad_economica}}
-                            </md-list-item>
-                            <md-divider></md-divider>
-                            <md-list-item class=" md-long-text">
-                                {{data.ruc}}
-                            </md-list-item>
-                        </md-list>
-                    </md-card-content>
-                    <!-- <img ng-src="{{data.img.portada}}" class="md-card-image" alt="Banner Perfil"> -->
-                </md-card>
+        <div layout="column" flex>
+            <div layout="row">
+                <div flex-xs layout="column" flex-gt-md="80">
+                    <md-card style="background: #eeeeee;">
+                        <div class="card card--big">
+                            <img ng-src="{{data.img.portada}}" class="card__image" aria-label="Portada img">
+                            <h2 class="card__title">{{data.razon_social}}</h2>
+                        </div>
+                        <md-tabs md-dynamic-height="" md-border-bottom="" md-selected="selectedIndex" md-center-tabs="true" md-selected="selectedIndex">
+                            <md-tab ng-repeat="tab in tabs" ng-click="tabnavigation(tab.url)">
+                                <md-tab-label>
+                                    <md-icon>{{tab.icon}}</md-icon> {{tab.title}}
+                                </md-tab-label>
+                            </md-tab>
+                        </md-tabs>
+                    </md-card>
+                    <div app-view-segment="1"></div>
+                </div>
+                <div flex-xs layout="column" flex-gt-md="20">
+                    <md-card>
+                        <!-- <div layout="row" layout-align="center center"> -->
+                            <img ng-src="{{data.img.perfil}}" class="avatar" alt="Avatar Perfil">
+                        <!-- </div> -->
+                        <md-card-content>
+                            <md-list>
+                                <md-list-item class=" md-long-text">
+                                    {{data.razon_social}}
+                                </md-list-item>
+                                <md-list-item class=" md-long-text">
+                                    {{data.tipo_contribuyente}}
+                                </md-list-item>
+                                <md-list-item class=" md-long-text">
+                                    {{data.actividad_economica}}
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class=" md-long-text">
+                                    {{data.ruc}}
+                                </md-list-item>
+                            </md-list>
+                        </md-card-content>
+                        <!-- <img ng-src="{{data.img.portada}}" class="md-card-image" alt="Banner Perfil"> -->
+                    </md-card>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<style type="text/css">
-    .header-card-perfil-nombrecomercial{
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 20px;
-    color: #FFF;
-
-}
-</style>
   </div>
 </div>
 
