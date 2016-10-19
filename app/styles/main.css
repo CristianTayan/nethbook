@@ -8,17 +8,70 @@ body, html {
     font-family: "Roboto";
 }
 
+/*form login*/
+  /*user*/
 
-/*card uso general*/
+  .inputuser {
+      width: 90px!important;
+      position: relative;
+      top: 10px;
+  }
+  .inputuser label {
+      color: #EEEEEE;
+      font-size: 14px;
+  }
+  .inputuser .md-input {
+      color: #CCCCCC;
+      font-size: 14px;
+      position: relative;
+      top: 3px;
+  }
+  .suffix {
+      color: #EEEEEE;
+      position: relative;
+      top: 1px;
+      left: -9px;
+      font-size: 14px;
+  }
+  .inputpass {/*pass*/
+      width: 120px!important;
+      position: relative;
+      top: 10px;
+  }
+  .inputpass label {
+      color: #EEEEEE;
+      font-size: 14px;
+  }
+  input-container.md-input-invalid .md-input {
+      border-color: rgb(221, 44, 0);
+  }
+  .inputpass .md-default-theme .md-input,
+  md-input-container .md-input {
+      color: #757575;
+      border-color: rgba(0, 0, 0, 0.12);
+  }
+  .md-default-theme .md-input,
+  md-input-container .md-input {
+      color: #ff4081;
+      border-color: rgba(0, 0, 0, 0.12);
+  }
+
+
+
+
+/*card, dialog uso general*/
   md-card.md-default-theme, md-card {
       color: #6D6D6D!important;
       font-weight: 500;
   }
+  md-dialog.md-default-theme, md-dialog {
+      color: #6D6D6D!important;
+  }
 
 
 /*main search*/
-  .md-toolbar-tools {
-      padding: 0 10%!important;
+  .md-toolbar-registro{
+      padding: 0 15%!important;
   }
 
   .main-input-search{

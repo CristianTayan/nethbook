@@ -11,7 +11,7 @@ describe('Controller: MainCtrlCtrl', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrlCtrl = $controller('MainCtrlCtrl', {
+    MainCtrlCtrl = $controller('main_Ctrl', {
       $scope: scope
       // place here mocked dependencies
     });

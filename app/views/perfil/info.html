@@ -5,17 +5,63 @@
 	        <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
 	      </md-card-avatar>
 	      <md-card-header-text>
+	        <span class="md-title">Ruc</span>
+	        <span class="md-subhead">{{data.ruc}}</span>
+	      </md-card-header-text>
+	    </md-card-header>
+	</md-card>
+	<md-card flex="50">
+		<md-card-header>
+	      <md-card-avatar>
+	        <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
+	      </md-card-avatar>
+	      <md-card-header-text>
+	        <span class="md-title">Nombre Fantacia</span>
+	        <span class="md-subhead">{{data.nombre_fantasia_comercial}}</span>
+	      </md-card-header-text>
+	    </md-card-header>
+	</md-card>
+</div>
+<div layout="row">
+	<md-card flex="50">
+		<md-card-header>
+	      <md-card-avatar>
+	        <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
+	      </md-card-avatar>
+	      <md-card-header-text>
+	        <span class="md-title">Tipo Contribuyente</span>
+	        <span class="md-subhead">{{data.tipo_contribuyente}}</span>
+	      </md-card-header-text>
+	    </md-card-header>
+	</md-card>
+	<md-card flex="50">
+		<md-card-header>
+	      <md-card-avatar>
+	        <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
+	      </md-card-avatar>
+	      <md-card-header-text>
+	        <span class="md-title">Estado Contribuyente</span>
+	        <span class="md-subhead">{{data.estado_contribuyente}}</span>
+	      </md-card-header-text>
+	    </md-card-header>
+	</md-card>
+</div>
+<div layout="row">
+	<md-card flex="50">
+		<md-card-header>
+	      <md-card-avatar>
+	        <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
+	      </md-card-avatar>
+	      <md-card-header-text>
 	        <span class="md-title">Dirección</span>
 	        <span class="md-subhead">{{data.calle}}, {{data.interseccion}}, </span>
 	      </md-card-header-text>
 	    </md-card-header>
 	    <md-card-title>
-
 	      <md-card-title-text>
-	        <span class="md-headline">#, {{data.numero}}, Ciudad: {{data.codigo_ciiu}}, Canton: {{data.descripcion_canton}}, Provincia: {{data.descripcion_provincia}}</span>
+	        <span class="md-headline">Direccion</span>
 	      </md-card-title-text>
 	      <md-card-title-media>
-	        	<img class="md-media-sm card-media" src="images/perfil/ubicacion.png">
 	      </md-card-title-media>
 	    </md-card-title>
 	</md-card>
@@ -26,19 +72,12 @@
 	      </md-card-avatar>
 	      <md-card-header-text>
 	        <span class="md-title">Dirección</span>
-	        <span class="md-subhead">{{data.calle}}, {{data.interseccion}}, #, {{data.numero}}, Ciudad: {{data.codigo_ciiu}}, Canton: {{data.descripcion_canton}}, Provincia: {{data.descripcion_provincia}}</span>
-	      </md-card-header-text>
-	    </md-card-header>
-	    <md-card-title>
-
-	      <md-card-title-text>
-	        <span class="md-headline">Direccion</span>
 	        <span class="md-subhead"></span>
-	      </md-card-title-text>
-	      <md-card-title-media>
-	        	<img class="md-media-sm card-media" src="images/perfil/ubicacion.png">
-	      </md-card-title-media>
-	    </md-card-title>
+	      </md-card-header-text>
+	    </md-card-header>	    
+	    <md-card-content>
+	    	{{data.calle}}, {{data.interseccion}}, #, {{data.numero}}, Ciudad: {{data.codigo_ciiu}}, Canton: {{data.descripcion_canton}}, Provincia: {{data.descripcion_provincia}}
+	    </md-card-content>
 	</md-card>
 </div>
 <div layout="column">
@@ -48,8 +87,7 @@
 	        <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
 	      </md-card-avatar>
 	      <md-card-header-text>
-	        <span class="md-title">Dirección</span>
-	        <span class="md-subhead">{{data.calle}}, {{data.interseccion}}, </span>
+	        <span class="md-title">Actividad Economica</span>
 	      </md-card-header-text>
 	    </md-card-header>
 	    <md-card-title>
@@ -57,7 +95,6 @@
 	        <span class="md-subhead">{{data.actividad_economica}}</span>
 	      </md-card-title-text>
 	      <md-card-title-media>
-	        	<img class="md-media-sm card-media" src="images/perfil/ubicacion.png">
 	      </md-card-title-media>
 	    </md-card-title>
 	</md-card>

@@ -19,10 +19,8 @@ angular.module('nextbook20App')
             }, sucesssearch);
         }
         this.selectedItemChange = function(item) {
-            if (item) {
-                
+            if (item) {                
                 var resultado = '';
-                console.log(item);
                 if (item.nombre_comercial) {
                 	resultado = item.nombre_comercial.replace(/ /g, "_");
                 	// console.log(resultado);

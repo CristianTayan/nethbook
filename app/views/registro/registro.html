@@ -1,0 +1,194 @@
+<md-toolbar>
+    <div class="md-toolbar-tools md-toolbar-registro">
+        <h3>Nextbook, Red de Negocios</h3>
+        <span flex></span>
+        <form name="formlogin" layout="row" ng-submit="ingresar()">
+            <div>
+                <md-input-container class="inputuser">
+                    <label>Ruc</label>
+                    <input id="email" name="email" ng-model="email" type="text" ng-required="true" maxlength="10" ng-pattern="/[0-9-.]/">
+                    <div ng-messages="formlogin.email.$error" ng-show="formlogin.email.$dirty">
+                        <div ng-message="required" class="my-message">requerido</div>
+                        <div ng-message="pattern" class="my-message">Solo numeros</div>
+                    </div>
+                </md-input-container>
+                <label class="suffix" style="padding-right: 50px!important;">001@facturanext.com</label>
+                <md-input-container class="inputpass">
+                    <label class="text-white2">Password</label>
+                    <input id="password" name="password" ng-model="password" type="password" autocomplete="off" required>
+                    <div ng-messages="formlogin.password.$error" ng-show="formlogin.password.$dirty">
+                        <div ng-message="required" class="my-message">requerido</div>
+                    </div>
+                </md-input-container>
+                <md-button class="md-raised md-accent" ng-disabled="formlogin.$invalid" type="submit">
+                    <md-icon class="material-icons">security</md-icon> Entrar
+                </md-button>
+            </div>
+        </form>
+    </div>
+    <md-tabs class="md-primary" md-selected="data.selectedIndex" md-center-tabs="true">
+        <md-tab id="tab1" aria-controls="tab1-content">
+            <md-icon>dns</md-icon>
+            Para Empresas
+        </md-tab>
+        <md-tab id="tab2" aria-controls="tab2-content">
+            <md-icon>account_box</md-icon>
+            Para Ti
+        </md-tab>
+        <md-tab id="tab3" aria-controls="tab3-content">
+            <md-icon>assignment_ind</md-icon>
+            Quienes Somos
+        </md-tab>
+    </md-tabs>  
+</md-toolbar>
+
+<div layout="row" layout-align="center center">
+    <div flex-gt-sm="90" flex-gt-md="50" layout-padding>
+        <ng-switch on="data.selectedIndex" class="tabpanel-container">
+            <div id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" ng-controller="registro_Ctrl">
+                <div layout-padding layout-wrap layout-gt-sm="row">
+                    <div flex-gt-sm="60">
+                        <form name="formvisualinfo" ng-show="elementview">
+                            <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <label>Razon Social</label>
+                                <md-icon class="md-primary">airplay</md-icon>
+                                <textarea ng-model="razon_social" autocomplete="off" disabled></textarea>
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <label>Nombre Comercial</label>
+                                <md-icon class="md-primary">airplay</md-icon>
+                                <textarea ng-model="nombre_comercial" autocomplete="off" disabled></textarea>
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <label>Estado del Contribuyente en el ruc</label>
+                                <md-icon class="md-primary">airplay</md-icon>
+                                <input ng-model="estado_contribuyente" autocomplete="off" disabled type="text">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <label>Clase de contribuyente </label>
+                                <md-icon class="md-primary">airplay</md-icon>
+                                <input ng-model="clase_contribuyente" disabled type="text">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <label>Tipo de contribuyente </label>
+                                <md-icon class="md-primary">airplay</md-icon>
+                                <input ng-model="tipo_contribuyente" autocomplete="off" disabled type="text">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <label>Obligado a llevar Contabilidad</label>
+                                <md-icon class="md-primary">airplay</md-icon>
+                                <input ng-model="obligado_llevar_contabilidad" autocomplete="off" disabled type="text">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <label>Actividad Principal</label>
+                                <md-icon class="md-primary">airplay</md-icon>
+                                <input ng-model="actividad_principal" autocomplete="off" disabled type="text">
+                            </md-input-container>
+                        </form>
+                        <img src="images/registro/welcome.png" width="100%" class="animated zoomIn" ng-show="elemennotview" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                        <h2 class="md-display-2" layout="row" layout-align="center center" ng-show="elemennotview">Bienvenido</h2>
+                    </div>
+                    <div flex-gt-sm="40">
+                        <form name="formsearchruc">
+                            <div layout="row" flex>
+                                <md-input-container class="md-icon-float md-block" flex-gt-xs>
+                                    <label>Ingrese numero de ruc</label>
+                                    <md-icon class="md-accent">dns</md-icon>
+                                    <input id="ruc" name="ruc" ng-model="ruc" maxlength="13" ng-minlength="13" autocomplete="off" only-num required>
+                                    <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
+                                        <ng-message when="numbers" class="error"> This se toma </ng-message>
+                                        <div ng-message="numbers" class="my-message">Número de ruc es requerido</div>
+                                        <div ng-message="required" class="my-message">Número de ruc es requerido</div>
+                                        <div ng-message="minlength" class="my-message">Ruc invalido, minimo 13 digitos</div>
+                                        <div ng-message="pattern" class="my-message">Ingrese solo numeros</div>
+                                        <div ng-message="numbersOnly" class="my-message">fdsfdasdf solo numeros</div>
+                                    </div>
+                                </md-input-container>
+                                <md-button class="md-fab md-mini" type="submit" ng-disabled="formsearchruc.$invalid" ng-click="searchruc()">
+                                    <md-icon class="material-icons">search</md-icon>
+                                </md-button>
+                            </div>
+                        </form>
+                        <form name="formreg" ng-show="elementview">
+                            <!-- ng-show="elementview" -->
+                            <div layout="row" flex flex-gt-xs class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <md-input-container class="md-icon-float md-icon-right md-block" flex-gt-xs>
+                                    <md-icon class="md-accent">airplay</md-icon>
+                                    <label class="text-brand">Provincias</label>
+                                    <md-select name="myselect" id="myselect" ng-change="update()" ng-model="myOption" required>
+                                        <md-option ng-repeat="state in states" value="{{state.id}}">
+                                            {{state.nombre}}
+                                        </md-option>
+                                    </md-select>
+                                    <div ng-messages="formreg.myOption.$error">
+                                        <div ng-message="required">myselect is required.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <md-icon class="md-accent">phone</md-icon>
+                                <label>Teléfono 1</label>
+                                <input autocomplete="off" name="lastName" ng-click="select()" ng-model="lastName" ng-minlength="7" required>
+                                <md-icon class="md-accent">airplay</md-icon>
+                                <div ng-messages="formreg.lastName.$error" ng-show="formreg.lastName.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <md-icon class="md-accent">phone</md-icon>
+                                <label>Teléfono 2</label>
+                                <input autocomplete="off" name="lastName2" ng-model="lastName2" ng-minlength="7" required>
+                                <md-icon class="md-accent">airplay</md-icon>
+                                <div ng-messages="formreg.lastName2.$error" ng-show="formreg.lastName2.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <md-icon class="md-accent">settings_cell</md-icon>
+                                <label>Celular</label>
+                                <input name="fono" ng-model="fono" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
+                                <md-icon class="md-accent">airplay</md-icon>
+                                <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
+                                    <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
+                                    <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <md-icon class="md-accent">mail_outline</md-icon>
+                                <label>Email</label>
+                                <input name="correo" ng-model="correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
+                                <md-icon class="md-accent">airplay</md-icon>
+                                <div ng-messages="formreg.correo.$error" ng-show="formreg.correo.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="pattern" class="my-message">correo invalido</div>
+                                </div>
+                            </md-input-container>
+                            <div layout="row" layout-align="center" class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                <md-button class="md-raised md-primary" ng-click="registrar()" ng-disabled="formreg.$invalid">Enviar</md-button>
+                            </div>
+                        </form>
+                        <div ng-show="elemennotview">
+                            <img src="images/registro/reddenegios.png" class="animated zoomIn" ng-show="elemennotview">
+                            <h2 class="content-sub-heading">
+                                <span class="text-brand-accent">Ingresa </span> fácil, <span class="text-brand-accent">rápido</span>,
+                                efectivo y <span class="text-brand-accent">gratis</span>. 
+                                Publica tú negocio y <span class="text-brand-accent">muéstrate</span>
+                                al mundo, seguro incrementarás tús ventas.
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tab2-content" aria-labelledby="tab2" ng-switch-when="1">
+                hola tab2
+            </div>
+            <div id="tab3-content" aria-labelledby="tab3" ng-switch-when="3">
+                hola tab3
+            </div>
+        </ng-switch>
+    </div>
+</div>

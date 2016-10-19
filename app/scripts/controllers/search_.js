@@ -11,7 +11,6 @@ angular.module('nextbook20App')
   	.controller('search_Ctrl', function ($scope, $routeParams, mainService, $location, $routeSegment) {
 		mainService.info_perfil_busqueda().get({perfil:$routeParams.id}).$promise.then(function(data){
 			$scope.data = data.respuesta;
-			console.log(data.respuesta);
 		});
 		$scope.tabnavigation = function(url) {
 	   		$location.path(url);
