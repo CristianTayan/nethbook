@@ -45,6 +45,7 @@ angular.module('nextbook20App')
                 }
         });
     };
+
     // -----------------------------------------------------    BUSCAR INFORMACION RUC   -----------------------------------------------------------
     this.guardar_datos_ruc = function($data) {
         return $resource(urlService.server().appnext()+'Save_Datos_Ruc', {}, {
@@ -53,6 +54,7 @@ angular.module('nextbook20App')
                 }
         });
     };
+    
     this.activar_cuenta = function($data) {
         return $resource(urlService.server().appnext()+'Activar_Cuenta', {}, {
         save:   {
