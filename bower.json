@@ -15,7 +15,9 @@
     "angular-route-segment": "^1.5.1",
     "ngstorage": "^0.3.11",
     "mdPickers": "^0.7.5",
-    "angular-block-ui": "^0.2.2"
+    "angular-block-ui": "^0.2.2",
+    "lumx": "^1.2.7",
+    "angular-audio": "^1.7.3"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

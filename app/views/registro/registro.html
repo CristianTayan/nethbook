@@ -45,7 +45,7 @@
 <div layout="row" layout-align="center center">
     <div flex-gt-sm="90" flex-gt-md="50" layout-padding>
         <ng-switch on="data.selectedIndex" class="tabpanel-container">
-            <div id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" ng-controller="registro_Ctrl">
+            <div id="tab1-content" aria-labelledby="tab1" ng-switch-when="0">
                 <div layout-padding layout-wrap layout-gt-sm="row">
                     <div flex-gt-sm="60">
                         <form name="formvisualinfo" ng-show="elementview">
@@ -82,7 +82,7 @@
                             <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                                 <label>Actividad Principal</label>
                                 <md-icon class="md-primary">airplay</md-icon>
-                                <input ng-model="actividad_principal" autocomplete="off" disabled type="text">
+                                <textarea ng-model="actividad_principal" autocomplete="off" disabled type="text"></textarea>
                             </md-input-container>
                         </form>
                         <img src="images/registro/welcome.png" width="100%" class="animated zoomIn" ng-show="elemennotview" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
@@ -184,7 +184,12 @@
                 </div>
             </div>
             <div id="tab2-content" aria-labelledby="tab2" ng-switch-when="1">
-                hola tab2
+                <mdp-date-picker mdp-open-on-click required name="dateFormat" mdp-placeholder="My date(dd/mm/yyyy)" mdp-format="DD/MM/YYYY" ng-model="currentDate">
+                    <div ng-messages="demoForm.dateFormat.$error">
+                      <div ng-message="required">This is required</div>
+                      <div ng-message="format">Invalid format</div>
+                    </div>
+                  </mdp-date-picker>
             </div>
             <div id="tab3-content" aria-labelledby="tab3" ng-switch-when="3">
                 hola tab3

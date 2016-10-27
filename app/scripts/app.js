@@ -17,11 +17,14 @@ angular
         'ngRoute', // Rutas
         'ngSanitize',
         'ngMaterial', // Estilo material desing con angular
+        'lumx', // Estilo material desing add libreary
         'route-segment', // rutas en segmento
         'view-segment', //vista segmentos 
         'ngResource', //llamar recursos por $http api-res
         'mdPickers',
-        'blockUI', //Bloqueo general
+        'blockUI', //Bloqueo general,
+        'ngAudio'
+
     ])
     .config(function ($routeSegmentProvider, $routeProvider) {
         // Configuring provider options    
@@ -31,16 +34,33 @@ angular
         // routes in every module individually
         // -------------------------------------------    Entrada principal    -------------------------------------------   
         
+        // Inicio Principal
         $routeSegmentProvider    
             .when('/',    'main')        
             .segment('main', {
                 templateUrl: 'views/main/main.html',
                 controller: 'main_Ctrl'
             });
+        // Acceso, Registro, Personas, Para Ti
         $routeSegmentProvider
-            .when('/Registro',    'registro')        
+            .when('/Registro',    'registro')
             .segment('registro', {
                 templateUrl: 'views/registro/registro.html',
+                controller: 'registro_Ctrl'
+            });
+        // Actualizar Datos cambio contraseña
+        $routeSegmentProvider
+            .when('/Actualizar_Datos',    'actualizar_datos')
+            .segment('actualizar_datos', {
+                templateUrl: 'views/actualizar_datos/index.html',
+                controller: 'actualizar_datos_Ctrl'
+            });
+
+        $routeSegmentProvider
+            .when('/Dash',    'dashboard')
+            .segment('dashboard', {
+                templateUrl: 'views/dashboard/index.html',
+                controller: 'dashboard_Ctrl'
             });
 
 
@@ -68,14 +88,11 @@ angular
                 dependencies: ['id']
             })
                 .within()                
-                    .segment('publicacion', {
-                        
-                        templateUrl: 'views/perfil/publicacion.html'})
-                        
+                    .segment('publicacion', {                        
+                        templateUrl: 'views/perfil/publicacion.html'})                        
                     .segment('info', {
                         'default': true,
                         templateUrl: 'views/perfil/info.html'})
-
                     .segment('ubicacion', {
                         templateUrl: 'views/perfil/ubicacion.html'})
                     .segment('similares', {

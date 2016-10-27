@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="bower_components/mdPickers/dist/mdPickers.min.css" />
     <link rel="stylesheet" href="bower_components/angular-block-ui/dist/angular-block-ui.css" />
+    <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -39,6 +40,7 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -54,7 +56,12 @@
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/mdPickers/dist/mdPickers.min.js"></script>
     <script src="bower_components/angular-block-ui/dist/angular-block-ui.js"></script>
+    <script src="bower_components/velocity/velocity.js"></script>
+    <script src="bower_components/velocity/velocity.ui.js"></script>
+    <script src="bower_components/lumx/dist/lumx.js"></script>
+    <script src="bower_components/angular-audio/app/angular.audio.js"></script>
     <!-- endbower -->
+    <script src="bower_components/moment/locale/es.js"></script>
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -63,9 +70,14 @@
         <!-- Script Controller´s -->
         <script src="scripts/services/main_service.js"></script>
         <script src="scripts/services/url_service.js"></script>
+        <script src="scripts/services/consumir_service.js"></script>
+        <script src="scripts/directives/general_directive.js"></script>
         <script src="scripts/controllers/main_.js"></script>
         <script src="scripts/controllers/search_.js"></script>
         <script src="scripts/controllers/registro_.js"></script>
+        <script src="scripts/controllers/actualizar_datos_.js"></script>
+        
+        <script src="scripts/controllers/dashboard_.js"></script>
         <!-- endbuild -->
 </body>
 </html>

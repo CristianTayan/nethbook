@@ -1,0 +1,117 @@
+<md-toolbar>
+    <div class="md-toolbar-tools md-toolbar-registro">
+        <h3>Nextbook, Red de Negocios</h3>
+        <span flex></span>
+        <lx-dropdown lx-position="right" lx-over-toggle="true" lx-width="250">
+            <lx-dropdown-toggle>
+                <lx-button lx-color="black" lx-type="icon">
+                    <md-icon>more_vert</md-icon>
+                </lx-button>
+            </lx-dropdown-toggle>
+
+            <lx-dropdown-menu>
+                <ul>
+                    <li>
+                        <a class="dropdown-link" ng-href="#/salir/341234">
+                            <i class="md-accent mdi mdi-exit-to-app"></i>
+                            <span>Cerrar Sesión</span>
+                        </a>
+                    </li>
+                </ul>
+            </lx-dropdown-menu>
+        </lx-dropdown>
+    </div>
+</md-toolbar>
+<div layout="row" layout-align="center center">
+    <div class="p+">
+        <div class="card">
+            <div flex-container="row">
+                <div class="card__img card__img--left" >
+                    <img src="images/actualizar_datos/img.jpg">
+                </div>
+     
+                <div flex-item flex-container="column">
+                    <div class="p+">
+                        <form name="form_pass" ng-submit="cambiar_datos()">
+                            <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
+                                <div layout-gt-sm="row" layout-align="center center" class="fs-headline display-block">
+                                    Actualizacion de datos personales
+                                </div>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-xs>
+                                    <md-icon class="md-accent">person</md-icon>
+                                    <label>Nombres</label>
+                                    <input name="nombres" ng-model="data.nombres" required autocomplete="off">
+                                    <div ng-messages="form_pass.nombres.$error">
+                                        <div ng-message="required" class="my-message">(*) Campo requerido</div>
+                                    </div>
+                                </md-input-container>
+                                <div flex="5" hide-xs hide-sm>
+                                    <!-- Spacio //-->
+                                </div>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <md-icon class="md-accent">person_add</md-icon>
+                                    <label>Apellidos</label>
+                                    <input name="apellidos" ng-model="data.apellidos" required autocomplete="off">
+                                    <div ng-messages="form_pass.apellidos.$error">
+                                        <div ng-message="required" class="my-message">(*) Campo requerido</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <md-icon class="md-accent">phone</md-icon>
+                                    <label>Teléfono</label>
+                                    <input name="telefono" ng-model="data.telefono" required ng-pattern="/^[0-9]{10}$/" autocomplete="off">
+                                    <div class="hint" ng-show="showHints">0999999999</div>
+                                    <div ng-messages="form_pass.telefono.$error">
+                                        <div ng-message="required" class="my-message">requerido</div>
+                                    </div>
+                                    <div ng-messages="form_pass.telefono.$error" ng-hide="showHints">
+                                        <div ng-message="pattern">0999999999 - Por favor Ingrese Un numero de telefono valido.</div>
+                                    </div>
+                                </md-input-container>
+                                <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                                <mdp-date-picker mdp-open-on-click required name="fecha_nac" mdp-min-date="inicio" mdp-max-date="fin" mdp-placeholder="F. de Nac(dd/mm/yyyy)" mdp-format="DD/MM/YYYY" ng-model="data.fecha_nac" aria-label="modelo date">
+                                    <div ng-messages="form_pass.fecha_nac.$error">
+                                        <div ng-message="required">Este campo es requerido</div>
+                                        <div ng-message="format">Formato invalido</div>
+                                    </div>
+                                </mdp-date-picker>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Ingrese su nueva contraseña</label>
+                                    <md-icon class="md-accent">streetview</md-icon>
+                                    <input type="password" id="password" name="password" ng-model="data.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required />
+                                    <div ng-messages="form_pass.password.$error">
+                                        <div ng-message="required" class="my-message">Ingrese una contraseña es requerido</div>
+                                        <div ng-message="minlength" class="my-message">as contraseñas deben tener entre 8 y 20 caracteres.</div>
+                                        <div ng-message="pattern" class="my-message">Debe contener una minuscula &amp;letra mayúscula y un carácter especial (un número o un símbolo.)</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Repita nueva contraseña</label>
+                                        <md-icon class="md-accent">layers</md-icon>
+                                        <input type="password" id="password_c" name="password_c" ng-model="formData.password_c" valid-password-c="data.password" required />
+                                        <div ng-messages="form_pass.password_c.$error">
+                                            <div ng-message="noMatch">Las contraseñas no coinciden</div>
+                                            <div ng-message="required">Campo es requerido</div>
+                                        </div>
+                                </md-input-container>
+                            </div>            
+                            <div layout-gt-sm="row" layout-align="center center">
+                                <md-button class="md-raised md-primary" type="submit" ng-disabled="form_pass.$invalid">
+                                    <md-icon ng-show="form_pass.$invalid">report</md-icon>
+                                    <md-icon ng-show="!form_pass.$invalid">done</md-icon>
+                                    Siguiente
+                                </md-button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,254 @@
+<div layout-xs="column" layout="row" style="position: fixed; z-index: 99; width: 100%;">
+    <md-toolbar flex-xs flex-gt-xs="15" layout="column">
+    </md-toolbar>
+    <md-toolbar flex-xs flex-gt-xs="65" layout="column">
+        <div class="md-toolbar-tools toolbar-center">
+            <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu" class="md-icon-button launch">
+                <ng-md-icon icon="menu"></ng-md-icon>
+            </md-button>
+            <a href="#/Dash" title="">
+                <img src="images/logo/logo.fw.png"  alt="Logo">
+            </a>
+
+            <!-- <div ng-controller="appsCtrl as appsctrl"> -->
+                <form ng-submit="$event.preventDefault()" class="input-buscador">
+                    <md-autocomplete 
+                        ng-disabled="isDisabled" 
+                        md-no-cache="Cache" 
+                        md-selected-item="selectedItem" 
+                        md-search-text-change="appsctrl.searchTextChange(searchText)" 
+                        md-search-text="searchText" 
+                        md-selected-item-change="appsctrl.selectedItemChange(item)" 
+                        md-items="item in items" 
+                        md-item-text="item.nombre_comercial" 
+                        md-min-length="0" 
+                        placeholder="Empresas,Servicios ....." 
+                        md-menu-class="autocomplete-custom-template">
+                        <md-item-template>
+                            <span class="item-title">
+                      <img alt="Img" ng-src="{{item.img}}" class="avatar-busqueda" />
+                      <span style="font-size:10px"> 
+                      {{item.nombre_comercial}}
+                      <md-icon md-svg-icon="img/icons/ic_comment_24px.svg" class="mensaje-autocomplete" ng-click="sendMensaje(item)"></md-icon>
+                      </span>
+                            </span>
+                        </md-item-template>
+                    </md-autocomplete>
+                </form>
+            <!-- </div> -->
+            <span flex></span>
+            <md-button href="#/My-space/Catalogo">
+                Catalogo
+            </md-button>
+            <md-button href="#/My-space/Perfil-inicio">
+                Perfil
+            </md-button>
+            <md-button href="#/My-space/Inicio">
+                Inicio
+            </md-button>
+            <lx-dropdown lx-position="right" lx-over-toggle="true" lx-width="250">
+                <lx-dropdown-toggle>
+                    <md-button aria-label="Open demo menu" class="md-icon-button">
+                    <md-icon>more_vert</md-icon>
+                </md-button>
+                </lx-dropdown-toggle>
+                <lx-dropdown-menu>
+                    <ul>
+                        <li>
+                            <a class="dropdown-link">
+                                <i class="mdi mdi-eye"></i>
+                                <span>Preview</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-link">
+                                <i class="mdi mdi-delete"></i>
+                                <span>Move to trash</span>
+                            </a>
+                        </li>
+                        <li><span class="dropdown-link dropdown-link--is-header">General</span></li>
+                        <li><a class="dropdown-link">Something else here</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-link">
+                                <i class="mdi mdi-exit-to-app"></i>
+                                <span>Cerrar Sesión</span>
+                            </a>
+                        </li>
+                    </ul>
+                </lx-dropdown-menu>
+            </lx-dropdown>
+        </div>
+    </md-toolbar>
+    <div flex-xs flex-gt-xs="20" layout="column">
+        <md-toolbar>
+            <md-tabs class="md-primary" md-selected="data.selectedIndex"  md-center-tabs="true">
+                <md-tab id="tab1" aria-controls="tab1-content">
+                    <md-icon>comment</md-icon>
+                        <div ng-show="countnewmsj!=0" style="width: 0px; top: -38px; right: 12px;" class="badge1" data-badge="{{countnewmsj}}"></div>
+                </md-tab>
+                <md-tab id="tab2" aria-controls="tab2-content">
+                    <md-icon>insert_drive_file</md-icon>
+                    <md-badge ng-show="nrfacturas!=0">{{nrfacturas}}</md-badge>
+                </md-tab>
+                <md-tab id="tab3" aria-controls="tab3-content">
+                    <md-icon>email</md-icon>
+                </md-tab>
+                <md-tab id="tab4" aria-controls="tab4-content">
+                    <md-icon>directions_car</md-icon>
+                </md-tab>
+                <md-tab id="tab5" aria-controls="tab5-content">
+                    <md-icon>headset_mic</md-icon>
+                </md-tab>
+            </md-tabs>
+        </md-toolbar>
+    </div>
+</div>
+<div layout-xs="column" layout="row" style="padding-top: 64px;" >
+    <div flex-xs flex-gt-xs="80" layout="column">
+        <!-- contenido -->
+        <div app-view-segment="1"></div>
+    </div>
+    <md-sidenav flex-xs flex-gt-xs="20" layout="column" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')" class="md-whiteframe-z2">
+    	<!-- <div ng-controller="mensajesCtrl as ctrl"> -->
+        <ng-switch on="data.selectedIndex" class="tabpanel-container">
+        	<div id="tab1-content" aria-labelledby="tab1" ng-switch-when="0">
+        		hola tabs 1
+        	</div>
+        	<div id="tab2-content" aria-labelledby="tab2" ng-switch-when="1">
+        		hola tabs 2
+        	</div>
+        	<div id="tab3-content" aria-labelledby="tab3" ng-switch-when="2">
+        		hola tabs 3
+        	</div>
+        	<div id="tab4-content" aria-labelledby="tab4" ng-switch-when="3">
+        		hola tabs 4
+        	</div>
+        	<div id="tab5-content" aria-labelledby="tab5" ng-switch-when="4">
+        		<md-content layout-padding layout-wrap>
+                    <audio controls autoplay>
+                        <source src="http://186.33.168.251:8000/stream.aac" type="audio/ogg">
+                        <source src="http://186.33.168.251:8000/stream.aac" type="audio/mpeg">
+                    </audio>
+                    <button ng-audio-hover="http://186.33.168.251:8000/stream.aac" volume-hover="0.5" start-hover="0.2">Click me</button>
+                </md-content>
+        	</div>
+        </ng-switch>
+    </md-sidenav>
+</div>
+<md-content class="md-padding">
+    <p>
+      You can use the fabToolbar with a trigger and regular toolbar.
+    </p>
+
+    <p>
+      You may use the <code>md-open</code> attribute to programmatically control whether or not the
+      control is open, and you may set the direction that the toolbar appears using the
+      <code>md-direction</code> attribute. This component currently supports the <code>left</code>
+      and <code>right</code> options.
+    </p>
+  </md-content>
+
+  <md-fab-toolbar md-open="demo.isOpen" count="demo.count"
+                  md-direction="{{demo.selectedDirection}}">
+    <md-fab-trigger class="align-with-text">
+      <md-button aria-label="menu" class="md-fab md-primary">
+        <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
+      </md-button>
+    </md-fab-trigger>
+
+    <md-toolbar>
+      <md-fab-actions class="md-toolbar-tools">
+        <md-button aria-label="comment" class="md-icon-button">
+          <md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon>
+        </md-button>
+        <md-button aria-label="label" class="md-icon-button">
+          <md-icon md-svg-src="img/icons/ic_label_24px.svg"></md-icon>
+        </md-button>
+        <md-button aria-label="photo" class="md-icon-button">
+          <md-icon md-svg-src="img/icons/ic_photo_24px.svg"></md-icon>
+        </md-button>
+      </md-fab-actions>
+    </md-toolbar>
+  </md-fab-toolbar>
+
+  <md-content class="md-padding" layout="column">
+    <div layout="row" layout-align="space-around">
+      <div layout="column">
+        <b>Open/Closed</b>
+
+        <md-radio-group ng-model="demo.isOpen">
+          <md-radio-button ng-value="true">Open</md-radio-button>
+          <md-radio-button ng-value="false">Closed</md-radio-button>
+        </md-radio-group>
+      </div>
+
+      <div layout="column">
+        <b>Direction</b>
+
+        <md-radio-group ng-model="demo.selectedDirection">
+          <md-radio-button ng-value="'left'">Left</md-radio-button>
+          <md-radio-button ng-value="'right'">Right</md-radio-button>
+        </md-radio-group>
+      </div>
+    </div>
+  </md-content>
+
+<style type="text/css">
+    .toolbar-center {
+        padding-left: 2%;
+        /*padding-right: 10%;*/
+    }    
+    .toolbar-chat {
+        padding-left: 80%;
+        margin-top: -50px;
+    }    
+    .no-view {
+        font-weight: bold;
+    }    
+    .avatar-busqueda {
+
+        /*margin-top: 8px;*/
+        /*margin-bottom: 8px;*/
+        /*margin-right: 16px;*/
+        /*border-radius: 50%;*/
+        box-sizing: content-box;
+        width: 40px;
+    }    
+    .mensaje-autocomplete:hover {
+        color: #ff4081;
+    }    
+    md-badge {
+        margin: 0 0 0px -4px;
+        color: white;
+        padding: 1px 4px;
+        border-radius: 4px;
+    }    
+    #chat_mensajes md-tabs-canvas {
+        display: none;
+    }
+    .md-tab {
+        /*padding: 12px 12px;*/
+    }
+    .md-tab {
+        padding: 20px 20px;
+    }
+
+    .badge1 {
+   position:relative;
+}
+.badge1[data-badge]:after {
+   content:attr(data-badge);
+   position:absolute;
+   top:6px;
+   right: -46px;
+   font-size:.7em;
+    background: #ff4081;
+   color:white;
+   width:18px;height:18px;
+   text-align:center;
+   line-height:18px;
+   border-radius:50%;
+   box-shadow:0 0 1px #333;
+}
+</style>
