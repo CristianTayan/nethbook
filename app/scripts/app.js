@@ -23,7 +23,8 @@ angular
         'ngResource', //llamar recursos por $http api-res
         'mdPickers',
         'blockUI', //Bloqueo general,
-        'ngAudio'
+        'ngAudio',
+        'angular-loading-bar'
 
     ])
     .config(function ($routeSegmentProvider, $routeProvider) {
@@ -58,10 +59,23 @@ angular
 
         $routeSegmentProvider
             .when('/Dash',    'dashboard')
+            .when('/Inicio',    'dashboard.inicio')
+            .when('/Perfil',    'dashboard.perfil')
+            
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
                 controller: 'dashboard_Ctrl'
-            });
+            })
+            .within()                
+                    .segment('inicio', {
+                        templateUrl: 'views/dashboard/inicio.html',
+                        controller: 'inicio_Ctrl'
+                    })
+                    .segment('perfil', {
+                        templateUrl: 'views/dashboard/perfil.html',
+                        controller: 'perfil_Ctrl'
+                    })
+                .up();
 
 
         // activar cuenta

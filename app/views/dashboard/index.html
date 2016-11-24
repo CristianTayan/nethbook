@@ -40,10 +40,10 @@
             <md-button href="#/My-space/Catalogo">
                 Catalogo
             </md-button>
-            <md-button href="#/My-space/Perfil-inicio">
+            <md-button href="#/Perfil">
                 Perfil
             </md-button>
-            <md-button href="#/My-space/Inicio">
+            <md-button href="#/Inicio">
                 Inicio
             </md-button>
             <lx-dropdown lx-position="right" lx-over-toggle="true" lx-width="250">
@@ -136,119 +136,4 @@
         </ng-switch>
     </md-sidenav>
 </div>
-<md-content class="md-padding">
-    <p>
-      You can use the fabToolbar with a trigger and regular toolbar.
-    </p>
 
-    <p>
-      You may use the <code>md-open</code> attribute to programmatically control whether or not the
-      control is open, and you may set the direction that the toolbar appears using the
-      <code>md-direction</code> attribute. This component currently supports the <code>left</code>
-      and <code>right</code> options.
-    </p>
-  </md-content>
-
-  <md-fab-toolbar md-open="demo.isOpen" count="demo.count"
-                  md-direction="{{demo.selectedDirection}}">
-    <md-fab-trigger class="align-with-text">
-      <md-button aria-label="menu" class="md-fab md-primary">
-        <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
-      </md-button>
-    </md-fab-trigger>
-
-    <md-toolbar>
-      <md-fab-actions class="md-toolbar-tools">
-        <md-button aria-label="comment" class="md-icon-button">
-          <md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon>
-        </md-button>
-        <md-button aria-label="label" class="md-icon-button">
-          <md-icon md-svg-src="img/icons/ic_label_24px.svg"></md-icon>
-        </md-button>
-        <md-button aria-label="photo" class="md-icon-button">
-          <md-icon md-svg-src="img/icons/ic_photo_24px.svg"></md-icon>
-        </md-button>
-      </md-fab-actions>
-    </md-toolbar>
-  </md-fab-toolbar>
-
-  <md-content class="md-padding" layout="column">
-    <div layout="row" layout-align="space-around">
-      <div layout="column">
-        <b>Open/Closed</b>
-
-        <md-radio-group ng-model="demo.isOpen">
-          <md-radio-button ng-value="true">Open</md-radio-button>
-          <md-radio-button ng-value="false">Closed</md-radio-button>
-        </md-radio-group>
-      </div>
-
-      <div layout="column">
-        <b>Direction</b>
-
-        <md-radio-group ng-model="demo.selectedDirection">
-          <md-radio-button ng-value="'left'">Left</md-radio-button>
-          <md-radio-button ng-value="'right'">Right</md-radio-button>
-        </md-radio-group>
-      </div>
-    </div>
-  </md-content>
-
-<style type="text/css">
-    .toolbar-center {
-        padding-left: 2%;
-        /*padding-right: 10%;*/
-    }    
-    .toolbar-chat {
-        padding-left: 80%;
-        margin-top: -50px;
-    }    
-    .no-view {
-        font-weight: bold;
-    }    
-    .avatar-busqueda {
-
-        /*margin-top: 8px;*/
-        /*margin-bottom: 8px;*/
-        /*margin-right: 16px;*/
-        /*border-radius: 50%;*/
-        box-sizing: content-box;
-        width: 40px;
-    }    
-    .mensaje-autocomplete:hover {
-        color: #ff4081;
-    }    
-    md-badge {
-        margin: 0 0 0px -4px;
-        color: white;
-        padding: 1px 4px;
-        border-radius: 4px;
-    }    
-    #chat_mensajes md-tabs-canvas {
-        display: none;
-    }
-    .md-tab {
-        /*padding: 12px 12px;*/
-    }
-    .md-tab {
-        padding: 20px 20px;
-    }
-
-    .badge1 {
-   position:relative;
-}
-.badge1[data-badge]:after {
-   content:attr(data-badge);
-   position:absolute;
-   top:6px;
-   right: -46px;
-   font-size:.7em;
-    background: #ff4081;
-   color:white;
-   width:18px;height:18px;
-   text-align:center;
-   line-height:18px;
-   border-radius:50%;
-   box-shadow:0 0 1px #333;
-}
-</style>

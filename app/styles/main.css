@@ -182,3 +182,18 @@ body, html {
       left: 0;
     }
 
+
+
+    /*loaging*/
+    #loading-bar .bar {
+      background: #FF4081;
+      height: 3px;
+    }
+    #loading-bar-spinner .spinner-icon {
+      /*width: 18px;*/
+      /*height: 18px;*/
+      /*border: solid 4px transparent;*/
+      border-top-color: #FF4081;
+      border-left-color: #FF4081;
+      /*border-radius: 10px;*/
+    }

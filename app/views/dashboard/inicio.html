@@ -1,0 +1,29 @@
+<div layout="row">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex-xs flex-gt-md="20" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <img src="http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg" class="md-card-image" alt="Banner Perfil">
+        <div class="sidenav-header-profile">
+            <span flex></span>
+            <div class="sidenav-profile">
+                <user-avatar></user-avatar>
+                <span>{{localStorage.nombre_comercial | uppercase | limitTo: 50}}</span>
+            </div>
+        </div>
+        <md-list ng-cloak>
+            <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in menu">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <p> {{ item.title }} </p>
+            </md-list-item>
+            <md-list-item>
+                <ng-md-icon icon="exit_to_app"></ng-md-icon>
+                <p> Bloquear </p>
+            </md-list-item>
+            <md-list-item>
+                <ng-md-icon icon="aspect_ratio"></ng-md-icon>
+                <p> Pantalla Completa </p>
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
+    <div flex-xs layout="column" flex-gt-md="80" layout-padding>
+    	hola mundo como estas http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg prodecs
+    </div>
+</div>

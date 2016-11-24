@@ -17,7 +17,7 @@ angular.module('nextbook20App')
             }
             ,appnext: function() {
                 // return "http://186.33.168.251/appnext/";
-                return "http://186.33.168.251/appnext1.1/public/";
+                return "http://186.4.167.12/appnext1.1/public/";
 
             },appnextPersonas: function() {
                 // return "http://186.33.168.251/appnextP/";

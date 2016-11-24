@@ -1,25 +1,28 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Conceptual</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-    <link rel="stylesheet" href="bower_components/mdPickers/dist/mdPickers.min.css" />
-    <link rel="stylesheet" href="bower_components/angular-block-ui/dist/angular-block-ui.css" />
-    <link rel="stylesheet" href="bower_components/lumx/dist/lumx.css" />
+    <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="../bower_components/mdPickers/dist/mdPickers.min.css" />
+    <link rel="stylesheet" href="../bower_components/angular-block-ui/dist/angular-block-ui.css" />
+    <link rel="stylesheet" href="../bower_components/lumx/dist/lumx.css" />
+    <link rel="stylesheet" href="../bower_components/angular-loading-bar/build/loading-bar.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  </head>
-  <body ng-app="nextbook20App">
+</head>
+
+<body ng-app="nextbook20App">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -28,56 +31,66 @@
     <div app-view-segment="0"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-    <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
+    <script type="text/javascript">
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-87985127-1', 'auto');
+        ga('send', 'pageview');
     </script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
-    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-    <script src="bower_components/angular-route-segment/build/angular-route-segment.js"></script>
-    <script src="bower_components/ngstorage/ngStorage.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/mdPickers/dist/mdPickers.min.js"></script>
-    <script src="bower_components/angular-block-ui/dist/angular-block-ui.js"></script>
-    <script src="bower_components/velocity/velocity.js"></script>
-    <script src="bower_components/velocity/velocity.ui.js"></script>
-    <script src="bower_components/lumx/dist/lumx.js"></script>
-    <script src="bower_components/angular-audio/app/angular.audio.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angular-aria/angular-aria.js"></script>
+    <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="../bower_components/angular-messages/angular-messages.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../bower_components/angular-material/angular-material.js"></script>
+    <script src="../bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="../bower_components/angular-route-segment/build/angular-route-segment.js"></script>
+    <script src="../bower_components/ngstorage/ngStorage.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/mdPickers/dist/mdPickers.min.js"></script>
+    <script src="../bower_components/angular-block-ui/dist/angular-block-ui.js"></script>
+    <script src="../bower_components/velocity/velocity.js"></script>
+    <script src="../bower_components/velocity/velocity.ui.js"></script>
+    <script src="../bower_components/lumx/dist/lumx.js"></script>
+    <script src="../bower_components/angular-audio/app/angular.audio.js"></script>
+    <script src="../bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <!-- endbower -->
-    <script src="bower_components/moment/locale/es.js"></script>
+    <script src="../bower_components/moment/locale/es.js"></script>
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <!-- Script Service´s -->
-        <!-- Script Controller´s -->
-        <script src="scripts/services/main_service.js"></script>
-        <script src="scripts/services/url_service.js"></script>
-        <script src="scripts/services/consumir_service.js"></script>
-        <script src="scripts/directives/general_directive.js"></script>
-        <script src="scripts/controllers/main_.js"></script>
-        <script src="scripts/controllers/search_.js"></script>
-        <script src="scripts/controllers/registro_.js"></script>
-        <script src="scripts/controllers/actualizar_datos_.js"></script>
-        
-        <script src="scripts/controllers/dashboard_.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <!-- Script Service´s -->
+    <!-- Script Controller´s -->
+    <script src="scripts/services/main_service.js"></script>
+    <script src="scripts/services/url_service.js"></script>
+    <script src="scripts/services/consumir_service.js"></script>
+    <script src="scripts/directives/general_directive.js"></script>
+    <script src="scripts/controllers/main_.js"></script>
+    <script src="scripts/controllers/search_.js"></script>
+    <script src="scripts/controllers/registro_.js"></script>
+    <script src="scripts/controllers/actualizar_datos_.js"></script>
+
+    <script src="scripts/controllers/dashboard_.js"></script>
+    <script src="scripts/controllers/perfil_.js"></script>
+    <script src="scripts/controllers/inicio_.js"></script>
+    <!-- endbuild -->
 </body>
+
 </html>
