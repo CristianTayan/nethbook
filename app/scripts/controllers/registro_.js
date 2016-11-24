@@ -19,9 +19,10 @@ angular.module('nextbook20App')
 
   		// buscar servidor externo consulta
   		$scope.searchruc = function() {
+  			console.log($scope.ruc);
   			$scope.elementview = false;
   			$scope.elemennotview = true;
-	        mainService.buscar_informacion_ruc().get({ruc: $scope.ruc}).$promise.then(function(data){
+	        mainService.buscar_informacion_ruc().get({nrodocumento: $scope.ruc,tipodocumento:'RUC'}).$promise.then(function(data){
 	            var x = data.respuesta;
 	            if (x == false ) {
 	                $mdDialog.show(

@@ -13,17 +13,17 @@ angular.module('nextbook20App')
     this.server=function() {
         return {
             appserviosnext: function() {
-                return "http://186.33.168.251/appserviosnext/";
+                return "http://186.4.167.12/appserviosnext/index.php/";
             }
             ,appnext: function() {
-                // return "http://186.33.168.251/appnext/";
-                return "http://186.4.167.12/appnext1.1/public/";
+                // return "http://186.4.167.12/appnext/";
+                return "http://186.4.167.12/appnext1.1/public/index.php/";
 
             },appnextPersonas: function() {
-                // return "http://186.33.168.251/appnextP/";
+                // return "http://186.4.167.12/appnextP/";
                 return "http://192.168.0.109/appnextP/";
             },mod_radio: function() {
-                // return "http://186.33.168.251/mod_radio/";
+                // return "http://186.4.167.12/mod_radio/";
                 return "http://192.168.0.109/mod_radio/";
 
             }
