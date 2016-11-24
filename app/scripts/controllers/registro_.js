@@ -17,12 +17,13 @@ angular.module('nextbook20App')
 	        $scope.states = data.respuesta;
 	    });
 
+  		$scope.ruc_='001';
   		// buscar servidor externo consulta
-  		$scope.searchruc = function() {
-  			console.log($scope.ruc);
+  		$scope.buscar_ruc = function() {
+  			console.log($scope.ruc_);
   			$scope.elementview = false;
   			$scope.elemennotview = true;
-	        mainService.buscar_informacion_ruc().get({nrodocumento: $scope.ruc,tipodocumento:'RUC'}).$promise.then(function(data){
+	        mainService.buscar_informacion_ruc().get({nrodocumento: $scope.ruc_, tipodocumento:'RUC'}).$promise.then(function(data){
 	            var x = data.respuesta;
 	            if (x == false ) {
 	                $mdDialog.show(
