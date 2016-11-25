@@ -7,8 +7,8 @@
  * # RegistroCtrl
  * Controller of the nextbook20App
  */
-angular.module('nextbook20App')
-  	.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService) {
+var app = angular.module('nextbook20App')
+  	app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService) {
   		$scope.elementview = false;
   		$scope.elemennotview = true; 	
   		
@@ -17,13 +17,12 @@ angular.module('nextbook20App')
 	        $scope.states = data.respuesta;
 	    });
 
-  		$scope.ruc_='001';
+  		$scope.formdata = {ruc: ''}
   		// buscar servidor externo consulta
   		$scope.buscar_ruc = function() {
-  			console.log($scope.ruc_);
   			$scope.elementview = false;
   			$scope.elemennotview = true;
-	        mainService.buscar_informacion_ruc().get({nrodocumento: $scope.ruc_, tipodocumento:'RUC'}).$promise.then(function(data){
+	        mainService.buscar_informacion_ruc().get({ruc: $scope.formdata.ruc}).$promise.then(function(data){
 	            var x = data.respuesta;
 	            if (x == false ) {
 	                $mdDialog.show(
@@ -209,8 +208,8 @@ angular.module('nextbook20App')
 		}
 		//Test: Print the IP addresses into the console
 		
-  	})
-	.controller('activar_Ctrl', function ($scope, $routeParams, $mdDialog, mainService) {
+  	});
+	app.controller('activar_Ctrl', function ($scope, $routeParams, $mdDialog, mainService) {
 		mainService.activar_cuenta($routeParams).save().$promise.then(function(data){
 	        // $scope.states = data.respuesta;
 	        console.log(data);
