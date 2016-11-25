@@ -24,7 +24,8 @@ angular
         'mdPickers',
         'blockUI', //Bloqueo general,
         'ngAudio',
-        'angular-loading-bar'
+        'angular-loading-bar',
+        'ngStorage'
 
     ])
     .config(function ($routeSegmentProvider, $routeProvider) {

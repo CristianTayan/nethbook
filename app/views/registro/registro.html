@@ -114,7 +114,7 @@
                                 <md-input-container class="md-icon-float md-icon-right md-block" flex-gt-xs>
                                     <md-icon class="md-accent">airplay</md-icon>
                                     <label class="text-brand">Provincias</label>
-                                    <md-select name="myselect" id="myselect" ng-change="update()" ng-model="myOption" required>
+                                    <md-select name="myselect" id="myselect" ng-change="update()" ng-model="rucdata.provincia" required>
                                         <md-option ng-repeat="state in states" value="{{state.id}}">
                                             {{state.nombre}}
                                         </md-option>
@@ -127,7 +127,7 @@
                             <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                                 <md-icon class="md-accent">phone</md-icon>
                                 <label>Teléfono 1</label>
-                                <input autocomplete="off" name="lastName" ng-click="select()" ng-model="lastName" ng-minlength="7" required>
+                                <input autocomplete="off" name="lastName" ng-click="select()" ng-model="rucdata.telefono" ng-minlength="7" required>
                                 <md-icon class="md-accent">airplay</md-icon>
                                 <div ng-messages="formreg.lastName.$error" ng-show="formreg.lastName.$dirty">
                                     <div ng-message="required">Campo Requerido</div>
@@ -137,7 +137,7 @@
                             <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                                 <md-icon class="md-accent">phone</md-icon>
                                 <label>Teléfono 2</label>
-                                <input autocomplete="off" name="lastName2" ng-model="lastName2" ng-minlength="7" required>
+                                <input autocomplete="off" name="lastName2" ng-model="rucdata.telefono1" ng-minlength="7" required>
                                 <md-icon class="md-accent">airplay</md-icon>
                                 <div ng-messages="formreg.lastName2.$error" ng-show="formreg.lastName2.$dirty">
                                     <div ng-message="required">Campo Requerido</div>
@@ -147,7 +147,7 @@
                             <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                                 <md-icon class="md-accent">settings_cell</md-icon>
                                 <label>Celular</label>
-                                <input name="fono" ng-model="fono" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
+                                <input name="fono" ng-model="rucdata.celular" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
                                 <md-icon class="md-accent">airplay</md-icon>
                                 <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
                                     <div ng-message="required">Campo Requerido</div>
@@ -159,7 +159,7 @@
                             <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                                 <md-icon class="md-accent">mail_outline</md-icon>
                                 <label>Email</label>
-                                <input name="correo" ng-model="correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
+                                <input name="correo" ng-model="rucdata.correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
                                 <md-icon class="md-accent">airplay</md-icon>
                                 <div ng-messages="formreg.correo.$error" ng-show="formreg.correo.$dirty">
                                     <div ng-message="required">Campo Requerido</div>

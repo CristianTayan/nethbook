@@ -8,7 +8,7 @@
  * Controller of the nextbook20App
  */
 var app = angular.module('nextbook20App')
-  	app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService) {
+  	app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService, $localStorage) {
   		$scope.elementview = false;
   		$scope.elemennotview = true; 	
   		
@@ -18,6 +18,7 @@ var app = angular.module('nextbook20App')
 	    });
 
   		$scope.formdata = {ruc: ''}
+  		$scope.rucdata = {telefono: '', telefono1:'', celular:'', provincia:'', correo:''};
   		// buscar servidor externo consulta
   		$scope.buscar_ruc = function() {
   			$scope.elementview = false;
@@ -34,6 +35,7 @@ var app = angular.module('nextbook20App')
 				        .ariaLabel('Alert Dialog Demo')
 				        .ok('Entendido')
 				    );
+	                $scope.formdata = {ruc: ''}
 	            }
 	            if (x == 'false-sri' ) {
 	                $mdDialog.show(
@@ -56,7 +58,7 @@ var app = angular.module('nextbook20App')
 	                $scope.actividad_principal=x.actividad_economica;
 	                $scope.rucdata = x;
 	                $scope.elementview=true;
-	                $scope.elemennotview=false;  
+	                $scope.elemennotview=false;
 	            }
 	        });
 	    }
@@ -78,7 +80,7 @@ var app = angular.module('nextbook20App')
 					            .openFrom('#left')
 					        );
 			            } else {
-				            $localStorage.token = data[0].token;
+				            $localStorage.token = data.token;
 				            $localStorage.datosE = data.datosE;
 				            $localStorage.datosPersona = data.datosPersona;
 				            //--------------------cargar imagen perfil-----------
@@ -117,11 +119,6 @@ var app = angular.module('nextbook20App')
 
 	    // registro ruc en el sistema
 	    $scope.registrar = function() {
-	    	$scope.rucdata['telefono'] = $scope.lastName
-	        $scope.rucdata['telefono1'] = $scope.lastName2;
-	        $scope.rucdata['provincia'] = $scope.myOption;
-	        $scope.rucdata['celular'] = $scope.fono;
-	        $scope.rucdata['correo'] = $scope.correo;
 	        mainService.guardar_datos_ruc($scope.rucdata).save().$promise.then(function(result){
 	            if (result.respuesta == true) {
 	            	$mdDialog.show(
@@ -136,7 +133,8 @@ var app = angular.module('nextbook20App')
 	                $scope.elemennotview = true;
 	                $scope.elementview = false;               
 	                $scope.ruc = null;
-	               // reset();
+	                $scope.formdata = {ruc: ''}
+	               	$scope.rucdata = {telefono: '', telefono1:'', celular:'', provincia:'', correo:''};
 	            } else {
 	            	$mdDialog.show(
 				      $mdDialog.alert()
@@ -147,6 +145,7 @@ var app = angular.module('nextbook20App')
 				        .ariaLabel('Alert Dialog')
 				        .ok('Entendido')
 				    );
+				    $scope.rucdata = {telefono: '', telefono1:'', celular:'', provincia:'', correo:''};
 	            }   
 	        });
 	    }
@@ -207,11 +206,44 @@ var app = angular.module('nextbook20App')
 		    }, 1000);
 		}
 		//Test: Print the IP addresses into the console
-		
   	});
-	app.controller('activar_Ctrl', function ($scope, $routeParams, $mdDialog, mainService) {
+
+	app.controller('activar_Ctrl', function ($scope, $routeParams, $mdDialog, mainService, $location) {
 		mainService.activar_cuenta($routeParams).save().$promise.then(function(data){
-	        // $scope.states = data.respuesta;
-	        console.log(data);
+	        if (data.respuesta == true) {
+	        	$mdDialog.show(
+		            $mdDialog.alert()
+		            .parent(angular.element(document.querySelector('#dialogContainer')))
+		            .clickOutsideToClose(true)
+		            .title('Proceso realizado con exito')
+		            .textContent('Su Usuario y Clave fueron enviados a su correo electrónico')
+		            .ok('Entendido')
+		            .openFrom('#left')
+		        );
+	        };
+	        if (data.respuesta==false) {
+	        	$mdDialog.show(
+		            $mdDialog.alert()
+		            .parent(angular.element(document.querySelector('#dialogContainer')))
+		            .clickOutsideToClose(true)
+		            .title('Lo sentimos >:(')
+		            .textContent('Este proceso ya fue realizado')
+		            .ok('Entendido')
+		            .openFrom('#left')
+		        );
+		        $location.path('/Registro');
+	        };
+	        if (data.respuesta != true && data.respuesta != false) {
+	        	$mdDialog.show(
+		            $mdDialog.alert()
+		            .parent(angular.element(document.querySelector('#dialogContainer')))
+		            .clickOutsideToClose(true)
+		            .title('Lo sentimos :(')
+		            .textContent('Ninguna accion para este proceso')
+		            .ok('Entendido')
+		            .openFrom('#left')
+		        );
+	    	}
+	    	$location.path('/Registro');
 	    });
 	});
