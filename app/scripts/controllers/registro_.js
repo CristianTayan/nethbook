@@ -108,7 +108,7 @@ var app = angular.module('nextbook20App')
 				                if (data.respuesta) {
 				                    $location.path('/SeleccionarSucursal');
 				                } else {
-				                    $location.path('/CambioPass');
+				                    $location.path('/Actualizar_Datos');
 				                }
 				            });
 				        }
