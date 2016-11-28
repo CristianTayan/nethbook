@@ -58,6 +58,14 @@ angular
                 controller: 'actualizar_datos_Ctrl'
             });
 
+        // Seleccionar Sucursal
+        $routeSegmentProvider
+            .when('/Seleccionar_Sucursal',    'seleccionar_sucursal')
+            .segment('seleccionar_sucursal', {
+                templateUrl: 'views/seleccionar_sucursal/index.html',
+                controller: 'seleccionar_sucursal_Ctrl'
+            });
+
         $routeSegmentProvider
             .when('/Dash',    'dashboard')
             .when('/Inicio',    'dashboard.inicio')

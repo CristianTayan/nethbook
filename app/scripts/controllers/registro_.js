@@ -106,7 +106,7 @@ var app = angular.module('nextbook20App')
 				            //---------------------- verificar si existe datos de persona-----------
 				            mainService.Get_Datos_Empresa().get().$promise.then(function(data) {
 				                if (data.respuesta) {
-				                    $location.path('/SeleccionarSucursal');
+				                    $location.path('/Seleccionar_Sucursal');
 				                } else {
 				                    $location.path('/Actualizar_Datos');
 				                }

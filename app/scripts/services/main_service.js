@@ -73,12 +73,13 @@ angular.module('nextbook20App')
 
         // -----------------------------------------------------    Requerir Imagenes generales perfil   ------------------------------------------------
         this.Get_Img_Perfil=function() {
-
             return $resource(urlService.server().appnext()+'Get_Img_Perfil', {}
             , {
                 get: {
                     method: 'POST', isArray: false, 
-                    params: {token:$localStorage.token}
+                    params: {
+                        token:$localStorage.token
+                    }
                 }
             });
         };
@@ -123,6 +124,18 @@ angular.module('nextbook20App')
                     method: 'POST', isArray: false, 
                     params: {
                         token: $localStorage.token
+                    }
+                }
+            });
+        };
+        this.Update_Password=function(data) {
+            return $resource(urlService.server().appnext()+'Update_Password', {}
+            , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token,
+                        pass : data
                     }
                 }
             });
