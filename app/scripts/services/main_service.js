@@ -8,7 +8,7 @@
  * Service in the nextbook20App.
  */
 angular.module('nextbook20App')
-    .service('mainService', function ($resource, urlService) {
+    .service('mainService', function ($resource, urlService, $localStorage) {
         // AngularJS will instantiate a singleton by calling "new" on this function
         //------------------------------------------------------    INICIO BUSQUEDA DE EMPRESAS -------------------------------------------------------
         this.buscar_empresas = function() {
@@ -69,4 +69,67 @@ angular.module('nextbook20App')
                         }
             });
         };
+
+        // -----------------------------------------------------    Requerir Imagenes generales perfil   ------------------------------------------------
+        this.Get_Img_Perfil=function() {
+            return $resource(urlService.server().appnext()+'Get_Img_Perfil', {}
+            , {
+                generar: {
+                    method: 'GET', isArray: false, 
+                    params: '{ token: $localStorage.token }'
+                }
+            });
+        };
+        this.Get_Img_Logo=function() {
+            return $resource(urlService.server().appnext()+'Get_Img_Logo', {}
+            , {
+                generar: {
+                    method: 'POST', isArray: false, 
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+        this.Get_Img_Portada=function() {
+            return $resource(urlService.server().appnext()+'Get_Img_Portada', {}
+            ,   {
+                generar: {
+                    method: 'POST', isArray: false, 
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
+        this.Get_Img_Logo=function() {
+            return $resource(urlService.server().appnext()+'Get_Img_Logo', {}
+            , {
+                generar: {
+                    method: 'POST', isArray: false, 
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+        this.Get_Datos_Empresa=function() {
+            return $resource(urlService.server().appnext()+'Get_Datos_Empresa', {}
+            , {
+                generar: {
+                    method: 'POST', isArray: false, 
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
+
+        
+        
+        
+
+        
     });

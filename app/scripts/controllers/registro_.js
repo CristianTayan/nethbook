@@ -79,32 +79,32 @@ var app = angular.module('nextbook20App')
 					            .ok('Entendido')
 					            .openFrom('#left')
 					        );
-			            } else {
+			            } if (data.respuesta == true) {
 				            $localStorage.token = data.token;
 				            $localStorage.datosE = data.datosE;
 				            $localStorage.datosPersona = data.datosPersona;
 				            //--------------------cargar imagen perfil-----------
-				            servicios.get_img_perfil().get().$promise.then(function(data) {
+				            mainService.Get_Img_Perfil().get().$promise.then(function(data) {
 				            	$localStorage.imgPerfil = data.img;		                
 				            },function(error){
 				            	$localStorage.imgPerfil="images/users/avatar-001.jpg";
 				            });
 				            //--------------------cargar imagen Portada-----------
-				            servicios.get_img_portada().get().$promise.then(function(data) {
+				            mainService.Get_Img_Portada().get().$promise.then(function(data) {
 				            	$localStorage.imgPortada = data.img;
 				            },function(error){
 				            	$localStorage.imgPortada="images/samples/w1.jpg";
 				            });
 				            // ---------- fin
 				            //--------------------cargar imagen Logo-----------
-				            servicios.get_img_logo().get().$promise.then(function(data) {
+				            mainService.Get_Img_Logo().get().$promise.then(function(data) {
 				            	$localStorage.imgLogo = data.img;
 				            },function(error){
 				            	$localStorage.imgPortada="images/samples/x2.jpg";
 				            });
 				            // ---------- fin
 				            //---------------------- verificar si existe datos de persona-----------
-				            servicios.get_propietario().get().$promise.then(function(data) {
+				            mainService.Get_Datos_Empresa().get().$promise.then(function(data) {
 				                if (data.respuesta) {
 				                    $location.path('/SeleccionarSucursal');
 				                } else {
