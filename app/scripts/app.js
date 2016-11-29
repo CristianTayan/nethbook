@@ -94,7 +94,7 @@ angular
                         controller: 'app_Ctrl'
                     })
                     .segment('inventario', {
-                        templateUrl: 'views/inventario/index.html',
+                        templateUrl: 'views/app/inventario/index.html',
                         controller: 'inventario_Ctrl'
                     })
                         .within()
