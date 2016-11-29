@@ -65,17 +65,22 @@ angular
                 templateUrl: 'views/seleccionar_sucursal/index.html',
                 controller: 'seleccionar_sucursal_Ctrl'
             });
-
+        // Escritorio General
         $routeSegmentProvider
             .when('/Dash',    'dashboard')
             .when('/Inicio',    'dashboard.inicio')
             .when('/Perfil',    'dashboard.perfil')
+            .when('/App',    'dashboard.app')
+            .when('/Inventario',    'dashboard.inventario')
+                .when('/Inventario/Categoria',    'dashboard.inventario.categoria')
+                .when('/Inventario/Tipo_Categoria',    'dashboard.inventario.tipo_categoria')
+                .when('/Inventario/Marcas',    'dashboard.inventario.marcas')
             
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
                 controller: 'dashboard_Ctrl'
             })
-            .within()                
+            .within()
                     .segment('inicio', {
                         templateUrl: 'views/dashboard/inicio.html',
                         controller: 'inicio_Ctrl'
@@ -84,8 +89,57 @@ angular
                         templateUrl: 'views/dashboard/perfil.html',
                         controller: 'perfil_Ctrl'
                     })
+                    .segment('app', {
+                        templateUrl: 'views/app/index.html',
+                        controller: 'app_Ctrl'
+                    })
+                    .segment('inventario', {
+                        templateUrl: 'views/inventario/index.html',
+                        controller: 'inventario_Ctrl'
+                    })
+                        .within()
+                            .segment('categoria', {
+                                templateUrl: 'views/categoria/index.html',
+                                controller: 'inv_categoria_Ctrl'
+                            })
+                            .segment('tipo_categoria', {
+                                templateUrl: 'views/tipo_categoria/index.html',
+                                controller: 'inv_tipo_categoria_Ctrl'
+                            })
+                            .segment('marcas', {
+                                templateUrl: 'views/marcas/index.html',
+                                controller: 'inv_marcas_Ctrl'
+                            })
+                            .segment('garantia', {
+                                templateUrl: 'views/garantia/index.html',
+                                controller: 'inv_gerantia_Ctrl'
+                            })
+                            .segment('tipo_garantia', {
+                                templateUrl: 'views/tipo_garantia/index.html',
+                                controller: 'inv_tipo_garantia_Ctrl'
+                            })
+                        .up()
                 .up();
 
+        // Procesos Inventario
+        // $routeSegmentProvider
+        //     .when('/Inventario',    'inventario')
+        //     // .when('/Inventario',    'app.perfil')
+            
+        //     .segment('app', {
+        //         templateUrl: 'views/app/index.html',
+        //         controller: 'app_Ctrl'
+        //     })
+        //     .within()                
+        //             .segment('inicio', {
+        //                 templateUrl: 'views/dashboard/inicio.html',
+        //                 controller: 'inicio_Ctrl'
+        //             })
+        //             .segment('perfil', {
+        //                 templateUrl: 'views/dashboard/perfil.html',
+        //                 controller: 'perfil_Ctrl'
+        //             })
+        //         .up();
 
         // activar cuenta
         $routeSegmentProvider    
