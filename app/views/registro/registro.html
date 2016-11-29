@@ -183,12 +183,24 @@
                 </div>
             </div>
             <div id="tab2-content" aria-labelledby="tab2" ng-switch-when="1">
-                <mdp-date-picker mdp-open-on-click required name="dateFormat" mdp-placeholder="My date(dd/mm/yyyy)" mdp-format="DD/MM/YYYY" ng-model="currentDate">
-                    <div ng-messages="demoForm.dateFormat.$error">
-                      <div ng-message="required">This is required</div>
-                      <div ng-message="format">Invalid format</div>
-                    </div>
-                  </mdp-date-picker>
+                <div flex-item>
+                    <lx-text-field lx-label="Name" lx-fixed-label="true" lx-icon="account">
+                        <input type="text" ng-model="vm.textFields.fixed.emptyName">
+                    </lx-text-field>
+             
+                    <lx-text-field lx-label="Phone number" lx-fixed-label="true" lx-icon="phone">
+                        <input type="text" ng-model="vm.textFields.fixed.emptyPhone">
+                    </lx-text-field>
+             
+                    <lx-text-field lx-label="Email address" lx-fixed-label="true" lx-icon="email">
+                        <input type="email" ng-model="vm.textFields.fixed.emptyEmail">
+                    </lx-text-field>
+             
+                    <lx-text-field lx-label="Location" lx-fixed-label="true" lx-icon="city">
+                        <input type="text" ng-model="vm.textFields.fixed.emptyLocation">
+                    </lx-text-field>
+                </div>
+
             </div>
             <div id="tab3-content" aria-labelledby="tab3" ng-switch-when="3">
                 hola tab3
