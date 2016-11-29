@@ -8,7 +8,7 @@
  * Service in the nextbook20App.
  */
 angular.module('nextbook20App')
-  .service('establecimientos', function ($resource, urlService, $localStorage) {
+  .service('establecimientosService', function ($resource, urlService, $localStorage) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     this.Get_Establecimientos=function() {
         return $resource(urlService.server().appnext()+'Get_Establecimientos', {}
