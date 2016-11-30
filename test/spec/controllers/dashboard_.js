@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: DashboardCtrl', function () {
+describe('Controller: dashboard_Ctrl', function () {
 
   // load the controller's module
   beforeEach(module('nextbook20App'));
 
-  var DashboardCtrl,
+  var dashboard_Ctrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    DashboardCtrl = $controller('DashboardCtrl', {
+    dashboard_Ctrl = $controller('dashboard_Ctrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(DashboardCtrl.awesomeThings.length).toBe(3);
+    expect(dashboard_Ctrl.awesomeThings.length).toBe(3);
   });
 });

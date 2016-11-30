@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: PerfilCtrl', function () {
+describe('Controller: perfil_Ctrl', function () {
 
   // load the controller's module
   beforeEach(module('nextbook20App'));
 
-  var PerfilCtrl,
+  var perfil_Ctrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    PerfilCtrl = $controller('perfil_Ctrl', {
+    perfil_Ctrl = $controller('perfil_Ctrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(PerfilCtrl.awesomeThings.length).toBe(3);
+    expect(perfil_Ctrl.awesomeThings.length).toBe(3);
   });
 });

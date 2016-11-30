@@ -9,7 +9,7 @@
  */
 angular.module('nextbook20App')
 	.controller('seleccionar_sucursal_Ctrl', function ($scope, $location, establecimientosService) {
-		establecimientos.Get_Establecimientos().get().$promise.then(function(data){
+		establecimientosService.Get_Establecimientos().get().$promise.then(function(data){
 	        $scope.data_establecimiento = data.respuesta;
 	        console.log(data.respuesta);
 	    });

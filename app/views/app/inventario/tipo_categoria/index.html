@@ -1,0 +1,28 @@
+<form name="form_inv_tc" ng-submit="data_inv_tc_guardar()">
+	<div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
+	    <div layout-gt-sm="row" layout-align="center center" class="fs-headline display-block">
+	        Actualizacion Claves Acceso Sistema
+	    </div>
+	</div>
+    <md-content class="md-no-momentum">
+        <md-input-container class="md-icon-float md-block">
+            <md-icon class="md-primary">view_compact</md-icon>
+            <label>Nombre Tipo Categoría</label>
+            <input name="nom_tipo_categoria" ng-model="data_inv_tc.name" type="text" required>
+            <div ng-messages="form_inv_tc.nom_tipo_categoria.$error" ng-show="form_inv_tc.nom_tipo_categoria.$dirty">
+                <div ng-message="required">Campo Requerido</div>
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float class="md-block">
+            <md-icon class="md-primary">description</md-icon>
+            <label>Descripcion</label>
+            <input name="descripcion" ng-model="data_inv_tc.descripcion" type="text" required>
+            <div ng-messages="form_inv_tc.descripcion.$error" ng-show="form_inv_tc.descripcion.$dirty">
+                <div ng-message="required">Campo Requerido</div>
+            </div>
+        </md-input-container>
+        <div layout="row" class="md-block" layout-align="center">
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_inv_tc.$invalid">Guardar</md-button>
+        </div>
+    </md-content>
+</form>
