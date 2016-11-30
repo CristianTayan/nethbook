@@ -10,6 +10,7 @@
  */
 angular
     .module('nextbook20App', [
+        'md.data.table',
         'ngAnimate',
         'ngAria',
         'ngCookies',
@@ -27,7 +28,7 @@ angular
         'angular-loading-bar',
         'ngStorage',
         'ngMaterialSidemenu',
-        'md.data.table'
+        
 
     ])
     .config(function ($routeSegmentProvider, $routeProvider) {

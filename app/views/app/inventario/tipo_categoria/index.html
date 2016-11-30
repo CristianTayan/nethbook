@@ -52,9 +52,23 @@
     <div flex-xs flex-gt-xs="80" layout="column">
         <md-button ng-click="nuevo($event)">Nuevo</md-button>
         <md-content layout-padding layout-wrap>
-            <div ng-cloak layout-gt-sm="row" layout="column">
-                
-            </div>
-        </md-content>
+            <md-table-container>
+              <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+                <thead md-head md-order="query.order" md-on-reorder="data_inv_tc_get">
+                  <tr md-row>
+                    <th md-column md-order-by="nameToLower"><span>NOMBRE</span></th>
+                    <th md-column md-numeric>DESCRIPCIÓN</th>
+                  </tr>
+                </thead>
+                <tbody md-body>
+                  <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in tipo_categorias">
+                    <td md-cell>{{dessert.nombre}}</td>
+                    <td md-cell>{{dessert.descripcion}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </md-table-container>
+             <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{total}}" md-on-paginate="data_inv_tc_get" md-page-select></md-table-pagination>
+        </md-content>        
     </div>
 </div>
