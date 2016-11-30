@@ -50,25 +50,10 @@
         </md-sidenav>
     </div>
     <div flex-xs flex-gt-xs="80" layout="column">
-        <md-button class="md-raised|md-fab|md-mini" ng-disabled="true|false" aria-label="description" md-no-ink="true|false" md-ripple-size="full|partial|auto">Nuevo</md-button>
+        <md-button ng-click="nuevo($event)">Nuevo</md-button>
         <md-content layout-padding layout-wrap>
             <div ng-cloak layout-gt-sm="row" layout="column">
-                <md-table-container>
-                  <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
-                    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
-                      <tr md-row>
-                        <th md-column md-order-by="nameToLower"><span>NOMBRE</span></th>
-                        <th md-column md-numeric>DESCRIPCIÓN</th>
-                      </tr>
-                    </thead>
-                    <tbody md-body>
-                      <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in [{nombre:'ALIMENTACION',descripcion:'ALIMENTACION'}]">
-                        <td md-cell>{{dessert.nombre}}</td>
-                        <td md-cell>{{dessert.descripcion}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </md-table-container>
+                
             </div>
         </md-content>
     </div>
