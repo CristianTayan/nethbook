@@ -9,12 +9,16 @@
  */
 angular.module('nextbook20App')
   	.controller('dashboard_Ctrl', function ($scope, $mdSidenav) {
-    	$scope.toggleLeft = buildToggler('left');
-	    $scope.toggleRight = buildToggler('right');
+    	$scope.toggleSidenav = function(menuId) {
+    $mdSidenav(menuId).toggle();
+  };
 
-	    function buildToggler(componentId) {
-	      return function() {
-	        $mdSidenav(componentId).toggle();
-	      }
-	    }
+  var list = [];
+  for (var i = 0; i < 100; i++) {
+    list.push({
+      name: 'List Item ' + i,
+      idx: i
+    });
+  }
+  $scope.list = list;
   	});

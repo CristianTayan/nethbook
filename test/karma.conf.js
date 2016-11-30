@@ -41,8 +41,8 @@ module.exports = function(config) {
       'bower_components/lumx/dist/lumx.js',
       'bower_components/angular-audio/app/angular.audio.js',
       'bower_components/angular-loading-bar/build/loading-bar.js',
-      'bower_components/angular-material-sidemenu/dest/angular-material-sidemenu.js',
       'bower_components/angular-material-data-table/dist/md-data-table.js',
+      'bower_components/angular-material-sidemenu/dest/angular-material-sidemenu.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

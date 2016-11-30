@@ -1,7 +1,5 @@
 <div layout-xs="column" layout="row" style="position: fixed; z-index: 99; width: 100%;">
-    <md-toolbar flex-xs flex-gt-xs="15" layout="column">
-    </md-toolbar>
-    <md-toolbar flex-xs flex-gt-xs="65" layout="column">
+    <md-toolbar layout="column">
         <div class="md-toolbar-tools toolbar-center">
             <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu" class="md-icon-button launch">
                 <ng-md-icon icon="menu"></ng-md-icon>
@@ -83,103 +81,11 @@
             </lx-dropdown>
         </div>
     </md-toolbar>
-    <div flex-xs flex-gt-xs="20" layout="column">
-        <md-toolbar>
-            <md-tabs class="md-primary" md-selected="data.selectedIndex"  md-center-tabs="true">
-                <md-tab id="tab1" aria-controls="tab1-content">
-                    <md-icon>comment</md-icon>
-                        <div ng-show="countnewmsj!=0" style="width: 0px; top: -38px; right: 12px;" class="badge1" data-badge="{{countnewmsj}}"></div>
-                </md-tab>
-                <md-tab id="tab2" aria-controls="tab2-content">
-                    <md-icon>insert_drive_file</md-icon>
-                    <md-badge ng-show="nrfacturas!=0">{{nrfacturas}}</md-badge>
-                </md-tab>
-                <md-tab id="tab3" aria-controls="tab3-content">
-                    <md-icon>email</md-icon>
-                </md-tab>
-                <md-tab id="tab4" aria-controls="tab4-content">
-                    <md-icon>directions_car</md-icon>
-                </md-tab>
-                <md-tab id="tab5" aria-controls="tab5-content">
-                    <md-icon>headset_mic</md-icon>
-                </md-tab>
-            </md-tabs>
-        </md-toolbar>
-    </div>
 </div>
 <div layout-xs="column" layout="row" style="padding-top: 64px;" >
-    <md-sidenav class="main-sidenav md-sidenav-left" md-component-id="navigation-drawer" md-is-locked-open="$mdMedia('gt-md')" layout="column">
-        <md-content md-scroll-y flex layout="column">
-          <md-sidemenu locked="true">
-            <md-sidemenu-group>
-              <md-subheader class="md-no-sticky">Caption</md-subheader>
-
-              <md-sidemenu-content md-icon="home" md-heading="Menu 1" md-arrow="true">
-                <md-sidemenu-button href="#">Submenu 1</md-sidemenu-button>
-                <md-sidemenu-button href="#">Submenu 2</md-sidemenu-button>
-                <md-sidemenu-button href="#">Submenu 3</md-sidemenu-button>
-              </md-sidemenu-content>
-
-              <md-sidemenu-content md-heading="Menu 2" md-arrow="true">
-                <md-sidemenu-button href="#">Submenu 1</md-sidemenu-button>
-                <md-sidemenu-button href="#">Submenu 2</md-sidemenu-button>
-                <md-sidemenu-button href="#">Submenu 3</md-sidemenu-button>
-              </md-sidemenu-content>
-
-              <md-sidemenu-content md-heading="Menu 3" md-arrow="true">
-                <md-sidemenu-button href="#">Submenu 1</md-sidemenu-button>
-                <md-sidemenu-button href="#">Submenu 2</md-sidemenu-button>
-                <md-sidemenu-button href="#">Submenu 3</md-sidemenu-button>
-              </md-sidemenu-content>
-            </md-sidemenu-group>
-
-            <md-sidemenu-group>
-              <md-divider></md-divider>
-
-              <md-subheader class="md-no-sticky">Caption</md-subheader>
-
-              <md-sidemenu-button href="#">Menu 4</md-sidemenu-button>
-            </md-sidemenu-group>
-
-            <md-sidemenu-group>
-              <md-divider></md-divider>
-
-              <md-subheader class="md-no-sticky">Caption</md-subheader>
-              <md-sidemenu-button href="#">Menu 5</md-sidemenu-button>
-              <md-sidemenu-button href="#">Menu 6</md-sidemenu-button>
-            </md-sidemenu-group>
-          </md-sidemenu>
-        </md-content>
-      </md-sidenav>
     <div flex-xs flex-gt-xs="80" layout="column">
         <!-- contenido -->
         <div app-view-segment="1"></div>
     </div>
-    <md-sidenav flex-xs flex-gt-xs="20" layout="column" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')" class="md-whiteframe-z2">
-    	<!-- <div ng-controller="mensajesCtrl as ctrl"> -->
-        <ng-switch on="data.selectedIndex" class="tabpanel-container">
-        	<div id="tab1-content" aria-labelledby="tab1" ng-switch-when="0">
-        		hola tabs 1
-        	</div>
-        	<div id="tab2-content" aria-labelledby="tab2" ng-switch-when="1">
-        		hola tabs 2
-        	</div>
-        	<div id="tab3-content" aria-labelledby="tab3" ng-switch-when="2">
-        		hola tabs 3
-        	</div>
-        	<div id="tab4-content" aria-labelledby="tab4" ng-switch-when="3">
-        		hola tabs 4
-        	</div>
-        	<div id="tab5-content" aria-labelledby="tab5" ng-switch-when="4">
-        		<md-content layout-padding layout-wrap>
-                    <audio controls autoplay>
-                        <source src="http://186.33.168.251:8000/stream.aac" type="audio/ogg">
-                        <source src="http://186.33.168.251:8000/stream.aac" type="audio/mpeg">
-                    </audio>
-                    <button ng-audio-hover="http://186.33.168.251:8000/stream.aac" volume-hover="0.5" start-hover="0.2">Click me</button>
-                </md-content>
-        	</div>
-        </ng-switch>
-    </md-sidenav>
 </div>
 
