@@ -10,6 +10,7 @@
  */
 angular
     .module('nextbook20App', [
+        'md.data.table',
         'ngAnimate',
         'ngAria',
         'ngCookies',

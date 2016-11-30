@@ -204,6 +204,25 @@
                     </lx-text-field>
                 </div>
 
+                <md-table-container>
+                  <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+                    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                      <tr md-row>
+                        <th md-column md-order-by="nameToLower"><span>NOMBRE</span></th>
+                        <th md-column md-numeric>DESCRIPCIÓN</th>
+                      </tr>
+                    </thead>
+                    <tbody md-body>
+                      <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in [{nombre:'ALIMENTACION',descripcion:'ALIMENTACION'}]">
+                        <td md-cell>{{dessert.nombre}}</td>
+                        <td md-cell>{{dessert.descripcion}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </md-table-container>
+
+                <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination>
+
             </div>
             <div id="tab3-content" aria-labelledby="tab3" ng-switch-when="3">
                 hola tab3
