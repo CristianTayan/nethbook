@@ -25,7 +25,8 @@ angular
         'blockUI', //Bloqueo general,
         'ngAudio',
         'angular-loading-bar',
-        'ngStorage'
+        'ngStorage',
+        'ngMaterialSidemenu'
 
     ])
     .config(function ($routeSegmentProvider, $routeProvider) {
