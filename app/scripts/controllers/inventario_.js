@@ -39,7 +39,8 @@ var app = angular.module('nextbook20App')
         }
 
         $rootScope.$on("actualizar_tipo_categoria", function(){
-           $scope.data_inv_tc_get();
+            $scope.data_inv_tc_get();
+            return $scope.tipo_categorias;
          });
 
         $scope.removeFilter = function () {
@@ -292,6 +293,9 @@ app.controller('inv_categoria_Ctrl', function ($scope,$rootScope, $mdDialog, inv
                 $mdDialog.hide(answer);
             };
         }
+
+        $scope.datos=$rootScope.$emit("actualizar_tipo_categoria", {});
+        console.log($scope.datos);
 
 
         $scope.inv_categoria_dialog_eliminar=function(categoria){

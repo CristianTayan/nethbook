@@ -28,6 +28,18 @@
                             <div ng-message="required">Campo Requerido</div>
                         </div>
                     </md-input-container>
+                    <md-input-container class="md-icon-float md-icon-left md-block" flex-gt-xs>
+                    <md-icon class="md-primary">airplay</md-icon>
+                    <label class="text-brand">Tipo de Categoría</label>
+                    <md-select name="myselect" id="myselect" ng-change="update()" ng-model="myOption" required>
+                        <md-option ng-repeat="tipo_categoria in tipos_categorias" value="{{tipo_categoria.id}}">
+                            {{tipo_categoria.nombre}}
+                        </md-option>
+                    </md-select>
+                    <div ng-messages="formreg.myOption.$error">
+                        <div ng-message="required">myselect is required.</div>
+                    </div>
+                </md-input-container>
                     <div layout="row" class="md-block" layout-align="center">
 
                     </div>
