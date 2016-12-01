@@ -104,7 +104,6 @@ angular
                                 default: true,
                                 templateUrl: 'views/app/inventario/menu.html',
                                 controller: 'inv_menu_Ctrl'
-
                             })
                             .segment('categoria', {
                                 templateUrl: 'views/app/inventario/categoria/index.html',
