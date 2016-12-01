@@ -101,7 +101,7 @@ angular
                         controller: 'inventario_Ctrl'
                     })
                     .segment('categoria', {
-                        templateUrl: 'views/categoria/index.html',
+                        templateUrl: 'views/app/inventario/categoria/index.html',
                         controller: 'inv_categoria_Ctrl'
                     })
                     .segment('tipo_categoria', {
