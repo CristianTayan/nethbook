@@ -27,9 +27,7 @@ angular
         'ngAudio',
         'angular-loading-bar',
         'ngStorage',
-        'ngMaterialSidemenu',
-        
-
+        'ngMaterialSidemenu'
     ])
     .config(function ($routeSegmentProvider, $routeProvider) {
         // Configuring provider options    
@@ -75,9 +73,10 @@ angular
             .when('/Perfil',    'dashboard.perfil')
             .when('/App',    'dashboard.app')
             .when('/Inventario',    'dashboard.inventario')
-                .when('/Inventario/Categoria',    'dashboard.categoria')
-                .when('/Inventario/Tipo_Categoria',    'dashboard.tipo_categoria')
-                .when('/Inventario/Marcas',    'dashboard.marcas')
+                .when('/Inventario/',    'dashboard.inventario.menu')
+                .when('/Inventario/Categoria',    'dashboard.inventario.categoria')
+                .when('/Inventario/Tipo_Categoria',    'dashboard.inventario.tipo_categoria')
+                .when('/Inventario/Marcas',    'dashboard.inventario.marcas')
             
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
@@ -100,47 +99,54 @@ angular
                         templateUrl: 'views/app/inventario/index.html',
                         controller: 'inventario_Ctrl'
                     })
-                    .segment('categoria', {
-                        templateUrl: 'views/categoria/index.html',
-                        controller: 'inv_categoria_Ctrl'
-                    })
-                    .segment('tipo_categoria', {
-                        templateUrl: 'views/app/inventario/tipo_categoria/index.html',
-                        controller: 'inv_tipo_categoria_Ctrl'
-                    })
-                    .segment('marcas', {
-                        templateUrl: 'views/marcas/index.html',
-                        controller: 'inv_marcas_Ctrl'
-                    })
-                    .segment('garantia', {
-                        templateUrl: 'views/garantia/index.html',
-                        controller: 'inv_gerantia_Ctrl'
-                    })
-                    .segment('tipo_garantia', {
-                        templateUrl: 'views/tipo_garantia/index.html',
-                        controller: 'inv_tipo_garantia_Ctrl'
-                    })
-                .up();
+                        .within()
+                            .segment('menu', {
+                                default: true,
+                                templateUrl: 'views/app/inventario/menu.html',
+                                controller: 'inv_menu_Ctrl'
 
-        // Procesos Inventario
-        // $routeSegmentProvider
-        //     .when('/Inventario',    'inventario')
-        //     // .when('/Inventario',    'app.perfil')
-            
-        //     .segment('app', {
-        //         templateUrl: 'views/app/index.html',
-        //         controller: 'app_Ctrl'
-        //     })
-        //     .within()                
-        //             .segment('inicio', {
-        //                 templateUrl: 'views/dashboard/inicio.html',
-        //                 controller: 'inicio_Ctrl'
-        //             })
-        //             .segment('perfil', {
-        //                 templateUrl: 'views/dashboard/perfil.html',
-        //                 controller: 'perfil_Ctrl'
-        //             })
-        //         .up();
+                            })
+                            .segment('categoria', {
+                                templateUrl: 'views/app/inventario/categoria/index.html',
+                                controller: 'inv_categoria_Ctrl'
+                            })
+                            .segment('tipo_categoria', {
+                                templateUrl: 'views/app/inventario/tipo_categoria/index.html',
+                                controller: 'inv_tipo_categoria_Ctrl'
+                            })
+                            .segment('marcas', {
+                                templateUrl: 'views/marcas/index.html',
+                                controller: 'inv_marcas_Ctrl'
+                            })
+                            .segment('garantia', {
+                                templateUrl: 'views/garantia/index.html',
+                                controller: 'inv_gerantia_Ctrl'
+                            })
+                            .segment('tipo_garantia', {
+                                templateUrl: 'views/tipo_garantia/index.html',
+                                controller: 'inv_tipo_garantia_Ctrl'
+                            })
+                        .up()
+                .up();
+                    // Procesos Inventario
+                    // $routeSegmentProvider
+                    //     .when('/Inventario',    'inventario')
+                    //     // .when('/Inventario',    'app.perfil')
+                        
+                    //     .segment('app', {
+                    //         templateUrl: 'views/app/index.html',
+                    //         controller: 'app_Ctrl'
+                    //     })
+                    //     .within()                
+                    //             .segment('inicio', {
+                    //                 templateUrl: 'views/dashboard/inicio.html',
+                    //                 controller: 'inicio_Ctrl'
+                    //             })
+                    //             .segment('perfil', {
+                    //                 templateUrl: 'views/dashboard/perfil.html',
+                    //                 controller: 'perfil_Ctrl'
+                    //             })
+                    //         .up();
 
         // activar cuenta
         $routeSegmentProvider    
