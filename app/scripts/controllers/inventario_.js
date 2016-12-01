@@ -194,6 +194,16 @@ app.controller('inv_categoria_Ctrl', function ($scope,$rootScope, $mdDialog, inv
             limit: '5',
             page_num: 1
         };
+        //Tipos categorias
+         function success_tipo_categorias(desserts) {
+            $scope.tipo_categorias = desserts.respuesta.data;
+          }
+
+        $scope.data_inv_tipo_categoria_get = function(){
+            inventario_Service.Get_Tipo_Categoria().get($scope.query,success_tipo_categorias).$promise;
+        } 
+        $scope.data_inv_tipo_categoria_get();
+        // //////////
 
         function success(desserts) {
             $scope.total=desserts.respuesta.total;
@@ -240,17 +250,19 @@ app.controller('inv_categoria_Ctrl', function ($scope,$rootScope, $mdDialog, inv
                 parent: angular.element(document.body),
                 targetEvent: event,
                 ariaLabel:'Respuesta Registro',
-                clickOutsideToClose: true
+                clickOutsideToClose: true,
+                locals : {
+                    tipos_categoria : $scope.tipo_categorias
+                }
             });
         }
         
         
-        function DialogController($scope) {
-            
+        function DialogController($scope,$rootScope,tipos_categoria) {
+            $scope.tipos_categoria=tipos_categoria;
             // Nuevo registro tipo inventario
             $scope.data_inv_categoria_guardar = function() {
-                console.log($scope.data_inv_tc);
-                inventario_Service.Add_Tipo_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
+                inventario_Service.Add_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
                     if (data.respuesta == true) {
                         $mdDialog.show(
                             $mdDialog.alert()
@@ -287,6 +299,7 @@ app.controller('inv_categoria_Ctrl', function ($scope,$rootScope, $mdDialog, inv
                                 .targetEvent()
                             );
                     }
+                    $rootScope.$emit("actualizar_categoria", {});
                 });
             }
 
@@ -303,14 +316,10 @@ app.controller('inv_categoria_Ctrl', function ($scope,$rootScope, $mdDialog, inv
             };
         }
 
-        $scope.datos=$rootScope.$emit("actualizar_tipo_categoria", {});
-        console.log($scope.datos);
-
-
         $scope.inv_categoria_dialog_eliminar=function(categoria){
             $mdDialog.show({
                 controller: Dialog_eliminar_Ctrl,
-                templateUrl: 'views/app/inventario/tipo_categoria/eliminar.html',
+                templateUrl: 'views/app/inventario/categoria/eliminar.html',
                 parent: angular.element(document.body),
                 targetEvent: event,
                 ariaLabel:'Respuesta Registro',
@@ -322,8 +331,8 @@ app.controller('inv_categoria_Ctrl', function ($scope,$rootScope, $mdDialog, inv
         }
 
         function Dialog_eliminar_Ctrl($scope,$rootScope, obj) { 
-            $scope.data_inv_tc_eliminar=function(){
-               inventario_Service.Delete_Tipo_Categoria().delete({id:obj.id}).$promise.then(function(data){
+            $scope.data_inv_categoria_eliminar=function(){
+               inventario_Service.Delete_Categoria().delete({id:obj.id}).$promise.then(function(data){
                 if (data.respuesta==true) {
                     $rootScope.$emit("actualizar_categoria", {});
                     $mdDialog.hide();

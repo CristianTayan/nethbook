@@ -14,7 +14,7 @@
                 <md-content class="md-no-momentum">
                     <md-input-container class="md-icon-float md-block">
                         <md-icon class="md-primary">view_compact</md-icon>
-                        <label>Nombre Categoría</label>
+                        <label>Nombre de la Categoría</label>
                         <input name="nom_tipo_categoria" ng-model="data_inv_tc.name" type="text" required>
                         <div ng-messages="form_inv_tc.nom_tipo_categoria.$error" ng-show="form_inv_tc.nom_tipo_categoria.$dirty">
                             <div ng-message="required">Campo Requerido</div>
@@ -31,13 +31,13 @@
                     <md-input-container class="md-icon-float md-icon-left md-block" flex-gt-xs>
                     <md-icon class="md-primary">airplay</md-icon>
                     <label class="text-brand">Tipo de Categoría</label>
-                    <md-select name="myselect" id="myselect" ng-change="update()" ng-model="myOption" required>
-                        <md-option ng-repeat="tipo_categoria in tipos_categorias" value="{{tipo_categoria.id}}">
+                    <md-select name="myselect" id="myselect" ng-change="update()" ng-model="data_inv_tc.tipo_categoria" required>
+                        <md-option ng-repeat="tipo_categoria in tipos_categoria" value="{{tipo_categoria.id}}">
                             {{tipo_categoria.nombre}}
                         </md-option>
                     </md-select>
                     <div ng-messages="formreg.myOption.$error">
-                        <div ng-message="required">myselect is required.</div>
+                        <div ng-message="required">Tipo de categoria es obligatorio</div>
                     </div>
                 </md-input-container>
                     <div layout="row" class="md-block" layout-align="center">

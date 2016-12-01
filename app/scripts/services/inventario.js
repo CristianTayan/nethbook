@@ -61,6 +61,7 @@ angular.module('nextbook20App')
 	            }
 	        });
     	};
+
     	this.Delete_Tipo_Categoria = function() {
 	        return $resource(urlService.server().appnext()+'Delete_Tipo_Categorias', {}
 	        , {
@@ -72,7 +73,28 @@ angular.module('nextbook20App')
 	            }
 	        });
     	};
+    	// Categorias
+    	this.Add_Categoria = function() {
+	        return $resource(urlService.server().appnext()+'Add_Categoria', {} , {
+	            add: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
 
+    	this.Delete_Categoria = function() {
+	        return $resource(urlService.server().appnext()+'Delete_Categoria', {} , {
+	            delete: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
 		this.Get_Categoria = function() {
 	        return $resource(urlService.server().appnext()+'Get_Categorias', {}
 	        , {
