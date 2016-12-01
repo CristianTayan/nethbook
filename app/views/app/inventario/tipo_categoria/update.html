@@ -1,5 +1,5 @@
 <md-dialog aria-label="Mango (Fruit)">
-    <form name="form_inv_tc" ng-submit="data_inv_tc_guardar()">
+    <form name="form_inv_tc" ng-submit="data_inv_tc_update()">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Nuevo, tipo categoría</h2>
@@ -15,9 +15,10 @@
                     <md-input-container class="md-icon-float md-block">
                         <md-icon class="md-primary">view_compact</md-icon>
                         <label>Nombre Tipo Categoría</label>
-                        <input name="nom_tipo_categoria" ng-model="data_inv_tc.name" type="text" required>
+                        <input name="nom_tipo_categoria" ng-model="data_inv_tc.name" type="text" required tipocategoria-validator>
                         <div ng-messages="form_inv_tc.nom_tipo_categoria.$error" ng-show="form_inv_tc.nom_tipo_categoria.$dirty">
                             <div ng-message="required">Campo Requerido</div>
+                            <div ng-message="campo">Registro Repetido</div>
                         </div>
                     </md-input-container>
                     <md-input-container md-no-float class="md-block">

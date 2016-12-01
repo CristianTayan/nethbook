@@ -197,3 +197,10 @@ body, html {
       border-left-color: #FF4081;
       /*border-radius: 10px;*/
     }
+
+
+  .app-view-header {
+    font-size: 23px;
+    margin: 20px 0 30px;
+    padding: 0;
+}

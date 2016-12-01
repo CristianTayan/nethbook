@@ -1,10 +1,10 @@
 <div layout-xs="column" layout="row">
 	<div flex-xs flex-gt-xs="20" layout="column" md-content flex layout="row" layout-fill>
-		<md-sidenav layout="column" class="main-sidenav md-sidenav-left" style="position:fixed !important; padding-top: 64px;" md-component-id="navigation-drawer" md-is-locked-open="$mdMedia('gt-md')" layout="column">
+		<md-sidenav layout="column" class="main-sidenav md-sidenav-left" style="position:fixed !important; padding-top: 64px;" md-is-locked-open="$mdMedia('gt-md')">
 		    <md-content md-scroll-y flex layout="column">
 		        <md-sidemenu locked="true">
 		            <md-sidemenu-group>
-		                <md-subheader class="md-no-sticky">Caption</md-subheader>
+		                <md-subheader class="md-no-sticky">Menu Inventario</md-subheader>
 		                <md-sidemenu-content md-icon="home" md-heading="Inventario" md-arrow="true">
 		                    <md-sidemenu-button href="#"><md-icon>home</md-icon> Categoría</md-sidemenu-button>
 		                    <md-sidemenu-button href="#">Productos</md-sidemenu-button>
@@ -49,17 +49,7 @@
 		    </md-content>
 		</md-sidenav>
 	</div>
-	<div flex-xs flex-gt-xs="80" layout="column">
-		<md-content layout-padding layout-wrap>
-			<div ng-cloak layout-gt-sm="row" layout="column">
-			    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-			        <md-button ng-href="#/Inventario/Tipo_Categoria" class="md-primary">Tipo Categoría</md-button>
-			        <md-button md-no-ink class="md-primary">Categoria</md-button>
-			        <md-button md-no-ink class="md-primary">Tipo Garantiía</md-button>
-			        <md-button md-no-ink class="md-primary">Garantía</md-button>
-			        <md-button md-no-ink class="md-primary">Primary (md-noink)</md-button>
-			    </section>
-			</div>
-		</md-content>
+	<div layout-padding flex-xs flex-gt-xs="80" layout="column">
+		<div app-view-segment="2"></div>
 	</div>
 </div>
