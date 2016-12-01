@@ -33,4 +33,16 @@ angular.module('nextbook20App')
 	            }
 	        });
     	};
+
+    	this.Delete_Tipo_Categoria = function() {
+	        return $resource(urlService.server().appnext()+'Delete_Tipo_Categorias', {}
+	        , {
+	            delete: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
   	});
