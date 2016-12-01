@@ -41,10 +41,10 @@ var app = angular.module('nextbook20App')
 
 
 
-        $scope.nuevo = function(event) {
+        $scope.new = function(event) {
             $mdDialog.show({
                 controller: DialogController,
-                templateUrl: 'views/app/inventario/tipo_categoria/nuevo.html',
+                templateUrl: 'views/app/inventario/tipo_categoria/new.html',
                 parent: angular.element(document.body),
                 targetEvent: event,
                 ariaLabel:'Respuesta Registro',
@@ -61,8 +61,7 @@ var app = angular.module('nextbook20App')
         function DialogController($scope, $mdDialog) {
             
             // Nuevo registro tipo inventario
-            $scope.data_inv_tc_guardar = function() {
-                console.log($scope.data_inv_tc);
+            $scope.data_inv_tc_save = function() {
                 inventario_Service.Add_Tipo_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
                     if (data.respuesta == true) {
                         $mdDialog.show(
