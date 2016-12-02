@@ -74,10 +74,14 @@ angular
             .when('/App',    'dashboard.app')
             .when('/Inventario',    'dashboard.inventario')
                 .when('/Inventario/',    'dashboard.inventario.menu')
-                .when('/Inventario/Categoria',    'dashboard.inventario.categoria')
-                .when('/Inventario/Tipo_Categoria',    'dashboard.inventario.tipo_categoria')
+                .when('/Inventario/Categorias',    'dashboard.inventario.categoria')
                 .when('/Inventario/Marcas',    'dashboard.inventario.marcas')
-            
+                // tipos
+                .when('/Inventario/Tipo_Categoria',    'dashboard.inventario.tipo_categoria')
+                .when('/Inventario/Tipo_Garantia',    'dashboard.inventario.tipo_garantia')
+                .when('/Inventario/Tipo_Consumo',    'dashboard.inventario.tipo_consumo')
+                .when('/Inventario/Tipo_Productos',    'dashboard.inventario.tipo_productos')
+
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
                 controller: 'dashboard_Ctrl'
@@ -109,21 +113,29 @@ angular
                                 templateUrl: 'views/app/inventario/categoria/index.html',
                                 controller: 'inv_categoria_Ctrl'
                             })
+                            .segment('marcas', {
+                                templateUrl: 'views/app/inventario/marcas/index.html',
+                                controller: 'inv_marcas_Ctrl'
+                            })
+                            .segment('garantia', {
+                                templateUrl: 'view/sapp/inventario/garantia/index.html',
+                                controller: 'inv_gerantia_Ctrl'
+                            })
                             .segment('tipo_categoria', {
                                 templateUrl: 'views/app/inventario/tipo_categoria/index.html',
                                 controller: 'inv_tipo_categoria_Ctrl'
                             })
-                            .segment('marcas', {
-                                templateUrl: 'views/marcas/index.html',
-                                controller: 'inv_marcas_Ctrl'
-                            })
-                            .segment('garantia', {
-                                templateUrl: 'views/garantia/index.html',
-                                controller: 'inv_gerantia_Ctrl'
-                            })
                             .segment('tipo_garantia', {
-                                templateUrl: 'views/tipo_garantia/index.html',
+                                templateUrl: 'views/app/inventario/tipo_garantia/index.html',
                                 controller: 'inv_tipo_garantia_Ctrl'
+                            })
+                            .segment('tipo_consumo', {
+                                templateUrl: 'views/app/inventario/tipo_consumo/index.html',
+                                controller: 'inv_tipo_consumo_Ctrl'
+                            })
+                            .segment('tipo_productos', {
+                                templateUrl: 'views/app/inventario/tipo_productos/index.html',
+                                controller: 'inv_tipo_productos_Ctrl'
                             })
                         .up()
                 .up();

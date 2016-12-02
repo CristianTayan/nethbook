@@ -7,39 +7,11 @@
             <a href="#/Dash" title="">
                 <img src="images/logo/logo.fw.png"  alt="Logo">
             </a>
+            NEXTBOOK
 
-            <!-- <div ng-controller="appsCtrl as appsctrl"> -->
-                <form ng-submit="$event.preventDefault()" class="input-buscador">
-                    <md-autocomplete 
-                        ng-disabled="isDisabled" 
-                        md-no-cache="Cache" 
-                        md-selected-item="selectedItem" 
-                        md-search-text-change="appsctrl.searchTextChange(searchText)" 
-                        md-search-text="searchText" 
-                        md-selected-item-change="appsctrl.selectedItemChange(item)" 
-                        md-items="item in items" 
-                        md-item-text="item.nombre_comercial" 
-                        md-min-length="0" 
-                        placeholder="Empresas,Servicios ....." 
-                        md-menu-class="autocomplete-custom-template">
-                        <md-item-template>
-                            <span class="item-title">
-                      <img alt="Img" ng-src="{{item.img}}" class="avatar-busqueda" />
-                      <span style="font-size:10px"> 
-                      {{item.nombre_comercial}}
-                      <md-icon md-svg-icon="img/icons/ic_comment_24px.svg" class="mensaje-autocomplete" ng-click="sendMensaje(item)"></md-icon>
-                      </span>
-                            </span>
-                        </md-item-template>
-                    </md-autocomplete>
-                </form>
-            <!-- </div> -->
             <span flex></span>
             <md-button href="#/App">
                 App
-            </md-button>
-            <md-button href="#/My-space/Catalogo">
-                Catalogo
             </md-button>
             <md-button href="#/Perfil">
                 Perfil
@@ -71,7 +43,7 @@
                         <li><a class="dropdown-link">Something else here</a></li>
                         <li class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-link">
+                            <a href="#/" class="dropdown-link">
                                 <i class="mdi mdi-exit-to-app"></i>
                                 <span>Cerrar Sesión</span>
                             </a>

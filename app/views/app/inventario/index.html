@@ -2,49 +2,30 @@
 	<div flex-xs flex-gt-xs="20" layout="column" md-content flex layout="row" layout-fill>
 		<md-sidenav layout="column" class="main-sidenav md-sidenav-left" style="position:fixed !important; padding-top: 64px;" md-is-locked-open="$mdMedia('gt-md')">
 		    <md-content md-scroll-y flex layout="column">
-		        <md-sidemenu locked="true">
+		        <md-sidemenu>
+		        	<md-sidemenu-group>
+		        		<md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
+		        	</md-sidemenu-group>
 		            <md-sidemenu-group>
 		                <md-subheader class="md-no-sticky">Menu Inventario</md-subheader>
-		                <md-sidemenu-content md-icon="home" md-heading="Inventario" md-arrow="true">
-		                    <md-sidemenu-button href="#"><md-icon>home</md-icon> Categoría</md-sidemenu-button>
-		                    <md-sidemenu-button href="#">Productos</md-sidemenu-button>
-		                    <md-sidemenu-button href="#">Marcas</md-sidemenu-button>
-		                    <md-sidemenu-button href="#">Modelos</md-sidemenu-button>
-		                    <md-sidemenu-button href="#">Garantía</md-sidemenu-button>
-		                    <md-sidemenu-button href="#">Ubicación</md-sidemenu-button>		                    
-		                    <md-sidemenu-content md-icon="home" md-heading="Parametrización" md-arrow="true">
-			                    <md-sidemenu-button href="#"><md-icon>home</md-icon> Tipo Producto</md-sidemenu-button>
-			                    <md-sidemenu-button href="#">Tipo Categoría</md-sidemenu-button>
-			                    <md-sidemenu-button href="#">Tipo Consumo</md-sidemenu-button>
-			                    <md-sidemenu-button href="#">Tipo Producto</md-sidemenu-button>
-			                    <md-sidemenu-button href="#">Tipo Garantía</md-sidemenu-button>
-			                </md-sidemenu-content>
-		                </md-sidemenu-content>
-		                <md-sidemenu-content md-heading="Menu 2" md-arrow="true">
-		                    <md-sidemenu-button href="#">Submenu 1</md-sidemenu-button>
-		                    <md-sidemenu-button href="#">Submenu 2</md-sidemenu-button>
-		                    <md-sidemenu-button href="#">Submenu 3</md-sidemenu-button>
-		                </md-sidemenu-content>
-		                <md-sidemenu-content md-heading="Menu 3" md-arrow="true">
-		                    <md-sidemenu-button href="#">Submenu 1</md-sidemenu-button>
-		                    <md-sidemenu-button href="#">Submenu 2</md-sidemenu-button>
-		                    <md-sidemenu-button href="#">Submenu 3</md-sidemenu-button>
-		                </md-sidemenu-content>
+		                    <md-sidemenu-button href="#/Inventario/Productos"><md-icon>subtitles</md-icon>Productos</md-sidemenu-button>
+		                    <md-sidemenu-button href="#/Inventario/Marcas"><md-icon>dialpad</md-icon>Marcas</md-sidemenu-button>
+		                    <md-sidemenu-button href="#/Inventario/Modelos"><md-icon>view_module</md-icon>Modelos</md-sidemenu-button>
+		                    <md-sidemenu-button href="#/Inventario/Garantia"><md-icon>add_alert</md-icon>Garantía</md-sidemenu-button>
+		                    <md-sidemenu-button href="#/Inventario/Ubicacion"><md-icon>layers</md-icon>Ubicación</md-sidemenu-button>
+		                    <md-sidemenu-button href="#/Inventario/Categorias"><md-icon>assessment</md-icon>Categorías</md-sidemenu-button>
+		                    <md-sidemenu-button href="#/Inventario/Catalogos"><md-icon>bookmark</md-icon> Catálogos</md-sidemenu-button>
 		            </md-sidemenu-group>
-		            <md-sidemenu-group>
-		                <md-divider></md-divider>
-		                <md-subheader class="md-no-sticky">Caption</md-subheader>
-
-		                <md-sidemenu-button href="#">Menu 4</md-sidemenu-button>
-		            </md-sidemenu-group>
-
-		            <md-sidemenu-group>
-		                <md-divider></md-divider>
-
-		                <md-subheader class="md-no-sticky">Caption</md-subheader>
-		                <md-sidemenu-button href="#">Menu 5</md-sidemenu-button>
-		                <md-sidemenu-button href="#">Menu 6</md-sidemenu-button>
-		            </md-sidemenu-group>
+		            <md-divider></md-divider>
+		            <md-subheader class="md-no-sticky">Configuración base Inventario</md-subheader>
+		            <md-sidemenu-content md-icon="view_stream" md-heading="Parametrización" md-arrow="true">
+	                    
+	                    <md-sidemenu-button href="#/Inventario/Tipo_Categoria"><md-icon>assessment</md-icon> Tipo Categoría</md-sidemenu-button>
+	                    <md-sidemenu-button href="#/Inventario/Tipo_Garantia"><md-icon>add_alert</md-icon> Tipo Garantía</md-sidemenu-button>
+	                    <md-sidemenu-button href="#/Inventario/Tipo_Consumo"><md-icon>assignment_turned_in</md-icon> Tipo Consumo</md-sidemenu-button>
+	                    <md-sidemenu-button href="#/Inventario/Tipo_Productos"><md-icon>subtitles</md-icon> Tipo Productos</md-sidemenu-button>	                    
+	                    <md-sidemenu-button href="#/Inventario/Tipo_Producto"><md-icon>bookmark</md-icon> Tipo Catalogos</md-sidemenu-button>
+		            </md-sidemenu-content>		            
 		        </md-sidemenu>
 		    </md-content>
 		</md-sidenav>

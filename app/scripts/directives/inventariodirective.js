@@ -26,17 +26,8 @@ var app = angular.module('nextbook20App');
                         return $q.reject('proceso');
                     }
         			return true;
-		    	});
-            	
-                // return $http.post('/username-check', {registro: viewValue}).then(
-                //     function(response) {
-                //         if (!response.data.validUsername) {
-                //             return $q.reject(response.data.errorMessage);
-                //         }
-                //         return true;
-                //     }
-                // );
+		    	     });
             };
         }
     };
-});
+  });

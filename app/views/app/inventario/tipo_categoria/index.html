@@ -3,20 +3,13 @@
 <md-content layout-padding layout-wrap>
     <md-table-container>
       <div layout="row">
-        <!-- <div flex="80"> -->
           <md-input-container class="md-icon-float md-block" flex="90" aria-label="Close">
               <md-icon class="md-primary">search</md-icon>
               <label>Búsqueda</label>
               <input name="nom_tipo_categoria" ng-model="query.filter" type="text" required>
           </md-input-container>
-        <!-- </div> -->
-        <!-- <div flex="20"> -->
-          <md-button ng-click="nuevo($event)" flex="10" class="md-accent" aria-label="Close">Nuevo</md-button>
-        <!-- </div>   -->
+          <md-button ng-click="inv_tc_dialog_nuevo($event)" flex="10" class="md-accent" aria-label="Close">Nuevo</md-button>
       </div>
-      
-      
-      
       <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
         <thead md-head md-order="query.order" md-on-reorder="data_inv_tc_get">
           <tr md-row>
@@ -30,7 +23,7 @@
             <td md-cell>{{dessert.nombre}}</td>
             <td md-cell>{{dessert.descripcion}}</td>
             <td md-cell>
-                <md-button class="md-icon-button" ng-click="inv_tc_dialog_editar()" type="button">
+                <md-button class="md-icon-button" ng-click="inv_tc_dialog_editar(dessert)" type="button">
                 <md-tooltip md-direction="top">
                   Modificar
                 </md-tooltip>
