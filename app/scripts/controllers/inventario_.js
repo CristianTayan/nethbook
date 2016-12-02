@@ -559,19 +559,67 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
                 $rootScope.$emit("actualizar_categoria", {});
             });
         }
-
-        $scope.hide = function() {
-            $mdDialog.hide();
-        };
-
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
-
-        $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
-        };
     }
+
+    $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+    };
+
+    var self = $scope;
+
+    self.simulateQuery = false;
+    self.isDisabled    = false;
+
+    // list of `state` value/display objects
+    self.states        = loadAll();
+    self.querySearch   = querySearch;
+    self.selectedItemChange = selectedItemChange;
+    self.searchTextChange   = searchTextChange;
+    self.btn_guardar        =true;
+
+    self.newState = newState;
+
+    function newState(state) {
+      
+    }
+
+    function querySearch (query) {
+      var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
+          deferred;
+      if (self.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    }
+
+    function searchTextChange(text) {
+      
+    }
+
+    function selectedItemChange(item) {
+        if (self.data_inv_tc.name!=''&&self.data_inv_tc.descripcion!=''&&JSON.stringify(item)!=undefined) {
+            $scope.data_inv_tc.tipo_categoria=item;
+            self.btn_guardar=false;
+        }else self.btn_guardar=true;
+    }
+    function loadAll() {
+      return tipos_categoria;
+    }
+    function createFilterFor(query) {
+      //var lowercaseQuery = angular.lowercase(query);
+      return function filterFn(state) {
+        return (state.nombre.indexOf(query) === 0);
+      };
+
+    }
+
+
 
     $scope.inv_categoria_dialog_eliminar = function(categoria) {
         $mdDialog.show({
@@ -598,13 +646,9 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
                 }
             });
         }
-
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
     }
 });
-
-
-
 
