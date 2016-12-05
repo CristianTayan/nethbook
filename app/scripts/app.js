@@ -74,13 +74,19 @@ angular
             .when('/App',    'dashboard.app')
             .when('/Inventario',    'dashboard.inventario')
                 .when('/Inventario/',    'dashboard.inventario.menu')
+
                 .when('/Inventario/Categorias',    'dashboard.inventario.categoria')
                 .when('/Inventario/Marcas',    'dashboard.inventario.marcas')
-                // tipos
+                .when('/Inventario/Modelos',    'dashboard.inventario.modelos')
+                .when('/Inventario/Productos',    'dashboard.inventario.productos')
+                .when('/Inventario/Ubicacion',    'dashboard.inventario.ubicacion')
+                .when('/Inventario/Garantia',    'dashboard.inventario.garantia')
+                // Parametrizacion Tipos
                 .when('/Inventario/Tipo_Categoria',    'dashboard.inventario.tipo_categoria')
                 .when('/Inventario/Tipo_Garantia',    'dashboard.inventario.tipo_garantia')
                 .when('/Inventario/Tipo_Consumo',    'dashboard.inventario.tipo_consumo')
                 .when('/Inventario/Tipo_Productos',    'dashboard.inventario.tipo_productos')
+                .when('/Inventario/Tipo_Catalogo',    'dashboard.inventario.tipo_catalogo')
 
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
@@ -117,10 +123,23 @@ angular
                                 templateUrl: 'views/app/inventario/marcas/index.html',
                                 controller: 'inv_marcas_Ctrl'
                             })
-                            .segment('garantia', {
-                                templateUrl: 'view/sapp/inventario/garantia/index.html',
-                                controller: 'inv_gerantia_Ctrl'
+                            .segment('modelos', {
+                                templateUrl: 'views/app/inventario/modelos/index.html',
+                                controller: 'inv_modelos_Ctrl'
                             })
+                            .segment('productos', {
+                                templateUrl: 'views/app/inventario/productos/index.html',
+                                controller: 'inv_productos_Ctrl'
+                            })
+                            .segment('ubicacion', {
+                                templateUrl: 'views/app/inventario/ubicacion/index.html',
+                                controller: 'inv_ubicacion_Ctrl'
+                            })
+                            .segment('garantia', {
+                                templateUrl: 'views/app/inventario/garantia/index.html',
+                                controller: 'inv_garantia_Ctrl'
+                            })
+                            // Tipos 
                             .segment('tipo_categoria', {
                                 templateUrl: 'views/app/inventario/tipo_categoria/index.html',
                                 controller: 'inv_tipo_categoria_Ctrl'
@@ -136,6 +155,10 @@ angular
                             .segment('tipo_productos', {
                                 templateUrl: 'views/app/inventario/tipo_productos/index.html',
                                 controller: 'inv_tipo_productos_Ctrl'
+                            })
+                            .segment('tipo_catalogo', {
+                                templateUrl: 'views/app/inventario/tipo_catalogo/index.html',
+                                controller: 'inv_tipo_catalogo_Ctrl'
                             })
                         .up()
                 .up();

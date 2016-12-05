@@ -1,0 +1,59 @@
+<md-dialog aria-label="catalogo">
+    <form name="form_inv_tipo_catalogo" ng-submit="inv_tipo_catalogo_nuevo()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Nuevo, Tipo Catalogo</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-content class="md-no-momentum" >
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Nombre Tipo Catalogo</label>
+                            <input name="nom_tipo_consumo" ng-model="data_inv_tipo_catalogo.nombre" type="text" required tipocatalogo-validator>
+                            <div ng-messages="form_inv_tipo_catalogo.nom_tipo_consumo.$error" ng-show="form_inv_tipo_catalogo.nom_tipo_consumo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container md-no-float class="md-block" flex>
+                            <md-icon class="md-primary">description</md-icon>
+                            <label>Descripción</label>
+                            <textarea name="descripcion" ng-model="data_inv_tipo_catalogo.descripcion" type="text" required></textarea>
+                            <div ng-messages="form_inv_tipo_catalogo.descripcion.$error" ng-show="form_inv_tipo_catalogo.descripcion.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                            </div>
+                        </md-input-container>
+                        
+                    </div>
+                    <div layout="row">
+                        <mdp-date-picker mdp-open-on-click required name="dateFormat" mdp-placeholder="Fecha Inicio" mdp-min-date="mindate" mdp-format="YYYY/MM/DD" ng-model="data_inv_tipo_catalogo.fecha_inicio">
+                            <div ng-messages="form_inv_tipo_catalogo.dateFormat.$error">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="format">Formato Invelido</div>
+                            </div>
+                          </mdp-date-picker>
+                        <mdp-date-picker mdp-open-on-click required name="dateFormat" mdp-placeholder="Fecha Fin" mdp-min-date="mindate" mdp-format="YYYY/MM/DD" ng-model="data_inv_tipo_catalogo.fecha_fin">
+                            <div ng-messages="form_inv_tipo_catalogo.dateFormat.$error">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="format">Formato Invelido</div>
+                            </div>
+                          </mdp-date-picker>
+                    </div>
+                    
+                </md-content>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">Cancelar</md-button>
+            <md-button type="reset">Limpiar</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_inv_tipo_catalogo.$invalid">Guardar</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

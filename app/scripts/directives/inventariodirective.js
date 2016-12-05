@@ -85,3 +85,72 @@ var app = angular.module('nextbook20App');
       };
     });
   //-------------------------------------------------------------------- FIN TIPO PRODUCTOS ------------------------------------------------------------------//
+  //------------------------------------------------------------------ INICIO TIPO PRODUCTOS ------------------------------------------------------------------//
+    app.directive('tipocatalogoValidator', function($q, inventario_Service) {
+      return {
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
+              ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+                return inventario_Service.Existencia_Tipo_Catalogo().consulta({nombre: viewValue}).$promise.then(function(data){
+                      if (!data.respuesta) {
+                          return $q.reject('proceso');
+                      }
+                return true;
+                });
+              };
+          }
+      };
+    });
+  //-------------------------------------------------------------------- FIN TIPO PRODUCTOS ------------------------------------------------------------------//
+  //------------------------------------------------------------------ INICIO TIPO PRODUCTOS ------------------------------------------------------------------//
+    app.directive('marcaValidator', function($q, inventario_Service) {
+      return {
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
+              ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+                return inventario_Service.Existencia_Marca().consulta({nombre: viewValue}).$promise.then(function(data){
+                      if (!data.respuesta) {
+                          return $q.reject('proceso');
+                      }
+                return true;
+                });
+              };
+          }
+      };
+    });
+  //-------------------------------------------------------------------- FIN TIPO PRODUCTOS ------------------------------------------------------------------//
+  //------------------------------------------------------------------ INICIO TIPO MODELOS ------------------------------------------------------------------//
+    app.directive('modelosValidator', function($q, inventario_Service) {
+      return {
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
+              ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+                return inventario_Service.Existencia_Modelos().consulta({nombre: viewValue}).$promise.then(function(data){
+                      if (!data.respuesta) {
+                          return $q.reject('proceso');
+                      }
+                return true;
+                });
+              };
+          }
+      };
+    });
+  //-------------------------------------------------------------------- FIN TIPO MODELOS ------------------------------------------------------------------//
+
+  //------------------------------------------------------------------ INICIO TIPO UBICACION ------------------------------------------------------------------//
+    app.directive('ubicacionValidator', function($q, inventario_Service) {
+      return {
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
+              ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+                return inventario_Service.Existencia_Ubicacion().consulta({nombre: viewValue}).$promise.then(function(data){
+                      if (!data.respuesta) {
+                          return $q.reject('proceso');
+                      }
+                return true;
+                });
+              };
+          }
+      };
+    });
+  //-------------------------------------------------------------------- FIN TIPO UBICACION ------------------------------------------------------------------//

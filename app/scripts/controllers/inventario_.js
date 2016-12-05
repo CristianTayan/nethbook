@@ -25,56 +25,7 @@ app.controller('inv_menu_Ctrl', function($scope, inventario_Service) {
         });
     }
 });
-app.controller('inv_tipo_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
-    
-    // ---------------------------------------------------------PROCESO LLENAR TABLA----------------------------------------------------------
-        var bookmark;
-        $scope.selected = [];
-        $scope.query = {
-            filter: '',
-            num_registros: 5,
-            pagina_actual: 1,
-            limit: '5',
-            page_num: 1
-        };
-
-        function success(desserts) {
-            $scope.total = desserts.respuesta.total;
-            $scope.tipo_categorias = desserts.respuesta.data;
-        }
-
-        $scope.data_inv_tc_get = function() {
-            inventario_Service.Get_Tipo_Categoria().get($scope.query, success).$promise;
-        }
-
-        $rootScope.$on("actualizar_tabla_tipo_categoria", function() {
-            $scope.data_inv_tc_get();
-        });
-
-        $scope.removeFilter = function() {
-            $scope.filter.show = false;
-            $scope.query.filter = '';
-
-            if ($scope.filter.form.$dirty) {
-                $scope.filter.form.$setPristine();
-            }
-        };
-
-        $scope.$watch('query.filter', function(newValue, oldValue) {
-            if (!oldValue) {
-                bookmark = $scope.query.page;
-            }
-
-            if (newValue !== oldValue) {
-                $scope.query.page = 1;
-            }
-
-            if (!newValue) {
-                $scope.query.page = bookmark;
-            }
-            $scope.data_inv_tc_get();
-        });
-    
+app.controller('inv_tipo_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {    
     // ---------------------------------------------------------PROCESO CREAR REGISTRO---------------------------------------------------------
         $scope.inv_tc_dialog_nuevo = function(event) {
             $mdDialog.show({
@@ -84,11 +35,6 @@ app.controller('inv_tipo_categoria_Ctrl', function($scope, $rootScope, $mdDialog
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',
                     clickOutsideToClose: true
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
                 });
         }
 
@@ -232,6 +178,53 @@ app.controller('inv_tipo_categoria_Ctrl', function($scope, $rootScope, $mdDialog
                 $mdDialog.cancel();
             };
         }
+    // ---------------------------------------------------------PROCESO LLENAR TABLA----------------------------------------------------------
+        var bookmark;
+        $scope.selected = [];
+        $scope.query = {
+            filter: '',
+            num_registros: 5,
+            pagina_actual: 1,
+            limit: '5',
+            page_num: 1
+        };
+
+        function success(desserts) {
+            $scope.total = desserts.respuesta.total;
+            $scope.tipo_categorias = desserts.respuesta.data;
+        }
+
+        $scope.data_inv_tc_get = function() {
+            inventario_Service.Get_Tipo_Categoria().get($scope.query, success).$promise;
+        }
+
+        $rootScope.$on("actualizar_tabla_tipo_categoria", function() {
+            $scope.data_inv_tc_get();
+        });
+
+        $scope.removeFilter = function() {
+            $scope.filter.show = false;
+            $scope.query.filter = '';
+
+            if ($scope.filter.form.$dirty) {
+                $scope.filter.form.$setPristine();
+            }
+        };
+
+        $scope.$watch('query.filter', function(newValue, oldValue) {
+            if (!oldValue) {
+                bookmark = $scope.query.page;
+            }
+
+            if (newValue !== oldValue) {
+                $scope.query.page = 1;
+            }
+
+            if (!newValue) {
+                $scope.query.page = bookmark;
+            }
+            $scope.data_inv_tc_get();
+        });
 });
 
 app.controller('inv_tipo_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
@@ -312,6 +305,7 @@ app.controller('inv_tipo_garantia_Ctrl', function($scope, $rootScope, $mdDialog,
             $scope.data_inv_tipo_garantia = obj;
             $scope.data_inv_tipo_garantia_update = function() {
                 inventario_Service.Update_Tipo_Garantia().actualizar($scope.data_inv_tipo_garantia).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_tipo_garantia", {});
                     if (data.respuesta == true) {
                         $mdDialog.show(
                             $mdDialog.alert()
@@ -323,7 +317,6 @@ app.controller('inv_tipo_garantia_Ctrl', function($scope, $rootScope, $mdDialog,
                             .ok('Entendido')
                             .targetEvent()
                         );
-                        $rootScope.$emit("actualizar_tabla_tipo_garantia", {});
                     }
                     if (data.respuesta == false) {
                         $mdDialog.show(
@@ -522,7 +515,6 @@ app.controller('inv_tipo_consumo_Ctrl', function($scope, $rootScope, $mdDialog, 
                             .ok('Entendido')
                             .targetEvent()
                         );
-                        $rootScope.$emit("actualizar_tabla_tipo_garantia", {});
                     }
                     if (data.respuesta == false) {
                         $mdDialog.show(
@@ -630,7 +622,6 @@ app.controller('inv_tipo_consumo_Ctrl', function($scope, $rootScope, $mdDialog, 
         });
 });
 
-
 app.controller('inv_tipo_productos_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
     // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
         $scope.inv_tipo_productos_dialog_nuevo = function(event) {
@@ -709,6 +700,7 @@ app.controller('inv_tipo_productos_Ctrl', function($scope, $rootScope, $mdDialog
             $scope.data_inv_tipo_productos = obj;
             $scope.data_inv_tipo_productos_update = function() {
                 inventario_Service.Update_Tipo_Productos().actualizar($scope.data_inv_tipo_productos).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_tipo_productos", {});
                     if (data.respuesta == true) {
                         $mdDialog.show(
                             $mdDialog.alert()
@@ -720,7 +712,6 @@ app.controller('inv_tipo_productos_Ctrl', function($scope, $rootScope, $mdDialog
                             .ok('Entendido')
                             .targetEvent()
                         );
-                        $rootScope.$emit("actualizar_tabla_tipo_garantia", {});
                     }
                     if (data.respuesta == false) {
                         $mdDialog.show(
@@ -830,7 +821,813 @@ app.controller('inv_tipo_productos_Ctrl', function($scope, $rootScope, $mdDialog
         });
 });
 
-// Controlador Categorias
+app.controller('inv_tipo_catalogo_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
+    // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
+        $scope.inv_tipo_catalogo_dialog_nuevo = function(event) {
+            $mdDialog.show({
+                    controller: DialogController_nuevo,
+                    templateUrl: 'views/app/inventario/tipo_catalogo/new.html',
+                    parent: angular.element(document.body),
+                    targetEvent: event,
+                    ariaLabel: 'Respuesta Registro',
+                    clickOutsideToClose: true
+                });
+        }
+        function DialogController_nuevo($scope) {
+            // ------------------------------------------------------INICIALIZACION DE PARAMETROS------------------------------------------------------
+            var fecha_actual = new Date();
+            $scope.data_inv_tipo_catalogo = {fecha_inicio: fecha_actual, fecha_fin:fecha_actual};
+
+
+            $scope.mindate = fecha_actual;
+
+            // Nuevo registro tipo inventario
+            $scope.inv_tipo_catalogo_nuevo = function() {
+                inventario_Service.Add_Tipo_Catalogo().add($scope.data_inv_tipo_catalogo).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_tipo_catalogo", {});
+                    if (data.respuesta == true) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('EN HORA BUENA :)')
+                            .textContent('Su registro se a realizado con exito.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // -------------------------------------------------------PROCESO EDITAR REGISTRO-----------------------------------------------------------
+        $scope.inv_tipo_catalogo_dialog_editar = function(categoria) {
+            $mdDialog.show({
+                controller: DialogController_editar,
+                templateUrl: 'views/app/inventario/tipo_catalogo/update.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: true,
+                locals: {
+                    obj: categoria
+                }
+            });
+        }
+        function DialogController_editar($scope, $rootScope, inventario_Service, obj) {
+            $scope.data_inv_tipo_catalogo = obj;
+            $scope.data_inv_tipo_catalogo_update = function() {
+                inventario_Service.Update_Tipo_Catalogo().actualizar($scope.data_inv_tipo_catalogo).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_tipo_catalogo", {});
+                    if (data.respuesta == true) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('EN HORA BUENA :)')
+                            .textContent('Su registro se a realizado con exito.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // --------------------------------------------------------PROCESO ELIMINAR REGISTRO--------------------------------------------------------
+        $scope.inv_tipo_catalogo_dialog_eliminar = function(tipocategoria) {
+            $mdDialog.show({
+                controller: Dialog_eliminar_Ctrl,
+                templateUrl: 'views/app/inventario/tipo_catalogo/eliminar.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: true,
+                locals: {
+                    obj: tipocategoria
+                }
+            });
+        }
+        function Dialog_eliminar_Ctrl($scope, $rootScope, obj) {
+            $scope.data_inv_tipo_catalogo_eliminar = function() {
+                inventario_Service.Delete_Tipo_Catalogo().delete({
+                    id: obj.id
+                }).$promise.then(function(data) {
+                    if (data.respuesta == true) {
+                        $rootScope.$emit("actualizar_tabla_tipo_productos", {});
+                        $mdDialog.cancel();
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
+        var bookmark;
+            $scope.selected = [];
+            $scope.query = {
+                filter: '',
+                num_registros: 5,
+                pagina_actual: 1,
+                limit: '5',
+                page_num: 1
+            };
+
+        function success(desserts) {
+            $scope.total = desserts.respuesta.total;
+            $scope.tipo_catalogo = desserts.respuesta.data;
+        }
+
+        $scope.data_inv_tipo_catalogo_get = function() {
+            inventario_Service.Get_Tipo_Catalogo().get($scope.query, success).$promise;
+        }
+
+        $rootScope.$on("actualizar_tabla_tipo_catalogo", function() {
+            $scope.data_inv_tipo_catalogo_get();
+        });
+
+        $scope.removeFilter = function() {
+            $scope.filter.show = false;
+            $scope.query.filter = '';
+            if ($scope.filter.form.$dirty) {
+                $scope.filter.form.$setPristine();
+            }
+        };
+
+        $scope.$watch('query.filter', function(newValue, oldValue) {
+            if (!oldValue) {
+                bookmark = $scope.query.page;
+            }
+            if (newValue !== oldValue) {
+                $scope.query.page = 1;
+            }
+
+            if (!newValue) {
+                $scope.query.page = bookmark;
+            }
+            $scope.data_inv_tipo_catalogo_get();
+        });
+});
+
+app.controller('inv_marcas_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
+    // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
+        $scope.inv_marca_dialog_nuevo = function(event) {
+            $mdDialog.show({
+                    controller: DialogController_nuevo,
+                    templateUrl: 'views/app/inventario/marcas/new.html',
+                    parent: angular.element(document.body),
+                    targetEvent: event,
+                    ariaLabel: 'Respuesta Registro',
+                    clickOutsideToClose: true
+                });
+        }
+        function DialogController_nuevo($scope) {
+            // Nuevo registro tipo inventario
+            $scope.inv_marca_nuevo = function() {
+                inventario_Service.Add_Marca().add($scope.data_inv_marca).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_marca", {});
+                    if (data.respuesta == true) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('EN HORA BUENA :)')
+                            .textContent('Su registro se a realizado con exito.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // -------------------------------------------------------PROCESO EDITAR REGISTRO-----------------------------------------------------------
+        $scope.inv_marca_dialog_editar = function(categoria) {
+            $mdDialog.show({
+                controller: DialogController_editar,
+                templateUrl: 'views/app/inventario/marcas/update.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: true,
+                locals: {
+                    obj: categoria
+                }
+            });
+        }
+        function DialogController_editar($scope, $rootScope, inventario_Service, obj) {
+            $scope.data_inv_marca = obj;
+            $scope.data_inv_marca_update = function() {
+                inventario_Service.Update_Marca().actualizar($scope.data_inv_marca).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_marca", {});
+                    if (data.respuesta == true) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('EN HORA BUENA :)')
+                            .textContent('Su registro se a realizado con exito.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // --------------------------------------------------------PROCESO ELIMINAR REGISTRO--------------------------------------------------------
+        $scope.inv_marca_dialog_eliminar = function(tipocategoria) {
+            $mdDialog.show({
+                controller: Dialog_eliminar_Ctrl,
+                templateUrl: 'views/app/inventario/marcas/eliminar.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: true,
+                locals: {
+                    obj: tipocategoria
+                }
+            });
+        }
+        function Dialog_eliminar_Ctrl($scope, $rootScope, obj) {
+            $scope.data_inv_marca_eliminar = function() {
+                inventario_Service.Delete_Marca().delete({
+                    id: obj.id
+                }).$promise.then(function(data) {
+                    if (data.respuesta == true) {
+                        $rootScope.$emit("actualizar_tabla_marca", {});
+                        $mdDialog.cancel();
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
+        var bookmark;
+            $scope.selected = [];
+            $scope.query = {
+                filter: '',
+                num_registros: 5,
+                pagina_actual: 1,
+                limit: '5',
+                page_num: 1
+            };
+
+        function success(desserts) {
+            $scope.total = desserts.respuesta.total;
+            $scope.marca = desserts.respuesta.data;
+        }
+
+        $scope.data_inv_marca_get = function() {
+            inventario_Service.Get_Marca().get($scope.query, success).$promise;
+        }
+
+        $rootScope.$on("actualizar_tabla_marca", function() {
+            $scope.data_inv_marca_get();
+        });
+
+        $scope.removeFilter = function() {
+            $scope.filter.show = false;
+            $scope.query.filter = '';
+            if ($scope.filter.form.$dirty) {
+                $scope.filter.form.$setPristine();
+            }
+        };
+
+        $scope.$watch('query.filter', function(newValue, oldValue) {
+            if (!oldValue) {
+                bookmark = $scope.query.page;
+            }
+            if (newValue !== oldValue) {
+                $scope.query.page = 1;
+            }
+
+            if (!newValue) {
+                $scope.query.page = bookmark;
+            }
+            $scope.data_inv_marca_get();
+        });
+});
+
+app.controller('inv_modelos_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
+    // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
+        $scope.inv_modelo_dialog_nuevo = function(event) {
+            $mdDialog.show({
+                    controller: DialogController_nuevo,
+                    templateUrl: 'views/app/inventario/modelos/new.html',
+                    parent: angular.element(document.body),
+                    targetEvent: event,
+                    ariaLabel: 'Respuesta Registro',
+                    clickOutsideToClose: true
+                });
+        }
+        function DialogController_nuevo($scope) {
+            // Nuevo registro tipo inventario
+            $scope.inv_modelo_nuevo = function() {
+                inventario_Service.Add_Modelo().add($scope.data_inv_modelo).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_modelo", {});
+                    if (data.respuesta == true) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('EN HORA BUENA :)')
+                            .textContent('Su registro se a realizado con exito.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // -------------------------------------------------------PROCESO EDITAR REGISTRO-----------------------------------------------------------
+        $scope.inv_modelo_dialog_editar = function(categoria) {
+            $mdDialog.show({
+                controller: DialogController_editar,
+                templateUrl: 'views/app/inventario/modelos/update.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: true,
+                locals: {
+                    obj: categoria
+                }
+            });
+        }
+        function DialogController_editar($scope, $rootScope, inventario_Service, obj) {
+            $scope.data_inv_modelo = obj;
+            $scope.data_inv_modelo_update = function() {
+                inventario_Service.Update_Modelo().actualizar($scope.data_inv_modelo).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_modelo", {});
+                    if (data.respuesta == true) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('EN HORA BUENA :)')
+                            .textContent('Su registro se a realizado con exito.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // --------------------------------------------------------PROCESO ELIMINAR REGISTRO--------------------------------------------------------
+        $scope.inv_modelo_dialog_eliminar = function(tipocategoria) {
+            $mdDialog.show({
+                controller: Dialog_eliminar_Ctrl,
+                templateUrl: 'views/app/inventario/modelos/eliminar.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: true,
+                locals: {
+                    obj: tipocategoria
+                }
+            });
+        }
+        function Dialog_eliminar_Ctrl($scope, $rootScope, obj) {
+            $scope.data_inv_modelo_eliminar = function() {
+                inventario_Service.Delete_Modelo().delete({
+                    id: obj.id
+                }).$promise.then(function(data) {
+                    if (data.respuesta == true) {
+                        $rootScope.$emit("actualizar_tabla_modelo", {});
+                        $mdDialog.cancel();
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
+        var bookmark;
+            $scope.selected = [];
+            $scope.query = {
+                filter: '',
+                num_registros: 5,
+                pagina_actual: 1,
+                limit: '5',
+                page_num: 1
+            };
+
+        function success(desserts) {
+            $scope.total = desserts.respuesta.total;
+            $scope.modelo = desserts.respuesta.data;
+        }
+
+        $scope.data_inv_modelo_get = function() {
+            inventario_Service.Get_Modelo().get($scope.query, success).$promise;
+        }
+
+        $rootScope.$on("actualizar_tabla_modelo", function() {
+            $scope.data_inv_modelo_get();
+        });
+
+        $scope.removeFilter = function() {
+            $scope.filter.show = false;
+            $scope.query.filter = '';
+            if ($scope.filter.form.$dirty) {
+                $scope.filter.form.$setPristine();
+            }
+        };
+
+        $scope.$watch('query.filter', function(newValue, oldValue) {
+            if (!oldValue) {
+                bookmark = $scope.query.page;
+            }
+            if (newValue !== oldValue) {
+                $scope.query.page = 1;
+            }
+
+            if (!newValue) {
+                $scope.query.page = bookmark;
+            }
+            $scope.data_inv_modelo_get();
+        });
+});
+
+app.controller('inv_ubicacion_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
+    // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
+        $scope.inv_ubicacion_dialog_nuevo = function(event) {
+            $mdDialog.show({
+                    controller: DialogController_nuevo,
+                    templateUrl: 'views/app/inventario/ubicacion/new.html',
+                    parent: angular.element(document.body),
+                    targetEvent: event,
+                    ariaLabel: 'Respuesta Registro',
+                    clickOutsideToClose: true
+                });
+        }
+        function DialogController_nuevo($scope) {
+            // Nuevo registro tipo inventario
+            $scope.inv_ubicacion_nuevo = function() {
+                inventario_Service.Add_Ubicacion().add($scope.data_inv_ubicacion).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_ubicacion", {});
+                    if (data.respuesta == true) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('EN HORA BUENA :)')
+                            .textContent('Su registro se a realizado con exito.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // -------------------------------------------------------PROCESO EDITAR REGISTRO-----------------------------------------------------------
+        $scope.inv_ubicacion_dialog_editar = function(categoria) {
+            $mdDialog.show({
+                controller: DialogController_editar,
+                templateUrl: 'views/app/inventario/ubicacion/update.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: true,
+                locals: {
+                    obj: categoria
+                }
+            });
+        }
+        function DialogController_editar($scope, $rootScope, inventario_Service, obj) {
+            $scope.data_inv_ubicacion = obj;
+            $scope.data_inv_ubicacion_update = function() {
+                inventario_Service.Update_Ubicacion().actualizar($scope.data_inv_ubicacion).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_ubicacion", {});
+                    if (data.respuesta == true) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('EN HORA BUENA :)')
+                            .textContent('Su registro se a realizado con exito.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // --------------------------------------------------------PROCESO ELIMINAR REGISTRO--------------------------------------------------------
+        $scope.inv_ubicacion_dialog_eliminar = function(tipocategoria) {
+            $mdDialog.show({
+                controller: Dialog_eliminar_Ctrl,
+                templateUrl: 'views/app/inventario/ubicacion/eliminar.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: true,
+                locals: {
+                    obj: tipocategoria
+                }
+            });
+        }
+        function Dialog_eliminar_Ctrl($scope, $rootScope, obj) {
+            $scope.data_inv_ubicacion_eliminar = function() {
+                inventario_Service.Delete_Ubicacion().delete({
+                    id: obj.id
+                }).$promise.then(function(data) {
+                    if (data.respuesta == true) {
+                        $rootScope.$emit("actualizar_tabla_ubicacion", {});
+                        $mdDialog.cancel();
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
+        var bookmark;
+            $scope.selected = [];
+            $scope.query = {
+                filter: '',
+                num_registros: 5,
+                pagina_actual: 1,
+                limit: '5',
+                page_num: 1
+            };
+
+        function success(desserts) {
+            $scope.total = desserts.respuesta.total;
+            $scope.ubicacion = desserts.respuesta.data;
+        }
+
+        $scope.data_inv_ubicacion_get = function() {
+            inventario_Service.Get_Ubicacion().get($scope.query, success).$promise;
+        }
+
+        $rootScope.$on("actualizar_tabla_ubicacion", function() {
+            $scope.data_inv_ubicacion_get();
+        });
+
+        $scope.removeFilter = function() {
+            $scope.filter.show = false;
+            $scope.query.filter = '';
+            if ($scope.filter.form.$dirty) {
+                $scope.filter.form.$setPristine();
+            }
+        };
+
+        $scope.$watch('query.filter', function(newValue, oldValue) {
+            if (!oldValue) {
+                bookmark = $scope.query.page;
+            }
+            if (newValue !== oldValue) {
+                $scope.query.page = 1;
+            }
+
+            if (!newValue) {
+                $scope.query.page = bookmark;
+            }
+            $scope.data_inv_ubicacion_get();
+        });
+});
+
+
+app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {});
+
+app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {});
 app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
     // $scope.data_inv_tc = {nombre:'', descripcion:''};
     var bookmark;
