@@ -106,7 +106,7 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
-	    // ------------------------------------------------------------------FIN CATEGORIA------------------------------------------------------------------//
+	    // ------------------------------------------------------------------FIN TIPO CATEGORIA------------------------------------------------------------------//
 
 
 	    // ---------------------------------------------------------------INICIO TIPO GARANTIA---------------------------------------------------------------//
@@ -120,7 +120,103 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
+	    	this.Update_Tipo_Garantia = function(){
+	    		return $resource(urlService.server().appnext()+'Update_Tipo_Garantia', {} , {
+		            actualizar: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	}
+	    	this.Get_Tipo_Garantia = function() {
+		        return $resource(urlService.server().appnext()+'Get_Tipo_Garantias', {} , {
+		            get: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Existencia_Tipo_Garantia = function(){
+	    		return $resource(urlService.server().appnext()+'Existencia_Tipo_Garantia', {} , {
+		            consulta: {
+		    			method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Delete_Tipo_Garantia = function() {
+		        return $resource(urlService.server().appnext()+'Delete_Tipo_Garantia', {}
+		        , {
+		            delete: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
 	    // ---------------------------------------------------------------FIN TIPO GARANTIA---------------------------------------------------------------//
+
+
+	    // ---------------------------------------------------------------INICIO TIPO CONSUMO---------------------------------------------------------------//
+	    	this.Add_Tipo_Productos = function() {
+		        return $resource(urlService.server().appnext()+'Add_Tipo_Producto', {} , {
+		            add: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Update_Tipo_Productos = function(){
+	    		return $resource(urlService.server().appnext()+'Update_Tipo_Producto', {} , {
+		            actualizar: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	}
+	    	this.Get_Tipo_Productos = function() {
+		        return $resource(urlService.server().appnext()+'Get_Tipo_Productos', {} , {
+		            get: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Existencia_Tipo_Productos = function(){
+	    		return $resource(urlService.server().appnext()+'Existencia_Tipo_Producto', {} , {
+		            consulta: {
+		    			method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Delete_Tipo_Productos = function() {
+		        return $resource(urlService.server().appnext()+'Delete_Tipo_Producto', {}
+		        , {
+		            delete: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    // ---------------------------------------------------------------FIN TIPO CONSUMO---------------------------------------------------------------//
 
 
 	    // ---------------------------------------------------------------INICIO TIPO CONSUMO---------------------------------------------------------------//
@@ -134,12 +230,40 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
-	    // ---------------------------------------------------------------FIN TIPO CONSUMO---------------------------------------------------------------//
-
-	    // ---------------------------------------------------------------INICIO TIPO CONSUMO---------------------------------------------------------------//
-	    	this.Add_Tipo_Productos = function() {
-		        return $resource(urlService.server().appnext()+'Add_Tipo_Producto', {} , {
-		            add: {
+	    	this.Update_Tipo_Consumo = function(){
+	    		return $resource(urlService.server().appnext()+'Update_Tipo_Consumo', {} , {
+		            actualizar: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	}
+	    	this.Get_Tipo_Consumo = function() {
+		        return $resource(urlService.server().appnext()+'Get_Tipo_Consumos', {} , {
+		            get: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Existencia_Tipo_Consumo = function(){
+	    		return $resource(urlService.server().appnext()+'Existencia_Tipo_Consumo', {} , {
+		            consulta: {
+		    			method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Delete_Tipo_Consumo = function() {
+		        return $resource(urlService.server().appnext()+'Delete_Tipo_Consumo', {}
+		        , {
+		            delete: {
 		                method: 'POST', isArray: false,
 		                params: {
 		                    token: $localStorage.token

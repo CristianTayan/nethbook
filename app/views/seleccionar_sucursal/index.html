@@ -24,24 +24,35 @@
 </md-toolbar>
 <div layout="row" layout-align="center center">
     <div class="p+">
+        <div class="p+">
+            <div class="card bgc-indigo-500">
+                <div class="toolbar">   
+                    <span class="toolbar__label fs-title tc-white-1 ml">Seleccionar Sucursal</span>
+                    <div class="toolbar__right">
+                        <lx-search-filter lx-width="400" lx-color="white" lx-closed="true">
+                            <input type="text" ng-model="vm.searchFilter.third" placeholder="Buscar por: codigo establesimiento, direccion">
+                        </lx-search-filter>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card">
             <div flex-container="row">                
                 <div layout="column"  flex>
                     <div class="p+" ng-repeat="items in data_establecimiento">
                         <div class="card">
-                            <div class="p+">
-                                {{items}}
-                                <strong class="fs-headline display-block">{{items.nombre.comercial}}</strong>
-                                <span class="fs-subhead tc-black-2 display-block">Nombre Comercial</span>
+                            <div class="p+">                                
+                                <strong class="fs-headline display-block">{{items.nombre}}</strong>
+                                <span class="fs-subhead tc-black-2 display-block">Codigo: {{items.codigo_sri}}</span>
                      
                                 <div class="paragraph fs-body-1 mt+">
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                                        Calle: {{escapeRegExp(items.localizacion_sucursal.direccion)}}
                                     </p>
                                 </div>
                             </div>                     
                             <div class="card__actions">
-                                <lx-button lx-color="orange" lx-type="flat" ng-click="Select_Sucursal(items.index_sucursal)">Seleccionar</lx-button>
+                                <lx-button lx-color="orange" lx-type="flat" ng-click="Select_Sucursal(items)">Seleccionar</lx-button>
                             </div>
                         </div>
                     </div>

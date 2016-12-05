@@ -31,3 +31,57 @@ var app = angular.module('nextbook20App');
         }
     };
   });
+
+  //------------------------------------------------------------------ INICIO TIPO GARANTIA ------------------------------------------------------------------//
+    app.directive('tipogarantiaValidator', function($q, inventario_Service) {
+      return {
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
+              ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+                return inventario_Service.Existencia_Tipo_Garantia().consulta({nombre: viewValue}).$promise.then(function(data){
+                      if (!data.respuesta) {
+                          return $q.reject('proceso');
+                      }
+                return true;
+                 });
+              };
+          }
+      };
+    });
+  //-------------------------------------------------------------------- FIN TIPO GARANTIA ------------------------------------------------------------------//
+
+  //------------------------------------------------------------------ INICIO TIPO CONSUMO ------------------------------------------------------------------//
+    app.directive('tipoconsumoValidator', function($q, inventario_Service) {
+      return {
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
+              ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+                return inventario_Service.Existencia_Tipo_Consumo().consulta({nombre: viewValue}).$promise.then(function(data){
+                      if (!data.respuesta) {
+                          return $q.reject('proceso');
+                      }
+                return true;
+                 });
+              };
+          }
+      };
+    });
+  //-------------------------------------------------------------------- FIN TIPO CONSUMO ------------------------------------------------------------------//
+  
+  //------------------------------------------------------------------ INICIO TIPO PRODUCTOS ------------------------------------------------------------------//
+    app.directive('tipoproductosValidator', function($q, inventario_Service) {
+      return {
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
+              ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+                return inventario_Service.Existencia_Tipo_Productos().consulta({nombre: viewValue}).$promise.then(function(data){
+                      if (!data.respuesta) {
+                          return $q.reject('proceso');
+                      }
+                return true;
+                });
+              };
+          }
+      };
+    });
+  //-------------------------------------------------------------------- FIN TIPO PRODUCTOS ------------------------------------------------------------------//
