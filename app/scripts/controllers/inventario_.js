@@ -1626,17 +1626,59 @@ app.controller('inv_ubicacion_Ctrl', function($scope, $rootScope, $mdDialog, inv
 
 app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
     // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
+        // ---------------------------------------------------tipo garantia select--------------------------------------------------------------
+            function success_tipo_garantia(desserts) {
+                $scope.tipo_garantia = desserts.respuesta.data;
+            }
+            $scope.data_inv_tipo_garantia_get = function() {
+                inventario_Service.Get_Tipo_Garantia().get($scope.query, success_tipo_garantia).$promise;
+            }
+            $scope.data_inv_tipo_garantia_get();
+
+
         $scope.inv_garantia_dialog_nuevo = function(event) {
+            $scope.data_inv_tipo_garantia_get();
             $mdDialog.show({
                     controller: DialogController_nuevo,
                     templateUrl: 'views/app/inventario/garantia/new.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',
-                    clickOutsideToClose: true
+                    clickOutsideToClose: true,
+                    locals: {select_tipo_garantia: $scope.tipo_garantia}
                 });
         }
-        function DialogController_nuevo($scope) {
+        function DialogController_nuevo($scope, select_tipo_garantia) {
+
+            // -------------------------------------------------------tipo_garantia-------------------------------------------------------
+                    var self = $scope;
+                    self.simulateQuery = false;
+                    self.isDisabled    = false;
+                    self.states        = select_tipo_garantia;
+                    self.querySearch   = querySearch;
+                    self.selectedItemChange = selectedItemChange;
+                    self.btn_guardar        =true;
+                    function querySearch (query) {
+                      var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
+                          deferred;
+                      if (self.simulateQuery) {
+                        deferred = $q.defer();
+                        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+                        return deferred.promise;
+                      } else {
+                        return results;
+                      }
+                    }
+                    function selectedItemChange(item) {
+                        $scope.data_inv_garantia = {tipo_garantia:item};
+                    }
+                    function createFilterFor(query) {
+                      return function filterFn(state) {
+                        return (state.nombre.indexOf(query) === 0);
+                      };
+                    }
+
+
             // Nuevo registro tipo inventario
             $scope.inv_garantia_nuevo = function() {
                 inventario_Service.Add_Garantia().add($scope.data_inv_garantia).$promise.then(function(data) {
@@ -1822,65 +1864,7 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
             $scope.data_inv_garantia_get();
         });
 
-    // -------------------------------------------------------LLENAR SELECT TIPO GARANTIA-------------------------------------------------------
-        function success_tipo_garantia(desserts) {
-            $scope.tipo_garantia = desserts.respuesta.data;
-        }
-        $scope.data_inv_tipo_garantia_get = function() {
-            inventario_Service.Get_Tipo_Garantia().get($scope.query, success_tipo_garantia).$promise;
-        }
-        $scope.data_inv_tipo_garantia_get();
-
-        var self = $scope;
-
-            self.simulateQuery = false;
-            self.isDisabled    = false;
-
-            // list of `state` value/display objects
-            self.states        = loadAll();
-            self.querySearch   = querySearch;
-            self.selectedItemChange = selectedItemChange;
-            self.searchTextChange   = searchTextChange;
-            self.btn_guardar        =true;
-
-            self.newState = newState;
-
-            function newState(state) {
-              
-            }
-
-            function querySearch (query) {
-              var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
-                  deferred;
-              if (self.simulateQuery) {
-                deferred = $q.defer();
-                $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-                return deferred.promise;
-              } else {
-                return results;
-              }
-            }
-
-            function searchTextChange(text) {
-              
-            }
-
-            function selectedItemChange(item) {
-                if (self.data_inv_tc.name!=''&&self.data_inv_tc.descripcion!=''&&JSON.stringify(item)!=undefined) {
-                    $scope.data_inv_tc.tipo_categoria=item;
-                    self.btn_guardar=false;
-                }else self.btn_guardar=true;
-            }
-            function loadAll() {
-              return tipo_garantia;
-            }
-            function createFilterFor(query) {
-              //var lowercaseQuery = angular.lowercase(query);
-              return function filterFn(state) {
-                return (state.nombre.indexOf(query) === 0);
-              };
-
-            }
+    
 
 
 
