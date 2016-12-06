@@ -12,28 +12,34 @@
         <md-dialog-content style="max-width:800px!important;max-height:810px!important; ">
             <div class="md-dialog-content">
                 <div layout="row">
-                    <md-input-container class="md-icon-float md-icon-left md-block" flex>
-                        <md-icon class="md-primary">add_alert</md-icon>
-                        <label class="text-brand">Tipo de Categoría</label>
-                        <md-autocomplete 
-                            ng-disabled="isDisabled" 
-                            md-no-cache="noCache" 
-                            md-selected-item="selectedItem" 
-                            md-search-text-change="searchTextChange(searchText)" 
-                            md-search-text="searchText" 
-                            md-selected-item-change="selectedItemChange(item.id)" 
-                            md-items="item in querySearch(searchText)" md-item-text="item.nombre" md-min-length="0" required>
-                            <md-item-template>
-                                <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.nombre}}</span>
-                            </md-item-template>
-                            <md-not-found>
-                                No se ha encontrado "{{searchText}}".
-                            </md-not-found>
-                        </md-autocomplete>
-                        <div ng-messages="form_inv_garantia.tipo_garantia.$error">
-                            <div ng-message="required">Tipo de categoria es obligatorio</div>
-                        </div>
-                    </md-input-container>
+                    <div class="p+ pt0">
+                        <lx-select ng-model="vm.selectModel.selectedPerson"
+                                   lx-allow-clear="true"
+                                   lx-choices="vm.selectPeople"
+                                   lx-display-filter="true"
+                                   lx-fixed-label="true"
+                                   lx-label="Lorem Ipsum">
+                            <lx-select-selected>
+                                {{ $selected.name }} - {{ $selected.age }}
+                            </lx-select-selected>
+                     
+                            <lx-select-choices>
+                                {{ $choice.email }}
+                            </lx-select-choices>
+                        </lx-select>
+                        <lx-select ng-model="vm.selectModel.selectedPeople"
+                                   lx-choices="vm.selectPeople"
+                                   lx-label="Lorem Ipsum"
+                                   lx-multiple="true">
+                            <lx-select-selected>
+                                {{ $selected.name }} - {{ $selected.age }}
+                            </lx-select-selected>
+                     
+                            <lx-select-choices>
+                                {{ $choice.email }}
+                            </lx-select-choices>
+                        </lx-select>
+                    </div>
                 </div>
                 <div layout="row">
                     <md-input-container class="md-icon-float md-block" flex>

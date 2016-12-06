@@ -1635,48 +1635,48 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
             }
             $scope.data_inv_tipo_garantia_get();
 
-
-        $scope.inv_garantia_dialog_nuevo = function(event) {
-            $scope.data_inv_tipo_garantia_get();
-            $mdDialog.show({
-                    controller: DialogController_nuevo,
-                    templateUrl: 'views/app/inventario/garantia/new.html',
-                    parent: angular.element(document.body),
-                    targetEvent: event,
-                    ariaLabel: 'Respuesta Registro',
-                    clickOutsideToClose: true,
-                    locals: {select_tipo_garantia: $scope.tipo_garantia}
+            $scope.inv_garantia_dialog_nuevo = function(event) {
+                $scope.data_inv_tipo_garantia_get();
+                $mdDialog.show({
+                        controller: DialogController_nuevo,
+                        templateUrl: 'views/app/inventario/garantia/new.html',
+                        parent: angular.element(document.body),
+                        targetEvent: event,
+                        ariaLabel: 'Respuesta Registro',
+                        clickOutsideToClose: true,
+                        locals: {select_tipo_garantia: $scope.tipo_garantia}
                 });
-        }
+            }
         function DialogController_nuevo($scope, select_tipo_garantia) {
 
             // -------------------------------------------------------tipo_garantia-------------------------------------------------------
-                    var self = $scope;
-                    self.simulateQuery = false;
-                    self.isDisabled    = false;
-                    self.states        = select_tipo_garantia;
-                    self.querySearch   = querySearch;
-                    self.selectedItemChange = selectedItemChange;
-                    self.btn_guardar        =true;
-                    function querySearch (query) {
-                      var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
-                          deferred;
-                      if (self.simulateQuery) {
-                        deferred = $q.defer();
-                        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-                        return deferred.promise;
-                      } else {
-                        return results;
-                      }
-                    }
-                    function selectedItemChange(item) {
-                        $scope.data_inv_garantia = {tipo_garantia:item};
-                    }
-                    function createFilterFor(query) {
-                      return function filterFn(state) {
-                        return (state.nombre.indexOf(query) === 0);
-                      };
-                    }
+                var self = this;
+                self.simulateQuery = false;
+                self.isDisabled    = false;
+                eel.
+                self.states        = select_tipo_garantia;
+                self.querySearch   = querySearch;
+                self.selectedItemChange = selectedItemChange;
+                self.btn_guardar        =true;
+                function querySearch (query) {
+                  var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
+                      deferred;
+                  if (self.simulateQuery) {
+                    deferred = $q.defer();
+                    $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+                    return deferred.promise;
+                  } else {
+                    return results;
+                  }
+                }
+                function selectedItemChange(item) {
+                    $scope.data_inv_garantia = {tipo_garantia:item};
+                }
+                function createFilterFor(query) {
+                  return function filterFn(state) {
+                    return (state.nombre.indexOf(query) === 0);
+                  };
+                }
 
 
             // Nuevo registro tipo inventario

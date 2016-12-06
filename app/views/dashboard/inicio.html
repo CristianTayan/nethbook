@@ -1,3 +1,8 @@
+<md-content layout-padding layout-wrap layout="row">
+    <div flex-gt-sm="90" flex-gt-md="80">
+        sdjasldñaskjd
+    </div>
+</md-content>
 <div layout="row">
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex-xs flex-gt-md="20" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <img src="http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg" class="md-card-image" alt="Banner Perfil">
@@ -23,7 +28,43 @@
             </md-list-item>
         </md-list>
     </md-sidenav>
-    <div flex-xs layout="column" flex-gt-md="80" layout-padding>
-    	hola mundo como estas http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg prodecs
+    <div flex-xs layout="row" flex-gt-md="80" layout-padding>
+        <md-card>
+            <md-card-actions layout="row" layout-align="center center">
+              <md-button class="md-accent md-raised" ng-click="editinfo()">
+                Editar
+              </md-button>
+            </md-card-actions>
+            <div layout="row" layout-align="center center">
+                {{localStorage.nombre_comercial}}
+            </div>
+            <md-card-content>
+                <p>{{localStorage.activitidad}}</p>
+                <md-list>
+                  <md-subheader class="md-no-sticky">Telefonos</md-subheader>
+                    <md-list-item class="md-2-line" ng-repeat="telefono in localStorage.telefonos">
+                      <ng-md-icon class="md-accent" icon="phone"></ng-md-icon>
+                      <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                        <h3>{{telefono.dato}} </h3>
+                        <p> {{telefono.tipo}} </p>
+                      </div>
+                      <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
+                        <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
+                      </md-button>
+                    </md-list-item>
+                </md-list>  
+            </md-card-content>
+            <md-card-content>
+                {{sucursal.direccion}}
+            </md-card-content>
+        </md-card>
+    	<div flex-xs layout="column" flex-gt-md="30" ng-controller="info_perfilCtrl">
+            
+        </div>
+        <div flex-xs layout="column" flex-gt-md="70">
+            <md-card>
+            Area publicaciones,  en proceso
+            </md-card>
+        </div>
     </div>
 </div>
