@@ -14,25 +14,19 @@
                 <div layout="row">
                     <md-input-container class="md-icon-float md-icon-left md-block" flex>
                         <md-icon class="md-primary">add_alert</md-icon>
-                        <label class="text-brand">Tipo de Categoría</label>
-                        <md-autocomplete 
-                            ng-disabled="isDisabled" 
-                            md-no-cache="noCache" 
-                            md-selected-item="selectedItem" 
-                            md-search-text-change="searchTextChange(searchText)" 
-                            md-search-text="searchText" 
-                            md-selected-item-change="selectedItemChange(item.id)" 
-                            md-items="item in querySearch(searchText)" md-item-text="item.nombre" md-min-length="0" required>
-                            <md-item-template>
-                                <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.nombre}}</span>
-                            </md-item-template>
-                            <md-not-found>
-                                No se ha encontrado "{{searchText}}".
-                            </md-not-found>
-                        </md-autocomplete>
-                        <div ng-messages="form_inv_garantia.tipo_garantia.$error">
-                            <div ng-message="required">Tipo de categoria es obligatorio</div>
-                        </div>
+                    <lx-select ng-model="selectModel.selectedPerson"
+                               lx-allow-clear="true"
+                               lx-choices="selectPeople"
+                               lx-display-filter="true"
+                               lx-fixed-label="true"
+                               lx-label="Tipo de Categoría">
+                        <lx-select-selected>
+                            {{ $selected.nombre }}
+                        </lx-select-selected>
+                        <lx-select-choices>
+                            {{ $choice.nombre }}
+                        </lx-select-choices>
+                    </lx-select>
                     </md-input-container>
                 </div>
                 <div layout="row">

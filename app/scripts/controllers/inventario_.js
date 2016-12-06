@@ -1651,36 +1651,28 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
         function DialogController_nuevo($scope, select_tipo_garantia) {
 
             // -------------------------------------------------------tipo_garantia-------------------------------------------------------
-                    var self = $scope;
-                    self.simulateQuery = false;
-                    self.isDisabled    = false;
-                    self.states        = select_tipo_garantia;
-                    self.querySearch   = querySearch;
-                    self.selectedItemChange = selectedItemChange;
-                    self.btn_guardar        =true;
-                    function querySearch (query) {
-                      var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
-                          deferred;
-                      if (self.simulateQuery) {
-                        deferred = $q.defer();
-                        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-                        return deferred.promise;
-                      } else {
-                        return results;
-                      }
-                    }
-                    function selectedItemChange(item) {
-                        $scope.data_inv_garantia = {tipo_garantia:item};
-                    }
-                    function createFilterFor(query) {
-                      return function filterFn(state) {
-                        return (state.nombre.indexOf(query) === 0);
-                      };
-                    }
+                    
+            var vm = $scope;
 
+        vm.selectCallback = selectCallback;
+
+        vm.selectPeople = select_tipo_garantia;
+
+        vm.selectModel = {
+            selectedPerson: undefined,
+            selectedPeople: [vm.selectPeople[2], vm.selectPeople[4]],
+            selectedPeopleSections: []
+        };
+        function selectCallback(_newValue, _oldValue)
+        {
+            LxNotificationService.notify('Change detected');
+            console.log('Old value: ', _oldValue);
+            console.log('New value: ', _newValue);
+        }
 
             // Nuevo registro tipo inventario
             $scope.inv_garantia_nuevo = function() {
+                 $scope.data_inv_garantia.tipo_garantia=vm.selectModel.selectedPerson.id;
                 inventario_Service.Add_Garantia().add($scope.data_inv_garantia).$promise.then(function(data) {
                     $rootScope.$emit("actualizar_tabla_garantia", {});
                     if (data.respuesta == true) {
