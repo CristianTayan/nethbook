@@ -1,0 +1,66 @@
+<md-dialog aria-label="FormProductos">
+    <form name="form_inv_garantia" ng-submit="inv_garantia_nuevo()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Nuevo Garantia</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <!-- <md-content class="md-no-momentum"> -->
+                    <md-input-container class="md-icon-float md-block">
+                        <md-icon class="md-primary">view_compact</md-icon>
+                        <label>Nombre Garantia</label>
+                        <input name="nom_modelo" ng-model="data_inv_garantia.nombre" type="text" required modelos-validator>
+                        <div ng-messages="form_inv_garantia.nom_modelo.$error" ng-show="form_inv_garantia.nom_modelo.$dirty">
+                            <div ng-message="required">Campo Requerido</div>
+                            <div ng-message="campo">Registro Repetido</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container md-no-float class="md-block">
+                        <md-icon class="md-primary">description</md-icon>
+                        <label>Descripción</label>
+                        <textarea name="descripcion" ng-model="data_inv_garantia.descripcion" type="text" required></textarea>
+                        <div ng-messages="form_inv_garantia.descripcion.$error" ng-show="form_inv_garantia.descripcion.$dirty">
+                            <div ng-message="required">Campo Requerido</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-icon-left md-block" flex-gt-xs>
+                        <md-icon class="md-primary">add_alert</md-icon>
+                        <label class="text-brand">Tipo de Categoría</label>
+                        <md-autocomplete 
+                            ng-disabled="isDisabled" 
+                            md-no-cache="noCache" 
+                            name="tipo_garantia" 
+                            md-selected-item="selectedItem" 
+                            md-search-text-change="searchTextChange(searchText)" 
+                            md-search-text="searchText" 
+                            md-selected-item-change="selectedItemChange(item.id)" 
+                            md-items="item in querySearch(searchText)" md-item-text="item.nombre" md-min-length="0" required>
+                            <md-item-template>
+                                <span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No se ha encontrado "{{searchText}}".
+                            </md-not-found>
+                        </md-autocomplete>
+                        <div ng-messages="form_inv_garantia.tipo_garantia.$error">
+                            <div ng-message="required">Tipo de categoria es obligatorio</div>
+                        </div>
+                    </md-input-container>
+                <!-- </md-content> -->
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">Cancelar</md-button>
+            <md-button type="reset">Limpiar</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_inv_garantia.$invalid">Guardar</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+
+

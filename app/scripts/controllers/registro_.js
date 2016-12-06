@@ -10,7 +10,7 @@
 var app = angular.module('nextbook20App')
   	app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService, $localStorage) {
   		$scope.elementview = false;
-  		$scope.elemennotview = true; 	
+  		$scope.elemennotview = true;
   		
   		// cargar provincias
   		mainService.item_provincias().get().$promise.then(function(data){
@@ -68,7 +68,6 @@ var app = angular.module('nextbook20App')
   				getIPs(function(ip){
   					var obj = {'nick':$scope.email, 'clave':$scope.password};
 			        mainService.ingresar({acceso:obj,info_servidor:data, ip_cliente:ip, macadress:'00:00:00:00:00'}).acceso().$promise.then(function(data) {
-			        	console.log(data);
 			        	if (data.respuesta == false) {
 			            	$mdDialog.show(
 					            $mdDialog.alert()

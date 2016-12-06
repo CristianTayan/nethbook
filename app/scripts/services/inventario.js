@@ -484,5 +484,58 @@ angular.module('nextbook20App')
 		        });
 	    	};
 	    // ---------------------------------------------------------------FIN TIPO UBICACION-----------------------------------------------------------------//
+	    // ---------------------------------------------------------------INICIO TIPO UBICACION--------------------------------------------------------------//
+	    	this.Add_Garantia = function() {
+		        return $resource(urlService.server().appnext()+'Add_Garantia', {} , {
+		            add: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Update_Garantia = function(){
+	    		return $resource(urlService.server().appnext()+'Update_Garantia', {} , {
+		            actualizar: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	}
+	    	this.Get_Garantia = function() {
+		        return $resource(urlService.server().appnext()+'Get_Garantias', {} , {
+		            get: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Existencia_Garantia = function(){
+	    		return $resource(urlService.server().appnext()+'Existencia_Garantia', {} , {
+		            consulta: {
+		    			method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Delete_Ubicacion = function() {
+		        return $resource(urlService.server().appnext()+'Delete_Ubicacion', {}
+		        , {
+		            delete: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    // ---------------------------------------------------------------FIN TIPO UBICACION-----------------------------------------------------------------//
 
   	});

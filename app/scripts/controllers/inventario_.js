@@ -1624,8 +1624,297 @@ app.controller('inv_ubicacion_Ctrl', function($scope, $rootScope, $mdDialog, inv
         });
 });
 
+app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
+    // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
+        $scope.inv_garantia_dialog_nuevo = function(event) {
+            $mdDialog.show({
+                    controller: DialogController_nuevo,
+                    templateUrl: 'views/app/inventario/garantia/new.html',
+                    parent: angular.element(document.body),
+                    targetEvent: event,
+                    ariaLabel: 'Respuesta Registro',
+                    clickOutsideToClose: true
+                });
+        }
+        function DialogController_nuevo($scope) {
+            // Nuevo registro tipo inventario
+            $scope.inv_garantia_nuevo = function() {
+                inventario_Service.Add_Garantia().add($scope.data_inv_garantia).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_garantia", {});
+                    if (data.respuesta == true) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('EN HORA BUENA :)')
+                            .textContent('Su registro se a realizado con exito.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // -------------------------------------------------------PROCESO EDITAR REGISTRO-----------------------------------------------------------
+        $scope.inv_garantia_dialog_editar = function(categoria) {
+            $mdDialog.show({
+                controller: DialogController_editar,
+                templateUrl: 'views/app/inventario/garantia/update.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: true,
+                locals: {
+                    obj: categoria
+                }
+            });
+        }
+        function DialogController_editar($scope, $rootScope, inventario_Service, obj) {
+            $scope.data_inv_garantia = obj;
+            $scope.data_inv_garantia_update = function() {
+                inventario_Service.Update_Garantia().actualizar($scope.data_inv_garantia).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_garantia", {});
+                    if (data.respuesta == true) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('EN HORA BUENA :)')
+                            .textContent('Su registro se a realizado con exito.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // -------------------------------------------------------PROCESO ELIMINAR REGISTRO---------------------------------------------------------
+        $scope.inv_garantia_dialog_eliminar = function(tipocategoria) {
+            $mdDialog.show({
+                controller: Dialog_eliminar_Ctrl,
+                templateUrl: 'views/app/inventario/garantia/eliminar.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: true,
+                locals: {
+                    obj: tipocategoria
+                }
+            });
+        }
+        function Dialog_eliminar_Ctrl($scope, $rootScope, obj) {
+            $scope.data_inv_garantia_eliminar = function() {
+                inventario_Service.Delete_Garantia().delete({
+                    id: obj.id
+                }).$promise.then(function(data) {
+                    if (data.respuesta == true) {
+                        $rootScope.$emit("actualizar_tabla_garantia", {});
+                        $mdDialog.cancel();
+                    }
+                });
+            }
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    
+    // -------------------------------------------------------PROCESO LLENAR TABLA-------------------------------------------------------------- 
+        var bookmark;
+            $scope.selected = [];
+            $scope.query = {
+                filter: '',
+                num_registros: 5,
+                pagina_actual: 1,
+                limit: '5',
+                page_num: 1
+            };
 
-app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {});
+        function success(desserts) {
+            $scope.total = desserts.respuesta.total;
+            $scope.garantia = desserts.respuesta.data;
+        }
+
+        $scope.data_inv_garantia_get = function() {
+            inventario_Service.Get_Garantia().get($scope.query, success).$promise;
+        }
+
+        $rootScope.$on("actualizar_tabla_garantia", function() {
+            $scope.data_inv_garantia_get();
+        });
+
+        $scope.removeFilter = function() {
+            $scope.filter.show = false;
+            $scope.query.filter = '';
+            if ($scope.filter.form.$dirty) {
+                $scope.filter.form.$setPristine();
+            }
+        };
+
+        $scope.$watch('query.filter', function(newValue, oldValue) {
+            if (!oldValue) {
+                bookmark = $scope.query.page;
+            }
+            if (newValue !== oldValue) {
+                $scope.query.page = 1;
+            }
+
+            if (!newValue) {
+                $scope.query.page = bookmark;
+            }
+            $scope.data_inv_garantia_get();
+        });
+
+    // -------------------------------------------------------LLENAR SELECT TIPO GARANTIA-------------------------------------------------------
+        function success_tipo_garantia(desserts) {
+            $scope.tipo_garantia = desserts.respuesta.data;
+        }
+        $scope.data_inv_tipo_garantia_get = function() {
+            inventario_Service.Get_Tipo_Garantia().get($scope.query, success_tipo_garantia).$promise;
+        }
+        $scope.data_inv_tipo_garantia_get();
+
+        var self = $scope;
+
+            self.simulateQuery = false;
+            self.isDisabled    = false;
+
+            // list of `state` value/display objects
+            self.states        = loadAll();
+            self.querySearch   = querySearch;
+            self.selectedItemChange = selectedItemChange;
+            self.searchTextChange   = searchTextChange;
+            self.btn_guardar        =true;
+
+            self.newState = newState;
+
+            function newState(state) {
+              
+            }
+
+            function querySearch (query) {
+              var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
+                  deferred;
+              if (self.simulateQuery) {
+                deferred = $q.defer();
+                $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+                return deferred.promise;
+              } else {
+                return results;
+              }
+            }
+
+            function searchTextChange(text) {
+              
+            }
+
+            function selectedItemChange(item) {
+                if (self.data_inv_tc.name!=''&&self.data_inv_tc.descripcion!=''&&JSON.stringify(item)!=undefined) {
+                    $scope.data_inv_tc.tipo_categoria=item;
+                    self.btn_guardar=false;
+                }else self.btn_guardar=true;
+            }
+            function loadAll() {
+              return tipo_garantia;
+            }
+            function createFilterFor(query) {
+              //var lowercaseQuery = angular.lowercase(query);
+              return function filterFn(state) {
+                return (state.nombre.indexOf(query) === 0);
+              };
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
 
 app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {});
 app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {

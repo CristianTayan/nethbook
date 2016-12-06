@@ -154,3 +154,21 @@ var app = angular.module('nextbook20App');
       };
     });
   //-------------------------------------------------------------------- FIN TIPO UBICACION ------------------------------------------------------------------//
+
+  //------------------------------------------------------------------ INICIO TIPO UBICACION ------------------------------------------------------------------//
+    app.directive('garantiaValidator', function($q, inventario_Service) {
+      return {
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
+              ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+                return inventario_Service.Existencia_Garantia().consulta({nombre: viewValue}).$promise.then(function(data){
+                      if (!data.respuesta) {
+                          return $q.reject('proceso');
+                      }
+                return true;
+                });
+              };
+          }
+      };
+    });
+  //-------------------------------------------------------------------- FIN TIPO UBICACION ------------------------------------------------------------------//
