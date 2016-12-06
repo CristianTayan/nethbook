@@ -1635,52 +1635,44 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
             }
             $scope.data_inv_tipo_garantia_get();
 
-            $scope.inv_garantia_dialog_nuevo = function(event) {
-                $scope.data_inv_tipo_garantia_get();
-                $mdDialog.show({
-                        controller: DialogController_nuevo,
-                        templateUrl: 'views/app/inventario/garantia/new.html',
-                        parent: angular.element(document.body),
-                        targetEvent: event,
-                        ariaLabel: 'Respuesta Registro',
-                        clickOutsideToClose: true,
-                        locals: {select_tipo_garantia: $scope.tipo_garantia}
+
+        $scope.inv_garantia_dialog_nuevo = function(event) {
+            $scope.data_inv_tipo_garantia_get();
+            $mdDialog.show({
+                    controller: DialogController_nuevo,
+                    templateUrl: 'views/app/inventario/garantia/new.html',
+                    parent: angular.element(document.body),
+                    targetEvent: event,
+                    ariaLabel: 'Respuesta Registro',
+                    clickOutsideToClose: true,
+                    locals: {select_tipo_garantia: $scope.tipo_garantia}
                 });
-            }
+        }
         function DialogController_nuevo($scope, select_tipo_garantia) {
 
             // -------------------------------------------------------tipo_garantia-------------------------------------------------------
-                var self = this;
-                self.simulateQuery = false;
-                self.isDisabled    = false;
-                eel.
-                self.states        = select_tipo_garantia;
-                self.querySearch   = querySearch;
-                self.selectedItemChange = selectedItemChange;
-                self.btn_guardar        =true;
-                function querySearch (query) {
-                  var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
-                      deferred;
-                  if (self.simulateQuery) {
-                    deferred = $q.defer();
-                    $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-                    return deferred.promise;
-                  } else {
-                    return results;
-                  }
-                }
-                function selectedItemChange(item) {
-                    $scope.data_inv_garantia = {tipo_garantia:item};
-                }
-                function createFilterFor(query) {
-                  return function filterFn(state) {
-                    return (state.nombre.indexOf(query) === 0);
-                  };
-                }
+                    
+            var vm = $scope;
 
+        vm.selectCallback = selectCallback;
+
+        vm.selectPeople = select_tipo_garantia;
+
+        vm.selectModel = {
+            selectedPerson: undefined,
+            selectedPeople: [vm.selectPeople[2], vm.selectPeople[4]],
+            selectedPeopleSections: []
+        };
+        function selectCallback(_newValue, _oldValue)
+        {
+            LxNotificationService.notify('Change detected');
+            console.log('Old value: ', _oldValue);
+            console.log('New value: ', _newValue);
+        }
 
             // Nuevo registro tipo inventario
             $scope.inv_garantia_nuevo = function() {
+                 $scope.data_inv_garantia.tipo_garantia=vm.selectModel.selectedPerson.id;
                 inventario_Service.Add_Garantia().add($scope.data_inv_garantia).$promise.then(function(data) {
                     $rootScope.$emit("actualizar_tabla_garantia", {});
                     if (data.respuesta == true) {
@@ -1688,7 +1680,7 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
                             $mdDialog.alert()
                             .parent(angular.element(document.querySelector('#popupContainer')))
                             .clickOutsideToClose(true)
-                            .title('EN HORA BUENA :)')
+                            .title('EN HORA BUENA 🙂')
                             .textContent('Su registro se a realizado con exito.')
                             .ariaLabel('Respuesta Registro')
                             .ok('Entendido')
@@ -1700,7 +1692,7 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
                             $mdDialog.alert()
                             .parent(angular.element(document.querySelector('#popupContainer')))
                             .clickOutsideToClose(true)
-                            .title('LO SENTIMOS :(')
+                            .title('LO SENTIMOS 😞')
                             .textContent('Intente mas tarde.')
                             .ariaLabel('Respuesta Registro')
                             .ok('Entendido')
@@ -1712,7 +1704,7 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
                             $mdDialog.alert()
                             .parent(angular.element(document.querySelector('#popupContainer')))
                             .clickOutsideToClose(true)
-                            .title('LO SENTIMOS :(')
+                            .title('LO SENTIMOS 😞')
                             .textContent('Proceso no permitido intente mas tarde.')
                             .ariaLabel('Respuesta Registro')
                             .ok('Entendido')
@@ -1750,7 +1742,7 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
                             $mdDialog.alert()
                             .parent(angular.element(document.querySelector('#popupContainer')))
                             .clickOutsideToClose(true)
-                            .title('EN HORA BUENA :)')
+                            .title('EN HORA BUENA 🙂')
                             .textContent('Su registro se a realizado con exito.')
                             .ariaLabel('Respuesta Registro')
                             .ok('Entendido')
@@ -1762,7 +1754,7 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
                             $mdDialog.alert()
                             .parent(angular.element(document.querySelector('#popupContainer')))
                             .clickOutsideToClose(true)
-                            .title('LO SENTIMOS :(')
+                            .title('LO SENTIMOS 😞')
                             .textContent('Intente mas tarde.')
                             .ariaLabel('Respuesta Registro')
                             .ok('Entendido')
@@ -1774,7 +1766,7 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
                             $mdDialog.alert()
                             .parent(angular.element(document.querySelector('#popupContainer')))
                             .clickOutsideToClose(true)
-                            .title('LO SENTIMOS :(')
+                            .title('LO SENTIMOS 😞')
                             .textContent('Proceso no permitido intente mas tarde.')
                             .ariaLabel('Respuesta Registro')
                             .ok('Entendido')
@@ -1863,39 +1855,6 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
             }
             $scope.data_inv_garantia_get();
         });
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });

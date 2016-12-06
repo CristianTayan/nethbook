@@ -12,34 +12,22 @@
         <md-dialog-content style="max-width:800px!important;max-height:810px!important; ">
             <div class="md-dialog-content">
                 <div layout="row">
-                    <div class="p+ pt0">
-                        <lx-select ng-model="vm.selectModel.selectedPerson"
-                                   lx-allow-clear="true"
-                                   lx-choices="vm.selectPeople"
-                                   lx-display-filter="true"
-                                   lx-fixed-label="true"
-                                   lx-label="Lorem Ipsum">
-                            <lx-select-selected>
-                                {{ $selected.name }} - {{ $selected.age }}
-                            </lx-select-selected>
-                     
-                            <lx-select-choices>
-                                {{ $choice.email }}
-                            </lx-select-choices>
-                        </lx-select>
-                        <lx-select ng-model="vm.selectModel.selectedPeople"
-                                   lx-choices="vm.selectPeople"
-                                   lx-label="Lorem Ipsum"
-                                   lx-multiple="true">
-                            <lx-select-selected>
-                                {{ $selected.name }} - {{ $selected.age }}
-                            </lx-select-selected>
-                     
-                            <lx-select-choices>
-                                {{ $choice.email }}
-                            </lx-select-choices>
-                        </lx-select>
-                    </div>
+                    <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                        <md-icon class="md-primary">add_alert</md-icon>
+                    <lx-select ng-model="selectModel.selectedPerson"
+                               lx-allow-clear="true"
+                               lx-choices="selectPeople"
+                               lx-display-filter="true"
+                               lx-fixed-label="true"
+                               lx-label="Tipo de Categoría">
+                        <lx-select-selected>
+                            {{ $selected.nombre }}
+                        </lx-select-selected>
+                        <lx-select-choices>
+                            {{ $choice.nombre }}
+                        </lx-select-choices>
+                    </lx-select>
+                    </md-input-container>
                 </div>
                 <div layout="row">
                     <md-input-container class="md-icon-float md-block" flex>
@@ -80,5 +68,3 @@
         </md-dialog-actions>
     </form>
 </md-dialog>
-
-
