@@ -538,4 +538,58 @@ angular.module('nextbook20App')
 	    	};
 	    // ---------------------------------------------------------------FIN TIPO GARANTIA-----------------------------------------------------------------//
 
+		// ---------------------------------------------------------------INICIO PRODUCTOS--------------------------------------------------------------//
+	    	this.Add_Producto = function() {
+		        return $resource(urlService.server().appnext()+'Add_Producto', {} , {
+		            add: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Update_Producto = function(){
+	    		return $resource(urlService.server().appnext()+'Update_Producto', {} , {
+		            actualizar: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	}
+	    	this.Get_Producto = function() {
+		        return $resource(urlService.server().appnext()+'Get_Productos', {} , {
+		            get: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Existencia_Producto = function(){
+	    		return $resource(urlService.server().appnext()+'Existencia_Producto', {} , {
+		            consulta: {
+		    			method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Delete_Produto = function() {
+		        return $resource(urlService.server().appnext()+'Delete_Produto', {}
+		        , {
+		            delete: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    // ---------------------------------------------------------------FIN PRODUCTOS-----------------------------------------------------------------//
+
   	});
