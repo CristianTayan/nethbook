@@ -106,7 +106,27 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
-	    // ---------------------------------------------------------------FIN TIPO CATEGORIA-----------------------------------------------------------------//
+	    	this.Existencia_Categoria = function(){
+	    		return $resource(urlService.server().appnext()+'Existencia_Categoria', {} , {
+		            consulta: {
+		    			method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Update_Categoria = function(){
+	    		return $resource(urlService.server().appnext()+'Update_Categoria', {} , {
+		            actualizar: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	}
+	    // ---------------------------------------------------------------FIN CATEGORIA-----------------------------------------------------------------//
 
 	    // ---------------------------------------------------------------INICIO TIPO GARANTIA---------------------------------------------------------------//
 	    	this.Add_Tipo_Garantia = function() {

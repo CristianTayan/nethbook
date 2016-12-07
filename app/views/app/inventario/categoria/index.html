@@ -10,7 +10,7 @@
                 <label>Búsqueda</label>
                 <input name="nom_tipo_categoria" ng-model="query.filter" type="text" required>
             </md-input-container>
-            <md-button ng-click="inv_cat_dialog_nuevo($event)" flex="10" class="md-accent" aria-label="Close">Nuevo</md-button>
+            <md-button ng-click="inv_categoria_dialog_nuevo($event)" flex="10" class="md-accent" aria-label="Close">Nuevo</md-button>
         </div>
     </md-table-container>
     <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
@@ -26,9 +26,9 @@
             <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in categorias">
                 <td md-cell>{{dessert.nombre}}</td>
                 <td md-cell>{{dessert.descripcion}}</td>
-                <td md-cell>{{dessert.tipo_categoria}}</td>
+                <td md-cell>{{dessert.tipo_categoria.nombre}}</td>
                 <td md-cell>
-                    <md-button class="md-icon-button" ng-click="inv_categoria_dialog_editar()" type="button">
+                    <md-button class="md-icon-button" ng-click="inv_categoria_dialog_editar(dessert)" type="button">
                         <md-tooltip md-direction="top">
                             Modificar
                         </md-tooltip>
