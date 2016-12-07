@@ -1653,26 +1653,21 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
             // -------------------------------------------------------tipo_garantia-------------------------------------------------------
                     
             var vm = $scope;
+            vm.selectCallback = selectCallback;
+            vm.selectPeople = select_tipo_garantia;
+            vm.selectModel = {
+                selectedPerson: undefined,
+                selectedPeople: [vm.selectPeople[2], vm.selectPeople[4]],
+                selectedPeopleSections: []
+            };
 
-        vm.selectCallback = selectCallback;
-
-        vm.selectPeople = select_tipo_garantia;
-
-        vm.selectModel = {
-            selectedPerson: undefined,
-            selectedPeople: [vm.selectPeople[2], vm.selectPeople[4]],
-            selectedPeopleSections: []
-        };
-        function selectCallback(_newValue, _oldValue)
-        {
-            LxNotificationService.notify('Change detected');
-            console.log('Old value: ', _oldValue);
-            console.log('New value: ', _newValue);
-        }
+            function selectCallback(_newValue, _oldValue){
+                LxNotificationService.notify('Change detected');
+            }
 
             // Nuevo registro tipo inventario
             $scope.inv_garantia_nuevo = function() {
-                 $scope.data_inv_garantia.tipo_garantia=vm.selectModel.selectedPerson.id;
+                $scope.data_inv_garantia.tipo_garantia=vm.selectModel.selectedPerson.id;
                 inventario_Service.Add_Garantia().add($scope.data_inv_garantia).$promise.then(function(data) {
                     $rootScope.$emit("actualizar_tabla_garantia", {});
                     if (data.respuesta == true) {
@@ -1727,14 +1722,26 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
                 targetEvent: event,
                 ariaLabel: 'Respuesta Registro',
                 clickOutsideToClose: true,
-                locals: {
-                    obj: categoria
-                }
+                locals: {obj: categoria, select_tipo_garantia: $scope.tipo_garantia}
             });
         }
-        function DialogController_editar($scope, $rootScope, inventario_Service, obj) {
+        function DialogController_editar($scope, $rootScope, inventario_Service, obj, select_tipo_garantia) {
+            var vm = $scope;
+            vm.selectCallback = selectCallback;
+            vm.selectPeople = select_tipo_garantia;
+            vm.selectModel = {
+                selectedPerson: obj.tipo_garantia,
+                selectedPeople: [vm.selectPeople[2], vm.selectPeople[4]],
+                selectedPeopleSections: []
+            };
+            function selectCallback(_newValue, _oldValue){
+                LxNotificationService.notify('Change detected');
+            }
+
+
             $scope.data_inv_garantia = obj;
             $scope.data_inv_garantia_update = function() {
+                $scope.data_inv_garantia.tipo_garantia=vm.selectModel.selectedPerson.id;
                 inventario_Service.Update_Garantia().actualizar($scope.data_inv_garantia).$promise.then(function(data) {
                     $rootScope.$emit("actualizar_tabla_garantia", {});
                     if (data.respuesta == true) {
@@ -1855,8 +1862,6 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
             }
             $scope.data_inv_garantia_get();
         });
-
-
 });
 
 app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {});

@@ -484,7 +484,7 @@ angular.module('nextbook20App')
 		        });
 	    	};
 	    // ---------------------------------------------------------------FIN TIPO UBICACION-----------------------------------------------------------------//
-	    // ---------------------------------------------------------------INICIO TIPO UBICACION--------------------------------------------------------------//
+	    // ---------------------------------------------------------------INICIO TIPO GARANTIA--------------------------------------------------------------//
 	    	this.Add_Garantia = function() {
 		        return $resource(urlService.server().appnext()+'Add_Garantia', {} , {
 		            add: {
@@ -525,8 +525,8 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
-	    	this.Delete_Ubicacion = function() {
-		        return $resource(urlService.server().appnext()+'Delete_Ubicacion', {}
+	    	this.Delete_Garantia = function() {
+		        return $resource(urlService.server().appnext()+'Delete_Garantia', {}
 		        , {
 		            delete: {
 		                method: 'POST', isArray: false,
@@ -536,6 +536,6 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
-	    // ---------------------------------------------------------------FIN TIPO UBICACION-----------------------------------------------------------------//
+	    // ---------------------------------------------------------------FIN TIPO GARANTIA-----------------------------------------------------------------//
 
   	});
