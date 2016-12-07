@@ -1,0 +1,200 @@
+<md-dialog aria-label="FormProductos">
+    <form name="form_inv_producto" ng-submit="inv_modelo_nuevo()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Nuevo Producto</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width: 1100px!important">
+            <div class="md-dialog-content">
+                <md-content class="md-no-momentum">
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Nombre Corto</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.nombre_corto" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Vendible</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.vendible" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Comprable</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.comprable" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Precio</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.precio" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Costo</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.costo" type="text" modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Estado Descriptivo</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.estado_descriptivo" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Categoria</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.categoria" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Garantia</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.garantia" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Marca</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.marca" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Modelo</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.modelo" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Ubicacion</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.ubicacion" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Cantidad</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.cantidad" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Descripción</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.descripcion" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Bodega</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.bodega" type="text" required modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container md-no-float class="md-block" flex>
+                            <md-icon class="md-primary">description</md-icon>
+                            <label>Tipo Consumo</label>
+                            <textarea name="descripcion" ng-model="data_inv_producto.tipo_consumo" type="text" required></textarea>
+                            <div ng-messages="form_inv_producto.descripcion.$error" ng-show="form_inv_producto.descripcion.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Codigo de Barras</label>
+                            <input name="nom_modelo" ng-model="data_inv_producto.codigo_baras" type="text"  modelos-validator>
+                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </md-content>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">Cancelar</md-button>
+            <md-button type="reset">Limpiar</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_inv_producto.$invalid">Guardar</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+
+<style type="text/css">
+    .dialogdemoBasicUsage #popupContainer {
+  position: relative; }
+
+.dialogdemoBasicUsage .footer {
+  width: 100%;
+  text-align: center;
+  margin-left: 20px; }
+
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; }
+
+.dialogdemoBasicUsage button {
+  width: 200px; }
+
+.dialogdemoBasicUsage div#status {
+  color: #c60008; }
+
+.dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
+  margin-bottom: 0; }
+</style>
