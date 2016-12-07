@@ -1,70 +1,75 @@
-<md-content layout-padding layout-wrap layout="row">
-    <div flex-gt-sm="90" flex-gt-md="80">
-        sdjasldñaskjd
-    </div>
-</md-content>
-<div layout="row">
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex-xs flex-gt-md="20" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-        <img src="http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg" class="md-card-image" alt="Banner Perfil">
-        <div class="sidenav-header-profile">
-            <span flex></span>
-            <div class="sidenav-profile">
-                <user-avatar></user-avatar>
-                <span>{{localStorage.nombre_comercial | uppercase | limitTo: 50}}</span>
+<div layout="row" layout-align="center center">
+    <div flex-gt-sm="90" flex-gt-md="60">
+        <!-- perfil imagenes  -->
+        <div layout="row">
+            <div flex="30">
+                <div style="position: fixed;top: 66px">
+                    <div layout="row">
+                        <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                          <div class="mdl-card__title mdl-card--expand">
+                            <h2 class="mdl-card__title-text">Mi Empresa</h2>
+                          </div>
+                          <div class="mdl-card__supporting-text">
+                            {{datos2.razon_social}},
+                            {{datos2.tipo_contribuyente}}
+                          </div>
+                        </div>
+                    </div>
+                    <div layout="row">
+                        <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                          <div class="mdl-card__title">
+                            <h4 class="mdl-card__title-text">Actividad Economica</h4>
+                          </div>
+                          <div class="mdl-card__supporting-text">
+                            {{datos2.actividad_economica | lowercase}}
+                          </div>
+                          <div class="mdl-card__menu">
+                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                              <i class="material-icons">share</i>
+                            </button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <md-list ng-cloak>
-            <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in menu">
-                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                <p> {{ item.title }} </p>
-            </md-list-item>
-            <md-list-item>
-                <ng-md-icon icon="exit_to_app"></ng-md-icon>
-                <p> Bloquear </p>
-            </md-list-item>
-            <md-list-item>
-                <ng-md-icon icon="aspect_ratio"></ng-md-icon>
-                <p> Pantalla Completa </p>
-            </md-list-item>
-        </md-list>
-    </md-sidenav>
-    <div flex-xs layout="row" flex-gt-md="80" layout-padding>
-        <md-card>
-            <md-card-actions layout="row" layout-align="center center">
-              <md-button class="md-accent md-raised" ng-click="editinfo()">
-                Editar
-              </md-button>
-            </md-card-actions>
-            <div layout="row" layout-align="center center">
-                {{localStorage.nombre_comercial}}
+            <div flex="70">
+                <div layout="column" >
+                    <div layout="row">
+                        <md-tabs flex>
+                            <md-tab id="b-tab1" aria-controls="b-tab1-content" style="float:right!important;">
+                                Historia
+                            </md-tab>
+                            <md-tab id="b-tab2" aria-controls="b-tab2-content" style="float:right!important;">
+                                <md-icon>location_on</md-icon>
+                            </md-tab>
+                            <md-tab id="b-tab3" aria-controls="b-tab3-content" style="float:right!important;">
+                                Similares
+                            </md-tab>
+                            <md-tab id="b-tab4" aria-controls="b-tab4-content" style="float:right!important;">
+                                Favoritos
+                            </md-tab>
+                            <md-tab id="b-tab5" aria-controls="b-tab5-content" style="float:right!important;">
+                                Grupos
+                            </md-tab>
+                            <md-tab id="b-tab6" aria-controls="b-tab5-content" style="float:right!important;">
+                                Agenda
+                            </md-tab>
+                        </md-tabs>
+                    </div>
+                    <!-- <div layout="row" app-view-segment="2"></div> -->
+                </div>
             </div>
-            <md-card-content>
-                <p>{{localStorage.activitidad}}</p>
-                <md-list>
-                  <md-subheader class="md-no-sticky">Telefonos</md-subheader>
-                    <md-list-item class="md-2-line" ng-repeat="telefono in localStorage.telefonos">
-                      <ng-md-icon class="md-accent" icon="phone"></ng-md-icon>
-                      <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                        <h3>{{telefono.dato}} </h3>
-                        <p> {{telefono.tipo}} </p>
-                      </div>
-                      <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
-                        <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
-                      </md-button>
-                    </md-list-item>
-                </md-list>  
-            </md-card-content>
-            <md-card-content>
-                {{sucursal.direccion}}
-            </md-card-content>
-        </md-card>
-    	<div flex-xs layout="column" flex-gt-md="30" ng-controller="info_perfilCtrl">
-            
-        </div>
-        <div flex-xs layout="column" flex-gt-md="70">
-            <md-card>
-            Area publicaciones,  en proceso
-            </md-card>
         </div>
     </div>
 </div>
+
+<style>
+.demo-card-square.mdl-card {
+  /*width: 320px;*/
+  height: 30px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  background:#46B6AC;
+}
+</style>
