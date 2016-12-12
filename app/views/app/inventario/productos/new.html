@@ -1,5 +1,5 @@
 <md-dialog aria-label="FormProductos">
-    <form name="form_inv_producto" ng-submit="inv_modelo_nuevo()">
+    <form name="form_inv_producto" ng-submit="inv_producto_nuevo()">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Nuevo Producto</h2>
@@ -16,28 +16,26 @@
                         <md-input-container class="md-icon-float md-block" flex>
                             <md-icon class="md-primary">view_compact</md-icon>
                             <label>Nombre Corto</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.nombre_corto" type="text" required modelos-validator>
+                            <input name="nom_modelo" ng-model="data_inv_producto.nombre_corto" type="text" required >
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-icon-float md-block" flex>
-                            <md-icon class="md-primary">view_compact</md-icon>
-                            <label>Vendible</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.vendible" type="text" required modelos-validator>
-                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                            <md-checkbox name="vendible" ng-model="data_inv_producto.vendible" aria-label="vendible" style="top: 10px;" >
+                                VENDIBLE
+                            </md-checkbox>
+                            <div ng-messages="form_inv_producto.vendible.$error" ng-show="form_inv_producto.vendible.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
-                                <div ng-message="campo">Registro Repetido</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-icon-float md-block" flex>
-                            <md-icon class="md-primary">view_compact</md-icon>
-                            <label>Comprable</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.comprable" type="text" required modelos-validator>
-                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                            <md-checkbox name="comprable" ng-model="data_inv_producto.comprable" aria-label="comprable" style="top: 10px;" >
+                                COMPRABLE
+                            </md-checkbox>
+                            <div ng-messages="form_inv_producto.comprable.$error" ng-show="form_inv_producto.comprable.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
-                                <div ng-message="campo">Registro Repetido</div>
                             </div>
                         </md-input-container>
                     </div>
@@ -45,7 +43,7 @@
                         <md-input-container class="md-icon-float md-block" flex>
                             <md-icon class="md-primary">view_compact</md-icon>
                             <label>Precio</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.precio" type="text" required modelos-validator>
+                            <input name="nom_modelo" ng-model="data_inv_producto.precio" type="text" required >
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
@@ -54,15 +52,28 @@
                         <md-input-container class="md-icon-float md-block" flex>
                             <md-icon class="md-primary">view_compact</md-icon>
                             <label>Costo</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.costo" type="text" modelos-validator>
+                            <input name="nom_modelo" ng-model="data_inv_producto.costo" type="text" >
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="campo">Registro Repetido</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-icon-float md-block" flex>
-                            <md-icon class="md-primary">view_compact</md-icon>
-                            <label>Estado Descriptivo</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.estado_descriptivo" type="text" required modelos-validator>
+                         <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                            <md-icon class="md-primary">add_alert</md-icon>
+                                <lx-select ng-model="selectModelED.selectedED"
+                                           lx-allow-clear="true"
+                                           lx-choices="selectED"
+                                           lx-display-filter="true"
+                                           lx-fixed-label="true"
+                                           lx-label="Estado Descriptivo">
+                                    <lx-select-selected>
+                                        {{ $selected.nombre }}
+                                    </lx-select-selected>
+                                    <lx-select-choices>
+                                        {{ $choice.nombre }}
+                                    </lx-select-choices>
+                                </lx-select>
+                            </md-input-container>
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
@@ -71,27 +82,67 @@
                     </div>
                     <div layout="row">
                         <md-input-container class="md-icon-float md-block" flex>
-                            <md-icon class="md-primary">view_compact</md-icon>
+                            <!-- <md-icon class="md-primary">view_compact</md-icon>
                             <label>Categoria</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.categoria" type="text" required modelos-validator>
+                            <input name="nom_modelo" ng-model="data_inv_producto.categoria" type="text" required > -->
+                            <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                                <md-icon class="md-primary">add_alert</md-icon>
+                            <lx-select ng-model="selectModel.selectedPerson"
+                                       lx-allow-clear="true"
+                                       lx-choices="selectPeople"
+                                       lx-display-filter="true"
+                                       lx-fixed-label="true"
+                                       lx-label="Tipo de Categoría">
+                                <lx-select-selected>
+                                    {{ $selected.nombre }}
+                                </lx-select-selected>
+                                <lx-select-choices>
+                                    {{ $choice.nombre }}
+                                </lx-select-choices>
+                            </lx-select>
+                            </md-input-container>
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-icon-float md-block" flex>
-                            <md-icon class="md-primary">view_compact</md-icon>
-                            <label>Garantia</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.garantia" type="text" required modelos-validator>
+                             <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                                <md-icon class="md-primary">add_alert</md-icon>
+                                <lx-select ng-model="selectModelGarantia.selectedGarantia"
+                                           lx-allow-clear="true"
+                                           lx-choices="selectGarantias"
+                                           lx-display-filter="true"
+                                           lx-fixed-label="true"
+                                           lx-label="Garantia">
+                                    <lx-select-selected>
+                                        {{ $selected.nombre }}
+                                    </lx-select-selected>
+                                    <lx-select-choices>
+                                        {{ $choice.nombre }}
+                                    </lx-select-choices>
+                                </lx-select>
+                            </md-input-container>
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-icon-float md-block" flex>
-                            <md-icon class="md-primary">view_compact</md-icon>
-                            <label>Marca</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.marca" type="text" required modelos-validator>
+                            <md-icon class="md-primary">add_alert</md-icon>
+                                <lx-select ng-model="selectModelMarcas.selectedMarca"
+                                           lx-allow-clear="true"
+                                           lx-choices="selectMarcas"
+                                           lx-display-filter="true"
+                                           lx-fixed-label="true"
+                                           lx-label="Marca">
+                                    <lx-select-selected>
+                                        {{ $selected.nombre }}
+                                    </lx-select-selected>
+                                    <lx-select-choices>
+                                        {{ $choice.nombre }}
+                                    </lx-select-choices>
+                                </lx-select>
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
@@ -100,18 +151,40 @@
                     </div>
                     <div layout="row">
                         <md-input-container class="md-icon-float md-block" flex>
-                            <md-icon class="md-primary">view_compact</md-icon>
-                            <label>Modelo</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.modelo" type="text" required modelos-validator>
+                            <md-icon class="md-primary">add_alert</md-icon>
+                                <lx-select ng-model="selectModelModelos.selectedModelo"
+                                           lx-allow-clear="true"
+                                           lx-choices="selectModelos"
+                                           lx-display-filter="true"
+                                           lx-fixed-label="true"
+                                           lx-label="Modelo">
+                                    <lx-select-selected>
+                                        {{ $selected.nombre }}
+                                    </lx-select-selected>
+                                    <lx-select-choices>
+                                        {{ $choice.nombre }}
+                                    </lx-select-choices>
+                                </lx-select>
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-icon-float md-block" flex>
-                            <md-icon class="md-primary">view_compact</md-icon>
-                            <label>Ubicacion</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.ubicacion" type="text" required modelos-validator>
+                            <md-icon class="md-primary">add_alert</md-icon>
+                                <lx-select ng-model="selectModelUbicaciones.selectedUbicacion"
+                                           lx-allow-clear="true"
+                                           lx-choices="selectUbicaciones"
+                                           lx-display-filter="true"
+                                           lx-fixed-label="true"
+                                           lx-label="Ubicacion">
+                                    <lx-select-selected>
+                                        {{ $selected.nombre }}
+                                    </lx-select-selected>
+                                    <lx-select-choices>
+                                        {{ $choice.nombre }}
+                                    </lx-select-choices>
+                                </lx-select>
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
@@ -120,7 +193,7 @@
                         <md-input-container class="md-icon-float md-block" flex>
                             <md-icon class="md-primary">view_compact</md-icon>
                             <label>Cantidad</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.cantidad" type="text" required modelos-validator>
+                            <input name="nom_modelo" ng-model="data_inv_producto.cantidad" type="text" required >
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
@@ -131,7 +204,7 @@
                         <md-input-container class="md-icon-float md-block" flex>
                             <md-icon class="md-primary">view_compact</md-icon>
                             <label>Descripción</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.descripcion" type="text" required modelos-validator>
+                            <input name="nom_modelo" ng-model="data_inv_producto.descripcion" type="text" required >
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
@@ -140,16 +213,27 @@
                         <md-input-container class="md-icon-float md-block" flex>
                             <md-icon class="md-primary">view_compact</md-icon>
                             <label>Bodega</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.bodega" type="text" required modelos-validator>
+                            <input name="nom_modelo" ng-model="data_inv_producto.bodega" type="text" required >
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
                             </div>
                         </md-input-container>
                         <md-input-container md-no-float class="md-block" flex>
-                            <md-icon class="md-primary">description</md-icon>
-                            <label>Tipo Consumo</label>
-                            <textarea name="descripcion" ng-model="data_inv_producto.tipo_consumo" type="text" required></textarea>
+                            <md-icon class="md-primary">add_alert</md-icon>
+                                <lx-select ng-model="selectModelTipoConsumos.selectedTipoConsumo"
+                                           lx-allow-clear="true"
+                                           lx-choices="selectTipoConsumos"
+                                           lx-display-filter="true"
+                                           lx-fixed-label="true"
+                                           lx-label="Tipo de Consumo">
+                                    <lx-select-selected>
+                                        {{ $selected.nombre }}
+                                    </lx-select-selected>
+                                    <lx-select-choices>
+                                        {{ $choice.nombre }}
+                                    </lx-select-choices>
+                                </lx-select>
                             <div ng-messages="form_inv_producto.descripcion.$error" ng-show="form_inv_producto.descripcion.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                             </div>
@@ -159,7 +243,7 @@
                         <md-input-container class="md-icon-float md-block" flex>
                             <md-icon class="md-primary">view_compact</md-icon>
                             <label>Codigo de Barras</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.codigo_baras" type="text"  modelos-validator>
+                            <input name="nom_modelo" ng-model="data_inv_producto.codigo_baras" type="text"  >
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="campo">Registro Repetido</div>
                             </div>

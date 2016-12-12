@@ -612,4 +612,58 @@ angular.module('nextbook20App')
 	    	};
 	    // ---------------------------------------------------------------FIN PRODUCTOS-----------------------------------------------------------------//
 
+	    // ---------------------------------------------------------------INICIO ESTADOS DESCRIPTIVOS--------------------------------------------------------------//
+	    	this.Add_Estado_Descriptivo = function() {
+		        return $resource(urlService.server().appnext()+'Add_Estado_Descriptivo', {} , {
+		            add: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Update_Estado_Descriptivo = function(){
+	    		return $resource(urlService.server().appnext()+'Update_Estado_Descriptivo', {} , {
+		            actualizar: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	}
+	    	this.Get_Estado_Descriptivo = function() {
+		        return $resource(urlService.server().appnext()+'Get_Estados_Descriptivos', {} , {
+		            get: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Existencia_Estado_Descriptivo = function(){
+	    		return $resource(urlService.server().appnext()+'Existencia_Estado_Descriptivo', {} , {
+		            consulta: {
+		    			method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Delete_Estado_Descriptivo = function() {
+		        return $resource(urlService.server().appnext()+'Delete_Estado_Descriptivo', {}
+		        , {
+		            delete: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    // ---------------------------------------------------------------FIN ESTADOS DESCRIPTIVOS-----------------------------------------------------------------//
+
   	});

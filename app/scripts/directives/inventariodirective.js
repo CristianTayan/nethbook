@@ -172,3 +172,21 @@ var app = angular.module('nextbook20App');
       };
     });
   //-------------------------------------------------------------------- FIN TIPO UBICACION ------------------------------------------------------------------//
+
+  //------------------------------------------------------------------ INICIO ESTADO DESCRIPTIVO ------------------------------------------------------------------//
+    app.directive('estadodescriptivoValidator', function($q, inventario_Service) {
+      return {
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
+              ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+                return inventario_Service.Existencia_Estado_Descriptivo().consulta({nombre: viewValue}).$promise.then(function(data){
+                      if (!data.respuesta) {
+                          return $q.reject('proceso');
+                      }
+                return true;
+                });
+              };
+          }
+      };
+    });
+  //-------------------------------------------------------------------- FIN ESTADO DESCRIPTIVO ------------------------------------------------------------------//

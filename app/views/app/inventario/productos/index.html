@@ -32,19 +32,19 @@
           </tr>
         </thead>
         <tbody md-body>
-          <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in modelo">
-            <td md-column md-numeric>NOMBRE</td>
-            <td md-column md-numeric>DESCRIPCIÓN</td>
-            <td md-column md-numeric>VENDIBLE</td>
-            <td md-column md-numeric>COMPRABLE</td>
-            <td md-column md-numeric>PRECIO</td>
-            <td md-column md-numeric>COSTO</td>
-         		<td md-column md-numeric>CATEGORIA</td>
-         		<td md-column md-numeric>GARANTIA</td>
-         		<td md-column md-numeric>MARCA</td>
-         		<td md-column md-numeric>MODELO</td>
-         		<td md-column md-numeric>UBICACION</td>
-         		<td md-column md-numeric>CANTIDAD</td>
+          <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in productos">
+            <td>{{dessert.nombre_corto}}</td>
+            <td>{{dessert.descripcion}}</td>
+            <td>{{dessert.vendible}}</td>
+            <td>{{dessert.comprable}}</td>
+            <td>{{dessert.precio}}</td>
+            <td>{{dessert.costo}}</td>
+         		<td>{{dessert.categoria}}</td>
+         		<td>{{dessert.garantia}}</td>
+         		<td>{{dessert.marca}}</td>
+         		<td>{{dessert.modelo}}</td>
+         		<td>{{dessert.ubicacion}}</td>
+         		<td>{{dessert.cantidad}}</td>
           </tr>
         </tbody>
       </table>
