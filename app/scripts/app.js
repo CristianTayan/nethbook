@@ -88,6 +88,7 @@ angular
                 .when('/Inventario/Tipo_Consumo',    'dashboard.inventario.tipo_consumo')
                 .when('/Inventario/Tipo_Productos',    'dashboard.inventario.tipo_productos')
                 .when('/Inventario/Tipo_Catalogo',    'dashboard.inventario.tipo_catalogo')
+                .when('/Inventario/Estado_Descriptivo',    'dashboard.inventario.estado_descriptivo')
 
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
@@ -164,6 +165,10 @@ angular
                             .segment('tipo_catalogo', {
                                 templateUrl: 'views/app/inventario/tipo_catalogo/index.html',
                                 controller: 'inv_tipo_catalogo_Ctrl'
+                            })
+                            .segment('estado_descriptivo', {
+                                templateUrl: 'views/app/inventario/estado_descriptivo/index.html',
+                                controller: 'inv_estado_descriptivo_Ctrl'
                             })
                         .up()
                 .up();

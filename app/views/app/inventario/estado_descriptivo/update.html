@@ -1,8 +1,8 @@
-<md-dialog aria-label="Mango (Fruit)">
-    <form name="form_inv_tc" ng-submit="inv_estado_descriptivo_nuevo()">
+<md-dialog aria-label="inve-tipo-">
+    <form name="form_inv_tc" ng-submit="data_inv_estado_descriptivo_update()">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Nuevo, Estado Descriptivo</h2>
+                <h2>Actualizar, Estado Descriptivo</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon aria-label="Close dialog">close</md-icon>
@@ -14,8 +14,8 @@
                 <md-content class="md-no-momentum">
                     <md-input-container class="md-icon-float md-block">
                         <md-icon class="md-primary">view_compact</md-icon>
-                        <label>Nombre del estado descriptivo</label>
-                        <input name="nom_tipo_categoria" ng-model="data_inv_estado_descriptivo.nombre" type="text" required estadodescriptivo-validator>
+                        <label>Nombre Tipo Categoría</label>
+                        <input name="nom_tipo_categoria" ng-model="data_inv_estado_descriptivo.nombre" type="text" required tipocategoriaupdate-validator>
                         <div ng-messages="form_inv_tc.nom_tipo_categoria.$error" ng-show="form_inv_tc.nom_tipo_categoria.$dirty">
                             <div ng-message="required">Campo Requerido</div>
                             <div ng-message="campo">Registro Repetido</div>
@@ -23,7 +23,7 @@
                     </md-input-container>
                     <md-input-container md-no-float class="md-block">
                         <md-icon class="md-primary">description</md-icon>
-                        <label>Descripción</label>
+                        <label>Descripcion</label>
                         <textarea name="descripcion" ng-model="data_inv_estado_descriptivo.descripcion" type="text" required></textarea>
                         <div ng-messages="form_inv_tc.descripcion.$error" ng-show="form_inv_tc.descripcion.$dirty">
                             <div ng-message="required">Campo Requerido</div>
