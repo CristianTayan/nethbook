@@ -11,12 +11,12 @@
         </md-toolbar>
         <md-dialog-content style="width: 1100px!important">
             <div class="md-dialog-content">
-                <md-content class="md-no-momentum">
+                <div class="md-no-momentum">
                     <div layout="row">
                         <md-input-container class="md-icon-float md-block" flex>
                             <md-icon class="md-primary">view_compact</md-icon>
                             <label>Nombre Corto</label>
-                            <input name="nom_modelo" ng-model="data_inv_producto.nombre_corto" type="text" required modelos-validator>
+                            <input name="nom_modelo" ng-model="data_inv_producto.nombre_corto" type="text" required productonombrecorto-validator>
                             <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                 <div ng-message="required">Campo Requerido</div>
                                 <div ng-message="campo">Registro Repetido</div>
@@ -165,7 +165,7 @@
                             </div>
                         </md-input-container>
                     </div>
-                </md-content>
+                </div>
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">

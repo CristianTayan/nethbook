@@ -81,6 +81,7 @@ angular
                 .when('/Inventario/Productos',    'dashboard.inventario.productos')
                 .when('/Inventario/Ubicacion',    'dashboard.inventario.ubicacion')
                 .when('/Inventario/Garantia',    'dashboard.inventario.garantia')
+                .when('/Inventario/Estado_Descriptivo',    'dashboard.inventario.estado_descriptivo')
                 // Parametrizacion Tipos
                 .when('/Inventario/Tipo_Categoria',    'dashboard.inventario.tipo_categoria')
                 .when('/Inventario/Tipo_Garantia',    'dashboard.inventario.tipo_garantia')
@@ -137,6 +138,10 @@ angular
                             })
                             .segment('garantia', {
                                 templateUrl: 'views/app/inventario/garantia/index.html',
+                                controller: 'inv_garantia_Ctrl'
+                            })
+                            .segment('estado_descriptivo', {
+                                templateUrl: 'views/app/inventario/estado_descriptivo/index.html',
                                 controller: 'inv_garantia_Ctrl'
                             })
                             // Tipos 
