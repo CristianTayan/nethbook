@@ -2241,6 +2241,8 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
     }
 
     function DialogController_nuevo($scope, select_tipo_categoria,select_estado_descriptivo,select_garantias,select_marcas,select_modelos,select_ubicaciones,select_tipo_consumos) {
+        // ------------------------------------------------------ INICIALIZACION CAMPOS ---------------------------------------------------------
+        $scope.data_inv_producto = {precio:0.00,costo: 0.00, cantidad:0}
 
         // -------------------------------------------------------DIALOGO PRODUCTOS-------------------------------------------------------
         // ------------------------------------------------------- AUTO COMPLETES --------------------------------------------------------

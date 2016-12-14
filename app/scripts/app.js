@@ -27,7 +27,8 @@ angular
         'ngAudio',
         'angular-loading-bar',
         'ngStorage',
-        'ngMaterialSidemenu'
+        'ngMaterialSidemenu',
+        'fiestah.money'
     ])
     .config(function ($routeSegmentProvider, $routeProvider) {
         // Configuring provider options    
