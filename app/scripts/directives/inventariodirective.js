@@ -190,3 +190,21 @@ var app = angular.module('nextbook20App');
       };
     });
   //-------------------------------------------------------------------- FIN ESTADO DESCRIPTIVO ------------------------------------------------------------------//
+
+  //------------------------------------------------------------------ INICIO BODEGAS ------------------------------------------------------------------//
+    app.directive('bodegaValidator', function($q, inventario_Service) {
+      return {
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
+              ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+                return inventario_Service.Existencia_Bodega().consulta({nombre: viewValue}).$promise.then(function(data){
+                      if (!data.respuesta) {
+                          return $q.reject('proceso');
+                      }
+                return true;
+                });
+              };
+          }
+      };
+    });
+  //-------------------------------------------------------------------- FIN BODEGAS ------------------------------------------------------------------//

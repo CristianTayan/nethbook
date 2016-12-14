@@ -1,0 +1,60 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form name="form_inv_bodega" ng-submit="data_inv_bodega_guardar()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Nueva, categoría</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-content class="md-no-momentum">
+                    <md-input-container class="md-icon-float md-block">
+                        <md-icon class="md-primary">view_compact</md-icon>
+                        <label>Nombre de la Bodega</label>
+                        <input name="nom_bodega" ng-model="data_inv_bodega.nombre" type="text" bodega-validator required>
+                        <div ng-messages="form_inv_bodega.nom_bodega.$error" ng-show="form_inv_bodega.nom_bodega.$dirty">
+                            <div ng-message="required">Campo Requerido</div>
+                            <div ng-message="campo">Registro Repetido</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container md-no-float class="md-block">
+                        <md-icon class="md-primary">description</md-icon>
+                        <label>Calle</label>
+                        <textarea name="calle" ng-model="data_inv_bodega.calle" type="text" required></textarea>
+                        <div ng-messages="form_inv_bodega.calle.$error" ng-show="form_inv_bodega.calle.$dirty">
+                            <div ng-message="required">Campo Requerido</div>
+                        </div>
+                    </md-input-container>
+                     <md-input-container md-no-float class="md-block">
+                        <md-icon class="md-primary">description</md-icon>
+                        <label>Número</label>
+                        <textarea name="numero" ng-model="data_inv_bodega.numero" type="text" required></textarea>
+                        <div ng-messages="form_inv_bodega.numero.$error" ng-show="form_inv_bodega.numero.$dirty">
+                            <div ng-message="required">Campo Requerido</div>
+                        </div>
+                    </md-input-container>
+                     <md-input-container md-no-float class="md-block">
+                        <md-icon class="md-primary">description</md-icon>
+                        <label>Especificaciones</label>
+                        <textarea name="especificaciones" ng-model="data_inv_bodega.especificaciones" type="text" required></textarea>
+                        <div ng-messages="form_inv_bodega.especificaciones.$error" ng-show="form_inv_bodega.especificaciones.$dirty">
+                            <div ng-message="required">Campo Requerido</div>
+                        </div>
+                    </md-input-container>
+                    <div layout="row" class="md-block" layout-align="center">
+
+                    </div>
+                </md-content>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">Cancelar</md-button>
+            <md-button type="reset">Limpiar</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="btn_guardar">Guardar</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

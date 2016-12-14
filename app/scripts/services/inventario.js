@@ -666,4 +666,58 @@ angular.module('nextbook20App')
 	    	};
 	    // ---------------------------------------------------------------FIN ESTADOS DESCRIPTIVOS-----------------------------------------------------------------//
 
+	    // ---------------------------------------------------------------INICIO BODEGAS--------------------------------------------------------------//
+	    	this.Add_Bodega = function() {
+		        return $resource(urlService.server().appnext()+'Add_Bodega', {} , {
+		            add: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Update_Bodega = function(){
+	    		return $resource(urlService.server().appnext()+'Update_Bodega', {} , {
+		            actualizar: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	}
+	    	this.Get_Bodega = function() {
+		        return $resource(urlService.server().appnext()+'Get_Bodegas', {} , {
+		            get: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Existencia_Bodega = function(){
+	    		return $resource(urlService.server().appnext()+'Existencia_Bodega', {} , {
+		            consulta: {
+		    			method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	this.Delete_Bodega = function() {
+		        return $resource(urlService.server().appnext()+'Delete_Bodega', {}
+		        , {
+		            delete: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    // ---------------------------------------------------------------FIN BODEGAS-----------------------------------------------------------------//
+
   	});

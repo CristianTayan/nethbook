@@ -89,6 +89,7 @@ angular
                 .when('/Inventario/Tipo_Productos',    'dashboard.inventario.tipo_productos')
                 .when('/Inventario/Tipo_Catalogo',    'dashboard.inventario.tipo_catalogo')
                 .when('/Inventario/Estado_Descriptivo',    'dashboard.inventario.estado_descriptivo')
+                .when('/Inventario/Bodegas',    'dashboard.inventario.bodegas')
 
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
@@ -170,7 +171,10 @@ angular
                                 templateUrl: 'views/app/inventario/estado_descriptivo/index.html',
                                 controller: 'inv_estado_descriptivo_Ctrl'
                             })
-                        .up()
+                            .segment('bodegas', {
+                                templateUrl: 'views/app/inventario/bodega/index.html',
+                                controller: 'inv_bodegas_Ctrl'
+                            })
                 .up();
                     // Procesos Inventario
                     // $routeSegmentProvider
