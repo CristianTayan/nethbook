@@ -128,20 +128,6 @@
                                     </div>
                                     <div layout-padding  flex-gt-sm>
                                         <div>
-                                            <lx-select ng-model="selectModelED.selectedED" lx-allow-clear="true" lx-choices="selectED" lx-display-filter="true" lx-fixed-label="true" lx-label="Estado Descriptivo">
-                                                <lx-select-selected>
-                                                    {{ $selected.nombre }}
-                                                </lx-select-selected>
-                                                <lx-select-choices>
-                                                    {{ $choice.nombre }}
-                                                </lx-select-choices>
-                                            </lx-select>
-                                            <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
-                                                <div ng-message="required">Campo Requerido</div>
-                                                <div ng-message="campo">Registro Repetido</div>
-                                            </div>
-                                        </div>
-                                        <div>
                                             <lx-select ng-model="selectModelGarantia.selectedGarantia"
                                                        lx-allow-clear="true"
                                                        lx-choices="selectGarantias"
@@ -251,7 +237,7 @@
     </form>
 </md-dialog>
 
-<style type="text/css">
+<!-- <style type="text/css">
     .dialogdemoBasicUsage #popupContainer {
   position: relative; }
 
@@ -272,4 +258,4 @@
 
 .dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
   margin-bottom: 0; }
-</style>
+</style> -->
