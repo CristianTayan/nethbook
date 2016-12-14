@@ -1,17 +1,33 @@
-<md-dialog aria-label="Mango (Fruit)">
+<md-dialog aria-label="FormBodegas">
     <form name="form_inv_bodega" ng-submit="data_inv_bodega_guardar()">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Nueva, categoría</h2>
+                <h2>Nueva, Bodega</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon aria-label="Close dialog">close</md-icon>
                 </md-button>
             </div>
         </md-toolbar>
-        <md-dialog-content>
+        <md-dialog-content style="width: 600px!important">
             <div class="md-dialog-content">
                 <md-content class="md-no-momentum">
+                    <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                        <md-icon class="md-primary">add_alert</md-icon>
+                    <lx-select ng-model="selectModelSucursal.selectedSucursal"
+                               lx-allow-clear="true"
+                               lx-choices="selectSucursales"
+                               lx-display-filter="true"
+                               lx-fixed-label="true"
+                               lx-label="Seleccione Sucursal">
+                        <lx-select-selected>
+                            {{ $selected.codigo_sri +' - '+ $selected.localizacion_sucursal.direccion}}
+                        </lx-select-selected>
+                        <lx-select-choices>
+                            {{ $choice.codigo_sri +' - '+ $choice.localizacion_sucursal.direccion}}
+                        </lx-select-choices>
+                    </lx-select>
+                    </md-input-container>
                     <md-input-container class="md-icon-float md-block">
                         <md-icon class="md-primary">view_compact</md-icon>
                         <label>Nombre de la Bodega</label>
@@ -21,7 +37,8 @@
                             <div ng-message="campo">Registro Repetido</div>
                         </div>
                     </md-input-container>
-                    <md-input-container md-no-float class="md-block">
+                    <div layout="row">
+                    <md-input-container class="md-icon-float md-block" flex>
                         <md-icon class="md-primary">description</md-icon>
                         <label>Calle</label>
                         <textarea name="calle" ng-model="data_inv_bodega.calle" type="text" required></textarea>
@@ -29,7 +46,7 @@
                             <div ng-message="required">Campo Requerido</div>
                         </div>
                     </md-input-container>
-                     <md-input-container md-no-float class="md-block">
+                     <md-input-container class="md-icon-float md-block" flex>
                         <md-icon class="md-primary">description</md-icon>
                         <label>Número</label>
                         <textarea name="numero" ng-model="data_inv_bodega.numero" type="text" required></textarea>
@@ -37,6 +54,7 @@
                             <div ng-message="required">Campo Requerido</div>
                         </div>
                     </md-input-container>
+                    </div>
                      <md-input-container md-no-float class="md-block">
                         <md-icon class="md-primary">description</md-icon>
                         <label>Especificaciones</label>

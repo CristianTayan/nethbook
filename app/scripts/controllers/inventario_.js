@@ -2610,8 +2610,12 @@ app.controller('inv_estado_descriptivo_Ctrl', function($scope, $rootScope, $mdDi
     });
 });
 
-app.controller('inv_bodegas_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
-
+app.controller('inv_bodegas_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service,establecimientosService) {
+    // -------------------------------------------------------GET SUCURSALES------------------------------------------------------------
+    function success_sucursales(data){
+        $scope.sucursales=data.respuesta.data;
+    }
+    establecimientosService.Get_Establecimientos().get({},success_sucursales).$promise;
     // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
     $scope.customFullscreen = false;
     $scope.inv_bodega_dialog_nuevo = function(event) {
@@ -2622,17 +2626,23 @@ app.controller('inv_bodegas_Ctrl', function($scope, $rootScope, $mdDialog, inven
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
             clickOutsideToClose: true,
-            fullscreen: $scope.customFullscreen
+            fullscreen: $scope.customFullscreen,
+            locals:{obj:$scope.sucursales}
         });
     }
 
-    function DialogController_nuevo($scope,$localStorage) {
+    function DialogController_nuevo($scope,$localStorage,obj) {
 
         // -------------------------------------------------------DIALOGO BODEGAS-------------------------------------------------------
-
-        // Nuevo registro tipo inventario
+        var vm=$scope;
+        vm.selectSucursales = obj;
+        vm.selectModelSucursal = {
+            selectedSucursal: undefined,
+            selectedSucursalDefault: [vm.selectSucursales[0]]
+        };
+        // Nuevo registro Bodega
         $scope.data_inv_bodega_guardar = function() {
-            $scope.data_inv_bodega.id_sucursal=$localStorage.sucursal.id;
+            $scope.data_inv_bodega.id_sucursal=vm.selectModelSucursal.selectedSucursal.id;
             inventario_Service.Add_Bodega().add($scope.data_inv_bodega).$promise.then(function(data) {
                 $rootScope.$emit("actualizar_tabla_bodega", {});
                 if (data.respuesta == true) {
