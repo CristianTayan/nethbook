@@ -63,16 +63,22 @@ angular
         // Seleccionar Sucursal
         $routeSegmentProvider
             .when('/Seleccionar_Sucursal',    'seleccionar_sucursal')
-            .segment('seleccionar_sucursal', {
-                templateUrl: 'views/seleccionar_sucursal/index.html',
-                controller: 'seleccionar_sucursal_Ctrl'
-            });
+                .segment('seleccionar_sucursal', {
+                    templateUrl: 'views/seleccionar_sucursal/index.html',
+                    controller: 'seleccionar_sucursal_Ctrl'
+                });
+        $routeSegmentProvider.when('/ServiceLogin',    'login_services')
+                .segment('login_services', {
+                    templateUrl: 'views/dashboard/login_nick.html',
+                    controller: 'login_services_Ctrl'
+                });
         // Escritorio General
         $routeSegmentProvider
             .when('/Dash',    'dashboard')
             .when('/Inicio',    'dashboard.inicio')
             .when('/Perfil',    'dashboard.perfil')
             .when('/App',    'dashboard.app')
+            .when('/Inventario',    'dashboard.usuarios')
             .when('/Inventario',    'dashboard.inventario')
                 .when('/Inventario/',    'dashboard.inventario.menu')
 

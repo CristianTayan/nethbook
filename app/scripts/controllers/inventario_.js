@@ -34,7 +34,7 @@ app.controller('inv_tipo_categoria_Ctrl', function($scope, $rootScope, $mdDialog
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true
+            clickOutsideToClose: false
         });
     }
 
@@ -94,7 +94,7 @@ app.controller('inv_tipo_categoria_Ctrl', function($scope, $rootScope, $mdDialog
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: categoria
             }
@@ -157,7 +157,7 @@ app.controller('inv_tipo_categoria_Ctrl', function($scope, $rootScope, $mdDialog
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: tipocategoria
             }
@@ -237,7 +237,7 @@ app.controller('inv_tipo_garantia_Ctrl', function($scope, $rootScope, $mdDialog,
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true
+            clickOutsideToClose: false
         });
     }
 
@@ -297,7 +297,7 @@ app.controller('inv_tipo_garantia_Ctrl', function($scope, $rootScope, $mdDialog,
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: categoria
             }
@@ -360,7 +360,7 @@ app.controller('inv_tipo_garantia_Ctrl', function($scope, $rootScope, $mdDialog,
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: tipocategoria
             }
@@ -439,7 +439,7 @@ app.controller('inv_tipo_consumo_Ctrl', function($scope, $rootScope, $mdDialog, 
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true
+            clickOutsideToClose: false
         })
     }
 
@@ -498,7 +498,7 @@ app.controller('inv_tipo_consumo_Ctrl', function($scope, $rootScope, $mdDialog, 
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: categoria
             }
@@ -560,7 +560,7 @@ app.controller('inv_tipo_consumo_Ctrl', function($scope, $rootScope, $mdDialog, 
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: tipocategoria
             }
@@ -638,7 +638,7 @@ app.controller('inv_tipo_productos_Ctrl', function($scope, $rootScope, $mdDialog
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true
+            clickOutsideToClose: false
         });
     }
 
@@ -698,7 +698,7 @@ app.controller('inv_tipo_productos_Ctrl', function($scope, $rootScope, $mdDialog
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: categoria
             }
@@ -761,7 +761,7 @@ app.controller('inv_tipo_productos_Ctrl', function($scope, $rootScope, $mdDialog
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: tipocategoria
             }
@@ -840,7 +840,7 @@ app.controller('inv_tipo_catalogo_Ctrl', function($scope, $rootScope, $mdDialog,
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true
+            clickOutsideToClose: false
         });
     }
 
@@ -909,7 +909,7 @@ app.controller('inv_tipo_catalogo_Ctrl', function($scope, $rootScope, $mdDialog,
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: categoria
             }
@@ -972,7 +972,7 @@ app.controller('inv_tipo_catalogo_Ctrl', function($scope, $rootScope, $mdDialog,
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: tipocategoria
             }
@@ -1051,7 +1051,7 @@ app.controller('inv_marcas_Ctrl', function($scope, $rootScope, $mdDialog, invent
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true
+            clickOutsideToClose: false
         });
     }
 
@@ -1111,7 +1111,7 @@ app.controller('inv_marcas_Ctrl', function($scope, $rootScope, $mdDialog, invent
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: categoria
             }
@@ -1174,7 +1174,7 @@ app.controller('inv_marcas_Ctrl', function($scope, $rootScope, $mdDialog, invent
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: tipocategoria
             }
@@ -1253,7 +1253,7 @@ app.controller('inv_modelos_Ctrl', function($scope, $rootScope, $mdDialog, inven
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true
+            clickOutsideToClose: false
         });
     }
 
@@ -1313,7 +1313,7 @@ app.controller('inv_modelos_Ctrl', function($scope, $rootScope, $mdDialog, inven
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: categoria
             }
@@ -1376,7 +1376,7 @@ app.controller('inv_modelos_Ctrl', function($scope, $rootScope, $mdDialog, inven
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: tipocategoria
             }
@@ -1455,7 +1455,7 @@ app.controller('inv_ubicacion_Ctrl', function($scope, $rootScope, $mdDialog, inv
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true
+            clickOutsideToClose: false
         });
     }
 
@@ -1515,7 +1515,7 @@ app.controller('inv_ubicacion_Ctrl', function($scope, $rootScope, $mdDialog, inv
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: categoria
             }
@@ -1578,7 +1578,7 @@ app.controller('inv_ubicacion_Ctrl', function($scope, $rootScope, $mdDialog, inv
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: tipocategoria
             }
@@ -1667,7 +1667,7 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 select_tipo_garantia: $scope.tipo_garantia
             }
@@ -1747,7 +1747,7 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: categoria,
                 select_tipo_garantia: $scope.tipo_garantia
@@ -1825,7 +1825,7 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: tipocategoria
             }
@@ -1965,7 +1965,7 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: tipo_categoria,
                 select_tipo_categoria: $scope.tipo_categorias
@@ -2043,7 +2043,7 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 tipo_categoria: $scope.tipo_categorias
             }
@@ -2131,7 +2131,7 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: categoria
             }
@@ -2226,7 +2226,7 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             fullscreen: $scope.customFullscreen,
             locals: {
                 select_tipo_categoria: $scope.categorias,
@@ -2413,7 +2413,7 @@ app.controller('inv_estado_descriptivo_Ctrl', function($scope, $rootScope, $mdDi
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             fullscreen: $scope.customFullscreen
         });
     }
@@ -2477,7 +2477,7 @@ app.controller('inv_estado_descriptivo_Ctrl', function($scope, $rootScope, $mdDi
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: estadodescriptivo
             }
@@ -2541,7 +2541,7 @@ app.controller('inv_estado_descriptivo_Ctrl', function($scope, $rootScope, $mdDi
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: estadodescriptivo
             }
@@ -2627,7 +2627,7 @@ app.controller('inv_bodegas_Ctrl', function($scope, $rootScope, $mdDialog, inven
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             fullscreen: $scope.customFullscreen,
             locals:{obj:$scope.sucursales}
         });
@@ -2698,7 +2698,7 @@ app.controller('inv_bodegas_Ctrl', function($scope, $rootScope, $mdDialog, inven
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: bodega
             }
@@ -2762,7 +2762,7 @@ app.controller('inv_bodegas_Ctrl', function($scope, $rootScope, $mdDialog, inven
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {
                 obj: bodega
             }

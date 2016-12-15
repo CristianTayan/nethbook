@@ -1,0 +1,68 @@
+<md-toolbar layout="row"  layout-align="center center" style="position: fixed!important;">
+    <div flex-gt-sm="90" flex-gt-md="60">
+        <div class="md-toolbar-tools toolbar-center">
+        <img src="images/logo/logo.fw.png"  alt="Logo">
+        nextbook.com.ec
+        <span flex></span>
+        <lx-dropdown lx-position="right" >
+            <lx-dropdown-toggle>
+                <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
+            </lx-dropdown-toggle>
+            <lx-dropdown-menu>
+                <ul>
+                    <li>
+                        <a class="dropdown-link">
+                            <i class="mdi mdi-eye"></i>
+                            <span>Preview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-link">
+                            <i class="mdi mdi-delete"></i>
+                            <span>Move to trash</span>
+                        </a>
+                    </li>
+                    <li><span class="dropdown-link dropdown-link--is-header">General</span></li>
+                    <li><a class="dropdown-link">Something else here</a></li>
+                    <li class="dropdown-divider"></li>
+                    <li>
+                        <a href="#/" class="dropdown-link">
+                            <i class="mdi mdi-exit-to-app"></i>
+                            <span>Cerrar Sesión</span>
+                        </a>
+                    </li>
+                </ul>
+            </lx-dropdown-menu>
+        </lx-dropdown>
+            <span class="mdl-chip mdl-chip--contact">
+                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">E</span>
+                <span class="mdl-chip__text">{{empresa}}</span>
+            </span>
+        </div>
+    </div>
+</md-toolbar>
+<div layout="row" layout-align="center center" style="position: relative; top: 64px">
+    <md-card flex-gt-sm="90" flex-gt-md="20">
+        <md-card-content>
+            <form name="form_login_services" layout="column" ng-submit="data_login_services_guardar()">
+                <md-input-container>
+                    <md-icon class="md-accent">person</md-icon>
+                    <input ng-model="data_.name" name="userName" type="text" placeholder="Ninck, Usuario" ng-required="true">
+                    <div ng-messages="form_login_services.userName.$error">
+                        <div ng-message="required">nick requerido.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex>
+                    <md-icon class="md-accent">email</md-icon>
+                    <input ng-model="data_.password" type="password" placeholder="Password" ng-required="true" name="userPassword">
+                    <div ng-messages="form_login_services.userPassword.$error">
+                        <div ng-message="required">su contraseña es requerida.</div>
+                    </div>
+                </md-input-container>
+                <!-- <md-input-container flex> -->
+                <md-button class="md-raised md-primary" type="submit" ng-disabled="form_login_services.$invalid" flex>Entrar</md-button>
+                <!-- </md-input-container> -->
+            </form>
+        </md-card-content>
+    </md-card>
+</div>
