@@ -59,7 +59,6 @@ angular
                 templateUrl: 'views/actualizar_datos/index.html',
                 controller: 'actualizar_datos_Ctrl'
             });
-
         // Seleccionar Sucursal
         $routeSegmentProvider
             .when('/Seleccionar_Sucursal',    'seleccionar_sucursal')
@@ -78,25 +77,26 @@ angular
             .when('/Inicio',    'dashboard.inicio')
             .when('/Perfil',    'dashboard.perfil')
             .when('/App',    'dashboard.app')
-            .when('/Inventario',    'dashboard.usuarios')
-            .when('/Inventario',    'dashboard.inventario')
-                .when('/Inventario/',    'dashboard.inventario.menu')
+            .when('/App/Colaboradores',    'dashboard.colaboradores')
+                .when('/App/Colaboradores',    'dashboard.colaboradores.usuario')
 
-                .when('/Inventario/Categorias',    'dashboard.inventario.categoria')
-                .when('/Inventario/Marcas',    'dashboard.inventario.marcas')
-                .when('/Inventario/Modelos',    'dashboard.inventario.modelos')
-                .when('/Inventario/Productos',    'dashboard.inventario.productos')
-                .when('/Inventario/Ubicacion',    'dashboard.inventario.ubicacion')
-                .when('/Inventario/Garantia',    'dashboard.inventario.garantia')
-                .when('/Inventario/Estado_Descriptivo',    'dashboard.inventario.estado_descriptivo')
+            .when('/App/Inventario',    'dashboard.inventario')
+                .when('/App/Inventario/',    'dashboard.inventario.menu')
+                .when('/App/Inventario/Categorias',    'dashboard.inventario.categoria')
+                .when('/App/Inventario/Marcas',    'dashboard.inventario.marcas')
+                .when('/App/Inventario/Modelos',    'dashboard.inventario.modelos')
+                .when('/App/Inventario/Productos',    'dashboard.inventario.productos')
+                .when('/App/Inventario/Ubicacion',    'dashboard.inventario.ubicacion')
+                .when('/App/Inventario/Garantia',    'dashboard.inventario.garantia')
+                .when('/App/Inventario/Estado_Descriptivo',    'dashboard.inventario.estado_descriptivo')
                 // Parametrizacion Tipos
-                .when('/Inventario/Tipo_Categoria',    'dashboard.inventario.tipo_categoria')
-                .when('/Inventario/Tipo_Garantia',    'dashboard.inventario.tipo_garantia')
-                .when('/Inventario/Tipo_Consumo',    'dashboard.inventario.tipo_consumo')
-                .when('/Inventario/Tipo_Productos',    'dashboard.inventario.tipo_productos')
-                .when('/Inventario/Tipo_Catalogo',    'dashboard.inventario.tipo_catalogo')
-                .when('/Inventario/Estado_Descriptivo',    'dashboard.inventario.estado_descriptivo')
-                .when('/Inventario/Bodegas',    'dashboard.inventario.bodegas')
+                .when('/App/Inventario/Tipo_Categoria',    'dashboard.inventario.tipo_categoria')
+                .when('/App/Inventario/Tipo_Garantia',    'dashboard.inventario.tipo_garantia')
+                .when('/App/Inventario/Tipo_Consumo',    'dashboard.inventario.tipo_consumo')
+                .when('/App/Inventario/Tipo_Productos',    'dashboard.inventario.tipo_productos')
+                .when('/App/Inventario/Tipo_Catalogo',    'dashboard.inventario.tipo_catalogo')
+                .when('/App/Inventario/Estado_Descriptivo',    'dashboard.inventario.estado_descriptivo')
+                .when('/App/Inventario/Bodegas',    'dashboard.inventario.bodegas')
 
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
@@ -115,6 +115,17 @@ angular
                         templateUrl: 'views/app/index.html',
                         controller: 'app_Ctrl'
                     })
+                    .segment('colaboradores', {
+                        templateUrl: 'views/app/colaboradores/index.html',
+                        // controller: 'colaboradores_Ctrl'
+                    })
+                        .within()
+                            .segment('usuario', {
+                                default: true,
+                                templateUrl: 'views/app/colaboradores/usuario/index.html',
+                                controller: 'col_nuevo_Ctrl'
+                            })
+                        .up()
                     .segment('inventario', {
                         templateUrl: 'views/app/inventario/index.html',
                         controller: 'inventario_Ctrl'
