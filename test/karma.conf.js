@@ -45,6 +45,7 @@ module.exports = function(config) {
       'bower_components/angular-material-sidemenu/dest/angular-material-sidemenu.js',
       'bower_components/material-design-lite/material.min.js',
       'bower_components/angular-money-directive/dist/angular-money-directive.js',
+      'bower_components/angular-ivh-treeview/dist/ivh-treeview.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

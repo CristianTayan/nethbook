@@ -138,14 +138,18 @@
               </md-tab>              
               <md-tab label="Privilegios">
                 <md-content class="md-padding">
-                    <span ivh-treeview-toggle>
-                      <span ivh-treeview-twistie></span>
-                    </span>
-                    <md-box></md-box>
-                    <span class="ivh-treeview-node-label" ivh-treeview-toggle>
-                      {{trvw.label(node)}}
-                    </span>
-                    <div ivh-treeview-children></div>
+                    <h3>Expand to Depth</h3>
+    
+                    This demo shows off the ability to have your tree expanded to a certain depth on load.
+                    
+                    <h4>Not expanded</h4>
+                    <div ivh-treeview="stuff0"></div>
+                      
+                    <h4>Expanded to Depth 1</h4>
+                    <div ivh-treeview="stuff1" ivh-treeview-expand-to-depth="1"></div>
+                      
+                    <h4>Fully expanded</h4>
+                    <div ivh-treeview="stuff2" ivh-treeview-expand-to-depth="-1"></div>
                 </md-content>
               </md-tab>
             </md-tabs>

@@ -23,6 +23,9 @@ var app = angular.module('nextbook20App')
             console.log('New value: ', _newValue);
         }
 		// -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
+
+
+
 		    $scope.colaboradores_dialog_nuevo = function(event) {
 		        $mdDialog.show({
 		            controller: DialogController_nuevo,
@@ -40,7 +43,55 @@ var app = angular.module('nextbook20App')
 		    }
 
 		    function DialogController_nuevo($scope, tipo_usuario, tipo_documento) {
-		    	console.log(tipo_documento);
+				// ------------------------ GENERACION DE VISTAS PRIVILEG---------------------------
+
+					var stuff = [{
+								  label: 'Stuff',
+								  children: [{
+								    label: 'Hats',
+								    children: [
+								      {label: 'Flat cap'},
+								      {label: 'Fedora'},
+								      {label: 'Baseball'},
+								      {label: 'Top hat'},
+								      {label: 'Gatsby'}
+								    ]
+								  },{
+								    label: 'Pens',
+								    selected: true,
+								    children: [
+								      {label: 'Fountain'},
+								      {label: 'Gel ink'},
+								      {label: 'Roller ball'},
+								      {label: 'Fiber tip'},
+								        {
+								          label: 'Ballpoint', 
+								          selected: false,
+								          children: [
+								      {label: 'Fountain'},
+								      {label: 'Gel ink'},
+								      {label: 'Roller ball'},
+								      {label: 'Fiber tip'},
+								      {label: 'Ballpoint'}
+								    ]}
+								    ]
+								  },{
+								    label: 'Whiskey',
+								    children: [
+								      {label: 'Irish'},
+								      {label: 'Scotch'},
+								      {label: 'Rye'},
+								      {label: 'Tennessee'},
+								      {label: 'Bourbon'}
+								    ]
+								  }]
+								}];
+					$scope.stuff0 = stuff;//angular.copy(stuff);
+					console.log(stuff);
+					$scope.stuff1 = stuff;//angular.copy(stuff);
+					$scope.stuff2 = stuff;//angular.copy(stuff);
+
+					
 		    	// ------------------------------SELECT TIPO DOCUMENTO------------------------------
 			        var vm = $scope;
 			        vm.selectCallback = selectCallback;
@@ -205,7 +256,7 @@ var app = angular.module('nextbook20App')
 		            $mdDialog.cancel();
 		        };
 		    }
-		// -------------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
+		// -------------------------------------------------------------PROCESO LLENAR TABLA--------------------------------------------------------
 		// ------------------------------------------------------------PROCESO LLENADO TABLA---------------------------------------------------------
 		    var bookmark;
 		    $scope.selected = [];
@@ -479,37 +530,4 @@ var app = angular.module('nextbook20App')
 		        }
 		        $scope.data_col_tipo_usuario_get();
 		    });
-
-
-		// ---------------------------------------------------- GENERACION DE VISTAS PRIVILEGIOS ---------------------------------------------------
-
-		var stuff = [	{
-						  label: 'Hats',
-						  children: [
-						    {label: 'Flat cap'},
-						    {label: 'Top hat'},
-						    {label: 'Gatsby'}
-						  ]
-						},{
-						  label: 'Pens',
-						  selected: true,
-						  children: [
-						    {label: 'Fountain'},
-						    {label: 'Gel ink'},
-						    {label: 'Fedora'},
-						    {label: 'Baseball', selected: true},
-						    {label: 'Roller ball'},
-						    {label: 'Fiber tip'},
-						    {label: 'Ballpoint'}
-						  ]
-						},{
-						  label: 'Whiskey',
-						  children: [
-						    {label: 'Irish'},
-						    {label: 'Scotch'},
-						    {label: 'Rye'},
-						    {label: 'Tennessee'},
-						    {label: 'Bourbon'}
-						  ]
-						}];
 	});

@@ -27,8 +27,20 @@ var app = angular.module('nextbook20App', [
                                             'angular-loading-bar',
                                             'ngStorage',
                                             'ngMaterialSidemenu',
-                                            'fiestah.money'
+                                            'fiestah.money',
+                                            'ivh.treeview'
                                         ]);
+
+    app.config(function(ivhTreeviewOptionsProvider) {
+ ivhTreeviewOptionsProvider.set({
+   defaultSelectedState: false,
+   validate: true,
+   expandToDepth: -1,
+   twistieCollapsedTpl: '<md-icon>home</md-icon>',
+   twistieExpandedTpl: '<md-icon>user</md-icon>',
+   twistieLeafTpl: '<span style="cursor: default;">&#8192;&#8192;</span>'
+ });
+});
     
     app.config(function ($routeSegmentProvider, $routeProvider) {
         // Configuring provider options    
