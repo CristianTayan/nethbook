@@ -15,6 +15,47 @@
                 <md-content class="md-padding">
                     <div class="md-dialog-content">
                         <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Primer Nombre</label>
+                                <input name="nombre_1" ng-model="data_usuario.nombre_1" type="text" required numdocument-validator>
+                                <div ng-messages="form_usuario.nombre_1.$error" ng-show="form_usuario.nombre_1.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Segundo Nombre</label>
+                                <input name="nombre_2" ng-model="data_usuario.nombre_2" type="text" required numdocument-validator>
+                                <div ng-messages="form_usuario.nombre_2.$error" ng-show="form_usuario.nombre_2.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
+                            
+                        </div>
+                        <div layout="row">
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Primer Apellido</label>
+                                <input name="apellido_1" ng-model="data_usuario.apellido_1" type="text" required numdocument-validator>
+                                <div ng-messages="form_usuario.apellido_1.$error" ng-show="form_usuario.apellido_1.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Segundo Apellido</label>
+                                <input name="apellido_2" ng-model="data_usuario.apellido_2" type="text" required numdocument-validator>
+                                <div ng-messages="form_usuario.apellido_2.$error" ng-show="form_usuario.apellido_2.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
+                        </div> 
+                         <div layout="row"> 
                             <md-input-container class="md-icon-float md-icon-left md-block" flex>
                                 <md-icon class="md-primary">fingerprint</md-icon>
                                 <lx-select ng-model="selectModelDocument.selectedPerson"
@@ -22,7 +63,7 @@
                                            lx-choices="selectDocument"
                                            lx-display-filter="true"
                                            lx-fixed-label="true"
-                                           lx-label="Tipo de Usuario"
+                                           lx-label="Tipo de Documento"
                                            ng-change="tipe_document(event)"
                                            >
                                     <lx-select-selected>
@@ -43,7 +84,7 @@
                                     <div ng-message="campo">Registro Repetido</div>
                                 </div>
                             </md-input-container>
-                        </div>
+                         </div>
                         <div layout="row">                    
                             <md-input-container class="md-icon-float md-icon-left md-block" flex>
                                 <md-icon class="md-primary">add_alert</md-icon>
