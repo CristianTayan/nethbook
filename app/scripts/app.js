@@ -8,29 +8,29 @@
  *
  * Main module of the application.
  */
-angular
-    .module('nextbook20App', [
-        'md.data.table',
-        'ngAnimate',
-        'ngAria',
-        'ngCookies',
-        'ngMessages',
-        'ngRoute', // Rutas
-        'ngSanitize',
-        'ngMaterial', // Estilo material desing con angular
-        'lumx', // Estilo material desing add libreary
-        'route-segment', // rutas en segmento
-        'view-segment', //vista segmentos 
-        'ngResource', //llamar recursos por $http api-res
-        'mdPickers',
-        'blockUI', //Bloqueo general,
-        'ngAudio',
-        'angular-loading-bar',
-        'ngStorage',
-        'ngMaterialSidemenu',
-        'fiestah.money'
-    ])
-    .config(function ($routeSegmentProvider, $routeProvider) {
+var app = angular.module('nextbook20App', [
+                                            'md.data.table',
+                                            'ngAnimate',
+                                            'ngAria',
+                                            'ngCookies',
+                                            'ngMessages',
+                                            'ngRoute', // Rutas
+                                            'ngSanitize',
+                                            'ngMaterial', // Estilo material desing con angular
+                                            'lumx', // Estilo material desing add libreary
+                                            'route-segment', // rutas en segmento
+                                            'view-segment', //vista segmentos 
+                                            'ngResource', //llamar recursos por $http api-res
+                                            'mdPickers',
+                                            'blockUI', //Bloqueo general,
+                                            'ngAudio',
+                                            'angular-loading-bar',
+                                            'ngStorage',
+                                            'ngMaterialSidemenu',
+                                            'fiestah.money'
+                                        ]);
+    
+    app.config(function ($routeSegmentProvider, $routeProvider) {
         // Configuring provider options    
         $routeSegmentProvider.options.autoLoadTemplates = true;            
                 
@@ -78,7 +78,8 @@ angular
             .when('/Perfil',    'dashboard.perfil')
             .when('/App',    'dashboard.app')
             .when('/App/Colaboradores',    'dashboard.colaboradores')
-                .when('/App/Colaboradores',    'dashboard.colaboradores.usuario')
+                .when('/App/Colaboradores/Usuario',    'dashboard.colaboradores.usuario')
+                .when('/App/Colaboradores/Tipo_Usuario',    'dashboard.colaboradores.tipo_usuario')
 
             .when('/App/Inventario',    'dashboard.inventario')
                 .when('/App/Inventario/',    'dashboard.inventario.menu')
@@ -122,7 +123,12 @@ angular
                             .segment('usuario', {
                                 default: true,
                                 templateUrl: 'views/app/colaboradores/usuario/index.html',
-                                controller: 'col_nuevo_Ctrl'
+                                controller: 'col_usuario_Ctrl'
+                            })
+                            .segment('tipo_usuario', {
+                                default: true,
+                                templateUrl: 'views/app/colaboradores/tipo_usuario/index.html',
+                                controller: 'col_tipo_usuario_Ctrl'
                             })
                         .up()
                     .segment('inventario', {
