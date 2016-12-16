@@ -95,7 +95,6 @@ angular
                 .when('/App/Inventario/Tipo_Consumo',    'dashboard.inventario.tipo_consumo')
                 .when('/App/Inventario/Tipo_Productos',    'dashboard.inventario.tipo_productos')
                 .when('/App/Inventario/Tipo_Catalogo',    'dashboard.inventario.tipo_catalogo')
-                .when('/App/Inventario/Estado_Descriptivo',    'dashboard.inventario.estado_descriptivo')
                 .when('/App/Inventario/Bodegas',    'dashboard.inventario.bodegas')
 
             .segment('dashboard', {

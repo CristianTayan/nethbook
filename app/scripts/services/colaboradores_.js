@@ -10,8 +10,8 @@
 angular.module('nextbook20App')
   .service('colaboradores_Service', function ($localStorage, $resource, urlService) {
   	// ---------------------------------------------------------------INICIO TIPO CATEGORIA--------------------------------------------------------------//
-	    	this.Add_Usuario = function() {
-		        return $resource(urlService.server().appnext()+'Add_Usuario', {} , {
+	    	this.Add_Colaborador = function() {
+		        return $resource(urlService.server().appnext()+'Add_Colaborador', {} , {
 		            add: {
 		                method: 'POST', isArray: false,
 		                params: {
@@ -20,8 +20,8 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
-	    	this.Update_Usuario = function(){
-	    		return $resource(urlService.server().appnext()+'Update_Usuario', {} , {
+	    	this.Update_Colaborador = function(){
+	    		return $resource(urlService.server().appnext()+'Update_Colaborador', {} , {
 		            actualizar: {
 		                method: 'POST', isArray: false,
 		                params: {
@@ -30,8 +30,8 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	}
-	    	this.Get_Usuario = function() {
-		        return $resource(urlService.server().appnext()+'Get_Usuarios', {} , {
+	    	this.Get_Colaborador = function() {
+		        return $resource(urlService.server().appnext()+'Get_Colaboradores', {} , {
 		            get: {
 		                method: 'POST', isArray: false,
 		                params: {
@@ -40,8 +40,8 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
-	    	this.Existencia_Usuario = function(){
-	    		return $resource(urlService.server().appnext()+'Existencia_Usuario', {} , {
+	    	this.Existencia_Colaborador = function(){
+	    		return $resource(urlService.server().appnext()+'Existencia_Colaborador', {} , {
 		            consulta: {
 		    			method: 'POST', isArray: false,
 		                params: {
@@ -50,8 +50,8 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
-	    	this.Delete_Usuario = function() {
-		        return $resource(urlService.server().appnext()+'Delete_Usuario', {}
+	    	this.Delete_Colaborador = function() {
+		        return $resource(urlService.server().appnext()+'Delete_Colaborador', {}
 		        , {
 		            delete: {
 		                method: 'POST', isArray: false,
