@@ -50,13 +50,8 @@ var app = angular.module('nextbook20App')
 		    }
 
 		    function DialogController_nuevo($scope, tipo_usuario, tipo_documento,vistas, ciudades, operadora) {
-		    	console.log(operadora);
 				// ------------------------ GENERACION DE VISTAS PRIVILEG---------------------------
-
-					var stuff = vistas;
-					$scope.stuff0 = stuff;//angular.copy(stuff);
-					$scope.stuff1 = stuff;//angular.copy(stuff);
-					$scope.stuff2 = stuff;//angular.copy(stuff);
+					$scope.stuff0 = vistas;//angular.copy(stuff);
 
 					
 		    	// ------------------------------SELECT TIPO DOCUMENTO------------------------------
@@ -110,6 +105,7 @@ var app = angular.module('nextbook20App')
 		        	$scope.data_usuario.id_tipo_documento=vm.selectModelDocument.selectedPerson.id;
 		        	$scope.data_usuario.id_tipo_usuario=vd.selectModel.selectedPerson.id;
 		        	$scope.data_usuario.id_operadora_telefonica=om.selectModelOperadora.selectedOperadora.id;
+		        	$scope.data_usuario.vistas = $scope.stuff0;
 		            colaboradores_Service.Add_Col_Usuario().add($scope.data_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_usuario", {});
 		                if (data.respuesta == true) {

@@ -32,15 +32,15 @@ var app = angular.module('nextbook20App', [
                                         ]);
 
     app.config(function(ivhTreeviewOptionsProvider) {
- ivhTreeviewOptionsProvider.set({
-   defaultSelectedState: false,
-   validate: true,
-   expandToDepth: -1,
-   twistieCollapsedTpl: '<md-icon>home</md-icon>',
-   twistieExpandedTpl: '<md-icon>user</md-icon>',
-   twistieLeafTpl: '<span style="cursor: default;">&#8192;&#8192;</span>'
- });
-});
+     ivhTreeviewOptionsProvider.set({
+       defaultSelectedState: false,
+       validate: true,
+       expandToDepth: -1,
+       twistieCollapsedTpl: '+',
+       twistieExpandedTpl: '-',
+       twistieLeafTpl: '->',
+     });
+    });
     
     app.config(function ($routeSegmentProvider, $routeProvider) {
         // Configuring provider options    
