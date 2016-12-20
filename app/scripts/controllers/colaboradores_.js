@@ -55,7 +55,6 @@ var app = angular.module('nextbook20App')
 
 					var stuff = vistas;
 					$scope.stuff0 = stuff;//angular.copy(stuff);
-					console.log(stuff);
 					$scope.stuff1 = stuff;//angular.copy(stuff);
 					$scope.stuff2 = stuff;//angular.copy(stuff);
 
@@ -80,7 +79,7 @@ var app = angular.module('nextbook20App')
 			        cm.selectCallback = selectCallback;
 			        cm.selectCiudades = ciudades;
 			        cm.selectModelCiudad = {
-			            selectedPerson: undefined,
+			            selectedCiudades: undefined,
 			            selectedPeople: [cm.selectCiudades[2], cm.selectCiudades[4]],
 			            selectedPeopleSections: []
 			        };
@@ -90,7 +89,7 @@ var app = angular.module('nextbook20App')
 			        om.selectCallback = selectCallback;
 			        om.selectOperadora = operadora;
 			        om.selectModelOperadora = {
-			            selectedPerson: undefined,
+			            selectedOperadora: undefined,
 			            selectedPeople: [om.selectOperadora[2], om.selectOperadora[4]],
 			            selectedPeopleSections: []
 			        };
@@ -107,7 +106,10 @@ var app = angular.module('nextbook20App')
 
 		        // Nuevo registro tipo inventario
 		        $scope.col_usuario_nuevo = function() {
-		        	console.log('test');
+		        	$scope.data_usuario.id_localidad=cm.selectModelCiudad.selectedCiudades.id;
+		        	$scope.data_usuario.id_tipo_documento=vm.selectModelDocument.selectedPerson.id;
+		        	$scope.data_usuario.id_tipo_usuario=vd.selectModel.selectedPerson.id;
+		        	$scope.data_usuario.id_operadora_telefonica=om.selectModelOperadora.selectedOperadora.id;
 		            colaboradores_Service.Add_Col_Usuario().add($scope.data_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_usuario", {});
 		                if (data.respuesta == true) {
