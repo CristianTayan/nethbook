@@ -21,7 +21,7 @@ var app = angular.module('nextbook20App')
 	        require: 'ngModel',
 	        link: function(scope, element, attrs, ngModel) {
 	            ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
-	            	return colaboradores_Service.Existencia_Colaborador().consulta({numero_identificacion: viewValue}).$promise.then(function(data){
+	            	return colaboradores_Service.Existencia_Usuario_Cedula().consulta({numero_identificacion: viewValue}).$promise.then(function(data){
                     if (!data.respuesta) {
                         return $q.reject('proceso');
                     }
@@ -31,13 +31,13 @@ var app = angular.module('nextbook20App')
 	        }
 	    };
 	});
-
-	app.directive('tipousuarioValidator', function($q, colaboradores_Service) {
+	// ----------------------------------------------INICIO USUARIO----------------------------------------------
+	app.directive('numdocumentValidator', function($q, colaboradores_Service) {
 	    return {
 	        require: 'ngModel',
 	        link: function(scope, element, attrs, ngModel) {
 	            ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
-	            	return colaboradores_Service.Existencia_Tipo_Usuario().consulta({nombre: viewValue}).$promise.then(function(data){
+	            	return colaboradores_Service.Existencia_Usuario_Cedula().consulta({numero_identificacion: viewValue}).$promise.then(function(data){
                     if (!data.respuesta) {
                         return $q.reject('proceso');
                     }
@@ -47,6 +47,38 @@ var app = angular.module('nextbook20App')
 	        }
 	    };
 	});
+	app.directive('correoelectronicoValidator', function($q, colaboradores_Service) {
+	    return {
+	        require: 'ngModel',
+	        link: function(scope, element, attrs, ngModel) {
+	            ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+	            	return colaboradores_Service.Existencia_Usuario_Correo().consulta({nombre: viewValue}).$promise.then(function(data){
+                    if (!data.respuesta) {
+                        return $q.reject('proceso');
+                    }
+        			return true;
+		    	     });
+	            };
+	        }
+	    };
+	});
+	app.directive('correoelectronicoValidator', function($q, colaboradores_Service) {
+	    return {
+	        require: 'ngModel',
+	        link: function(scope, element, attrs, ngModel) {
+	            ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
+	            	return colaboradores_Service.Existencia_Usuario_Nick().consulta({nombre: viewValue}).$promise.then(function(data){
+                    if (!data.respuesta) {
+                        return $q.reject('proceso');
+                    }
+        			return true;
+		    	     });
+	            };
+	        }
+	    };
+	});
+	
+	// ----------------------------------------------FIN USUARIO----------------------------------------------------
 	
 	app.directive('mdBox', function(ivhTreeviewMgr) {
     return {

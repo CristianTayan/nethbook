@@ -42,12 +42,15 @@ var app = angular.module('nextbook20App')
 		            locals: {
 		                tipo_usuario: $scope.tipo_usuario,
 		                tipo_documento: $scope.tipo_documento,
-		                vistas: $scope.vistas
+		                vistas: $scope.vistas,
+		                ciudades: $scope.ciudades,
+		                operadora: $scope.operadora
 		            }
 		        })
 		    }
 
-		    function DialogController_nuevo($scope, tipo_usuario, tipo_documento,vistas) {
+		    function DialogController_nuevo($scope, tipo_usuario, tipo_documento,vistas, ciudades, operadora) {
+		    	console.log(operadora);
 				// ------------------------ GENERACION DE VISTAS PRIVILEG---------------------------
 
 					var stuff = vistas;
@@ -72,20 +75,40 @@ var app = angular.module('nextbook20App')
 			        	// vm.selectCocument.selectedPerson.id
 			        }
 
+			    // ------------------------------SELECT CIUDADES------------------------------
+			        var cm = $scope;
+			        cm.selectCallback = selectCallback;
+			        cm.selectCiudades = ciudades;
+			        cm.selectModelCiudad = {
+			            selectedPerson: undefined,
+			            selectedPeople: [cm.selectCiudades[2], cm.selectCiudades[4]],
+			            selectedPeopleSections: []
+			        };
 
-		    	// ---------------------------SELECT BUSQUEDA TIPO USUARIO---------------------------
-				var vd = $scope;
-		        vd.selectCallback = selectCallback;
-		        vd.selectPeople = tipo_usuario;
-		        vd.selectModel = {
-		            selectedPerson: undefined,
-		            selectedPeople: [vd.selectPeople[2], vd.selectPeople[4]],
-		            selectedPeopleSections: []
-		        };
+			    // ------------------------------SELECT OPERADORAS TELEFONICA------------------
+			        var om = $scope;
+			        om.selectCallback = selectCallback;
+			        om.selectOperadora = operadora;
+			        om.selectModelOperadora = {
+			            selectedPerson: undefined,
+			            selectedPeople: [om.selectOperadora[2], om.selectOperadora[4]],
+			            selectedPeopleSections: []
+			        };
+
+		    	// ---------------------------SELECT BUSQUEDA TIPO USUARIO---------------------
+					var vd = $scope;
+			        vd.selectCallback = selectCallback;
+			        vd.selectPeople = tipo_usuario;
+			        vd.selectModel = {
+			            selectedPerson: undefined,
+			            selectedPeople: [vd.selectPeople[2], vd.selectPeople[4]],
+			            selectedPeopleSections: []
+			        };
 
 		        // Nuevo registro tipo inventario
-		        $scope.colaboradores_nuevo = function() {
-		            colaboradores_Service.Add_col_usuario().add($scope.data_inv_tipo_consumo).$promise.then(function(data) {
+		        $scope.col_usuario_nuevo = function() {
+		        	console.log('test');
+		            colaboradores_Service.Add_Col_Usuario().add($scope.data_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_usuario", {});
 		                if (data.respuesta == true) {
 		                    $mdDialog.show(
@@ -232,26 +255,43 @@ var app = angular.module('nextbook20App')
 		        limit: '5',
 		        page_num: 1
 		    };
-		    //SELECT TIPO USUARIO
-		    function success_tipo_usuario(desserts) {
-		        $scope.tipo_usuario = desserts.respuesta.data;
-		    }
+		    //----------SELECT TIPO USUARIO-----------------//
+			    function success_tipo_usuario(desserts) {
+			        $scope.tipo_usuario = desserts.respuesta.data;
+			    }
 
-		    $scope.data_tipo_usuario_get = function() {
-		        colaboradores_Service.Get_Tipo_Usuario().get($scope.query, success_tipo_usuario).$promise;
-		    }
-		    $scope.data_tipo_usuario_get();
+			    $scope.data_tipo_usuario_get = function() {
+			        colaboradores_Service.Get_Tipo_Usuario().get($scope.query, success_tipo_usuario).$promise;
+			    }
+			    $scope.data_tipo_usuario_get();
 
+		    //----------------SELECT CIUDADES---------------//
+			    function success_ciudades(desserts) {
+			        $scope.ciudades = desserts.respuesta;
+			    }
 
-		    //SELECT TIPO DOCUMENTO
-		    function success_tipo_documento(desserts) {
-		        $scope.tipo_documento = desserts.respuesta;
-		    }
+			    $scope.data_ciudades = function() {
+			        colaboradores_Service.Get_Ciudades().get($scope.query, success_ciudades).$promise;
+			    }
+			    $scope.data_ciudades();
+			//----------------SELECT OPERADORA TELEFONICA---//
+			    function success_operadora(desserts) {
+			        $scope.operadora = desserts.respuesta;
+			    }
 
-		    $scope.data_tipo_documento_get = function() {
-		        colaboradores_Service.Get_Tipo_Documento().get($scope.query, success_tipo_documento).$promise;
-		    }
-		    $scope.data_tipo_documento_get();
+			    $scope.data_operadoras = function() {
+			        colaboradores_Service.Get_Operadoras().get($scope.query, success_operadora).$promise;
+			    }
+			    $scope.data_operadoras();
+		    //----------SELECT TIPO DOCUMENTO-----------------//
+			    function success_tipo_documento(desserts) {
+			        $scope.tipo_documento = desserts.respuesta;
+			    }
+
+			    $scope.data_tipo_documento_get = function() {
+			        colaboradores_Service.Get_Tipo_Documento().get($scope.query, success_tipo_documento).$promise;
+			    }
+			    $scope.data_tipo_documento_get();
 
 
 
@@ -266,7 +306,7 @@ var app = angular.module('nextbook20App')
 		    }
 
 		    $scope.data_colaborado_get = function() {
-		        colaboradores_Service.Get_Colaborador().get($scope.query, success).$promise;
+		        colaboradores_Service.Get_Col_Usuario().get($scope.query, success).$promise;
 		    }
 
 		    $rootScope.$on("actualizar_categoria", function() {

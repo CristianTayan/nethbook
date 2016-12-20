@@ -74,8 +74,8 @@ angular.module('nextbook20App')
 	// ---------------------------------------------------------------FIN TIPO USUARIO-----------------------------------------------------------------//
 
   	// ---------------------------------------------------------------INICIO USUARIO--------------------------------------------------------------//
-    	this.Add_Colaborador = function() {
-	        return $resource(urlService.server().appnext()+'Add_Colaborador', {} , {
+    	this.Add_Col_Usuario = function() {
+	        return $resource(urlService.server().appnext()+'Add_Col_Usuario', {} , {
 	            add: {
 	                method: 'POST', isArray: false,
 	                params: {
@@ -84,8 +84,8 @@ angular.module('nextbook20App')
 	            }
 	        });
     	};
-    	this.Update_Colaborador = function(){
-    		return $resource(urlService.server().appnext()+'Update_Colaborador', {} , {
+    	this.Update_Col_Usuario = function(){
+    		return $resource(urlService.server().appnext()+'Update_Col_Usuario', {} , {
 	            actualizar: {
 	                method: 'POST', isArray: false,
 	                params: {
@@ -94,8 +94,8 @@ angular.module('nextbook20App')
 	            }
 	        });
     	}
-    	this.Get_Colaborador = function() {
-	        return $resource(urlService.server().appnext()+'Get_Colaboradores', {} , {
+    	this.Get_Col_Usuario = function() {
+	        return $resource(urlService.server().appnext()+'Get_Col_Usuario', {} , {
 	            get: {
 	                method: 'POST', isArray: false,
 	                params: {
@@ -104,8 +104,8 @@ angular.module('nextbook20App')
 	            }
 	        });
     	};
-    	this.Existencia_Colaborador = function(){
-    		return $resource(urlService.server().appnext()+'Existencia_Colaborador', {} , {
+    	this.Existencia_Usuario_Cedula = function(){
+    		return $resource(urlService.server().appnext()+'Existencia_Usuario_Cedula', {} , {
 	            consulta: {
 	    			method: 'POST', isArray: false,
 	                params: {
@@ -114,8 +114,28 @@ angular.module('nextbook20App')
 	            }
 	        });
     	};
-    	this.Delete_Colaborador = function() {
-	        return $resource(urlService.server().appnext()+'Delete_Colaborador', {}
+    	this.Existencia_Usuario_Correo = function(){
+    		return $resource(urlService.server().appnext()+'Existencia_Usuario_Correo', {} , {
+	            consulta: {
+	    			method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
+    	this.Existencia_Usuario_Nick = function(){
+    		return $resource(urlService.server().appnext()+'Existencia_Usuario_Nick', {} , {
+	            consulta: {
+	    			method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
+    	this.Delete_Col_Usuario = function() {
+	        return $resource(urlService.server().appnext()+'Delete_Col_Usuario', {}
 	        , {
 	            delete: {
 	                method: 'POST', isArray: false,
@@ -127,7 +147,7 @@ angular.module('nextbook20App')
     	};
 	// ---------------------------------------------------------------FIN USUARIO-----------------------------------------------------------------//
 	// ---------------------------------------------------------------INICIO VISTAS--------------------------------------------------------------//
-	this.Get_Vistas = function() {
+		this.Get_Vistas = function() {
 	        return $resource(urlService.server().appnext()+'Get_Vistas', {} , {
 	            get: {
 	                method: 'POST', isArray: false,
@@ -138,5 +158,32 @@ angular.module('nextbook20App')
 	        });
     	};
 	// ---------------------------------------------------------------FIN VISTAS-----------------------------------------------------------------//
+
+	// ---------------------------------------------------------------INICIO LOCALIZACION--------------------------------------------------------------//
+		this.Get_Ciudades = function() {
+	        return $resource(urlService.server().appnext()+'Get_Ciudades', {} , {
+	            get: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
+	// ---------------------------------------------------------------FIN LOCALIZACION-----------------------------------------------------------------//
+	// ---------------------------------------------------------------INICIO OPERADORA TELEFONICA------------------------------------------------------//
+		this.Get_Operadoras = function() {
+	        return $resource(urlService.server().appnext()+'Get_Operadoras', {} , {
+	            get: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
+	// ---------------------------------------------------------------FIN OPERADORA TELEFONICA---------------------------------------------------------//
+
+	
 
   });
