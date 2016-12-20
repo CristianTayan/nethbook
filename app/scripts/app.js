@@ -50,6 +50,11 @@ var app = angular.module('nextbook20App', [
         // routes in every module individually
         // -------------------------------------------    Entrada principal    -------------------------------------------   
         
+        $routeSegmentProvider    
+            .when('/Salir',    'salir')        
+            .segment('salir', {
+                controller: 'cerrar_session_Ctrl'
+            });
         // Inicio Principal
         $routeSegmentProvider    
             .when('/',    'main')        
