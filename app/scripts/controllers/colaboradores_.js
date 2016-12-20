@@ -24,7 +24,11 @@ var app = angular.module('nextbook20App')
         }
 		// -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
 
-
+			function success_vistas(data){
+						$scope.vistas=data.respuesta;
+						// console.log($scope.vistas);
+					}
+			colaboradores_Service.Get_Vistas().get({},success_vistas).$promise;
 
 		    $scope.colaboradores_dialog_nuevo = function(event) {
 		        $mdDialog.show({
@@ -37,55 +41,16 @@ var app = angular.module('nextbook20App')
 		            fullscreen: true,
 		            locals: {
 		                tipo_usuario: $scope.tipo_usuario,
-		                tipo_documento: $scope.tipo_documento
+		                tipo_documento: $scope.tipo_documento,
+		                vistas: $scope.vistas
 		            }
 		        })
 		    }
 
-		    function DialogController_nuevo($scope, tipo_usuario, tipo_documento) {
+		    function DialogController_nuevo($scope, tipo_usuario, tipo_documento,vistas) {
 				// ------------------------ GENERACION DE VISTAS PRIVILEG---------------------------
 
-					var stuff = [{
-								  label: 'Stuff',
-								  children: [{
-								    label: 'Hats',
-								    children: [
-								      {label: 'Flat cap'},
-								      {label: 'Fedora'},
-								      {label: 'Baseball'},
-								      {label: 'Top hat'},
-								      {label: 'Gatsby'}
-								    ]
-								  },{
-								    label: 'Pens',
-								    selected: true,
-								    children: [
-								      {label: 'Fountain'},
-								      {label: 'Gel ink'},
-								      {label: 'Roller ball'},
-								      {label: 'Fiber tip'},
-								        {
-								          label: 'Ballpoint', 
-								          selected: false,
-								          children: [
-								      {label: 'Fountain'},
-								      {label: 'Gel ink'},
-								      {label: 'Roller ball'},
-								      {label: 'Fiber tip'},
-								      {label: 'Ballpoint'}
-								    ]}
-								    ]
-								  },{
-								    label: 'Whiskey',
-								    children: [
-								      {label: 'Irish'},
-								      {label: 'Scotch'},
-								      {label: 'Rye'},
-								      {label: 'Tennessee'},
-								      {label: 'Bourbon'}
-								    ]
-								  }]
-								}];
+					var stuff = vistas;
 					$scope.stuff0 = stuff;//angular.copy(stuff);
 					console.log(stuff);
 					$scope.stuff1 = stuff;//angular.copy(stuff);
