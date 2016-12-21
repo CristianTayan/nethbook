@@ -25,9 +25,9 @@ var app = angular.module('nextbook20App')
 		// -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
 
 			function success_vistas(data){
-						$scope.vistas=data.respuesta;
-						// console.log($scope.vistas);
-					}
+				$scope.vistas=data.respuesta;
+				console.log($scope.vistas);
+			}
 			colaboradores_Service.Get_Vistas().get({},success_vistas).$promise;
 
 		    $scope.colaboradores_dialog_nuevo = function(event) {

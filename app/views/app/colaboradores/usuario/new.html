@@ -212,7 +212,28 @@
               </md-tab>              
               <md-tab label="Privilegios">
                 <md-content class="md-padding">
-                    <div ivh-treeview="stuff0"></div>
+                    <div ng-repeat="items in stuff0">
+                        <h5>{{items.label}}</h5>
+                        <div layout="row">
+                            <div ng-repeat="item in items.children" flex layout="row">
+                                <div ivh-treeview="item" ivh-treeview-expand-to-depth="1"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ivh-treeview="stuff0">
+                      <script type="text/ng-template">
+                        <span ivh-treeview-toggle>
+                          <span ivh-treeview-twistie></span>
+                        </span>
+                        <md-box></md-box>
+                        <span class="ivh-treeview-node-label" ivh-treeview-toggle>
+                          {{trvw.label(node)}}
+                        </span>
+                        <div ivh-treeview-children></div>
+                      </script>
+                    </div>
+                    <!-- <div ivh-treeview="stuff0"></div> -->
                      <!--  
                     <h4>Expanded to Depth 1</h4>
                     <div ivh-treeview="stuff1" ivh-treeview-expand-to-depth="1"></div>
