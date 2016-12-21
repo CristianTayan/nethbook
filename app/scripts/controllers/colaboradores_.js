@@ -26,7 +26,6 @@ var app = angular.module('nextbook20App')
 
 			function success_vistas(data){
 				$scope.vistas=data.respuesta;
-				console.log($scope.vistas);
 			}
 			colaboradores_Service.Get_Vistas().get({},success_vistas).$promise;
 
@@ -151,24 +150,25 @@ var app = angular.module('nextbook20App')
 		        };
 		    }
 		// -------------------------------------------------------PROCESO EDITAR REGISTRO-----------------------------------------------------------
-		    $scope.inv_tipo_consumo_dialog_editar = function(categoria) {
+		    $scope.usuarios_dialog_modificar = function(col_usuario) {
 		        $mdDialog.show({
 		            controller: DialogController_editar,
-		            templateUrl: 'views/app/inventario/tipo_consumo/update.html',
+		            templateUrl: 'views/app/colaboradores/usuario/update.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
 		            clickOutsideToClose: false,
 		            locals: {
-		                obj: categoria
+		                obj: col_usuario
 		            }
 		        });
 		    }
 
 		    function DialogController_editar($scope, $rootScope, colaboradores_Service, obj) {
-		        $scope.data_inv_tipo_consumo = obj;
-		        $scope.data_inv_tipo_consumo_update = function() {
-		            colaboradores_Service.Update_Tipo_Consumo().actualizar($scope.data_inv_tipo_consumo).$promise.then(function(data) {
+		    	console.log('test');
+		        $scope.data_usuario = obj;
+		        $scope.data_usuario_update = function() {
+		            colaboradores_Service.Update_Tipo_Consumo().actualizar($scope.data_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_usuario", {});
 		                if (data.respuesta == true) {
 		                    $mdDialog.show(
@@ -213,27 +213,27 @@ var app = angular.module('nextbook20App')
 		        };
 		    }
 		// --------------------------------------------------------PROCESO ELIMINAR REGISTRO--------------------------------------------------------
-		    $scope.inv_tipo_consumo_dialog_eliminar = function(tipocategoria) {
+		    $scope.usuarios_dialog_eliminar = function(usuario) {
 		        $mdDialog.show({
 		            controller: Dialog_eliminar_Ctrl,
-		            templateUrl: 'views/app/inventario/tipo_consumo/eliminar.html',
+		            templateUrl: 'views/app/colaboradores/usuario/eliminar.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
 		            clickOutsideToClose: false,
 		            locals: {
-		                obj: tipocategoria
+		                obj: usuario
 		            }
 		        });
 		    }
 
 		    function Dialog_eliminar_Ctrl($scope, $rootScope, obj) {
-		        $scope.data_inv_tipo_consumo_eliminar = function() {
-		            colaboradores_Service.Delete_Tipo_Consumo().delete({
+		        $scope.data_usuario_eliminar = function() {
+		            colaboradores_Service.Delete_Col_Usuario().delete({
 		                id: obj.id
 		            }).$promise.then(function(data) {
 		                if (data.respuesta == true) {
-		                    $rootScope.$emit("actualizar_tabla_col_usuario", {});
+		                    $rootScope.$emit("actualizar_tabla_usuario", {});
 		                    $mdDialog.cancel();
 		                }
 		            });
@@ -292,22 +292,20 @@ var app = angular.module('nextbook20App')
 			    $scope.data_tipo_documento_get();
 
 
-
-
 		    $rootScope.$on("actualizar_tabla_categoria", function() {
 		        $scope.data_colaborado_get();
 		    });
 
 		    function success(desserts) {
 		        $scope.total = desserts.respuesta.total;
-		        $scope.categorias = desserts.respuesta.data;
+		        $scope.usuarios = desserts.respuesta.data;
 		    }
 
 		    $scope.data_colaborado_get = function() {
 		        colaboradores_Service.Get_Col_Usuario().get($scope.query, success).$promise;
 		    }
 
-		    $rootScope.$on("actualizar_categoria", function() {
+		    $rootScope.$on("actualizar_tabla_usuario", function() {
 		        $scope.data_colaborado_get();
 		    });
 

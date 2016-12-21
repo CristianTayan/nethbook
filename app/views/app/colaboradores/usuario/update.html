@@ -1,41 +1,238 @@
-<md-dialog aria-label="inve-tipo-">
-    <form name="form_inv_modelo" ng-submit="data_inv_modelo_update()">
+<md-dialog aria-label="FormProductos">
+    <form name="form_usuario" ng-submit="col_usuario_nuevo()">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Actualizar Modelos</h2>
+                <h2>Nuevo Usuario</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon aria-label="Close dialog">close</md-icon>
                 </md-button>
             </div>
         </md-toolbar>
-        <md-dialog-content>
-            <div class="md-dialog-content">
-                <md-content class="md-no-momentum">
-                    <md-input-container class="md-icon-float md-block">
-                        <md-icon class="md-primary">view_compact</md-icon>
-                        <label>Nombre Modelos</label>
-                        <input name="nom_tipo_categoria" ng-model="data_inv_modelo.nombre" type="text" required modeloupdate-validator>
-                        <div ng-messages="form_inv_modelo.nom_tipo_categoria.$error" ng-show="form_inv_modelo.nom_tipo_categoria.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
-                            <div ng-message="campo">Registro Repetido</div>
+        <md-dialog-content style="width: 1000px!important">
+            <md-tabs md-dynamic-height md-border-bottom>
+              <md-tab label="INFORMACIóN GENERAL">
+                <md-content class="md-padding">
+                    <div class="md-dialog-content">
+                        <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Primer Nombre</label>
+                                <input name="nombre_1" ng-model="data_usuario.primer_nombre" type="text" required>
+                                <div ng-messages="form_usuario.nombre_1.$error" ng-show="form_usuario.nombre_1.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Segundo Nombre</label>
+                                <input name="nombre_2" ng-model="data_usuario.segundo_nombre" type="text">
+                                <div ng-messages="form_usuario.nombre_2.$error" ng-show="form_usuario.nombre_2.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
                         </div>
-                    </md-input-container>
-                    <md-input-container md-no-float class="md-block">
-                        <md-icon class="md-primary">description</md-icon>
-                        <label>Descripción</label>
-                        <textarea name="descripcion" ng-model="data_inv_modelo.descripcion" type="text" required></textarea>
-                        <div ng-messages="form_inv_modelo.descripcion.$error" ng-show="form_inv_modelo.descripcion.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
+                        <div layout="row">
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Primer Apellido</label>
+                                <input name="apellido_1" ng-model="data_usuario.primer_apellido" type="text" required>
+                                <div ng-messages="form_usuario.apellido_1.$error" ng-show="form_usuario.apellido_1.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Segundo Apellido</label>
+                                <input name="apellido_2" ng-model="data_usuario.segundo_apellido" type="text">
+                                <div ng-messages="form_usuario.apellido_2.$error" ng-show="form_usuario.apellido_2.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
+                        </div> 
+                         <div layout="row">
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">email</md-icon>
+                                <label>Correo Electrónico</label>
+                                <input name="correo" ng-model="data_usuario.correo_electronico" type="email" required correoelectronico-validator>
+                                <div ng-messages="form_usuario.correo.$error" ng-show="form_usuario.correo.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Existente</div>
+                                    <div ng-message="email">Correo Invalido</div>
+                                </div>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                                <md-icon class="md-primary">fingerprint</md-icon>
+                                <lx-select ng-model="selectModelDocument.selectedPerson"
+                                           lx-allow-clear="true"
+                                           lx-choices="selectDocument"
+                                           lx-display-filter="true"
+                                           lx-fixed-label="true"
+                                           lx-label="Tipo de Documento"
+                                           ng-change="tipe_document(event)"
+                                           >
+                                    <lx-select-selected>
+                                        {{ $selected.nombre }}
+                                    </lx-select-selected>
+                                    <lx-select-choices>
+                                        {{ $choice.nombre }}
+                                    </lx-select-choices>
+                                </lx-select>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Nro de {{tipodocumento}}</label>
+                                <input name="nom_document" ng-model="data_usuario.numero_identificacion" type="text"  required numdocument-validator>
+                                <div ng-messages="form_usuario.nom_document.$error" ng-show="form_usuario.nom_document.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                    <div ng-message="pattern">Solo Numeros</div>
+                                </div>
+                            </md-input-container>
+                         </div>
+                        <div layout="row">                    
+                            <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                                <md-icon class="md-primary">supervisor_account</md-icon>
+                                <lx-select ng-model="selectModel.selectedPerson"
+                                           lx-allow-clear="true"
+                                           lx-choices="selectPeople"
+                                           lx-display-filter="true"
+                                           lx-fixed-label="true"
+                                           lx-label="Tipo de Usuario">
+                                    <lx-select-selected>
+                                        {{ $selected.nombre }}
+                                    </lx-select-selected>
+                                    <lx-select-choices>
+                                        {{ $choice.nombre }}
+                                    </lx-select-choices>
+                                </lx-select>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Nick / Usuario</label>
+                                <input name="nom_modelo" ng-model="data_usuario.nick" type="text" required nickusuario-validator>
+                                <div ng-messages="form_usuario.nom_modelo.$error" ng-show="form_usuario.nom_modelo.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                                <md-icon class="md-primary">location_city</md-icon>
+                                <lx-select ng-model="selectModelCiudad.selectedCiudades"
+                                           lx-allow-clear="true"
+                                           lx-choices="selectCiudades"
+                                           lx-display-filter="true"
+                                           lx-fixed-label="true"
+                                           lx-label="Ciudad">
+                                    <lx-select-selected>
+                                        {{ $selected.nombre }}
+                                    </lx-select-selected>
+                                    <lx-select-choices>
+                                        {{ $choice.nombre }}
+                                    </lx-select-choices>
+                                </lx-select>
+                            </md-input-container>
                         </div>
-                    </md-input-container>
+                        <div layout="row">                    
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Calle Principal</label>
+                                <input name="nom_modelo" ng-model="data_usuario.calle" type="text" required>
+                                <div ng-messages="form_usuario.nom_modelo.$error" ng-show="form_usuario.nom_modelo.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Calle Transversal</label>
+                                <input name="calle_transversal" ng-model="data_usuario.transversal" type="text">
+                                <div ng-messages="form_usuario.calle_transversal.$error" ng-show="form_usuario.calle_transversal.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <md-input-container md-no-float class="md-block" flex>
+                                <md-icon class="md-primary">description</md-icon>
+                                <label>Numero de Casa</label>
+                                <textarea name="numero_casa" ng-model="data_usuario.numero" type="text"></textarea>
+                                <div ng-messages="form_usuario.numero_casa.$error" ng-show="form_usuario.numero_casa.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div layout="row">                    
+                            <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                                <md-icon class="md-primary">router</md-icon>
+                                <lx-select ng-model="selectModelOperadora.selectedOperadora"
+                                           lx-allow-clear="true"
+                                           lx-choices="selectOperadora"
+                                           lx-display-filter="true"
+                                           lx-fixed-label="true"
+                                           lx-label="Operdora Telefónica">
+                                    <lx-select-selected>
+                                        {{ $selected.nombre }}
+                                    </lx-select-selected>
+                                    <lx-select-choices>
+                                        {{ $choice.nombre }}
+                                    </lx-select-choices>
+                                </lx-select>
+                            </md-input-container>
+                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>{{'Número '+selectModelOperadora.selectedOperadora.nombre}}</label>
+                                <input name="numero_telefono" ng-minlength="10" ng-maxlength="10" ng-model="data_usuario.numero_telefono" type="text">
+                                <div ng-messages="form_usuario.numero_telefono.$error" ng-show="form_usuario.numero_telefono.$dirty" ng-show="form_usuario.numero_telefono.$error.maxlength">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                    <div ng-message="maxlength">Máximo 10 números</div>
+                                    <div ng-message="minlength">Mínimo 10 números</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
                 </md-content>
-            </div>
+              </md-tab>              
+              <md-tab label="Privilegios">
+                <md-content class="md-padding">
+                    <div ng-repeat="items in stuff0">
+                        <h5>{{items.label}}</h5>
+                        <div layout="row">
+                            <div ng-repeat="item in items.children" flex layout="row">
+                                <div ivh-treeview="item" ivh-treeview-expand-to-depth="1"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!-- <div ivh-treeview="stuff0"></div> -->
+                     <!--  
+                    <h4>Expanded to Depth 1</h4>
+                    <div ivh-treeview="stuff1" ivh-treeview-expand-to-depth="1"></div>
+                      
+                    <h4>Fully expanded</h4>
+                    <div ivh-treeview="stuff2" ivh-treeview-expand-to-depth="-1"></div> -->
+                </md-content>
+              </md-tab>
+            </md-tabs>
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="cancel()">Cancelar</md-button>
             <md-button type="reset">Limpiar</md-button>
-            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_inv_modelo.$invalid">Guardar</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_usuario.$invalid">Guardar</md-button>
         </md-dialog-actions>
     </form>
 </md-dialog>

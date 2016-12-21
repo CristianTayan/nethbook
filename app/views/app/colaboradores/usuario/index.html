@@ -17,23 +17,23 @@
       <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
         <thead md-head md-order="query.order" md-on-reorder="data_col_usuario_get">
           <tr md-row>
-            <th md-column md-order-by="nameToLower"><span>NOMBRE</span></th>
-            <th md-column md-numeric>DESCRIPCIÓN</th>
-            <th md-column md-numeric>FECHA INICIO</th>
+            <th md-column md-order-by="nameToLower"><span>NICK</span></th>
+            <th md-column md-numeric>TIPO DE USUARIO</th>
+            <th md-column md-numeric>ELIMINAR/MODIFICAR</th>
           </tr>
         </thead>
         <tbody md-body>
-          <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in modelo">
-            <td md-cell>{{dessert.nombre}}</td>
-            <td md-cell>{{dessert.descripcion}}</td>
+          <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in usuarios">
+            <td md-cell>{{dessert.nick}}</td>
+            <td md-cell>{{dessert.tipo_usuario}}</td>
             <td md-cell>
-                <md-button class="md-icon-button" ng-click="inv_modelo_dialog_editar(dessert)" type="button">
+                <md-button class="md-icon-button" ng-click="usuarios_dialog_modificar(dessert)" type="button">
                 <md-tooltip md-direction="top">
                   Modificar
                 </md-tooltip>
                 <md-icon class="md-primary">mode_edit</md-icon>
                 </md-button>
-                <md-button class="md-icon-button" ng-click="inv_modelo_dialog_eliminar(dessert)" type="button">
+                <md-button class="md-icon-button" ng-click="usuarios_dialog_eliminar(dessert)" type="button">
                 <md-tooltip md-direction="top">
                   Eliminar
                 </md-tooltip>
