@@ -1,0 +1,23 @@
+<div layout-xs="column" layout="row">
+	<div flex-xs flex-gt-xs="20" layout="column" md-content flex layout="row" layout-fill>
+		<md-sidenav layout="column" class="main-sidenav md-sidenav-left" style="position:fixed !important; top: 64px;" md-is-locked-open="$mdMedia('gt-md')">
+		    <md-content md-scroll-y flex layout="column">
+		        <md-sidemenu>
+		        	<md-sidemenu-group>
+		        		<md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
+		        	</md-sidemenu-group>
+		            <md-sidemenu-group>
+		                <md-subheader class="md-no-sticky">Menu Repositorio de Facturas</md-subheader>
+		                    <md-sidemenu-button href="#/App/Inventario/Productos"><md-icon>subtitles</md-icon>Inicio</md-sidemenu-button>
+		                    <md-sidemenu-button href="#/App/Inventario/Marcas"><md-icon>dialpad</md-icon>Mis Facturas</md-sidemenu-button>
+		                    <md-sidemenu-button href="#/App/Inventario/Modelos"><md-icon>view_module</md-icon>Subir Facturas</md-sidemenu-button>
+		                    <md-sidemenu-button href="#/App/Inventario/Bodegas"><md-icon>home</md-icon>Facturas Rechasadas</md-sidemenu-button>
+		            </md-sidemenu-group>
+		        </md-sidemenu>
+		    </md-content>
+		</md-sidenav>
+	</div>
+	<div layout-padding flex-xs flex-gt-xs="80" layout="column">
+		<div app-view-segment="2"></div>
+	</div>
+</div>

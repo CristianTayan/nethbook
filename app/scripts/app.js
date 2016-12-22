@@ -94,6 +94,11 @@ var app = angular.module('nextbook20App', [
             .when('/Inicio',    'dashboard.inicio')
             .when('/Perfil',    'dashboard.perfil')
             .when('/App',    'dashboard.app')
+
+            .when('/App/Repositorio_Facturas',    'dashboard.repositorio_facturas')
+                .when('/App/Repositorio_Facturas/Nuevo',    'dashboard.repositorio_facturas.factura_compra')
+                .when('/App/Repositorio_Facturas/Tipo_Usuario',    'dashboard.repositorio_facturas.factura_venta')
+
             .when('/App/Colaboradores',    'dashboard.colaboradores')
                 .when('/App/Colaboradores/Usuario',    'dashboard.colaboradores.usuario')
                 .when('/App/Colaboradores/Tipo_Usuario',    'dashboard.colaboradores.tipo_usuario')
@@ -132,6 +137,43 @@ var app = angular.module('nextbook20App', [
                         templateUrl: 'views/app/index.html',
                         controller: 'app_Ctrl'
                     })
+
+                    // ----------------------------------------FACTURACION----------------------------------------
+                    .segment('facturacion', {
+                        templateUrl: 'views/app/facturacion/index.html',
+                        // controller: 'colaboradores_Ctrl'
+                    })
+                        .within()
+                            .segment('factura', {
+                                default: true,
+                                templateUrl: 'views/app/facturacion/factura/index.html',
+                                // controller: 'col_usuario_Ctrl'
+                            })
+                            .segment('subir_facturas', {
+                                templateUrl: 'views/app/facturacion/subir_facturas/index.html',
+                                // controller: 'col_tipo_usuario_Ctrl'
+                            })
+                        .up()
+
+                    // ------------------------------------REPOSITORIO FACTURAS------------------------------------
+                    .segment('repositorio_facturas', {
+                        templateUrl: 'views/app/repositorio_facturas/index.html',
+                        // controller: 'colaboradores_Ctrl'
+                    })
+                        .within()
+                            .segment('mis_facturas', {
+                                default: true,
+                                templateUrl: 'views/app/repositorio_facturas/mis_facturas/index.html',
+                                // controller: 'col_usuario_Ctrl'
+                            })
+                            .segment('subir_facturas', {
+                                templateUrl: 'views/app/repositorio_facturas/subir_facturas/index.html',
+                                // controller: 'col_tipo_usuario_Ctrl'
+                            })
+                        .up()
+
+
+                    // ------------------------------------COLABORADORES------------------------------------
                     .segment('colaboradores', {
                         templateUrl: 'views/app/colaboradores/index.html',
                         // controller: 'colaboradores_Ctrl'
@@ -143,11 +185,12 @@ var app = angular.module('nextbook20App', [
                                 controller: 'col_usuario_Ctrl'
                             })
                             .segment('tipo_usuario', {
-                                default: true,
                                 templateUrl: 'views/app/colaboradores/tipo_usuario/index.html',
                                 controller: 'col_tipo_usuario_Ctrl'
                             })
                         .up()
+
+                    // --------------------------------------INVENTARIO--------------------------------------
                     .segment('inventario', {
                         templateUrl: 'views/app/inventario/index.html',
                         controller: 'inventario_Ctrl'
