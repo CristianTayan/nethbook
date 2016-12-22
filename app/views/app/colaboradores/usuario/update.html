@@ -14,7 +14,7 @@
               <md-tab label="INFORMACIóN GENERAL">
                 <md-content class="md-padding">
                     <div class="md-dialog-content">
-                        <div layout="row">
+                        <!-- <div layout="row">
                         <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
                                 <label>Primer Nombre</label>
@@ -24,7 +24,7 @@
                                     <div ng-message="campo">Registro Repetido</div>
                                 </div>
                             </md-input-container>
-                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <div flex="5" hide-xs hide-sm></div>
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
                                 <label>Segundo Nombre</label>
@@ -45,7 +45,7 @@
                                     <div ng-message="campo">Registro Repetido</div>
                                 </div>
                             </md-input-container>
-                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <div flex="5" hide-xs hide-sm></div>
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
                                 <label>Segundo Apellido</label>
@@ -55,19 +55,10 @@
                                     <div ng-message="campo">Registro Repetido</div>
                                 </div>
                             </md-input-container>
-                        </div> 
-                         <div layout="row">
-                            <md-input-container class="md-icon-float md-block" flex>
-                                <md-icon class="md-primary">email</md-icon>
-                                <label>Correo Electrónico</label>
-                                <input name="correo" ng-model="data_usuario.correo_electronico" type="email" required correoelectronico-validator>
-                                <div ng-messages="form_usuario.correo.$error" ng-show="form_usuario.correo.$dirty">
-                                    <div ng-message="required">Campo Requerido</div>
-                                    <div ng-message="campo">Registro Existente</div>
-                                    <div ng-message="email">Correo Invalido</div>
-                                </div>
-                            </md-input-container>
-                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                        </div>  -->
+                         <!--<div layout="row">
+                
+                             <div flex="5" hide-xs hide-sm></div>
                             <md-input-container class="md-icon-float md-icon-left md-block" flex>
                                 <md-icon class="md-primary">fingerprint</md-icon>
                                 <lx-select ng-model="selectModelDocument.selectedPerson"
@@ -85,8 +76,8 @@
                                         {{ $choice.nombre }}
                                     </lx-select-choices>
                                 </lx-select>
-                            </md-input-container>
-                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            </md-input-container> -->
+                            <!-- <div flex="5" hide-xs hide-sm></div>
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
                                 <label>Nro de {{tipodocumento}}</label>
@@ -96,9 +87,19 @@
                                     <div ng-message="campo">Registro Repetido</div>
                                     <div ng-message="pattern">Solo Numeros</div>
                                 </div>
-                            </md-input-container>
-                         </div>
-                        <div layout="row">                    
+                            </md-input-container> 
+                         </div>-->
+                        <div layout="row">   
+                        <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">email</md-icon>
+                                <label>Correo Electrónico</label>
+                                <input name="correo" ng-model="data_usuario.correo_electronico" type="email" required correoelectronico-validator>
+                                <div ng-messages="form_usuario.correo.$error" ng-show="form_usuario.correo.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Existente</div>
+                                    <div ng-message="email">Correo Invalido</div>
+                                </div>
+                            </md-input-container>                 
                             <md-input-container class="md-icon-float md-icon-left md-block" flex>
                                 <md-icon class="md-primary">supervisor_account</md-icon>
                                 <lx-select ng-model="selectModel.selectedPerson"
@@ -115,7 +116,7 @@
                                     </lx-select-choices>
                                 </lx-select>
                             </md-input-container>
-                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <div flex="5" hide-xs hide-sm></div>
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
                                 <label>Nick / Usuario</label>
@@ -125,7 +126,7 @@
                                     <div ng-message="campo">Registro Repetido</div>
                                 </div>
                             </md-input-container>
-                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                          <!--   <div flex="5" hide-xs hide-sm></div>
                             <md-input-container class="md-icon-float md-icon-left md-block" flex>
                                 <md-icon class="md-primary">location_city</md-icon>
                                 <lx-select ng-model="selectModelCiudad.selectedCiudades"
@@ -141,9 +142,9 @@
                                         {{ $choice.nombre }}
                                     </lx-select-choices>
                                 </lx-select>
-                            </md-input-container>
+                            </md-input-container> -->
                         </div>
-                        <div layout="row">                    
+                       <!--  <div layout="row">                    
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
                                 <label>Calle Principal</label>
@@ -153,7 +154,7 @@
                                     <div ng-message="campo">Registro Repetido</div>
                                 </div>
                             </md-input-container>
-                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <div flex="5" hide-xs hide-sm></div>
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
                                 <label>Calle Transversal</label>
@@ -163,7 +164,7 @@
                                     <div ng-message="campo">Registro Repetido</div>
                                 </div>
                             </md-input-container>
-                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <div flex="5" hide-xs hide-sm></div>
                             <md-input-container md-no-float class="md-block" flex>
                                 <md-icon class="md-primary">description</md-icon>
                                 <label>Numero de Casa</label>
@@ -172,8 +173,8 @@
                                     <div ng-message="required">Campo Requerido</div>
                                 </div>
                             </md-input-container>
-                        </div>
-                        <div layout="row">                    
+                        </div> -->
+                       <!--  <div layout="row">                    
                             <md-input-container class="md-icon-float md-icon-left md-block" flex>
                                 <md-icon class="md-primary">router</md-icon>
                                 <lx-select ng-model="selectModelOperadora.selectedOperadora"
@@ -190,7 +191,7 @@
                                     </lx-select-choices>
                                 </lx-select>
                             </md-input-container>
-                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                            <div flex="5" hide-xs hide-sm></div>
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
                                 <label>{{'Número '+selectModelOperadora.selectedOperadora.nombre}}</label>
@@ -202,7 +203,7 @@
                                     <div ng-message="minlength">Mínimo 10 números</div>
                                 </div>
                             </md-input-container>
-                        </div>
+                        </div> -->
                     </div>
                 </md-content>
               </md-tab>              

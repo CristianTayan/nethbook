@@ -104,6 +104,16 @@ angular.module('nextbook20App')
 	            }
 	        });
     	};
+    	this.Get_Col_Usuario_Update = function() {
+	        return $resource(urlService.server().appnext()+'Get_Col_Usuario_Update', {} , {
+	            get: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
     	this.Existencia_Usuario_Cedula = function(){
     		return $resource(urlService.server().appnext()+'Existencia_Usuario_Cedula', {} , {
 	            consulta: {

@@ -159,16 +159,80 @@ var app = angular.module('nextbook20App')
 		            ariaLabel: 'Respuesta Registro',
 		            clickOutsideToClose: false,
 		            locals: {
-		                obj: col_usuario
+		            	col_usuario:col_usuario,
+		                tipo_usuario: $scope.tipo_usuario,
+		                tipo_documento: $scope.tipo_documento,
+		                vistas: $scope.vistas,
+		                ciudades: $scope.ciudades,
+		                operadora: $scope.operadora
 		            }
 		        });
 		    }
 
-		    function DialogController_editar($scope, $rootScope, colaboradores_Service, obj) {
-		    	console.log('test');
-		        $scope.data_usuario = obj;
-		        $scope.data_usuario_update = function() {
-		            colaboradores_Service.Update_Tipo_Consumo().actualizar($scope.data_usuario).$promise.then(function(data) {
+		    function DialogController_editar($scope, tipo_usuario,colaboradores_Service, tipo_documento,vistas, ciudades, operadora,col_usuario) {				
+		    	
+		    	function succes_data_usuario(data){
+		    		$scope.data_usuario=data.respuesta;
+		    		console.log($scope.data_usuario);
+		    	}
+
+		    	$scope.Get_Data_Usuario=function(){
+		    		colaboradores_Service.Get_Col_Usuario_Update().get({id:col_usuario.id},succes_data_usuario).$promise;
+		    	}
+		    	$scope.Get_Data_Usuario();
+		    	// ------------------------------SELECT TIPO DOCUMENTO------------------------------
+			        var vm = $scope;
+			        vm.selectCallback = selectCallback;
+			        vm.selectDocument = tipo_documento;
+			        vm.selectModelDocument = {
+			            selectedPerson: vm.selectDocument[0],
+			            selectedPeople: [vm.selectDocument[2], vm.selectDocument[4]],
+			            selectedPeopleSections: []
+			        };
+
+			        $scope.tipe_document = function(event){
+			        	$scope.tipodocumento = vm.selectModelDocument.selectedPerson.nombre;
+			        	// vm.selectCocument.selectedPerson.id
+			        }
+
+			    // ------------------------------SELECT CIUDADES------------------------------
+			        var cm = $scope;
+			        cm.selectCallback = selectCallback;
+			        cm.selectCiudades = ciudades;
+			        cm.selectModelCiudad = {
+			            selectedCiudades: undefined,
+			            selectedPeople: [cm.selectCiudades[2], cm.selectCiudades[4]],
+			            selectedPeopleSections: []
+			        };
+
+			    // ------------------------------SELECT OPERADORAS TELEFONICA------------------
+			        var om = $scope;
+			        om.selectCallback = selectCallback;
+			        om.selectOperadora = operadora;
+			        om.selectModelOperadora = {
+			            selectedOperadora: undefined,
+			            selectedPeople: [om.selectOperadora[2], om.selectOperadora[4]],
+			            selectedPeopleSections: []
+			        };
+
+		    	// ---------------------------SELECT BUSQUEDA TIPO USUARIO---------------------
+					var vd = $scope;
+			        vd.selectCallback = selectCallback;
+			        vd.selectPeople = tipo_usuario;
+			        vd.selectModel = {
+			            selectedPerson: undefined,
+			            selectedPeople: [vd.selectPeople[2], vd.selectPeople[4]],
+			            selectedPeopleSections: []
+			        };
+
+		        // Nuevo registro tipo inventario
+		        $scope.col_usuario_nuevo = function() {
+		        	$scope.data_usuario.id_localidad=cm.selectModelCiudad.selectedCiudades.id;
+		        	$scope.data_usuario.id_tipo_documento=vm.selectModelDocument.selectedPerson.id;
+		        	$scope.data_usuario.id_tipo_usuario=vd.selectModel.selectedPerson.id;
+		        	$scope.data_usuario.id_operadora_telefonica=om.selectModelOperadora.selectedOperadora.id;
+		        	$scope.data_usuario.vistas = $scope.stuff0;
+		            colaboradores_Service.Add_Col_Usuario().add($scope.data_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_usuario", {});
 		                if (data.respuesta == true) {
 		                    $mdDialog.show(
