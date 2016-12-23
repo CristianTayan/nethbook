@@ -1,5 +1,5 @@
-<md-dialog aria-label="Tipo Usuario">
-    <form name="form_col_tipo_usuario" ng-submit="col_tipo_usuario_nuevo()">
+<md-dialog aria-label="FormProductos">
+    <form name="form_usuario" ng-submit="col_tipo_usuario_nuevo()">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Nuevo, Tipo Usuario</h2>
@@ -9,10 +9,53 @@
                 </md-button>
             </div>
         </md-toolbar>
-        <md-dialog-content>
-            <div class="md-dialog-content">
-                <md-content class="md-no-momentum">
-                    <md-input-container class="md-icon-float md-block">
+        <md-dialog-content style="width: 1000px!important">
+
+            <div layout="row">
+                <div flex>
+                    <md-sidenav layout="column" class="main-sidenav md-sidenav-left" style="position:fixed !important; top: 64px;" md-is-locked-open="$mdMedia('gt-md')">
+                        <md-content md-scroll-y flex layout="column">
+                            <md-sidemenu>
+                                <md-sidemenu-content md-icon="view_stream" md-heading="Privilegios" md-arrow="true">
+                                    <md-sidemenu-button href="#/App/Inventario/Tipo_Categoria">
+                                        <md-icon>assessment</md-icon> Tipo Categoría</md-sidemenu-button>
+                                    <md-sidemenu-button href="#/App/Inventario/Tipo_Garantia">
+                                        <md-icon>add_alert</md-icon> Tipo Garantía</md-sidemenu-button>
+                                    <md-sidemenu-button href="#/App/Inventario/Tipo_Consumo">
+                                        <md-icon>assignment_turned_in</md-icon> Tipo Consumo</md-sidemenu-button>
+                                    <md-sidemenu-button href="#/App/Inventario/Tipo_Productos">
+                                        <md-icon>subtitles</md-icon> Tipo Productos</md-sidemenu-button>
+                                    <md-sidemenu-button href="#/App/Inventario/Tipo_Catalogo">
+                                        <md-icon>bookmark</md-icon> Tipo Catalogos</md-sidemenu-button>
+                                </md-sidemenu-content>
+                            </md-sidemenu>
+                        </md-content>
+                    </md-sidenav>
+
+                </div>
+                <div flex>
+                    <md-table-container>
+                        <table md-table md-row-select flex-xs flex-gt-xs="80" ng-model="selected" md-progress="promise">
+                            <thead md-head md-order="query.order" md-on-reorder="Get_Tipo_Usuario ">
+                                <tr md-row>
+                                    <th md-column md-order-by="nameToLower"><span>VER</span></th>
+                                    <th md-column md-numeric>CREAR</th>
+                                    <th md-column md-numeric>MODIFICAR</th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in combinacion_provilegios">
+                                    <td md-cell>{{dessert.accion_ver}}</td>
+                                    <td md-cell>{{dessert.accon_guardar}}</td>
+                                    <td md-cell>{{dessert.accion_modificar}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </md-table-container>
+                </div>
+                <div flex>
+                    <md-input-container class="md-icon-float md-block" flex="80">
                         <md-icon class="md-primary">view_compact</md-icon>
                         <label>Nombre Tipo Usuario</label>
                         <input name="nom_tipo_consumo" ng-model="data_col_tipo_usuario.nombre" type="text" required tipousuario-validator>
@@ -21,7 +64,7 @@
                             <div ng-message="campo">Registro Repetido</div>
                         </div>
                     </md-input-container>
-                    <md-input-container md-no-float class="md-block">
+                    <md-input-container md-no-float class="md-block" flex="80">
                         <md-icon class="md-primary">description</md-icon>
                         <label>Descripción</label>
                         <textarea name="descripcion" ng-model="data_col_tipo_usuario.descripcion" type="text" required></textarea>
@@ -29,11 +72,10 @@
                             <div ng-message="required">Campo Requerido</div>
                         </div>
                     </md-input-container>
-                    <div layout="row" class="md-block" layout-align="center">
-
-                    </div>
-                </md-content>
+                </div>
+                
             </div>
+
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="cancel()">Cancelar</md-button>

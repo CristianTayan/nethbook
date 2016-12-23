@@ -194,6 +194,19 @@ angular.module('nextbook20App')
     	};
 	// ---------------------------------------------------------------FIN OPERADORA TELEFONICA---------------------------------------------------------//
 
+	// ---------------------------------------------------------------PRIVILEGIOS USUARIOS------------------------------------------------------//
+		this.Get_Combinacion_Privilegios = function() {
+	        return $resource(urlService.server().appnext()+'Get_Combinacion_Privilegios', {} , {
+	            get: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
+	// ---------------------------------------------------------------FIN PRIVILEGIOS USUARIOS---------------------------------------------------------//
+
 	
 
   });
