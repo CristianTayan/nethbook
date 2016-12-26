@@ -420,6 +420,7 @@ var app = angular.module('nextbook20App')
 
 		    function DialogController_nuevo($scope,vistas,combinacion_provilegios) {
 		    	$scope.selected=[];
+		    	$scope.permisos=[];
 		    	// ------------------------ GENERACION DE VISTAS PRIVILEG---------------------------
 					$scope.stuff0 = vistas;//angular.copy(stuff);
 					$scope.combinacion_provilegios = combinacion_provilegios;
@@ -468,6 +469,28 @@ var app = angular.module('nextbook20App')
 		        }
 		        $scope.cancel = function() {
 		            $mdDialog.cancel();
+		        };
+
+		        $scope.select_modulo = function(modulo) {
+		        	$scope.modulo=modulo;
+		        	var index=$scope.permisos.indexOf($scope.modulo);
+		        	if ($scope.permisos.indexOf(modulo)==-1) {
+		        		$scope.selected=[];
+		        	}else{
+		        		$scope.selected=[];
+		        		$scope.selected.push($scope.permisos[index].permisos);
+		        	}
+		        };
+
+		        $scope.select_permiso = function(permisos) {
+		        	var index=$scope.permisos.indexOf($scope.modulo);
+		        	console.log(index);
+		        	if ($scope.permisos.indexOf($scope.modulo)==-1) {
+		        		$scope.modulo.permisos=permisos;
+		        		$scope.permisos.push($scope.modulo);
+		        	}else{
+		        		$scope.permisos[index].permisos=permisos;
+		        	}
 		        };
 		    }
 	    // -------------------------------------------------------PROCESO EDITAR REGISTRO-----------------------------------------------------------
