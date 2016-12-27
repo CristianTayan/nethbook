@@ -153,18 +153,14 @@ var app = angular.module('nextbook20App')
 		            clickOutsideToClose: false,
 		            locals: {
 		            	col_usuario:col_usuario,
-		                tipo_usuario: $scope.tipo_usuario,
-		                tipo_documento: $scope.tipo_documento,
-		                vistas: $scope.vistas,
-		                ciudades: $scope.ciudades,
-		                operadora: $scope.operadora
+		                tipo_usuario: $scope.tipo_usuario
 		            }
 		        });
 		    }
 
-		    function DialogController_editar($scope, tipo_usuario,colaboradores_Service, tipo_documento,vistas, ciudades, operadora,col_usuario) {				
-		    	
-		    	function succes_data_usuario(data){
+		    function DialogController_editar($scope, tipo_usuario,colaboradores_Service, col_usuario) {				
+		    	$scope.data_usuario=col_usuario;
+		    	/*function succes_data_usuario(data){
 		    		$scope.data_usuario=data.respuesta;
 		    		console.log($scope.data_usuario);
 		    	}
@@ -172,59 +168,25 @@ var app = angular.module('nextbook20App')
 		    	$scope.Get_Data_Usuario=function(){
 		    		colaboradores_Service.Get_Col_Usuario_Update().get({id:col_usuario.id},succes_data_usuario).$promise;
 		    	}
-		    	$scope.Get_Data_Usuario();
-		    	// ------------------------------SELECT TIPO DOCUMENTO------------------------------
-			        var vm = $scope;
-			        vm.selectCallback = selectCallback;
-			        vm.selectDocument = tipo_documento;
-			        vm.selectModelDocument = {
-			            selectedPerson: vm.selectDocument[0],
-			            selectedPeople: [vm.selectDocument[2], vm.selectDocument[4]],
-			            selectedPeopleSections: []
-			        };
-
-			        $scope.tipe_document = function(event){
-			        	$scope.tipodocumento = vm.selectModelDocument.selectedPerson.nombre;
-			        	// vm.selectCocument.selectedPerson.id
-			        }
-
-			    // ------------------------------SELECT CIUDADES------------------------------
-			        var cm = $scope;
-			        cm.selectCallback = selectCallback;
-			        cm.selectCiudades = ciudades;
-			        cm.selectModelCiudad = {
-			            selectedCiudades: undefined,
-			            selectedPeople: [cm.selectCiudades[2], cm.selectCiudades[4]],
-			            selectedPeopleSections: []
-			        };
-
-			    // ------------------------------SELECT OPERADORAS TELEFONICA------------------
-			        var om = $scope;
-			        om.selectCallback = selectCallback;
-			        om.selectOperadora = operadora;
-			        om.selectModelOperadora = {
-			            selectedOperadora: undefined,
-			            selectedPeople: [om.selectOperadora[2], om.selectOperadora[4]],
-			            selectedPeopleSections: []
-			        };
-
+		    	$scope.Get_Data_Usuario();*/
+		    	for (var i = 0; i < tipo_usuario.length; i++) {
+		    		if (tipo_usuario[i].id==col_usuario.id_tipo_usuario) {
+		    			$scope.selected_tipo_user=tipo_usuario[i];
+		    		}
+		    	}
 		    	// ---------------------------SELECT BUSQUEDA TIPO USUARIO---------------------
 					var vd = $scope;
 			        vd.selectCallback = selectCallback;
 			        vd.selectPeople = tipo_usuario;
 			        vd.selectModel = {
-			            selectedPerson: undefined,
+			            selectedPerson: $scope.selected_tipo_user,
 			            selectedPeople: [vd.selectPeople[2], vd.selectPeople[4]],
 			            selectedPeopleSections: []
 			        };
 
 		        // Nuevo registro tipo inventario
 		        $scope.col_usuario_nuevo = function() {
-		        	$scope.data_usuario.id_localidad=cm.selectModelCiudad.selectedCiudades.id;
-		        	$scope.data_usuario.id_tipo_documento=vm.selectModelDocument.selectedPerson.id;
 		        	$scope.data_usuario.id_tipo_usuario=vd.selectModel.selectedPerson.id;
-		        	$scope.data_usuario.id_operadora_telefonica=om.selectModelOperadora.selectedOperadora.id;
-		        	$scope.data_usuario.vistas = $scope.stuff0;
 		            colaboradores_Service.Add_Col_Usuario().add($scope.data_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_usuario", {});
 		                if (data.respuesta == true) {
@@ -403,7 +365,7 @@ var app = angular.module('nextbook20App')
 		            clickOutsideToClose: false,
 		            locals: {
 		                vistas: $scope.vistas,
-		                combinacion_provilegios:$scope.combinacion_provilegios
+		                combinacion_privilegios:$scope.combinacion_privilegios
 		            }
 		        })
 		    }
@@ -413,17 +375,16 @@ var app = angular.module('nextbook20App')
 			}
 			colaboradores_Service.Get_Vistas().get({},success_vistas).$promise;
 
-			function success_combinacion_provilegios(data){
-			$scope.combinacion_provilegios=data.respuesta;
+			function success_combinacion_privilegios(data){
+			$scope.combinacion_privilegios=data.respuesta;
 			}
-			colaboradores_Service.Get_Combinacion_Privilegios().get({},success_combinacion_provilegios).$promise;
+			colaboradores_Service.Get_Combinacion_Privilegios().get({},success_combinacion_privilegios).$promise;
 
-		    function DialogController_nuevo($scope,vistas,combinacion_provilegios) {
+		    function DialogController_nuevo($scope,vistas,combinacion_privilegios) {
 		    	$scope.selected=[];
-		    	$scope.permisos=[];
-		    	// ------------------------ GENERACION DE VISTAS PRIVILEG---------------------------
+		    	// ------------------------ GENERACION DE VISTAS PRIVILEGIOS---------------------------
 					$scope.stuff0 = vistas;//angular.copy(stuff);
-					$scope.combinacion_provilegios = combinacion_provilegios;
+					$scope.combinacion_privilegios = combinacion_privilegios;
 		        // Nuevo registro tipo inventario
 		        $scope.col_tipo_usuario_nuevo = function() {
 		        	$scope.data_col_tipo_usuario.vistas = $scope.stuff0;
@@ -473,28 +434,56 @@ var app = angular.module('nextbook20App')
 
 		        $scope.select_modulo = function(modulo) {
 		        	$scope.modulo=modulo;
-		        	var index=$scope.permisos.indexOf($scope.modulo);
-		        	if ($scope.permisos.indexOf(modulo)==-1) {
-		        		$scope.selected=[];
-		        	}else{
-		        		$scope.selected=[];
-		        		$scope.selected.push($scope.permisos[index].permisos);
+		        	for (var i = 0; i < $scope.combinacion_privilegios.length; i++) {
+		        		if ($scope.combinacion_privilegios[i].id==$scope.modulo.permisos.id) {
+		        			$scope.selected=[];
+		        			$scope.selected.push($scope.combinacion_privilegios[i]);
+		        			console.log($scope.combinacion_privilegios[i]);
+		        			break;
+		        		}
 		        	}
 		        };
 
 		        $scope.select_permiso = function(permisos) {
-		        	var index=$scope.permisos.indexOf($scope.modulo);
-		        	console.log(index);
-		        	if ($scope.permisos.indexOf($scope.modulo)==-1) {
-		        		$scope.modulo.permisos=permisos;
-		        		$scope.permisos.push($scope.modulo);
-		        	}else{
-		        		$scope.permisos[index].permisos=permisos;
+
+		        	for (var i = 0; i < $scope.stuff0.length; i++) {
+		        		//NIVEL 0
+		        		if ($scope.stuff0[i].children.length>0) {
+		        			//NIVEL 1
+		        			for (var j = 0; j < $scope.stuff0[i].children.length; j++) {
+		        				if ($scope.stuff0[i].children[j].id==$scope.modulo.id) {
+		        					$scope.stuff0[i].children[j].permisos=permisos;
+		        					break;
+		        				}else{
+		        					if ($scope.stuff0[i].children[j].children.length>0) {
+		        						//NIVEL 2
+		        						for (var k = 0; k < $scope.stuff0[i].children[j].children.length; k++) {
+		        							if ($scope.stuff0[i].children[j].children[k].id==$scope.modulo.id) {
+					        					$scope.stuff0[i].children[j].children[k].permisos=permisos;
+					        					break;
+					        				}else{
+					        					if ($scope.stuff0[i].children[j].children[k].children.length>0) {
+					        						//NIVEL 3
+					        						for (var l = 0; l < $scope.stuff0[i].children[j].children[k].children.length; l++) {
+					        							if ($scope.stuff0[i].children[j].children[k].children[l].id==$scope.modulo.id) {
+																$scope.stuff0[i].children[j].children[k].children[l].permisos=permisos;
+					        							}
+					        						}
+					        					}
+					        				}
+		        						}
+		        					}
+		        				}
+		        			}
+		        		}
 		        	}
+
 		        };
 		    }
 	    // -------------------------------------------------------PROCESO EDITAR REGISTRO-----------------------------------------------------------
+
 		    $scope.col_tipo_usuario_dialog_editar = function(categoria) {
+
 		        $mdDialog.show({
 		            controller: DialogController_editar,
 		            templateUrl: 'views/app/colaboradores/tipo_usuario/update.html',
@@ -503,15 +492,26 @@ var app = angular.module('nextbook20App')
 		            ariaLabel: 'Respuesta Registro',
 		            clickOutsideToClose: false,
 		            locals: {
-		                obj: categoria
+		                obj: categoria,
+		                combinacion_privilegios:$scope.combinacion_privilegios
 		            }
 		        });
 		    }
 
-		    function DialogController_editar($scope, $rootScope, colaboradores_Service, obj) {
-		        $scope.data_inv_tipo_consumo = obj;
+		    function DialogController_editar($scope, $rootScope, colaboradores_Service, obj,combinacion_privilegios) {
+		        $scope.data_tipo_usuario = obj;
+		        $scope.selected=[];
+
+		    	function success_vistas_By_Tipo_User(data){
+					$scope.vistas_tipo_user=data.respuesta;
+				}
+				colaboradores_Service.Get_Vistas_By_Tipo_User().get({id:obj.id},success_vistas_By_Tipo_User).$promise;
+
+		    	// ------------------------ GENERACION DE VISTAS PRIVILEGIOS---------------------------
+					$scope.combinacion_privilegios = combinacion_privilegios;
 		        $scope.data_col_tipo_usuario_update = function() {
-		            colaboradores_Service.Update_Tipo_Usuario().actualizar($scope.data_inv_tipo_consumo).$promise.then(function(data) {
+		        	$scope.data_tipo_usuario.vistas = $scope.vistas_tipo_user;
+		            colaboradores_Service.Update_Tipo_Usuario().actualizar($scope.data_tipo_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_tipo_consumo", {});
 		                if (data.respuesta == true) {
 		                    $mdDialog.show(
@@ -554,6 +554,53 @@ var app = angular.module('nextbook20App')
 		        $scope.cancel = function() {
 		            $mdDialog.cancel();
 		        };
+		        $scope.select_modulo = function(modulo) {
+		        	$scope.modulo=modulo;
+		        	for (var i = 0; i < $scope.combinacion_privilegios.length; i++) {
+		        		if ($scope.combinacion_privilegios[i].id==$scope.modulo.permisos.id) {
+		        			$scope.selected=[];
+		        			$scope.selected.push($scope.combinacion_privilegios[i]);
+		        			break;
+		        		}
+		        	}
+		        };
+
+		         $scope.select_permiso = function(permisos) {
+
+		        	for (var i = 0; i < $scope.vistas_tipo_user.length; i++) {
+		        		//NIVEL 0
+		        		if ($scope.vistas_tipo_user[i].children.length>0) {
+		        			//NIVEL 1
+		        			for (var j = 0; j < $scope.vistas_tipo_user[i].children.length; j++) {
+		        				if ($scope.vistas_tipo_user[i].children[j].id==$scope.modulo.id) {
+		        					$scope.vistas_tipo_user[i].children[j].permisos=permisos;
+		        					break;
+		        				}else{
+		        					if ($scope.vistas_tipo_user[i].children[j].children.length>0) {
+		        						//NIVEL 2
+		        						for (var k = 0; k < $scope.vistas_tipo_user[i].children[j].children.length; k++) {
+		        							if ($scope.vistas_tipo_user[i].children[j].children[k].id==$scope.modulo.id) {
+					        					$scope.vistas_tipo_user[i].children[j].children[k].permisos=permisos;
+					        					break;
+					        				}else{
+					        					if ($scope.vistas_tipo_user[i].children[j].children[k].children.length>0) {
+					        						//NIVEL 3
+					        						for (var l = 0; l < $scope.vistas_tipo_user[i].children[j].children[k].children.length; l++) {
+					        							if ($scope.vistas_tipo_user[i].children[j].children[k].children[l].id==$scope.modulo.id) {
+																$scope.vistas_tipo_user[i].children[j].children[k].children[l].permisos=permisos;
+					        							}
+					        						}
+					        					}
+					        				}
+		        						}
+		        					}
+		        				}
+		        			}
+		        		}
+		        	}
+
+		        };
+
 		    }
 	    // --------------------------------------------------------PROCESO ELIMINAR REGISTRO--------------------------------------------------------
 		    $scope.col_tipo_usuario_dialog_eliminar = function(tipo_usuario) {

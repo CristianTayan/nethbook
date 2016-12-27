@@ -207,6 +207,19 @@ angular.module('nextbook20App')
     	};
 	// ---------------------------------------------------------------FIN PRIVILEGIOS USUARIOS---------------------------------------------------------//
 
+	// ---------------------------------------------------------------VISTAS Y PRIVILEGIOS POR TIPO DE USUARIO ----------------------------------------//
+		this.Get_Vistas_By_Tipo_User = function() {
+	        return $resource(urlService.server().appnext()+'Get_Vistas_By_Tipo_User', {} , {
+	            get: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
+	// ---------------------------------------------------------------FIN VISTAS Y PRIVILEGIOS POR TIPO DE USUARIO -------------------------------------------//
+
 	
 
   });

@@ -13,38 +13,41 @@
 
             <div layout="row">
                 <div flex>
-                    <md-sidenav layout="column" class="main-sidenav md-sidenav-left" style="position:fixed !important; top: 64px;" md-is-locked-open="$mdMedia('gt-md')">
+                    <md-sidenav layout="column" class="main-sidenav md-sidenav-left" style="position:fixed !important; top: 64px;" md-is-locked-open="$mdMedia('gt-lg')">
                         <md-content md-scroll-y flex layout="column">
                             <md-sidemenu>
-                                <div ng-repeat="vista in stuff0">
-                                    <md-sidemenu-content md-icon="view_stream" md-heading="{{vista.nombre}}" md-arrow="true">
-                                        <div ng-repeat="children1 in vista.children">
-                                            <md-sidemenu-button ng-click="select_modulo(children1)" ng-show="children1.children.length==0">
-                                                <md-icon>assessment</md-icon> {{children1.nombre}}
-                                            </md-sidemenu-button>
-                                            <md-sidemenu-content ng-if="children1.children.length>0" md-icon="view_stream" md-heading="{{children1.nombre}}" md-arrow="true">
-                                                <div ng-repeat="children2 in children1.children">
-                                                    <md-sidemenu-content ng-if="children2.children.length>0" md-icon="view_stream" md-heading="{{children2.nombre}}" md-arrow="true">
-                                                        <div ng-repeat="children3 in children2.children">
-                                                            <md-sidemenu-button ng-click="select_modulo(children3)" ng-show="children3.children.length==0">
-                                                                <md-icon>assessment</md-icon> {{children3.nombre}}
-                                                            </md-sidemenu-button>
-                                                            <md-sidemenu-content ng-if="children3.children.length>0" md-icon="view_stream" md-heading="{{children3.nombre}}" md-arrow="true">
-                                                            </md-sidemenu-content>
-                                                        </div>
-                                                    </md-sidemenu-content>
-                                                </div>
-                                            </md-sidemenu-content>
-                                        </div>
-                                    </md-sidemenu-content>
-                                </div>
+                                <md-sidemenu-group>
+                                    <md-subheader class="md-no-sticky">PRIVILEGIOS</md-subheader>
+                                    <div ng-repeat="vista in stuff0">
+                                        <md-sidemenu-content md-icon="view_stream" md-heading="{{vista.nombre}}" md-arrow="true">
+                                            <div ng-repeat="children1 in vista.children">
+                                                <md-sidemenu-button ng-click="select_modulo(children1)" ng-show="children1.children.length==0">
+                                                    <md-icon>assessment</md-icon> {{children1.nombre}}
+                                                </md-sidemenu-button>
+                                                <md-sidemenu-content ng-if="children1.children.length>0" md-icon="view_stream" md-heading="{{children1.nombre}}" md-arrow="true">
+                                                    <div ng-repeat="children2 in children1.children">
+                                                        <md-sidemenu-content ng-if="children2.children.length>0" md-icon="view_stream" md-heading="{{children2.nombre}}" md-arrow="true">
+                                                            <div ng-repeat="children3 in children2.children">
+                                                                <md-sidemenu-button style="margin-left: 16%;" ng-click="select_modulo(children3)" ng-show="children3.children.length==0">
+                                                                    <md-icon>assessment</md-icon> {{children3.nombre}}
+                                                                </md-sidemenu-button>
+                                                                <md-sidemenu-content ng-if="children3.children.length>0" md-icon="view_stream" md-heading="{{children3.nombre}}" md-arrow="true">
+                                                                </md-sidemenu-content>
+                                                            </div>
+                                                        </md-sidemenu-content>
+                                                    </div>
+                                                </md-sidemenu-content>
+                                            </div>
+                                        </md-sidemenu-content>
+                                    </div>
                             </md-sidemenu>
                         </md-content>
+                        </md-sidemenu-group>
                     </md-sidenav>
-
                 </div>
                 <div flex>
                     <md-table-container>
+                        <md-button class="md-warn">{{modulo.nombre}}</md-button>
                         <table md-table md-row-select flex-xs flex-gt-xs="80" ng-model="selected" md-progress="promise">
                             <thead md-head md-order="query.order" md-on-reorder="Get_Tipo_Usuario ">
                                 <tr md-row>
@@ -54,18 +57,18 @@
                                 </tr>
                             </thead>
                             <tbody md-body>
-                                <tr md-row md-select="dessert" ng-click="select_permiso(dessert)" md-select-id="name" md-auto-select ng-repeat="dessert in combinacion_provilegios">
+                                <tr md-row md-select="dessert" ng-click="select_permiso(dessert)" md-select-id="name" md-auto-select ng-repeat="dessert in combinacion_privilegios">
                                     <td md-cell>
-                                    <md-icon class="md-primary" ng-show="dessert.accion_ver==true">check</md-icon>
-                                    <md-icon class="md-warn" ng-show="dessert.accion_ver==false">close</md-icon>
+                                        <md-icon class="md-primary" ng-show="dessert.accion_ver==true">check</md-icon>
+                                        <md-icon class="md-warn" ng-show="dessert.accion_ver==false">close</md-icon>
                                     </td>
                                     <td md-cell>
-                                    <md-icon class="md-primary" ng-show="dessert.accon_guardar==true">check</md-icon>
-                                    <md-icon class="md-warn" ng-show="dessert.accon_guardar==false">close</md-icon>
+                                        <md-icon class="md-primary" ng-show="dessert.accion_guardar==true">check</md-icon>
+                                        <md-icon class="md-warn" ng-show="dessert.accion_guardar==false">close</md-icon>
                                     </td>
                                     <td md-cell>
-                                    <md-icon class="md-primary" ng-show="dessert.accion_modificar==true">check</md-icon>
-                                    <md-icon class="md-warn" ng-show="dessert.accion_modificar==false">close</md-icon>
+                                        <md-icon class="md-primary" ng-show="dessert.accion_modificar==true">check</md-icon>
+                                        <md-icon class="md-warn" ng-show="dessert.accion_modificar==false">close</md-icon>
                                     </td>
                                 </tr>
                             </tbody>

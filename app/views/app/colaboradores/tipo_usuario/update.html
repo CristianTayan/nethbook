@@ -1,44 +1,107 @@
-<md-dialog aria-label="inve-tipo-">
-    <form name="form_inv_tipo_consumo" ng-submit="data_col_tipo_usuario_update()">
+<md-dialog aria-label="FormProductos">
+    <form name="form_col_tipo_usuario" ng-submit="data_col_tipo_usuario_update()">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Actualizar Tipo Usuario</h2>
+                <h2>Actualizar, Tipo Usuario</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon aria-label="Close dialog">close</md-icon>
                 </md-button>
             </div>
         </md-toolbar>
-        <md-dialog-content>
-            <div class="md-dialog-content">
-                <md-content class="md-no-momentum">
-                    <md-input-container class="md-icon-float md-block">
+        <md-dialog-content style="width: 1000px!important">
+
+            <div layout="row">
+                <div flex>
+                    <md-sidenav layout="column" class="main-sidenav md-sidenav-left" style="position:fixed !important; top: 64px;" md-is-locked-open="$mdMedia('gt-lg')">
+                        <md-content md-scroll-y flex layout="column">
+                            <md-sidemenu>
+                                <md-sidemenu-group>
+                                    <md-subheader class="md-no-sticky">PRIVILEGIOS</md-subheader>
+                                    <div ng-repeat="vista in vistas_tipo_user">
+                                        <md-sidemenu-content md-icon="view_stream" md-heading="{{vista.nombre}}" md-arrow="true">
+                                            <div ng-repeat="children1 in vista.children">
+                                                <md-sidemenu-button ng-click="select_modulo(children1)" ng-show="children1.children.length==0">
+                                                    <md-icon>assessment</md-icon> {{children1.nombre}}
+                                                </md-sidemenu-button>
+                                                <md-sidemenu-content ng-if="children1.children.length>0" md-icon="view_stream" md-heading="{{children1.nombre}}" md-arrow="true">
+                                                    <div ng-repeat="children2 in children1.children">
+                                                        <md-sidemenu-content ng-if="children2.children.length>0" md-icon="view_stream" md-heading="{{children2.nombre}}" md-arrow="true">
+                                                            <div ng-repeat="children3 in children2.children">
+                                                                <md-sidemenu-button style="margin-left: 16%;" ng-click="select_modulo(children3)" ng-show="children3.children.length==0">
+                                                                    <md-icon>assessment</md-icon> {{children3.nombre}}
+                                                                </md-sidemenu-button>
+                                                                <md-sidemenu-content ng-if="children3.children.length>0" md-icon="view_stream" md-heading="{{children3.nombre}}" md-arrow="true">
+                                                                </md-sidemenu-content>
+                                                            </div>
+                                                        </md-sidemenu-content>
+                                                    </div>
+                                                </md-sidemenu-content>
+                                            </div>
+                                        </md-sidemenu-content>
+                                    </div>
+                            </md-sidemenu>
+                        </md-content>
+                        </md-sidemenu-group>
+                    </md-sidenav>
+                </div>
+                <div flex>
+                    <md-table-container>
+                        <md-button class="md-warn">{{modulo.nombre}}</md-button>
+                        <table md-table md-row-select flex-xs flex-gt-xs="80" ng-model="selected" md-progress="promise">
+                            <thead md-head md-order="query.order" md-on-reorder="Get_Tipo_Usuario ">
+                                <tr md-row>
+                                    <th md-column md-order-by="nameToLower"><span>VER</span></th>
+                                    <th md-column md-numeric>CREAR</th>
+                                    <th md-column md-numeric>MODIFICAR</th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row md-select="dessert" ng-click="select_permiso(dessert)" md-select-id="name" md-auto-select ng-repeat="dessert in combinacion_privilegios">
+                                    <td md-cell>
+                                        <md-icon class="md-primary" ng-show="dessert.accion_ver==true">check</md-icon>
+                                        <md-icon class="md-warn" ng-show="dessert.accion_ver==false">close</md-icon>
+                                    </td>
+                                    <td md-cell>
+                                        <md-icon class="md-primary" ng-show="dessert.accion_guardar==true">check</md-icon>
+                                        <md-icon class="md-warn" ng-show="dessert.accion_guardar==false">close</md-icon>
+                                    </td>
+                                    <td md-cell>
+                                        <md-icon class="md-primary" ng-show="dessert.accion_modificar==true">check</md-icon>
+                                        <md-icon class="md-warn" ng-show="dessert.accion_modificar==false">close</md-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+                </div>
+                <div flex>
+                    <md-input-container class="md-icon-float md-block" flex="80">
                         <md-icon class="md-primary">view_compact</md-icon>
-                        <label>Nombre Tipo Consumo</label>
-                        <input name="nom_tipo_categoria" ng-model="data_inv_tipo_consumo.nombre" type="text" required tipoconsumoupdate-validator>
-                        <div ng-messages="form_inv_tipo_consumo.nom_tipo_categoria.$error" ng-show="form_inv_tipo_consumo.nom_tipo_categoria.$dirty">
+                        <label>Nombre Tipo Usuario</label>
+                        <input name="nom_tipo_usuario" ng-model="data_tipo_usuario.nombre" type="text" required tipousuario-validator>
+                        <div ng-messages="form_col_tipo_usuario.nom_tipo_usuario.$error" ng-show="form_col_tipo_usuario.nom_tipo_usuario.$dirty">
                             <div ng-message="required">Campo Requerido</div>
                             <div ng-message="campo">Registro Repetido</div>
                         </div>
                     </md-input-container>
-                    <md-input-container md-no-float class="md-block">
+                    <md-input-container md-no-float class="md-block" flex="80">
                         <md-icon class="md-primary">description</md-icon>
                         <label>Descripción</label>
-                        <textarea name="descripcion" ng-model="data_inv_tipo_consumo.descripcion" type="text" required></textarea>
-                        <div ng-messages="form_inv_tipo_consumo.descripcion.$error" ng-show="form_inv_tipo_consumo.descripcion.$dirty">
+                        <textarea name="descripcion" ng-model="data_tipo_usuario.descripcion" type="text" required></textarea>
+                        <div ng-messages="form_col_tipo_usuario.descripcion.$error" ng-show="form_col_tipo_usuario.descripcion.$dirty">
                             <div ng-message="required">Campo Requerido</div>
                         </div>
                     </md-input-container>
-                    <div layout="row" class="md-block" layout-align="center">
+                </div>
 
-                    </div>
-                </md-content>
             </div>
+
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="cancel()">Cancelar</md-button>
             <md-button type="reset">Limpiar</md-button>
-            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_inv_tipo_consumo.$invalid">Guardar</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_col_tipo_usuario.$invalid">Guardar</md-button>
         </md-dialog-actions>
     </form>
 </md-dialog>
