@@ -64,7 +64,8 @@ var app = angular.module('nextbook20App')
 	    }
 	    // logeo ingreso app
   		$scope.ingresar = function() {
-  			consumirService.ip_public().then(function(data) {
+  			$location.path('/'+$scope.email+'001');
+  			/*consumirService.ip_public().then(function(data) {
   				getIPs(function(ip){
   					var obj = {'nick':$scope.email, 'clave':$scope.password};
 			        mainService.ingresar({acceso:obj,info_servidor:data, ip_cliente:ip, macadress:'00:00:00:00:00'}).acceso().$promise.then(function(data) {
@@ -105,15 +106,15 @@ var app = angular.module('nextbook20App')
 				            //---------------------- verificar si existe datos de persona-----------
 				            mainService.Get_Datos_Empresa().get().$promise.then(function(data) {
 				                if (data.respuesta) {
-				                    $location.path('/Seleccionar_Sucursal');
+				                    $location.path('/Colaborador/Seleccionar_Sucursal');
 				                } else {
-				                    $location.path('/Actualizar_Datos');
+				                    $location.path('/Colaborador/Actualizar_Datos');
 				                }
 				            });
 				        }
 			        });
   				});				
-			});
+			});*/
 	    }
 
 	    // registro ruc en el sistema

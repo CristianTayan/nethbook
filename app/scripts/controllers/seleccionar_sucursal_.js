@@ -14,7 +14,7 @@ angular.module('nextbook20App')
 	    });
 	    $scope.Select_Sucursal = function(index) {
 	        $localStorage.sucursal = index;
-	        $location.path('/Dash');
+	        $location.path('/Colaborador/Dash');
 	    }
 
 	    $scope.escapeRegExp = function(str) {

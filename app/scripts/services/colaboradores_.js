@@ -220,6 +220,28 @@ angular.module('nextbook20App')
     	};
 	// ---------------------------------------------------------------FIN VISTAS Y PRIVILEGIOS POR TIPO DE USUARIO -------------------------------------------//
 
+	//---------------------------------------------------------------- INGRESO COLABORADORES ----------------------------------------------------------------//
 	
+	this.Ingresar_Colaborador = function() {
+	        return $resource(urlService.server().appnext()+'Acceso_Colaborador', {} , {
+	            acceso: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
+
+    	this.Get_Img_By_Ruc = function() {
+	        return $resource(urlService.server().appnext()+'Get_Img_By_Ruc', {} , {
+	            acceso: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
 
   });
