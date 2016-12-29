@@ -233,12 +233,12 @@ angular.module('nextbook20App')
 	        });
     	};
 
-    	this.Get_Img_By_Ruc = function() {
-	        return $resource(urlService.server().appnext()+'Get_Img_By_Ruc', {} , {
-	            acceso: {
+    	this.Get_Data_By_Ruc = function() {
+	        return $resource(urlService.server().appnext()+'Get_Data_By_Ruc', {} , {
+	            get: {
 	                method: 'POST', isArray: false,
 	                params: {
-	                    token: $localStorage.token
+	                   // token: $localStorage.token
 	                }
 	            }
 	        });

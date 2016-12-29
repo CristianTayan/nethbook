@@ -10,7 +10,11 @@
 var app = angular.module('nextbook20App')
   	app.controller('acceso_colaboradores_Ctrl', function ($scope, $location, $routeParams,$mdDialog, mainService, colaboradores_Service,consumirService, $localStorage) {
 
-  		
+  		function success_data_ruc(data){
+  			$scope.datosE=data.respuesta;
+  		}
+  		colaboradores_Service.Get_Data_By_Ruc().get({ruc:$routeParams.ruc},success_data_ruc).$promise;
+
 	    // logeo ingreso Colaboradores
   		$scope.ingresar_colaborador = function() {
   			consumirService.ip_public().then(function(data) {

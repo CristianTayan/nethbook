@@ -15,8 +15,11 @@
                     <form name="form_ingreso_colaborador" ng-submit="ingresar_colaborador()">
                     
                         <md-card flex="60">
-        <div ><img ng-src="http://186.4.167.12/appnext1.1/storage/default/portada-default.jpg" class="md-card-image" alt="Bienvenido"></div>
+        <div ><img ng-src="{{datosE.img_portada}}" class="md-card-image" alt="{{datosE.razon_social}}"></div>
         <md-card-content>
+        <div style="text-align: center;">
+         <md-button class="md-primary" >{{datosE.razon_social}}</md-button>
+         </div>
           <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                             <label>Usuario</label>
                             <md-icon class="md-primary">person_pin</md-icon>
@@ -26,9 +29,10 @@
                             <label>Contraseña</label>
                             <md-icon class="md-primary">vpn_key</md-icon>
                             <input type="password" ng-model="data_ingreso_colaborador.clave" >
-                        </md-input-container>
+                        </md-input-container>        
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
+        <md-button href="#/" type="button" >CANCELAR</md-button>
           <md-button class="md-raised md-primary" type="submit" ng-disabled="form_ingreso_colaborador.$invalid">INGRESAR</md-button>
         </md-card-actions>
       </md-card>
