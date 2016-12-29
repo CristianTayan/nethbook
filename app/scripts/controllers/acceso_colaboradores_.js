@@ -18,6 +18,7 @@ var app = angular.module('nextbook20App')
 	    // logeo ingreso Colaboradores
   		$scope.ingresar_colaborador = function() {
   			consumirService.ip_public().then(function(data) {
+  				console.log('test');
   				getIPs(function(ip){
   					$scope.data_ingreso_colaborador.ruc=$routeParams.ruc;
   					var obj = $scope.data_ingreso_colaborador;
@@ -59,9 +60,9 @@ var app = angular.module('nextbook20App')
 				            //---------------------- verificar si existe datos de persona-----------
 				            mainService.Get_Datos_Empresa().get().$promise.then(function(data) {
 				                if (data.respuesta) {
-				                    $location.path('/Colaborador/Seleccionar_Sucursal');
+				                    $location.path('/Seleccionar_Sucursal');
 				                } else {
-				                    $location.path('/Colaborador/Actualizar_Datos');
+				                    $location.path('/Actualizar_Datos');
 				                }
 				            });
 				        }

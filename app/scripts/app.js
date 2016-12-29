@@ -51,7 +51,7 @@ var app = angular.module('nextbook20App', [
         // -------------------------------------------    Entrada principal    -------------------------------------------   
         
         $routeSegmentProvider    
-            .when('/Colaborador/Salir',    'salir')        
+            .when('/Salir',    'salir')        
             .segment('salir', {
                 controller: 'cerrar_session_Ctrl'
             });
@@ -71,7 +71,7 @@ var app = angular.module('nextbook20App', [
             });
          // Acceso Unico para cada empresa
         $routeSegmentProvider
-            .when('/:ruc',    'acceso-colaboradores')
+            .when('/Colaboradores/:ruc',    'acceso-colaboradores')
             .segment('acceso-colaboradores', {
                 templateUrl: 'views/acceso-colaboradores/acceso.html',
                 controller: 'acceso_colaboradores_Ctrl',
@@ -79,14 +79,14 @@ var app = angular.module('nextbook20App', [
             });
         // Actualizar Datos cambio contraseña
         $routeSegmentProvider
-            .when('/Colaborador/Actualizar_Datos',    'actualizar_datos')
+            .when('/Actualizar_Datos',    'actualizar_datos')
             .segment('actualizar_datos', {
                 templateUrl: 'views/actualizar_datos/index.html',
                 controller: 'actualizar_datos_Ctrl'
             });
         // Seleccionar Sucursal
         $routeSegmentProvider
-            .when('/Colaborador/Seleccionar_Sucursal',    'seleccionar_sucursal')
+            .when('/Seleccionar_Sucursal',    'seleccionar_sucursal')
                 .segment('seleccionar_sucursal', {
                     templateUrl: 'views/seleccionar_sucursal/index.html',
                     controller: 'seleccionar_sucursal_Ctrl'
@@ -98,35 +98,36 @@ var app = angular.module('nextbook20App', [
                 });
         // Escritorio General
         $routeSegmentProvider
-            .when('/Colaborador/Dash',    'dashboard')
-            .when('/Colaborador/Inicio',    'dashboard.inicio')
-            .when('/Colaborador/Perfil',    'dashboard.perfil')
-            .when('/Colaborador/App',    'dashboard.app')
+            .when('/Dash',    'dashboard')
+            .when('/Inicio',    'dashboard.inicio')
+            .when('/Perfil',    'dashboard.perfil')
+            .when('/Perfil_Personal',    'dashboard.perfil_personal')
+            .when('/App',    'dashboard.app')
 
-            .when('/Colaborador/App/Repositorio_Facturas',    'dashboard.repositorio_facturas')
-                .when('/Colaborador/App/Repositorio_Facturas/Nuevo',    'dashboard.repositorio_facturas.factura_compra')
-                .when('/Colaborador/App/Repositorio_Facturas/Tipo_Usuario',    'dashboard.repositorio_facturas.factura_venta')
+            .when('/App/Repositorio_Facturas',    'dashboard.repositorio_facturas')
+                .when('/App/Repositorio_Facturas/Nuevo',    'dashboard.repositorio_facturas.factura_compra')
+                .when('/App/Repositorio_Facturas/Tipo_Usuario',    'dashboard.repositorio_facturas.factura_venta')
 
-            .when('/Colaborador/App/Colaboradores',    'dashboard.colaboradores')
-                .when('/Colaborador/App/Colaboradores/Usuario',    'dashboard.colaboradores.usuario')
-                .when('/Colaborador/App/Colaboradores/Tipo_Usuario',    'dashboard.colaboradores.tipo_usuario')
+            .when('/App/Colaboradores',    'dashboard.colaboradores')
+                .when('/App/Colaboradores/Usuario',    'dashboard.colaboradores.usuario')
+                .when('/App/Colaboradores/Tipo_Usuario',    'dashboard.colaboradores.tipo_usuario')
 
-            .when('/Colaborador/App/Inventario',    'dashboard.inventario')
-                .when('/Colaborador/App/Inventario/',    'dashboard.inventario.menu')
-                .when('/Colaborador/App/Inventario/Categorias',    'dashboard.inventario.categoria')
-                .when('/Colaborador/App/Inventario/Marcas',    'dashboard.inventario.marcas')
-                .when('/Colaborador/App/Inventario/Modelos',    'dashboard.inventario.modelos')
-                .when('/Colaborador/App/Inventario/Productos',    'dashboard.inventario.productos')
-                .when('/Colaborador/App/Inventario/Ubicacion',    'dashboard.inventario.ubicacion')
-                .when('/Colaborador/App/Inventario/Garantia',    'dashboard.inventario.garantia')
-                .when('/Colaborador/App/Inventario/Estado_Descriptivo',    'dashboard.inventario.estado_descriptivo')
+            .when('/App/Inventario',    'dashboard.inventario')
+                .when('/App/Inventario/',    'dashboard.inventario.menu')
+                .when('/App/Inventario/Categorias',    'dashboard.inventario.categoria')
+                .when('/App/Inventario/Marcas',    'dashboard.inventario.marcas')
+                .when('/App/Inventario/Modelos',    'dashboard.inventario.modelos')
+                .when('/App/Inventario/Productos',    'dashboard.inventario.productos')
+                .when('/App/Inventario/Ubicacion',    'dashboard.inventario.ubicacion')
+                .when('/App/Inventario/Garantia',    'dashboard.inventario.garantia')
+                .when('/App/Inventario/Estado_Descriptivo',    'dashboard.inventario.estado_descriptivo')
                 // Parametrizacion Tipos
-                .when('/Colaborador/App/Inventario/Tipo_Categoria',    'dashboard.inventario.tipo_categoria')
-                .when('/Colaborador/App/Inventario/Tipo_Garantia',    'dashboard.inventario.tipo_garantia')
-                .when('/Colaborador/App/Inventario/Tipo_Consumo',    'dashboard.inventario.tipo_consumo')
-                .when('/Colaborador/App/Inventario/Tipo_Productos',    'dashboard.inventario.tipo_productos')
-                .when('/Colaborador/App/Inventario/Tipo_Catalogo',    'dashboard.inventario.tipo_catalogo')
-                .when('/Colaborador/App/Inventario/Bodegas',    'dashboard.inventario.bodegas')
+                .when('/App/Inventario/Tipo_Categoria',    'dashboard.inventario.tipo_categoria')
+                .when('/App/Inventario/Tipo_Garantia',    'dashboard.inventario.tipo_garantia')
+                .when('/App/Inventario/Tipo_Consumo',    'dashboard.inventario.tipo_consumo')
+                .when('/App/Inventario/Tipo_Productos',    'dashboard.inventario.tipo_productos')
+                .when('/App/Inventario/Tipo_Catalogo',    'dashboard.inventario.tipo_catalogo')
+                .when('/App/Inventario/Bodegas',    'dashboard.inventario.bodegas')
 
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
@@ -140,6 +141,10 @@ var app = angular.module('nextbook20App', [
                     .segment('perfil', {
                         templateUrl: 'views/dashboard/perfil.html',
                         controller: 'perfil_Ctrl'
+                    })
+                    .segment('perfil_personal', {
+                        templateUrl: 'views/dashboard/perfil_personal.html',
+                        // controller: 'perfil_Ctrl'
                     })
                     .segment('app', {
                         templateUrl: 'views/app/index.html',
@@ -269,7 +274,7 @@ var app = angular.module('nextbook20App', [
                 .up();
                     // Procesos Inventario
                     // $routeSegmentProvider
-                    //     .when('/Colaborador/Inventario',    'inventario')
+                    //     .when('Inventario',    'inventario')
                     //     // .when('/Inventario',    'app.perfil')
                         
                     //     .segment('app', {

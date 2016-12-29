@@ -6,20 +6,14 @@
             <div>
                 <md-input-container class="inputuser">
                     <label>Ruc</label>
-                    <input id="email" name="email" ng-model="email" type="text" ng-required="true" maxlength="10" ng-pattern="/[0-9-.]/">
+                    <input id="email" name="email" ng-model="email" type="text" required maxlength="10" ng-pattern="/[0-9]{1}/">
                     <div ng-messages="formlogin.email.$error" ng-show="formlogin.email.$dirty">
                         <div ng-message="required" class="my-message">requerido</div>
                         <div ng-message="pattern" class="my-message">Solo numeros</div>
                     </div>
                 </md-input-container>
-                <label class="suffix" style="padding-right: 50px!important;">001@facturanext.com</label>
-                <md-input-container class="inputpass">
-                    <label class="text-white2">Password</label>
-                    <input id="password" name="password" ng-model="password" type="password" autocomplete="off" required>
-                    <div ng-messages="formlogin.password.$error" ng-show="formlogin.password.$dirty">
-                        <div ng-message="required" class="my-message">requerido</div>
-                    </div>
-                </md-input-container>
+                
+                <label class="suffix" style="padding-right: 50px!important;">001@nextbook.ec</label>
                 <md-button class="md-raised md-accent" ng-disabled="formlogin.$invalid" type="submit">
                     <md-icon class="material-icons">security</md-icon> Entrar
                 </md-button>

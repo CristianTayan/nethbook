@@ -8,7 +8,7 @@
  * Controller of the nextbook20App
  */
 var app = angular.module('nextbook20App')
-  	app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService, $localStorage) {
+  	app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService, $localStorage, colaboradores_Service) {
   		$scope.elementview = false;
   		$scope.elemennotview = true;
   		
@@ -64,7 +64,22 @@ var app = angular.module('nextbook20App')
 	    }
 	    // logeo ingreso app
   		$scope.ingresar = function() {
-  			$location.path('/'+$scope.email+'001');
+  			var ruc = $scope.email+'001'
+  			colaboradores_Service.Get_Data_By_Ruc().get({ruc:ruc}).$promise.then(function(data){
+  				if (data.respuesta) {
+  					$location.path('/'+$scope.email+'001');
+  				}else{
+  					$mdDialog.show(
+			            $mdDialog.alert()
+			            .parent(angular.element(document.querySelector('#dialogContainer')))
+			            .clickOutsideToClose(true)
+			            .title('Lo sentimos :(')
+			            .textContent('Numero de Ruc No Existe')
+			            .ok('Entendido')
+			            .openFrom('#left')
+			        );
+  				}
+  			});
   			/*consumirService.ip_public().then(function(data) {
   				getIPs(function(ip){
   					var obj = {'nick':$scope.email, 'clave':$scope.password};
