@@ -67,7 +67,7 @@ var app = angular.module('nextbook20App')
   			var ruc = $scope.email+'001'
   			colaboradores_Service.Get_Data_By_Ruc().get({ruc:ruc}).$promise.then(function(data){
   				if (data.respuesta) {
-  					$location.path('/'+$scope.email+'001');
+  					$location.path('/Colaboradores/'+$scope.email+'001');
   				}else{
   					$mdDialog.show(
 			            $mdDialog.alert()
