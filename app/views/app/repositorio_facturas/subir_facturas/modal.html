@@ -1,0 +1,69 @@
+<md-dialog aria-label="Table Fu">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>La siguiente Información se almaceno correctamente</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content style="width: 1200px;">
+        <table style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Codigo</th>
+                    <th>Descripcion</th>
+                    <th>PrecioUnitario</th>
+                    <th>Descuento</th>
+                    <th>Precio Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in comprobante.detalles">
+                    <td>{{item[0].cantidad}}</td>     <!-- Cantidad -->
+                    <td>{{item[0].codigoPrincipal}}</td>    <!-- Codigo -->
+                    <td>{{item[0].descripcion}}</td>      <!-- Descripcion -->
+                    <td>{{item[0].precioUnitario}}</td>    <!-- PrecioUnitario -->
+                    <td>{{item[0].descuento}}</td>    <!-- Descuento -->
+                    <td>{{item[0].descuento}}</td>    <!-- Precio Total -->
+                </tr>
+            </tbody>
+        </table>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="cancel()">
+        Entendido
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+<style type="text/css">
+  table.one {
+      margin-bottom: 3em;
+      border-collapse: collapse;
+  }
+  td {
+      /* removed the border from the table data rows  */
+      text-align: center;
+      width: 10em;
+      padding: 1em;
+  }
+  
+  /* added a white font color to the heading text */
+  tr {
+      height: 1em;
+  }
+  table tr:nth-child(even) {
+      /* added all even rows a #eee color  */
+      background-color: #eee;
+  }
+  table tr:nth-child(odd) {
+      /* added all odd rows a #fff color  */
+      background-color: #fff;
+  }
+</style>

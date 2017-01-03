@@ -1,0 +1,22 @@
+'use strict';
+
+/**
+ * @ngdoc service
+ * @name nextbook20App.repositorioFacturas
+ * @description
+ * # repositorioFacturas
+ * Service in the nextbook20App.
+ */
+angular.module('nextbook20App')
+  .service('repositorioFacturas', function ($resource, urlService, $localStorage) {
+    this.Upload_XML = function() {
+        return $resource(urlService.server().appnext()+'Upload_XML', {} , {
+            add: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+	};
+  });

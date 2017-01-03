@@ -458,7 +458,6 @@ var app = angular.module('nextbook20App')
 		        };
 
 		        $scope.select_permiso = function(permisos) {
-
 		        	for (var i = 0; i < $scope.stuff0.length; i++) {
 		        		//NIVEL 0
 		        		if ($scope.stuff0[i].children.length>0) {
@@ -479,7 +478,7 @@ var app = angular.module('nextbook20App')
 					        						//NIVEL 3
 					        						for (var l = 0; l < $scope.stuff0[i].children[j].children[k].children.length; l++) {
 					        							if ($scope.stuff0[i].children[j].children[k].children[l].id==$scope.modulo.id) {
-																$scope.stuff0[i].children[j].children[k].children[l].permisos=permisos;
+															$scope.stuff0[i].children[j].children[k].children[l].permisos=permisos;
 					        							}
 					        						}
 					        					}
@@ -490,7 +489,6 @@ var app = angular.module('nextbook20App')
 		        			}
 		        		}
 		        	}
-
 		        };
 		    }
 	    // -------------------------------------------------------PROCESO EDITAR REGISTRO-----------------------------------------------------------
@@ -578,7 +576,7 @@ var app = angular.module('nextbook20App')
 		        	}
 		        };
 
-		         $scope.select_permiso = function(permisos) {
+		        $scope.select_permiso = function(permisos) {
 
 		        	for (var i = 0; i < $scope.vistas_tipo_user.length; i++) {
 		        		//NIVEL 0
@@ -611,7 +609,6 @@ var app = angular.module('nextbook20App')
 		        			}
 		        		}
 		        	}
-
 		        };
 
 		    }

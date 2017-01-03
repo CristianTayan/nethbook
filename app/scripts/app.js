@@ -28,7 +28,8 @@ var app = angular.module('nextbook20App', [
                                             'ngStorage',
                                             'ngMaterialSidemenu',
                                             'fiestah.money',
-                                            'ivh.treeview'
+                                            'ivh.treeview',
+                                            'cb.x2js'
                                         ]);
 
     app.config(function(ivhTreeviewOptionsProvider) {
@@ -103,15 +104,17 @@ var app = angular.module('nextbook20App', [
             .when('/Perfil',    'dashboard.perfil')
             .when('/Perfil_Personal',    'dashboard.perfil_personal')
             .when('/App',    'dashboard.app')
-
+            // --------------------------------------GESTION REPOSITORIO FACTURAS------------------------------------
             .when('/App/Repositorio_Facturas',    'dashboard.repositorio_facturas')
-                .when('/App/Repositorio_Facturas/Nuevo',    'dashboard.repositorio_facturas.factura_compra')
-                .when('/App/Repositorio_Facturas/Tipo_Usuario',    'dashboard.repositorio_facturas.factura_venta')
-
+                .when('/App/Repositorio_Facturas/Inicio_Facturas',    'dashboard.repositorio_facturas.inicio_facturas')
+                .when('/App/Repositorio_Facturas/Mis_Facturas',    'dashboard.repositorio_facturas.mis_facturas')
+                .when('/App/Repositorio_Facturas/Subir_Facturas',    'dashboard.repositorio_facturas.subir_facturas')
+                .when('/App/Repositorio_Facturas/Facturas_Rechazadas',    'dashboard.repositorio_facturas.facturas_rechazadas')
+            // ----------------------------------------GESTION COLABORADORES----------------------------------------
             .when('/App/Colaboradores',    'dashboard.colaboradores')
                 .when('/App/Colaboradores/Usuario',    'dashboard.colaboradores.usuario')
                 .when('/App/Colaboradores/Tipo_Usuario',    'dashboard.colaboradores.tipo_usuario')
-
+            // ------------------------------------------GESTION INVENTARIO-----------------------------------------
             .when('/App/Inventario',    'dashboard.inventario')
                 .when('/App/Inventario/',    'dashboard.inventario.menu')
                 .when('/App/Inventario/Categorias',    'dashboard.inventario.categoria')
@@ -136,7 +139,8 @@ var app = angular.module('nextbook20App', [
             .within()
                     .segment('inicio', {
                         templateUrl: 'views/dashboard/inicio.html',
-                        controller: 'inicio_Ctrl'
+                        controller: 'inicio_Ctrl',
+                        default: true
                     })
                     .segment('perfil', {
                         templateUrl: 'views/dashboard/perfil.html',
@@ -144,7 +148,7 @@ var app = angular.module('nextbook20App', [
                     })
                     .segment('perfil_personal', {
                         templateUrl: 'views/dashboard/perfil_personal.html',
-                        // controller: 'perfil_Ctrl'
+                        controller: 'perfil_personal_Ctrl'
                     })
                     .segment('app', {
                         templateUrl: 'views/app/index.html',
@@ -174,15 +178,23 @@ var app = angular.module('nextbook20App', [
                         // controller: 'colaboradores_Ctrl'
                     })
                         .within()
-                            .segment('mis_facturas', {
+                            .segment('inicio_facturas', {
                                 default: true,
+                                templateUrl: 'views/app/repositorio_facturas/inicio_facturas/index.html',
+                                // controller: 'repfac_inicio_Ctrl'
+                            })
+                            .segment('mis_facturas', {
                                 templateUrl: 'views/app/repositorio_facturas/mis_facturas/index.html',
-                                // controller: 'col_usuario_Ctrl'
+                                // controller: 'col_tipo_usuario_Ctrl'
                             })
                             .segment('subir_facturas', {
                                 templateUrl: 'views/app/repositorio_facturas/subir_facturas/index.html',
-                                // controller: 'col_tipo_usuario_Ctrl'
+                                controller: 'subir_factura_electronica_Ctrl'
                             })
+                            .segment('facturas_rechazadas', {
+                                templateUrl: 'views/app/repositorio_facturas/facturas_rechazadas/index.html',
+                                // controller: 'repfac_facturas_rechazadas_Ctrl'
+                            })   
                         .up()
 
 

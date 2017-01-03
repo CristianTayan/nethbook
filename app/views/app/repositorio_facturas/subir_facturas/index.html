@@ -1,0 +1,38 @@
+ <md-content class="md-padding" flex-gt-md="100" layout-xs="column" layout="row">  <!-- ng-controller="SubirFacCtrl" -->
+	    <div flex-xs flex-gt-xs="40" layout="column">
+	    	<form name="facturasForm" ng-submit="guardar_factura_electronica()" >
+	    		<div layout-gt-sm="row">
+		        	<md-input-container class="md-icon-float md-block" flex-gt-sm>
+			        	<md-icon class="md-primary">airplay</md-icon>
+			            <input type="file" ng-model="data.xml_file" on-read-file="showContent($fileContent)" accept="text/xml" aria-label="input-content"/>
+			        </md-input-container>
+		        </div>
+
+	    		<div layout-gt-sm="row">
+		            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+		                <md-icon class="md-primary">airplay</md-icon>
+		                <label>Ingrese clave de acceso del documento</label>
+		                <input type="text" required name="clave" ng-model="data.clave" md-maxlength="49" ng-maxlength="49" />
+		                <div ng-messages="facturasForm.clave.$error">
+		                    <div ng-message="required">Clave de acceso Requerido</div>
+		                </div>
+		            </md-input-container>
+		        </div>
+		        <div layout-gt-sm="row" class="center end">
+		            <md-button class="md-raised md-primary" type="submit" ng-disabled="facturasForm.$invalid">
+		            	<md-tooltip>Gardar Factura Electrónica</md-tooltip>
+		                Guardar <i class="fa fa-angle-double-right"></i>
+		            </md-button>
+		            <md-button class="md-raised md-accent" type="reset">
+		                Limpiar <i class="fa fa-trash-o"></i>
+		            </md-button>
+		        </div>
+	    	</form>
+		</div>
+
+		<div flex-xs flex-gt-xs="20" layout="column">
+		</div>
+		<div flex-xs flex-gt-xs="40" layout="column">
+			<img width="100%" alt="150x150" src="images/repositorio_factura/factura.png" />
+		</div>    
+</md-content>
