@@ -10,29 +10,69 @@
       </div>
     </md-toolbar>
 
-    <md-dialog-content style="width: 1200px;">
-        <table style="width: 100%;">
+    <md-dialog-content style="width: 1400px;">
+        <md-content layout-padding layout-wrap>
+            {{infofactura.infoAdicional}}
+        </md-content>
+        <md-card>
+        <md-card-header>
+          <md-card-avatar>
+            <md-icon class="md-avatar-icon">menu</md-icon>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">Title</span>
+            <span class="md-subhead">subhead</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">In-card actions</span>
+            <span class="md-subhead">Description</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="start center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+        <md-card-content>
+          <p>
+            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+          </p>
+        </md-card-content>
+      </md-card>
+        <table id="table-example-1" style="width: 100%;">
             <thead>
                 <tr>
-                    <th>Cantidad</th>
-                    <th>Codigo</th>
-                    <th>Descripcion</th>
-                    <th>PrecioUnitario</th>
-                    <th>Descuento</th>
-                    <th>Precio Total</th>
+                    <th rowspan="2">DESCRIPCIÓN</th>
+                    <th rowspan="2">CANTIDAD</th>
+                    <th rowspan="2">PRECIO UNITARIO</th>
+                    <th rowspan="2">DESCUENTOS</th>
+                    <th rowspan="2">TOTAL</th>
+                    <th colspan="5">TIPO DE GASTOS</th>
+                </tr>
+                <tr>
+                    <th ng-repeat="i in tipo_consumo">
+                        <md-checkbox aria-label="{{i}}">{{i.nombre}}</md-checkbox>
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in comprobante.detalles">
-                    <td>{{item[0].cantidad}}</td>     <!-- Cantidad -->
-                    <td>{{item[0].codigoPrincipal}}</td>    <!-- Codigo -->
-                    <td>{{item[0].descripcion}}</td>      <!-- Descripcion -->
-                    <td>{{item[0].precioUnitario}}</td>    <!-- PrecioUnitario -->
-                    <td>{{item[0].descuento}}</td>    <!-- Descuento -->
-                    <td>{{item[0].descuento}}</td>    <!-- Precio Total -->
+                <tr ng-repeat="item in detalle">
+                    <td>{{item.descripcion}}</td>
+                    <td>{{item.cantidad}}</td>
+                    <td>{{item.precioUnitario}}</td>
+                    <td>{{item.descuento}}</td>
+                    <td>{{item.precioTotalSinImpuesto}}</td>
+                    <td ng-repeat="i in tipo_consumo">
+                        <md-checkbox aria-label="{{i}}"></md-checkbox>
+                    </td>
                 </tr>
             </tbody>
         </table>
+
+
+
     </md-dialog-content>
     <md-dialog-actions layout="row">
       <span flex></span>
@@ -44,14 +84,14 @@
 </md-dialog>
 <style type="text/css">
   table.one {
-      margin-bottom: 3em;
+      /*margin-bottom: 3em;*/
       border-collapse: collapse;
   }
   td {
       /* removed the border from the table data rows  */
       text-align: center;
-      width: 10em;
-      padding: 1em;
+      /*width: 10em;*/
+      /*padding: 1em;*/
   }
   
   /* added a white font color to the heading text */
@@ -66,4 +106,37 @@
       /* added all odd rows a #fff color  */
       background-color: #fff;
   }
+  #table-example-1 { 
+  border: solid thin; 
+  border-collapse: collapse; 
+}
+#table-example-1 caption { 
+  padding-bottom: 0.2em;
+    position: relative;
+    top: 5px;
+}
+#table-example-1 th, 
+#table-example-1 td { 
+  border: solid thin;
+  padding: 0.5rem 2rem;
+}
+#table-example-1 td {
+  white-space: nowrap;
+}
+#table-example-1 th { 
+  font-weight: normal; 
+}
+#table-example-1 td { 
+  border-style: none solid; 
+  vertical-align: top; 
+}
+#table-example-1 th { 
+  padding: 0.2em; 
+  vertical-align: middle; 
+  text-align: center; 
+}
+
+#table-example-1 tbody td:first-child::after { 
+  content: leader(". "); '
+}
 </style>
