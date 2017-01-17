@@ -29,7 +29,8 @@ var app = angular.module('nextbook20App', [
                                             'ngMaterialSidemenu',
                                             'fiestah.money',
                                             'ivh.treeview',
-                                            'cb.x2js'
+                                            'cb.x2js',
+                                            'io-barcode'
                                         ]);
 
     app.config(function(ivhTreeviewOptionsProvider) {

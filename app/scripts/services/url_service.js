@@ -12,8 +12,8 @@ angular.module('nextbook20App')
     // AngularJS will instantiate a singleton by calling "new" on this function
     this.server=function() {
         return {
-            appserviosnext: function() {
-                return "http://186.4.167.12/appserviosnext/index.php/";
+            appserviciosnext: function() {
+                return "http://186.4.167.12/appserviciosnext/public/index.php/";
             }
             ,appnext: function() {
                 // return "http://186.4.167.12/appnext/";
