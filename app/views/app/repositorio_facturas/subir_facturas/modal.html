@@ -1,8 +1,8 @@
 <md-dialog aria-label="Table Fu">
-  <form ng-cloak>
+  <form ng-cloak ng-submit="guardar_factura()">
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>La siguiente Información se almaceno correctamente</h2>
+        <h2>La siguiente Información se almacenó correctamente</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <md-icon aria-label="Close dialog">close</md-icon>
@@ -87,8 +87,8 @@
     </md-dialog-content>
     <md-dialog-actions layout="row">
       <span flex></span>
-      <md-button ng-click="cancel()">
-        Entendido
+      <md-button class="md-raised md-primary" type="submit">
+        Guardar
       </md-button>
     </md-dialog-actions>
   </form>

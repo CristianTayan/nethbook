@@ -99,8 +99,12 @@
 
 	    function modal_Ctrl($scope, $mdDialog, obj, tipo_consumo) {
 	    	$scope.infofactura = obj.factura;
-	    	//console.log(obj.factura);
 	    	$scope.tipo_consumo = tipo_consumo;
+
+	    	for (var i = 0; i < $scope.tipo_consumo.length; i++) {
+	    		$scope.tipo_consumo[i].total=0;
+	    	}
+
 	    	var vec = [];
 	    	if(!obj.factura.detalles.detalle.length){
 	    		vec[0] = obj.factura.detalles.detalle;
@@ -116,17 +120,14 @@
 	    	for (var i = 0; i < $scope.detalle.length; i++) {
 	    		$scope.detalle[i].gasto=array_gastos;
 	    	}
-	    	// $scope.comprobante = obj.factura.detalles;
-	    	// console.log($scope.comprobante);
+
+	    	//-------------------------------------------------------- Sumar y Asignar cada producto a un tipo de gasto -------------------------
 	    	$scope.valores_sumados=[];
 	    	$scope.select_gasto=function(item,gasto){
 	    		var index;
 	    		var index_valor;
 	    		var obj_valor_sumado;
-	    		// for (var i = 0; i < $scope.tipo_consumo.length; i++) {
-	    		// 	$scope.tipo_consumo[i].total=0;
-	    		// 	$scope.tipo_consumo[i].selected=false;
-	    		// }
+
 	    		 index=$scope.detalle.indexOf(item);
 	    		for (var i = 0; i < $scope.detalle[index].gasto.length; i++) {
 	    			if ($scope.detalle[index].gasto[i].nombre==gasto.nombre) {
@@ -139,29 +140,27 @@
 	    		obj_valor_sumado.gasto=gasto.nombre;
 	    		obj_valor_sumado.valor=item.precioTotalSinImpuesto;
 
-	    		index_valor= $scope.valores_sumados.map(function(e) { return e.gasto; }).indexOf(gasto.nombre);
+	    		index_valor= $scope.valores_sumados.map(function(e) { return e.valor; }).indexOf(item.precioTotalSinImpuesto);
 	    		if (index_valor==-1) {
 	    			$scope.valores_sumados.push(obj_valor_sumado);
 	    		}
-	    		console.log(index_valor);
 	    		
-
-	    		for (var i = 0; i < $scope.tipo_consumo.length; i++) {
-	    			//console.log($scope.tipo_consumo[i].total);
-	    		}
-
 	    			for (var j = 0; j < $scope.detalle[index].gasto.length; j++) {
 	    				if ($scope.detalle[index].gasto[j].selected==true) {
 	    					for (var k = 0; k < $scope.tipo_consumo.length; k++) {
 	    						if ($scope.detalle[index].gasto[j].nombre==$scope.tipo_consumo[k].nombre) {
 	    							if (index_valor==-1) {
-	    								$scope.tipo_consumo[k].total=parseFloat($scope.tipo_consumo[k].total)+parseFloat($scope.detalle[index].precioTotalSinImpuesto);
+	    								$scope.tipo_consumo[k].total=(parseFloat($scope.tipo_consumo[k].total)+parseFloat($scope.detalle[index].precioTotalSinImpuesto)).toFixed(2);
+	    								// console.log($scope.tipo_consumo[k].total);
 	    							}else{
-	    									$scope.tipo_consumo[k].total=parseFloat($scope.tipo_consumo[k].total)+parseFloat($scope.detalle[index].precioTotalSinImpuesto);
 	    								for (var l = 0; l < $scope.tipo_consumo.length; l++) {
 				    						if ($scope.valores_sumados[index_valor].gasto==$scope.tipo_consumo[l].nombre) {
-				    							if ($scope.tipo_consumo[l].total>0) {
-				    							$scope.tipo_consumo[l].total=parseFloat($scope.tipo_consumo[k].total)-parseFloat($scope.detalle[index].precioTotalSinImpuesto);
+				    							if (parseFloat($scope.tipo_consumo[l].total)>0) {
+				    							// console.log('valor actual:'+$scope.valores_sumados[index_valor].gasto+'- valor actual:'+$scope.tipo_consumo[k].nombre+'- restar'+$scope.valores_sumados[index_valor].valor);
+				    							$scope.tipo_consumo[l].total=(parseFloat($scope.tipo_consumo[l].total)-parseFloat($scope.valores_sumados[index_valor].valor)).toFixed(2);
+				    							$scope.tipo_consumo[k].total=(parseFloat($scope.tipo_consumo[k].total)+parseFloat($scope.detalle[index].precioTotalSinImpuesto)).toFixed(2);
+				    							$scope.valores_sumados[index_valor].gasto=$scope.tipo_consumo[k].nombre;
+				    							break;
 				    							}
 				    						}
 				    					}
@@ -174,7 +173,7 @@
 	    			}
 
 	    	}
-
+	    	//-------------------------------------------------------- Sumar y Asignar todos los productos a un tipo de gasto -------------------------
 		    $scope.select_all_gasto=function(gasto){
 
 		   	$scope.Suma=0;
@@ -225,6 +224,15 @@
 	    	
 	    	// console.log($scope.tipo_consumo);
 	    	}
+
+	    	//--------------------------------------- GUardar Factura ---------------------------------------
+	    	$scope.guardar_factura= function() {
+		      console.log($scope.tipo_consumo);
+
+		      repositorioFacturas.Upload_Factura().add({factura:$scope.infofactura,totales_tipo_gasto:$scope.tipo_consumo}).$promise.then(function(data){
+		      	console.log(data);
+		      })
+		    };
 
 		    $scope.cancel = function() {
 		      $mdDialog.cancel();
