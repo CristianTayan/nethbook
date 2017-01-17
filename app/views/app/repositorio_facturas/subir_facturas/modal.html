@@ -1,8 +1,8 @@
 <md-dialog aria-label="Table Fu">
-  <form ng-cloak>
+  <form ng-cloak ng-submit="guardar_factura()">
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>La siguiente Información se almaceno correctamente</h2>
+        <h2>La siguiente Información se almacenó correctamente</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <md-icon aria-label="Close dialog">close</md-icon>
@@ -42,7 +42,7 @@
         </md-card-content>
       </md-card>
         <table id="table-example-1" style="width: 100%;">
-            <thead>
+        <thead>
                 <tr>
                     <th rowspan="2">DESCRIPCIÓN</th>
                     <th rowspan="2">CANTIDAD</th>
@@ -53,31 +53,42 @@
                 </tr>
                 <tr>
                     <th ng-repeat="i in tipo_consumo">
-                        <md-checkbox aria-label="{{i}}">{{i.nombre}}</md-checkbox>
+                        <md-checkbox aria-label="{{i}}" ng-model="i.id" ng-click="select_all_gasto(i)" ng-checked="i.selected">{{i.nombre}}</md-checkbox>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in detalle">
-                    <td>{{item.descripcion}}</td>
-                    <td>{{item.cantidad}}</td>
-                    <td>{{item.precioUnitario}}</td>
-                    <td>{{item.descuento}}</td>
-                    <td>{{item.precioTotalSinImpuesto}}</td>
-                    <td ng-repeat="i in tipo_consumo">
-                        <md-checkbox aria-label="{{i}}"></md-checkbox>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <tr ng-repeat="item in detalle">
+        <td>{{item.descripcion}}</td>
+        <td>{{item.cantidad}}</td>
+        <td>{{item.precioUnitario}}</td>
+        <td>{{item.descuento}}</td>
+        <td>{{item.precioTotalSinImpuesto}}</td>
+        <td ng-repeat="i in tipo_consumo">
+        <label for="{{'q'+item.codigoPrincipal+'-'+i.nombre}}"><input type="radio" name="{{item.codigoPrincipal}}" id="{{'q'+item.codigoPrincipal+'-'+i.nombre}}" ng-checked="i.id" ng-click="select_gasto(item,i)"/></label>
+        </td>
+    </tr>
+
+      <tr >
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total</td>
+        <td ng-repeat="i in tipo_consumo">
+         {{i.total}}
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 
 
     </md-dialog-content>
     <md-dialog-actions layout="row">
       <span flex></span>
-      <md-button ng-click="cancel()">
-        Entendido
+      <md-button class="md-raised md-primary" type="submit">
+        Guardar
       </md-button>
     </md-dialog-actions>
   </form>
