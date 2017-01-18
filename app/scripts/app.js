@@ -110,7 +110,9 @@ var app = angular.module('nextbook20App', [
                 .when('/App/Repositorio_Facturas/Inicio_Facturas',    'dashboard.repositorio_facturas.inicio_facturas')
                 .when('/App/Repositorio_Facturas/Mis_Facturas',    'dashboard.repositorio_facturas.mis_facturas')
                 .when('/App/Repositorio_Facturas/Subir_Facturas',    'dashboard.repositorio_facturas.subir_facturas')
+                .when('/App/Repositorio_Facturas/Facturas_Correo',    'dashboard.repositorio_facturas.facturas_correo')
                 .when('/App/Repositorio_Facturas/Facturas_Rechazadas',    'dashboard.repositorio_facturas.facturas_rechazadas')
+                
             // ----------------------------------------GESTION COLABORADORES----------------------------------------
             .when('/App/Colaboradores',    'dashboard.colaboradores')
                 .when('/App/Colaboradores/Usuario',    'dashboard.colaboradores.usuario')
@@ -192,6 +194,10 @@ var app = angular.module('nextbook20App', [
                                 templateUrl: 'views/app/repositorio_facturas/subir_facturas/index.html',
                                 controller: 'subir_factura_electronica_Ctrl'
                             })
+                            .segment('facturas_correo', {
+                                templateUrl: 'views/app/repositorio_facturas/facturas_correo/index.html',
+                                controller: 'leer_correo_facturas_electronica_Ctrl'
+                            })   
                             .segment('facturas_rechazadas', {
                                 templateUrl: 'views/app/repositorio_facturas/facturas_rechazadas/index.html',
                                 // controller: 'repfac_facturas_rechazadas_Ctrl'

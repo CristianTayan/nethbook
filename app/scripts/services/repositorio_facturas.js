@@ -10,6 +10,20 @@
 angular.module('nextbook20App')
     .service('repositorioFacturas', function ($resource, urlService, $localStorage) {
 
+        // --------------------------------FACTURAS CORREOS--------------------------------//
+
+        this.Leer_Facturas_Correo = function() {
+            return $resource(urlService.server().appnext()+'Leer_Facturas_Correo', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
+
         this.Estado_Factura = function() {
             return $resource(urlService.server().appserviciosnext()+'estado_factura', {} , {
                 add: {
