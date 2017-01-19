@@ -308,10 +308,6 @@
 	});
 
 	app.controller('leer_correo_facturas_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES, $rootScope) {
-		repositorioFacturas.Get_Gastos().get().$promise.then(function(data) {
-	        $scope.tipo_consumos = data.respuesta.data;
-	    });
-
 
 	    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
 		    $scope.selected = [];
@@ -399,20 +395,28 @@
 		        });
 			}
 
-			function modal_Ctrl($scope, $mdDialog, obj, tipo_consumo, IO_BARCODE_TYPES) {
+			function modal_Ctrl($scope, $mdDialog, obj, IO_BARCODE_TYPES,repositorioFacturas,$localStorage) {
 	    	$scope.factura_cabecera = obj.autorizaciones.autorizacion;
 
+	    	$scope.query_tipo_gastos = {
+		        filter: '',
+		        num_registros: 100,
+		        pagina_actual: 1,
+		        limit: '100',
+		        page_num: 1
+		    };
 
+		    		/// Leer tipos de Gastos---------------------------------
+			repositorioFacturas.Get_Gastos().get($scope.query_tipo_gastos).$promise.then(function(data) {
+	        $localStorage.tipo_consumos = data.respuesta.data;
+	    	});
 
 
 	        var x2js = new X2JS();
 	        var obj = x2js.xml_str2json(obj.autorizaciones.autorizacion.comprobante);
 	        $scope.infofactura = obj.factura;
-	        $scope.tipo_consumo = tipo_consumo;
+	        $scope.tipo_consumo = $localStorage.tipo_consumos;
 
-	        console.log($scope.infofactura);
-
-	        console.log($scope.infofactura.infoTributaria.claveAcceso);
 	        $scope.types = IO_BARCODE_TYPES
 	          $scope.code = $scope.infofactura.infoTributaria.claveAcceso
 	          $scope.type = 'CODE128B'
@@ -435,10 +439,10 @@
 	            $scope.detalle = obj.factura.detalles.detalle;
 	        }
 	        var array_gastos = [];
-	        for (var i = 0; i < tipo_consumo.length; i++) {
+	        for (var i = 0; i < $scope.tipo_consumo.length; i++) {
 	            array_gastos.push({
-	                id: tipo_consumo[i].id,
-	                nombre: tipo_consumo[i].nombre,
+	                id: $scope.tipo_consumo[i].id,
+	                nombre: $scope.tipo_consumo[i].nombre,
 	                selected: false
 	            });
 	        }
@@ -483,11 +487,12 @@
 	                obj_valor_sumado.valor = item.precioTotalSinImpuesto;
 
 	                index_valor = $scope.valores_sumados.map(function(e) {
-	                    return e.valor;
+	                    return e.index_prod;
 	                }).indexOf(index);
 	                if (index_valor == -1) {
 	                    $scope.valores_sumados.push(obj_valor_sumado);
 	                }
+
 
 	                for (var j = 0; j < $scope.detalle[index].gasto.length; j++) {
 	                    if ($scope.detalle[index].gasto[j].selected == true) {
@@ -500,7 +505,7 @@
 	                                    for (var l = 0; l < $scope.tipo_consumo.length; l++) {
 	                                        if ($scope.valores_sumados[index_valor].gasto == $scope.tipo_consumo[l].nombre) {
 	                                            if (parseFloat($scope.tipo_consumo[l].total) > 0) {
-	                                                // console.log('valor actual:'+$scope.valores_sumados[index_valor].gasto+'- valor actual:'+$scope.tipo_consumo[k].nombre+'- restar'+$scope.valores_sumados[index_valor].valor);
+	                                                 //console.log('valor actual:'+$scope.valores_sumados[index_valor].gasto+'- valor actual:'+$scope.tipo_consumo[k].nombre+'- restar'+$scope.valores_sumados[index_valor].valor);
 	                                                $scope.tipo_consumo[l].total = (parseFloat($scope.tipo_consumo[l].total) - parseFloat($scope.valores_sumados[index_valor].valor)).toFixed(2);
 	                                                $scope.tipo_consumo[k].total = (parseFloat($scope.tipo_consumo[k].total) + parseFloat($scope.detalle[index].precioTotalSinImpuesto)).toFixed(2);
 	                                                $scope.valores_sumados[index_valor].gasto = $scope.tipo_consumo[k].nombre;
@@ -523,45 +528,13 @@
 	            $scope.Suma = 0;
 	            var index = 0;
 	            index = $scope.tipo_consumo.indexOf(gasto);
-	            switch (gasto.nombre) {
-	                case 'ALIMENTACION':
-	                    for (var i = 0; i < $scope.detalle.length; i++) {
-	                        $scope.Suma = $scope.Suma + parseFloat($scope.detalle[i].precioTotalSinImpuesto);
-	                    }
-	                    $scope.tipo_consumo[index].total = $scope.Suma;
-	                    break;
-	                case 'EDUCACION':
-	                    for (var i = 0; i < $scope.detalle.length; i++) {
-	                        $scope.Suma = $scope.Suma + parseFloat($scope.detalle[i].precioTotalSinImpuesto);
-	                    }
-	                    $scope.tipo_consumo[index].total = $scope.Suma;
-	                    break;
-	                case 'SALUD':
-	                    for (var i = 0; i < $scope.detalle.length; i++) {
-	                        $scope.Suma = $scope.Suma + parseFloat($scope.detalle[i].precioTotalSinImpuesto);
-	                    }
-	                    $scope.tipo_consumo[index].total = $scope.Suma;
-	                    break;
-	                case 'VESTIMENTA':
-	                    for (var i = 0; i < $scope.detalle.length; i++) {
-	                        $scope.Suma = $scope.Suma + parseFloat($scope.detalle[i].precioTotalSinImpuesto);
-	                    }
 
-	                    $scope.tipo_consumo[index].total = $scope.Suma;
-	                    break;
-	                case 'VIVIENDA':
-	                    for (var i = 0; i < $scope.detalle.length; i++) {
+	            // Sumatoria total
+	            for (var i = 0; i < $scope.detalle.length; i++) {
 	                        $scope.Suma = $scope.Suma + parseFloat($scope.detalle[i].precioTotalSinImpuesto);
 	                    }
 	                    $scope.tipo_consumo[index].total = $scope.Suma;
-	                    break;
-	                case 'VARIOS':
-	                    for (var i = 0; i < $scope.detalle.length; i++) {
-	                        $scope.Suma = $scope.Suma + parseFloat($scope.detalle[i].precioTotalSinImpuesto);
-	                    }
-	                    $scope.tipo_consumo[index].total = $scope.Suma;
-	                    break;
-	            }
+
 
 	            for (var i = 0; i < $scope.tipo_consumo.length; i++) {
 	                if ($scope.tipo_consumo[i].nombre == gasto.nombre) {
@@ -573,6 +546,7 @@
 	            }
 
 	             $scope.Suma_detalles=$scope.Suma;
+	             $scope.valores_restados = [];
 	        }
 
 	        //--------------------------------------- GUardar Factura ---------------------------------------

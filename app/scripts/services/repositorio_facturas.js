@@ -58,8 +58,8 @@ angular.module('nextbook20App')
             });
         };
 
-        this.Upload_XML = function() {
-            return $resource(urlService.server().appnext()+'Upload_XML', {} , {
+        this.Upload_Factura = function() {
+            return $resource(urlService.server().appnext()+'Upload_Factura', {} , {
                 add: {
                     method: 'POST', isArray: false,
                     params: {
