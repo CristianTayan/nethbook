@@ -128,6 +128,10 @@ var app = angular.module('nextbook20App', [
                 .when('/App/Colaboradores/Usuario',    'dashboard.colaboradores.usuario')
                 .when('/App/Colaboradores/Tipo_Usuario',    'dashboard.colaboradores.tipo_usuario')
             // ------------------------------------------GESTION INVENTARIO-----------------------------------------
+            .when('/App/Facturacion',    'dashboard.facturacion')
+                // .when('/App/Colaboradores/Usuario',    'dashboard.colaboradores.usuario')
+                // .when('/App/Colaboradores/Tipo_Usuario',    'dashboard.colaboradores.tipo_usuario')
+            // ------------------------------------------GESTION INVENTARIO-----------------------------------------
             .when('/App/Inventario',    'dashboard.inventario')
                 .when('/App/Inventario/',    'dashboard.inventario.menu')
                 .when('/App/Inventario/Categorias',    'dashboard.inventario.categoria')
@@ -173,17 +177,17 @@ var app = angular.module('nextbook20App', [
                         templateUrl: 'views/app/facturacion/index.html',
                         // controller: 'colaboradores_Ctrl'
                     })
-                        .within()
-                            .segment('factura', {
-                                default: true,
-                                templateUrl: 'views/app/facturacion/factura/index.html',
-                                // controller: 'col_usuario_Ctrl'
-                            })
-                            .segment('subir_facturas', {
-                                templateUrl: 'views/app/facturacion/subir_facturas/index.html',
-                                // controller: 'col_tipo_usuario_Ctrl'
-                            })
-                        .up()
+                        // .within()
+                        //     .segment('factura', {
+                        //         default: true,
+                        //         templateUrl: 'views/app/facturacion/factura/index.html',
+                        //         // controller: 'col_usuario_Ctrl'
+                        //     })
+                        //     .segment('subir_facturas', {
+                        //         templateUrl: 'views/app/facturacion/subir_facturas/index.html',
+                        //         // controller: 'col_tipo_usuario_Ctrl'
+                        //     })
+                        // .up()
 
                     // ------------------------------------REPOSITORIO FACTURAS------------------------------------
                     .segment('repositorio_facturas', {

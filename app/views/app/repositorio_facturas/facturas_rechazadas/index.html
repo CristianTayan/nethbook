@@ -3,28 +3,30 @@
 <md-divider></md-divider>
 <md-content layout-padding layout-wrap>
     <md-table-container>
-        <div layout="row">
-            <md-input-container class="md-icon-float md-block" layout="column" aria-label="Close">
-                <md-icon class="md-primary">search</md-icon>
-                <label>Búsqueda</label>
-                <input name="nom_modelo" ng-model="query.filter" type="text" required>
-            </md-input-container>
-        </div>
-        <table md-table md-progress="promise">
+        <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
             <thead md-head md-order="query.order" md-on-reorder="data_inv_producto_get">
                 <tr md-row>
                     <th md-column md-numeric>Nro</th>
-                    <th md-column md-numeric>FECHA</th>
-                    <th md-column md-numeric>MOTIVO</th>
-                    <th md-column md-numeric>PROCESAR</th>
+                    <th md-column md-order-by="nameToLower">ASUNTO</th>
+                    <th md-column md-order-by="nameToLower">FECHA</th>
+                    <th md-column md-numeric>MOTIVO DEL RECHAZON DE LA FACTURA</th>
+                    <th md-column md-numeric>Ver Mensaje</th>
                 </tr>
             </thead>
             <tbody md-body>
                 <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in productos">
-                    <td>{{$index+1}}</td>
-                    <td>{{dessert.created_at}}</td>
-                    <td>{{dessert.razon_rechazo}}</td>
-                    <td><md-button class="md-accent md-raised md-hue-2" ng-click="procesar(dessert)">PROCESAR</md-button></td>
+                    <td md-cell>{{$index+1}}</td>
+                    <td md-cell>{{dessert.asunto}}</td>
+                    <td md-cell>{{dessert.created_at | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' | uppercase }}</td>
+                    <td md-cell>{{dessert.razon_rechazo}}</td>
+                    <td md-cell>
+                        <md-button class="md-accent md-raised md-hue-2 md-icon-button md-button md-ink-ripple" ng-click="procesar(dessert)">
+                            <md-icon>message</md-icon>
+                            <md-tooltip>
+                                Leer Mensaje Recibido
+                            </md-tooltip>
+                        </md-button>
+                    </td>
                 </tr>
             </tbody>
         </table>
