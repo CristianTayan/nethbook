@@ -1,1 +1,34 @@
-facturas rechazadas
+<md-button ng-href="#/App/Repositorio_Facturas/Inicio_Facturas" aria-label="btn_in">REPOSITORIO FACTURAS</md-button>/
+<md-button ng-disabled="true" class="md-primary" aria-label="btn_in">FACTURAS RECHAZADAS</md-button>
+<md-divider></md-divider>
+<md-content layout-padding layout-wrap>
+    <md-table-container>
+        <div layout="row">
+            <md-input-container class="md-icon-float md-block" layout="column" aria-label="Close">
+                <md-icon class="md-primary">search</md-icon>
+                <label>Búsqueda</label>
+                <input name="nom_modelo" ng-model="query.filter" type="text" required>
+            </md-input-container>
+        </div>
+        <table md-table md-progress="promise">
+            <thead md-head md-order="query.order" md-on-reorder="data_inv_producto_get">
+                <tr md-row>
+                    <th md-column md-numeric>Nro</th>
+                    <th md-column md-numeric>FECHA</th>
+                    <th md-column md-numeric>MOTIVO</th>
+                    <th md-column md-numeric>PROCESAR</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in productos">
+                    <td>{{$index+1}}</td>
+                    <td>{{dessert.created_at}}</td>
+                    <td>{{dessert.razon_rechazo}}</td>
+                    <td><md-button class="md-accent md-raised md-hue-2" ng-click="procesar(dessert)">PROCESAR</md-button></td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{total}}" md-on-paginate="data_inv_producto_get" md-page-select>
+    </md-table-pagination>
+</md-content>

@@ -20,9 +20,9 @@
 	    repositorioFacturas.Get_Gastos().get().$promise.then(function(data) {
 	        $scope.tipo_consumos = data.respuesta.data;
 	    });
-	    $scope.data = 	{
-					        clave: '2712201601179125123700120010640090040103002311519'
-					    };
+	    // $scope.data = 	{
+					//         clave: '1201201701170674050100120020100000187700000015911'
+					//     };
 
 	    var buscar_comprobante = function(xml_sin_empresa) {
 	        var campos_vector = _.keys(xml_sin_empresa);
@@ -41,6 +41,7 @@
 	            var x2js = new X2JS();
 	            var xml_final = x2js.xml_str2json(xml);
 	            var nombre_empresa = _.keys(xml_final);
+
 	            var xml_sin_empresa = xml_final[nombre_empresa[0]];
 	            var xml_final;
 	            var resultado = buscar_comprobante(xml_sin_empresa);
@@ -57,27 +58,34 @@
 	                    }
 	                }
 	            }
-	            var xml;
-	            var xml_filter = x2js.xml_str2json(xml_final);
-	            if (!xml_filter) {
-	                var f = xml_final;
-	                var m = f.replace("<![CDATA[", "");
-	                var m = m.replace("]]>", "");
-	                var xml_filter = x2js.xml_str2json(m);
+	            
+	            var data;
+	            if (typeof xml_final == "object") {
+	            	data = [{
+		                clave: xml_final.factura.infoTributaria.claveAcceso
+		            }];
+	            }else{
+	            	var xml;
+		            var xml_filter = x2js.xml_str2json(xml_final);
+		            if (!xml_filter) {
+		                var f = xml_final;
+		                var m = f.replace("<![CDATA[", "");
+		                var m = m.replace("]]>", "");
+		                var xml_filter = x2js.xml_str2json(m);
+		            }
+		            data = [{
+		                clave: xml_filter.factura.infoTributaria.claveAcceso
+		            }];		            
 	            }
-	            var data = [{
-	                clave: xml_filter.factura.infoTributaria.claveAcceso
-	            }];
-	            console.log(data);
-	            revision_factura(data);
+	            revision_factura(data);	            
 	        }
 	    };
 	    $scope.buscar_clave_acceso = function() {
 	        revision_factura($scope.data);
 	    }
 
-	    function revision_factura() {
-	        repositorioFacturas.Estado_Factura().add($scope.data).$promise.then(function(data) {
+	    function revision_factura(data) {
+	        repositorioFacturas.Estado_Factura().add(data[0]).$promise.then(function(data) {
 	            $mdDialog.show({
 	                controller: modal_Ctrl,
 	                templateUrl: 'views/app/repositorio_facturas/subir_facturas/modal.html',
@@ -119,26 +127,29 @@
 	    function modal_Ctrl($scope, $mdDialog, obj, tipo_consumo, IO_BARCODE_TYPES) {
 	    	$scope.factura_cabecera = obj.autorizaciones.autorizacion;
 
-
-
+			repositorioFacturas.Get_Tipo_Documentos().get().$promise.then(function(data) {
+		        // $scope.tipo_consumos = data.respuesta.data;
+		        console.log(data);
+		    });
 
 	        var x2js = new X2JS();
 	        var obj = x2js.xml_str2json(obj.autorizaciones.autorizacion.comprobante);
 	        $scope.infofactura = obj.factura;
 	        $scope.tipo_consumo = tipo_consumo;
-
-	        console.log($scope.infofactura);
-
-	        console.log($scope.infofactura.infoTributaria.claveAcceso);
 	        $scope.types = IO_BARCODE_TYPES
-	          $scope.code = $scope.infofactura.infoTributaria.claveAcceso
-	          $scope.type = 'CODE128B'
+	        $scope.code = $scope.infofactura.infoTributaria.claveAcceso
+	        $scope.type = 'CODE128B'
 
-	          $scope.options = {
+	        $scope.options = {
 	            width: 1,
-	            height: 50,
-	            displayValue: false,
-	          }
+	            height: 40,
+	            displayValue: true,
+	            font: 'monospace',
+	            textAlign: 'center',
+	            fontSize: 21.5,
+	            // backgroundColor: '#3F51B5',
+	            lineColor: '#6D6D6D'
+	        }
 
 
 	        for (var i = 0; i < $scope.tipo_consumo.length; i++) {
@@ -300,9 +311,9 @@
 		    $scope.selected = [];
 		    $scope.query = {
 		        filter: '',
-		        num_registros: 5,
+		        num_registros: 10,
 		        pagina_actual: 1,
-		        limit: '5',
+		        limit: '10',
 		        page_num: 1
 		    };
 
@@ -550,5 +561,77 @@
 	            $mdDialog.cancel();
 	        };
 	    }
+	});
+
+	app.controller('rechazadas_facturas_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES, $rootScope) {
+		repositorioFacturas.Get_Gastos().get().$promise.then(function(data) {
+	        $scope.tipo_consumos = data.respuesta.data;
+	    });
+	    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
+	    $scope.selected = [];
+		var bookmark;
+		$scope.selected = [];
+		$scope.query = {
+		    filter: '',
+		    num_registros: 10,
+		    pagina_actual: 1,
+		    limit: '10',
+		    page_num: 1
+		};
+
+		function success(desserts) {
+		    $scope.total = desserts.respuesta.total;
+		    $scope.productos = desserts.respuesta.data;
+		}
+
+		$scope.data_fac_rechazadas_get = function() {
+		    repositorioFacturas.Get_Facturas_Rechazadas().get($scope.query, success).$promise;
+		}
+
+		$rootScope.$on("tabla_facturas_rechazadas", function() {
+		    $scope.data_fac_rechazadas_get();
+		});
+
+		$scope.removeFilter = function() {
+		    $scope.filter.show = false;
+		    $scope.query.filter = '';
+		    if ($scope.filter.form.$dirty) {
+		        $scope.filter.form.$setPristine();
+		    }
+		};
+
+		$scope.$watch('query.filter', function(newValue, oldValue) {
+		    if (!oldValue) {
+		        bookmark = $scope.query.page;
+		    }
+		    if (newValue !== oldValue) {
+		        $scope.query.page = 1;
+		    }
+
+		    if (!newValue) {
+		        $scope.query.page = bookmark;
+		    }
+		    $scope.data_fac_rechazadas_get();
+		});
+
+		$scope.procesar = function(item_correo) {
+		    $mdDialog.show({
+		        controller: modal_view_mensaje_Ctrl,
+		        templateUrl: 'views/app/repositorio_facturas/facturas_rechazadas/modal_view_mensaje.html',
+		        parent: angular.element(document.body),
+		        clickOutsideToClose: false,
+		        locals: {
+		            obj: item_correo,
+		        }
+		    });
+		}
+
+		function modal_view_mensaje_Ctrl($scope, $mdDialog, obj) {
+		    console.log(obj);
+		    $scope.correo = obj;
+		    $scope.cancel = function() {
+		        $mdDialog.cancel();
+		    };
+		};	    	
 	});
 

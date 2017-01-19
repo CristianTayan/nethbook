@@ -11,7 +11,6 @@ angular.module('nextbook20App')
     .service('repositorioFacturas', function ($resource, urlService, $localStorage) {
 
         // --------------------------------FACTURAS CORREOS--------------------------------//
-
         this.Leer_Facturas_Correo = function() {
             return $resource(urlService.server().appnext()+'Leer_Facturas_Correo', {} , {
                 get: {
@@ -22,6 +21,30 @@ angular.module('nextbook20App')
                 }
             });
         };
+        // ---------------------------------SUBIR FACTURAS---------------------------------//
+        this.Get_Tipo_Documentos = function() {
+            return $resource(urlService.server().appnext()+'Get_Tipo_Documentos', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
+        // ------------------------------FACTURAS RECHAZADAS------------------------------//
+        this.Get_Facturas_Rechazadas = function() {
+            return $resource(urlService.server().appnext()+'Get_Facturas_Rechazadas', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
 
 
         this.Estado_Factura = function() {

@@ -2,7 +2,7 @@
     <form ng-cloak ng-submit="guardar_factura()">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Factura</h2>
+                <h2>Factura, NOMBRE COMERCIAL: {{infofactura.infoTributaria.nombreComercial}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon aria-label="Close dialog">close</md-icon>
@@ -14,25 +14,26 @@
             <div layout="row">
                 <md-card flex>
                     <md-card-content>
-                        Nombre Comercial: {{infofactura.infoTributaria.nombreComercial}}<br>
-                        Razon Social: {{infofactura.infoTributaria.razonSocial}}<br>
-                        Dirección Matríz: {{infofactura.infoTributaria.dirMatriz}}<br>
-                        Dir. Establecimiento: {{infofactura.infoFactura.dirEstablecimiento}}<br>
+                        RAZÓN SOCIAL: {{infofactura.infoTributaria.razonSocial}}<br>
+                        DIRECCIÓN MATRÍZ: {{infofactura.infoTributaria.dirMatriz}}<br>
+                        DIR. ESTABLECIMIENTO: {{infofactura.infoFactura.dirEstablecimiento}}<br>
                         
-                        Contribuyente Especial Nro: {{infofactura.infoFactura.contribuyenteEspecial}}<br>
-                        Obligado a Llevar Contabilidad: {{infofactura.infoFactura.obligadoContabilidad}}<br>
+                        
                     </md-card-content>
                 </md-card>
                 <md-card flex>
                     <md-card-content>
-                        Ruc:{{infofactura.infoTributaria.ruc}}<br>
-                        Tipo Documento: {{infofactura.infoTributaria.codDoc}}<br>
-                        Número de Autorización: {{factura_cabecera.numeroAutorizacion}}<br>
-                        Fecha y Hora Autorización: {{factura_cabecera.fechaAutorizacion}}<br>
-                        Ambiente: {{factura_cabecera.fechaAutorizacion}}<br>
-                        Emisión: {{factura_cabecera.fechaAutorizacion}}<br>
-
-                        Clave de Acceso: {{infofactura.infoTributaria.claveAcceso}}<br>
+                        RUC:{{infofactura.infoTributaria.ruc}}<br>
+                        NÚMERO AUTORIZACIÓN: {{factura_cabecera.numeroAutorizacion}}<br>
+                        OBLIGADO A LLEVAR CONTABLIDAD: {{infofactura.infoFactura.obligadoContabilidad}}<br>
+                        CONTRIBUYENTE ESPECIAL NRO: {{infofactura.infoFactura.contribuyenteEspecial}}<br>
+                    </md-card-content>
+                </md-card>
+                <md-card flex>
+                    <md-card-content>
+                        AMBIENTE: {{factura_cabecera.ambiente}} || TIPO DOCUMENTO: {{infofactura.infoTributaria.codDoc}}<br>
+                        FECHA DE EMISIÓN: {{factura_cabecera.fechaAutorizacion | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' |uppercase}}<br>
+                        Clave de Acceso:<br>
                         <io-barcode code="{{ code }}" type="{{ type }}" options="options"></io-barcode>
                     </md-card-content>
                 </md-card>
@@ -55,13 +56,17 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="item in detalle">
-                        <td>{{item.descripcion}}</td>
+                        <td>{{item.descripcion | limitTo : 50}}
+                            <md-tooltip md-visible="demo.showTooltip" md-direction="{{demo.tipDirection}}">
+                                {{item.descripcion}}
+                            </md-tooltip>
+                        </td>
                         <td>{{item.cantidad}}</td>
                         <td>{{item.precioUnitario}}</td>
                         <td>{{item.descuento}}</td>
                         <td>{{item.precioTotalSinImpuesto}}</td>
                         <td ng-repeat="i in tipo_consumo">
-                            <label for="{{'q'+item.codigoPrincipal+'-'+i.nombre}}">
+                            <label for="{{'q'+item.codigoPrincipal+'-'+i.nombre | limitTo : 5}}">
                                 <input type="radio" name="{{item.codigoPrincipal}}" id="{{'q'+item.codigoPrincipal+'-'+i.nombre}}" ng-checked="i.id" ng-click="select_gasto(item,i)" />
                             </label>
                         </td>
@@ -90,12 +95,12 @@
     </form>
 </md-dialog>
 <style type="text/css">
-    table.one {
+    #table-example-1 .one {
         /*margin-bottom: 3em;*/
         border-collapse: collapse;
     }
     
-    td {
+    #table-example-1 td {
         /* removed the border from the table data rows  */
         text-align: center;
         /*width: 10em;*/
@@ -103,16 +108,16 @@
     }
     /* added a white font color to the heading text */
     
-    tr {
+    #table-example-1 tr {
         height: 1em;
     }
     
-    table tr:nth-child(even) {
+    #table-example-1 tr:nth-child(even) {
         /* added all even rows a #eee color  */
         background-color: #eee;
     }
     
-    table tr:nth-child(odd) {
+    #table-example-1 tr:nth-child(odd) {
         /* added all odd rows a #fff color  */
         background-color: #fff;
     }

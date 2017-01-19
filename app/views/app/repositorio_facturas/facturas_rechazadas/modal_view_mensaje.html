@@ -1,0 +1,40 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>INFORMACIÓN DEL CORREO RECIBIDO</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content style="width: 900px!important">
+        <div class="md-dialog-content md-nopadding">
+            <div layout="row">
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>ASUNTO: </label>
+                        <input ng-model="correo.asunto">
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-block" flex>
+                    <label>DE: </label>
+                    <input value="{{correo.emisor_factura | uppercase}}">
+                </md-input-container>
+                <div flex="5" hide-xs hide-sm></div>
+                <md-input-container class="md-block" flex>
+                    <label>FECHA</label>
+                    <input value="{{correo.created_at | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' | uppercase}}">
+                </md-input-container>
+            </div>
+            <md-card>
+                <md-card-content>
+                    <div ng-bind-html="correo.contenido_correo | to_trusted"></div>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-dialog-content>
+</md-dialog>

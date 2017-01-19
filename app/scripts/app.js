@@ -30,9 +30,11 @@ var app = angular.module('nextbook20App', [
                                             'fiestah.money',
                                             'ivh.treeview',
                                             'cb.x2js',
-                                            'io-barcode'
+                                            'io-barcode',
+                                            'angularMoment'
                                         ]);
-
+    
+    // -----------------------------------------------SEGMENTACION QUERY UI-----------------------------------------------
     app.config(function(ivhTreeviewOptionsProvider) {
      ivhTreeviewOptionsProvider.set({
        defaultSelectedState: false,
@@ -43,6 +45,14 @@ var app = angular.module('nextbook20App', [
        twistieLeafTpl: '->',
      });
     });
+
+    // ---------------------------------------------concversion html------------------------------------------------------
+    app.filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+
+            return $sce.trustAsHtml(text.replace(/\n/g, '<br/>'));
+        };
+    }]);
     
     app.config(function ($routeSegmentProvider, $routeProvider) {
         // Configuring provider options    
@@ -200,7 +210,7 @@ var app = angular.module('nextbook20App', [
                             })   
                             .segment('facturas_rechazadas', {
                                 templateUrl: 'views/app/repositorio_facturas/facturas_rechazadas/index.html',
-                                // controller: 'repfac_facturas_rechazadas_Ctrl'
+                                controller: 'rechazadas_facturas_electronica_Ctrl'
                             })   
                         .up()
 
