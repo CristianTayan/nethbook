@@ -1,0 +1,36 @@
+<md-dialog aria-label="Mango (Fruit)">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Informacion Factura</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content >
+      <div class="md-dialog-content">
+        <p>Su proceso no pudo ser realiado por las siguientes opciones</p>
+        <ul>
+          <li>EL NUMERO DE LA CLAVE DE ACCESO ES INCORRECTO</li>
+          <li>LA CLAVE DE ACCESO PROPORCINADA NO ESTA DISPONIBLE EN LOS SERVICIOS WEB DEL SRI</li>
+        </ul>
+        <md-divider layout="row"></md-divider>
+        <br>
+        <p>Sugerencias</p>
+        <ul>
+          <li>REVISE SU CLAVE DE ACCESO E INTENTE NUEVAMENTE</li>
+          <li>DESCARGUÉ DE SU CUENTA DEL SRI Y INTENTAR SUBIR EL ARCHIVO XML</li>
+        </ul>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-accent md-raised" ng-click="cancel()">
+        ENTENDIDO
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
