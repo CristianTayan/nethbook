@@ -17,7 +17,7 @@ angular.module('nextbook20App')
 
 
     $scope.cambiar_datos_password = function(){
-    	mainService.Update_Password({pass:$scope.data.password}).get().$promise.then(function(data){
+    	mainService.Update_Password().get({pass:$scope.data.password}).$promise.then(function(data){
         if (data.respuesta == true) {
           $location.path('/Seleccionar_Sucursal');
         }else{

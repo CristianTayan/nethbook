@@ -64,6 +64,7 @@ var app = angular.module('nextbook20App')
 	    }
 	    // logeo ingreso app
   		$scope.ingresar = function() {
+  			console.log($scope.email);
   			var ruc = $scope.email+'001'
   			colaboradores_Service.Get_Data_By_Ruc().get({ruc:ruc}).$promise.then(function(data){
   				if (data.respuesta) {
@@ -73,9 +74,9 @@ var app = angular.module('nextbook20App')
 			            $mdDialog.alert()
 			            .parent(angular.element(document.querySelector('#dialogContainer')))
 			            .clickOutsideToClose(true)
-			            .title('Lo sentimos :(')
-			            .textContent('Numero de Ruc No Existe')
-			            .ok('Entendido')
+			            .title('LO SENTIMOS :(')
+			            .textContent('NÚMERO DE RUC NO EXISTE')
+			            .ok('ENTENDIDO')
 			            .openFrom('#left')
 			        );
   				}

@@ -80,7 +80,7 @@
 		                clave: xml_filter.factura.infoTributaria.claveAcceso
 		            }];		            
 	            }
-	            revision_factura(data);	            
+	            revision_factura(data[0]);	            
 	        }
 	    };
 	    $scope.buscar_clave_acceso = function() {
@@ -88,52 +88,39 @@
 	    }
 
 	    function revision_factura(data) {
-	        repositorioFacturas.Estado_Factura().add(data[0]).$promise.then(function(data) {
-	            $mdDialog.show({
-	                controller: modal_Ctrl,
-	                templateUrl: 'views/app/repositorio_facturas/subir_facturas/modal.html',
-	                parent: angular.element(document.body),
-	                clickOutsideToClose: false,
-	                locals: {
-	                    obj: data,
-	                    tipo_consumo: $scope.tipo_consumos
-	                }
-	            });
-	            if (data.respuesta == true) {
-	                $mdDialog.show(
-	                    $mdDialog.alert()
-	                    .parent(angular.element(document.querySelector('#dialogContainer')))
-	                    .clickOutsideToClose(true)
-	                    .title('NextBook')
-	                    .textContent('Registro Agregado Correctamente')
-	                    .ariaLabel('Registro Agregado Correctamente')
-	                    .ok('Ok!')
-	                    .openFrom('#left')
-	                );
-	            } else {
-	                if (data.respuesta == false) {
-	                    $mdDialog.show(
-	                        $mdDialog.alert()
-	                        .parent(angular.element(document.querySelector('#dialogContainer')))
-	                        .clickOutsideToClose(true)
-	                        .title('NextBook')
-	                        .textContent('Clave de Acceso no Válida ')
-	                        .ariaLabel('Clave de Acceso no Válida')
-	                        .ok('Ok!')
-	                        .openFrom('#left')
-	                    );
-	                }
-	            }
-	        });
+	        repositorioFacturas.Estado_Factura().add(data).$promise.then(function(data) {
+			    if (data.numeroComprobantes==0) {
+			        $mdDialog.show( {
+			            controller: informativo_Ctrl, templateUrl: 'views/app/repositorio_facturas/subir_facturas/modal_informativo.html', 
+			            parent: angular.element(document.body), 
+			            clickOutsideToClose: false,
+			        });
+			    }
+			    else {
+			        $mdDialog.show( {
+			            controller: modal_Ctrl, templateUrl: 'views/app/repositorio_facturas/subir_facturas/modal.html', 
+			            parent: angular.element(document.body), 
+			            clickOutsideToClose: false, 
+			            locals: { obj: data, tipo_consumo: $scope.tipo_consumos }
+			        });
+			    }
+			});
 	    };
+
+	    var  informativo_Ctrl = function($scope, $mdDialog) {
+	    	$scope.cancel = function(){
+	    		$mdDialog.cancel();	
+	    	}            
+        };
 
 	    function modal_Ctrl($scope, $mdDialog, obj, tipo_consumo, IO_BARCODE_TYPES) {
 	    	$scope.factura_cabecera = obj.autorizaciones.autorizacion;
 
 			repositorioFacturas.Get_Tipo_Documentos().get().$promise.then(function(data) {
-		        // $scope.tipo_consumos = data.respuesta.data;
-		        console.log(data);
+		        $scope.tipo_consumos = data.respuesta.data;
 		    });
+
+		    console.log(obj);
 
 	        var x2js = new X2JS();
 	        var obj = x2js.xml_str2json(obj.autorizaciones.autorizacion.comprobante);

@@ -24,22 +24,24 @@
 </md-toolbar>
 <div layout="row" layout-align="center center">
     <div class="p+">
-        <div class="p+">
-            <div class="card bgc-indigo-500">
-                <div class="toolbar">   
-                    <span class="toolbar__label fs-title tc-white-1 ml">Seleccionar Sucursal</span>
-                    <div class="toolbar__right">
-                        <lx-search-filter lx-width="400" lx-color="white" lx-closed="true">
-                            <input type="text" ng-model="vm.searchFilter.third" placeholder="Buscar por: codigo establesimiento, direccion">
-                        </lx-search-filter>
+        <div class="card">
+            <div flex-container="row">
+                <div layout="column"  flex>
+                    <div class="p+">
+                        <md-card >
+                            <md-card-content class="md-accent">
+                                <md-input-container md-no-float class="md-block">
+                                  <md-icon>search</md-icon>
+                                  <input ng-model="sucursalSearch" name="dc" placeholder="Buscar por: codigo establesimiento, direccion" class="md-accent">
+                                </md-input-container>
+                            </md-card-content>
+                        </md-card>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
             <div flex-container="row">                
                 <div layout="column"  flex>
-                    <div class="p+" ng-repeat="items in data_establecimiento">
+                    <div class="p+" ng-repeat="items in data_establecimiento | filter: sucursalSearch">
                         <div class="card">
                             <div class="p+">                                
                                 <strong class="fs-headline display-block">{{items.nombre}}</strong>

@@ -4,18 +4,18 @@
         <span flex></span>
         <form name="formlogin" layout="row" ng-submit="ingresar()">
             <div>
-                <md-input-container class="inputuser">
-                    <label>Ruc</label>
-                    <input id="email" name="email" ng-model="email" type="text" required maxlength="10" ng-pattern="/[0-9]{1}/">
-                    <div ng-messages="formlogin.email.$error" ng-show="formlogin.email.$dirty">
-                        <div ng-message="required" class="my-message">requerido</div>
-                        <div ng-message="pattern" class="my-message">Solo numeros</div>
-                    </div>
-                </md-input-container>
+                <!-- <md-input-container class="inp"> -->
+                    <!-- <label>Ruc</label> ng-model="email"  value="9999999999"  -->
+                    <input id="email" name="email" type="text" ng-model="email" class="inp" numbers-only  maxlength="10" placeholder="Número de ruc" >
+                    <!-- <div ng-messages="formlogin.email.$error" ng-show="formlogin.email.$dirty"> -->
+                        <!-- <div ng-message="required" class="my-message">requerido</div> -->
+                        <!-- <div ng-message="pattern" class="my-message">Solo numeros</div> -->
+                    <!-- </div> -->
+                <!-- </md-input-container> -->
                 
-                <label class="suffix" style="padding-right: 50px!important;">001@nextbook.ec</label>
-                <md-button class="md-raised md-accent" ng-disabled="formlogin.$invalid" type="submit">
-                    <md-icon class="material-icons">security</md-icon> Entrar
+                <label class="suffix">001@nextbook.ec</label>
+                <md-button class="md-raised md-accent" type="submit">
+                    Entrar
                 </md-button>
             </div>
         </form>
@@ -36,12 +36,30 @@
     </md-tabs>  
 </md-toolbar>
 
+
+<style type="text/css">
+    .inp{
+      border: none;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset, 0 -1px 0 rgba(0,0,0,0.05) inset;
+      transition: all 0.2s linear;
+      font-family: "Helvetica Neue", sans-serif;
+      font-size: 13px;
+      color: #222222;
+      position: relative;
+      height: 20px;
+      width: 100px;
+      border-radius: 10px;
+      padding-left: 8px;
+      right: 8px;
+    }
+</style>
+
 <div layout="row" layout-align="center center">
-    <div flex-gt-sm="90" flex-gt-md="50" layout-padding>
+    <div flex-gt-sm="50" layout-padding>
         <ng-switch on="data.selectedIndex" class="tabpanel-container">
             <div id="tab1-content" aria-labelledby="tab1" ng-switch-when="0">
-                <div layout-padding layout-wrap layout-gt-sm="row">
-                    <div flex-gt-sm="60">
+                <div layout-padding layout-wrap layout="row">
+                    <div flex="60">
                         <form name="formvisualinfo" ng-show="elementview">
                             <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                                 <label>Razon Social</label>
@@ -80,9 +98,9 @@
                             </md-input-container>
                         </form>
                         <img src="images/registro/welcome.png" width="100%" class="animated zoomIn" ng-show="elemennotview" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                        <h2 class="md-display-2" layout="row" layout-align="center center" ng-show="elemennotview">Bienvenido</h2>
+                        <!-- <h2 class="md-display-2" layout="row" layout-align="center center" ng-show="elemennotview">Bienvenido</h2> -->
                     </div>
-                    <div flex-gt-sm="40">
+                    <div flex="40">
                         <form name="formsearchruc" ng-submit="buscar_ruc()">
                             <div layout="row" flex>
                                 <md-input-container class="md-icon-float md-block" flex-gt-xs>
@@ -166,12 +184,12 @@
                         </form>
                         <div ng-show="elemennotview">
                             <img src="images/registro/reddenegios.png" class="animated zoomIn" ng-show="elemennotview">
-                            <h2 class="content-sub-heading">
+                            <h4 class="content-sub-heading">
                                 <span class="text-brand-accent">Ingresa </span> fácil, <span class="text-brand-accent">rápido</span>,
                                 efectivo y <span class="text-brand-accent">gratis</span>. 
                                 Publica tú negocio y <span class="text-brand-accent">muéstrate</span>
                                 al mundo, seguro incrementarás tús ventas.
-                            </h2>
+                            </h4>
                         </div>
                     </div>
                 </div>
