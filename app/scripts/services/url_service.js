@@ -13,11 +13,11 @@ angular.module('nextbook20App')
     this.server=function() {
         return {
             appserviciosnext: function() {
-                return "http://186.4.167.12/appserviciosnext/public/index.php/";
+                return "http://186.4.167.6/appserviciosnext/public/index.php/";
             }
             ,appnext: function() {
                 // return "http://186.4.167.12/appnext/";
-                return "http://186.4.167.12/appnext1.1/public/index.php/";
+                return "http://186.4.167.6/appnext1.1/public/index.php/";
 
             },appnextPersonas: function() {
                 // return "http://186.4.167.12/appnextP/";

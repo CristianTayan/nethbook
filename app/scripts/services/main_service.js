@@ -128,14 +128,13 @@ angular.module('nextbook20App')
                 }
             });
         };
-        this.Update_Password=function(data) {
-            return $resource(urlService.server().appnext()+'Update_Password', {}
-            , {
+
+        this.Update_Password = function() {
+            return $resource(urlService.server().appnext()+'Update_Password', {} , {
                 get: {
                     method: 'POST', isArray: false,
                     params: {
-                        token: $localStorage.token,
-                        pass : data
+                        // token: $localStorage.token
                     }
                 }
             });

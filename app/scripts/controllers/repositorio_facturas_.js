@@ -16,6 +16,9 @@
         ];
     });
 
+
+
+    
     app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES) {
 	    repositorioFacturas.Get_Gastos().get().$promise.then(function(data) {
 	        $scope.tipo_consumos = data.respuesta.data;

@@ -198,7 +198,7 @@ var app = angular.module('nextbook20App', [
                             .segment('inicio_facturas', {
                                 default: true,
                                 templateUrl: 'views/app/repositorio_facturas/inicio_facturas/index.html',
-                                // controller: 'repfac_inicio_Ctrl'
+                                controller: 'repfac_inicio_Ctrl'
                             })
                             .segment('mis_facturas', {
                                 templateUrl: 'views/app/repositorio_facturas/mis_facturas/index.html',
