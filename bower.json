@@ -26,7 +26,9 @@
     "angular-ivh-treeview": "^1.0.4",
     "angular-x2js": "^0.2.0",
     "angular-io-barcode": "^1.0.4",
-    "angular-moment": "^1.0.1"
+    "angular-moment": "^1.0.1",
+    "angular-google-chart": "^0.1.0",
+    "chart.js": "^2.4.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

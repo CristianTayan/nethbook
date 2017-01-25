@@ -16,7 +16,10 @@
         ];
     });
 
+    app.controller('repfac_inicio_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage) {
 
+    });
+    
 
     
     app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES) {
@@ -41,53 +44,103 @@
 	    $scope.showContent = function($fileContent) {
 	        var xml = $fileContent;
 	        if (xml.length != 0) {
-	            var x2js = new X2JS();
-	            var xml_final = x2js.xml_str2json(xml);
-	            var nombre_empresa = _.keys(xml_final);
+			    var x2js = new X2JS();
+			    var xml_final = x2js.xml_str2json(xml);
+			    var nombre_empresa = _.keys(xml_final);
 
-	            var xml_sin_empresa = xml_final[nombre_empresa[0]];
-	            var xml_final;
-	            var resultado = buscar_comprobante(xml_sin_empresa);
-	            if (resultado) { // Verdadero
-	                xml_final = xml_sin_empresa.comprobante;
-	            } else {
-	                var campos_vector = _.keys(xml_sin_empresa);
-	                for (var i = 0; i < campos_vector.length; i++) {
-	                    var entrada1 = xml_sin_empresa[campos_vector[i]];
-	                    if (typeof entrada1 == "object") {
-	                        var vector_secundario = entrada1[_.keys(entrada1)];
-	                        var resultado2 = buscar_comprobante(vector_secundario);
-	                        xml_final = vector_secundario.comprobante;
-	                    }
-	                }
-	            }
-	            
-	            var data;
-	            if (typeof xml_final == "object") {
-	            	data = [{
-		                clave: xml_final.factura.infoTributaria.claveAcceso
-		            }];
-	            }else{
-	            	var xml;
-		            var xml_filter = x2js.xml_str2json(xml_final);
-		            if (!xml_filter) {
-		                var f = xml_final;
-		                var m = f.replace("<![CDATA[", "");
-		                var m = m.replace("]]>", "");
-		                var xml_filter = x2js.xml_str2json(m);
-		            }
-		            data = [{
-		                clave: xml_filter.factura.infoTributaria.claveAcceso
-		            }];		            
-	            }
-	            revision_factura(data[0]);	            
-	        }
+			    var xml_sin_empresa = xml_final[nombre_empresa[0]];
+			    var xml_final;
+			    var resultado = buscar_comprobante(xml_sin_empresa);
+			    if (resultado) { // Verdadero
+			        xml_final = xml_sin_empresa.comprobante;
+			    } else {
+			        var campos_vector = _.keys(xml_sin_empresa);
+			        for (var i = 0; i < campos_vector.length; i++) {
+			            var entrada1 = xml_sin_empresa[campos_vector[i]];
+
+			            if (typeof entrada1 == "object") {
+			                if (!buscar_comprobante(entrada1)) {
+			                    var nivel2 = entrada1;
+			                    var cat_nivel2 = _.keys(nivel2)
+			                    for (var j = 0; j < cat_nivel2.length; j++) {
+			                        var cat_sec = cat_nivel2[j];
+			                        var entrada2 = nivel2[cat_sec];
+			                        if (typeof entrada2 == "object") {
+			                            if (!buscar_comprobante(entrada2)) {
+			                                var nivel3 = entrada2;
+			                                var cat_nivel3 = _.keys(entrada2)
+			                                for (var k = 0; k < cat_nivel3.length; k++) {
+			                                    var cat_ter = cat_nivel3[k];
+			                                    var entrada3 = entrada2[cat_ter];
+			                                    if (typeof entrada3 == "object") {
+			                                        if (!buscar_comprobante(entrada3)) {
+			                                            var nivel4 = entrada3;
+			                                            var cat_nivel4 = _.keys(entrada3)
+			                                            for (var l = 0; l < cat_nivel3.length; l++) {
+			                                                var cat_cua = cat_nivel4[l];
+			                                                var entrada4 = entrada3[cat_cua];
+			                                                if (typeof entrada4 == "object") {
+			                                                    if (!buscar_comprobante(entrada4)) {
+			                                                        var nivel5 = entrada4;
+			                                                        var cat_nivel5 = _.keys(entrada4)
+			                                                        for (var m = 0; m < cat_nivel5.length; m++) {
+			                                                            var cat_qui = cat_nivel5[m];
+			                                                            var entrada5 = entrada4[cat_qui];
+			                                                            if (!buscar_comprobante(entrada5)) {
+			                                                                console.log(entrada5);
+			                                                            } else {
+			                                                                xml_final = entrada5.comprobante;
+			                                                            }
+			                                                        }
+			                                                    } else {
+			                                                        xml_final = entrada4.comprobante;
+			                                                    }
+			                                                }
+			                                            }
+			                                        } else {
+			                                            xml_final = entrada3.comprobante;
+			                                        }
+			                                    }
+			                                }
+			                            } else {
+			                                xml_final = entrada2.comprobante;
+			                            }
+			                        }
+			                    }
+			                } else {
+			                    xml_final = entrada1.comprobante;
+			                }
+			            }
+			        }
+			    }
+
+			    var data;
+			    if (typeof xml_final == "object") {
+			        data = [{
+			            clave: xml_final.factura.infoTributaria.claveAcceso
+			        }];
+			    } else {
+			        var xml;
+			        var xml_filter = x2js.xml_str2json(xml_final);
+			        if (!xml_filter) {
+			            var f = xml_final;
+			            var m = f.replace("<![CDATA[", "");
+			            var m = m.replace("]]>", "");
+			            var xml_filter = x2js.xml_str2json(m);
+			        }
+			        data = [{
+			            clave: xml_filter.factura.infoTributaria.claveAcceso
+			        }];
+			    }
+			    revision_factura(data[0]);
+			}
 	    };
 	    $scope.buscar_clave_acceso = function() {
 	        revision_factura($scope.data);
 	    }
 
 	    function revision_factura(data) {
+	    	console.log(data);
 	        repositorioFacturas.Estado_Factura().add(data).$promise.then(function(data) {
 			    if (data.numeroComprobantes==0) {
 			        $mdDialog.show( {
@@ -115,13 +168,9 @@
 
 	    function modal_Ctrl($scope, $mdDialog, obj, tipo_consumo, IO_BARCODE_TYPES) {
 	    	$scope.factura_cabecera = obj.autorizaciones.autorizacion;
-
 			repositorioFacturas.Get_Tipo_Documentos().get().$promise.then(function(data) {
 		        $scope.tipo_consumos = data.respuesta.data;
 		    });
-
-		    console.log(obj);
-
 	        var x2js = new X2JS();
 	        var obj = x2js.xml_str2json(obj.autorizaciones.autorizacion.comprobante);
 	        $scope.infofactura = obj.factura;
@@ -142,7 +191,7 @@
 	        }
 
 
-	         for (var i = 0; i < $scope.tipo_consumo.length; i++) {
+	        for (var i = 0; i < $scope.tipo_consumo.length; i++) {
 	            $scope.tipo_consumo[i].total = 0;
 	        }
 	        var vec = [];

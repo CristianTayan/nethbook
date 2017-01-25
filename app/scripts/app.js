@@ -31,7 +31,9 @@ var app = angular.module('nextbook20App', [
                                             'ivh.treeview',
                                             'cb.x2js',
                                             'io-barcode',
-                                            'angularMoment'
+                                            'angularMoment',
+                                            // 'chart.js',
+                                            'googlechart'
                                         ]);
 
     // themes configuration

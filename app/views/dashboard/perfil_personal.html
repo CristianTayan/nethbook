@@ -9,11 +9,11 @@
                     </md-toolbar>
                     <md-toolbar>
                         <div class="md-toolbar-tools">
-                            <h3 class="md-display-4">Sandeep Kumar Patel</h3>
+                            <h3 class="md-display-4">Alex Doil</h3>
                         </div>
                     </md-toolbar>
                     <div>
-                        <img alt="Sandeep Gravatar image" src="http://www.gravatar.com/avatar/c6e6c57a2173fcbf2afdd5fe6786e92f.png?s=300" width="100%">
+                        <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="100%">
                         <md-card-content>
                             <h2 class="md-title">About Me</h2>
                             <p>
@@ -139,26 +139,24 @@
     								<div flex-gt-sm="90" flex-gt-md="40">
     									<form name="form_password" ng-submit="col_usuario_nuevo()">
 				                            <md-input-container class="md-icon-float md-block" layout="row">
-				                                <md-icon class="md-primary">view_compact</md-icon>
-				                                <label>Primer Nombre</label>
-				                                <input name="primer_nombre" ng-model="data_usuario.primer_nombre" type="text" required>
-				                                <div ng-messages="form_password.primer_nombre.$error" ng-show="form_password.primer_nombre.$dirty">
+				                                <md-icon class="md-primary">vpn_key</md-icon>
+				                                <label>Nueva Clave</label>
+				                                <input name="newpass" ng-model="data_usuario.newpass" type="text" required>
+				                                <div ng-messages="form_password.newpass.$error" ng-show="form_password.newpass.$dirty">
 				                                    <div ng-message="required">Campo Requerido</div>
 				                                </div>
 				                            </md-input-container>
 				                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
 			                                <md-input-container class="md-icon-float md-block" layout="row">
-			                                    <md-icon class="md-primary">view_compact</md-icon>
-			                                    <label>Calle Principal</label>
-			                                    <input name="calle" ng-model="data_usuario.calle" type="text" required>
-			                                    <div ng-messages="form_password.calle.$error" ng-show="form_password.calle.$dirty">
+			                                    <md-icon class="md-primary">repeat</md-icon>
+			                                    <label>Repita Nueva Clave</label>
+			                                    <input name="newpass1" ng-model="data_usuario.newpass1" type="text" required>
+			                                    <div ng-messages="form_password.newpass1.$error" ng-show="form_password.newpass1.$dirty">
 			                                        <div ng-message="required">Campo Requerido</div>
 			                                    </div>
 			                                </md-input-container>
 					                        <div layout="row">
 									            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_password.$invalid">Guardar</md-button>
-
-									            
 									        </div>
 		                            	</form>
     								</div>

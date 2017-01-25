@@ -50,6 +50,8 @@ module.exports = function(config) {
       'bower_components/angular-x2js/dist/x2js.min.js',
       'bower_components/angular-io-barcode/build/angular-io-barcode.js',
       'bower_components/angular-moment/angular-moment.js',
+      'bower_components/angular-google-chart/ng-google-chart.js',
+      'bower_components/chart.js/dist/Chart.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
