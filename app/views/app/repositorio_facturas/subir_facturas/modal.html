@@ -64,9 +64,9 @@
                         <td>{{item.descuento}}</td>
                         <td>{{item.precioTotalSinImpuesto}}</td>
                         <td ng-repeat="i in tipo_consumo">
-                            <label for="{{'q'+item.codigoPrincipal+'-'+i.nombre | limitTo : 5}}">
-                                <input type="radio" name="{{item.codigoPrincipal}}" id="{{'q'+item.codigoPrincipal+'-'+i.nombre}}" ng-checked="i.selected" ng-click="select_gasto(item,i)" />
-                            </label>
+                            <!-- <label for="{{'q'+item.codigoPrincipal+'-'+i.nombre | limitTo : 5}}"> -->
+                                <input type="radio" name="{{item.descripcion}}" id="{{'q'+item.descripcion+'-'+i.nombre}}" ng-checked="i.selected" ng-click="select_gasto(item,i)" />
+                                                            <!-- </label> -->
                         </td>
                     </tr>
 

@@ -243,7 +243,7 @@
 	            var index = 0;
 	            index = $scope.tipo_consumo.indexOf(gasto);
 
-	            // Sumatoria total
+	            // Suma toria total
 	            for (var i = 0; i < $scope.detalle.length; i++) {
 	                        $scope.Suma = $scope.Suma + parseFloat($scope.detalle[i].precioTotalSinImpuesto);
 	                    }
@@ -261,6 +261,8 @@
 
 	             $scope.Suma_detalles=$scope.Suma;
 	             $scope.valores_restados = [];
+
+
 	        }
 
 	        //--------------------------------------- GUardar Factura ---------------------------------------
@@ -531,6 +533,8 @@
 
 	             $scope.Suma_detalles=$scope.Suma;
 	             $scope.valores_restados = [];
+
+	             console.log($scope.tipo_consumo);
 	        }
 
 	        //--------------------------------------- GUardar Factura ---------------------------------------
