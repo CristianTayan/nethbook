@@ -23,9 +23,24 @@
 
     
     app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES) {
-	    repositorioFacturas.Get_Gastos().get().$promise.then(function(data) {
+
+	    $scope.query_tipo_gastos = {
+	        filter: '',
+	        num_registros: 100,
+	        pagina_actual: 1,
+	        limit: '100',
+	        page_num: 1
+	    };
+
+	    // -----------------------------------Leer tipos de Gastos---------------------------------
+	    repositorioFacturas.Get_Gastos().get($scope.query_tipo_gastos).$promise.then(function(data) {
+	        $localStorage.tipo_consumos = data.respuesta.data;
 	        $scope.tipo_consumos = data.respuesta.data;
 	    });
+
+
+
+
 	    var buscar_comprobante = function(xml_sin_empresa) {
 	        var campos_vector = _.keys(xml_sin_empresa);
 	        for (var i = 0; i < campos_vector.length; i++) {
