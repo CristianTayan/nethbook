@@ -32,8 +32,9 @@ angular.module('nextbook20App')
 							fn(scope, {$fileContent:onLoadEvent.target.result});
 						});
 					};
-
-					reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+					if ((onChangeEvent.srcElement || onChangeEvent.target).files[0]) {
+						reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+					}					
 				});
 			}
 		};

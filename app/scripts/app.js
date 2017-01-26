@@ -33,7 +33,7 @@ var app = angular.module('nextbook20App', [
                                             'io-barcode',
                                             'angularMoment',
                                             // 'chart.js',
-                                            'googlechart'
+                                            'googlechart',
                                         ]);
 
     // themes configuration

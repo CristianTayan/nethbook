@@ -1,5 +1,5 @@
 <md-dialog aria-label="Table Fu">
-    <form ng-cloak ng-submit="guardar_factura()">
+    <form name="frm_factura" ng-cloak ng-submit="guardar_factura()">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Factura, NOMBRE COMERCIAL: {{infofactura.infoTributaria.nombreComercial}}</h2>
@@ -10,28 +10,31 @@
             </div>
         </md-toolbar>
 
-        <md-dialog-content style="width: 1400px;">
-            <div layout="row">
+        <md-dialog-content>
+            <!-- style="width: 1400px;" -->
+            <div layout="row" flex>
                 <md-card flex>
                     <md-card-content>
-                        RAZÓN SOCIAL: {{infofactura.infoTributaria.razonSocial}}<br>
-                        DIRECCIÓN MATRÍZ: {{infofactura.infoTributaria.dirMatriz}}<br>
-                        DIR. ESTABLECIMIENTO: {{infofactura.infoFactura.dirEstablecimiento}}
+                        RAZÓN SOCIAL: {{infofactura.infoTributaria.razonSocial}}
+                        <br> DIRECCIÓN MATRÍZ: {{infofactura.infoTributaria.dirMatriz}}
+                        <br> DIR. ESTABLECIMIENTO: {{infofactura.infoFactura.dirEstablecimiento}}
                     </md-card-content>
                 </md-card>
                 <md-card flex>
                     <md-card-content>
-                        RUC:{{infofactura.infoTributaria.ruc}}<br>
-                        NÚMERO AUTORIZACIÓN: {{factura_cabecera.numeroAutorizacion}}<br>
-                        OBLIGADO A LLEVAR CONTABLIDAD: {{infofactura.infoFactura.obligadoContabilidad}}<br>
-                        CONTRIBUYENTE ESPECIAL NRO: {{infofactura.infoFactura.contribuyenteEspecial}}<br>
+                        RUC:{{infofactura.infoTributaria.ruc}}
+                        <br> NÚMERO AUTORIZACIÓN: {{factura_cabecera.numeroAutorizacion}}
+                        <br> OBLIGADO A LLEVAR CONTABLIDAD: {{infofactura.infoFactura.obligadoContabilidad}}
+                        <br> CONTRIBUYENTE ESPECIAL NRO: {{infofactura.infoFactura.contribuyenteEspecial}}
+                        <br>
                     </md-card-content>
                 </md-card>
                 <md-card flex>
                     <md-card-content>
-                        AMBIENTE: {{factura_cabecera.ambiente}} || TIPO DOCUMENTO: {{infofactura.infoTributaria.codDoc}}<br>
-                        FECHA DE EMISIÓN: {{factura_cabecera.fechaAutorizacion | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' |uppercase}}<br>
-                        Clave de Acceso:<br>
+                        AMBIENTE: {{factura_cabecera.ambiente}} || TIPO DOCUMENTO: {{infofactura.infoTributaria.codDoc}}
+                        <br> FECHA DE EMISIÓN: {{factura_cabecera.fechaAutorizacion | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' |uppercase}}
+                        <br> Clave de Acceso:
+                        <br>
                         <io-barcode code="{{ code }}" type="{{ type }}" options="options"></io-barcode>
                     </md-card-content>
                 </md-card>
@@ -40,15 +43,17 @@
                 <thead>
                     <tr>
                         <th rowspan="2">DESCRIPCIÓN</th>
-                        <th rowspan="2">CANTIDAD</th>
-                        <th rowspan="2">PRECIO UNITARIO</th>
-                        <th rowspan="2">DESCUENTOS</th>
-                        <th rowspan="2">TOTAL</th>
-                        <th colspan="5">TIPO DE GASTOS</th>
+                        <th rowspan="2">CANT</th>
+                        <th rowspan="2">PREC U.</th>
+                        <th rowspan="2">DESC</th>
+                        <th rowspan="2">TOT</th>
+                        <th colspan="5">TIPOS DE GASTOS</th>
                     </tr>
                     <tr>
                         <th ng-repeat="i in tipo_consumo">
-                            <md-checkbox aria-label="{{i}}" ng-model="i.id" ng-click="select_all_gasto(i)" ng-checked="i.selected">{{i.nombre}}</md-checkbox>
+                            <label>{{i.nombre}}</label>
+                            <br>
+                            <md-checkbox aria-label="{{i}}" ng-model="i.id" ng-click="select_all_gasto(i)" ng-checked="i.selected"></md-checkbox>
                         </th>
                     </tr>
                 </thead>
@@ -64,9 +69,7 @@
                         <td>{{item.descuento}}</td>
                         <td>{{item.precioTotalSinImpuesto}}</td>
                         <td ng-repeat="i in tipo_consumo">
-                            <!-- <label for="{{'q'+item.codigoPrincipal+'-'+i.nombre | limitTo : 5}}"> -->
-                                <input type="radio" name="{{item.descripcion}}" id="{{'q'+item.descripcion+'-'+i.nombre}}" ng-checked="i.selected" ng-click="select_gasto(item,i)" />
-                                                            <!-- </label> -->
+                            <input type="radio" name="{{item.descripcion}}" id="{{'q'+item.descripcion+'-'+i.nombre}}" ng-checked="i.selected" ng-click="select_gasto(item,i)" />
                         </td>
                     </tr>
 
@@ -86,7 +89,7 @@
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <span flex></span>
-            <md-button class="md-raised md-primary" type="submit">
+            <md-button class="md-raised md-primary" ng-disabled="valid_form" type="submit">
                 Guardar
             </md-button>
         </md-dialog-actions>
@@ -126,7 +129,7 @@
     }
     
     #table-example-1 caption {
-        padding-bottom: 0.2em;
+        /*padding-bottom: 0.2em;*/
         position: relative;
         top: 5px;
     }
@@ -134,7 +137,7 @@
     #table-example-1 th,
     #table-example-1 td {
         border: solid thin;
-        padding: 0.5rem 2rem;
+        padding: 1px;
     }
     
     #table-example-1 td {
@@ -151,7 +154,7 @@
     }
     
     #table-example-1 th {
-        padding: 0.2em;
+        /*padding: 0.2em;*/
         vertical-align: middle;
         text-align: center;
     }
