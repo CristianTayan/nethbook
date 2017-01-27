@@ -20,8 +20,6 @@
 
     });
     
-
-    
     app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES) {
 	    repositorioFacturas.Get_Gastos().get().$promise.then(function(data) {
 	        $scope.tipo_consumos = data.respuesta.data;
@@ -622,6 +620,75 @@
 		            obj: item_correo,
 		        }
 		    });
+		}
+
+		function modal_view_mensaje_Ctrl($scope, $mdDialog, obj) {
+		    console.log(obj);
+		    $scope.correo = obj;
+		    $scope.cancel = function() {
+		        $mdDialog.cancel();
+		    };
+		};	    	
+	});
+
+	app.controller('mis_facturas_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES, $rootScope) {
+	    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
+	    $scope.selected = [];
+		var bookmark;
+		$scope.selected = [];
+		$scope.query = {
+		    filter: '',
+		    num_registros: 10,
+		    pagina_actual: 1,
+		    limit: '10',
+		    page_num: 1
+		};
+
+		function success(desserts) {
+		    $scope.total = desserts.respuesta.total;
+		    $scope.mis_facturas = desserts.respuesta.data;
+		}
+
+		$scope.data_mis_facturas_get = function() {
+		    repositorioFacturas.Get_Mis_Facturas().get($scope.query, success).$promise;
+		}
+
+		$rootScope.$on("tabla_mis_facturas", function() {
+		    $scope.data_mis_facturas_get();
+		});
+		//Totales
+		repositorioFacturas.Get_Totales_Facturas().get().$promise.then(function(data) {
+	        $scope.totales = data.respuesta;
+	    });
+
+		$scope.removeFilter = function() {
+		    $scope.filter.show = false;
+		    $scope.query.filter = '';
+		    if ($scope.filter.form.$dirty) {
+		        $scope.filter.form.$setPristine();
+		    }
+		};
+
+		$scope.$watch('query.filter', function(newValue, oldValue) {
+		    if (!oldValue) {
+		        bookmark = $scope.query.page;
+		    }
+		    if (newValue !== oldValue) {
+		        $scope.query.page = 1;
+		    }
+
+		    if (!newValue) {
+		        $scope.query.page = bookmark;
+		    }
+		    $scope.data_mis_facturas_get();
+		});
+
+		$scope.ver_factura = function(factura) {
+		    
+		    repositorioFacturas.Generar_PDF().get({factura:factura}).$promise.then(function(data) {
+	        	console.log(data.respuesta);
+	    	});
+		    
 		}
 
 		function modal_view_mensaje_Ctrl($scope, $mdDialog, obj) {

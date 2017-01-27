@@ -213,7 +213,7 @@ var app = angular.module('nextbook20App', [
                             })
                             .segment('mis_facturas', {
                                 templateUrl: 'views/app/repositorio_facturas/mis_facturas/index.html',
-                                // controller: 'col_tipo_usuario_Ctrl'
+                                controller: 'mis_facturas_Ctrl'
                             })
                             .segment('subir_facturas', {
                                 templateUrl: 'views/app/repositorio_facturas/subir_facturas/index.html',

@@ -55,6 +55,41 @@ angular.module('nextbook20App')
             });
         };
 
+        // ------------------------------MIS FACURAS------------------------------//
+        this.Get_Mis_Facturas = function() {
+            return $resource(urlService.server().appnext()+'Get_Mis_Facturas', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
+        // ------------------------------GET TOTALES------------------------------//
+        this.Get_Totales_Facturas = function() {
+            return $resource(urlService.server().appnext()+'Get_Totales_Facturas', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
+        // ------------------------------GET TOTALES------------------------------//
+        this.Generar_PDF = function() {
+            return $resource(urlService.server().appnext()+'Generar_PDF', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
 
 
         this.Estado_Factura = function() {
