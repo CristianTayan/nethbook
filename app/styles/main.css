@@ -315,13 +315,11 @@ body, html {
   height: 12px; /* for horizontal scrollbars */
 }
 
-::-webkit-scrollbar-track
-{
+::-webkit-scrollbar-track{
   background: rgba(0, 20, 0, 0.1);
 }
 
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb{
   background: rgba(60, 0, 0, 0.5);
 }
 
