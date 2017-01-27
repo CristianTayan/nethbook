@@ -1,19 +1,23 @@
-<md-button ng-href="#/Inventario/" aria-label="btn_in">Inventario</md-button>/<md-button ng-disabled="true" class="md-primary" aria-label="btn_in">Ubicación</md-button>
-<md-divider></md-divider>
-<md-content layout-padding layout-wrap>
-    <md-table-container>
-      <div layout="row">
-          <div flex="90">
-              <md-input-container class="md-icon-float md-block" layout="column" aria-label="Close">
-                  <md-icon class="md-primary">search</md-icon>
-                  <label>Búsqueda</label>
-                  <input name="nom_ubicacion" ng-model="query.filter" type="text" required>
-              </md-input-container>
-          </div>
-          <div flex="10">
-              <md-button layout="column" class="md-accent" ng-click="inv_ubicacion_dialog_nuevo($event)">Nuevo</md-button>
-          </div>
-      </div>
+<div layout="row">
+    <a class="mdl-chip mdl-chip--contact" href="#/App/Inventario/">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">I</span>
+        <span class="mdl-chip__text">Inventario</span>
+    </a>
+    <a class="mdl-chip mdl-chip--contact">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">U</span>
+        <span class="mdl-chip__text">Ubicación</span>
+    </a>
+</div>
+<br><md-divider></md-divider><br>
+<md-content layout-wrap>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <input name="nom_modelo" ng-model="query.filter" type="text" required placeholder="Buscar" class="toolbar_search">
+            <span flex></span>
+            <md-button layout="column" class="md-accent md-raised" ng-click="inv_ubicacion_dialog_nuevo($event)">Nuevo</md-button>
+        </div>
+    </md-toolbar>
+    <md-table-container layout-padding>
       <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
         <thead md-head md-order="query.order" md-on-reorder="data_inv_ubicacion_get">
           <tr md-row>

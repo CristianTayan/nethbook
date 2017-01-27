@@ -1,58 +1,57 @@
-<div layout-xs="column" layout="row">
-	<div flex-xs flex-gt-xs="20" layout="column" md-content flex layout="row" layout-fill>
-		<md-sidenav layout="column" class="main-sidenav md-sidenav-left" style="position:fixed !important; top: 64px;" md-component-id="navigation-drawer" md-is-locked-open="$mdMedia('gt-md')" layout="column">
-		    <md-content md-scroll-y flex layout="column">
-		        <md-sidemenu locked="true">
-		            <md-sidemenu-group>
-		        		<md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
-		        	</md-sidemenu-group>
-		            <md-sidemenu-group>
-		                <md-subheader class="md-no-sticky">Menu App</md-subheader>
-		                <md-sidemenu-button href="#/App/Inventario/"><md-icon>view_stream</md-icon> Inventario</md-sidemenu-button>
-		                <md-sidemenu-button href="#/App/Facturacion/"><md-icon>receipt</md-icon>Facturación</md-sidemenu-button>
-		                <md-sidemenu-button href="#/App/Repositorio_Facturas/"><md-icon>receipt</md-icon>Repositorio Facturas</md-sidemenu-button>
-		                <md-subheader class="md-no-sticky">Menu App</md-subheader>
-		                <md-sidemenu-button href="#/App/Colaboradores/"><md-icon>person</md-icon>Colaboradores</md-sidemenu-button>
-		            </md-sidemenu-group>
-		        </md-sidemenu>
-		    </md-content>
-		</md-sidenav>
-	</div>
-	<div flex-xs flex-gt-xs="80" layout="column">
-		<md-content layout-padding layout-wrap>
-			<div ng-cloak layout-gt-sm="row" layout="column">
-			    <div flex-gt-sm="50" flex>
-			    	<ul class="list mt++">
-			            <li class="list-row">
-			                <div class="list-row__primary">
-			                    <lx-icon lx-id="folder" lx-size="l" lx-color="grey" lx-type="circled"></lx-icon>
-			                </div>			 
-			                <div class="list-row__content">
-			                    <lx-button ng-href="#/App/Inventario" lx-type="flat">Inventario</lx-button>
-			                </div>
-			            </li>
-			            <li class="list-row">
-			                <div class="list-row__primary">
-			                    <lx-icon lx-id="folder" lx-size="l" lx-color="blue" lx-type="circled"></lx-icon>
-			                </div>			 
-			                <div class="list-row__content">
-			                    <lx-button ng-href="#/App/Dash" lx-type="flat">Inventario1</lx-button>
-			                </div>
-			            </li>
-			            <li class="list-row list-row--has-separator">
-			                <div class="list-row__primary">
-			                    <lx-icon lx-id="folder" lx-size="l" lx-color="green" lx-type="circled"></lx-icon>
-			                </div>			 
-			                <div class="list-row__content">
-			                    <lx-button ng-href="#/App/Dash" lx-type="flat">Inventario2</lx-button>
-			                </div>
-			            </li>
-			        </ul>
-			    </div>
-			    <div flex-gt-sm="50" flex>
-			    	migratorium
-			    </div>
-			</div>
-		</md-content>
-	</div>
-</div>
+<md-sidenav style="max-width:250px;" layout="column" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4" flex>
+    <md-content layout="column">
+        <md-sidemenu locked="true">
+            <md-sidemenu-group>
+                <md-sidemenu-button href="#/App">
+                    <md-icon>apps</md-icon> App
+                </md-sidemenu-button>
+            </md-sidemenu-group>
+            <md-sidemenu-group>
+                <md-subheader class="md-no-sticky">Menu App
+                </md-subheader>
+                <md-sidemenu-button href="#/App/Inventario/">
+                    <md-icon>view_stream</md-icon> Inventario
+                    </md-sidemenu-button>
+                <md-sidemenu-button href="#/App/Facturacion/">
+                    <md-icon>receipt</md-icon>Facturación
+                    </md-sidemenu-button>
+                <md-sidemenu-button href="#/App/Repositorio_Facturas/">
+                    <md-icon>receipt</md-icon>Repositorio Facturas
+                    </md-sidemenu-button>
+                <md-subheader class="md-no-sticky">Menu App
+                </md-subheader>
+                <md-sidemenu-button href="#/App/Colaboradores/">
+                    <md-icon>supervisor_account</md-icon>Colaboradores
+                    </md-sidemenu-button>
+            </md-sidemenu-group>
+        </md-sidemenu>
+    </md-content>
+</md-sidenav>
+<md-content flex class="md-padding" layout="column" >
+    <ul class="list mt++">
+        <li class="list-row">
+            <div class="list-row__primary">
+                <lx-icon lx-id="folder" lx-size="l" lx-color="grey" lx-type="circled"></lx-icon>
+            </div>
+            <div class="list-row__content">
+                <lx-button ng-href="#/App/Inventario" lx-type="flat">Inventario</lx-button>
+            </div>
+        </li>
+        <li class="list-row">
+            <div class="list-row__primary">
+                <lx-icon lx-id="folder" lx-size="l" lx-color="blue" lx-type="circled"></lx-icon>
+            </div>
+            <div class="list-row__content">
+                <lx-button ng-href="#/App/Dash" lx-type="flat">Inventario1</lx-button>
+            </div>
+        </li>
+        <li class="list-row list-row-has-separator">
+            <div class="list-row__primary">
+                <lx-icon lx-id="folder" lx-size="l" lx-color="green" lx-type="circled"></lx-icon>
+            </div>
+            <div class="list-row__content">
+                <lx-button ng-href="#/App/Dash" lx-type="flat">Inventario2</lx-button>
+            </div>
+        </li>
+    </ul>
+</md-content>

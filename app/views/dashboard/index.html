@@ -1,48 +1,48 @@
-<md-toolbar layout="row"  layout-align="center center" style="position: fixed!important;">
+<md-toolbar layout="row" layout-align="center center">
     <div flex-gt-sm="90" flex-gt-md="60">
         <div class="md-toolbar-tools toolbar-center">
-        <a href="#/Dash">
-            <img src="images/logo/logo.fw.png"  alt="Logo">
-        </a>
-        nextbook.com.ec
-        <span flex></span>
-        <lx-search-filter lx-color="white" lx-closed="true">
-            <input type="text" ng-model="vm.searchFilter.fourth">
-        </lx-search-filter>
-        <a href="#/Inicio" class="btn btn--l btn--white btn--icon"  lx-ripple>
-            <i class="mdi mdi-home"></i>    
-        </a>
-        <a href="#/App" class="btn btn--l btn--white btn--icon"  lx-ripple>
-            <i class="mdi mdi-apps"></i>    
-        </a>
-        <lx-dropdown lx-position="right" >
-            <lx-dropdown-toggle>
-                <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
-            </lx-dropdown-toggle>
-            <lx-dropdown-menu>
-                <ul>
-                    <li>
-                        <a href="#/Perfil_Personal" class="dropdown-link">
-                            <i class="mdi"><md-icon>perm_contact_calendar</md-icon></i>
-                            <span>Perfil Personal</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#/Salir" class="dropdown-link">
-                            <i class="mdi"><md-icon>exit_to_app</md-icon></i>
-                            <span>Cerrar Sesión</span>
-                        </a>
-                    </li>
-                </ul>
-            </lx-dropdown-menu>
-        </lx-dropdown>
-        <a href="#/Perfil">
-            <span class="mdl-chip mdl-chip--contact">
-                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">A</span>
+            <a href="#/Dash">
+                <img src="images/logo/logo.fw.png" alt="Logo">
+            </a>
+            nextbook.com.ec
+            <span flex></span>
+            <lx-search-filter lx-color="white" lx-closed="true">
+                <input type="text" ng-model="vm.searchFilter.fourth">
+            </lx-search-filter>
+            <a href="#/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
+                <i class="mdi mdi-home"></i>
+            </a>
+            <a href="#/App" class="btn btn--l btn--white btn--icon" lx-ripple>
+                <i class="mdi mdi-apps"></i>
+            </a>
+            <lx-dropdown lx-position="right">
+                <lx-dropdown-toggle>
+                    <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
+                </lx-dropdown-toggle>
+                <lx-dropdown-menu>
+                    <ul>
+                        <li>
+                            <a href="#/Perfil_Personal" class="dropdown-link">
+                                <i class="mdi"><md-icon>perm_contact_calendar</md-icon></i>
+                                <span>Perfil Personal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/Salir" class="dropdown-link">
+                                <i class="mdi"><md-icon>exit_to_app</md-icon></i>
+                                <span>Cerrar Sesión</span>
+                            </a>
+                        </li>
+                    </ul>
+                </lx-dropdown-menu>
+            </lx-dropdown>
+            <a href="#/Perfil">
+                <span class="mdl-chip mdl-chip--contact">
+                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">A</span>
                 <span class="mdl-chip__text">{{nom_perfil}}</span>
-            </span>
-        </a>
+                </span>
+            </a>
         </div>
     </div>
 </md-toolbar>
-<div app-view-segment="1" style="position: relative; top: 64px"></div>
+<div layout="row" flex app-view-segment="1"></div>
