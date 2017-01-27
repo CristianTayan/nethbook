@@ -631,7 +631,7 @@
 		};	    	
 	});
 
-	app.controller('mis_facturas_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES, $rootScope) {
+	app.controller('mis_facturas_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES, $rootScope,$window) {
 	    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
 	    $scope.selected = [];
 		var bookmark;
@@ -686,7 +686,10 @@
 		$scope.ver_factura = function(factura) {
 		    
 		    repositorioFacturas.Generar_PDF().get({factura:factura}).$promise.then(function(data) {
-	        	console.log(data.respuesta);
+	        	if (data.respuesta==true) {
+	        		var url = data.url;
+    				$window.open(url, "_blank");
+	        	}
 	    	});
 		    
 		}
