@@ -1,21 +1,21 @@
-<div layout-xs="column" layout="row">
-	<div flex-xs flex-gt-xs="20" layout="column" md-content flex layout="row" layout-fill>
-		<md-sidenav layout="column" class="main-sidenav md-sidenav-left" style="position:fixed !important; top: 64px;" md-component-id="navigation-drawer" md-is-locked-open="$mdMedia('gt-md')" layout="column">
-		    <md-content md-scroll-y flex layout="column">
-		        <md-sidemenu locked="true">
-		            <md-sidemenu-group>
-		        		<md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
-		        	</md-sidemenu-group>
-		            <md-sidemenu-group>
-		                <md-subheader class="md-no-sticky">Menu Colaboradores</md-subheader>
-		                <md-sidemenu-button href="#/App/Colaboradores/Usuario"><md-icon>person</md-icon>Usuarios</md-sidemenu-button>
-		                <md-sidemenu-button href="#/App/Colaboradores/Tipo_Usuario/"><md-icon>supervisor_account</md-icon>Tipo Usuarios</md-sidemenu-button>
-		            </md-sidemenu-group>
-		        </md-sidemenu>
-		    </md-content>
-		</md-sidenav>
-	</div>
-	<div layout-padding flex-xs flex-gt-xs="80" layout="column">
-		<div app-view-segment="2"></div>
-	</div>
+<md-sidenav style="max-width:250px;" layout="column" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4" flex>
+    <md-content layout="column">
+        <md-sidemenu locked="true">
+            <md-sidemenu-group>
+        		<md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
+        	</md-sidemenu-group>
+            <md-sidemenu-group>
+                <md-subheader class="md-no-sticky">Menu Colaboradores</md-subheader>
+                <md-sidemenu-button href="#/App/Colaboradores/Usuario"><md-icon>person</md-icon>Usuarios</md-sidemenu-button>
+                <md-sidemenu-button href="#/App/Colaboradores/Tipo_Usuario/"><md-icon>supervisor_account</md-icon>Tipo Usuarios</md-sidemenu-button>
+            </md-sidemenu-group>
+        </md-sidemenu>
+    </md-content>
+</md-sidenav>
+<!-- <div  app-view-segment="2" flex class="md-padding" layout="column" ></div> -->
+<div id="wrapper" flex class="md-padding" layout="column">
+    
+    <div class="scrollbar" id="style-2">
+      <div class="force-overflow"></div>
+    </div>
 </div>
