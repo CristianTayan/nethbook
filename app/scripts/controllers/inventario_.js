@@ -9,12 +9,121 @@
  */
 var app = angular.module('nextbook20App')
 
-app.controller('inventario_Ctrl', function($scope, inventario_Service) {
+app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog) {
+
+    
+
+
+
+
+
+    
+    $mdDialog.show({
+        controller: Dialog_procedimiento_Controller,
+        templateUrl: 'views/app/inventario/inicio/modal_.html',
+        parent: angular.element(document.body),
+        targetEvent: event,
+        ariaLabel: 'Respuesta Registro',
+        clickOutsideToClose: true,
+        fullscreen:false
+        // locals: {
+        //     obj: categoria
+        // }
+    });
     // $scope.data_inv_tc = {nombre:'', descripcion:''};
     $scope.data_inv_tc_guardar = function() {
         inventario_Service.Add_Tipo_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
             console.log(data);
         });
+    }
+
+
+
+    function Dialog_procedimiento_Controller($mdStepper, $timeout, $scope){
+
+        // var steppers = $mdStepper('stepper-demo');
+            // console.log(steppers);
+        // steppers.next();
+
+        var vm = $scope;
+
+            vm.$mdStepper = $mdStepper;
+            vm.$timeout = $timeout;
+            vm.isVertical = false;
+            vm.isLinear = true;
+            vm.isAlternative = true;
+            vm.isMobileStepText = true;
+            vm.campaign = false;
+
+
+            $scope.selectCampaign = function () {
+                console.log('test');
+                var steppers = this.$mdStepper('stepper-demo');
+                steppers.next();
+                // var _this = this;
+                // var steppers = this.$mdStepper('stepper-demo');
+                // steppers.showFeedback('Checking, please wait ...');
+                // this.$timeout(function () {
+                //     if (_this.campaign) {
+                //         steppers.clearError();
+                //         steppers.next();
+                //     }
+                //     else {
+                //         _this.campaign = !_this.campaign;
+                //         steppers.error('Wrong campaign');
+                //     }
+                // }, 3000);
+            };
+
+
+
+            $scope.previousStep = function () {
+                var steppers = this.$mdStepper('stepper-demo');
+                steppers.back();
+            };
+
+            $scope.cancel = function () {
+                console.log('test');
+                var steppers = this.$mdStepper('stepper-demo');
+                console.log(steppers);
+                steppers.back();
+            };
+
+
+            $scope.nextStep = function () {
+                console.log('test');
+                var steppers = this.$mdStepper('stepper-demo');
+                steppers.next();
+            };
+            $scope.toggleMobileStepText = function () {
+                this.isMobileStepText = !this.isMobileStepText;
+            };
+            $scope.toggleLinear = function () {
+                this.isLinear = !this.isLinear;
+            };
+            $scope.toggleAlternative = function () {
+                this.isAlternative = !this.isAlternative;
+            };
+            $scope.toggleVertical = function () {
+                this.isVertical = !this.isVertical;
+            };
+            $scope.showError = function () {
+                var steppers = this.$mdStepper('stepper-demo');
+                steppers.error('Wrong campaign');
+            };
+            $scope.clearError = function () {
+                var steppers = this.$mdStepper('stepper-demo');
+                steppers.clearError();
+            };
+            $scope.showFeedback = function () {
+                var steppers = this.$mdStepper('stepper-demo');
+                steppers.showFeedback('Step 1 looks great! Step 2 is comming up.');
+            };
+            $scope.clearFeedback = function () {
+                var steppers = this.$mdStepper('stepper-demo');
+                steppers.clearFeedback();
+            };
+            
     }
 });
 app.controller('inv_menu_Ctrl', function($scope, inventario_Service) {

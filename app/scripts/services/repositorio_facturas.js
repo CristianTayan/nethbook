@@ -125,6 +125,25 @@ angular.module('nextbook20App')
             });
     	};
 
+        // -------------------------------------------INICIO FACTURAS------------------------------------------
+        this.Get_Totales_Facturas = function() {
+            return $resource(urlService.server().appnext()+'Get_Totales_Facturas', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        }; 
+        this.money = function(string) {
+            var num = parseFloat(string.replace(/\€|,/g, ''));
+            return num;
+        }; 
+
+
+            
+
         // ----------------------------------- lectura xml extraccion clave -----------------------------------
         this.buscar_comprobante = function(xml_sin_empresa) {
             var campos_vector = _.keys(xml_sin_empresa);

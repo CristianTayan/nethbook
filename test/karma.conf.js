@@ -52,6 +52,10 @@ module.exports = function(config) {
       'bower_components/angular-moment/angular-moment.js',
       'bower_components/angular-google-chart/ng-google-chart.js',
       'bower_components/chart.js/dist/Chart.js',
+      'bower_components/angular-currency-filter/src/currency-filter.js',
+      'bower_components/Chart.js/dist/Chart.js',
+      'bower_components/ng-chartjs/dist/angular-chartjs.min.js',
+      'bower_components/material-steppers/dist/material-steppers.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

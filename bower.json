@@ -28,7 +28,10 @@
     "angular-io-barcode": "^1.0.4",
     "angular-moment": "^1.0.1",
     "angular-google-chart": "^0.1.0",
-    "chart.js": "^2.4.0"
+    "chart.js": "^2.4.0",
+    "angular-currency-filter": "^2.2.0",
+    "ng-chartjs": "^0.0.5",
+    "material-steppers": "^1.0.3"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

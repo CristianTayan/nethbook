@@ -32,8 +32,9 @@ var app = angular.module('nextbook20App', [
                                             'cb.x2js',
                                             'io-barcode',
                                             'angularMoment',
-                                            // 'chart.js',
+                                            'chartjs',
                                             'googlechart',
+                                            'mdSteppers'
                                         ]);
 
     // themes configuration

@@ -4,41 +4,30 @@
         <span flex></span>
     </div>
 </md-toolbar>
-
 <div layout="row" layout-align="center center">
-    <div flex-gt-sm="90" flex-gt-md="50" layout-padding>
-        <div layout="row">
-        <div flex="20"></div>
-<!--             <img src="" width="100%" class="animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-            <h2 class="md-display-2" layout="row" layout-align="center center" ng-show="elemennotview">Bienvenido</h2> -->
-        <div flex>
-                    <form name="form_ingreso_colaborador" ng-submit="ingresar_colaborador()">
-                    
-                        <md-card flex="60">
-        <div ><img ng-src="{{datosE.img_portada}}" class="md-card-image" alt="{{datosE.razon_social}}"></div>
-        <md-card-content>
-        <div style="text-align: center;">
-         <md-button class="md-primary" >{{datosE.razon_social}}</md-button>
-         </div>
-          <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                            <label>Usuario</label>
-                            <md-icon class="md-primary">person_pin</md-icon>
-                            <input type="text" ng-model="data_ingreso_colaborador.nick" autocomplete="off" >
-                        </md-input-container>
-                        <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                            <label>Contraseña</label>
-                            <md-icon class="md-primary">vpn_key</md-icon>
-                            <input type="password" ng-model="data_ingreso_colaborador.clave" >
-                        </md-input-container>        
-        </md-card-content>
-        <md-card-actions layout="row" layout-align="end center">
-        <md-button href="#/" type="button" >CANCELAR</md-button>
-          <md-button class="md-raised md-primary" type="submit" ng-disabled="form_ingreso_colaborador.$invalid">INGRESAR</md-button>
-        </md-card-actions>
-      </md-card>
-                    </form>
-                    </div>
-            </div>
-
+    <div flex-gt-sm="100" flex-gt-md="30">
+        <form name="form_ingreso_colaborador" ng-submit="ingresar_colaborador()">
+            <md-card>
+                <div style="width: 100%; height: 150px; background: {{color}};">
+                    <div style="position: relative; top: 40px; padding: 20px; color: #FFF">{{datosE.razon_social}}</div>
+                </div>
+                <md-card-content>
+                    <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                        <label>Usuario</label>
+                        <md-icon style="color:{{color}};">person_pin</md-icon>
+                        <input type="text" ng-model="data_ingreso_colaborador.nick" autocomplete="off">
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                        <label>Contraseña</label>
+                        <md-icon style="color:{{color}};">vpn_key</md-icon>
+                        <input type="password" ng-model="data_ingreso_colaborador.clave">
+                    </md-input-container>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button href="#/" type="button">CANCELAR</md-button>
+                    <md-button class="md-raised md-primary" type="submit" ng-disabled="form_ingreso_colaborador.$invalid">INGRESAR</md-button>
+                </md-card-actions>
+            </md-card>
+        </form>
     </div>
 </div>

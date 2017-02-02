@@ -2,8 +2,8 @@
     <md-content layout="column">
         <md-sidemenu locked="true">
             <md-sidemenu-group>
-        		<md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
-        	</md-sidemenu-group>
+                <md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
+            </md-sidemenu-group>
             <md-sidemenu-group>
                 <md-subheader class="md-no-sticky">Menu Colaboradores</md-subheader>
                 <md-sidemenu-button href="#/App/Colaboradores/Usuario"><md-icon>person</md-icon>Usuarios</md-sidemenu-button>
@@ -12,10 +12,6 @@
         </md-sidemenu>
     </md-content>
 </md-sidenav>
-<!-- <div  app-view-segment="2" flex class="md-padding" layout="column" ></div> -->
-<div id="wrapper" flex class="md-padding" layout="column">
-    
-    <div class="scrollbar" id="style-2">
-      <div class="force-overflow"></div>
-    </div>
-</div>
+<md-content flex class="md-padding" layout="column" >
+    <div app-view-segment="2"></div>
+</md-content>

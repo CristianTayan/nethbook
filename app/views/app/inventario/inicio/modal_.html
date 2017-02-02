@@ -1,0 +1,130 @@
+<md-dialog aria-label="Info">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>es tu primera vez aquí..?</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+    	<md-stepper id="stepper-demo" md-mobile-step-text="isMobileStepText" md-vertical="isVertical" md-linear="isLinear"
+	        md-alternative="isAlternative">
+	        <md-step md-label="Paso 1">
+	        	<form name="form_pasos_basicos">
+		            <md-step-body layout-padding layout-align="center center">
+		            	<div layout="row">
+		            		<h5>Tu empresa se dedica a la venta de...</h5>
+		            	</div>		                
+		                <div layout="row">
+    						<md-input-container>
+			                	<md-radio-group ng-model="data.group1" required>
+							    	<md-radio-button value="Productos">Productos</md-radio-button>
+							      	<md-radio-button value="Servicios"> Servicios </md-radio-button>
+							      	<md-radio-button value="Productos_Servicios">Productos / Servicios</md-radio-button>
+							    </md-radio-group>
+							</md-input-container>
+			            </div>
+		            </md-step-body>
+		            <md-step-actions layout="row" layout-align="center center">
+		                <md-button class="md-primary md-raised" ng-click="selectCampaign();" ng-disabled="form_pasos_basicos.$invalid">Siguiente</md-button>
+		                <md-button class="md-primary" ng-click="cancel();">Cancel</md-button>
+		            </md-step-actions>
+	            </form>
+	        </md-step>
+
+	        <md-step md-label="Paso 2">
+	            <md-step-body>
+	                <md-input-container>
+	                    <label>Username</label>
+	                    <input type="text" ng-model="user.name">
+	                </md-input-container>
+
+	                <md-input-container>
+	                    <label>Email</label>
+	                    <input type="email" ng-model="user.email">
+	                </md-input-container>
+
+	                <md-input-container>
+	                    <label>Password</label>
+	                    <input type="password" ng-model="user.password">
+	                </md-input-container>
+
+	                <md-input-container>
+	                    <label>Confirm password</label>
+	                    <input type="password" ng-model="user.confirmPassword">
+	                </md-input-container>
+	            </md-step-body>
+
+	            <md-step-actions>
+	                <md-button class="md-primary md-raised" ng-click="nextStep();">Continue</md-button>
+	                <md-button class="md-primary" ng-click="previousStep();">Back</md-button>
+	            </md-step-actions>
+	        </md-step>
+
+	        <md-step md-label="Paso 3">
+	            <md-step-body>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
+	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
+	                    voluptatibus, eaque autem!</p>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
+	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
+	                    voluptatibus, eaque autem!</p>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
+	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
+	                    voluptatibus, eaque autem!</p>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
+	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
+	                    voluptatibus, eaque autem!</p>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
+	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
+	                    voluptatibus, eaque autem!</p>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
+	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
+	                    voluptatibus, eaque autem!</p>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
+	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
+	                    voluptatibus, eaque autem!</p>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
+	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
+	                    voluptatibus, eaque autem!</p>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
+	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
+	                    voluptatibus, eaque autem!</p>
+	            </md-step-body>
+
+	            <md-step-actions>
+	                <md-button class="md-primary md-raised" ng-click="nextStep();">Continue</md-button>
+	                <md-button class="md-primary" ng-click="previousStep();">Back</md-button>
+	            </md-step-actions>
+	        </md-step>
+
+	        <md-step md-label="Publish the ad" md-optional="Optional">
+	            <md-step-body>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
+	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
+	                    voluptatibus, eaque autem!</p>
+	            </md-step-body>
+	            <md-step-actions>
+	                <md-button class="md-primary md-raised" ng-click="nextStep();">Complete</md-button>
+	                <md-button class="md-primary" ng-click="previousStep();">Back</md-button>
+	            </md-step-actions>
+	        </md-step>
+
+
+	    </md-stepper>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <!-- <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+            More on Wikipedia
+        </md-button>
+        <span flex></span>
+        <md-button ng-click="answer('not useful')">
+            Not Useful
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            Useful
+        </md-button> -->
+    </md-dialog-actions>
+</md-dialog>

@@ -14,11 +14,12 @@ var app = angular.module('nextbook20App')
   			$scope.datosE=data.respuesta;
   		}
   		colaboradores_Service.Get_Data_By_Ruc().get({ruc:$routeParams.ruc},success_data_ruc).$promise;
-
+  		var listcolor = ['#F34235','#E81D62','#3E50B4', '#2095F2','#4BAE4F', '#8AC249'];
+  		var random = Math.floor(Math.random()*(5 - 0 + 1)) + 0;
+  		$scope.color = listcolor[random];
 	    // logeo ingreso Colaboradores
   		$scope.ingresar_colaborador = function() {
   			consumirService.ip_public().then(function(data) {
-  				console.log('test');
   				getIPs(function(ip){
   					$scope.data_ingreso_colaborador.ruc=$routeParams.ruc;
   					var obj = $scope.data_ingreso_colaborador;

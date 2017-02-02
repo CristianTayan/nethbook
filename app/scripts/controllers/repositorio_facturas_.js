@@ -16,8 +16,34 @@
         ];
     });
 
-    app.controller('repfac_inicio_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage) {
-
+    app.controller('repfac_inicio_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter) {
+    	// -----------------------------------Leer tipos de Gastos---------------------------------
+    	
+	    repositorioFacturas.Get_Totales_Facturas().get().$promise.then(function(data) {
+	    	$scope.myChartObject = {};
+	    	var data = data.respuesta;
+	    	// console.log(repositorioFacturas.money());
+	    	var rows = [];
+	    	
+	    	for (var i = 0; i < data.length; i++) {
+	    		var valor = repositorioFacturas.money(data[i].total);
+	    		var sub_arrow = [{v:data[i].nombre},{v:valor}];
+	    		rows.push({c:sub_arrow});
+	    	}
+	    	var rows = rows;	    	
+		    $scope.myChartObject.type = "PieChart";	    
+		    $scope.onions = [
+		        {v: "Onions"},
+		        {v: 3},
+		    ];
+		    $scope.myChartObject.data = {"cols": [
+		        {id: "t", label: "Compras", type: "string"},
+		        {id: "s", label: "Gastos", type: "number"}
+		    ], rows};
+		    $scope.myChartObject.options = {
+		        'title': 'GASTOS GENERADOS'
+		    };
+	    });
     });
     
     app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES) {
@@ -647,16 +673,40 @@
 	});
 
 	app.controller('mis_facturas_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES, $rootScope,$window) {
+
+		$scope.filtromoney = function(string){
+			return repositorioFacturas.money(string);
+		}
+		//---------------------------------------------------------LLENADO TIPO DOCUMENTOS-----------------------------------------------------------
+		repositorioFacturas.Get_Tipo_Documentos().get().$promise.then(function(data) {
+	        $scope.tipo_consumos = data.respuesta;
+	    });
+
+
+	    $scope.rep_fac_tipo_doc_filtro = function(data){
+	    	$scope.query = {
+			    filter: '',
+			    num_registros: 10,
+			    pagina_actual: 1,
+			    limit: '10',
+			    page_num: 1,
+			    id_tipo_documento:data.id
+			};
+			$scope.data_mis_facturas_get()
+	    }
+
 	    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
 	    $scope.selected = [];
 		var bookmark;
 		$scope.selected = [];
+
 		$scope.query = {
 		    filter: '',
 		    num_registros: 10,
 		    pagina_actual: 1,
 		    limit: '10',
-		    page_num: 1
+		    page_num: 1,
+		    id_tipo_documento:'01'
 		};
 
 		function success(desserts) {
@@ -703,7 +753,8 @@
 		    repositorioFacturas.Generar_PDF().get({factura:factura}).$promise.then(function(data) {
 	        	if (data.respuesta==true) {
 	        		var url = data.url;
-    				$window.open(url, "_blank");
+    				// $window.open(url, "_blank");
+    				$window.open(url, 'C-Sharpcorner', 'width=800,height=700');
 	        	}
 	    	});
 		    

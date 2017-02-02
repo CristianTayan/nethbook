@@ -317,10 +317,12 @@ body, html {
 
 ::-webkit-scrollbar-track{
   background: rgba(0, 20, 0, 0.1);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb{
-  background: rgba(60, 0, 0, 0.5);
+  background: #3E50B4;
+  border-radius: 10px;
 }
 
 
