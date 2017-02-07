@@ -12,12 +12,6 @@ var app = angular.module('nextbook20App')
 app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog) {
 
     
-
-
-
-
-
-    
     $mdDialog.show({
         controller: Dialog_procedimiento_Controller,
         templateUrl: 'views/app/inventario/inicio/modal_.html',
@@ -30,6 +24,7 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
         //     obj: categoria
         // }
     });
+
     // $scope.data_inv_tc = {nombre:'', descripcion:''};
     $scope.data_inv_tc_guardar = function() {
         inventario_Service.Add_Tipo_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
@@ -39,13 +34,9 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
 
 
 
-    function Dialog_procedimiento_Controller($mdStepper, $timeout, $scope){
+    function Dialog_procedimiento_Controller($scope,$mdStepper, $timeout, inventario_Service,$localStorage,$log){
 
-        // var steppers = $mdStepper('stepper-demo');
-            // console.log(steppers);
-        // steppers.next();
-
-        var vm = $scope;
+            var vm = $scope;
 
             vm.$mdStepper = $mdStepper;
             vm.$timeout = $timeout;
@@ -54,26 +45,164 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
             vm.isAlternative = true;
             vm.isMobileStepText = true;
             vm.campaign = false;
+            vm.select_tipo_empresa;
+            vm.select_tipo_empresa_text;
+            vm.tipos_categoria=[];
+            vm.categorias=[];
+            vm.marcas=[{nombre:'Sin Marca',descripcion:'Sin Marca'}];
+            vm.modelos=[{nombre:'Sin Modelo',descripcion:'Sin Modelo'}];
+            vm.ubicacion=[];
+            vm.estado_descriptivo=[];
+            vm.garantias=[{nombre:'Sin Garantia',descripcion:'Sin Garantia'}];
+            //----------------------------------------------------- LLENADO DE SELECTS --------------------------------------
 
+            // -------------------------------------------------------SELECT TIPO CONSUMO------------------------------------------------------------
+            function success_tipo_consumo(desserts) {
+                console.log(desserts);
+                vm.selectTipoConsumos = desserts.respuesta.data;
+                vm.selectModelTipoConsumos = {
+                    selectedTipoConsumo: undefined
+                };
+            }
+            $scope.data_inv_tipo_consumo_get = function() {
+                inventario_Service.Get_Tipo_Consumo().get($scope.query, success_tipo_consumo).$promise;
+            }
+            $scope.data_inv_tipo_consumo_get();
 
-            $scope.selectCampaign = function () {
-                console.log('test');
+            vm.selectCallback = selectCallback;
+            vm.ListT_Categorias = vm.tipos_categoria;
+            vm.tipo_categoriaModel = {
+                selectedT_categoria: undefined
+            };
+
+            vm.selectPeople = vm.tipos_categoria;
+            vm.selectED = vm.estado_descriptivo;
+            vm.selectGarantias = vm.garantias;
+            vm.selectMarcas = vm.marcas;
+            vm.selectModelos = vm.modelos;
+            vm.selectUbicaciones = vm.ubicacion;
+            
+            vm.selectModel = {
+                selectedPerson: undefined,
+                selectedPeople: [vm.selectPeople[0]]
+            };
+
+            vm.selectModelED = {
+                selectedED: undefined,
+                selectedPeopleED: [vm.selectED[0]]
+            };
+            vm.selectModelGarantia = {
+                selectedGarantia: undefined
+            };
+
+            vm.selectModelMarcas = {
+                selectedMarca: undefined
+            };
+            vm.selectModelModelos = {
+                selectedModelo: undefined
+            };
+            vm.selectModelUbicaciones = {
+                selectedUbicacion: undefined
+            };
+
+            function selectCallback(_newValue, _oldValue) {
+                console.log('cambio palabra'+_newValue+' por '+_oldValue);
+            }
+
+            $scope.selectCampaign = function (selected) {
+                vm.select_tipo_empresa=selected.value;
+                vm.select_tipo_empresa_text=selected.label;
+
+                switch(vm.select_tipo_empresa) {
+                    case 'Productos':
+                        $scope.texto=" Esta es una <strong>Bodega Virtual de "+vm.select_tipo_empresa_text+"</strong>, representa una ubicacion del mundo real, podrá crear más bodegas si usted los desea, para ello puede hacerlo en <strong>Inventario->Bodegas</strong>";
+                        break;
+                    case 'Servicios':
+                        $scope.texto=" Esta es una <strong>Bodega Virtual de "+vm.select_tipo_empresa_text+"</strong>, representa una ubicacion del mundo real, podrá crear más bodegas si usted los desea, para ello puede hacerlo en <strong>Inventario->Bodegas</strong>";
+                        break;
+                    case 'Productos_Servicios':
+                        $scope.texto=" Vemos que te dedicas a vender "+vm.select_tipo_empresa_text+" A continuación deberemos crear una Bodega de <strong>Productos</strong> y otra dedicada a <strong>Servicios</strong>";
+                    break;
+                }
                 var steppers = this.$mdStepper('stepper-demo');
                 steppers.next();
-                // var _this = this;
-                // var steppers = this.$mdStepper('stepper-demo');
-                // steppers.showFeedback('Checking, please wait ...');
-                // this.$timeout(function () {
-                //     if (_this.campaign) {
-                //         steppers.clearError();
-                //         steppers.next();
-                //     }
-                //     else {
-                //         _this.campaign = !_this.campaign;
-                //         steppers.error('Wrong campaign');
-                //     }
-                // }, 3000);
             };
+
+            // $scope.data_inv_bodega_guardar = function(data_inv_bodega) {
+            //     data_inv_bodega.id_sucursal=$localStorage.sucursal.id;
+            //     inventario_Service.Add_Bodega().add(data_inv_bodega).$promise.then(function(){});
+            // }
+
+            var tabs = [
+                      { title: 'Categorias Principales', id: "tipos_categorias",placeholder:" (Ej: lacteos, herrajes, caramelos ...)",btn_view:true},
+                      { title: 'SubCategorias', id: "categorias",placeholder:" (Ej: Quesos,leches ...)",btn_view:true},
+                      { title: 'Marcas', id: "marcas",placeholder:" (Ej: 220V,BIC,KCHITOS...)",btn_view:true},
+                      { title: 'Modelos', id: "modelos",placeholder:" (Ej: funda,cajas,vaso,en barra ...)",btn_view:true},
+                      { title: 'Ubicación', id: "ubicacion",placeholder:" (Ej: Percha 1, tercer cajon, repisa 2...)",btn_view:true},
+                      { title: 'Estado de Producto', id: "estado_descriptivo",placeholder:" (Ej: Nuevo, Bueno, Dañados, en reparacion ...)",btn_view:true},
+                    ],
+                    selected = null,
+                    previous = null;
+                $scope.tabs = tabs;
+                $scope.selectedIndex = 0;
+                $scope.$watch('selectedIndex', function(current, old){
+                  previous = selected;
+                  selected = tabs[current];
+                });
+
+             $scope.save_tipo = function (tab,data) {
+                   var index = tabs.indexOf(tab);
+                   tabs[index].btn_view=false;
+
+                  switch(tab.id) {
+                      case 'tipos_categorias':
+                        vm.tipos_categoria.push(data);
+                          break;
+                      case 'categorias':
+                      data.tipo_categoria=vm.tipo_categoriaModel.selectedT_categoria.name;
+                          vm.categorias.push(data);
+                          break;
+                      case 'marcas':
+                          vm.marcas.push(data);
+                          break;
+                     case 'modelos':
+                          vm.modelos.push(data);
+                          break;
+                     case 'ubicacion':
+                          vm.ubicacion.push(data);
+                          break;
+                    case 'estado_descriptivo':
+                          vm.estado_descriptivo.push(data);
+                          break;
+                  }
+                  if ($scope.selectedIndex<$scope.tabs.length) {
+                      if (($scope.selectedIndex+1)>$scope.tabs.length) {
+                      $scope.selectedIndex=$scope.tabs.length;
+                      }else{
+                        $scope.selectedIndex=$scope.selectedIndex+1
+                      }
+                  }
+                  
+                };
+
+        $scope.save_all = function (data_prod) {
+            data_prod.categoria = vm.selectModel.selectedPerson.nombre;
+            data_prod.estado_descriptivo = vm.selectModelED.selectedED.nombre;
+            data_prod.garantia = vm.selectModelGarantia.selectedGarantia.nombre;
+            data_prod.marca = vm.selectModelMarcas.selectedMarca.nombre;
+            data_prod.modelo = vm.selectModelModelos.selectedModelo.nombre;
+            data_prod.ubicacion = vm.selectModelUbicaciones.selectedUbicacion.nombre;
+            data_prod.tipo_consumo = vm.selectModelTipoConsumos.selectedTipoConsumo.nombre;
+            if (data_prod.comprable==undefined) {
+                data_prod.comprable=false;
+            }else data_prod.comprable=true;
+
+            if (data_prod.vendible==undefined) {
+                data_prod.vendible=false;
+            }else data_prod.vendible=true;
+            console.log(data_prod);
+
+        }
 
 
 
@@ -91,7 +220,6 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
 
 
             $scope.nextStep = function () {
-                console.log('test');
                 var steppers = this.$mdStepper('stepper-demo');
                 steppers.next();
             };
