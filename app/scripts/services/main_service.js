@@ -7,8 +7,8 @@
  * # mainService
  * Service in the nextbook20App.
  */
-angular.module('nextbook20App')
-    .service('mainService', function ($resource, urlService, $localStorage) {
+var app = angular.module('nextbook20App');
+    app.service('mainService', function ($resource, urlService, $localStorage) {
 
         // AngularJS will instantiate a singleton by calling "new" on this function
         //------------------------------------------------------    INICIO BUSQUEDA DE EMPRESAS -------------------------------------------------------
@@ -138,12 +138,45 @@ angular.module('nextbook20App')
                     }
                 }
             });
-        };
-
-
-        
-        
-        
-
-        
+        }; 
     });
+app.factory('mySocket', function (socketFactory) {
+    // console.log(socketFactory());
+    // console.log(io);
+    // var myIoSocket = io.connect('');
+  // return socketFactory();
+});
+
+
+// app.factory('mySocket', function($rootScope) {
+//     var socket = io.connect();
+//     function on(eventName, callback) {
+//         socket.on(eventName, function() {
+//             var args = arguments;
+
+//             $rootScope.$apply(function() {
+//                 callback.apply(socket, args);
+//             });
+//         });
+
+//         // Remove duplicate listeners
+//         socket.removeListener(eventName, callback);
+//     }
+//     function emit(eventName, data, callback) {
+//         socket.emit(eventName, data, function() {
+//             var args = arguments;
+
+//             $rootScope.$apply(function() {
+//                 if (callback) {
+//                     callback.apply(socket, args);
+//                 }
+//             });
+//         });
+//         // Remove duplicate listeners
+//         socket.removeListener(eventName, callback);
+//     }
+//     return {
+//         on: on,
+//         emit: emit
+//     };
+// });

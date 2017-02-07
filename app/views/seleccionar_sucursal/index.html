@@ -1,4 +1,4 @@
-<md-toolbar>
+<md-toolbar layout="flex">
     <div class="md-toolbar-tools md-toolbar-registro">
         <h3>Nextbook, Red de Negocios</h3>
         <span flex></span>
@@ -22,44 +22,47 @@
         </lx-dropdown>
     </div>
 </md-toolbar>
-<div layout="row" layout-align="center center">
-    <div class="p+">
-        <div class="card">
-            <div flex-container="row">
-                <div layout="column"  flex>
-                    <div class="p+">
-                        <md-card >
-                            <md-card-content class="md-accent">
-                                <md-input-container md-no-float class="md-block">
-                                  <md-icon>search</md-icon>
-                                  <input ng-model="sucursalSearch" name="dc" placeholder="Buscar por: codigo establesimiento, direccion" class="md-accent">
-                                </md-input-container>
-                            </md-card-content>
-                        </md-card>
+<md-content layout-padding layout-wrap layout="row" flex layout-align="center center" >
+    <!-- <div > -->
+        <!-- <div class="p+"> -->
+            <div class="card" style="position:relative; top: 175px">
+                <div flex-container="row">
+                    <div layout="column"  flex>
+                        <div class="p+">
+                            <md-card >
+                                <md-card-content class="md-accent">
+                                    <md-input-container md-no-float class="md-block">
+                                      <md-icon>search</md-icon>
+                                      <input ng-model="sucursalSearch" name="dc" placeholder="Buscar por: codigo establesimiento, direccion" class="md-accent">
+                                    </md-input-container>
+                                </md-card-content>
+                            </md-card>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div flex-container="row">                
-                <div layout="column"  flex>
-                    <div class="p+" ng-repeat="items in data_establecimiento | filter: sucursalSearch">
-                        <div class="card">
-                            <div class="p+">                                
-                                <strong class="fs-headline display-block">{{items.nombre}}</strong>
-                                <span class="fs-subhead tc-black-2 display-block">Codigo: {{items.codigo_sri}}</span>
-                     
-                                <div class="paragraph fs-body-1 mt+">
-                                    <p>
-                                        Calle: {{escapeRegExp(items.localizacion_sucursal.direccion)}}
-                                    </p>
+                <div flex-container="row">                
+                    <div layout="column"  flex>
+                        <div class="p+" ng-repeat="items in data_establecimiento | filter: sucursalSearch">
+                            <div class="card">
+                                <div class="p+">                                
+                                    <strong class="fs-headline display-block">{{items.nombre}}</strong>
+                                    <span class="fs-subhead tc-black-2 display-block">Codigo: {{items.codigo_sri}}</span>
+                         
+                                    <div class="paragraph fs-body-1 mt+">
+                                        <p>
+                                            Calle: {{escapeRegExp(items.localizacion_sucursal.direccion)}}
+                                        </p>
+                                    </div>
+                                </div>                     
+                                <div class="card__actions">
+                                    <lx-button lx-color="orange" lx-type="flat" ng-click="Select_Sucursal(items)">Seleccionar</lx-button>
                                 </div>
-                            </div>                     
-                            <div class="card__actions">
-                                <lx-button lx-color="orange" lx-type="flat" ng-click="Select_Sucursal(items)">Seleccionar</lx-button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        <!-- </div> -->
+    <!-- </div> -->
+</md-content>
+

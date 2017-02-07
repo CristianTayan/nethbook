@@ -8,11 +8,58 @@
  * Controller of the nextbook20App
  */
 var app = angular.module('nextbook20App')
-app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage) {
+app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mainService, $http) {
+
+
+    $http({
+          method: 'GET',
+          url: 'http://186.4.167.6/appnext1.1/public/index.php/buscar_empresas?filter=JUAN'
+        }).then(function successCallback(data) {
+            
+            $scope.registros = data.data.respuesta
+            console.log($scope.registros);
+            // this callback will be called asynchronously
+            // when the response is available
+          }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+          });
+    mainService.buscar_empresas().get().$promise.then(function(data) {
+        console.log(data.respuesta);
+        // $scope.todos
+    });
+
+
+    $scope.localSearch = function(str) {
+      var matches = [];
+      $scope.people.forEach(function(person) {
+        var fullName = person.firstName + ' ' + person.surname;
+        if ((person.firstName.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) ||
+            (person.surname.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) ||
+            (fullName.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0)) {
+          matches.push(person);
+        }
+      });
+      return matches;
+    };
+
+
+
     $scope.toggleSidenav = function(menuId) {
         $mdSidenav(menuId).toggle();
     };
     $scope.nom_perfil = $localStorage.datosE.nombre_comercial;
+    var imagePath = 'img/list/60.jpeg';
+
+    // $scope.todos = [];
+    // for (var i = 0; i < 15; i++) {
+    //     $scope.todos.push({
+    //       face: imagePath,
+    //       what: "Brunch this weekend?",
+    //       who: "Min Li Chan"+i,
+    //       notes: "I'll be in your neighborhood doing errands."
+    //     });
+    // }
 });
 
 app.controller('login_services_Ctrl', function($scope, $localStorage, mainService) {

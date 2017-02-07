@@ -34,9 +34,11 @@ var app = angular.module('nextbook20App', [
                                             'angularMoment',
                                             'chartjs',
                                             'googlechart',
-                                            'mdSteppers'
+                                            'mdSteppers',
+                                            'btford.socket-io',
+                                            'angucomplete-alt'
                                         ]);
-
+    
     // themes configuration
     app.config(function($mdThemingProvider) {
       $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
@@ -67,6 +69,7 @@ var app = angular.module('nextbook20App', [
     }]);
     
     app.config(function ($routeSegmentProvider, $routeProvider) {
+        // $locationProvider.hashPrefix('');
         // Configuring provider options    
         $routeSegmentProvider.options.autoLoadTemplates = true;            
                 

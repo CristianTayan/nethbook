@@ -2,7 +2,7 @@
   "name": "nextbook20",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "^1.4.0",
+    "angular": "^1.5.0",
     "angular-animate": "^1.4.0",
     "angular-aria": "^1.4.0",
     "angular-cookies": "^1.4.0",
@@ -31,7 +31,10 @@
     "chart.js": "^2.4.0",
     "angular-currency-filter": "^2.2.0",
     "ng-chartjs": "^0.0.5",
-    "material-steppers": "^1.0.3"
+    "material-steppers": "^1.0.3",
+    "angular-socket-io": "^0.7.0",
+    "socket.io-client": "^1.7.2",
+    "angucomplete-alt": "^3.0.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

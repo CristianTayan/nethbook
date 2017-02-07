@@ -56,6 +56,8 @@ module.exports = function(config) {
       'bower_components/Chart.js/dist/Chart.js',
       'bower_components/ng-chartjs/dist/angular-chartjs.min.js',
       'bower_components/material-steppers/dist/material-steppers.js',
+      'bower_components/angular-socket-io/socket.js',
+      'bower_components/angucomplete-alt/angucomplete-alt.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
