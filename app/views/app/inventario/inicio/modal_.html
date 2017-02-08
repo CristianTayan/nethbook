@@ -1,122 +1,404 @@
-<md-dialog aria-label="Info">
+<md-dialog aria-label="Info" style="width: 1000px;">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>es tu primera vez aquí..?</h2>
+            <h2>Es tu primera vez aquí..?</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="cancel()">
                 <md-icon aria-label="Close dialog">close</md-icon>
             </md-button>
         </div>
     </md-toolbar>
-    <md-dialog-content>
-    	<md-stepper id="stepper-demo" md-mobile-step-text="isMobileStepText" md-vertical="isVertical" md-linear="isLinear"
-	        md-alternative="isAlternative">
-	        <md-step md-label="Paso 1">
-	        	<form name="form_pasos_basicos">
-		            <md-step-body layout-padding layout-align="center center">
-		            	<div layout="row">
-		            		<h5>Tu empresa se dedica a la venta de...</h5>
-		            	</div>		                
-		                <div layout="row">
-    						<md-input-container>
-			                	<md-radio-group ng-model="data.group1" required>
-							    	<md-radio-button value="Productos">Productos</md-radio-button>
-							      	<md-radio-button value="Servicios"> Servicios </md-radio-button>
-							      	<md-radio-button value="Productos_Servicios">Productos / Servicios</md-radio-button>
-							    </md-radio-group>
-							</md-input-container>
-			            </div>
-		            </md-step-body>
-		            <md-step-actions layout="row" layout-align="center center">
-		                <md-button class="md-primary md-raised" ng-click="selectCampaign();" ng-disabled="form_pasos_basicos.$invalid">Siguiente</md-button>
-		                <md-button class="md-primary" ng-click="cancel();">Cancel</md-button>
-		            </md-step-actions>
-	            </form>
-	        </md-step>
+    <form name="form_pasos_basicos">
+        <md-dialog-content>
+            <md-stepper id="stepper-demo" md-mobile-step-text="isMobileStepText" md-vertical="isVertical" md-linear="isLinear" md-alternative="isAlternative">
+                <md-step md-label="Actividad Economica">
 
-	        <md-step md-label="Paso 2">
-	            <md-step-body>
-	                <md-input-container>
-	                    <label>Username</label>
-	                    <input type="text" ng-model="user.name">
-	                </md-input-container>
+                    <md-step-body layout-padding layout-align="center center">
+                        <div layout="row">
+                            <h5>Tu empresa se dedica a la venta de...</h5>
+                        </div>
+                        <div layout="row">
+                            <md-input-container>
+                                <md-radio-group ng-model="selected" ng-click="selectCampaign(selected)" required>
+                                    <md-radio-button ng-repeat="d in [{label:'Productos',value:'Productos'},{label:'Servicios',value:'Servicios'},{label:'Productos / Servicios',value:'Productos_Servicios'}]" ng-value="d" aria-label="{{ d.label }}">
+                                        {{ d.label }}
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+                        </div>
+                    </md-step-body>
+                    <md-step-actions layout="row" layout-align="center center">
+                        <!-- <md-button class="md-primary md-raised" ng-click="selectCampaign();" ng-disabled="form_pasos_basicos.$invalid">Siguiente</md-button> -->
+                        <md-button class="md-primary" ng-click="cancel();">Cancelar</md-button>
+                    </md-step-actions>
+                </md-step>
 
-	                <md-input-container>
-	                    <label>Email</label>
-	                    <input type="email" ng-model="user.email">
-	                </md-input-container>
+                <md-step md-label="Bodegas">
+                    <md-step-body layout-padding>
 
-	                <md-input-container>
-	                    <label>Password</label>
-	                    <input type="password" ng-model="user.password">
-	                </md-input-container>
+                        <md-content class="md-no-momentum">
+                            <div class="padded " md-whiteframe="1" layout layout-align="center center" style="background-color: rgb(229, 255, 253); color: #3f51b5;">
+                                <md-icon class='md-primary'>info</md-icon><span ng-bind-html="texto"></span>
+                            </div>
+                            <br>
+                            <md-input-container class="md-icon-float md-block">
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Nombre de la Bodega (Eje: Bodega 1.....)</label>
+                                <input name="nom_bodega" ng-model="data_inv_bodega.nombre" type="text" bodega-validator required>
+                                <div ng-messages="form_pasos_basicos.nom_bodega.$error" ng-show="form_pasos_basicos.nom_bodega.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
+                                </div>
+                            </md-input-container>
+                            <div layout="row">
+                                <md-input-container class="md-icon-float md-block" flex>
+                                    <md-icon class="md-primary">description</md-icon>
+                                    <label>Calle</label>
+                                    <textarea name="calle" ng-model="data_inv_bodega.calle" type="text" required></textarea>
+                                    <div ng-messages="form_pasos_basicos.calle.$error" ng-show="form_pasos_basicos.calle.$dirty">
+                                        <div ng-message="required">Campo Requerido</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="md-icon-float md-block" flex>
+                                    <md-icon class="md-primary">description</md-icon>
+                                    <label>Número</label>
+                                    <textarea name="numero" ng-model="data_inv_bodega.numero" type="text" required></textarea>
+                                    <div ng-messages="form_pasos_basicos.numero.$error" ng-show="form_pasos_basicos.numero.$dirty">
+                                        <div ng-message="required">Campo Requerido</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <md-input-container md-no-float class="md-block">
+                                <md-icon class="md-primary">description</md-icon>
+                                <label>Especificaciones (Eje: tamaño, refrigerado, bodega de devoluciones.....)</label>
+                                <textarea name="especificaciones" ng-model="data_inv_bodega.especificaciones" type="text" required></textarea>
+                                <div ng-messages="form_pasos_basicos.especificaciones.$error" ng-show="form_pasos_basicos.especificaciones.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                </div>
+                            </md-input-container>
+                            <div layout="row" class="md-block" layout-align="center">
 
-	                <md-input-container>
-	                    <label>Confirm password</label>
-	                    <input type="password" ng-model="user.confirmPassword">
-	                </md-input-container>
-	            </md-step-body>
+                            </div>
+                        </md-content>
+                    </md-step-body>
+                    <md-step-actions>
+                        <md-button class="md-primary md-raised" ng-click="nextStep();">Continuar</md-button>
+                        <md-button class="md-primary" ng-click="previousStep();">Atras</md-button>
+                    </md-step-actions>
+                </md-step>
 
-	            <md-step-actions>
-	                <md-button class="md-primary md-raised" ng-click="nextStep();">Continue</md-button>
-	                <md-button class="md-primary" ng-click="previousStep();">Back</md-button>
-	            </md-step-actions>
-	        </md-step>
+                <md-step md-label="Configuración General">
+                    <md-step-body layout-padding>
+                        <md-content class="md-no-momentum">
+                            <div class="padded " md-whiteframe="1" layout layout-align="center center" style="background-color: rgb(229, 255, 253); color: #3f51b5;">
+                                <md-icon class='md-primary'>info</md-icon><span> Ya casi terminamos :) , A continuación vamos a crear aspectos necesarios para el manejo de inventario, completa los campos en las pestañas marcadas con <strong>* (obligatorio)</strong></span>
+                            </div>
+                            <br>
 
-	        <md-step md-label="Paso 3">
-	            <md-step-body>
-	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
-	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
-	                    voluptatibus, eaque autem!</p>
-	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
-	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
-	                    voluptatibus, eaque autem!</p>
-	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
-	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
-	                    voluptatibus, eaque autem!</p>
-	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
-	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
-	                    voluptatibus, eaque autem!</p>
-	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
-	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
-	                    voluptatibus, eaque autem!</p>
-	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
-	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
-	                    voluptatibus, eaque autem!</p>
-	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
-	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
-	                    voluptatibus, eaque autem!</p>
-	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
-	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
-	                    voluptatibus, eaque autem!</p>
-	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
-	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
-	                    voluptatibus, eaque autem!</p>
-	            </md-step-body>
+                            <md-content class="md-padding">
 
-	            <md-step-actions>
-	                <md-button class="md-primary md-raised" ng-click="nextStep();">Continue</md-button>
-	                <md-button class="md-primary" ng-click="previousStep();">Back</md-button>
-	            </md-step-actions>
-	        </md-step>
+                                <md-tabs md-selected="selectedIndex">
+                                    <md-tab ng-repeat="tab in tabs " md-on-select="onTabSelected(tab)" md-on-deselect="announceDeselected(tab)">
+                                        <md-tab-label>
+                                            {{tab.title}}
+                                            <!--       <md-icon class="{{tab.icon_class}}">{{tab.icon}}</md-icon> -->
+                                        </md-tab-label>
+                                        <md-tab-body>
+                                            <md-input-container ng-if="tab.id=='categorias'" class="md-icon-float md-icon-left md-block" flex>
+                                                <md-icon class="md-primary">add_alert</md-icon>
+                                                <lx-select ng-model="tipo_categoriaModel.selectedT_categoria" lx-allow-clear="true" lx-choices="ListT_Categorias" lx-display-filter="true" lx-fixed-label="true" lx-label="Categoria Principal">
+                                                    <lx-select-selected>
+                                                        {{ $selected.nombre }}
+                                                    </lx-select-selected>
+                                                    <lx-select-choices>
+                                                        {{ $choice.nombre }}
+                                                    </lx-select-choices>
+                                                </lx-select>
+                                            </md-input-container>
+                                            <md-input-container class="md-icon-float md-block">
+                                                <md-icon class="md-primary">view_compact</md-icon>
+                                                <label>Nombre {{tab.title+tab.placeholder}}</label>
+                                                <input name="nom_tipo_categoria" ng-model="data_inv_tc.nombre" type="text" required>
+                                                <div ng-messages="form_pasos_basicos.nom_tipo_categoria.$error" ng-show="form_pasos_basicos.nom_tipo_categoria.$dirty">
+                                                    <div ng-message="required">Campo Requerido</div>
+                                                    <div ng-message="campo">Registro Repetido</div>
+                                                </div>
+                                            </md-input-container>
+                                            <md-input-container md-no-float class="md-block">
+                                                <md-icon class="md-primary">description</md-icon>
+                                                <label>Descripcion</label>
+                                                <textarea name="descripcion" ng-model="data_inv_tc.descripcion" type="text" required></textarea>
+                                                <div ng-messages="form_pasos_basicos.descripcion.$error" ng-show="form_pasos_basicos.descripcion.$dirty">
+                                                    <div ng-message="required">Campo Requerido</div>
+                                                </div>
+                                                <md-button class="md-raised md-primary" type="button" style="float: right;" ng-click="save_tipo(tab,data_inv_tc);" ng-if="tab.btn_view" flex>Guardar</md-button>
+                                                <md-button class="md-icon-button" type="button" style="float: right;" ng-if="!tab.btn_view" flex>
+                                                    <md-icon class="md-primary">check</md-icon>
+                                                </md-button>
+                                            </md-input-container>
+                                        </md-tab-body>
+                                    </md-tab>
+                                </md-tabs>
+                            </md-content>
+                        </md-content>
+                    </md-step-body>
 
-	        <md-step md-label="Publish the ad" md-optional="Optional">
-	            <md-step-body>
-	                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nobis saepe facere suscipit atque,
-	                    sapiente, natus mollitia ipsum odit accusamus repellendus deserunt. Odio sit similique, labore maxime
-	                    voluptatibus, eaque autem!</p>
-	            </md-step-body>
-	            <md-step-actions>
-	                <md-button class="md-primary md-raised" ng-click="nextStep();">Complete</md-button>
-	                <md-button class="md-primary" ng-click="previousStep();">Back</md-button>
-	            </md-step-actions>
-	        </md-step>
+                    <md-step-actions>
+                        <!-- <md-button class="md-primary md-raised" ng-click="nextStep();" 
+	                ng-disabled="
+	                form_pasos_basicos.$invalid
+	                ||ubicacion.length==0
+	                ||marcas.length==0
+	                ||modelos.length==0
+	                ||categorias.length==0
+	                ||tipos_categoria.length==0
+	                ">Continuar</md-button> -->
 
+                        <md-button class="md-primary md-raised" ng-click="nextStep();">Continuar</md-button>
+                        <md-button class="md-primary" ng-click="previousStep();">Atras</md-button>
+                    </md-step-actions>
+                </md-step>
 
-	    </md-stepper>
-    </md-dialog-content>
-    <md-dialog-actions layout="row">
-        <!-- <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                <md-step md-label="Guardar Producto" md-optional="Optional">
+                    <md-step-body layout-padding>
+
+                        <div class="md-no-momentum">
+                            <div layout="row">
+
+                            </div>
+                            <div layout="row" flex="100">
+                                <md-input-container class="md-icon-float md-block" flex="40">
+                                    <md-icon class="md-primary">view_compact</md-icon>
+                                    <label>Nombre Producto</label>
+                                    <input name="nom_producto" ng-model="data_inv_producto.nombre_corto" type="text" required>
+                                    <div ng-messages="form_pasos_basicos.nom_producto.$error" ng-show="form_pasos_basicos.nom_producto.$dirty">
+                                        <div ng-message="required">Campo Requerido</div>
+                                        <div ng-message="campo">Registro Repetido</div>
+                                    </div>
+                                </md-input-container>
+                                <div flex="5" hide-xs hide-sm>
+                                    <!-- Spacer //-->
+                                </div>
+                                <md-input-container class="md-icon-float md-block">
+                                    <md-checkbox name="vendible" ng-model="data_inv_producto.vendible" aria-label="vendible" style="top: 10px;">
+                                        VENDIBLE
+                                    </md-checkbox>
+                                    <div ng-messages="form_pasos_basicos.vendible.$error" ng-show="form_pasos_basicos.vendible.$dirty">
+                                        <div ng-message="required">Campo Requerido</div>
+                                    </div>
+                                </md-input-container>
+                                <div flex="5" hide-xs hide-sm>
+                                    <!-- Spacer //-->
+                                </div>
+                                <md-input-container class="md-icon-float md-block">
+                                    <md-checkbox name="comprable" ng-model="data_inv_producto.comprable" aria-label="comprable" style="top: 10px;">
+                                        COMPRABLE
+                                    </md-checkbox>
+                                    <div ng-messages="form_pasos_basicos.comprable.$error" ng-show="form_pasos_basicos.comprable.$dirty">
+                                        <div ng-message="required">Campo Requerido</div>
+                                    </div>
+                                </md-input-container>
+                                <div flex="5" hide-xs hide-sm>
+                                    <!-- Spacer //-->
+                                </div>
+                                <md-input-container class="md-icon-float md-block" flex="40">
+                                    <md-icon class="md-primary">view_compact</md-icon>
+                                    <label>Codigo de Barras</label>
+                                    <input name="cod_barras" ng-model="data_inv_producto.codigo_baras" type="text">
+                                </md-input-container>
+                            </div>
+                            <md-tabs md-dynamic-height md-border-bottom>
+                                <md-tab>
+                                    <md-tab-label>
+                                        <md-icon>info</md-icon> Información General</md-tab-label>
+                                    <md-tab-body>
+                                        <md-content layout-padding layout="row">
+                                            <div flex>
+                                                <lx-select ng-model="selectModel.selectedPerson" lx-fixed-label="true" lx-allow-clear="true" lx-choices="selectPeople" lx-display-filter="true" lx-fixed-label="true" lx-label="Tipo de Categoría" required>
+                                                    <lx-select-selected>
+                                                        {{ $selected.nombre }}
+                                                    </lx-select-selected>
+                                                    <lx-select-choices>
+                                                        {{ $choice.nombre }}
+                                                    </lx-select-choices>
+                                                </lx-select>
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
+                                                    <div ng-message="required">Campo Requerido</div>
+                                                    <div ng-message="campo">Registro Repetido</div>
+                                                </div>
+                                            </div>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <div flex>
+                                                <lx-select ng-model="selectModelTipoConsumos.selectedTipoConsumo" lx-allow-clear="true" lx-choices="selectTipoConsumos" lx-display-filter="true" lx-fixed-label="true" lx-label="Tipo de Consumo">
+                                                    <lx-select-selected>
+                                                        {{ $selected.nombre }}
+                                                    </lx-select-selected>
+                                                    <lx-select-choices>
+                                                        {{ $choice.nombre }}
+                                                    </lx-select-choices>
+                                                </lx-select>
+                                                <div ng-messages="form_pasos_basicos.descripcion.$error" ng-show="form_pasos_basicos.descripcion.$dirty">
+                                                    <div ng-message="required">Campo Requerido</div>
+                                                </div>
+                                            </div>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <div flex>
+                                                <lx-select ng-model="selectModelModelos.selectedModelo" lx-allow-clear="true" lx-choices="selectModelos" lx-display-filter="true" lx-fixed-label="true" lx-label="Modelo" lx-name="nom_modelo" required>
+                                                    <lx-select-selected>
+                                                        {{ $selected.nombre }}
+                                                    </lx-select-selected>
+                                                    <lx-select-choices>
+                                                        {{ $choice.nombre }}
+                                                    </lx-select-choices>
+                                                </lx-select>
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
+                                                    <div ng-message="required">Campo Requerido</div>
+                                                    <div ng-message="campo">Registro Repetido</div>
+                                                </div>
+                                            </div>
+                                        </md-content>
+                                        <md-content layout="row">
+                                            <md-input-container class="md-icon-float md-block" flex>
+                                                <label>Precio</label>
+                                                <input name="nom_precio" ng-model="data_inv_producto.precio" money required value="0">
+                                                <div ng-messages="form_pasos_basicos.nom_precio.$error" ng-show="form_pasos_basicos.nom_precio.$dirty">
+                                                    <div ng-message="required">Campo Requerido</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-icon-float md-block" flex>
+                                                <label>Costo</label>
+                                                <input name="nom_modelo" ng-model="data_inv_producto.costo" money type="text">
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
+                                                    <div ng-message="campo">Registro Repetido</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <md-input-container class="md-icon-float md-block" flex>
+                                                <label>Cantidad</label>
+                                                <input name="nom_cantidad" ng-model="data_inv_producto.cantidad" type="number" ng-pattern="/^([0-9])*$/" required>
+                                                <div ng-messages="form_pasos_basicos.nom_cantidad.$error" ng-show="form_pasos_basicos.nom_cantidad.$dirty">
+                                                    <div ng-message="required">Campo Requerido</div>
+                                                    <div ng-message="pattern">Solo numeros enteros</div>
+                                                </div>
+                                            </md-input-container>
+                                        </md-content>
+                                        <div layout-gt-sm layout="row">
+                                            <div class="md-icon-float md-block" flex>
+                                                <lx-select ng-model="selectModelMarcas.selectedMarca" lx-allow-clear="true" lx-choices="selectMarcas" lx-display-filter="true" lx-fixed-label="true" lx-label="Marca">
+                                                    <lx-select-selected>
+                                                        {{ $selected.nombre }}
+                                                    </lx-select-selected>
+                                                    <lx-select-choices>
+                                                        {{ $choice.nombre }}
+                                                    </lx-select-choices>
+                                                </lx-select>
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
+                                                    <div ng-message="required">Campo Requerido</div>
+                                                    <div ng-message="campo">Registro Repetido</div>
+                                                </div>
+                                            </div>
+
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <div flex>
+                                                <lx-select ng-model="selectModelGarantia.selectedGarantia" lx-allow-clear="true" lx-choices="selectGarantias" lx-display-filter="true" lx-fixed-label="true" lx-label="Garantia">
+                                                    <lx-select-selected>
+                                                        {{ $selected.nombre }}
+                                                    </lx-select-selected>
+                                                    <lx-select-choices>
+                                                        {{ $choice.nombre }}
+                                                    </lx-select-choices>
+                                                </lx-select>
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
+                                                    <div ng-message="required">Campo Requerido</div>
+                                                    <div ng-message="campo">Registro Repetido</div>
+                                                </div>
+                                            </div>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <div flex>
+                                                <lx-select ng-model="selectModelUbicaciones.selectedUbicacion" lx-allow-clear="true" lx-choices="selectUbicaciones" lx-display-filter="true" lx-fixed-label="true" lx-label="Ubicacion">
+                                                    <lx-select-selected>
+                                                        {{ $selected.nombre }}
+                                                    </lx-select-selected>
+                                                    <lx-select-choices>
+                                                        {{ $choice.nombre }}
+                                                    </lx-select-choices>
+                                                </lx-select>
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
+                                                    <div ng-message="required">Campo Requerido</div>
+                                                    <div ng-message="campo">Registro Repetido</div>
+                                                </div>
+                                            </div>
+                                            <div flex="5" hide-xs hide-sm>
+                                                <!-- Spacer //-->
+                                            </div>
+                                            <div flex>
+                                                <lx-select ng-model="selectModelED.selectedED" lx-allow-clear="true" lx-choices="selectED" lx-display-filter="true" lx-fixed-label="true" lx-label="Estado Descriptivo">
+                                                    <lx-select-selected>
+                                                        {{ $selected.nombre }}
+                                                    </lx-select-selected>
+                                                    <lx-select-choices>
+                                                        {{ $choice.nombre }}
+                                                    </lx-select-choices>
+                                                </lx-select>
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
+                                                    <div ng-message="required">Campo Requerido</div>
+                                                    <div ng-message="campo">Registro Repetido</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </md-tab-body>
+                                </md-tab>
+                                <md-tab>
+                                    <md-tab-label>
+                                        <md-icon>note</md-icon> Notas</md-tab-label>
+                                    <md-tab-body>
+                                        <md-input-container class="md-icon-float md-block" flex>
+                                            <md-icon class="md-primary">view_compact</md-icon>
+                                            <label>Descripción</label>
+                                            <input name="nom_descripcion" ng-model="data_inv_producto.descripcion" type="text">
+                                            <div ng-messages="form_pasos_basicos.nom_descripcion.$error" ng-show="form_pasos_basicos.nom_descripcion.$dirty">
+                                                <div ng-message="required">Campo Requerido</div>
+                                                <div ng-message="campo">Registro Repetido</div>
+                                            </div>
+                                        </md-input-container>
+                                    </md-tab-body>
+                                </md-tab>
+                                <md-tab>
+                                    <md-tab-label></md-tab-label>
+                                    <md-tab-body>
+                                        <div class="row">
+
+                                        </div>
+                                    </md-tab-body>
+                                </md-tab>
+                            </md-tabs>
+                        </div>
+
+                    </md-step-body>
+                    <md-step-actions>
+                        <md-button class="md-primary md-raised" ng-click="save_all(data_inv_producto)">Completar</md-button>
+                        <md-button class="md-primary" ng-click="previousStep();">Atras</md-button>
+                    </md-step-actions>
+                </md-step>
+
+            </md-stepper>
+        </md-dialog-content>
+    </form>
+    <!--   <md-dialog-actions layout="row">
+        <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
             More on Wikipedia
         </md-button>
         <span flex></span>
@@ -125,6 +407,6 @@
         </md-button>
         <md-button ng-click="answer('useful')">
             Useful
-        </md-button> -->
-    </md-dialog-actions>
+        </md-button>
+    </md-dialog-actions> -->
 </md-dialog>

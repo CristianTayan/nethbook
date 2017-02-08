@@ -18,6 +18,7 @@ var app = angular.module('nextbook20App');
      //      controller  : 'ToastCtrl',
      //      templateUrl : 'views/notificaciones/guardar.html'
      //    });
+     console.log(app);
     	
   	});
   	app.controller('ToastCtrl', function($scope, $mdToast, $mdDialog) {

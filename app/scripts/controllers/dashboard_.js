@@ -27,10 +27,10 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
     //         // called asynchronously if an error occurs
     //         // or server returns response with an error status.
     //       });
-    mainService.buscar_empresas().get().$promise.then(function(data) {
-        console.log(data.respuesta);
-        // $scope.todos
-    });
+    // mainService.buscar_empresas().get().$promise.then(function(data) {
+    //     console.log(data.respuesta);
+    //     // $scope.todos
+    // });
 
 
     $scope.localSearch = function(str) {
