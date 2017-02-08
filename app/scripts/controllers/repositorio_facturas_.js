@@ -44,6 +44,11 @@
 		        'title': 'GASTOS GENERADOS'
 		    };
 	    });
+
+	    // Change LANGUAGE
+	    $scope.changeLanguage = function (key) {
+		    $translate.use(key);
+		};
     });
     
     app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES) {

@@ -36,7 +36,8 @@ var app = angular.module('nextbook20App', [
                                             'googlechart',
                                             'mdSteppers',
                                             'btford.socket-io',
-                                            'angucomplete-alt'
+                                            'angucomplete-alt',
+                                            'pascalprecht.translate'
                                         ]);
     
     // themes configuration
@@ -46,6 +47,39 @@ var app = angular.module('nextbook20App', [
       $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
       $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
     });
+
+    // ------------------------------------------------------IDIOMA------------------------------------------------------
+        app.config(function ($translateProvider) {
+          $translateProvider.translations('en', {
+            MENU_COLABORADORES: 'Collaborators',
+            MENU_REP_FACTURAS: 'Invoice repository',
+            MENU_FACTURACION: 'Check-in',
+            MENU_INVENTARIO: 'Inventory',
+            MENU_REP_INICIO: 'Home',
+            MENU_REP_FAC_CORREO: 'Mail',
+            MENU_REP_FACTURAS: 'My Check-in',
+            MENU_REP_FAC_SUBIR: 'Upload Check-in',
+            MENU_REP_FAC_RECHAZADA: 'Check-in Rejected',
+
+            BUTTON_LANG_EN: 'English',
+            BUTTON_LANG_DE: 'Spanish'
+          });
+          $translateProvider.translations('es', {
+            MENU_COLABORADORES: 'Colaboradores',
+            MENU_REP_FACTURAS: 'Repositorio Facturas',
+            MENU_FACTURACION: 'Facturación',
+            MENU_INVENTARIO: 'Inventario',
+            MENU_REP_INICIO: 'Inicio',
+            MENU_REP_FAC_CORREO: 'Correo',
+            MENU_REP_FACTURAS: 'Mis Facturas',
+            MENU_REP_FAC_SUBIR: 'Subir Facturas',
+            MENU_REP_FAC_RECHAZADA: 'Facturas Rechazadas',
+
+            BUTTON_LANG_EN: 'INGLES',
+            BUTTON_LANG_DE: 'ESPAÑOL'
+          });
+          $translateProvider.preferredLanguage('es');
+        });
 
 
     // -----------------------------------------------SEGMENTACION QUERY UI-----------------------------------------------

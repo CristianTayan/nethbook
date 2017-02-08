@@ -2,6 +2,8 @@
     <md-content layout="column">
         <md-sidemenu locked="true">
             <md-sidemenu-group>
+                <md-button class="md-raised md-primary" ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN" label=""></md-button>
+                <md-button class="md-raised md-primary" ng-click="changeLanguage('es')" translate="BUTTON_LANG_DE" label=""></md-button>
                 <md-sidemenu-button href="#/App">
                     <md-icon>apps</md-icon> App
                 </md-sidemenu-button>
@@ -10,19 +12,19 @@
                 <md-subheader class="md-no-sticky">Menu App
                 </md-subheader>
                 <md-sidemenu-button href="#/App/Inventario/">
-                    <md-icon>view_stream</md-icon> Inventario
+                    <md-icon>view_stream</md-icon><span translate="MENU_INVENTARIO"></span>
                     </md-sidemenu-button>
                 <md-sidemenu-button href="#/App/Facturacion/">
-                    <md-icon>receipt</md-icon>Facturación
+                    <md-icon>receipt</md-icon><span translate="MENU_FACTURACION"></span>
                     </md-sidemenu-button>
                 <md-sidemenu-button href="#/App/Repositorio_Facturas/">
-                    <md-icon>receipt</md-icon>Repositorio Facturas
+                    <md-icon>receipt</md-icon><span translate="MENU_REP_FACTURAS"></span>
                     </md-sidemenu-button>
                 <md-subheader class="md-no-sticky">Menu App
                 </md-subheader>
-                <md-sidemenu-button href="#/App/Colaboradores/">
-                    <md-icon>supervisor_account</md-icon>Colaboradores
-                    </md-sidemenu-button>
+                <md-sidemenu-button href="#/App/Colaboradores/" >
+                    <md-icon>supervisor_account</md-icon><span translate="MENU_COLABORADORES"></span>
+                </md-sidemenu-button>
             </md-sidemenu-group>
         </md-sidemenu>
     </md-content>

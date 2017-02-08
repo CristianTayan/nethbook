@@ -58,6 +58,7 @@ module.exports = function(config) {
       'bower_components/material-steppers/dist/material-steppers.js',
       'bower_components/angular-socket-io/socket.js',
       'bower_components/angucomplete-alt/angucomplete-alt.js',
+      'bower_components/angular-translate/angular-translate.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

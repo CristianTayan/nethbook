@@ -34,7 +34,8 @@
     "material-steppers": "^1.0.3",
     "angular-socket-io": "^0.7.0",
     "socket.io-client": "^1.7.2",
-    "angucomplete-alt": "^3.0.0"
+    "angucomplete-alt": "^3.0.0",
+    "angular-translate": "^2.13.1"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
