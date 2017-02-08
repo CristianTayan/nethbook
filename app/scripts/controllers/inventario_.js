@@ -176,13 +176,22 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
                           vm.estado_descriptivo.push(data);
                           break;
                   }
-                  if ($scope.selectedIndex<$scope.tabs.length) {
-                      if (($scope.selectedIndex+1)>$scope.tabs.length) {
-                      $scope.selectedIndex=$scope.tabs.length;
-                      }else{
-                        $scope.selectedIndex=$scope.selectedIndex+1
-                      }
-                  }
+
+                    if (vm.tipos_categoria.length==0) {
+                        $scope.selectedIndex=0;
+                    };
+                    if (vm.categorias.length==0) {
+                        $scope.selectedIndex=1;
+                    };
+
+                     if (vm.ubicacion.length==0) {
+                        $scope.selectedIndex=4;
+                    };
+
+                    if (vm.estado_descriptivo.length==0) {
+                        $scope.selectedIndex=5;
+                    };
+
                   
                 };
 
