@@ -45,7 +45,7 @@
                                 <md-icon class="md-primary">view_compact</md-icon>
                                 <label>Nombre de la Bodega (Eje: Bodega 1.....)</label>
                                 <input name="nom_bodega" ng-model="data_inv_bodega.nombre" type="text" bodega-validator required>
-                                <div ng-messages="form_inv_bodega.nom_bodega.$error" ng-show="form_inv_bodega.nom_bodega.$dirty">
+                                <div ng-messages="form_pasos_basicos.nom_bodega.$error" ng-show="form_pasos_basicos.nom_bodega.$dirty">
                                     <div ng-message="required">Campo Requerido</div>
                                     <div ng-message="campo">Registro Repetido</div>
                                 </div>
@@ -55,7 +55,7 @@
                                     <md-icon class="md-primary">description</md-icon>
                                     <label>Calle</label>
                                     <textarea name="calle" ng-model="data_inv_bodega.calle" type="text" required></textarea>
-                                    <div ng-messages="form_inv_bodega.calle.$error" ng-show="form_inv_bodega.calle.$dirty">
+                                    <div ng-messages="form_pasos_basicos.calle.$error" ng-show="form_pasos_basicos.calle.$dirty">
                                         <div ng-message="required">Campo Requerido</div>
                                     </div>
                                 </md-input-container>
@@ -63,7 +63,7 @@
                                     <md-icon class="md-primary">description</md-icon>
                                     <label>Número</label>
                                     <textarea name="numero" ng-model="data_inv_bodega.numero" type="text" required></textarea>
-                                    <div ng-messages="form_inv_bodega.numero.$error" ng-show="form_inv_bodega.numero.$dirty">
+                                    <div ng-messages="form_pasos_basicos.numero.$error" ng-show="form_pasos_basicos.numero.$dirty">
                                         <div ng-message="required">Campo Requerido</div>
                                     </div>
                                 </md-input-container>
@@ -72,7 +72,7 @@
                                 <md-icon class="md-primary">description</md-icon>
                                 <label>Especificaciones (Eje: tamaño, refrigerado, bodega de devoluciones.....)</label>
                                 <textarea name="especificaciones" ng-model="data_inv_bodega.especificaciones" type="text" required></textarea>
-                                <div ng-messages="form_inv_bodega.especificaciones.$error" ng-show="form_inv_bodega.especificaciones.$dirty">
+                                <div ng-messages="form_pasos_basicos.especificaciones.$error" ng-show="form_pasos_basicos.especificaciones.$dirty">
                                     <div ng-message="required">Campo Requerido</div>
                                 </div>
                             </md-input-container>
@@ -91,7 +91,7 @@
                     <md-step-body layout-padding>
                         <md-content class="md-no-momentum">
                             <div class="padded " md-whiteframe="1" layout layout-align="center center" style="background-color: rgb(229, 255, 253); color: #3f51b5;">
-                                <md-icon class='md-primary'>info</md-icon><span> Ya casi terminamos :) , A continuación vamos a crear aspectos necesarios para el manejo de inventario, haz clic en cada pestaña y completa los campos </span>
+                                <md-icon class='md-primary'>info</md-icon><span> Ya casi terminamos :) , A continuación vamos a crear aspectos necesarios para el manejo de inventario, completa los campos en las pestañas marcadas con <strong>* (obligatorio)</strong></span>
                             </div>
                             <br>
 
@@ -118,8 +118,8 @@
                                             <md-input-container class="md-icon-float md-block">
                                                 <md-icon class="md-primary">view_compact</md-icon>
                                                 <label>Nombre {{tab.title+tab.placeholder}}</label>
-                                                <input name="nom_tipo_categoria" ng-model="data_inv_tc.nombre" type="text" required tipocategoria-validator>
-                                                <div ng-messages="form_inv_tc.nom_tipo_categoria.$error" ng-show="form_inv_tc.nom_tipo_categoria.$dirty">
+                                                <input name="nom_tipo_categoria" ng-model="data_inv_tc.nombre" type="text" required>
+                                                <div ng-messages="form_pasos_basicos.nom_tipo_categoria.$error" ng-show="form_pasos_basicos.nom_tipo_categoria.$dirty">
                                                     <div ng-message="required">Campo Requerido</div>
                                                     <div ng-message="campo">Registro Repetido</div>
                                                 </div>
@@ -128,7 +128,7 @@
                                                 <md-icon class="md-primary">description</md-icon>
                                                 <label>Descripcion</label>
                                                 <textarea name="descripcion" ng-model="data_inv_tc.descripcion" type="text" required></textarea>
-                                                <div ng-messages="form_inv_tc.descripcion.$error" ng-show="form_inv_tc.descripcion.$dirty">
+                                                <div ng-messages="form_pasos_basicos.descripcion.$error" ng-show="form_pasos_basicos.descripcion.$dirty">
                                                     <div ng-message="required">Campo Requerido</div>
                                                 </div>
                                                 <md-button class="md-raised md-primary" type="button" style="float: right;" ng-click="save_tipo(tab,data_inv_tc);" ng-if="tab.btn_view" flex>Guardar</md-button>
@@ -159,7 +159,7 @@
                     </md-step-actions>
                 </md-step>
 
-                <md-step md-label="Publish the ad" md-optional="Optional">
+                <md-step md-label="Guardar Producto" md-optional="Optional">
                     <md-step-body layout-padding>
 
                         <div class="md-no-momentum">
@@ -171,7 +171,7 @@
                                     <md-icon class="md-primary">view_compact</md-icon>
                                     <label>Nombre Producto</label>
                                     <input name="nom_producto" ng-model="data_inv_producto.nombre_corto" type="text" required>
-                                    <div ng-messages="form_inv_producto.nom_producto.$error" ng-show="form_inv_producto.nom_producto.$dirty">
+                                    <div ng-messages="form_pasos_basicos.nom_producto.$error" ng-show="form_pasos_basicos.nom_producto.$dirty">
                                         <div ng-message="required">Campo Requerido</div>
                                         <div ng-message="campo">Registro Repetido</div>
                                     </div>
@@ -183,7 +183,7 @@
                                     <md-checkbox name="vendible" ng-model="data_inv_producto.vendible" aria-label="vendible" style="top: 10px;">
                                         VENDIBLE
                                     </md-checkbox>
-                                    <div ng-messages="form_inv_producto.vendible.$error" ng-show="form_inv_producto.vendible.$dirty">
+                                    <div ng-messages="form_pasos_basicos.vendible.$error" ng-show="form_pasos_basicos.vendible.$dirty">
                                         <div ng-message="required">Campo Requerido</div>
                                     </div>
                                 </md-input-container>
@@ -194,7 +194,7 @@
                                     <md-checkbox name="comprable" ng-model="data_inv_producto.comprable" aria-label="comprable" style="top: 10px;">
                                         COMPRABLE
                                     </md-checkbox>
-                                    <div ng-messages="form_inv_producto.comprable.$error" ng-show="form_inv_producto.comprable.$dirty">
+                                    <div ng-messages="form_pasos_basicos.comprable.$error" ng-show="form_pasos_basicos.comprable.$dirty">
                                         <div ng-message="required">Campo Requerido</div>
                                     </div>
                                 </md-input-container>
@@ -222,7 +222,7 @@
                                                         {{ $choice.nombre }}
                                                     </lx-select-choices>
                                                 </lx-select>
-                                                <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
                                                     <div ng-message="required">Campo Requerido</div>
                                                     <div ng-message="campo">Registro Repetido</div>
                                                 </div>
@@ -239,7 +239,7 @@
                                                         {{ $choice.nombre }}
                                                     </lx-select-choices>
                                                 </lx-select>
-                                                <div ng-messages="form_inv_producto.descripcion.$error" ng-show="form_inv_producto.descripcion.$dirty">
+                                                <div ng-messages="form_pasos_basicos.descripcion.$error" ng-show="form_pasos_basicos.descripcion.$dirty">
                                                     <div ng-message="required">Campo Requerido</div>
                                                 </div>
                                             </div>
@@ -255,7 +255,7 @@
                                                         {{ $choice.nombre }}
                                                     </lx-select-choices>
                                                 </lx-select>
-                                                <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
                                                     <div ng-message="required">Campo Requerido</div>
                                                     <div ng-message="campo">Registro Repetido</div>
                                                 </div>
@@ -265,7 +265,7 @@
                                             <md-input-container class="md-icon-float md-block" flex>
                                                 <label>Precio</label>
                                                 <input name="nom_precio" ng-model="data_inv_producto.precio" money required value="0">
-                                                <div ng-messages="form_inv_producto.nom_precio.$error" ng-show="form_inv_producto.nom_precio.$dirty">
+                                                <div ng-messages="form_pasos_basicos.nom_precio.$error" ng-show="form_pasos_basicos.nom_precio.$dirty">
                                                     <div ng-message="required">Campo Requerido</div>
                                                 </div>
                                             </md-input-container>
@@ -275,7 +275,7 @@
                                             <md-input-container class="md-icon-float md-block" flex>
                                                 <label>Costo</label>
                                                 <input name="nom_modelo" ng-model="data_inv_producto.costo" money type="text">
-                                                <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
                                                     <div ng-message="campo">Registro Repetido</div>
                                                 </div>
                                             </md-input-container>
@@ -285,7 +285,7 @@
                                             <md-input-container class="md-icon-float md-block" flex>
                                                 <label>Cantidad</label>
                                                 <input name="nom_cantidad" ng-model="data_inv_producto.cantidad" type="number" ng-pattern="/^([0-9])*$/" required>
-                                                <div ng-messages="form_inv_producto.nom_cantidad.$error" ng-show="form_inv_producto.nom_cantidad.$dirty">
+                                                <div ng-messages="form_pasos_basicos.nom_cantidad.$error" ng-show="form_pasos_basicos.nom_cantidad.$dirty">
                                                     <div ng-message="required">Campo Requerido</div>
                                                     <div ng-message="pattern">Solo numeros enteros</div>
                                                 </div>
@@ -301,7 +301,7 @@
                                                         {{ $choice.nombre }}
                                                     </lx-select-choices>
                                                 </lx-select>
-                                                <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
                                                     <div ng-message="required">Campo Requerido</div>
                                                     <div ng-message="campo">Registro Repetido</div>
                                                 </div>
@@ -319,7 +319,7 @@
                                                         {{ $choice.nombre }}
                                                     </lx-select-choices>
                                                 </lx-select>
-                                                <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
                                                     <div ng-message="required">Campo Requerido</div>
                                                     <div ng-message="campo">Registro Repetido</div>
                                                 </div>
@@ -336,7 +336,7 @@
                                                         {{ $choice.nombre }}
                                                     </lx-select-choices>
                                                 </lx-select>
-                                                <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
                                                     <div ng-message="required">Campo Requerido</div>
                                                     <div ng-message="campo">Registro Repetido</div>
                                                 </div>
@@ -353,7 +353,7 @@
                                                         {{ $choice.nombre }}
                                                     </lx-select-choices>
                                                 </lx-select>
-                                                <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
+                                                <div ng-messages="form_pasos_basicos.nom_modelo.$error" ng-show="form_pasos_basicos.nom_modelo.$dirty">
                                                     <div ng-message="required">Campo Requerido</div>
                                                     <div ng-message="campo">Registro Repetido</div>
                                                 </div>
@@ -369,7 +369,7 @@
                                             <md-icon class="md-primary">view_compact</md-icon>
                                             <label>Descripción</label>
                                             <input name="nom_descripcion" ng-model="data_inv_producto.descripcion" type="text">
-                                            <div ng-messages="form_inv_producto.nom_descripcion.$error" ng-show="form_inv_producto.nom_descripcion.$dirty">
+                                            <div ng-messages="form_pasos_basicos.nom_descripcion.$error" ng-show="form_pasos_basicos.nom_descripcion.$dirty">
                                                 <div ng-message="required">Campo Requerido</div>
                                                 <div ng-message="campo">Registro Repetido</div>
                                             </div>

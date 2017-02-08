@@ -47,6 +47,7 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
             vm.campaign = false;
             vm.select_tipo_empresa;
             vm.select_tipo_empresa_text;
+            vm.bodega;
             vm.tipos_categoria=[];
             vm.categorias=[];
             vm.marcas=[{nombre:'Sin Marca',descripcion:'Sin Marca'}];
@@ -128,18 +129,18 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
                 steppers.next();
             };
 
-            // $scope.data_inv_bodega_guardar = function(data_inv_bodega) {
-            //     data_inv_bodega.id_sucursal=$localStorage.sucursal.id;
-            //     inventario_Service.Add_Bodega().add(data_inv_bodega).$promise.then(function(){});
-            // }
+            $scope.data_inv_bodega_guardar = function(data_inv_bodega) {
+                data_inv_bodega.id_sucursal=$localStorage.sucursal.id;
+                vm.bodega=data_inv_bodega;
+            }
 
             var tabs = [
-                      { title: 'Categorias Principales', id: "tipos_categorias",placeholder:" (Ej: lacteos, herrajes, caramelos ...)",btn_view:true},
-                      { title: 'SubCategorias', id: "categorias",placeholder:" (Ej: Quesos,leches ...)",btn_view:true},
+                      { title: 'Categorias Principales *', id: "tipos_categorias",placeholder:" (Ej: lacteos, herrajes, caramelos ...)",btn_view:true},
+                      { title: 'SubCategorias *', id: "categorias",placeholder:" (Ej: Quesos,leches ...)",btn_view:true},
                       { title: 'Marcas', id: "marcas",placeholder:" (Ej: 220V,BIC,KCHITOS...)",btn_view:true},
                       { title: 'Modelos', id: "modelos",placeholder:" (Ej: funda,cajas,vaso,en barra ...)",btn_view:true},
-                      { title: 'Ubicación', id: "ubicacion",placeholder:" (Ej: Percha 1, tercer cajon, repisa 2...)",btn_view:true},
-                      { title: 'Estado de Producto', id: "estado_descriptivo",placeholder:" (Ej: Nuevo, Bueno, Dañados, en reparacion ...)",btn_view:true},
+                      { title: 'Ubicación *', id: "ubicacion",placeholder:" (Ej: Percha 1, tercer cajon, repisa 2...)",btn_view:true},
+                      { title: 'Estado de Producto *', id: "estado_descriptivo",placeholder:" (Ej: Nuevo, Bueno, Dañados, en reparacion ...)",btn_view:true},
                     ],
                     selected = null,
                     previous = null;
@@ -200,7 +201,39 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
             if (data_prod.vendible==undefined) {
                 data_prod.vendible=false;
             }else data_prod.vendible=true;
-            console.log(data_prod);
+            
+            inventario_Service.Ayuda_Inventario_Save().save(
+            {
+            bodega:vm.bodega,
+            tipos_categoria:vm.tipos_categoria,
+            categorias:vm.categorias,
+            marcas:vm.marcas,
+            modelos:vm.modelos,
+            ubicacion:vm.ubicacion,
+            estado_descriptivo:vm.estado_descriptivo,
+            garantias:vm.garantias,
+            producto:data_prod
+
+            }).$promise.then(function(data){
+
+                if (data.respuesta == true) {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('EN HORA BUENA :)')
+                        .textContent('Haz completado con exito.')
+                        .ariaLabel('Respuesta Ayuda Inventario')
+                        .ok('Entendido')
+                        .targetEvent()
+                    );
+                }
+
+            },function(error){
+
+            })
+
+
 
         }
 

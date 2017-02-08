@@ -720,4 +720,17 @@ angular.module('nextbook20App')
 	    	};
 	    // ---------------------------------------------------------------FIN BODEGAS-----------------------------------------------------------------//
 
+	    // ---------------------------------------------------------------AYUDA INVENTARIO VIRTUAL -----------------------------------------------------------------//
+
+	    this.Ayuda_Inventario_Save = function() {
+		        return $resource(urlService.server().appnext()+'Ayuda_Inventario_Save', {} , {
+		            save: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+
   	});
