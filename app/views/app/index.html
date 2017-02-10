@@ -11,7 +11,7 @@
             <md-sidemenu-group>
                 <md-subheader class="md-no-sticky">Menu {{menu.nombre}}
                 </md-subheader>
-                <md-sidemenu-button href="#/App{{item.path}}" ng-repeat="item in menu.children" ng-show="item.permisos.accion_ver">
+                <md-sidemenu-button href="#/App{{item.path}}" ng-repeat="item in menu.children">  <!-- ng-show="item.permisos.accion_ver" -->
                     <md-icon>view_stream</md-icon> {{item.nombre}}
                 </md-sidemenu-button>
                 <!-- <md-sidemenu-button href="#/App/Inventario/">
