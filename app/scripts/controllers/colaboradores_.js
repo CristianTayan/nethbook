@@ -384,7 +384,7 @@ var app = angular.module('nextbook20App')
 		    }
 
 			function success_vistas(data){
-			$scope.vistas=data.respuesta;
+			$scope.vistas=data.menu;
 			}
 			colaboradores_Service.Get_Vistas().get({},success_vistas).$promise;
 
@@ -516,7 +516,7 @@ var app = angular.module('nextbook20App')
 		    	function success_vistas_By_Tipo_User(data){
 					$scope.vistas_tipo_user=data.respuesta;
 				}
-				colaboradores_Service.Get_Vistas_By_Tipo_User().get({id:obj.id},success_vistas_By_Tipo_User).$promise;
+				colaboradores_Service.Get_Vistas_By_Tipo_User_Update().get({id:obj.id},success_vistas_By_Tipo_User).$promise;
 
 		    	// ------------------------ GENERACION DE VISTAS PRIVILEGIOS---------------------------
 					$scope.combinacion_privilegios = combinacion_privilegios;
@@ -585,6 +585,7 @@ var app = angular.module('nextbook20App')
 		        			for (var j = 0; j < $scope.vistas_tipo_user[i].children.length; j++) {
 		        				if ($scope.vistas_tipo_user[i].children[j].id==$scope.modulo.id) {
 		        					$scope.vistas_tipo_user[i].children[j].permisos=permisos;
+		        					console.log(permisos);
 		        					break;
 		        				}else{
 		        					if ($scope.vistas_tipo_user[i].children[j].children.length>0) {

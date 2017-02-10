@@ -218,6 +218,17 @@ angular.module('nextbook20App')
 	            }
 	        });
     	};
+    	this.Get_Vistas_By_Tipo_User_Update = function() {
+	        return $resource(urlService.server().appnext()+'Get_Vistas_By_Tipo_User_Update', {} , {
+	            get: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
+    	
 	// ---------------------------------------------------------------FIN VISTAS Y PRIVILEGIOS POR TIPO DE USUARIO -------------------------------------------//
 
 	//---------------------------------------------------------------- INGRESO COLABORADORES ----------------------------------------------------------------//
