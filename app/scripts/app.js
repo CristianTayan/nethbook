@@ -241,7 +241,7 @@ var app = angular.module('nextbook20App', [
                     // ------------------------------------REPOSITORIO FACTURAS------------------------------------
                     .segment('repositorio_facturas', {
                         templateUrl: 'views/app/repositorio_facturas/index.html',
-                        // controller: 'colaboradores_Ctrl'
+                        controller: 'repositorio_facturas_Ctrl'
                     })
                         .within()
                             .segment('inicio_facturas', {
@@ -271,7 +271,7 @@ var app = angular.module('nextbook20App', [
                     // ------------------------------------COLABORADORES------------------------------------
                     .segment('colaboradores', {
                         templateUrl: 'views/app/colaboradores/index.html',
-                        // controller: 'colaboradores_Ctrl'
+                        controller: 'colaboradores_Ctrl'
                     })
                         .within()
                             .segment('usuario', {

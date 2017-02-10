@@ -8,12 +8,11 @@
  * Controller of the nextbook20App
  */
 var app = angular.module('nextbook20App')
-	app.controller('ColaboradoresCtrl', function () {
-	    this.awesomeThings = [
-	      'HTML5 Boilerplate',
-	      'AngularJS',
-	      'Karma'
-	    ];
+	app.controller('colaboradores_Ctrl', function ($scope, menuService) {
+	    // -------------------------------------GENERACION MENU-------------------------------------
+    	menuService.Get_Vistas().get().$promise.then(function(data) {
+  			$scope.menu = data.menu[0].children[1].children[0];
+  		});
 	});
 
 	app.controller('col_usuario_Ctrl', function ($scope, colaboradores_Service, $rootScope, $mdDialog) {

@@ -16,8 +16,21 @@
         ];
     });
 
-    app.controller('repfac_inicio_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter) {
-    	// -----------------------------------Leer tipos de Gastos---------------------------------
+    app.controller('repositorio_facturas_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
+    	// -------------------------------------GENERACION MENU-------------------------------------
+    	menuService.Get_Vistas().get().$promise.then(function(data) {
+  			$scope.menu = data.menu[0].children[1].children[1];
+  		});
+
+    });
+
+    app.controller('repfac_inicio_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
+    	// -------------------------------------GENERACION MENU-------------------------------------
+    	menuService.Get_Vistas().get().$promise.then(function(data) {
+  			$scope.menu = data.menu[0].children[2].children[1];
+  			console.log($scope.menu);
+  		});
+    	// -----------------------------------INFORMACION GASTOS--------------------------------
     	
 	    repositorioFacturas.Get_Totales_Facturas().get().$promise.then(function(data) {
 	    	$scope.myChartObject = {};

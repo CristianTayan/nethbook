@@ -2,17 +2,17 @@
     <md-content layout="column">
         <md-sidemenu>
             <md-sidemenu-group>
-                <md-button class="md-raised md-primary" ng-click="$translate.use('en');" translate="BUTTON_LANG_EN" label=""></md-button>
-                <md-button class="md-raised md-primary" ng-click="changeLanguage('es')" translate="BUTTON_LANG_DE" label=""></md-button>
+                <!-- <md-button class="md-raised md-primary" ng-click="$translate.use('en');" translate="BUTTON_LANG_EN" label=""></md-button> -->
+                <!-- <md-button class="md-raised md-primary" ng-click="changeLanguage('es')" translate="BUTTON_LANG_DE" label=""></md-button> -->
                 <md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
             </md-sidemenu-group>
             <md-sidemenu-group>
-                <md-subheader class="md-no-sticky">MENÚ REPOSITORIO FACTURAS</md-subheader>
-                    <md-sidemenu-button href="#/App/Repositorio_Facturas/Inicio_Facturas"><md-icon>subtitles</md-icon><span translate="MENU_REP_INICIO"></span></md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Repositorio_Facturas/Mis_Facturas"><md-icon>view_module</md-icon><span translate="MENU_REP_FACTURAS"></span></md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Repositorio_Facturas/Subir_Facturas"><md-icon>file_upload</md-icon><span translate="MENU_REP_FAC_SUBIR"></span></md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Repositorio_Facturas/Facturas_Correo"><md-icon>markunread_mailbox</md-icon><span translate="MENU_REP_FAC_CORREO"></span></md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Repositorio_Facturas/Facturas_Rechazadas"><md-icon>error</md-icon><span translate="MENU_REP_FAC_RECHAZADA"></span></md-sidemenu-button>
+                <md-subheader class="md-no-sticky">MENÚ {{menu.nombre}}</md-subheader>
+                    <md-sidemenu-button href="#{{item.path}}" ng-repeat="item in menu.children" ng-show="item.permisos.accion_ver"><md-icon>subtitles</md-icon>{{item.nombre}}</md-sidemenu-button>
+                    <!-- <md-sidemenu-button href="#/App/Repositorio_Facturas/Mis_Facturas"><md-icon>view_module</md-icon><span translate="MENU_REP_FACTURAS"></span></md-sidemenu-button> -->
+                    <!-- <md-sidemenu-button href="#/App/Repositorio_Facturas/Subir_Facturas"><md-icon>file_upload</md-icon><span translate="MENU_REP_FAC_SUBIR"></span></md-sidemenu-button> -->
+                    <!-- <md-sidemenu-button href="#/App/Repositorio_Facturas/Facturas_Correo"><md-icon>markunread_mailbox</md-icon><span translate="MENU_REP_FAC_CORREO"></span></md-sidemenu-button> -->
+                    <!-- <md-sidemenu-button href="#/App/Repositorio_Facturas/Facturas_Rechazadas"><md-icon>error</md-icon><span translate="MENU_REP_FAC_RECHAZADA"></span></md-sidemenu-button> -->
             </md-sidemenu-group>
         </md-sidemenu>
     </md-content>

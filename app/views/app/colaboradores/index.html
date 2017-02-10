@@ -6,8 +6,8 @@
             </md-sidemenu-group>
             <md-sidemenu-group>
                 <md-subheader class="md-no-sticky">Menu Colaboradores</md-subheader>
-                <md-sidemenu-button href="#/App/Colaboradores/Usuario"><md-icon>person</md-icon>Usuarios</md-sidemenu-button>
-                <md-sidemenu-button href="#/App/Colaboradores/Tipo_Usuario/"><md-icon>supervisor_account</md-icon>Tipo Usuarios</md-sidemenu-button>
+                <md-sidemenu-button href="#{{item.path}}" ng-repeat="item in menu.children" ng-show="item.permisos.accion_ver"><md-icon>person</md-icon>{{item.nombre}}</md-sidemenu-button>
+                <!-- <md-sidemenu-button href="#/App/Colaboradores/Tipo_Usuario/"><md-icon>supervisor_account</md-icon>Tipo Usuarios</md-sidemenu-button> -->
             </md-sidemenu-group>
         </md-sidemenu>
     </md-content>

@@ -6,16 +6,16 @@
         	</md-sidemenu-group>
             <md-sidemenu-group>
                 <md-subheader class="md-no-sticky">Menu Inventario</md-subheader>
-                	<md-sidemenu-button href="#/App/Inventario/"><md-icon>home</md-icon>Inicio</md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Inventario/Productos"><md-icon>subtitles</md-icon>Productos</md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Inventario/Marcas"><md-icon>dialpad</md-icon>Marcas</md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Inventario/Modelos"><md-icon>view_module</md-icon>Modelos</md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Inventario/Bodegas"><md-icon>home</md-icon>Bodegas</md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Inventario/Garantia"><md-icon>add_alert</md-icon>Garantía</md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Inventario/Ubicacion"><md-icon>layers</md-icon>Ubicación</md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Inventario/Categorias"><md-icon>assessment</md-icon>Categorías</md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Inventario/Catalogos"><md-icon>bookmark</md-icon> Catálogos</md-sidemenu-button>
-                    <md-sidemenu-button href="#/App/Inventario/Estado_Descriptivo"><md-icon>description</md-icon> Estado Descriptivo</md-sidemenu-button>
+                	<md-sidemenu-button href="#{{item.path}}" ng-repeat="item in menu.children" ng-show="item.permisos.accion_ver"><md-icon>home</md-icon>{{item.nombre}}</md-sidemenu-button>
+                    <!-- <md-sidemenu-button href="#/App/Inventario/Productos"><md-icon>subtitles</md-icon>Productos</md-sidemenu-button> -->
+                    <!-- <md-sidemenu-button href="#/App/Inventario/Marcas"><md-icon>dialpad</md-icon>Marcas</md-sidemenu-button> -->
+                    <!-- <md-sidemenu-button href="#/App/Inventario/Modelos"><md-icon>view_module</md-icon>Modelos</md-sidemenu-button> -->
+                    <!-- <md-sidemenu-button href="#/App/Inventario/Bodegas"><md-icon>home</md-icon>Bodegas</md-sidemenu-button> -->
+                    <!-- <md-sidemenu-button href="#/App/Inventario/Garantia"><md-icon>add_alert</md-icon>Garantía</md-sidemenu-button> -->
+                    <!-- <md-sidemenu-button href="#/App/Inventario/Ubicacion"><md-icon>layers</md-icon>Ubicación</md-sidemenu-button> -->
+                    <!-- <md-sidemenu-button href="#/App/Inventario/Categorias"><md-icon>assessment</md-icon>Categorías</md-sidemenu-button> -->
+                    <!-- <md-sidemenu-button href="#/App/Inventario/Catalogos"><md-icon>bookmark</md-icon> Catálogos</md-sidemenu-button> -->
+                    <!-- <md-sidemenu-button href="#/App/Inventario/Estado_Descriptivo"><md-icon>description</md-icon> Estado Descriptivo</md-sidemenu-button> -->
             </md-sidemenu-group>
             <md-divider></md-divider>
             <md-subheader class="md-no-sticky">Configuración base Inventario</md-subheader>

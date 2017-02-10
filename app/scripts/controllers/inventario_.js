@@ -9,21 +9,25 @@
  */
 var app = angular.module('nextbook20App')
 
-app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog) {
-
+app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog, menuService) {
+    // -------------------------------------GENERACION MENU-------------------------------------
+        menuService.Get_Vistas().get().$promise.then(function(data) {
+            $scope.menu = data.menu[0].children[1].children[0];
+            console.log($scope.menu);
+        });
     
-    $mdDialog.show({
-        controller: Dialog_procedimiento_Controller,
-        templateUrl: 'views/app/inventario/inicio/modal_.html',
-        parent: angular.element(document.body),
-        targetEvent: event,
-        ariaLabel: 'Respuesta Registro',
-        clickOutsideToClose: true,
-        fullscreen:false
-        // locals: {
-        //     obj: categoria
-        // }
-    });
+    // $mdDialog.show({
+    //     controller: Dialog_procedimiento_Controller,
+    //     templateUrl: 'views/app/inventario/inicio/modal_.html',
+    //     parent: angular.element(document.body),
+    //     targetEvent: event,
+    //     ariaLabel: 'Respuesta Registro',
+    //     clickOutsideToClose: true,
+    //     fullscreen:false
+    //     // locals: {
+    //     //     obj: categoria
+    //     // }
+    // });
 
     // $scope.data_inv_tc = {nombre:'', descripcion:''};
     $scope.data_inv_tc_guardar = function() {

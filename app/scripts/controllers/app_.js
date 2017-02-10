@@ -9,7 +9,19 @@
  */
 var app = angular.module('nextbook20App');
 
-  	app.controller('app_Ctrl', function ($scope, $mdToast, $translate) {
+  	app.controller('app_Ctrl', function ($scope, $mdToast, $translate, menuService) {
+  		menuService.Get_Vistas().get().$promise.then(function(data) {
+  			$scope.menu = data.menu[0].children[1];
+  			console.log(data);
+  		});
+
+
+      menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
+        // $scope.menu = data.respuesta[0].children[1];
+        console.log(data.respuesta[0]);
+      });
+
+      
     	// $scope.apps = {}
     	// console.log('test');
     	// $mdToast.show({
@@ -18,7 +30,6 @@ var app = angular.module('nextbook20App');
      //      controller  : 'ToastCtrl',
      //      templateUrl : 'views/notificaciones/guardar.html'
      //    });
-     console.log(app);
     	
   	});
   	app.controller('ToastCtrl', function($scope, $mdToast, $mdDialog) {
