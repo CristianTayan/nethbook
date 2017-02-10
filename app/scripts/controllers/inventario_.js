@@ -164,7 +164,7 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
                         vm.tipos_categoria.push(data);
                           break;
                       case 'categorias':
-                      data.tipo_categoria=vm.tipo_categoriaModel.selectedT_categoria.name;
+                      data.tipo_categoria=vm.tipo_categoriaModel.selectedT_categoria.nombre;
                           vm.categorias.push(data);
                           break;
                       case 'marcas':
@@ -195,6 +195,8 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
                     if (vm.estado_descriptivo.length==0) {
                         $scope.selectedIndex=5;
                     };
+
+                    console.log(data);
 
                   
                 };
