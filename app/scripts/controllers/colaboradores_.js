@@ -16,7 +16,6 @@ var app = angular.module('nextbook20App')
 
   		menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
 	        $scope.menu = data.respuesta[0].children[1].children[0];
-	        console.log($scope.menu);
 	    });
 	});
 
