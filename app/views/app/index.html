@@ -2,14 +2,7 @@
     <md-content layout="column">
         <md-sidemenu locked="true">
             <md-sidemenu-group>
-                <!-- <md-button class="md-raised md-primary" ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN" label=""></md-button> -->
-                <!-- <md-button class="md-raised md-primary" ng-click="changeLanguage('es')" translate="BUTTON_LANG_DE" label=""></md-button> -->
-                <md-sidemenu-button href="#/App">
-                    <md-icon>apps</md-icon> {{menu.nombre}}
-                </md-sidemenu-button>
-            </md-sidemenu-group>
-            <md-sidemenu-group>
-                <md-subheader class="md-no-sticky">Menu {{menu.nombre}}
+                <md-subheader class="md-no-sticky">MENU {{menu.nombre}}
                 </md-subheader>
                 <md-sidemenu-button href="#/App{{item.path}}" ng-repeat="item in menu.children">  <!-- ng-show="item.permisos.accion_ver" -->
                     <md-icon>view_stream</md-icon> {{item.nombre}}
@@ -34,9 +27,6 @@
 </md-sidenav>
 <md-content flex class="md-padding" layout="row" >
     <div flex="20">
-    {{menuapp}}
-
-
         <ul class="list mt++">
             <li class="list-row">
                 <div class="list-row__primary">

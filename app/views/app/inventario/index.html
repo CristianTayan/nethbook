@@ -5,29 +5,18 @@
         		<md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
         	</md-sidemenu-group>
             <md-sidemenu-group>
-                <md-subheader class="md-no-sticky">Menu Inventario</md-subheader> <!-- ng-show="item.permisos.accion_ver" -->
-                	<md-sidemenu-button href="#{{item.path}}" ng-repeat="item in menu.children" ><md-icon>home</md-icon>{{item.nombre}}</md-sidemenu-button>
-                    <!-- <md-sidemenu-button href="#/App/Inventario/Productos"><md-icon>subtitles</md-icon>Productos</md-sidemenu-button> -->
-                    <!-- <md-sidemenu-button href="#/App/Inventario/Marcas"><md-icon>dialpad</md-icon>Marcas</md-sidemenu-button> -->
-                    <!-- <md-sidemenu-button href="#/App/Inventario/Modelos"><md-icon>view_module</md-icon>Modelos</md-sidemenu-button> -->
-                    <!-- <md-sidemenu-button href="#/App/Inventario/Bodegas"><md-icon>home</md-icon>Bodegas</md-sidemenu-button> -->
-                    <!-- <md-sidemenu-button href="#/App/Inventario/Garantia"><md-icon>add_alert</md-icon>Garantía</md-sidemenu-button> -->
-                    <!-- <md-sidemenu-button href="#/App/Inventario/Ubicacion"><md-icon>layers</md-icon>Ubicación</md-sidemenu-button> -->
-                    <!-- <md-sidemenu-button href="#/App/Inventario/Categorias"><md-icon>assessment</md-icon>Categorías</md-sidemenu-button> -->
-                    <!-- <md-sidemenu-button href="#/App/Inventario/Catalogos"><md-icon>bookmark</md-icon> Catálogos</md-sidemenu-button> -->
-                    <!-- <md-sidemenu-button href="#/App/Inventario/Estado_Descriptivo"><md-icon>description</md-icon> Estado Descriptivo</md-sidemenu-button> -->
-            
+                <!-- <md-subheader class="md-no-sticky">Menu Inventario</md-subheader> --> <!-- ng-show="item.permisos.accion_ver" -->
+                <md-sidemenu-button href="#{{item.path}}" ng-repeat="item in menu.children"  ng-if="item.children.length == 0"><md-icon>home</md-icon>{{item.nombre}}</md-sidemenu-button>
             </md-sidemenu-group>
             <md-divider></md-divider>
             <md-subheader class="md-no-sticky">Configuración base Inventario</md-subheader>
-            <md-sidemenu-content md-icon="view_stream" md-heading="Parametrización" md-arrow="true">
-                <md-sidemenu-button href="#/App/Inventario/Tipo_Categoria"><md-icon>assessment</md-icon> Tipo Categoría</md-sidemenu-button>
-                <md-sidemenu-button href="#/App/Inventario/Tipo_Garantia"><md-icon>add_alert</md-icon> Tipo Garantía</md-sidemenu-button>
-                <md-sidemenu-button href="#/App/Inventario/Tipo_Consumo"><md-icon>assignment_turned_in</md-icon> Tipo Consumo</md-sidemenu-button>
-                <md-sidemenu-button href="#/App/Inventario/Tipo_Productos"><md-icon>subtitles</md-icon> Tipo Productos</md-sidemenu-button>	                    
-                <md-sidemenu-button href="#/App/Inventario/Tipo_Catalogo"><md-icon>bookmark</md-icon> Tipo Catalogos</md-sidemenu-button>
-            </md-sidemenu-content>		            
+            <md-sidemenu-group>
+                <md-sidemenu-content md-icon="home" md-heading="{{item.nombre}}" md-arrow="true" ng-if="item.children.length != 0" ng-repeat="item in menu.children"> <!-- ng-repeat="item1 in item.children" -->
+                    <md-sidemenu-button href="#{{item1.path}}" ng-repeat="item1 in item.children">{{item1.nombre}}</md-sidemenu-button>
+                </md-sidemenu-content>
+            </md-sidemenu-group>     
         </md-sidemenu>
+        
     </md-content>
 </md-sidenav>
 <md-content flex class="md-padding" layout="column" >
