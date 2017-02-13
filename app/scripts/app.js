@@ -102,8 +102,8 @@ var app = angular.module('nextbook20App', [
         };
     }]);
     
-    app.config(function ($routeSegmentProvider, $routeProvider) {
-        // $locationProvider.hashPrefix('');
+    app.config(function ($routeSegmentProvider, $routeProvider,$locationProvider) {
+         $locationProvider.hashPrefix('');
         // Configuring provider options    
         $routeSegmentProvider.options.autoLoadTemplates = true;            
                 
