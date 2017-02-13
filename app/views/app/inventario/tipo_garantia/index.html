@@ -9,21 +9,15 @@
     </a>
 </div>
 <br><md-divider></md-divider><br>
-<md-content layout-padding layout-wrap>
-    <md-table-container>
-        <div layout="row">
-            <div flex="90">
-                <md-input-container class="md-icon-float md-block" layout="column" aria-label="Close">
-                    <md-icon class="md-primary">search</md-icon>
-                    <label>Búsqueda</label>
-                    <input name="nom_tipo_categoria" ng-model="query.filter" type="text" required>
-                </md-input-container>
-            </div>
-            <div flex="10">
-                <md-button layout="column" class="md-accent" ng-click="inv_tipo_garantia_dialog_nuevo($event)">Nuevo</md-button>
-            </div>
+<md-content layout-wrap>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <input name="nom_modelo" ng-model="query.filter" type="text" required placeholder="Buscar" class="toolbar_search">
+            <span flex></span>
+            <md-button layout="column" class="md-accent md-raised" ng-click="inv_tipo_garantia_dialog_nuevo($event)">Nuevo</md-button>
         </div>
-
+    </md-toolbar>
+    <md-table-container layout-padding>
         <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
             <thead md-head md-order="query.order" md-on-reorder="data_inv_tipo_garantia_get">
                 <tr md-row>
