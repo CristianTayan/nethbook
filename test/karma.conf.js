@@ -39,7 +39,6 @@ module.exports = function(config) {
       'bower_components/velocity/velocity.js',
       'bower_components/velocity/velocity.ui.js',
       'bower_components/lumx/dist/lumx.js',
-      'bower_components/angular-audio/app/angular.audio.js',
       'bower_components/angular-loading-bar/build/loading-bar.js',
       'bower_components/angular-material-data-table/dist/md-data-table.js',
       'bower_components/angular-material-sidemenu/dest/angular-material-sidemenu.js',
@@ -59,6 +58,9 @@ module.exports = function(config) {
       'bower_components/angular-socket-io/socket.js',
       'bower_components/angucomplete-alt/angucomplete-alt.js',
       'bower_components/angular-translate/angular-translate.js',
+      'bower_components/angular-soundmanager2/dist/angular-soundmanager2.js',
+      'bower_components/v-accordion/dist/v-accordion.js',
+      'bower_components/angular-material-accordion/dist/angular-material-accordion.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
