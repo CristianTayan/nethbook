@@ -429,7 +429,7 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
-	    	this.Existencia_Modelo = function(){
+	    	this.Existencia_Modelos = function(){
 	    		return $resource(urlService.server().appnext()+'Existencia_Modelo', {} , {
 		            consulta: {
 		    			method: 'POST', isArray: false,
