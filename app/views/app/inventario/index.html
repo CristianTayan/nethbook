@@ -2,16 +2,16 @@
     <md-content layout="column" >
         <md-sidemenu class="scrollbar" id="style-2">
         	<md-sidemenu-group>
-        		<md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
+        		<md-sidemenu-button href="#/App">App</md-sidemenu-button>
         	</md-sidemenu-group>
+            <md-divider></md-divider>
             <md-sidemenu-group>
-                <!-- <md-subheader class="md-no-sticky">Menu Inventario</md-subheader> --> <!-- ng-show="item.permisos.accion_ver" -->
-                <md-sidemenu-button href="#{{item.path}}" ng-repeat="item in menu.children"  ng-if="item.children.length == 0"><md-icon>home</md-icon>{{item.nombre}}</md-sidemenu-button>
+                <md-sidemenu-button href="#{{item.path}}" ng-repeat="item in menu.children"  ng-if="item.children.length == 0">{{item.nombre}}</md-sidemenu-button>
             </md-sidemenu-group>
             <md-divider></md-divider>
-            <md-subheader class="md-no-sticky">Configuración base Inventario</md-subheader>
+            <md-subheader class="md-no-sticky">CONFIGURACIÓN BASE</md-subheader>
             <md-sidemenu-group>
-                <md-sidemenu-content md-icon="home" md-heading="{{item.nombre}}" md-arrow="true" ng-if="item.children.length != 0" ng-repeat="item in menu.children"> <!-- ng-repeat="item1 in item.children" -->
+                <md-sidemenu-content md-icon="home" md-heading="{{item.nombre}}" md-arrow="true" ng-if="item.children.length != 0" ng-repeat="item in menu.children"> 
                     <md-sidemenu-button href="#{{item1.path}}" ng-repeat="item1 in item.children">{{item1.nombre}}</md-sidemenu-button>
                 </md-sidemenu-content>
             </md-sidemenu-group>     

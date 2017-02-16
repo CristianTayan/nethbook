@@ -1371,21 +1371,11 @@ app.controller('inv_marcas_Ctrl', function($scope, $rootScope, $mdDialog, invent
                 if (data.respuesta == true) {
                     $mdDialog.cancel();
                     $mdToast.show({
-                      hideDelay   : 5000,
-                      position    : 'bottom right',
-                      controller  : 'ToastCtrl',
-                      templateUrl : 'views/notificaciones/guardar.html'
+                        hideDelay: 5000,
+                        position: 'bottom right',
+                        controller: 'ToastCtrl',
+                        templateUrl: 'views/notificaciones/guardar.html'
                     });
-                    // $mdDialog.show(
-                    //     $mdDialog.alert()
-                    //     .parent(angular.element(document.querySelector('#popupContainer')))
-                    //     .clickOutsideToClose(true)
-                    //     .title('EN HORA BUENA :)')
-                    //     .textContent('Su registro se a realizado con exito.')
-                    //     .ariaLabel('Respuesta Registro')
-                    //     .ok('Entendido')
-                    //     .targetEvent()
-                    // );
                 }
                 if (data.respuesta == false) {
                     $mdDialog.show(
