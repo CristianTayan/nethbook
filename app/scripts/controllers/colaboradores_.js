@@ -369,6 +369,15 @@ var app = angular.module('nextbook20App')
 		    });
 	});
 
+	app.controller('notificacionCtrl', function($scope, $mdToast) {
+		    $scope.closeToast = function() {
+
+		        $mdToast
+		            .hide()
+
+		    };
+		});
+
 	app.controller('col_tipo_usuario_Ctrl', function ($scope, colaboradores_Service, $rootScope, $mdDialog) {
 		// -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
 		    $scope.col_tipo_usuario_dialog_nuevo = function(event) {
@@ -396,7 +405,7 @@ var app = angular.module('nextbook20App')
 			}
 			colaboradores_Service.Get_Combinacion_Privilegios().get({},success_combinacion_privilegios).$promise;
 
-		    function DialogController_nuevo($scope,vistas,combinacion_privilegios) {
+		    function DialogController_nuevo($scope,vistas,combinacion_privilegios, $mdDialog, $mdToast) {
 		    	$scope.selected=[];
 		    	// ------------------------ GENERACION DE VISTAS PRIVILEGIOS---------------------------
 					$scope.stuff0 = vistas;//angular.copy(stuff);
@@ -407,16 +416,13 @@ var app = angular.module('nextbook20App')
 		            colaboradores_Service.Add_Tipo_Usuario().add($scope.data_col_tipo_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_tipo_usuario", {});
 		                if (data.respuesta == true) {
-		                    $mdDialog.show(
-		                        $mdDialog.alert()
-		                        .parent(angular.element(document.querySelector('#popupContainer')))
-		                        .clickOutsideToClose(true)
-		                        .title('EN HORA BUENA :)')
-		                        .textContent('Su registro se a realizado con exito.')
-		                        .ariaLabel('Respuesta Registro')
-		                        .ok('Entendido')
-		                        .targetEvent()
-		                    );
+		                    $mdDialog.cancel();
+			                    $mdToast.show({
+			                        hideDelay: 5000,
+			                        position: 'bottom right',
+			                        controller: 'notificacionCtrl',
+			                        templateUrl: 'views/notificaciones/guardar.html'
+			                    });
 		                }
 		                if (data.respuesta == false) {
 		                    $mdDialog.show(

@@ -1345,7 +1345,7 @@ app.controller('inv_marcas_Ctrl', function($scope, $rootScope, $mdDialog, invent
                     $mdToast.show({
                         hideDelay: 5000,
                         position: 'bottom right',
-                        controller: 'ToastCtrl',
+                        controller: 'notificacionCtrl',
                         templateUrl: 'views/notificaciones/guardar.html'
                     });
                 }
