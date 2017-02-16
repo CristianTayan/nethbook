@@ -1566,22 +1566,29 @@ app.controller('inv_modelos_Ctrl', function($scope, $rootScope, $mdDialog, inven
         });
     }
 
-    function DialogController_nuevo($scope) {
+    function DialogController_nuevo($scope, $mdToast) {
         // Nuevo registro tipo inventario
         $scope.inv_modelo_nuevo = function() {
             inventario_Service.Add_Modelo().add($scope.data_inv_modelo).$promise.then(function(data) {
                 $rootScope.$emit("actualizar_tabla_modelo", {});
                 if (data.respuesta == true) {
-                    $mdDialog.show(
-                        $mdDialog.alert()
-                        .parent(angular.element(document.querySelector('#popupContainer')))
-                        .clickOutsideToClose(true)
-                        .title('EN HORA BUENA :)')
-                        .textContent('Su registro se a realizado con exito.')
-                        .ariaLabel('Respuesta Registro')
-                        .ok('Entendido')
-                        .targetEvent()
-                    );
+                     $mdDialog.cancel();
+                     $mdToast.show({
+                      hideDelay   : 3000,
+                      position    : 'bottom right',
+                      // controller  : 'ToastCtrl',
+                      templateUrl : 'views/notificaciones/guardar.html'
+                    });
+                    // $mdDialog.show(
+                    //     $mdDialog.alert()
+                    //     .parent(angular.element(document.querySelector('#popupContainer')))
+                    //     .clickOutsideToClose(true)
+                    //     .title('EN HORA BUENA :)')
+                    //     .textContent('Su registro se a realizado con exito.')
+                    //     .ariaLabel('Respuesta Registro')
+                    //     .ok('Entendido')
+                    //     .targetEvent()
+                    // );
                 }
                 if (data.respuesta == false) {
                     $mdDialog.show(
