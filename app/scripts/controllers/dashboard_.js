@@ -25,7 +25,7 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
                 id: 'one',
                 title: 'Rain',
                 artista: 'Drake',
-                url: '186.4.167.5:8000/stream.aac'
+                url: 'http://186.4.167.5:8000/stream.aac'
             },
             {
                 id: 'two',

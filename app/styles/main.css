@@ -15,6 +15,11 @@ body, html {
 /*form login*/
   /*user*/
 
+  md-sidemenu-button {
+    width: 0p;
+    display: flex;
+  }
+
   .inputuser {
       width: 90px!important;
       position: relative;
