@@ -1343,13 +1343,7 @@ app.controller('inv_tipo_catalogo_Ctrl', function($scope, $rootScope, $mdDialog,
     });
 });
 
-app.controller('ToastCtrl', function($scope, $mdToast, $mdDialog) {
-    $scope.closeToast = function() {
-        $mdToast.hide()
-    };
-});
 app.controller('inv_marcas_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service, $mdToast) {
-    
     // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
     $scope.inv_marca_dialog_nuevo = function(event) {
         $mdDialog.show({
@@ -1371,9 +1365,9 @@ app.controller('inv_marcas_Ctrl', function($scope, $rootScope, $mdDialog, invent
                 if (data.respuesta == true) {
                     $mdDialog.cancel();
                     $mdToast.show({
-                      hideDelay   : 5000,
+                      hideDelay   : 3000,
                       position    : 'bottom right',
-                      controller  : 'ToastCtrl',
+                      // controller  : 'ToastCtrl',
                       templateUrl : 'views/notificaciones/guardar.html'
                     });
                     // $mdDialog.show(
