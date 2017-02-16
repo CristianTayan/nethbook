@@ -22,7 +22,6 @@ var app = angular.module('nextbook20App', [
                                             'view-segment', //vista segmentos 
                                             'ngResource', //llamar recursos por $http api-res
                                             'mdPickers',
-                                            'blockUI', //Bloqueo general,
                                             'angularSoundManager',
                                             'angular-loading-bar',
                                             'ngStorage',
@@ -38,7 +37,6 @@ var app = angular.module('nextbook20App', [
                                             'btford.socket-io',
                                             'angucomplete-alt',
                                             'pascalprecht.translate',
-                                            'vAccordion'
                                         ]);
     
     // themes configuration
