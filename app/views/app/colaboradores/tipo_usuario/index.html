@@ -1,18 +1,14 @@
 <md-button ng-href="#/App/Colaboradores" aria-label="btn_in">Inventario</md-button>/<md-button ng-disabled="true" class="md-primary" aria-label="btn_in">Tipo Consumo</md-button>
 <md-divider></md-divider>
-<md-content layout-padding layout-wrap>
+<md-content layout-wrap>
     <md-table-container>
-      <div layout="row">
-          <div flex="90">
-              <md-input-container class="md-icon-float md-block" layout="column" aria-label="Close">
-                  <md-icon class="md-primary">search</md-icon>
-                  <label>Búsqueda</label>
-                  <input name="nom_tipo_categoria" ng-model="query.filter" type="text" required>
-              </md-input-container>
-          </div>
-          <div flex="10">
-              <md-button layout="column" class="md-accent" ng-click="col_tipo_usuario_dialog_nuevo($event)">Nuevo</md-button>
-          </div>
+   <md-toolbar>
+            <div class="md-toolbar-tools">
+                <input name="nom_modelo" ng-model="query.filter" type="text" required placeholder="Buscar" class="toolbar_search">
+                <span flex></span>
+                <md-button layout="column" class="md-accent md-raised" ng-click="col_tipo_usuario_dialog_nuevo($event)">Nuevo</md-button>
+            </div>
+        </md-toolbar>
       </div>
       <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
         <thead md-head md-order="query.order" md-on-reorder="Get_Tipo_Usuario ">

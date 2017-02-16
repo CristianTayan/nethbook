@@ -1,17 +1,14 @@
 <md-button ng-href="#/Inventario/" aria-label="btn_in">Colaboradores</md-button>/<md-button ng-disabled="true" class="md-primary" aria-label="btn_in">Usuario</md-button>
 <md-divider></md-divider>
-<md-content layout-padding layout-wrap>
+<md-content  layout-wrap>
     <md-table-container>
-      <div layout="row">
-          <div flex="90">
-              <md-input-container class="md-icon-float md-block" layout="column" aria-label="Close">
-                  <md-icon class="md-primary">search</md-icon>
-                  <label>Búsqueda</label>
-                  <input name="nom_modelo" ng-model="query.filter" type="text" required>
-              </md-input-container>
-          </div>
-          <div flex="10">
-              <md-button layout="column" class="md-accent" ng-click="colaboradores_dialog_nuevo($event)">Nuevo</md-button>
+      <md-toolbar>
+            <div class="md-toolbar-tools">
+                <input name="nom_modelo" ng-model="query.filter" type="text" required placeholder="Buscar" class="toolbar_search">
+                <span flex></span>
+                <md-button layout="column" class="md-accent md-raised" ng-click="colaboradores_dialog_nuevo($event)">Nuevo</md-button>
+            </div>
+        </md-toolbar>
           </div>
       </div>
       <table md-table md-row-select ng-model="selected" md-progress="promise">
