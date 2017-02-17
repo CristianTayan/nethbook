@@ -46,7 +46,7 @@ var app = angular.module('nextbook20App')
 		        })
 		    }
 
-		    function DialogController_nuevo($scope, tipo_usuario,ciudades) {
+		    function DialogController_nuevo($scope, tipo_usuario,ciudades,$mdToast) {
 				
 
 					
@@ -104,16 +104,23 @@ var app = angular.module('nextbook20App')
 		            colaboradores_Service.Add_Col_Usuario().add($scope.data_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_usuario", {});
 		                if (data.respuesta == true) {
-		                    $mdDialog.show(
-		                        $mdDialog.alert()
-		                        .parent(angular.element(document.querySelector('#popupContainer')))
-		                        .clickOutsideToClose(true)
-		                        .title('EN HORA BUENA :)')
-		                        .textContent('Su registro se a realizado con exito.')
-		                        .ariaLabel('Respuesta Registro')
-		                        .ok('Entendido')
-		                        .targetEvent()
-		                    );
+						        $mdDialog.cancel();
+				                    $mdToast.show({
+				                      hideDelay   : 5000,
+				                      position    : 'bottom right',
+				                      controller  : 'notificacionCtrl',
+				                      templateUrl : 'views/notificaciones/guardar.html'
+				                    });
+		                    // $mdDialog.show(
+		                    //     $mdDialog.alert()
+		                    //     .parent(angular.element(document.querySelector('#popupContainer')))
+		                    //     .clickOutsideToClose(true)
+		                    //     .title('EN HORA BUENA :)')
+		                    //     .textContent('Su registro se a realizado con exito.')
+		                    //     .ariaLabel('Respuesta Registro')
+		                    //     .ok('Entendido')
+		                    //     .targetEvent()
+		                    // );
 		                }
 		                if (data.respuesta == false) {
 		                    $mdDialog.show(
