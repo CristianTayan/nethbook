@@ -1,0 +1,15 @@
+<md-dialog aria-label="Test">
+	<div layout-padding layout="column">
+    <form name="formdata" ng-submit="verificar()">
+      <md-input-container class="md-icon-float md-block" layout="row">
+          <md-icon class="md-primary">view_compact</md-icon>
+          <label>Ingrese Clave Actual</label>
+          <input type="password" ng-model="pass" name="password" required>
+          <div ng-messages="formdata.description.$error">
+            <div ng-message="required">Campo Requerido</div>
+          </div>
+      </md-input-container>
+      <md-button class="md-primary" type="submit" ng-disabled="formdata.$invalid" class="md-primary">ACEPTAR</md-button>
+    </form>
+  </div>
+</md-dialog>

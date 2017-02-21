@@ -151,6 +151,17 @@ var app = angular.module('nextbook20App');
             });
         };
 
+        this.Verificar_Pass = function() {
+            return $resource(urlService.server().appnext()+'Verificar_Pass', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
         
     });
 app.factory('mySocket', function (socketFactory) {

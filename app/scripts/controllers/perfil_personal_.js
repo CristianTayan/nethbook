@@ -27,24 +27,37 @@
 	    }
 	    $scope.data_ciudades();
 
+		$scope.cambiar_datos_password = function(){
+			$mdDialog.show( {
+			    controller: DialogController,
+			    templateUrl: 'views/dashboard/modal_updat_pass.html',
+			    parent: angular.element(document.body),
+			    clickOutsideToClose: false, // fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+			    locals: {data:$scope.data}
+			});
+	    }
 
-	    $scope.showPrompt = function(ev) {
-		    // Appending dialog to document.body to cover sidenav in docs app
-		    var confirm = $mdDialog.prompt()
-		      .title('What would you name your dog?')
-		      .textContent('Bowser is a common name.')
-		      .placeholder('Dog name')
-		      .ariaLabel('Dog name')
-		      .targetEvent(ev)
-		      .ok('Okay!')
-		      .cancel('I\'m a cat person');
-
-		    $mdDialog.show(confirm).then(function(result) {
-		    	console.log(result);
-		    }, function() {
-		      $scope.status = 'You didn\'t name your dog.';
-		    });
+	    function DialogController($scope, $mdDialog, mainService, $localStorage, data) {
+		    $scope.verificar = function(){
+		    	mainService.Verificar_Pass().get({pass:$scope.pass}).$promise.then(function(response){
+		    		console.log(response);
+		    		if (response.respuesta) {
+		    			$mdDialog.hide();
+			    		mainService.Update_Password().get({pass:$scope.password}).$promise.then(function(data){
+			    			console.log('test');
+					   //      if (data.respuesta == true) {
+					   //        $location.path('/Seleccionar_Sucursal');
+					   //      }else{
+								// console.log('test');
+					   //      }
+					    });
+		    		}else{
+		    			// console.log('testtisng');
+		    			$scope.pass = '';
+		    			// $scope.verificar();
+		    		}
+		    	});
+		    }
 		};
-
 
   	});

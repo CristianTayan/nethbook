@@ -3,11 +3,11 @@
     	
         <md-sidemenu locked="true">
             <md-sidemenu-group>
-                <md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
+                <md-sidemenu-button href="#/App">APP</md-sidemenu-button>
             </md-sidemenu-group>
+            <md-divider></md-divider>
             <md-sidemenu-group>
-                <md-sidemenu-button href="#/App{{item.path}}" ng-repeat="item in menu.children" ng-show="item.permisos.accion_ver" md-icon="home"><md-icon>person</md-icon>{{item.nombre}}</md-sidemenu-button>
-                <!-- <md-sidemenu-button href="#/App/Colaboradores/Tipo_Usuario/"><md-icon>supervisor_account</md-icon>Tipo Usuarios</md-sidemenu-button> -->
+                <md-sidemenu-button href="#/App{{item.path}}" ng-repeat="item in menu.children" ng-show="item.permisos.accion_ver" md-icon="home">{{item.nombre}}</md-sidemenu-button>
             </md-sidemenu-group>
         </md-sidemenu>
     </md-content>
