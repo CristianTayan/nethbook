@@ -13,6 +13,7 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
     // -------------------------------------GENERACION MENU-------------------------------------
         menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
             $scope.menu = data.respuesta[0].children[2].children[3];
+            console.log('test todo ok');
         });
     
     // $mdDialog.show({
