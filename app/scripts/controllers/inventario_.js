@@ -12,8 +12,8 @@ var app = angular.module('nextbook20App')
 app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog, menuService) {
     // -------------------------------------GENERACION MENU-------------------------------------
         menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
-            $scope.menu = data.respuesta[0].children[2].children[2];
-            console.log(data.respuesta[0].children[2].children[2]);
+            $scope.menu = data.respuesta[0].children[2].children[3];
+            console.log(data.respuesta[0].children[2].children[3]);
         });
     
     // $mdDialog.show({
