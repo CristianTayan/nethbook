@@ -176,8 +176,10 @@ var app = angular.module('nextbook20App', [
             .when('/App/Colaboradores',    'dashboard.app.colaboradores')
                 .when('/App/Colaboradores/Usuario',    'dashboard.app.colaboradores.usuario')
                 .when('/App/Colaboradores/Tipo_Usuario',    'dashboard.app.colaboradores.tipo_usuario')
-            // ------------------------------------------GESTION INVENTARIO-----------------------------------------
-            .when('/App/Facturacion',    'dashboard.facturacion')
+            // ------------------------------------------FACTURACION-----------------------------------------
+            .when('/App/Facturacion',    'dashboard.app.facturacion')
+            .when('/App/Facturacion/Mis_Facturas_Venta',    'dashboard.app.facturacion.mis_facturas_venta')
+            .when('/App/Facturacion/Nueva_Factura_Venta',    'dashboard.app.facturacion.nueva_factura_venta')
             // ------------------------------------------GESTION INVENTARIO-----------------------------------------
             .when('/App/Inventario',    'dashboard.app.inventario')
                 .when('/App/Inventario/',    'dashboard.app.inventario.menu')
@@ -339,19 +341,26 @@ var app = angular.module('nextbook20App', [
                                             controller: 'inv_bodegas_Ctrl'
                                         })
                                     .up()
+
+                                // ----------------------------------------FACTURACION----------------------------------------
+                                .segment('facturacion', {
+                                   templateUrl: 'views/app/facturacion/index.html',
+                                    controller: 'facturacion_Ctrl'
+                                    })
+                                    .within()
+                                        .segment('nueva_factura_venta', {
+                                            default: true,
+                                            templateUrl: 'views/app/facturacion/nueva_factura_venta/index.html',
+                                            controller: 'fac_nueva_factura_venta_Ctrl'
+                                        })
+            
+                                        .segment('mis_facturas_venta', {
+                                            templateUrl: 'views/app/facturacion/mis_facturas/index.html',
+                                            controller: 'fac_mis_facturas_venta_Ctrl'
+                                        })
+                                    .up()
+
                         .up()
-
-                    // ----------------------------------------FACTURACION----------------------------------------
-                    .segment('facturacion', {
-                        templateUrl: 'views/app/facturacion/index.html',
-                        // controller: 'colaboradores_Ctrl'
-                    })
-
-                   
-
-
-                    
-
                     
                 .up();
         // activar cuenta
