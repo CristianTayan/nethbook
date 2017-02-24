@@ -102,18 +102,6 @@
                 </lx-dropdown-toggle>
                 <lx-dropdown-menu>
                     <ul>
-                       <!--  <li>
-                            <a href="#/Perfil_Personal" class="dropdown-link">
-                                <i class="mdi"><md-icon>perm_contact_calendar</md-icon></i>
-                                <span>Configuración Personal</span>
-                            </a>
-                        </li> -->
-                        <!-- <li>
-                            <a href="#/Perfil_Personal" class="dropdown-link">
-                                <i class="mdi"><md-icon>perm_contact_calendar</md-icon></i>
-                                <span>Configuración Establecimiento</span>
-                            </a>
-                        </li> -->
                         <li>
                             <a href="#/Perfil_Personal" class="dropdown-link">
                                 <i class="mdi"><md-icon>shopping_cart</md-icon></i>
@@ -138,12 +126,11 @@
             <a href="#/Perfil">
                 <span class="mdl-chip mdl-chip--contact">
                     <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">{{nom_perfil | limitTo: 1}}</span>
-                <span class="mdl-chip__text">{{nom_perfil}}</span>
+                <span class="mdl-chip__text">{{nom_perfil | limitTo: 20}}</span>
                 </span>
             </a>
 
             <a class="btn btn--l btn--white btn--icon" lx-ripple ng-click="ShowHide()">
-                <!-- <i class="mdi mdi-apps"></i> -->
                 <md-icon>tab</md-icon>
             </a>
         </div>

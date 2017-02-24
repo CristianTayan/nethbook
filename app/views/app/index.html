@@ -4,19 +4,28 @@
     <md-tabs md-border-bottom flex>
         <md-tab label="Mi Musica">
             <md-content>
-            <md-button play-all="songs"><md-icon>playlist_play</md-icon></md-button>
+                <div layout="row">
+                    <md-button play-all="songs" flex>Reproducir Todo</md-button>
+                </div>
+                <div layout="row">
+                    <md-button prev-track flex><md-icon>skip_previous</md-icon></md-button>
+                    <md-button pause-music flex>Pause</md-button>
+                    <md-button next-track flex><md-icon>skip_next</md-icon></md-button>
+                </div>
                 <md-list>
                     <md-list-item class="md-2-line" ng-repeat="music in songs">
                         <img src="https://yt3.ggpht.com/0v8T0CTAv8VPxA5lJtz-tqJe-tR-3VQc0ONhD6Az2RWjNRnwh5QQzPYz5I7wbYljU_tQjZ2ok2W59_v_=s900-nd-c-c0xffffffff-rj-k-no" class="md-avatar" alt="{{music.options.face}}" />
                         <div class="md-list-item-text">
                             <h3> {{ music.artista }} </h3>
                             <p> {{ music.nombre_cancion }} </p>
+                            <p> {{currentPlaying}} </p>
                         </div>
-                        <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" aria-label="call" music-player="play" add-song="music">
-                            <md-icon>play_circle_outline</md-icon>
+                        <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)"  aria-label="call" music-player="play" add-song="music">
+                            <md-icon ng-if="currentPlaying.id == music.id">pause_circle_outline</md-icon>
+                            <md-icon ng-if="currentPlaying.id !== music.id">play_circle_outline</md-icon>
                         </md-button>
                     </md-list-item>
-                </md-list>                
+                </md-list>
             </md-content>
         </md-tab>
         <md-tab label="Soporte">
@@ -24,7 +33,6 @@
                     <md-toolbar>
                         <h4 class="md-padding">Soporte Técnico</h4>
                     </md-toolbar>
-                    <!--Note: for scrollShrink to work, the toolbar must be a sibling of a md-content element, placed before it.-->
                     <md-content>
                         Hello!
                     </md-content>
@@ -33,3 +41,19 @@
         
     </md-tabs>
 </md-sidenav>
+
+<style type="text/css">
+    .seekBase {
+        height: 30px;
+        width: 90%;
+        border: 1px solid red;
+    }
+    .seekLoad {
+        height: 30px;
+        width: 0;
+        background-color: blue;
+    }
+    li {
+        cursor: pointer;
+    }
+</style>
