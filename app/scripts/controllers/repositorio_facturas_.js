@@ -23,7 +23,7 @@
   		// 	console.log($scope.menu);
   		// });
   		menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
-            $scope.menu = data.respuesta[0].children[2].children[2];
+            $scope.menu = data.respuesta[0].children[2].children[1];
         });
 
     });

@@ -197,7 +197,6 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
                     };
 
                     console.log(data);
-
                   
                 };
 
@@ -2421,7 +2420,7 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
     }
 });
 
-app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
+app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service,Contabilidad_Service) {
 
     // ------------------------------------------------------- INICIO AUTO COMPLETES ---------------------------------------------------------------- 
     // -------------------------------------------------------SELECT TIPO CATEGORIAS------------------------------------------------------------
@@ -2482,6 +2481,19 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
         inventario_Service.Get_Tipo_Consumo().get($scope.query, success_tipo_consumo).$promise;
     }
     $scope.data_inv_tipo_consumo_get();
+
+     // ------------------------------------------------- SELECT IMPUESTOS-----------------------------------------
+
+        function success_impuestos(result){ 
+            $scope.impuestos=result.respuesta.data;
+        }
+
+        $scope.get_impuestos=function(){
+            Contabilidad_Service.Get_Impuestos().get({},success_impuestos).$promise;
+        }
+        
+        $scope.get_impuestos();
+
      // ------------------------------------------------------- FIN SELECTS ----------------------------------------------------------------
     // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
     $scope.customFullscreen = false;
@@ -2501,12 +2513,13 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
                 select_marcas: $scope.marcas,
                 select_modelos: $scope.modelos,
                 select_ubicaciones: $scope.ubicaciones,
-                select_tipo_consumos:$scope.tipo_consumos
+                select_tipo_consumos:$scope.tipo_consumos,
+                select_impuestos:$scope.impuestos
             }
         });
     }
 
-    function DialogController_nuevo($scope, select_tipo_categoria,select_estado_descriptivo,select_garantias,select_marcas,select_modelos,select_ubicaciones,select_tipo_consumos, $mdToast) {
+    function DialogController_nuevo($scope, select_impuestos,select_tipo_categoria,select_estado_descriptivo,select_garantias,select_marcas,select_modelos,select_ubicaciones,select_tipo_consumos, $mdToast) {
         // ------------------------------------------------------ INICIALIZACION CAMPOS ---------------------------------------------------------
         $scope.data_inv_producto = {precio:0.00,costo: 0.00, cantidad:0}
 
@@ -2521,6 +2534,8 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
         vm.selectModelos = select_modelos;
         vm.selectUbicaciones = select_ubicaciones;
         vm.selectTipoConsumos = select_tipo_consumos;
+        vm.selectImpuestos = select_impuestos;
+
         vm.selectModel = {
             selectedPerson: undefined,
             selectedPeople: [vm.selectPeople[0]]
@@ -2553,6 +2568,11 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
             selectedTipoConsumoDefault: [vm.selectTipoConsumos[0]]
         };
 
+        vm.selectModelImpuestos = {
+            selectedImpuesto: undefined,
+            selectedImpuestos: []
+        };
+
         function selectCallback(_newValue, _oldValue) {
             LxNotificationService.notify('Change detected');
         }
@@ -2567,6 +2587,7 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
             $scope.data_inv_producto.modelo = vm.selectModelModelos.selectedModelo.id;
             $scope.data_inv_producto.ubicacion = vm.selectModelUbicaciones.selectedUbicacion.id;
             $scope.data_inv_producto.tipo_consumo = vm.selectModelTipoConsumos.selectedTipoConsumo.id;
+            $scope.data_inv_producto.impuestos=$scope.selectModelImpuestos.selectedImpuestos;
             if ($scope.data_inv_producto.comprable==undefined) {
                 $scope.data_inv_producto.comprable=false;
             }else $scope.data_inv_producto.comprable=true;

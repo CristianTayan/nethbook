@@ -15,7 +15,7 @@ var app = angular.module('nextbook20App')
   		// });
 
   		menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
-	        $scope.menu = data.respuesta[0].children[2].children[1];
+	        $scope.menu = data.respuesta[0].children[2].children[0];
 	    });
 	});
 
