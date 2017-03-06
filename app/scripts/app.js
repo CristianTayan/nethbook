@@ -37,6 +37,7 @@ var app = angular.module('nextbook20App', [
                                             'btford.socket-io',
                                             'angucomplete-alt',
                                             'pascalprecht.translate',
+                                            'ngCookies'
                                         ]);
     
     // themes configuration

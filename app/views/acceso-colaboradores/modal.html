@@ -1,0 +1,41 @@
+<md-list>
+    <md-list-item>
+    	<span flex></span>
+    	<md-button class="md-icon-button" aria-label="More" ng-click="cancel()">
+	        <md-icon>close</md-icon>
+	    </md-button>
+    </md-list-item>
+</md-list>
+<md-content layout-padding layout-wrap>
+    <md-list>
+        <md-list-item class="md-2-line">
+            <md-icon md-svg-icon="{{phone.options.icon}}" ng-if="phone.options.icon" ng-class="{'md-avatar-icon': phone.options.avatarIcon}"></md-icon>
+            <img src="https://getmdl.io/assets/demos/welcome_card.jpg" class="md-avatar" alt="{{phone.options.face}}" />
+            <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                <h3> {{ nick.nick }} </h3>
+                <h3> {{ nick.datos_usuario }} </h3>
+                <p> {{ nick.razon_social }} </p>
+            </div>
+            <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
+                <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
+            </md-button>
+        </md-list-item>
+        <form name="form_ingreso_colaborador" ng-submit="ingresar_colaborador()">
+            <md-input-container class="md-block">
+                <label>Password / Clave</label>
+                <input type="password" required md-no-asterisk ng-model="clave">
+                <div ng-messages="projectForm.description.$error">
+                    <div ng-message="required">This is required.</div>
+                    <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+                </div>
+            </md-input-container>
+
+            <div layout="row" layout-align="end none">
+                <md-button class="md-primary" type="submit" ng-disabled="form_ingreso_colaborador.$invalid">
+                	Entrar
+                    <md-icon>send</md-icon>
+                </md-button>
+            </div>
+        </form>
+    </md-list>
+</md-content>

@@ -45,7 +45,7 @@ var app = angular.module('nextbook20App');
         }
       };
     });
-
+    // validacion solo numero
     app.directive('numbersOnly', function () {
         return {
             require: 'ngModel',
@@ -63,6 +63,26 @@ var app = angular.module('nextbook20App');
                     return undefined;
                 }            
                 ngModelCtrl.$parsers.push(fromUser);
+            }
+        };
+    });
+
+    // -----------------------------------------------------------CONVERTIR LESTRAS A MAYUSCULAS-----------------------------------------------------------
+    app.directive('uppercase', function() {
+        return {
+            require: 'ngModel',
+            link: function(scope, element, attrs, modelCtrl) {
+                var capitalize = function(inputValue) {
+                    if (inputValue == undefined) inputValue = '';
+                    var capitalized = inputValue.toUpperCase();
+                    if (capitalized !== inputValue) {
+                        modelCtrl.$setViewValue(capitalized);
+                        modelCtrl.$render();
+                    }
+                    return capitalized;
+                }
+                modelCtrl.$parsers.push(capitalize);
+                capitalize(scope[attrs.ngModel]);
             }
         };
     });

@@ -9,20 +9,100 @@
  */
 var app = angular.module('nextbook20App')
   	app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService, $localStorage, colaboradores_Service) {
+  		
+
   		$scope.elementview = false;
   		$scope.elemennotview = true;
+  		$scope.elemennotviewimg = true;
+  		$scope.elemennotviesession = false;
+
+  		// RECORDATORIO SESSION
+  		if ($localStorage.cook_session_init) {
+  			$scope.session = $localStorage.cook_session_init;
+  			if ($scope.session.length != 0) {
+  				$scope.elemennotviewimg = false;
+  				$scope.elemennotviewsession = true;
+  			}
+  		}
+  		$scope.entrar_recordatorio = function(item) {
+		    $mdDialog.show({
+	            controller: DialogController,
+	            templateUrl: 'views/acceso-colaboradores/modal.html',
+	            parent: angular.element(document.body),
+	            clickOutsideToClose: false,
+	            fullscreen: true,
+	            locals: {item:item}
+	        });
+		};
+
+		function DialogController($scope, item){
+			$scope.nick = item;
+
+			$scope.ingresar_colaborador = function() {
+				var obj = {'ruc' : $scope.nick.ruc_empresa, clave: $scope.clave, 'nick':$scope.nick.nick};
+		        colaboradores_Service.Ingresar_Colaborador().acceso({acceso:obj,info_servidor:'', ip_cliente:'192.168.0.1', macadress:'00:00:00:00:00'}).$promise.then(function(data) {
+		        	$mdDialog.cancel();
+		        	if (data.respuesta == false) {
+		            	$mdDialog.show(
+				            $mdDialog.alert()
+				            .parent(angular.element(document.querySelector('#dialogContainer')))
+				            .clickOutsideToClose(true)
+				            .title('Lo sentimos :(')
+				            .textContent('Usuario o password incorrecto, vuelva a intentar')
+				            .ok('Entendido')
+				            .openFrom('#left')
+				        );
+		            } if (data.respuesta == true) {
+			            $localStorage.token = data.token;
+			            $localStorage.datosE = data.datosE;
+			            $localStorage.datosPersona = data.datosPersona;
+			            //--------------------cargar imagen perfil-----------
+			            mainService.Get_Img_Perfil().get().$promise.then(function(data) {
+			            	$localStorage.imgPerfil = data.img;		                
+			            },function(error){
+			            	$localStorage.imgPerfil="images/users/avatar-001.jpg";
+			            });
+			            //--------------------cargar imagen Portada-----------
+			            mainService.Get_Img_Portada().get().$promise.then(function(data) {
+			            	$localStorage.imgPortada = data.img;
+			            },function(error){
+			            	$localStorage.imgPortada="images/samples/w1.jpg";
+			            });
+			            // -------------------------	 fin
+			            //--------------------cargar imagen Logo-----------
+			            mainService.Get_Img_Logo().get().$promise.then(function(data) {
+			            	$localStorage.imgLogo = data.img;
+			            },function(error){
+			            	$localStorage.imgPortada="images/samples/x2.jpg";
+			            });
+			            // ----------------------------- fin -----------------------------------
+			            //---------------------- verificar si existe datos de persona-----------
+			            mainService.Get_Datos_Empresa().get().$promise.then(function(data) {
+			                if (data.respuesta) {
+			                    $location.path('/Seleccionar_Sucursal');
+			                } else {
+			                    $location.path('/Actualizar_Datos');
+			                }
+			            });
+			        }
+		        });
+		    }
+			$scope.cancel = function() {
+		      $mdDialog.cancel();
+		    };
+		}
   		
   		// cargar provincias
   		mainService.item_provincias().get().$promise.then(function(data){
 	        $scope.states = data.respuesta;
 	    });
-
   		$scope.formdata = {ruc: ''}
   		$scope.rucdata = {telefono: '', telefono1:'', celular:'', provincia:'', correo:''};
   		// buscar servidor externo consulta
   		$scope.buscar_ruc = function() {
   			$scope.elementview = false;
   			$scope.elemennotview = true;
+  			$scope.elemennotviewimg = true;
 	        mainService.buscar_informacion_ruc().get({ruc: $scope.formdata.ruc}).$promise.then(function(data){
 	            var x = data.respuesta;
 	            if (x == false ) {
@@ -59,6 +139,7 @@ var app = angular.module('nextbook20App')
 	                $scope.rucdata = x;
 	                $scope.elementview=true;
 	                $scope.elemennotview=false;
+	                $scope.elemennotviewimg=false;
 	            }
 	        });
 	    }
@@ -80,56 +161,6 @@ var app = angular.module('nextbook20App')
 			        );
   				}
   			});
-  			/*consumirService.ip_public().then(function(data) {
-  				getIPs(function(ip){
-  					var obj = {'nick':$scope.email, 'clave':$scope.password};
-			        mainService.ingresar({acceso:obj,info_servidor:data, ip_cliente:ip, macadress:'00:00:00:00:00'}).acceso().$promise.then(function(data) {
-			        	if (data.respuesta == false) {
-			            	$mdDialog.show(
-					            $mdDialog.alert()
-					            .parent(angular.element(document.querySelector('#dialogContainer')))
-					            .clickOutsideToClose(true)
-					            .title('Lo sentimos :(')
-					            .textContent('Usuario o password incorrecto, vuelva a intentar')
-					            .ok('Entendido')
-					            .openFrom('#left')
-					        );
-			            } if (data.respuesta == true) {
-				            $localStorage.token = data.token;
-				            $localStorage.datosE = data.datosE;
-				            $localStorage.datosPersona = data.datosPersona;
-				            //--------------------cargar imagen perfil-----------
-				            mainService.Get_Img_Perfil().get().$promise.then(function(data) {
-				            	$localStorage.imgPerfil = data.img;		                
-				            },function(error){
-				            	$localStorage.imgPerfil="images/users/avatar-001.jpg";
-				            });
-				            //--------------------cargar imagen Portada-----------
-				            mainService.Get_Img_Portada().get().$promise.then(function(data) {
-				            	$localStorage.imgPortada = data.img;
-				            },function(error){
-				            	$localStorage.imgPortada="images/samples/w1.jpg";
-				            });
-				            // ---------- fin
-				            //--------------------cargar imagen Logo-----------
-				            mainService.Get_Img_Logo().get().$promise.then(function(data) {
-				            	$localStorage.imgLogo = data.img;
-				            },function(error){
-				            	$localStorage.imgPortada="images/samples/x2.jpg";
-				            });
-				            // ---------- fin
-				            //---------------------- verificar si existe datos de persona-----------
-				            mainService.Get_Datos_Empresa().get().$promise.then(function(data) {
-				                if (data.respuesta) {
-				                    $location.path('/Colaborador/Seleccionar_Sucursal');
-				                } else {
-				                    $location.path('/Colaborador/Actualizar_Datos');
-				                }
-				            });
-				        }
-			        });
-  				});				
-			});*/
 	    }
 
 	    // registro ruc en el sistema
@@ -164,65 +195,8 @@ var app = angular.module('nextbook20App')
 	            }   
 	        });
 	    }
-
-
-
-	    function getIPs(callback) {
-		    var ip_dups = {};
-		    //compatibility for firefox and chrome
-		    var RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-		    var useWebKit = !!window.webkitRTCPeerConnection;
-
-		    //bypass naive webrtc blocking using an iframe
-		    if (!RTCPeerConnection) {
-		        var win = iframe.contentWindow;
-		        RTCPeerConnection = win.RTCPeerConnection || win.mozRTCPeerConnection || win.webkitRTCPeerConnection;
-		        useWebKit = !!win.webkitRTCPeerConnection;
-		    }
-
-		    //minimal requirements for data connection
-		    var mediaConstraints = {
-		        optional: [{
-		            RtpDataChannels: true
-		        }]
-		    };
-
-		    var servers = {
-		        iceServers: [{
-		            urls: "stun:stun.services.mozilla.com"
-		        }]
-		    };
-
-		    //construct a new RTCPeerConnection
-		    var pc = new RTCPeerConnection(servers, mediaConstraints);
-
-		    
-		    //listen for candidate events
-		    pc.onicecandidate = function(ice) {
-		        // console.log(ice);
-		        //skip non-candidate events
-		        if (ice.candidate) {
-		            // handleCandidate(ice.candidate.candidate);
-		            // console.log(ice.candidate.candidate);
-		        }
-		    };
-		    //create a bogus data channel
-		    pc.createDataChannel("");
-		    //create an offer sdp
-		    pc.createOffer(function(result) {
-		        //trigger the stun server request
-		        pc.setLocalDescription(result, function() {}, function() {});
-		    }, function(ip) {console.log(ip);});
-		    //wait for a while to let everything done
-		    setTimeout(function() {
-		        //read candidate info from local description
-		        var lines = pc.localDescription.sdp.split('\n');
-		        callback(lines[7]);
-		    }, 1000);
-		}
-		//Test: Print the IP addresses into the console
+	   
   	});
-
 	app.controller('activar_Ctrl', function ($scope, $routeParams, $mdDialog, mainService, $location) {
 		mainService.activar_cuenta($routeParams).save().$promise.then(function(data){
 	        if (data.respuesta == true) {

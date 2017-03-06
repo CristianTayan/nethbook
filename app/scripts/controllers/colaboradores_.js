@@ -15,7 +15,7 @@ var app = angular.module('nextbook20App')
   		// });
 
   		menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
-	        $scope.menu = data.respuesta[0].children[2].children[0];
+	        $scope.menu = data.respuesta[0].children[2].children[1];
 	    });
 	});
 
@@ -111,16 +111,6 @@ var app = angular.module('nextbook20App')
 				                      controller  : 'notificacionCtrl',
 				                      templateUrl : 'views/notificaciones/guardar.html'
 				                    });
-		                    // $mdDialog.show(
-		                    //     $mdDialog.alert()
-		                    //     .parent(angular.element(document.querySelector('#popupContainer')))
-		                    //     .clickOutsideToClose(true)
-		                    //     .title('EN HORA BUENA :)')
-		                    //     .textContent('Su registro se a realizado con exito.')
-		                    //     .ariaLabel('Respuesta Registro')
-		                    //     .ok('Entendido')
-		                    //     .targetEvent()
-		                    // );
 		                }
 		                if (data.respuesta == false) {
 		                    $mdDialog.show(

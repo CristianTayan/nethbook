@@ -97,8 +97,24 @@
                                 <textarea ng-model="actividad_principal" autocomplete="off" disabled type="text"></textarea>
                             </md-input-container>
                         </form>
-                        <img src="images/registro/welcome.png" width="100%" class="animated zoomIn" ng-show="elemennotview" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                        <!-- <h2 class="md-display-2" layout="row" layout-align="center center" ng-show="elemennotview">Bienvenido</h2> -->
+                        <img src="images/registro/welcome.png" width="100%" class="animated zoomIn" ng-show="elemennotviewimg" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                        <div flex ng-show="elemennotviewsession">
+                            <md-card>                                
+                                <md-list>
+                                    <md-list-item class="md-3-line" ng-repeat="item in session" >
+                                        <img alt="{{ person.name }}" ng-src="https://getmdl.io/assets/demos/welcome_card.jpg" class="md-avatar" />
+                                        <div class="md-list-item-text" layout="column">
+                                        <h3 style="color:{{color}}">{{ item.nick }}</h3>
+                                        <h4>{{ item.datos_usuario}}</h4>
+                                        <p>{{ item.razon_social}}</p>
+                                        </div>
+                                        <md-icon ng-click="entrar_recordatorio(item)" aria-label="Send Email" class="md-secondary md-hue-3">send</md-icon>
+                                        <md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat">close</md-icon>
+                                    </md-list-item>
+                                </md-list>
+                                <img class="md-card-image" src="https://getmdl.io/assets/demos/welcome_card.jpg" alt="image caption">
+                            </md-card>
+                        </div>
                     </div>
                     <div flex="40">
                         <form name="formsearchruc" ng-submit="buscar_ruc()">

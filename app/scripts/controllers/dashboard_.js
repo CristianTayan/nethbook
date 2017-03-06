@@ -172,7 +172,9 @@ app.controller('login_services_Ctrl', function($scope, $localStorage, mainServic
 });
 
 app.controller('cerrar_session_Ctrl', function($scope, $localStorage, $location, mainService) {
+    var storage = $localStorage.cook_session_init;
     $localStorage.$reset();
+    $localStorage.cook_session_init = storage;
     $location.path('/');
 
 });
