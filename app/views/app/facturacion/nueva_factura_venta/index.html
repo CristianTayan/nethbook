@@ -3,11 +3,10 @@
 <md-divider></md-divider>
 <div layout="row">
 <div flex>
- <form>
     <md-toolbar class="md-toolbar-second">
         <div class="md-toolbar-tools">
             <input ng-show='cliente=="SI"' ng-model="data.ruc_ci" type="text" required placeholder="Buscar Cliente (Cedula,Ruc)" class="toolbar_search" ng-keyup="buscar_cliente()">
-            <button ng-show='cliente=="SI"' class="md-fab md-mini md-button md-ink-ripple" type="button">
+            <button ng-show='cliente=="SI"' class="md-fab md-mini md-button md-ink-ripple" type="button" ng-click="buscar_cliente()">
                 <md-icon class="material-icons ng-scope">search</md-icon>
             </button>
             <span flex></span>
@@ -103,7 +102,7 @@
                         <md-tooltip md-direction="Bottom">+1</md-tooltip>
                         <md-icon class="material-icons">add</md-icon>
                     </md-button> -->
-                    <input value="{{detalle.cantidad_fac}}" ng-model="detalle.cantidad_fac" ng-keyup="add_prod_fac_from_input(detalle)" type="number" style="width: 50px;" aria-label="Cantidad Modal">
+                    <input value="{{detalle.cantidad_fac}}" ng-model="detalle.cantidad_fac" ng-keyup="add_prod_fac_from_input(detalle)" ng-change="add_prod_fac_from_input(detalle)" type="number" style="width: 50px;" aria-label="Cantidad Modal" select-on-click>
 <!--                     <md-button class="md-icon-button md-primary" ng-click="remove_prod_fac(detalle)" aria-label="Añadir a factura">
                         <md-tooltip md-direction="Bottom">-1</md-tooltip>
                         <md-icon class="material-icons">remove</md-icon>

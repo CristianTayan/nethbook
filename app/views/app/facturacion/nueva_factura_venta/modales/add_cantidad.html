@@ -1,0 +1,34 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form name="form_add" ng-submit="guardar()">
+<!--         <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Nueva, categoría</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar> -->
+        <md-dialog-content >
+            <div class="md-dialog-content">
+                <md-content class="md-no-momentum">
+                <div layout="row">
+                    <md-input-container class="md-icon-float md-block" flex>
+                        <md-icon class="md-primary"></md-icon>
+                        <label>CANTIDAD</label>
+                        <input name="cantidad" ng-model="prod.cantidad_fac" type="number" ng-keyup="add_prod_fac_from_input()" ng-minlength="1" numeros-only required>
+                        <div ng-messages="form_add.cantidad.$error">
+                            <div ng-message="required" ng-show="form_add.ruc_ci.$error.required">Ingrese Cantidad</div>
+                        </div>
+                    </md-input-container>
+                    </div>
+                    
+                </md-content>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">Cancelar</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_add.$invalid">Aceptar</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

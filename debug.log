@@ -13,3 +13,11 @@
 [0303/085527.465:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: Ha terminado la canalización. (0x6D)
 [0303/085527.470:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acceso denegado. (0x5)
 [0303/085529.719:ERROR:crashpad_client_win.cc(660)] crash server failed to launch, no dump captured
+[0306/085728.422:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acceso denegado. (0x5)
+[0306/085728.465:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: Ha terminado la canalización. (0x6D)
+[0306/085728.470:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acceso denegado. (0x5)
+[0306/085728.549:ERROR:crashpad_client_win.cc(660)] crash server failed to launch, no dump captured
+[0306/105127.799:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acceso denegado. (0x5)
+[0306/105127.815:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: Ha terminado la canalización. (0x6D)
+[0306/105127.815:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acceso denegado. (0x5)
+[0306/105127.893:ERROR:crashpad_client_win.cc(660)] crash server failed to launch, no dump captured

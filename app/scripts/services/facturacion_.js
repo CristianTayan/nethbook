@@ -14,7 +14,7 @@ angular.module('nextbook20App')
      this.Get_Cliente_By_Ruc_Ci=function() {
         return $resource(urlService.server().appnext()+'Get_Cliente_By_Ruc_Ci', {}
         , {
-            get: {
+            send: {
                 method: 'POST', isArray: false,
                 params: {
                     token: $localStorage.token,

@@ -43,8 +43,42 @@
             });
         }
 
-        function DialogController_add($scope,detalles_fac,$rootScope,Facturacion_Service) {
+        function DialogController_add($scope,detalles_fac,$rootScope,Facturacion_Service, $mdStepper,$timeout,focus) {
             $scope.add_prods=(detalles_fac.length>0) ?detalles_fac:[];
+            
+            var vm = $scope;
+            vm.$mdStepper = $mdStepper;
+            vm.$timeout = $timeout;
+            vm.isVertical = false;
+            vm.isLinear = true;
+            vm.isAlternative = true;
+            vm.isMobileStepText = true;
+            vm.campaign = false;
+
+
+            $scope.previousStep = function () {
+                var steppers = this.$mdStepper('stepper-demo');
+                steppers.back();
+            };
+
+            $scope.nextStep = function (e) {
+                if(e.which === 13) {
+                    
+                    var steppers = this.$mdStepper('stepper-demo');
+                    if (steppers.currentStep==steppers.steps.length-1) {
+                        // focus('txt_buscar');
+                        $scope.ok_add_prods();
+                    }else{
+                        focus('txt_cantidad');
+                        $scope.prod_selected=$scope.productos[0];
+                        steppers.next();
+                    }
+                    
+                }
+                
+            };
+
+            
 
             $rootScope.decimales=2;
              //------------------------------------------------- LLENADO DE TABLA PRODUCTOS-----------------------------------------
@@ -61,7 +95,7 @@
                 $scope.productos=result.respuesta.data;
 
                 for (var i = 0; i < $scope.productos.length; i++) {
-                                $scope.productos[i].cantidad_fac=0;
+                                $scope.productos[i].cantidad_fac=1;
                                 $scope.productos[i].total_fac=0;
                         for (var j = 0; j < $scope.add_prods.length; j++) {
                             if ($scope.productos[i].id==$scope.add_prods[j].id) {
@@ -71,10 +105,12 @@
                             
                         }
                 }
+
             }
             $scope.get_tabla=function(){
                 inventario_Service.Get_Producto().get($scope.query,success_tabla).$promise.then(function(){},function(error){
                     $scope.get_tabla();
+                    focus('txt_buscar');
                 })
             }
 
@@ -90,76 +126,83 @@
                 if (!newValue) {
                     $scope.query.page = bookmark;
                 }
+
                 $scope.get_tabla();
             });
 
             $scope.cancel = function() {
-            $mdDialog.cancel();
+            // $mdDialog.cancel();
+            focus('txt_buscar');
             };
 
             //------------------------------------------------- FUNCIONES PARA MODODAL ADD PRODUCTOS  -------------------------------------------------
-            $scope.add_prod_fac=function(prod){
+            // $scope.add_prod_fac=function(prod){
 
-                if (Facturacion_Service.ObjIndexOf($scope.add_prods,prod)==-1) {
-                    prod.cantidad_fac=1;
-                    prod.total_fac=parseFloat(prod.precio.replace('$','')).toFixed($rootScope.decimales);
-                    $scope.add_prods.push(prod);
-                }else{
-                    var index=Facturacion_Service.ObjIndexOf($scope.add_prods,prod);
-                    if ($scope.add_prods[index].cantidad_fac<$scope.add_prods[index].cantidad) {
-                        $scope.add_prods[index].cantidad_fac=$scope.add_prods[index].cantidad_fac+1;
-                        prod.cantidad_fac=$scope.add_prods[index].cantidad_fac;
-                        $scope.add_prods[index].total_fac=parseFloat(parseFloat($scope.add_prods[index].precio.replace('$','')).toFixed($rootScope.decimales)*$scope.add_prods[index].cantidad_fac).toFixed($rootScope.decimales);
-                    }
-                }
+            //     if (Facturacion_Service.ObjIndexOf($scope.add_prods,prod)==-1) {
+            //         prod.cantidad_fac=1;
+            //         prod.total_fac=parseFloat(prod.precio.replace('$','')).toFixed($rootScope.decimales);
+            //         $scope.add_prods.push(prod);
+            //     }else{
+            //         var index=Facturacion_Service.ObjIndexOf($scope.add_prods,prod);
+            //         if ($scope.add_prods[index].cantidad_fac<$scope.add_prods[index].cantidad) {
+            //             $scope.add_prods[index].cantidad_fac=$scope.add_prods[index].cantidad_fac+1;
+            //             prod.cantidad_fac=$scope.add_prods[index].cantidad_fac;
+            //             $scope.add_prods[index].total_fac=parseFloat(parseFloat($scope.add_prods[index].precio.replace('$','')).toFixed($rootScope.decimales)*$scope.add_prods[index].cantidad_fac).toFixed($rootScope.decimales);
+            //         }
+            //     }
                     
-            }
+            // }
 
-            $scope.remove_prod_fac=function(prod){
+            // $scope.remove_prod_fac=function(prod){
 
-                var index=Facturacion_Service.ObjIndexOf($scope.add_prods,prod);
-                if (index!=-1) {
-                    if ($scope.add_prods[index].cantidad_fac>1) {
-                        $scope.add_prods[index].cantidad_fac=$scope.add_prods[index].cantidad_fac-1;
-                        prod.cantidad_fac=$scope.add_prods[index].cantidad_fac;
-                        $scope.add_prods[index].total_fac=parseFloat(parseFloat($scope.add_prods[index].precio.replace('$','')).toFixed($scope.decimales)*$scope.add_prods[index].cantidad_fac).toFixed($rootScope.decimales);
+            //     var index=Facturacion_Service.ObjIndexOf($scope.add_prods,prod);
+            //     if (index!=-1) {
+            //         if ($scope.add_prods[index].cantidad_fac>1) {
+            //             $scope.add_prods[index].cantidad_fac=$scope.add_prods[index].cantidad_fac-1;
+            //             prod.cantidad_fac=$scope.add_prods[index].cantidad_fac;
+            //             $scope.add_prods[index].total_fac=parseFloat(parseFloat($scope.add_prods[index].precio.replace('$','')).toFixed($scope.decimales)*$scope.add_prods[index].cantidad_fac).toFixed($rootScope.decimales);
+            //         }
+            //     }
+
+            // }
+
+
+            $scope.add_prod_fac_from_input=function(){
+                    
+                    if ($scope.prod_selected.cantidad_fac==null||$scope.prod_selected.cantidad_fac==""||$scope.prod_selected.cantidad_fac==undefined) {
+                        $scope.prod_selected.cantidad_fac=1;
                     }
-                }
 
-            }
-
-
-            $scope.add_prod_fac_from_input=function(prod){
-                    if (prod.cantidad_fac==null||prod.cantidad_fac==""||prod.cantidad_fac==undefined) {
-                        prod.cantidad_fac=1;
-                    }
-
-                     if (prod.cantidad_fac>prod.cantidad) {
-                        prod.cantidad_fac=prod.cantidad;
-                        prod.total_fac=parseFloat(parseFloat(prod.precio.replace('$','')).toFixed($rootScope.decimales)*prod.cantidad_fac).toFixed($rootScope.decimales);
+                     if ($scope.prod_selected.cantidad_fac>$scope.prod_selected.cantidad) {
+                        $scope.prod_selected.cantidad_fac=$scope.cantidad_fac;
+                        $scope.prod_selected.total_fac=parseFloat(parseFloat($scope.prod_selected.precio.replace('$','')).toFixed($rootScope.decimales)*$scope.prod_selected.cantidad_fac).toFixed($rootScope.decimales);
                     }else{
-                        prod.total_fac=parseFloat(parseFloat(prod.precio.replace('$','')).toFixed($rootScope.decimales)*prod.cantidad_fac).toFixed($rootScope.decimales);
+                        $scope.prod_selected.total_fac=parseFloat(parseFloat($scope.prod_selected.precio.replace('$','')).toFixed($rootScope.decimales)*$scope.prod_selected.cantidad_fac).toFixed($rootScope.decimales);
                     }
 
-                    if (Facturacion_Service.ObjIndexOf($scope.add_prods,prod)==-1) {
-                    // prod.cantidad_fac=1;
-                    prod.total_fac=parseFloat(prod.precio.replace('$','')).toFixed($rootScope.decimales);
-                    $scope.add_prods.push(prod);
+                    if (Facturacion_Service.ObjIndexOf($scope.add_prods,$scope.prod_selected)==-1) {
+                    // $scope.prod_selected.cantidad_fac=1;
+                    $scope.prod_selected.total_fac=parseFloat($scope.prod_selected.precio.replace('$','')).toFixed($rootScope.decimales);
+                    $scope.add_prods.push($scope.prod_selected);
                     }else{
-                        var index=Facturacion_Service.ObjIndexOf($scope.add_prods,prod);
+                        var index=Facturacion_Service.ObjIndexOf($scope.add_prods,$scope.prod_selected);
                         // if ($scope.add_prods[index].cantidad_fac<$scope.add_prods[index].cantidad) {
-                            $scope.add_prods[index].cantidad_fac=prod.cantidad_fac;
-                            // prod.cantidad_fac=$scope.add_prods[index].cantidad_fac;
+                            $scope.add_prods[index].cantidad_fac=$scope.prod_selected.cantidad_fac;
+                            // $scope.prod_selected.cantidad_fac=$scope.add_prods[index].cantidad_fac;
                             $scope.add_prods[index].total_fac=parseFloat(parseFloat($scope.add_prods[index].precio.replace('$','')).toFixed($rootScope.decimales)*$scope.add_prods[index].cantidad_fac).toFixed($rootScope.decimales);
                         // }
                     }
+
+
             }
 
             $scope.ok_add_prods=function(){
+
                 $rootScope.$emit("update_detalles_fac", $scope.add_prods);
                 $mdDialog.cancel();
             }
 
+            
             // -------------------------------------------------FIN DIALOG ADD-------------------------------------------------
 
         }
@@ -171,7 +214,20 @@
 
         $rootScope.$on("update_detalles_fac", function(evt,prod) {
                 $scope.update_detalles_fac(prod);
-            }); 
+            });
+        //-----------------------------------------------------FUNCIONES TECLADO-----------------------------------------------------
+        var handler = function(e){
+            if(e.keyCode === 107||e.keyCode === 187) {
+              $scope.dialog_add_prod();
+            }
+        };
+
+        var $doc = angular.element(document);
+
+        $doc.on('keydown', handler);
+        // $scope.$on('$destroy',function(){
+        //   $doc.off('keydown', handler);
+        // })
 
 
         //----------------------------------------------------- DETALLES DE FACTURA -----------------------------------------
@@ -349,22 +405,18 @@
                 $scope.data_ciudades();
 
                 function success_buscar_cliente(result){
-
-                    $scope.data=result.respuesta;
-                    var res = result.respuesta.razon_social.split(" ");
-                    if (res.length==4) {
-                        $scope.data.nombres=res[0]+' '+res[1];
-                        $scope.data.apellidos=res[2]+' '+res[3];
-                    }else{
-                        $scope.data.nombres=res[0];
-                        $scope.data.apellidos=res[1];
-                    }
+                    if (result.respuesta==true) {
+                        $scope.data=result.persona;
+                    $scope.data.nombres=result.persona.primer_nombre+' '+result.persona.segundo_nombre;
+                    $scope.data.apellidos=result.persona.primer_apellido+' '+result.persona.segundo_apellido;
+                    $scope.data.direccion=result.persona.calle+', '+result.persona.transversal+', '+result.persona.numero;
 
                     for (var i = 0; i < cm.ListLocalizacion.length; i++) {
-                        if (cm.ListLocalizacion[i].id==result.respuesta.id_localizacion) {
+                        if (cm.ListLocalizacion[i].id==result.persona.id_localidad) {
                             cm.ModelLocalizacion.selectedLocalizacion=cm.ListLocalizacion[i];
                             break;
                         }
+                    }
                     }
 
                 }
@@ -372,7 +424,7 @@
             $scope.buscar_cliente=function(){
                 if ($scope.data&&$scope.data.ruc_ci) {
                     if ($scope.data.ruc_ci.length==10||$scope.data.ruc_ci.length==13) {
-                            Facturacion_Service.Clientes().Get_By_Ruc_Ci().send({ruc_ci:$scope.data.ruc_ci},success_buscar_cliente).$promise;
+                            Facturacion_Service.Get_Cliente_By_Ruc_Ci().send({ruc_ci:$scope.data.ruc_ci},success_buscar_cliente).$promise;
                         }
                 }else{
                     $scope.data={};
@@ -380,7 +432,7 @@
                 }
             }
 
-                        $scope.cambiar_tipo_cliente=function(){
+            $scope.cambiar_tipo_cliente=function(){
                 if ($scope.cliente=='SI') {
                     $scope.cliente=='NO';
                     $scope.data.ruc_ci=="";
