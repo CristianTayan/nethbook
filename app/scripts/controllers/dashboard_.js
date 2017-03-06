@@ -99,7 +99,10 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
     $scope.toggleSidenav = function(menuId) {
         $mdSidenav(menuId).toggle();
     };
+
     $scope.nom_perfil = $localStorage.datosE.nombre_comercial;
+
+    $scope.datos_personales = $localStorage.datosPersona;
     var imagePath = 'img/list/60.jpeg';
 
     // $scope.todos = [];
