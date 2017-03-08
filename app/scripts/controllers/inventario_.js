@@ -2319,69 +2319,136 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
     }
 
     function DialogController($scope, $rootScope, tipo_categoria, $mdToast) {
-        $scope.tipo_categoria = tipo_categoria;
-        // Nuevo registro tipo inventario
+
+        var vm = $scope;
+        vm.lista_tipos_categorias = tipo_categoria;
+
+     $scope.remove = function (scope) {
+            scope.remove();
+          };
+
+      $scope.toggle = function (scope) {
+        scope.toggle();
+      };
+
+      $scope.moveLastToTheBeginning = function () {
+        var a = $scope.data.pop();
+        $scope.data.splice(0, 0, a);
+      };
+
+      $scope.newSubItem = function (scope) {
+        console.log(scope.$modelValue.nodes.length);
+        var nodeData = scope.$modelValue;
+        nodeData.nodes.push({
+          id: nodeData.id * 10 + nodeData.nodes.length+1,
+          title: nodeData.title + ' .' + (nodeData.nodes.length + 1),
+          id_padre: nodeData.nodes.length,
+          nodes: [],
+          tipo_categoria:tipo_categoria[0]
+        });
+      };
+
+      $scope.add_categoria_padre = function (scope) {
+        var nodeData = $scope.data;
+
+        console.log($scope.data);
+
+        nodeData.push({
+          id: $scope.data.length +1,
+          title: 'Categoria ' + ($scope.data.length + 1),
+          id_padre: 0,
+          nodes: [],
+          tipo_categoria:tipo_categoria[0]
+        });
+      };
+
+      $scope.collapseAll = function () {
+        $scope.$broadcast('angular-ui-tree:collapse-all');
+      };
+
+      $scope.expandAll = function () {
+        $scope.$broadcast('angular-ui-tree:expand-all');
+      };
+
+      $scope.data = [{
+        'id': 2,
+        'title': 'Categoria 1',
+        'id_padre': 0,
+        'nodes': [
+          {
+            'id': 21,
+            'title': 'Categoria 1.1',
+            'nodes': [],
+            'tipo_categoria':tipo_categoria[0]
+          }
+        ],
+        'tipo_categoria':tipo_categoria[0]
+      }];
+
+
+        // $scope.tipo_categoria = tipo_categoria;
+        // Nuevo registro 
         $scope.data_inv_categoria_guardar = function() {
-            $scope.data_inv_tc.tipo_categoria = vm.selectModel.selectedPerson.id;
-            inventario_Service.Add_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
-                $rootScope.$emit("actualizar_tabla_categoria", {});
-                if (data.respuesta == true) {
-                     $mdDialog.cancel();
-                    $mdToast.show({
-                      hideDelay   : 5000,
-                      position    : 'bottom right',
-                      controller  : 'notificacionCtrl',
-                      templateUrl : 'views/notificaciones/guardar.html'
-                    });
-                }
-                if (data.respuesta == false) {
-                    $mdDialog.show(
-                        $mdDialog.alert()
-                        .parent(angular.element(document.querySelector('#popupContainer')))
-                        .clickOutsideToClose(true)
-                        .title('LO SENTIMOS :(')
-                        .textContent('Intente mas tarde.')
-                        .ariaLabel('Respuesta Registro')
-                        .ok('Entendido')
-                        .targetEvent()
-                    );
-                }
-                if (data.respuesta == true && data.respuesta == false) {
-                    $mdDialog.show(
-                        $mdDialog.alert()
-                        .parent(angular.element(document.querySelector('#popupContainer')))
-                        .clickOutsideToClose(true)
-                        .title('LO SENTIMOS :(')
-                        .textContent('Proceso no permitido intente mas tarde.')
-                        .ariaLabel('Respuesta Registro')
-                        .ok('Entendido')
-                        .targetEvent()
-                    );
-                }
-                $rootScope.$emit("actualizar_categoria", {});
-            });
+            console.log($scope.data);
+            // $scope.data_inv_tc.tipo_categoria = vm.selectModel.selectedPerson.id;
+            // inventario_Service.Add_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
+            //     $rootScope.$emit("actualizar_tabla_categoria", {});
+            //     if (data.respuesta == true) {
+            //          $mdDialog.cancel();
+            //         $mdToast.show({
+            //           hideDelay   : 5000,
+            //           position    : 'bottom right',
+            //           controller  : 'notificacionCtrl',
+            //           templateUrl : 'views/notificaciones/guardar.html'
+            //         });
+            //     }
+            //     if (data.respuesta == false) {
+            //         $mdDialog.show(
+            //             $mdDialog.alert()
+            //             .parent(angular.element(document.querySelector('#popupContainer')))
+            //             .clickOutsideToClose(true)
+            //             .title('LO SENTIMOS :(')
+            //             .textContent('Intente mas tarde.')
+            //             .ariaLabel('Respuesta Registro')
+            //             .ok('Entendido')
+            //             .targetEvent()
+            //         );
+            //     }
+            //     if (data.respuesta == true && data.respuesta == false) {
+            //         $mdDialog.show(
+            //             $mdDialog.alert()
+            //             .parent(angular.element(document.querySelector('#popupContainer')))
+            //             .clickOutsideToClose(true)
+            //             .title('LO SENTIMOS :(')
+            //             .textContent('Proceso no permitido intente mas tarde.')
+            //             .ariaLabel('Respuesta Registro')
+            //             .ok('Entendido')
+            //             .targetEvent()
+            //         );
+            //     }
+            //     $rootScope.$emit("actualizar_categoria", {});
+            // });
+
+            // inventario_Service.Add_Categoria().add({categorias:$scope.data}).$promise.then(function(data) {
+                
+            //     console.log(data);
+            //     // $rootScope.$emit("actualizar_categoria", {});
+            // });
         }
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
 
-        var vm = $scope;
 
-        vm.selectCallback = selectCallback;
+        // vm.selectCallback = selectCallback;
 
-        vm.selectPeople = tipo_categoria;
+        
 
-        vm.selectModel = {
-            selectedPerson: undefined,
-            selectedPeople: [vm.selectPeople[2], vm.selectPeople[4]],
-            selectedPeopleSections: []
-        };
-
-        function selectCallback(_newValue, _oldValue) {
-            LxNotificationService.notify('Change detected');
-            console.log('Old value: ', _oldValue);
-            console.log('New value: ', _newValue);
-        }
+        // function selectCallback(_newValue, _oldValue) {
+        //     LxNotificationService.notify('Change detected');
+        //     console.log('Old value: ', _oldValue);
+        //     console.log('New value: ', _newValue);
+        // }
     }
 
     $scope.answer = function(answer) {

@@ -37,7 +37,8 @@ var app = angular.module('nextbook20App', [
                                             'btford.socket-io',
                                             'angucomplete-alt',
                                             'pascalprecht.translate',
-                                            'ngCookies'
+                                            'ngCookies',
+                                            'ui.tree'
                                         ]);
     
     // themes configuration
@@ -181,6 +182,7 @@ var app = angular.module('nextbook20App', [
             .when('/App/Facturacion',    'dashboard.app.facturacion')
             .when('/App/Facturacion/Mis_Facturas_Venta',    'dashboard.app.facturacion.mis_facturas_venta')
             .when('/App/Facturacion/Nueva_Factura_Venta',    'dashboard.app.facturacion.nueva_factura_venta')
+            .when('/App/Facturacion/Cajas',    'dashboard.app.facturacion.cajas')
             // ------------------------------------------GESTION INVENTARIO-----------------------------------------
             .when('/App/Inventario',    'dashboard.app.inventario')
                 .when('/App/Inventario/',    'dashboard.app.inventario.menu')
@@ -349,6 +351,10 @@ var app = angular.module('nextbook20App', [
                                     controller: 'facturacion_Ctrl'
                                     })
                                     .within()
+                                        .segment('cajas', {
+                                            templateUrl: 'views/app/facturacion/cajas/index.html',
+                                            controller: 'fac_cajas_Ctrl'
+                                        })
                                         .segment('nueva_factura_venta', {
                                             default: true,
                                             templateUrl: 'views/app/facturacion/nueva_factura_venta/index.html',

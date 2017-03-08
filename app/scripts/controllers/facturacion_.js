@@ -12,9 +12,225 @@
     	
     	// -------------------------------------GENERACION MENU-------------------------------------
         menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
-            $scope.menu = data.respuesta[0].children[2].children[0];
+            $scope.menu = data.respuesta[0].children[2].children[2];
         });
 
+    });
+
+    app.controller('fac_cajas_Ctrl', function($mdDialog, $scope,$rootScope,Facturacion_Service) {
+        
+        function selectCallback(_newValue, _oldValue) {
+            LxNotificationService.notify('Change detected');
+            console.log('Old value: ', _oldValue);
+            console.log('New value: ', _newValue);
+        }
+
+        var bookmark;
+            $scope.selected = [];
+            $scope.query = {
+                filter: '',
+                num_registros: 5,
+                pagina_actual: 1,
+                limit: '5',
+                page_num: 1
+            };
+
+        // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
+
+            $scope.cajas_dialog_nuevo = function(event) {
+                $mdDialog.show({
+                    controller: DialogController_nuevo,
+                    templateUrl: 'views/app/facturacion/cajas/new.html',
+                    parent: angular.element(document.body),
+                    targetEvent: event,
+                    ariaLabel: 'Respuesta Registro',
+                    clickOutsideToClose: false,
+                    fullscreen: true,
+                    locals: {
+                            empleados:$scope.empleados
+                    }
+                })
+            }
+
+            $scope.usuarios_dialog_asignar = function(caja) {
+                 $mdDialog.show({
+                            controller: DialogController_asignar,
+                            templateUrl: 'views/app/facturacion/cajas/asignacion_usuario.html',
+                            parent: angular.element(document.body),
+                            targetEvent: event,
+                            ariaLabel: 'Respuesta Registro',
+                            clickOutsideToClose: false,
+                            fullscreen: true,
+                            locals: {
+                                    caja:caja
+                            }
+                        })
+            }
+            
+
+            function DialogController_nuevo($scope, $mdToast,Facturacion_Service,$localStorage) {
+                $scope.data_caja={};
+                $scope.data_caja.inicio_numeracion=1;
+                $scope.data_caja.fin_numeracion=$scope.data_caja.inicio_numeracion+1;
+
+
+                $scope.caja_nuevo = function() {
+                    $scope.data_caja.id_sucursal=$localStorage.sucursal.id;
+                     Facturacion_Service.Add_Caja().send($scope.data_caja).$promise.then(function(data) {
+                        $rootScope.$emit("actualizar_tabla_cajas", {});
+                        if (data.respuesta == true) {
+                                // $mdDialog.cancel();
+                                //     $mdToast.show({
+                                //       hideDelay   : 5000,
+                                //       position    : 'bottom right',
+                                //       controller  : 'notificacionCtrl',
+                                //       templateUrl : 'views/notificaciones/guardar.html'
+                                //     });
+
+                                $mdDialog.show({
+                                    controller: DialogController_asignar,
+                                    templateUrl: 'views/app/facturacion/cajas/asignacion_usuario.html',
+                                    parent: angular.element(document.body),
+                                    targetEvent: event,
+                                    ariaLabel: 'Respuesta Registro',
+                                    clickOutsideToClose: false,
+                                    fullscreen: true,
+                                    locals: {
+                                            caja:$scope.data_caja
+                                    }
+                                })
+                        }
+                        if (data.respuesta == false) {
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('LO SENTIMOS :(')
+                                .textContent('Intente mas tarde.')
+                                .ariaLabel('Respuesta Registro')
+                                .ok('Entendido')
+                                .targetEvent()
+                            );
+                        }
+                        if (data.respuesta == true && data.respuesta == false) {
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('LO SENTIMOS :(')
+                                .textContent('Proceso no permitido intente mas tarde.')
+                                .ariaLabel('Respuesta Registro')
+                                .ok('Entendido')
+                                .targetEvent()
+                            );
+                        }
+                    });
+                };
+
+                $scope.cancel = function() {
+                    $mdDialog.cancel();
+                };
+            }
+
+            function DialogController_asignar($scope, $mdToast,Facturacion_Service,$localStorage,caja) {
+                    $scope.caja=caja;
+                    $scope.cancel = function() {
+                        $mdDialog.cancel();
+                    };
+
+                     function success_buscar_empleado(result){
+                    if (result.respuesta==true) {
+                        $scope.data_empleado=result.empleado;
+                    $scope.data_empleado.ruc_ci=result.empleado.numero_identificacion;
+                    $scope.data_empleado.nombres=result.empleado.primer_nombre+' '+result.empleado.segundo_nombre;
+                    $scope.data_empleado.apellidos=result.empleado.primer_apellido+' '+result.empleado.segundo_apellido;
+                    $scope.data_empleado.direccion=result.empleado.calle+', '+result.empleado.transversal+', '+result.empleado.numero;
+                    }
+
+                }
+
+                $scope.buscar_empleado=function(){
+                    if ($scope.data_empleado&&$scope.data_empleado.ruc_ci) {
+                        if ($scope.data_empleado.ruc_ci.length==10||$scope.data_empleado.ruc_ci.length==13) {
+                                Facturacion_Service.Get_Empleado_By_Ruc_Ci().send({ruc_ci:$scope.data_empleado.ruc_ci},success_buscar_empleado).$promise;
+                            }
+                    }else{
+                        $scope.data_empleado={};
+                        cm.ModelLocalizacion.selectedLocalizacion=undefined;
+                    }
+                }
+
+                    $scope.asignar_usuario_caja = function() {
+                    $scope.data_caja.id_sucursal=$localStorage.sucursal.id;
+                     Facturacion_Service.Add_Caja().send($scope.data_caja).$promise.then(function(data) {
+                        $rootScope.$emit("actualizar_tabla_cajas", {});
+                        if (data.respuesta == true) {
+                                $mdDialog.cancel();
+                                    $mdToast.show({
+                                      hideDelay   : 5000,
+                                      position    : 'bottom right',
+                                      controller  : 'notificacionCtrl',
+                                      templateUrl : 'views/notificaciones/guardar.html'
+                                    });
+                        }
+                        if (data.respuesta == false) {
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('LO SENTIMOS :(')
+                                .textContent('Intente mas tarde.')
+                                .ariaLabel('Respuesta Registro')
+                                .ok('Entendido')
+                                .targetEvent()
+                            );
+                        }
+                        if (data.respuesta == true && data.respuesta == false) {
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('LO SENTIMOS :(')
+                                .textContent('Proceso no permitido intente mas tarde.')
+                                .ariaLabel('Respuesta Registro')
+                                .ok('Entendido')
+                                .targetEvent()
+                            );
+                        }
+                    });
+                };
+
+                }
+
+            //-------------------------------------------------------PROCESO GET REGISTROS------------------------------------------------------------
+
+            $rootScope.$on("actualizar_tabla_cajas", function() {
+                $scope.data_cajas_get();
+            });
+
+            function success(desserts) {
+                $scope.total = desserts.respuesta.total;
+                $scope.cajas = desserts.respuesta.data;
+            }
+
+            $scope.data_cajas_get = function() {
+                Facturacion_Service.Get_Cajas().get($scope.query, success).$promise;
+            }
+
+              $scope.$watch('query.filter', function(newValue, oldValue) {
+                if (!oldValue) {
+                    bookmark = $scope.query.page;
+                }
+
+                if (newValue !== oldValue) {
+                    $scope.query.page = 1;
+                }
+
+                if (!newValue) {
+                    $scope.query.page = bookmark;
+                }
+                $scope.data_cajas_get();
+            });
     });
 
 	app.controller('fac_mis_facturas_venta_Ctrl', function($mdDialog, $scope) {
@@ -131,9 +347,12 @@
             });
 
             $scope.cancel = function() {
-            // $mdDialog.cancel();
-            focus('txt_buscar');
+                $mdDialog.cancel();
             };
+
+            $timeout(function() {
+                focus('txt_buscar');
+            }, 700);
 
             //------------------------------------------------- FUNCIONES PARA MODODAL ADD PRODUCTOS  -------------------------------------------------
             // $scope.add_prod_fac=function(prod){
