@@ -37,7 +37,8 @@ var app = angular.module('nextbook20App', [
                                             'btford.socket-io',
                                             'angucomplete-alt',
                                             'pascalprecht.translate',
-                                            'ngCookies'
+                                            'ngCookies',
+                                            'material.components.expansionPanels'
                                         ]);
     
     // themes configuration
@@ -162,6 +163,7 @@ var app = angular.module('nextbook20App', [
             .when('/Dash',    'dashboard')
             .when('/Inicio',    'dashboard.inicio')
             .when('/Perfil',    'dashboard.perfil')
+            .when('/Config',    'dashboard.config')
             .when('/Perfil_Personal',    'dashboard.perfil_personal')
             .when('/App',    'dashboard.app')
             .when('/App/Inicio',    'dashboard.app.inicio')
@@ -216,6 +218,10 @@ var app = angular.module('nextbook20App', [
                     .segment('perfil_personal', {
                         templateUrl: 'views/dashboard/perfil_personal.html',
                         controller: 'perfil_personal_Ctrl'
+                    })
+                    .segment('config', {
+                        templateUrl: 'views/dashboard/configuracion/index.html',
+                        controller: 'configuracionCtrl'
                     })
                     .segment('app', {
                         templateUrl: 'views/app/index.html',

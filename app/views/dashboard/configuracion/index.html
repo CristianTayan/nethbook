@@ -1,0 +1,41 @@
+<div flex></div>
+	<div flex layout="row" flex-gt-sm="90" flex-gt-md="60">
+		<md-content flex="30" layout="row" >
+			  <md-content flex>
+			      	<md-expansion-panel md-component-id="panelOne">
+ 
+					  <md-expansion-panel-collapsed>
+					    <div class="md-title">Title</div>
+					    <div class="md-summary">Summary</div>
+					    <md-expansion-panel-icon></md-expansion-panel-icon>
+					  </md-expansion-panel-collapsed>
+					 
+					 
+					  <md-expansion-panel-expanded>
+					 
+					    <md-expansion-panel-header>
+					      <div class="md-title">Expanded Title</div>
+					      <div class="md-summary">Expanded Summary</div>
+					      <md-expansion-panel-icon></md-expansion-panel-icon>
+					    </md-expansion-panel-header>
+					 
+					    <md-expansion-panel-content>
+					      <h4>Content</h4>
+					      <p>Put content in here</p>
+					    </md-expansion-panel-content>
+					 
+					    <md-expansion-panel-footer>
+					      <div flex></div>
+					      <md-button class="md-warn" ng-click="$panel.collapse()">Collapse</md-button>
+					    </md-expansion-panel-footer>
+					 
+					  </md-expansion-panel-expanded>
+					 
+					</md-expansion-panel>
+			  </md-content>
+		</md-content>
+		<div flex app-view-segment="2">
+			
+		</div>
+	</div>
+<div flex></div>

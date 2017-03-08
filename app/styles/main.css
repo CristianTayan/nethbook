@@ -12,11 +12,28 @@ body, html {
     font-family: "Roboto";
 }
 
+
+
+.inp{
+      border: none;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset, 0 -1px 0 rgba(0,0,0,0.05) inset;
+      transition: all 0.2s linear;
+      font-family: "Helvetica Neue", sans-serif;
+      font-size: 13px;
+      color: #222222;
+      position: relative;
+      height: 20px;
+      width: 100px;
+      border-radius: 10px;
+      padding-left: 8px;
+      right: 8px;
+    }
+
 /*form login*/
   /*user*/
 
   md-sidemenu-button {
-    width: 0p;
+    width: 0px;
     display: flex;
   }
 
@@ -42,7 +59,7 @@ body, html {
       left: -9px;
       font-size: 14px;
   }
-  .inputpass {/*pass*/
+  .inputpass {
       width: 120px!important;
       position: relative;
       top: 10px;

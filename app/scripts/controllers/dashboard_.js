@@ -175,6 +175,6 @@ app.controller('cerrar_session_Ctrl', function($scope, $localStorage, $location,
     var storage = $localStorage.cook_session_init;
     $localStorage.$reset();
     $localStorage.cook_session_init = storage;
-    $location.path('/');
+    $location.path('/Registro');
 
 });
