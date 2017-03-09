@@ -20,3 +20,5 @@ angular.module('nextbook20App')
 	        }
 	    };
   	});
+
+  	

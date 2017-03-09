@@ -410,3 +410,20 @@ md-dialog {
     padding-left: 8px;
     right: 8px;
 }
+
+
+/*--------------------------------------configuracion panel redirect--------------------------------------*/
+
+md-expansion-panel-collapsed .md-title, md-expansion-panel-header .md-title {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-size: 12px;
+     font-weight: 0; 
+    min-width: 80px;
+    max-width: 184px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    white-space: nowrap;
+}

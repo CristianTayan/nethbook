@@ -230,7 +230,7 @@ var app = angular.module('nextbook20App', [
                             .segment('repositorio_facturas', {
                                 default: true,
                                 templateUrl: 'views/dashboard/configuracion/perfil/index.html',
-                                // controller: 'repositorio_facturas_Ctrl'
+                                controller: 'informacion_generalCtrl'
                             })
                         .up()
                     .segment('app', {

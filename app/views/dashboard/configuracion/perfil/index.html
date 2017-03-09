@@ -1,16 +1,16 @@
-<h4 class="text-center">Configuración general de la cuenta</h4>
+<h4 class="text-center">Configuración general de la cuenta Personal</h4>
 
 <md-expansion-panel-group md-component-id="expansionPanelGroup">
 	<md-expansion-panel md-component-id="expansionPanelOne">
 	    <md-expansion-panel-collapsed>
 	        <div class="md-title" md-colors="{color: 'indigo'}">Nombres y Apellidos</div>
-	        <div class="md-summary">David Criollo</div>
+	        <div class="md-summary">{{data_usuario.primer_nombre}} {{data_usuario.segundo_nombre}} {{data_usuario.primer_apellido}} {{data_usuario.segundo_apellido}}</div>
 	        <div class="">Editar</div>
 	    </md-expansion-panel-collapsed>
 	    <md-expansion-panel-expanded>
 	        <md-expansion-panel-header>
-	            <div class="md-title" md-colors="{color: 'indigo'}">Expanded Title</div>
-	            <div class="md-summary">Expanded Summary</div>
+	            <div class="md-title" md-colors="{color: 'indigo'}">Nombres y Apellidos</div>
+	            <div class="md-summary">{{data_usuario.primer_nombre}} {{data_usuario.segundo_nombre}} {{data_usuario.primer_apellido}} {{data_usuario.segundo_apellido}}</div>
 	        </md-expansion-panel-header>
 	        <md-expansion-panel-content>
 	            <form name="form_usuario" ng-submit="col_usuario_nuevo()" layout-padding>
@@ -48,7 +48,6 @@
 	                <div layout="row">
 	                	<span flex></span>
 	                    <md-button class="md-raised md-primary" type="submit" ng-disabled="form_usuario.$invalid">Guardar</md-button>
-	                    <md-button class="md-raised md-primary" type="submit" ng-click="showPrompt(event)">Cancelar</md-button>
 	                </div>
 	            </form>
 	        </md-expansion-panel-content>
@@ -62,14 +61,14 @@
 	</md-expansion-panel>
 	<md-expansion-panel md-component-id="expansionPanelTwo">
 	    <md-expansion-panel-collapsed>
-	        <div class="md-title" md-colors="{color: 'indigo'}">Correo Elctronico</div>
-	        <div class="md-summary">David Criollo</div>
+	        <div class="md-title" md-colors="{color: 'indigo'}">Correo Electrónico</div>
+	        <div class="md-summary">{{data_usuario.correo_electronico}}</div>
 	        <div class="">Editar</div>
 	    </md-expansion-panel-collapsed>
 	    <md-expansion-panel-expanded>
 	        <md-expansion-panel-header>
-	            <div class="md-title">Expanded Title</div>
-	            <div class="md-summary">Expanded Summary</div>
+	            <div class="md-title">Correo Electrónico</div>
+	            <div class="md-summary">{{data_usuario.correo_electronico}}</div>
 	        </md-expansion-panel-header>
 	        <md-expansion-panel-content>
 	            <form name="form_usuario" ng-submit="col_usuario_nuevo()" layout-padding>
@@ -86,7 +85,6 @@
 	                <div layout="row">
 	                	<span flex></span>
 	                    <md-button class="md-raised md-primary" type="submit" ng-disabled="form_usuario.$invalid">Guardar</md-button>
-	                    <md-button class="md-raised md-primary" type="submit" ng-click="showPrompt(event)">Cancelar</md-button>
 	                </div>
 	            </form>
 	        </md-expansion-panel-content>
@@ -101,13 +99,13 @@
 	<md-expansion-panel md-component-id="expansionPanelTree">
 	    <md-expansion-panel-collapsed>
 	        <div class="md-title" md-colors="{color: 'indigo'}">Password / Contraseña</div>
-	        <div class="md-summary">Actualziada Hace 12 dias</div>
+	        <div class="md-summary">Actualizada Hace 12 dias</div>
 	        <div class="">Editar</div>
 	    </md-expansion-panel-collapsed>
 	    <md-expansion-panel-expanded>
 	        <md-expansion-panel-header>
-	            <div class="md-title">Expanded Title</div>
-	            <div class="md-summary">Expanded Summary</div>
+	            <div class="md-title">Password / Contraseña</div>
+	            <div class="md-summary">Actualizada Hace 12 dias</div>
 	        </md-expansion-panel-header>
 	        <md-expansion-panel-content>
 	            <form name="form_password" ng-submit="cambiar_datos_password()">
@@ -150,12 +148,12 @@
 	<md-expansion-panel md-component-id="expansionPanelFor">
 	    <md-expansion-panel-collapsed>
 	        <div class="md-title" md-colors="{color: 'indigo'}">Ubicación</div>
-	        <div class="md-summary">Actualziada Hace 12 dias</div>
+	        <div class="md-summary">{{data_usuario.calle}}, {{data_usuario.transversal}}</div>
 	        <div class="">Editar</div>
 	    </md-expansion-panel-collapsed>
 	    <md-expansion-panel-expanded>
 	        <md-expansion-panel-header>
-	            <div class="md-title">Expanded Title</div>
+	            <div class="md-title">Ubicación</div>
 	            <div class="md-summary">Expanded Summary</div>
 	        </md-expansion-panel-header>
 	        <md-expansion-panel-content>
@@ -203,7 +201,6 @@
 	                <div layout="row">
 	                	<div flex></div>
 	                    <md-button class="md-raised md-primary" type="submit" ng-disabled="form_usuario.$invalid">Guardar</md-button>
-	                    <md-button class="md-raised md-primary" type="submit" ng-click="showPrompt(event)">Cancelar</md-button>
 	                </div>
 	            </form>
 	        </md-expansion-panel-content>
