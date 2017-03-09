@@ -75,8 +75,8 @@ angular.module('nextbook20App')
 	    // ---------------------------------------------------------------FIN TIPO CATEGORIA-----------------------------------------------------------------//
 
 	    // ---------------------------------------------------------------INICIO CATEGORIA-------------------------------------------------------------------//
-	    	this.Add_Categoria = function() {
-		        return $resource(urlService.server().appnext()+'Add_Categoria', {} , {
+	    	this.Add_Categoria_Padre = function() {
+		        return $resource(urlService.server().appnext()+'Add_Categoria_Padre', {} , {
 		            add: {
 		                method: 'POST', isArray: false,
 		                params: {
@@ -85,6 +85,18 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
+
+	    	this.Add_Categoria_Hijo = function() {
+		        return $resource(urlService.server().appnext()+'Add_Categoria_Hijo', {} , {
+		            add: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+
 	    	this.Delete_Categoria = function() {
 		        return $resource(urlService.server().appnext()+'Delete_Categoria', {} , {
 		            delete: {

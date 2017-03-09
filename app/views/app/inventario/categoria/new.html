@@ -12,9 +12,9 @@
         <md-dialog-content class="md-dialog-content" style="width: 600px!important">
         <div layout="row">
             <span flex></span>
-            <md-button class="md-fab md-mini md-primary">
+            <md-button class="md-fab md-mini md-primary" ng-click="add_categoria_padre()">
                 <md-tooltip md-direction="Bottom">Añadir Categoria Principal</md-tooltip>
-                <md-icon class="md-primary" aria-label="añadir subcategoria" ng-click="add_categoria_padre()">add</md-icon>
+                <md-icon class="md-primary" aria-label="añadir subcategoria" >add</md-icon>
             </md-button>
         </div>
             <md-divider></md-divider> <br>
@@ -23,7 +23,7 @@
                       <div  layout="row" flex="70">
                         <md-input-container style="margin: 0 0!important" flex>
                             <!-- <label>Nombre ej:(Lacteos, leches)</label> -->
-                            <input ng-model="node.title" type="text" aria-label="nombre" >
+                            <input ng-model="node.nombre" type="text" aria-label="nombre" >
                         </md-input-container>
                         <div class="md-icon-float md-block" style="margin-top: -33px;  padding-left: 10px;    padding-right: 10px;" flex>
                             <lx-select ng-show="(node.id + '').length>1" ng-model="node.tipo_categoria" lx-fixed-label="true" lx-allow-clear="true" lx-choices="lista_tipos_categorias" lx-display-filter="true" lx-fixed-label="true" lx-label="Tipo de Categoria" required>
@@ -58,46 +58,6 @@
                     <li ng-repeat="node in data" ui-tree-node ng-include="'nodes_renderer.html'"></li>
                   </ol>
                 </div>
-
-                <!-- <md-content class="md-no-momentum">
-                    <md-input-container class="md-icon-float md-block">
-                        <md-icon class="md-primary">view_compact</md-icon>
-                        <label>Nombre de la Categoría</label>
-                        <input name="nom_tipo_categoria" ng-model="data_inv_tc.nombre" type="text" required>
-                        <div ng-messages="form_inv_tc.nom_tipo_categoria.$error" ng-show="form_inv_tc.nom_tipo_categoria.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container md-no-float class="md-block">
-                        <md-icon class="md-primary">description</md-icon>
-                        <label>Descripcion</label>
-                        <textarea name="descripcion" ng-model="data_inv_tc.descripcion" type="text" required></textarea>
-                        <div ng-messages="form_inv_tc.descripcion.$error" ng-show="form_inv_tc.descripcion.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
-                        </div>
-                    </md-input-container>
-                   <md-input-container class="md-icon-float md-icon-left md-block" flex>
-                        <md-icon class="md-primary">add_alert</md-icon>
-                    <lx-select ng-model="selectModel.selectedPerson"
-                               lx-allow-clear="true"
-                               lx-choices="selectPeople"
-                               lx-display-filter="true"
-                               lx-fixed-label="true"
-                               lx-label="Tipo de Categoría">
-                        <lx-select-selected>
-                            {{ $selected.nombre }}
-                        </lx-select-selected>
-                        <lx-select-choices>
-                            {{ $choice.nombre }}
-                        </lx-select-choices>
-                    </lx-select>
-                    </md-input-container>
-                    <div layout="row" class="md-block" layout-align="center">
-
-                    </div>
-                </md-content> -->
-        
-
 
         </md-dialog-content>
         <md-dialog-actions layout="row">
