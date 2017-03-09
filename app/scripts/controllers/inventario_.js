@@ -9,13 +9,17 @@
  */
 var app = angular.module('nextbook20App')
 
-app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog, menuService) {
+app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog, menuService,$location) {
     // -------------------------------------GENERACION MENU-------------------------------------
         menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
             $scope.menu = data.respuesta[0].children[2].children[3];
             console.log('test todo ok');
         });
     
+    $scope.go_menu=function(menu){
+        $location.path(menu.path);
+    }
+
     // $mdDialog.show({
     //     controller: Dialog_procedimiento_Controller,
     //     templateUrl: 'views/app/inventario/inicio/modal_.html',
