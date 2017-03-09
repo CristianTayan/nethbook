@@ -23,6 +23,42 @@ angular.module('nextbook20App')
         });
     };
 
+    this.Get_Empleado_By_Ruc_Ci=function() {
+        return $resource(urlService.server().appnext()+'Get_Empleado_By_Ruc_Ci', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                }
+            }
+        });
+    };
+
+    this.Add_Caja=function() {
+        return $resource(urlService.server().appnext()+'Add_Caja', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                }
+            }
+        });
+    };
+
+    this.Get_Cajas=function() {
+        return $resource(urlService.server().appnext()+'Get_Cajas', {}
+        , {
+            get: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                }
+            }
+        });
+    };
+
      this.ObjIndexOf=function(arr, obj){
                 for(var i = 0; i < arr.length; i++){
                     if(arr[i].id== obj.id){

@@ -9,13 +9,17 @@
  */
 var app = angular.module('nextbook20App')
 
-app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog, menuService) {
+app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog, menuService,$location) {
     // -------------------------------------GENERACION MENU-------------------------------------
         menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
             $scope.menu = data.respuesta[0].children[2].children[3];
             console.log('test todo ok');
         });
     
+    $scope.go_menu=function(menu){
+        $location.path(menu.path);
+    }
+
     // $mdDialog.show({
     //     controller: Dialog_procedimiento_Controller,
     //     templateUrl: 'views/app/inventario/inicio/modal_.html',
@@ -2166,12 +2170,13 @@ app.controller('inv_garantia_Ctrl', function($scope, $rootScope, $mdDialog, inve
 app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
     // -----------------------------------------------PROCESO LLENADO TABLA-----------------------------------------------
     var bookmark;
+    $scope.guardar_categorias=false;
     $scope.selected = [];
     $scope.query = {
         filter: '',
         num_registros: 5,
         pagina_actual: 1,
-        limit: '5',
+        limit: '10',
         page_num: 1
     };
     //Tipos categorias
@@ -2190,7 +2195,7 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
 
     function success(desserts) {
         $scope.total = desserts.respuesta.total;
-        $scope.categorias = desserts.respuesta.data;
+        $scope.categorias = desserts.data;
     }
 
     $scope.data_inv_categoria_get = function() {
@@ -2303,90 +2308,170 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
         };
     }
 
-    // -----------------------------------------------------------------PROCESO CREAR-----------------------------------------------------------------
-    $scope.inv_categoria_dialog_nuevo = function(event) {
+    // // -----------------------------------------------------------------PROCESO CREAR-----------------------------------------------------------------
+    // -----------------------------------------------------------------CREAR PADRE
+    $scope.inv_categoria_padre_dialog_nuevo = function(event) {
         $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'views/app/inventario/categoria/new.html',
+            controller: Controller_add_cat_padre,
+            templateUrl: 'views/app/inventario/categoria/new_cat_padre.html',
+            parent: angular.element(document.body),
+            targetEvent: event,
+            ariaLabel: 'Respuesta Registro',
+            clickOutsideToClose: false
+        });
+    }
+    //-----------------------------------------------------------------CREAR HIJO
+    $scope.inv_categoria_hijo_dialog_nuevo = function(padre) {
+        $mdDialog.show({
+            controller: Controller_add_cat_hijo,
+            templateUrl: 'views/app/inventario/categoria/new_cat_hijo.html',
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
             clickOutsideToClose: false,
             locals: {
-                tipo_categoria: $scope.tipo_categorias
+                tipo_categoria: $scope.tipo_categorias,
+                padre:padre
             }
         });
     }
-
-    function DialogController($scope, $rootScope, tipo_categoria, $mdToast) {
-        $scope.tipo_categoria = tipo_categoria;
-        // Nuevo registro tipo inventario
+    //-----------------------------------------------------------------CONTROLADOR PADRE //-----------------------------------------------------------------
+        function Controller_add_cat_padre ($scope,$mdToast){
+        // Nuevo registro 
         $scope.data_inv_categoria_guardar = function() {
-            $scope.data_inv_tc.tipo_categoria = vm.selectModel.selectedPerson.id;
-            inventario_Service.Add_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
-                $rootScope.$emit("actualizar_tabla_categoria", {});
-                if (data.respuesta == true) {
-                     $mdDialog.cancel();
-                    $mdToast.show({
-                      hideDelay   : 5000,
-                      position    : 'bottom right',
-                      controller  : 'notificacionCtrl',
-                      templateUrl : 'views/notificaciones/guardar.html'
-                    });
-                }
-                if (data.respuesta == false) {
+            $scope.data_inv_categoria.id_padre=0;
+
+            inventario_Service.Add_Categoria_Padre().add($scope.data_inv_categoria).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_categoria", {});
+                    if (data.respuesta == true) {
+                         $mdDialog.cancel();
+                        $mdToast.show({
+                          hideDelay   : 5000,
+                          position    : 'bottom right',
+                          controller  : 'notificacionCtrl',
+                          templateUrl : 'views/notificaciones/guardar.html'
+                        });
+                    }
+            },function(error){
                     $mdDialog.show(
                         $mdDialog.alert()
                         .parent(angular.element(document.querySelector('#popupContainer')))
                         .clickOutsideToClose(true)
                         .title('LO SENTIMOS :(')
-                        .textContent('Intente mas tarde.')
+                        .textContent('Intentelo Nuevamente')
                         .ariaLabel('Respuesta Registro')
                         .ok('Entendido')
                         .targetEvent()
                     );
-                }
-                if (data.respuesta == true && data.respuesta == false) {
-                    $mdDialog.show(
-                        $mdDialog.alert()
-                        .parent(angular.element(document.querySelector('#popupContainer')))
-                        .clickOutsideToClose(true)
-                        .title('LO SENTIMOS :(')
-                        .textContent('Proceso no permitido intente mas tarde.')
-                        .ariaLabel('Respuesta Registro')
-                        .ok('Entendido')
-                        .targetEvent()
-                    );
-                }
-                $rootScope.$emit("actualizar_categoria", {});
             });
         }
         $scope.cancel = function() {
-            $mdDialog.cancel();
+            $mdDialog.hide();
         };
 
-        var vm = $scope;
-
-        vm.selectCallback = selectCallback;
-
-        vm.selectPeople = tipo_categoria;
-
-        vm.selectModel = {
-            selectedPerson: undefined,
-            selectedPeople: [vm.selectPeople[2], vm.selectPeople[4]],
-            selectedPeopleSections: []
-        };
-
-        function selectCallback(_newValue, _oldValue) {
-            LxNotificationService.notify('Change detected');
-            console.log('Old value: ', _oldValue);
-            console.log('New value: ', _newValue);
         }
-    }
+    //-----------------------------------------------------------------CONTROLADOR HIJO //-----------------------------------------------------------------
+        function Controller_add_cat_hijo ($scope,tipo_categoria,padre,$mdToast){
 
-    $scope.answer = function(answer) {
-        $mdDialog.hide(answer);
-    };
+            var vm = $scope;
+            vm.lista_tipos_categorias = tipo_categoria;
+            vm.ModelTipo_Cat={
+                selectedTipo_Cat:vm.lista_tipos_categorias[0]
+            }
+
+        // Nuevo registro 
+        $scope.data_inv_categoria_guardar = function() {
+            $scope.data_inv_categoria.id_padre=padre.id;
+            $scope.data_inv_categoria.tipo_categoria=vm.ModelTipo_Cat.selectedTipo_Cat.id;
+            
+            inventario_Service.Add_Categoria_Hijo().add($scope.data_inv_categoria).$promise.then(function(data) {
+                    $rootScope.$emit("actualizar_tabla_categoria", {});
+                    if (data.respuesta == true) {
+                         $mdDialog.cancel();
+                        $mdToast.show({
+                          hideDelay   : 5000,
+                          position    : 'bottom right',
+                          controller  : 'notificacionCtrl',
+                          templateUrl : 'views/notificaciones/guardar.html'
+                        });
+                    }
+            },function(error){
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('LO SENTIMOS :(')
+                        .textContent('Intentelo Nuevamente')
+                        .ariaLabel('Respuesta Registro')
+                        .ok('Entendido')
+                        .targetEvent()
+                    );
+            });
+        }
+        $scope.cancel = function() {
+            $mdDialog.hide();
+        };
+
+        }
+
+
+     $scope.remove = function (scope) {
+            scope.remove();
+          };
+
+    $scope.toggle = function (scope) {
+        scope.toggle();
+      };
+
+      
+      $scope.data = [{
+        'id': 1,
+        'title': 'node1',
+        'nodes': [
+          {
+            'id': 11,
+            'title': 'node1.1',
+            'nodes': [
+              {
+                'id': 111,
+                'title': 'node1.1.1',
+                'nodes': []
+              }
+            ]
+          },
+          {
+            'id': 12,
+            'title': 'node1.2',
+            'nodes': []
+          }
+        ]
+      }, {
+        'id': 2,
+        'title': 'node2',
+        'nodrop': true, // An arbitrary property to check in custom template for nodrop-enabled
+        'nodes': [
+          {
+            'id': 21,
+            'title': 'node2.1',
+            'nodes': []
+          },
+          {
+            'id': 22,
+            'title': 'node2.2',
+            'nodes': []
+          }
+        ]
+      }, {
+        'id': 3,
+        'title': 'node3',
+        'nodes': [
+          {
+            'id': 31,
+            'title': 'node3.1',
+            'nodes': []
+          }
+        ]
+      }];
 
     //---------------------------------------------------------------PROCESO ELIMINAR ---------------------------------------------------------------
     $scope.inv_categoria_dialog_eliminar = function(categoria) {

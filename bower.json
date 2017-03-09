@@ -5,7 +5,6 @@
     "angular": "^1.5.0",
     "angular-animate": "^1.4.0",
     "angular-aria": "^1.4.0",
-    "angular-cookies": "^1.6.2",
     "angular-messages": "^1.4.0",
     "angular-resource": "^1.5.8",
     "angular-route": "^1.4.0",
@@ -36,7 +35,8 @@
     "angular-translate": "^2.13.1",
     "angular-soundmanager2": "^0.5.6",
     "angular-material-accordion": "^1.0.5",
-    "angular-material-expansion-panel": "^0.7.2"
+    "angular-material-expansion-panel": "^0.7.2",
+    "angular-ui-tree": "^2.22.5"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

@@ -1,0 +1,52 @@
+<md-dialog aria-label="FormProductos">
+    <form name="form_usuario" ng-submit="asignar_usuario_caja()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>¿Desea Asignar un usuario a la Caja?</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content >
+                <md-content>
+                    <div class="md-dialog-content">
+                        {{caja.nombre}}
+                        <md-divider></md-divider>
+                        <div layout="row">
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Ruc/Ci</label>
+                                <input name="ruc_ci" ng-model="data_empleado.ruc_ci" type="text" ng-keyup="buscar_empleado()" required>
+                                <div ng-messages="form_usuario.ruc_ci.$error" ng-show="form_usuario.ruc_ci.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Nombres</label>
+                                <input name="nombres" ng-model="data_empleado.nombres" uppercase type="text" readonly>
+                                <div ng-messages="form_usuario.nombres.$error" ng-show="form_usuario.nombres.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon class="md-primary">view_compact</md-icon>
+                                <label>Apellidos</label>
+                                <input name="apellidos" ng-model="data_empleado.apellidos" uppercase type="text" readonly>
+                                <div ng-messages="form_usuario.apellidos.$error" ng-show="form_usuario.apellidos.$dirty">
+                                    <div ng-message="required">Campo Requerido</div>
+                                </div>
+                            </md-input-container>
+                        </div>  
+                    </div>
+                </md-content>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">Omitir</md-button>
+            <md-button type="reset">Limpiar</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_usuario.$invalid">Asignar</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

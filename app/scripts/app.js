@@ -12,7 +12,6 @@ var app = angular.module('nextbook20App', [
                                             'md.data.table',
                                             'ngAnimate',
                                             'ngAria',
-                                            'ngCookies',
                                             'ngMessages',
                                             'ngRoute', // Rutas
                                             'ngSanitize',
@@ -37,8 +36,8 @@ var app = angular.module('nextbook20App', [
                                             'btford.socket-io',
                                             'angucomplete-alt',
                                             'pascalprecht.translate',
-                                            'ngCookies',
-                                            'material.components.expansionPanels'
+                                            'material.components.expansionPanels',
+                                            'ui.tree'
                                         ]);
     
     // themes configuration
@@ -186,23 +185,24 @@ var app = angular.module('nextbook20App', [
             .when('/App/Facturacion',    'dashboard.app.facturacion')
             .when('/App/Facturacion/Mis_Facturas_Venta',    'dashboard.app.facturacion.mis_facturas_venta')
             .when('/App/Facturacion/Nueva_Factura_Venta',    'dashboard.app.facturacion.nueva_factura_venta')
-            // ------------------------------------------GESTION INVENTARIO-----------------------------------------
-            .when('/App/Inventario',    'dashboard.app.inventario')
-                .when('/App/Inventario/',    'dashboard.app.inventario.menu')
-                .when('/App/Inventario/Categorias',    'dashboard.app.inventario.categoria')
-                .when('/App/Inventario/Marcas',    'dashboard.app.inventario.marcas')
-                .when('/App/Inventario/Modelos',    'dashboard.app.inventario.modelos')
-                .when('/App/Inventario/Productos',    'dashboard.app.inventario.productos')
-                .when('/App/Inventario/Ubicacion',    'dashboard.app.inventario.ubicacion')
-                .when('/App/Inventario/Garantia',    'dashboard.app.inventario.garantia')
-                .when('/App/Inventario/Estado_Descriptivo',    'dashboard.app.inventario.estado_descriptivo')
+            .when('/App/Facturacion/Cajas',    'dashboard.app.facturacion.cajas')
+            // ------------------------------------------GESTION INVENTARIO PRODUCTOS-----------------------------------------
+            .when('/App/Inventario-Productos',    'dashboard.app.inventario-productos')
+                .when('/App/Inventario-Productos/',    'dashboard.app.inventario-productos.menu')
+                .when('/App/Inventario-Productos/Categorias',    'dashboard.app.inventario-productos.categoria')
+                .when('/App/Inventario-Productos/Marcas',    'dashboard.app.inventario-productos.marcas')
+                .when('/App/Inventario-Productos/Modelos',    'dashboard.app.inventario-productos.modelos')
+                .when('/App/Inventario-Productos/Productos',    'dashboard.app.inventario-productos.productos')
+                .when('/App/Inventario-Productos/Ubicacion',    'dashboard.app.inventario-productos.ubicacion')
+                .when('/App/Inventario-Productos/Garantia',    'dashboard.app.inventario-productos.garantia')
+                .when('/App/Inventario-Productos/Estado_Descriptivo',    'dashboard.app.inventario-productos.estado_descriptivo')
                 // Parametrizacion Tipos
-                .when('/App/Inventario/Tipo_Categoria',    'dashboard.app.inventario.tipo_categoria')
-                .when('/App/Inventario/Tipo_Garantia',    'dashboard.app.inventario.tipo_garantia')
-                .when('/App/Inventario/Tipo_Consumo',    'dashboard.app.inventario.tipo_consumo')
-                .when('/App/Inventario/Tipo_Productos',    'dashboard.app.inventario.tipo_productos')
-                .when('/App/Inventario/Tipo_Catalogo',    'dashboard.app.inventario.tipo_catalogo')
-                .when('/App/Inventario/Bodegas',    'dashboard.app.inventario.bodegas')
+                .when('/App/Inventario-Productos/Tipo_Categoria',    'dashboard.app.inventario-productos.tipo_categoria')
+                .when('/App/Inventario-Productos/Tipo_Garantia',    'dashboard.app.inventario-productos.tipo_garantia')
+                .when('/App/Inventario-Productos/Tipo_Consumo',    'dashboard.app.inventario-productos.tipo_consumo')
+                .when('/App/Inventario-Productos/Tipo_Productos',    'dashboard.app.inventario-productos.tipo_productos')
+                .when('/App/Inventario-Productos/Tipo_Catalogo',    'dashboard.app.inventario-productos.tipo_catalogo')
+                .when('/App/Inventario-Productos/Bodegas',    'dashboard.app.inventario-productos.bodegas')
 
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
@@ -290,71 +290,71 @@ var app = angular.module('nextbook20App', [
                                         })
                                     .up()
                             // --------------------------------------INVENTARIO--------------------------------------
-                                .segment('inventario', {
-                                    templateUrl: 'views/app/inventario/index.html',
+                                .segment('inventario-productos', {
+                                    templateUrl: 'views/app/inventario-productos/index.html',
                                     controller: 'inventario_Ctrl'
                                 })
                                     .within()
                                         .segment('menu', {
                                             default: true,
-                                            templateUrl: 'views/app/inventario/menu.html',
+                                            templateUrl: 'views/app/inventario-productos/menu.html',
                                             controller: 'inv_menu_Ctrl'
                                         })
                                         .segment('categoria', {
-                                            templateUrl: 'views/app/inventario/categoria/index.html',
+                                            templateUrl: 'views/app/inventario-productos/categoria/index.html',
                                             controller: 'inv_categoria_Ctrl'
                                         })
                                         .segment('marcas', {
-                                            templateUrl: 'views/app/inventario/marcas/index.html',
+                                            templateUrl: 'views/app/inventario-productos/marcas/index.html',
                                             controller: 'inv_marcas_Ctrl'
                                         })
                                         .segment('modelos', {
-                                            templateUrl: 'views/app/inventario/modelos/index.html',
+                                            templateUrl: 'views/app/inventario-productos/modelos/index.html',
                                             controller: 'inv_modelos_Ctrl'
                                         })
                                         .segment('productos', {
-                                            templateUrl: 'views/app/inventario/productos/index.html',
+                                            templateUrl: 'views/app/inventario-productos/productos/index.html',
                                             controller: 'inv_productos_Ctrl'
                                         })
                                         .segment('ubicacion', {
-                                            templateUrl: 'views/app/inventario/ubicacion/index.html',
+                                            templateUrl: 'views/app/inventario-productos/ubicacion/index.html',
                                             controller: 'inv_ubicacion_Ctrl'
                                         })
                                         .segment('garantia', {
-                                            templateUrl: 'views/app/inventario/garantia/index.html',
+                                            templateUrl: 'views/app/inventario-productos/garantia/index.html',
                                             controller: 'inv_garantia_Ctrl'
                                         })
                                         .segment('estado_descriptivo', {
-                                            templateUrl: 'views/app/inventario/estado_descriptivo/index.html',
+                                            templateUrl: 'views/app/inventario-productos/estado_descriptivo/index.html',
                                             controller: 'inv_garantia_Ctrl'
                                         })
                                         // Tipos 
                                         .segment('tipo_categoria', {
-                                            templateUrl: 'views/app/inventario/tipo_categoria/index.html',
+                                            templateUrl: 'views/app/inventario-productos/tipo_categoria/index.html',
                                             controller: 'inv_tipo_categoria_Ctrl'
                                         })
                                         .segment('tipo_garantia', {
-                                            templateUrl: 'views/app/inventario/tipo_garantia/index.html',
+                                            templateUrl: 'views/app/inventario-productos/tipo_garantia/index.html',
                                             controller: 'inv_tipo_garantia_Ctrl'
                                         })
                                         .segment('tipo_consumo', {
-                                            templateUrl: 'views/app/inventario/tipo_consumo/index.html',
+                                            templateUrl: 'views/app/inventario-productos/tipo_consumo/index.html',
                                             controller: 'inv_tipo_consumo_Ctrl'
                                         })
                                         .segment('tipo_productos', {
-                                            templateUrl: 'views/app/inventario/tipo_productos/index.html',
+                                            templateUrl: 'views/app/inventario-productos/tipo_productos/index.html',
                                             controller: 'inv_tipo_productos_Ctrl'
                                         })
                                         .segment('tipo_catalogo', {
-                                            templateUrl: 'views/app/inventario/tipo_catalogo/index.html',
+                                            templateUrl: 'views/app/inventario-productos/tipo_catalogo/index.html',
                                             controller: 'inv_tipo_catalogo_Ctrl'
                                         })
                                         .segment('estado_descriptivo', {
-                                            templateUrl: 'views/app/inventario/estado_descriptivo/index.html',
+                                            templateUrl: 'views/app/inventario-productos/estado_descriptivo/index.html',
                                             controller: 'inv_estado_descriptivo_Ctrl'
                                         })
                                         .segment('bodegas', {
-                                            templateUrl: 'views/app/inventario/bodega/index.html',
+                                            templateUrl: 'views/app/inventario-productos/bodega/index.html',
                                             controller: 'inv_bodegas_Ctrl'
                                         })
                                     .up()
@@ -365,6 +365,10 @@ var app = angular.module('nextbook20App', [
                                     controller: 'facturacion_Ctrl'
                                     })
                                     .within()
+                                        .segment('cajas', {
+                                            templateUrl: 'views/app/facturacion/cajas/index.html',
+                                            controller: 'fac_cajas_Ctrl'
+                                        })
                                         .segment('nueva_factura_venta', {
                                             default: true,
                                             templateUrl: 'views/app/facturacion/nueva_factura_venta/index.html',

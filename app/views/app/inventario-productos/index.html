@@ -9,9 +9,9 @@
                 <md-sidemenu-button href="#{{item.path}}" ng-repeat="item in menu.children"  ng-if="item.children.length == 0">{{item.nombre}}</md-sidemenu-button>
             </md-sidemenu-group>
             <md-divider></md-divider>
-            <md-subheader class="md-no-sticky">CONFIGURACIÓN BASE</md-subheader>
-            <md-sidemenu-group>
-                <md-sidemenu-content md-icon="home" md-heading="{{item.nombre}}" md-arrow="true" ng-if="item.children.length != 0" ng-repeat="item in menu.children"> 
+            <md-subheader class="md-no-sticky">CONFIGURACIÓN BASE </md-subheader>
+            <md-sidemenu-group >
+                <md-sidemenu-content md-icon="home" ng-click="go_menu(item)" md-heading="{{item.nombre}}" md-arrow="true" ng-if="item.children.length != 0" ng-repeat="item in menu.children"> 
                     <md-sidemenu-button href="#{{item1.path}}" ng-repeat="item1 in item.children">{{item1.nombre}}</md-sidemenu-button>
                 </md-sidemenu-content>
             </md-sidemenu-group>     

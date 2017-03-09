@@ -16,21 +16,6 @@ var app = angular.module('nextbook20App')
 	      }
 	    };
 	});
-	app.directive('numdocumentValidator', function($q, colaboradores_Service) {
-	    return {
-	        require: 'ngModel',
-	        link: function(scope, element, attrs, ngModel) {
-	            ngModel.$asyncValidators.campo = function(modelValue, viewValue) {
-	            	return colaboradores_Service.Existencia_Usuario_Cedula().consulta({numero_identificacion: viewValue}).$promise.then(function(data){
-                    if (!data.respuesta) {
-                        return $q.reject('proceso');
-                    }
-        			return true;
-		    	     });
-	            };
-	        }
-	    };
-	});
 	// ----------------------------------------------INICIO USUARIO----------------------------------------------
 	app.directive('numdocumentValidator', function($q, colaboradores_Service) {
 	    return {
