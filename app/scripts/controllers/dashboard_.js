@@ -8,7 +8,11 @@
  * Controller of the nextbook20App
  */
 var app = angular.module('nextbook20App')
-app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mainService, $http, $translate) {
+
+app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mainService, $http, $translate, $routeSegment) {
+    
+    $scope.ruta = $routeSegment;
+    // console.log(ruta);
     $scope.changeLanguage = function (key) {
         console.log(key);
         $translate.use(key);
@@ -56,7 +60,6 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
 
 
 
-    $scope.IsVisible = true;
     $scope.ShowHide = function () {
         //If DIV is visible it will be hidden and vice versa.
         $scope.IsVisible = $scope.IsVisible ? false : true;

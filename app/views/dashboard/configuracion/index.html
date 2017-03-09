@@ -1,41 +1,80 @@
 <div flex></div>
-	<div flex layout="row" flex-gt-sm="90" flex-gt-md="60">
-		<md-content flex="30" layout="row" >
-			  <md-content flex>
-			      	<md-expansion-panel md-component-id="panelOne">
- 
-					  <md-expansion-panel-collapsed>
-					    <div class="md-title">Title</div>
-					    <div class="md-summary">Summary</div>
-					    <md-expansion-panel-icon></md-expansion-panel-icon>
-					  </md-expansion-panel-collapsed>
-					 
-					 
-					  <md-expansion-panel-expanded>
-					 
-					    <md-expansion-panel-header>
-					      <div class="md-title">Expanded Title</div>
-					      <div class="md-summary">Expanded Summary</div>
-					      <md-expansion-panel-icon></md-expansion-panel-icon>
-					    </md-expansion-panel-header>
-					 
-					    <md-expansion-panel-content>
-					      <h4>Content</h4>
-					      <p>Put content in here</p>
-					    </md-expansion-panel-content>
-					 
-					    <md-expansion-panel-footer>
-					      <div flex></div>
-					      <md-button class="md-warn" ng-click="$panel.collapse()">Collapse</md-button>
-					    </md-expansion-panel-footer>
-					 
-					  </md-expansion-panel-expanded>
-					 
-					</md-expansion-panel>
-			  </md-content>
-		</md-content>
-		<div flex app-view-segment="2">
-			
-		</div>
-	</div>
+<div flex layout="row" flex-gt-sm="90" flex-gt-md="60">
+    <md-content flex="30" layout="row">
+        <md-content layout="column" class="md-sidenav-right md-whiteframe-4dp">
+            <md-subheader class="md-no-sticky">Configuracion Perfil Personal</md-subheader>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+                <md-icon>settings_aplication</md-icon>
+                <p>Información General</p>
+            </md-list-item>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+                <md-icon>settings_aplication</md-icon>
+                <p>Información General</p>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader class="md-no-sticky">Secondary Menus</md-subheader>
+            <md-list-item>
+                <p>Click anywhere to fire the secondary action</p>
+
+                <md-menu class="md-secondary">
+                    <md-button class="md-icon-button">
+                        <md-icon>message</md-icon>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item>
+                            <md-button>
+                                Redial
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button>
+                                Check voicemail
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-button>
+                                Notifications
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+
+            </md-list-item>
+
+            <md-divider></md-divider>
+
+            <md-subheader class="md-no-sticky">Configuración Establecimiento / Sucursal</md-subheader>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+                <md-icon md-colors="{color:'blue'}">settings_aplication</md-icon>
+                <p>Información General</p>
+            </md-list-item>
+            <md-list-item ng-click="navigateTo(setting.extraScreen, $event)" ng-repeat="setting in settings">
+                <!-- <md-icon>{{setting.icon}}</md-icon> -->
+                <p> {{ setting.name }} </p>
+                <md-switch class="md-secondary" ng-model="setting.enabled"></md-switch>
+            </md-list-item>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+                <md-icon>cached</md-icon>
+                <p>Data Usage</p>
+            </md-list-item>
+
+            <md-divider></md-divider>
+
+            <md-subheader class="md-no-sticky">Checkbox with Secondary Action</md-subheader>
+            <md-list-item ng-repeat="message in messages">
+                <md-checkbox ng-model="message.selected"></md-checkbox>
+                <p>{{message.title}}</p>
+                <md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat">message</md-icon>
+            </md-list-item>
+
+        </md-content>
+    </md-content>
+    <md-content flex app-view-segment="2" layout-padding>
+
+    </md-content>
+    <!-- <md-content layout-padding layout-wrap>
+		    Lorem ipsum dolor sit amet, ne quod novum mei
+		</md-content> -->
+</div>
 <div flex></div>
