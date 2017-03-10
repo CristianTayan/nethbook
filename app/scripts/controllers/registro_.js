@@ -9,21 +9,41 @@
  */
 var app = angular.module('nextbook20App')
   	app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService, $localStorage, colaboradores_Service) {
-  		
+  		$scope.update_phone = function() {
+		    var tel = $scope.rucdata.telefono;
+		    var tel1 = $scope.rucdata.telefono1;
+		    var cel = $scope.rucdata.celular;
+		    var num_sin_extension = '';
+		    var num_sin_extension1 = '';
+		    var celular = '';
+		    if(void 0!=tel&&tel.length>=6){var num=tel.split(")");num_sin_extension=num[1].replace(" ","")}
+		    if(void 0!=tel1&&tel1.length>=6){var num=tel1.split(")");num_sin_extension1=num[1].replace(" ","")}
 
-  		$scope.elementview = false;
-  		$scope.elemennotview = true;
-  		$scope.elemennotviewimg = true;
-  		$scope.elemennotviesession = false;
+		    void 0!=cel?$scope.rucdata.celular=cel:$scope.rucdata.celular="09";
+		    
+
+		    var extension = $scope.rucdata.provincia.codigo_telefonico;
+		    $scope.rucdata['telefono'] = extension + ' ' + num_sin_extension;
+		    $scope.rucdata['telefono1'] = extension + ' ' + num_sin_extension1;
+
+		}
+
+		$scope.elementview = false;
+		$scope.elemennotview = true;
+		$scope.elemennotviewimg = true;
+		$scope.elemennotviesession = false;
 
   		// RECORDATORIO SESSION
-  		if ($localStorage.cook_session_init) {
-  			$scope.session = $localStorage.cook_session_init;
-  			if ($scope.session.length != 0) {
-  				$scope.elemennotviewimg = false;
-  				$scope.elemennotviewsession = true;
-  			}
-  		}
+  		session_open_();
+  		function session_open_(){
+	  		if ($localStorage.cook_session_init) {
+	  			$scope.session = $localStorage.cook_session_init;
+	  			if ($scope.session.length != 0) {
+	  				$scope.elemennotviewimg = false;
+	  				$scope.elemennotviewsession = true;
+	  			}
+	  		}
+	  	}
   		$scope.entrar_recordatorio = function(item) {
 		    $mdDialog.show({
 	            controller: DialogController,
@@ -35,9 +55,18 @@ var app = angular.module('nextbook20App')
 	        });
 		};
 
+		$scope.quitar_recordatorio = function(index, item) {
+			var session = $localStorage.cook_session_init;
+			var x = session.splice(0, index);
+
+			console.log(x);
+			// $localStorage.cook_session_init = session
+		}
+
+
+
 		function DialogController($scope, item){
 			$scope.nick = item;
-
 			$scope.ingresar_colaborador = function() {
 				var obj = {'ruc' : $scope.nick.ruc_empresa, clave: $scope.clave, 'nick':$scope.nick.nick};
 		        colaboradores_Service.Ingresar_Colaborador().acceso({acceso:obj,info_servidor:'', ip_cliente:'192.168.0.1', macadress:'00:00:00:00:00'}).$promise.then(function(data) {
@@ -100,10 +129,11 @@ var app = angular.module('nextbook20App')
   		$scope.rucdata = {telefono: '', telefono1:'', celular:'', provincia:'', correo:''};
   		// buscar servidor externo consulta
   		$scope.buscar_ruc = function() {
-  			$scope.elementview = false;
-  			$scope.elemennotview = true;
-  			$scope.elemennotviewimg = true;
+  			// $scope.elementview = false;
+  			// $scope.elemennotview = true;
+  			// $scope.elemennotviewimg = true;
 	        mainService.buscar_informacion_ruc().get({ruc: $scope.formdata.ruc}).$promise.then(function(data){
+	        	session_open_();
 	            var x = data.respuesta;
 	            if (x == false ) {
 	                $mdDialog.show(
@@ -129,6 +159,7 @@ var app = angular.module('nextbook20App')
 				    );
 	            }
 	            if (x != false && x != 'false-sri') {
+	            	$scope.elemennotviewsession = false;
 	                $scope.razon_social = x.razon_social;
 	                $scope.nombre_comercial = x.nombre_comercial;
 	                $scope.estado_contribuyente = x.estado_contribuyente;

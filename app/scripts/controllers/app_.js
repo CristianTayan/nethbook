@@ -9,8 +9,9 @@
  */
 var app = angular.module('nextbook20App');
 
-  	app.controller('app_Ctrl', function ($scope, $mdToast, $translate, menuService) {
-
+  	app.controller('app_Ctrl', function ($scope, $mdToast, $translate, menuService, configuracionService, $routeSegment) {
+      $scope.showBox = configuracionService.ico_sidemenu_2($routeSegment)
+      console.log($scope.showBox);
       menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
         $scope.menu = data.respuesta[0].children[2];
       });

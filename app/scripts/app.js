@@ -36,6 +36,7 @@ var app = angular.module('nextbook20App', [
                                             'btford.socket-io',
                                             'angucomplete-alt',
                                             'pascalprecht.translate',
+                                            'material.components.expansionPanels',
                                             'ui.tree'
                                         ]);
     
@@ -161,6 +162,10 @@ var app = angular.module('nextbook20App', [
             .when('/Dash',    'dashboard')
             .when('/Inicio',    'dashboard.inicio')
             .when('/Perfil',    'dashboard.perfil')
+            // configuracion setting
+            .when('/Config',    'dashboard.config')
+            .when('/Config/Perfil',    'dashboard.config.perfil')
+            // general
             .when('/Perfil_Personal',    'dashboard.perfil_personal')
             .when('/App',    'dashboard.app')
             .when('/App/Inicio',    'dashboard.app.inicio')
@@ -217,6 +222,17 @@ var app = angular.module('nextbook20App', [
                         templateUrl: 'views/dashboard/perfil_personal.html',
                         controller: 'perfil_personal_Ctrl'
                     })
+                    .segment('config', {
+                        templateUrl: 'views/dashboard/configuracion/index.html',
+                        controller: 'configuracionCtrl'
+                    })
+                        .within()
+                            .segment('repositorio_facturas', {
+                                default: true,
+                                templateUrl: 'views/dashboard/configuracion/perfil/index.html',
+                                controller: 'informacion_generalCtrl'
+                            })
+                        .up()
                     .segment('app', {
                         templateUrl: 'views/app/index.html',
                         controller: 'app_Ctrl'

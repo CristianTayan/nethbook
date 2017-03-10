@@ -58,6 +58,7 @@ module.exports = function(config) {
       'bower_components/angular-translate/angular-translate.js',
       'bower_components/angular-soundmanager2/dist/angular-soundmanager2.js',
       'bower_components/angular-material-accordion/dist/angular-material-accordion.js',
+      'bower_components/angular-material-expansion-panel/dist/md-expansion-panel.js',
       'bower_components/angular-ui-tree/dist/angular-ui-tree.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
