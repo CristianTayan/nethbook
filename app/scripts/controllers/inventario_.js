@@ -2424,54 +2424,7 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
       };
 
       
-      $scope.data = [{
-        'id': 1,
-        'title': 'node1',
-        'nodes': [
-          {
-            'id': 11,
-            'title': 'node1.1',
-            'nodes': [
-              {
-                'id': 111,
-                'title': 'node1.1.1',
-                'nodes': []
-              }
-            ]
-          },
-          {
-            'id': 12,
-            'title': 'node1.2',
-            'nodes': []
-          }
-        ]
-      }, {
-        'id': 2,
-        'title': 'node2',
-        'nodrop': true, // An arbitrary property to check in custom template for nodrop-enabled
-        'nodes': [
-          {
-            'id': 21,
-            'title': 'node2.1',
-            'nodes': []
-          },
-          {
-            'id': 22,
-            'title': 'node2.2',
-            'nodes': []
-          }
-        ]
-      }, {
-        'id': 3,
-        'title': 'node3',
-        'nodes': [
-          {
-            'id': 31,
-            'title': 'node3.1',
-            'nodes': []
-          }
-        ]
-      }];
+      
 
     //---------------------------------------------------------------PROCESO ELIMINAR ---------------------------------------------------------------
     $scope.inv_categoria_dialog_eliminar = function(categoria) {
@@ -2489,9 +2442,13 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
     }
 
     function Dialog_eliminar_Ctrl($scope, $rootScope, obj) {
+
+        $scope.tipo_eliminar=(obj.estado=='I')?'ACTIVAR':'DESACTIVAR';
+
         $scope.data_inv_categoria_eliminar = function() {
             inventario_Service.Delete_Categoria().delete({
-                id: obj.id
+                id: obj.id,
+                estado: obj.estado
             }).$promise.then(function(data) {
                 if (data.respuesta == true) {
                     $rootScope.$emit("actualizar_categoria", {});
@@ -2500,9 +2457,11 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
             });
         }
         $scope.cancel = function() {
+            $rootScope.$emit("actualizar_tabla_categoria", {});
             $mdDialog.cancel();
         };
     }
+
 });
 
 app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service,Contabilidad_Service) {
@@ -2612,7 +2571,7 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
         // ------------------------------------------------------- AUTO COMPLETES --------------------------------------------------------
         var vm = $scope;
         vm.selectCallback = selectCallback;
-        vm.selectPeople = select_tipo_categoria;
+        // vm.selectPeople = select_tipo_categoria;
         vm.selectED = select_estado_descriptivo;
         vm.selectGarantias = select_garantias;
         vm.selectMarcas = select_marcas;
@@ -2621,10 +2580,10 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
         vm.selectTipoConsumos = select_tipo_consumos;
         vm.selectImpuestos = select_impuestos;
 
-        vm.selectModel = {
-            selectedPerson: undefined,
-            selectedPeople: [vm.selectPeople[0]]
-        };
+        // vm.selectModel = {
+        //     selectedPerson: undefined,
+        //     selectedPeople: [vm.selectPeople[0]]
+        // };
 
         vm.selectModelED = {
             selectedED: undefined,

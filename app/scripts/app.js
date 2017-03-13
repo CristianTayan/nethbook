@@ -41,13 +41,17 @@ var app = angular.module('nextbook20App', [
                                         ]);
     
     // themes configuration
-    app.config(function($mdThemingProvider) {
+    app.config(function($mdThemingProvider,ivhTreeviewOptionsProvider) {
       $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
       $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
       $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
       $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+
     });
 
+
+
+    
     // ------------------------------------------------------IDIOMA------------------------------------------------------
         app.config(function ($translateProvider) {
           $translateProvider.translations('en', {
