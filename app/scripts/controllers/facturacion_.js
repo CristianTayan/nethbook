@@ -10,10 +10,10 @@
 	var app = angular.module('nextbook20App')
     app.controller('facturacion_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
     	
-    	// -------------------------------------GENERACION MENU-------------------------------------
-        menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
-            $scope.menu = data.respuesta[0].children[2].children[2];
-        });
+    	// ------------------------------------inicio generacion vista menu personalizacion------------------------------------
+            var data = menuService.Get_Vistas_By_Tipo_User();
+            $scope.menu = data.respuesta[0].children[0].children[2];
+        // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 
     });
 

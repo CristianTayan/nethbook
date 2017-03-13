@@ -64,6 +64,11 @@ var app = angular.module('nextbook20App')
 		                }
 		            });
 
+		            // generacion acceso personalizado
+		            menuService.Generar_Vista().get().$promise.then(function(data) {
+				        $localStorage.menu = data;
+				    });
+
 		            if (!$localStorage.cook_session_init) {
 		            	var obj  =	[{
 					    		'id_empresa': $localStorage.datosE.id,

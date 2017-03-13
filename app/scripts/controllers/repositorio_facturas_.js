@@ -17,14 +17,11 @@
     });
 
     app.controller('repositorio_facturas_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
-    	// -------------------------------------GENERACION MENU-------------------------------------
-    // 	menuService.Get_Vistas().get().$promise.then(function(data) {
-  		// 	$scope.menu = data.menu[0].children[1];
-  		// 	console.log($scope.menu);
-  		// });
-  		menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
-            $scope.menu = data.respuesta[0].children[2].children[1];
-        });
+
+        // ------------------------------------inicio generacion vista menu personalizacion------------------------------------
+	        var data = menuService.Get_Vistas_By_Tipo_User();
+	        $scope.menu = data.respuesta[0].children[0].children[1];
+	    // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 
     });
 

@@ -169,6 +169,7 @@ var app = angular.module('nextbook20App', [
             // configuracion setting
             .when('/Config',    'dashboard.config')
             .when('/Config/Perfil',    'dashboard.config.perfil')
+            .when('/Config/Terminos',    'dashboard.config.terminos')
             // general
             .when('/Perfil_Personal',    'dashboard.perfil_personal')
             .when('/App',    'dashboard.app')
@@ -231,10 +232,15 @@ var app = angular.module('nextbook20App', [
                         controller: 'configuracionCtrl'
                     })
                         .within()
-                            .segment('repositorio_facturas', {
+                            .segment('perfil', {
                                 default: true,
                                 templateUrl: 'views/dashboard/configuracion/perfil/index.html',
                                 controller: 'informacion_generalCtrl'
+                            })
+                            .segment('terminos', {
+                                // default: true,
+                                templateUrl: 'views/dashboard/configuracion/terminos/index.html',
+                                // controller: 'informacion_generalCtrl'
                             })
                         .up()
                     .segment('app', {

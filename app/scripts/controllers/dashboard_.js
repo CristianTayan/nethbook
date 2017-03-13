@@ -9,7 +9,7 @@
  */
 var app = angular.module('nextbook20App')
 
-app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mainService, $http, $translate, $routeSegment) {
+app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mainService, $http, $translate, $routeSegment, menuService) {
     
     $scope.ruta = $routeSegment;
     // console.log(ruta);
@@ -17,6 +17,9 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
         console.log(key);
         $translate.use(key);
     };
+
+
+    
 
 
     // LISTA NOSTOP MUSICA
@@ -59,7 +62,7 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
 
 
 
-
+    $scope.IsVisible = true;
     $scope.ShowHide = function () {
         //If DIV is visible it will be hidden and vice versa.
         $scope.IsVisible = $scope.IsVisible ? false : true;

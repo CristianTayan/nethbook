@@ -65,7 +65,7 @@ var app = angular.module('nextbook20App')
 
 
 
-		function DialogController($scope, item){
+		function DialogController($scope, item, menuService){
 			$scope.nick = item;
 			$scope.ingresar_colaborador = function() {
 				var obj = {'ruc' : $scope.nick.ruc_empresa, clave: $scope.clave, 'nick':$scope.nick.nick};
@@ -105,6 +105,11 @@ var app = angular.module('nextbook20App')
 			            	$localStorage.imgPortada="images/samples/x2.jpg";
 			            });
 			            // ----------------------------- fin -----------------------------------
+
+			            // generacion acceso personalizado
+			            menuService.Generar_Vista().get().$promise.then(function(data) {
+					        $localStorage.menu = data;
+					    });
 			            //---------------------- verificar si existe datos de persona-----------
 			            mainService.Get_Datos_Empresa().get().$promise.then(function(data) {
 			                if (data.respuesta) {

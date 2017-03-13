@@ -9,14 +9,10 @@
  */
 var app = angular.module('nextbook20App')
 	app.controller('colaboradores_Ctrl', function ($scope, menuService) {
-	    // -------------------------------------GENERACION MENU-------------------------------------
-    	// menuService.Get_Vistas().get().$promise.then(function(data) {
-  			// $scope.menu = data.menu[0].children[1].children[0];
-  		// });
-
-  		menuService.Get_Vistas_By_Tipo_User().get().$promise.then(function(data) {
-	        $scope.menu = data.respuesta[0].children[2].children[0];
-	    });
+  		// ------------------------------------inicio generacion vista menu personalizacion------------------------------------
+	      	var data = menuService.Get_Vistas_By_Tipo_User();
+	      	$scope.menu = data.respuesta[0].children[0].children[0];
+	    // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 	});
 
 	app.controller('col_usuario_Ctrl', function ($scope, colaboradores_Service, $rootScope, $mdDialog) {

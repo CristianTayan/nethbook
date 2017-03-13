@@ -24,6 +24,10 @@ angular.module('nextbook20App')
 	    	};
 
 	    	this.Get_Vistas_By_Tipo_User = function() {
+		        return $localStorage.menu;
+	    	};
+
+	    	this.Generar_Vista = function() {
 		        return $resource(urlService.server().appnext()+'Get_Vistas_By_Tipo_User', {} , {
 		            get: {
 		                method: 'POST', isArray: false,

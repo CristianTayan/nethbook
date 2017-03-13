@@ -1,49 +1,27 @@
 <div flex></div>
 <div flex layout="row" flex-gt-sm="90" flex-gt-md="60">
     <md-content flex="30" layout="row">
-        <md-content layout="column" class="md-sidenav-right md-whiteframe-4dp">
-            <md-subheader class="md-no-sticky">Configuracion Perfil Personal</md-subheader>
-            <md-list-item ng-click="navigateTo('data usage', $event)">
-                <md-icon>settings_aplication</md-icon>
-                <p>Información General</p>
-            </md-list-item>
-            <md-list-item ng-click="navigateTo('data usage', $event)">
+        <md-content layout="column" class="md-sidenav-right  md-whiteframe-4dp" flex>
+            <md-subheader class="md-no-sticky">Configuración Perfil Personal</md-subheader>
+            <md-list-item  ng-href="#/Config/Perfil">
                 <md-icon>settings_aplication</md-icon>
                 <p>Información General</p>
             </md-list-item>
             <md-divider></md-divider>
-            <md-subheader class="md-no-sticky">Secondary Menus</md-subheader>
-            <md-list-item>
-                <p>Click anywhere to fire the secondary action</p>
-
-                <md-menu class="md-secondary">
-                    <md-button class="md-icon-button">
-                        <md-icon>message</md-icon>
-                    </md-button>
-                    <md-menu-content width="4">
-                        <md-menu-item>
-                            <md-button>
-                                Redial
-                            </md-button>
-                        </md-menu-item>
-                        <md-menu-item>
-                            <md-button>
-                                Check voicemail
-                            </md-button>
-                        </md-menu-item>
-                        <md-menu-divider></md-menu-divider>
-                        <md-menu-item>
-                            <md-button>
-                                Notifications
-                            </md-button>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu>
-
+            <md-subheader class="md-no-sticky">Información Empresa</md-subheader>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+                <md-icon>business_center</md-icon>
+                <p>Configuración General</p>
             </md-list-item>
-
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+                <md-icon>markunread_mailbox</md-icon>
+                <p>Correos</p>
+            </md-list-item>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+                <md-icon>public</md-icon>
+                <p>Actualizar SRI</p>
+            </md-list-item>
             <md-divider></md-divider>
-
             <md-subheader class="md-no-sticky">Configuración Establecimiento / Sucursal</md-subheader>
             <md-list-item ng-click="navigateTo('data usage', $event)">
                 <md-icon md-colors="{color:'blue'}">settings_aplication</md-icon>
@@ -54,24 +32,16 @@
                 <p> {{ setting.name }} </p>
                 <md-switch class="md-secondary" ng-model="setting.enabled"></md-switch>
             </md-list-item>
-            <md-list-item ng-click="navigateTo('data usage', $event)">
-                <md-icon>cached</md-icon>
-                <p>Data Usage</p>
-            </md-list-item>
-
             <md-divider></md-divider>
-
-            <md-subheader class="md-no-sticky">Checkbox with Secondary Action</md-subheader>
-            <md-list-item ng-repeat="message in messages">
-                <md-checkbox ng-model="message.selected"></md-checkbox>
-                <p>{{message.title}}</p>
-                <md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat">message</md-icon>
+            <md-list-item  ng-href="#/Config/Terminos">
+                <!-- <md-icon>security</md-icon> -->
+                <p>Terminos Y Condiciones</p>
+                <md-icon class="md-secondary"  aria-label="Chat">security</md-icon>
             </md-list-item>
-
+            
         </md-content>
     </md-content>
     <md-content flex app-view-segment="2" layout-padding>
-
     </md-content>
     <!-- <md-content layout-padding layout-wrap>
 		    Lorem ipsum dolor sit amet, ne quod novum mei
