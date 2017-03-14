@@ -191,7 +191,7 @@ var app = angular.module('nextbook20App', [
             .when('/App/Facturacion/Mis_Facturas_Venta',    'dashboard.app.facturacion.mis_facturas_venta')
             .when('/App/Facturacion/Nueva_Factura_Venta',    'dashboard.app.facturacion.nueva_factura_venta')
             .when('/App/Facturacion/Cajas',    'dashboard.app.facturacion.cajas')
-            // ------------------------------------------GESTION INVENTARIO PRODUCTOS-----------------------------------------
+            // ------------------------------------------GESTION INVENTARIO -----------------------------------------
             .when('/App/Inventario',    'dashboard.app.inventario')
                 .when('/App/Inventario/',    'dashboard.app.inventario.menu')
                 .when('/App/Inventario/Categorias',    'dashboard.app.inventario.categoria')
@@ -208,6 +208,7 @@ var app = angular.module('nextbook20App', [
                 .when('/App/Inventario/Tipo_Productos',    'dashboard.app.inventario.tipo_productos')
                 .when('/App/Inventario/Tipo_Catalogo',    'dashboard.app.inventario.tipo_catalogo')
                 .when('/App/Inventario/Bodegas',    'dashboard.app.inventario.bodegas')
+                .when('/App/Inventario/Bienes',    'dashboard.app.inventario.bienes')
 
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
@@ -366,6 +367,10 @@ var app = angular.module('nextbook20App', [
                                         .segment('bodegas', {
                                             templateUrl: 'views/app/inventario/bodega/index.html',
                                             controller: 'inv_bodegas_Ctrl'
+                                        })
+                                        .segment('bienes', {
+                                            templateUrl: 'views/app/inventario/bienes/index.html',
+                                            controller: 'inv_bienes_Ctrl'
                                         })
                                     .up()
 
