@@ -2468,10 +2468,10 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
     // ------------------------------------------------------- INICIO AUTO COMPLETES ---------------------------------------------------------------- 
     // -------------------------------------------------------SELECT TIPO CATEGORIAS------------------------------------------------------------
     function success_categorias(desserts) {
-        $scope.categorias = desserts.respuesta.data;
+        $scope.categorias = desserts.data;
     }
     $scope.data_inv_categoria_get = function() {
-        inventario_Service.Get_Categoria().get($scope.query, success_categorias).$promise;
+        inventario_Service.Get_Categoria_Productos().get($scope.query, success_categorias).$promise;
     }
     $scope.data_inv_categoria_get();
      // -------------------------------------------------------SELECT ESTADO DESCRIPTIVO------------------------------------------------------------
@@ -2579,10 +2579,24 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
         vm.selectTipoConsumos = select_tipo_consumos;
         vm.selectImpuestos = select_impuestos;
 
-        // vm.selectModel = {
-        //     selectedPerson: undefined,
-        //     selectedPeople: [vm.selectPeople[0]]
-        // };
+         // ------------------------------------------------------ SELEC CATEGORIA ---------------------------------------------------------
+        vm.categorias=select_tipo_categoria;
+        vm.categorias_list=vm.categorias;
+
+        $scope.change_hijo=function(){
+            
+             if (vm.selectModel.selectedPerson.length==0) {
+                vm.categorias_list=vm.categorias;
+            }
+            if (vm.selectModel.selectedPerson.length>=1) {
+                    var limit=vm.selectModel.selectedPerson.length;
+                    vm.categorias_list=vm.selectModel.selectedPerson[limit-1].nodes;
+            }
+        }
+        
+        vm.selectModel = {
+            selectedPerson:undefined
+        };
 
         vm.selectModelED = {
             selectedED: undefined,
@@ -2623,7 +2637,7 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
 
         // Nuevo registro Producto
         $scope.inv_producto_nuevo = function() {
-            $scope.data_inv_producto.categoria = vm.selectModel.selectedPerson.id;
+            $scope.data_inv_producto.categoria = vm.selectModel.selectedPerson;
             $scope.data_inv_producto.estado_descriptivo = vm.selectModelED.selectedED.id;
             $scope.data_inv_producto.garantia = vm.selectModelGarantia.selectedGarantia.id;
             $scope.data_inv_producto.marca = vm.selectModelMarcas.selectedMarca.id;
@@ -2631,13 +2645,13 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
             $scope.data_inv_producto.ubicacion = vm.selectModelUbicaciones.selectedUbicacion.id;
             $scope.data_inv_producto.tipo_consumo = vm.selectModelTipoConsumos.selectedTipoConsumo.id;
             $scope.data_inv_producto.impuestos=$scope.selectModelImpuestos.selectedImpuestos;
-            if ($scope.data_inv_producto.comprable==undefined) {
-                $scope.data_inv_producto.comprable=false;
-            }else $scope.data_inv_producto.comprable=true;
+            // if ($scope.data_inv_producto.comprable==undefined) {
+                $scope.data_inv_producto.comprable=true;
+            // }else $scope.data_inv_producto.comprable=true;
 
-            if ($scope.data_inv_producto.vendible==undefined) {
+            // if ($scope.data_inv_producto.vendible==undefined) {
                 $scope.data_inv_producto.vendible=false;
-            }else $scope.data_inv_producto.vendible=true;
+            // }else $scope.data_inv_producto.vendible=true;
             console.log($scope.data_inv_producto);
             inventario_Service.Add_Producto().add($scope.data_inv_producto).$promise.then(function(data) {
                 $rootScope.$emit("actualizar_tabla_productos", {});

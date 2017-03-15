@@ -107,13 +107,39 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
-			this.Get_Categoria = function() {
+	    	this.Get_Categoria = function() {
 		        return $resource(urlService.server().appnext()+'Get_Categorias', {}
 		        , {
 		            get: {
 		                method: 'POST', isArray: false,
 		                params: {
-		                    token: $localStorage.token
+		                    token: $localStorage.token,
+		                    id_categoria:2
+		                }
+		            }
+		        });
+	    	};
+
+			this.Get_Categoria_Productos = function() {
+		        return $resource(urlService.server().appnext()+'Get_Categorias_Select', {}
+		        , {
+		            get: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token,
+		                    id_categoria:2
+		                }
+		            }
+		        });
+	    	};
+	    	this.Get_Categoria_Bienes = function() {
+		        return $resource(urlService.server().appnext()+'Get_Categorias_Select', {}
+		        , {
+		            get: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token,
+		                    id_categoria:3
 		                }
 		            }
 		        });
@@ -581,6 +607,7 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
+
 	    	this.Update_Producto = function(){
 	    		return $resource(urlService.server().appnext()+'Update_Producto', {} , {
 		            actualizar: {
@@ -615,6 +642,17 @@ angular.module('nextbook20App')
 		        return $resource(urlService.server().appnext()+'Delete_Produto', {}
 		        , {
 		            delete: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token
+		                }
+		            }
+		        });
+	    	};
+	    	// ---------------------------------------------------------------INICIO BIENES--------------------------------------------------------------//
+	    	this.Get_Bienes = function() {
+		        return $resource(urlService.server().appnext()+'Get_Bienes', {} , {
+		            get: {
 		                method: 'POST', isArray: false,
 		                params: {
 		                    token: $localStorage.token

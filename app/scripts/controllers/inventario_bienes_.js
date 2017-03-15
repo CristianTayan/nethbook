@@ -18,7 +18,7 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
         $scope.categorias = desserts.data;
     }
     $scope.data_inv_categoria_get = function() {
-        inventario_Service.Get_Categoria().get($scope.query, success_categorias).$promise;
+        inventario_Service.Get_Categoria_Bienes().get($scope.query, success_categorias).$promise;
     }
     $scope.data_inv_categoria_get();
      // -------------------------------------------------------SELECT ESTADO DESCRIPTIVO------------------------------------------------------------
@@ -119,11 +119,8 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
             $scope.selected_cat=categoria.nombre;
         }
         var vm = $scope;
-        vm.categorias=[
-        {nombre:"LACTEOS",nodes:[{nombre:"Quesos",nodes:[{nombre:"50g",nodes:[]}]},{nombre:"Leches",nodes:[{nombre:"1/4",nodes:[]}]}]},
-        {nombre:"FRUTAS",nodes:[{nombre:"Peras",nodes:[{nombre:"peras 50g",nodes:[]}]},{nombre:"Uvas",nodes:[{nombre:"uvas 1/4",nodes:[]}]}]}
-        ];
-
+        // ------------------------------------------------------ SELEC CATEGORIA ---------------------------------------------------------
+        vm.categorias=select_tipo_categoria;
         vm.categorias_list=vm.categorias;
 
         $scope.change_hijo=function(){
@@ -141,120 +138,116 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
             selectedPerson:undefined
         };
 
-        // // -------------------------------------------------------DIALOGO PRODUCTOS-------------------------------------------------------
-        // // ------------------------------------------------------- AUTO COMPLETES --------------------------------------------------------
+        // -------------------------------------------------------DIALOGO PRODUCTOS-------------------------------------------------------
+        // ------------------------------------------------------- AUTO COMPLETES --------------------------------------------------------
         
-        // vm.selectCallback = selectCallback;
-        // vm.selectPeople = select_tipo_categoria;
-        // vm.selectED = select_estado_descriptivo;
-        // vm.selectGarantias = select_garantias;
-        // vm.selectMarcas = select_marcas;
-        // vm.selectModelos = select_modelos;
-        // vm.selectUbicaciones = select_ubicaciones;
-        // vm.selectTipoConsumos = select_tipo_consumos;
-        // vm.selectImpuestos = select_impuestos;
-
-        // vm.selectModel = {
-        //     selectedPerson: undefined,
-        //     selectedPeople: [vm.selectPeople[0]]
-        // };
-
-        // vm.selectModelED = {
-        //     selectedED: undefined,
-        //     selectedPeopleED: [vm.selectED[0]]
-        // };
-        // vm.selectModelGarantia = {
-        //     selectedGarantia: undefined,
-        //     selectedGarantiaDefault: [vm.selectGarantias[0]]
-        // };
-
-        // vm.selectModelMarcas = {
-        //     selectedMarca: undefined,
-        //     selectedMarcasDefault: [vm.selectMarcas[0]]
-        // };
-        // vm.selectModelModelos = {
-        //     selectedModelo: undefined,
-        //     selectedModeloDefault: [vm.selectModelos[0]]
-        // };
-        // vm.selectModelUbicaciones = {
-        //     selectedUbicacion: undefined,
-        //     selectedUbicacionDefault: [vm.selectUbicaciones[0]]
-        // };
-
-        // vm.selectModelTipoConsumos = {
-        //     selectedTipoConsumo: undefined,
-        //     selectedTipoConsumoDefault: [vm.selectTipoConsumos[0]]
-        // };
-
-        // vm.selectModelImpuestos = {
-        //     selectedImpuesto: undefined,
-        //     selectedImpuestos: []
-        // };
-
-        // function selectCallback(_newValue, _oldValue) {
-        //     LxNotificationService.notify('Change detected');
-        // }
+        vm.selectCallback = selectCallback;
+        vm.selectED = select_estado_descriptivo;
+        vm.selectGarantias = select_garantias;
+        vm.selectMarcas = select_marcas;
+        vm.selectModelos = select_modelos;
+        vm.selectUbicaciones = select_ubicaciones;
+        vm.selectTipoConsumos = select_tipo_consumos;
+        vm.selectImpuestos = select_impuestos;
 
 
-        // // Nuevo registro Producto
-        // $scope.inv_producto_nuevo = function() {
-        //     $scope.data_inv_producto.categoria = vm.selectModel.selectedPerson.id;
-        //     $scope.data_inv_producto.estado_descriptivo = vm.selectModelED.selectedED.id;
-        //     $scope.data_inv_producto.garantia = vm.selectModelGarantia.selectedGarantia.id;
-        //     $scope.data_inv_producto.marca = vm.selectModelMarcas.selectedMarca.id;
-        //     $scope.data_inv_producto.modelo = vm.selectModelModelos.selectedModelo.id;
-        //     $scope.data_inv_producto.ubicacion = vm.selectModelUbicaciones.selectedUbicacion.id;
-        //     $scope.data_inv_producto.tipo_consumo = vm.selectModelTipoConsumos.selectedTipoConsumo.id;
-        //     $scope.data_inv_producto.impuestos=$scope.selectModelImpuestos.selectedImpuestos;
-        //     if ($scope.data_inv_producto.comprable==undefined) {
-        //         $scope.data_inv_producto.comprable=false;
-        //     }else $scope.data_inv_producto.comprable=true;
+        vm.selectModelED = {
+            selectedED: undefined,
+            selectedPeopleED: [vm.selectED[0]]
+        };
+        vm.selectModelGarantia = {
+            selectedGarantia: undefined,
+            selectedGarantiaDefault: [vm.selectGarantias[0]]
+        };
 
-        //     if ($scope.data_inv_producto.vendible==undefined) {
-        //         $scope.data_inv_producto.vendible=false;
-        //     }else $scope.data_inv_producto.vendible=true;
-        //     console.log($scope.data_inv_producto);
-        //     inventario_Service.Add_Producto().add($scope.data_inv_producto).$promise.then(function(data) {
-        //         $rootScope.$emit("actualizar_tabla_productos", {});
-        //         if (data.respuesta == true) {
-        //             $mdDialog.cancel();
-        //             $mdToast.show({
-        //               hideDelay   : 5000,
-        //               position    : 'bottom right',
-        //               controller  : 'notificacionCtrl',
-        //               templateUrl : 'views/notificaciones/guardar.html'
-        //             });
-        //         }
-        //         if (data.respuesta == false) {
-        //             $mdDialog.show(
-        //                 $mdDialog.alert()
-        //                 .parent(angular.element(document.querySelector('#popupContainer')))
-        //                 .clickOutsideToClose(true)
-        //                 .title('LO SENTIMOS 😞')
-        //                 .textContent('Intente mas tarde.')
-        //                 .ariaLabel('Respuesta Registro')
-        //                 .ok('Entendido')
-        //                 .targetEvent()
-        //             );
-        //         }
-        //         if (data.respuesta == true && data.respuesta == false) {
-        //             $mdDialog.show(
-        //                 $mdDialog.alert()
-        //                 .parent(angular.element(document.querySelector('#popupContainer')))
-        //                 .clickOutsideToClose(true)
-        //                 .title('LO SENTIMOS 😞')
-        //                 .textContent('Proceso no permitido intente mas tarde.')
-        //                 .ariaLabel('Respuesta Registro')
-        //                 .ok('Entendido')
-        //                 .targetEvent()
-        //             );
-        //         }
-        //     });
-        // }
-        // $scope.cancel = function() {
-        //     $mdDialog.cancel();
-        // };
-            // }
+        vm.selectModelMarcas = {
+            selectedMarca: undefined,
+            selectedMarcasDefault: [vm.selectMarcas[0]]
+        };
+        vm.selectModelModelos = {
+            selectedModelo: undefined,
+            selectedModeloDefault: [vm.selectModelos[0]]
+        };
+        vm.selectModelUbicaciones = {
+            selectedUbicacion: undefined,
+            selectedUbicacionDefault: [vm.selectUbicaciones[0]]
+        };
+
+        vm.selectModelTipoConsumos = {
+            selectedTipoConsumo: undefined,
+            selectedTipoConsumoDefault: [vm.selectTipoConsumos[0]]
+        };
+
+        vm.selectModelImpuestos = {
+            selectedImpuesto: undefined,
+            selectedImpuestos: []
+        };
+
+        function selectCallback(_newValue, _oldValue) {
+            LxNotificationService.notify('Change detected');
+        }
+
+
+        // Nuevo registro Producto
+        $scope.inv_producto_nuevo = function() {
+            $scope.data_inv_producto.categoria = vm.selectModel.selectedPerson;
+            $scope.data_inv_producto.estado_descriptivo = vm.selectModelED.selectedED.id;
+            $scope.data_inv_producto.garantia = vm.selectModelGarantia.selectedGarantia.id;
+            $scope.data_inv_producto.marca = vm.selectModelMarcas.selectedMarca.id;
+            $scope.data_inv_producto.modelo = vm.selectModelModelos.selectedModelo.id;
+            $scope.data_inv_producto.ubicacion = vm.selectModelUbicaciones.selectedUbicacion.id;
+            $scope.data_inv_producto.tipo_consumo = vm.selectModelTipoConsumos.selectedTipoConsumo.id;
+            $scope.data_inv_producto.impuestos=$scope.selectModelImpuestos.selectedImpuestos;
+            // if ($scope.data_inv_producto.comprable==undefined) {
+                $scope.data_inv_producto.comprable=false;
+            // }else $scope.data_inv_producto.comprable=true;
+
+            // if ($scope.data_inv_producto.vendible==undefined) {
+                $scope.data_inv_producto.vendible=true;
+            // }else $scope.data_inv_producto.vendible=true;
+            console.log($scope.data_inv_producto);
+
+            inventario_Service.Add_Producto().add($scope.data_inv_producto).$promise.then(function(data) {
+                $rootScope.$emit("actualizar_tabla_productos", {});
+                if (data.respuesta == true) {
+                    $mdDialog.cancel();
+                    $mdToast.show({
+                      hideDelay   : 5000,
+                      position    : 'bottom right',
+                      controller  : 'notificacionCtrl',
+                      templateUrl : 'views/notificaciones/guardar.html'
+                    });
+                }
+                if (data.respuesta == false) {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('LO SENTIMOS 😞')
+                        .textContent('Intente mas tarde.')
+                        .ariaLabel('Respuesta Registro')
+                        .ok('Entendido')
+                        .targetEvent()
+                    );
+                }
+                if (data.respuesta == true && data.respuesta == false) {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('LO SENTIMOS 😞')
+                        .textContent('Proceso no permitido intente mas tarde.')
+                        .ariaLabel('Respuesta Registro')
+                        .ok('Entendido')
+                        .targetEvent()
+                    );
+                }
+            });
+        }
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+            
     }
 
     // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
@@ -274,12 +267,12 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
         $scope.productos = desserts.respuesta.data;
     }
 
-    $scope.data_inv_producto_get = function() {
-        inventario_Service.Get_Producto().get($scope.query, success).$promise;
+    $scope.data_inv_bienes_get = function() {
+        inventario_Service.Get_Bienes().get($scope.query, success).$promise;
     }
 
     $rootScope.$on("actualizar_tabla_productos", function() {
-        $scope.data_inv_producto_get();
+        $scope.data_inv_bienes_get();
     });
 
     $scope.removeFilter = function() {
@@ -301,7 +294,7 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
         if (!newValue) {
             $scope.query.page = bookmark;
         }
-        $scope.data_inv_producto_get();
+        $scope.data_inv_bienes_get();
     });
 });
 

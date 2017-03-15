@@ -51,3 +51,5 @@
 [0314/083556.705:ERROR:registration_protocol_win.cc(83)] TransactNamedPipe: Ha terminado la canalización. (0x6D)
 [0314/083556.877:ERROR:crashpad_win.cc(223)] Crashpad handler failed to start, crash reporting disabled
 [0314/083858.010:ERROR:crash_report_database_win.cc(563)] CreateDirectory C:\Program Files (x86)\reports: Acceso denegado. (0x5)
+[0315/084715.358:ERROR:crash_report_database_win.cc(563)] CreateDirectory C:\Program Files (x86)\reports: Acceso denegado. (0x5)
+[0315/084715.596:ERROR:crash_report_database_win.cc(563)] CreateDirectory C:\Program Files (x86)\reports: Acceso denegado. (0x5)
