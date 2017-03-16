@@ -8,7 +8,7 @@
  * Controller of the nextbook20App
  */
 var app = angular.module('nextbook20App')
-  	app.controller('acceso_colaboradores_Ctrl', function ($scope, $location, $routeParams,$mdDialog, mainService, colaboradores_Service,consumirService, $localStorage) {
+  	app.controller('acceso_colaboradores_Ctrl', function ($scope, $location, $routeParams,$mdDialog, mainService, colaboradores_Service,consumirService, $localStorage, menuService) {
   		function success_data_ruc(data){
   			$scope.datosE=data.respuesta;
   		}
@@ -63,8 +63,8 @@ var app = angular.module('nextbook20App')
 		                    $location.path('/Actualizar_Datos');
 		                }
 		            });
-
 		            // generacion acceso personalizado
+		            console.log(menuService);
 		            menuService.Generar_Vista().get().$promise.then(function(data) {
 				        $localStorage.menu = data;
 				    });

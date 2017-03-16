@@ -8,7 +8,7 @@
  * Controller of the nextbook20App
  */
 var app = angular.module('nextbook20App')
-  	app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService, $localStorage, colaboradores_Service) {
+  	app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService, $localStorage, colaboradores_Service, menuService) {
   		$scope.update_phone = function() {
 		    var tel = $scope.rucdata.telefono;
 		    var tel1 = $scope.rucdata.telefono1;
