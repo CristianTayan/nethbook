@@ -54,7 +54,7 @@
                             <div ng-message="required" ng-show="form_add.correo.$error.required">Campo Requerido</div>
                         </div>
                     </md-input-container>
-                    <div class="md-icon-float md-block" style="margin-top: -15px;  padding-left: 10px;    padding-right: 10px;" flex>
+                    <md-input-container class="md-icon-float md-block" flex>
                         <lx-select ng-model="ModelLocalizacion.selectedLocalizacion" lx-fixed-label="true" lx-allow-clear="true" lx-choices="ListLocalizacion" lx-display-filter="true" lx-fixed-label="true" lx-label="Ciudad" required>
                             <lx-select-selected>
                                 {{ $selected.nombre }}
@@ -64,7 +64,7 @@
                             </lx-select-choices>
                         </lx-select>
                         <div ng-show="ModelLocalizacion.selectedLocalizacion==undefinied" style="color: rgba(255, 0, 0, 0.64);  font-size: 12px;">Campo Requerido *</div>
-                    </div>
+                    </md-input-container>
                     <md-input-container class="md-icon-float md-block" flex>
                         <label>Dirección</label>
                         <input name="direccion" ng-model="data.direccion" type="text" readonly>
