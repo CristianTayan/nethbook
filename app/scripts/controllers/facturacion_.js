@@ -444,9 +444,9 @@
         var $doc = angular.element(document);
 
         $doc.on('keydown', handler);
-        // $scope.$on('$destroy',function(){
-        //   $doc.off('keydown', handler);
-        // })
+        $scope.$on('$destroy',function(){
+          $doc.off('keydown', handler);
+        })
 
 
         //----------------------------------------------------- DETALLES DE FACTURA -----------------------------------------
