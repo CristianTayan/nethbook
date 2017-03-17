@@ -72,7 +72,9 @@
                                 <div flex="30">
                                 <md-input-container class="md-icon-float md-icon-left md-block" flex>
                                     <md-icon class="md-primary">add_alert</md-icon>
-                                    <lx-select ng-model="selectModel.selectedPerson" ng-change="change_hijo()" lx-fixed-label="true" lx-allow-clear="true" lx-choices="categorias_list" lx-display-filter="true" lx-fixed-label="true" lx-label="Categoría" lx-multiple="true" required>
+                                    <lx-select ng-model="selectModel.selectedPerson" ng-change="change_hijo()" lx-fixed-label="true" lx-allow-clear="true" lx-choices="categorias_list" lx-display-filter="true" lx-fixed-label="true" lx-label="Categoría" lx-multiple="true" 
+                                    lx-helper-message="Sin categorías"
+                                    required>
                                         <lx-select-selected>
                                             {{ $selected.nombre +'/'}}
                                         </lx-select-selected>

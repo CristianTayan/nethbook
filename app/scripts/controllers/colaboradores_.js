@@ -10,7 +10,7 @@
 var app = angular.module('nextbook20App')
 	app.controller('colaboradores_Ctrl', function ($scope, menuService) {
   		// ------------------------------------inicio generacion vista menu personalizacion------------------------------------
-	      	var data = menuService.Get_Vistas_By_Tipo_User();
+	      	var data = menuService.Get_Vistas_Loged_User();
 	      	$scope.menu = data.respuesta[0].children[0].children[0];
 	    // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 	});
@@ -453,7 +453,6 @@ var app = angular.module('nextbook20App')
 		        		if ($scope.combinacion_privilegios[i].id==$scope.modulo.permisos.id) {
 		        			$scope.selected=[];
 		        			$scope.selected.push($scope.combinacion_privilegios[i]);
-		        			console.log($scope.combinacion_privilegios[i]);
 		        			break;
 		        		}
 		        	}
@@ -492,6 +491,8 @@ var app = angular.module('nextbook20App')
 		        		}
 		        	}
 		        };
+
+
 		    }
 	    // -------------------------------------------------------PROCESO EDITAR REGISTRO-----------------------------------------------------------
 
@@ -514,11 +515,12 @@ var app = angular.module('nextbook20App')
 		    function DialogController_editar($scope, $rootScope, colaboradores_Service, obj,combinacion_privilegios) {
 		        $scope.data_tipo_usuario = obj;
 		        $scope.selected=[];
+		        var vm=$scope;
 
-		    	function success_vistas_By_Tipo_User(data){
-					$scope.vistas_tipo_user=data.respuesta;
+		    	function success_vistas_By_Tipo_User(result){
+					vm.vistas_tipo_user=result.respuesta;
 				}
-				colaboradores_Service.Get_Vistas_By_Tipo_User_Update().get({id:obj.id},success_vistas_By_Tipo_User).$promise;
+				colaboradores_Service.Get_Vistas_Tip_User_Update().get({id:obj.id},success_vistas_By_Tipo_User).$promise;
 
 		    	// ------------------------ GENERACION DE VISTAS PRIVILEGIOS---------------------------
 					$scope.combinacion_privilegios = combinacion_privilegios;

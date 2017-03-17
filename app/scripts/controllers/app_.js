@@ -12,7 +12,7 @@ var app = angular.module('nextbook20App');
   	app.controller('app_Ctrl', function ($scope, $mdToast, $translate, menuService, configuracionService, $routeSegment) {
       
       // ------------------------------------inicio generacion vista menu personalizacion------------------------------------
-      var data = menuService.Get_Vistas_By_Tipo_User();
+      var data = menuService.Get_Vistas_Loged_User();
       $scope.menu = data.respuesta[0].children[0];
       // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 

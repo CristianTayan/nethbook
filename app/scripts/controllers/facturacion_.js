@@ -11,7 +11,7 @@
     app.controller('facturacion_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
     	
     	// ------------------------------------inicio generacion vista menu personalizacion------------------------------------
-            var data = menuService.Get_Vistas_By_Tipo_User();
+            var data = menuService.Get_Vistas_Loged_User();
             $scope.menu = data.respuesta[0].children[0].children[1];
         // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 
@@ -239,7 +239,7 @@
 
     });
 
-    app.controller('fac_nueva_factura_venta_Ctrl', function($mdDialog,$document, $scope,inventario_Service,Contabilidad_Service,$rootScope,$localStorage,colaboradores_Service,Facturacion_Service) {
+    app.controller('fac_nueva_factura_venta_Ctrl', function($mdDialog,$document, $scope,inventario_Service,Contabilidad_Service,$rootScope,$localStorage,colaboradores_Service,Facturacion_Service,$timeout) {
             function selectCallback(_newValue, _oldValue) {
                 console.log('Old value: ', _oldValue);
                 console.log('New value: ', _newValue);
@@ -447,6 +447,10 @@
         $scope.$on('$destroy',function(){
           $doc.off('keydown', handler);
         })
+
+        $timeout(function() {
+                focus($doc);
+            }, 800);
 
 
         //----------------------------------------------------- DETALLES DE FACTURA -----------------------------------------
