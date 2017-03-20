@@ -2603,7 +2603,7 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
         }
         
         vm.selectModel = {
-            selectedPerson:undefined
+            selectedPerson:[vm.categorias[0]]
         };
 
         vm.selectModelED = {
