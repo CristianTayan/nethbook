@@ -60,3 +60,5 @@
 [0316/163953.625:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acceso denegado. (0x5)
 [0317/084443.751:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acceso denegado. (0x5)
 [0317/084444.039:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acceso denegado. (0x5)
+[0320/084624.354:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acceso denegado. (0x5)
+[0320/084624.584:ERROR:file_io_win.cc(163)] CreateFile C:\Program Files (x86)\settings.dat: Acceso denegado. (0x5)

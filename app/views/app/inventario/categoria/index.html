@@ -28,16 +28,16 @@
             <md-divider></md-divider> <br>
 
         <script type="text/ng-template" id="nodes_renderer.html">
-                   <div layout="row">
+                   <div layout="row" ng-show="node.open">
                       <div  layout="row" flex="90">
                         <md-input-container style="margin: 0 0!important" flex>
-                                <md-icon class="md-primary" aria-label="añadir subcategoria" ng-show="node.nodes.length>0">
-                                    <md-tooltip md-direction="Bottom">Categoria Principal</md-tooltip>
-                                    list_bulleted
-                                </md-icon>
+                                <md-icon class="md-primary" aria-label="añadir subcategoria" ng-show="node.nodes.length>0" ng-click="comprimir(node)">
+                                    <md-tooltip md-direction="Bottom">{{(node.nodes.open==true)?'Reducir':'Abrir'}}</md-tooltip>
+                                        {{node.icon}}
+                                    </md-icon>
                                 <md-icon class="md-primary" aria-label="añadir subcategoria" ng-show="node.nodes.length==0">
                                     <md-tooltip md-direction="Bottom">Subcategoria</md-tooltip>
-                                    play_arrow
+                                    remove
                                 </md-icon>
                             <input ng-model="node.nombre" type="text" aria-label="nombre" placeholder="Nombre" readonly>
                         </md-input-container>
@@ -69,12 +69,12 @@
                         </div>
                    </div>
                    <!-- <md-divider ></md-divider> -->
-                  <ol ui-tree-nodes="" ng-model="node.nodes">
+                  <ol ui-tree-nodes="" ng-model="node.nodes" compact>
                     <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'">
                     </li>
                   </ol>
                 </script>
-                <div ui-tree ng-show="categorias.length>0">
+                <div ui-tree ng-show="categorias.length>0" compact>
                   <ol ui-tree-nodes="" ng-model="categorias" id="tree-root">
                     <li ng-repeat="node in categorias" ui-tree-node ng-include="'nodes_renderer.html'"></li>
                   </ol>

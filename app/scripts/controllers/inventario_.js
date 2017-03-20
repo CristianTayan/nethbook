@@ -2307,6 +2307,22 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
         };
     }
 
+     // -----------------------------------------------------------------CREAR PADRE
+    $scope.comprimir = function(node) {
+        node.icon=(node.icon=="add_circle_outline")?"remove_circle_outline":"add_circle_outline";
+        view_cambiar(node.nodes);
+    }
+
+    function view_cambiar(nodes) {
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].open==true) {
+                nodes[i].open=false;
+            }else nodes[i].open=true;
+            
+        view_cambiar(nodes[i].nodes);
+        }
+    }
+
     // // -----------------------------------------------------------------PROCESO CREAR-----------------------------------------------------------------
     // -----------------------------------------------------------------CREAR PADRE
     $scope.inv_categoria_padre_dialog_nuevo = function(event) {
@@ -2413,18 +2429,6 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
 
         }
 
-
-     $scope.remove = function (scope) {
-            scope.remove();
-          };
-
-    $scope.toggle = function (scope) {
-        scope.toggle();
-      };
-
-      
-      
-
     //---------------------------------------------------------------PROCESO ELIMINAR ---------------------------------------------------------------
     $scope.inv_categoria_dialog_eliminar = function(categoria) {
         $mdDialog.show({
@@ -2460,6 +2464,10 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
             $mdDialog.cancel();
         };
     }
+
+   $scope.toggle = function (node) {
+        console.log(node);
+    };
 
 });
 
