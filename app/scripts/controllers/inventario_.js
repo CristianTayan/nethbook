@@ -2607,24 +2607,24 @@ app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inv
         };
 
         vm.selectModelED = {
-            selectedED: undefined,
+            selectedED: vm.selectModelos[0],
             selectedPeopleED: [vm.selectED[0]]
         };
         vm.selectModelGarantia = {
-            selectedGarantia: undefined,
+            selectedGarantia: vm.selectGarantias[0],
             selectedGarantiaDefault: [vm.selectGarantias[0]]
         };
 
         vm.selectModelMarcas = {
-            selectedMarca: undefined,
+            selectedMarca: vm.selectMarcas[0],
             selectedMarcasDefault: [vm.selectMarcas[0]]
         };
         vm.selectModelModelos = {
-            selectedModelo: undefined,
+            selectedModelo: vm.selectModelos[0],
             selectedModeloDefault: [vm.selectModelos[0]]
         };
         vm.selectModelUbicaciones = {
-            selectedUbicacion: undefined,
+            selectedUbicacion: vm.selectUbicaciones[0],
             selectedUbicacionDefault: [vm.selectUbicaciones[0]]
         };
 
