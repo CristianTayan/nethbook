@@ -44,7 +44,7 @@
                         <md-input-container style="margin: 0 0!important" flex>
                             <input ng-model="node.descripcion" type="text" aria-label="descripción" placeholder="Descripción" readonly>
                         </md-input-container>
-                        <md-input-container style="margin: 0 0!important" flex ng-show="(node.id + '').length>1">
+                        <md-input-container style="margin: 0 0!important" flex ng-show="node.nodes.length==0">
                             <input ng-model="node.tipo_categoria.nombre" type="text" aria-label="descripción" placeholder="Tipo de Categoria" readonly>
                         </md-input-container>
                        <!--  <md-button class="md-button md-mini" ng-class="{'md-accent':node.estado=='I','md-primary':node.estado=='A'}" aria-label="Estado">
@@ -57,7 +57,7 @@
                                 <md-tooltip md-direction="Bottom">Añadir Subcategoria</md-tooltip>
                                     add
                                 </md-icon>
-                                <md-icon class="md-primary" aria-label="añadir subcategoria" ng-click="inv_categoria_dialog_editar(node)">
+                                <md-icon class="md-primary" aria-label="añadir subcategoria" ng-show="node.nodes.length==0" ng-click="inv_categoria_dialog_editar(node)">
                                 <md-tooltip md-direction="Bottom">Añadir Subcategoria</md-tooltip>
                                     mode_edit
                                 </md-icon>
