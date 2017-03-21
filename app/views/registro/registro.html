@@ -148,7 +148,7 @@
                                     <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                                         <md-icon class="md-accent">phone</md-icon>
                                         <label>Teléfono 2</label>
-                                        <input autocomplete="off" name="lastName2" ng-model="rucdata.telefono1" ng-minlength="7" required>
+                                        <input autocomplete="off" name="lastName2" ng-model="rucdata.telefono1" ng-minlength="7" >
                                         <md-icon class="md-accent">airplay</md-icon>
                                         <div ng-messages="formreg.lastName2.$error" ng-show="formreg.lastName2.$dirty">
                                             <div ng-message="required">Campo Requerido</div>
@@ -161,6 +161,18 @@
                                         <input name="fono" ng-model="rucdata.celular" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
                                         <md-icon class="md-accent">airplay</md-icon>
                                         <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
+                                            <div ng-message="required">Campo Requerido</div>
+                                            <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
+                                            <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
+                                            <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                        <md-icon class="md-accent">settings_cell</md-icon>
+                                        <label>Celular Adicional</label>
+                                        <input name="fono1" ng-model="rucdata.celular2" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off">
+                                        <md-icon class="md-accent">airplay</md-icon>
+                                        <div ng-messages="formreg.fono1.$error" ng-show="formreg.fono1.$dirty">
                                             <div ng-message="required">Campo Requerido</div>
                                             <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
                                             <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>

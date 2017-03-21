@@ -11,10 +11,16 @@ html {
 
 
 
+/*
+.lx-select.lx-select--default-style.lx-select--view-mode-field {
+    padding-top: 3px;
+    padding-bottom: 8px;
+}*/
 
-
-
-
+.lx-select--default-style.lx-select--theme-light .lx-select-label {
+    color: rgba(0,0,0,.54);
+    top: -21px;
+}
 
 
 

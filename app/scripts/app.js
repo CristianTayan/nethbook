@@ -401,7 +401,7 @@ var app = angular.module('nextbook20App', [
                 .up();
         // activar cuenta
         $routeSegmentProvider    
-            .when('/activarcuenta/:ruc/:correo/:telefono/:telefono1/:provincia/:celular',    'activar')        
+            .when('/activarcuenta/:codigo',    'activar')        
             .segment('activar', {
                 controller: 'activar_Ctrl',
                 dependencies: ['id']
