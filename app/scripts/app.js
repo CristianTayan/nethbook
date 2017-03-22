@@ -195,6 +195,8 @@ var app = angular.module('nextbook20App', [
             .when('/App/Inventario',    'dashboard.app.inventario')
                 .when('/App/Inventario/',    'dashboard.app.inventario.menu')
                 .when('/App/Inventario/Categorias',    'dashboard.app.inventario.categoria')
+                    .when('/App/Inventario/Categorias/Productos',    'dashboard.app.inventario.cat_productos')
+                    .when('/App/Inventario/Categorias/Bienes',    'dashboard.app.inventario.cat_bienes')
                 .when('/App/Inventario/Marcas',    'dashboard.app.inventario.marcas')
                 .when('/App/Inventario/Modelos',    'dashboard.app.inventario.modelos')
                 .when('/App/Inventario/Productos',    'dashboard.app.inventario.productos')
@@ -312,9 +314,21 @@ var app = angular.module('nextbook20App', [
                                             controller: 'inv_menu_Ctrl'
                                         })
                                         .segment('categoria', {
-                                            templateUrl: 'views/app/inventario/categoria/index.html',
-                                            controller: 'inv_categoria_Ctrl'
+                                            templateUrl: 'views/app/inventario/categoria/productos/index.html',
+                                            controller: 'inv_categoria_productos_Ctrl'
                                         })
+                                        // .within()
+                                            .segment('cat_productos', {
+                                                default:true,
+                                                templateUrl: 'views/app/inventario/categoria/productos/index.html',
+                                                controller: 'inv_categoria_productos_Ctrl'
+                                            })
+                                            .segment('cat_bienes', {
+                                                templateUrl: 'views/app/inventario/categoria/bienes/index.html',
+                                                controller: 'inv_categoria_bienes_Ctrl'
+                                            })
+                                        // .up()
+
                                         .segment('marcas', {
                                             templateUrl: 'views/app/inventario/marcas/index.html',
                                             controller: 'inv_marcas_Ctrl'
