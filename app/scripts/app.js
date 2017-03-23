@@ -37,7 +37,8 @@ var app = angular.module('nextbook20App', [
                                             'angucomplete-alt',
                                             'pascalprecht.translate',
                                             'material.components.expansionPanels',
-                                            'ui.tree'
+                                            'ui.tree',
+                                            'xmd.directives.xmdWizard'
                                         ]);
     
     // themes configuration
@@ -149,6 +150,13 @@ var app = angular.module('nextbook20App', [
                 templateUrl: 'views/actualizar_datos/index.html',
                 controller: 'actualizar_datos_Ctrl'
             });
+        // Actualizar Datos cambio contraseña
+        $routeSegmentProvider
+            .when('/Actualizar_Datos_Sucursal',    'actualizar_datos_sucursal')
+            .segment('actualizar_datos_sucursal', {
+                templateUrl: 'views/actualizar_datos/sucursal.html',
+                controller: 'actualizar_datos_sucursal_Ctrl'
+            });
         // Seleccionar Sucursal
         $routeSegmentProvider
             .when('/Seleccionar_Sucursal',    'seleccionar_sucursal')
@@ -164,12 +172,20 @@ var app = angular.module('nextbook20App', [
         // Escritorio General
         $routeSegmentProvider
             .when('/Dash',    'dashboard')
-            .when('/Inicio',    'dashboard.inicio')
-            .when('/Perfil',    'dashboard.perfil')
+            // .when('/Inicio',    'dashboard.inicio')
+            // .when('/Perfil',    'dashboard.perfil')
             // configuracion setting
-            .when('/Config',    'dashboard.config')
-            .when('/Config/Perfil',    'dashboard.config.perfil')
-            .when('/Config/Terminos',    'dashboard.config.terminos')
+            .when('/nb',    'dashboard.nb')
+            .when('/nb/Inicio',    'dashboard.nb.inicio')
+            .when('/nb/Perfil',    'dashboard.nb.perfil')
+            .when('/nb/Personal',    'dashboard.nb.personal')
+
+
+
+            // ---------------------------------------configuracion de procesos---------------------------------------
+            .when('/nb/Config',    'dashboard.nb.config')
+            .when('/nb/Config/Personal',    'dashboard.nb.config.personal')
+            .when('/nb/Config/Terminos',    'dashboard.nb.config.terminos')
             // general
             .when('/Perfil_Personal',    'dashboard.perfil_personal')
             .when('/App',    'dashboard.app')
@@ -217,35 +233,49 @@ var app = angular.module('nextbook20App', [
                 controller: 'dashboard_Ctrl'
             })
             .within()
-                    .segment('inicio', {
-                        templateUrl: 'views/dashboard/inicio.html',
-                        controller: 'inicio_Ctrl',
-                        default: true
-                    })
-                    .segment('perfil', {
-                        templateUrl: 'views/dashboard/perfil.html',
-                        controller: 'perfil_Ctrl'
-                    })
-                    .segment('perfil_personal', {
-                        templateUrl: 'views/dashboard/perfil_personal.html',
-                        controller: 'perfil_personal_Ctrl'
-                    })
-                    .segment('config', {
-                        templateUrl: 'views/dashboard/configuracion/index.html',
-                        controller: 'configuracionCtrl'
+                    .segment('nb', {
+                        templateUrl: 'views/dashboard/general.html',
+                        // controller: 'inicio_Ctrl',
                     })
                         .within()
+                            .segment('inicio', {
+                                templateUrl: 'views/dashboard/inicio.html',
+                                controller: 'inicio_Ctrl',
+                                default: true
+                            })
                             .segment('perfil', {
-                                default: true,
-                                templateUrl: 'views/dashboard/configuracion/perfil/index.html',
-                                controller: 'informacion_generalCtrl'
+                                templateUrl: 'views/dashboard/perfil.html',
+                                controller: 'perfil_Ctrl'
                             })
-                            .segment('terminos', {
-                                // default: true,
-                                templateUrl: 'views/dashboard/configuracion/terminos/index.html',
-                                // controller: 'informacion_generalCtrl'
+                            .segment('personal', {
+                                templateUrl: 'views/dashboard/perfil_personal.html',
+                                controller: 'perfil_personal_Ctrl'
                             })
-                        .up()
+                            .segment('config', {
+                                templateUrl: 'views/dashboard/configuracion/index.html',
+                                // controller: 'configuracionCtrl'
+                            })
+                                .within()
+                                    .segment('personal', {
+                                        default: true,
+                                        templateUrl: 'views/dashboard/configuracion/personal/index.html',
+                                        controller: 'informacion_generalCtrl'
+                                    })
+                                    .segment('empresa', {
+                                        // default: true,
+                                        templateUrl: 'views/dashboard/configuracion/perfil/index.html',
+                                        // controller: 'informacion_generalCtrl'
+                                    })
+                                    .segment('sucursal', {
+                                        // default: true,
+                                        templateUrl: 'views/dashboard/configuracion/perfil/index.html',
+                                        // controller: 'informacion_generalCtrl'
+                                    })
+                                    .segment('terminos', {
+                                        templateUrl: 'views/dashboard/configuracion/terminos/index.html',
+                                    })
+                                .up()
+                        .up()                    
                     .segment('app', {
                         templateUrl: 'views/app/index.html',
                         controller: 'app_Ctrl'

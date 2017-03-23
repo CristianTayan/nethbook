@@ -58,9 +58,7 @@ var app = angular.module('nextbook20App')
 		$scope.quitar_recordatorio = function(index, item) {
 			var session = $localStorage.cook_session_init;
 			var x = session.splice(0, index);
-
-			console.log(x);
-			// $localStorage.cook_session_init = session
+			$localStorage.cook_session_init = session
 		}
 
 

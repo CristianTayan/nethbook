@@ -15,10 +15,10 @@
                 </ul>
             </form>
             <span flex></span>
-            <a href="#/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
+            <a href="#/nb/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
                 <md-icon>home</md-icon>
             </a>
-            <md-button ng-href="#/Perfil_Personal" class="" style="min-width:0px">{{datos_personales.primer_nombre}}</md-button>
+            <md-button ng-href="#/nb/Personal" class="" style="min-width:0px">{{datos_personales.primer_nombre}}</md-button>
             <a href="#/App" class="btn btn--l btn--white btn--icon" lx-ripple>
                 <i class="mdi mdi-apps"></i>
             </a>
@@ -49,7 +49,7 @@
                         </li>
                         <li class="dropdown-divider"></li>
                         <li>
-                            <a href="#/Config" class="dropdown-link">
+                            <a href="#/nb/Config" class="dropdown-link">
                                 <span>Configuración</span>
                             </a>
                         </li>
@@ -61,27 +61,15 @@
                     </ul>
                 </lx-dropdown-menu>
             </lx-dropdown>
-            <a href="#/Perfil">
+            <a href="#/nb/Perfil">
                 <span class="mdl-chip mdl-chip--contact">
                     <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">{{nom_perfil | limitTo: 1}}</span>
                 <span class="mdl-chip__text">{{nom_perfil | limitTo: 20}}</span>
                 </span>
             </a>
-            <a class="btn btn--l btn--white btn--icon" lx-ripple ng-click="ShowHide()">
-                <md-icon>tab</md-icon>
-            </a>
         </div>
     </div>
-    <div style="max-width:300px;" flex>
-        <md-tabs class="md-primary" md-selected="data.selectedIndex" flex md-stretch-tabs="always" style="top: 12px;">
-            <md-tab id="tab1" aria-controls="tab1-content">
-                <md-icon>chat</md-icon>
-            </md-tab>
-            <md-tab id="tab2" aria-controls="tab2-content">
-                <md-icon>library_music</md-icon>
-            </md-tab>
-        </md-tabs>
-    </div>
+    <div style="max-width:300px;" flex></div>
 </md-toolbar>
 
 <div layout="row" flex app-view-segment="1" class="view-next"></div>

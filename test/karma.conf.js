@@ -60,6 +60,7 @@ module.exports = function(config) {
       'bower_components/angular-material-expansion-panel/dist/md-expansion-panel.js',
       'bower_components/angular-ui-tree/dist/angular-ui-tree.js',
       'bower_components/angular-ivh-treeview/dist/ivh-treeview.js',
+      'bower_components/xmdwizard/build/xmdWizard.directive.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

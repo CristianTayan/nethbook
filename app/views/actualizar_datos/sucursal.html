@@ -1,0 +1,78 @@
+<md-toolbar layout="column">
+    <div class="md-toolbar-tools md-toolbar-registro">
+        <h3>Nethbook, Red de Negocios</h3>
+        <span flex></span>
+        <lx-dropdown lx-position="right" lx-over-toggle="true" lx-width="250">
+            <lx-dropdown-toggle>
+                <lx-button lx-color="black" lx-type="icon">
+                    <md-icon>more_vert</md-icon>
+                </lx-button>
+            </lx-dropdown-toggle>
+            <lx-dropdown-menu>
+                <ul>
+                    <li>
+                        <a class="dropdown-link" ng-href="#/">
+                            <i class="md-accent mdi mdi-exit-to-app"></i>
+                            <span>Cerrar Sesión</span>
+                        </a>
+                    </li>
+                </ul>
+            </lx-dropdown-menu>
+        </lx-dropdown>
+    </div>
+</md-toolbar>
+<md-toolbar layout="column">
+    <h4 class="text-center">{{infoempresa.razon_social}}</h4>
+</md-toolbar>
+<div layout="row" layout-align="center center">
+    <xmd-wizard active-step="currentStep" on-change="stepChanged()" on-save="wizardSaved()" flex flex-gt-sm="90" flex-gt-md="60">
+        <xmd-step label="Empecemos" xmd-required="true" flex>
+        	<br>
+            <div layout="row">
+                <md-input-container flex>
+                    <label>Nombre Comercial del establecimiento</label>
+                    <input type="text" ng-model="data.nom_sucursal" uppercase ng-disabled="!data.cb1" required>
+                </md-input-container>
+                <md-switch ng-model="data.cb1" aria-label="Switch 1" flex="30">
+                    Cambiar nombre de mi establecimiento
+                </md-switch>
+            </div>
+            <h3 class="text-center">A que se dedica la sucursal {{data.nom_sucursal | lowercase}}..?</h3>
+            <md-radio-group ng-model="cc.selectedId" >
+                <div ng-repeat='item in contacts'  layout-align="start center">
+                    <div flex layout='row' layout-align="start center">
+                        <div flex style="max-width:200px; position: relative; top: -9px; text-align: right; padding-right: 10px">
+                            {{item.title}}
+                        </div>
+                        <md-radio-button flex md-color="{background:green}" ng-value="item.id">
+                            {{item.fullName}}
+                        </md-radio-button>
+                    </div>
+                </div>
+            </md-radio-group>
+        </xmd-step>
+        <xmd-step label="un poco mas y terminamos" xmd-required="true">
+        	<div layout="row">
+	            <md-input-container flex>
+				    <label>Hablanos un poco de lo que realizasas en este establecimiento</label>
+				    <textarea name="bio" ng-model="biography" required md-maxlength="150"></textarea>
+				    <div ng-messages="userForm.bio.$error" ng-show="userForm.bio.$dirty">
+				      <div ng-message="required">This is required!</div>
+				      <div ng-message="md-maxlength">That's too long!</div>
+				    </div>
+				</md-input-container>
+			</div>
+
+        </xmd-step>
+        <xmd-step label="listo" flex>
+            <md-input-container>
+                <label>test 4</label>
+                <input type="text" ng-model="editData.test4">
+            </md-input-container>
+            <md-input-container>
+                <label>test 5</label>
+                <input type="text" ng-model="editData.test5">
+            </md-input-container>
+        </xmd-step>
+    </xmd-wizard>
+</div>

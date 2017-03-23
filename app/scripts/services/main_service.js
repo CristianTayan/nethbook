@@ -162,6 +162,17 @@ var app = angular.module('nextbook20App');
             });
         };
 
+        this.Verificar_Existencia_Procesos_Sucursal = function() {
+            return $resource(urlService.server().appnext()+'Verificar_Existencia_Procesos_Sucursal', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
         
     });
 app.factory('mySocket', function (socketFactory) {

@@ -1,66 +1,56 @@
-<div flex layout="column">
-    <div layout="row" layout-align="center center">
-        <div flex-gt-sm="90" flex-gt-md="60" layout="row">
-            <div layout-wrap flex="30" layout-fill>
-                <div class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-                    <md-toolbar>
-                        <div class="md-toolbar-tools">
-                        </div>
-                    </md-toolbar>
-                    <md-toolbar>
-                        <div class="md-toolbar-tools">
-                            <h3 class="md-display-4">Alex Doil</h3>
-                        </div>
-                    </md-toolbar>
-                    <div>
-                        <div layout="row">
-                            <div class="mdl-card__title">
-                                <h4 class="mdl-card__title-text">Actividad Economica</h4>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                {{datos2.actividad_economica | lowercase}}
-                            </div>
-                            <div class="mdl-card__menu">
-                                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                    <i class="material-icons">share</i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <md-card-content>
-                            <h2 class="md-title">About Me</h2>
-                            <p>
-                                A passionate Blogger and Developer. He has more then 5 years of experience on web application development. He loves to work in javascript programming language.At present he is exploring W3C Web Component specification.
-                            </p>
-                        </md-card-content>
-                    </div>
-                </div>
+<div class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="30" layout-padding>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+        </div>
+    </md-toolbar>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h3 class="md-display-4">Alex Doil</h3>
+        </div>
+    </md-toolbar>
+    <div>
+        <div layout="row">
+            <div class="mdl-card__title">
+                <h4 class="mdl-card__title-text">Actividad Economica</h4>
             </div>
-            <div flex="70" layout="column" flex layout="row" layout-padding>
-                <md-content class="md-padding">
-                    <md-tabs flex>
-                        <md-tab id="b-tab1" aria-controls="b-tab1-content" style="float:right!important;">
-                            Historia
-                        </md-tab>
-                        <md-tab id="b-tab2" aria-controls="b-tab2-content" style="float:right!important;">
-                            <md-icon>location_on</md-icon>
-                        </md-tab>
-                        <md-tab id="b-tab3" aria-controls="b-tab3-content" style="float:right!important;">
-                            Similares
-                        </md-tab>
-                        <md-tab id="b-tab4" aria-controls="b-tab4-content" style="float:right!important;">
-                            Favoritos
-                        </md-tab>
-                        <md-tab id="b-tab5" aria-controls="b-tab5-content" style="float:right!important;">
-                            Grupos
-                        </md-tab>
-                        <md-tab id="b-tab6" aria-controls="b-tab5-content" style="float:right!important;">
-                            Agenda
-                        </md-tab>
-                    </md-tabs>
-                </md-content>
+            <div class="mdl-card__supporting-text">
+                {{datos2.actividad_economica | lowercase}}
+            </div>
+            <div class="mdl-card__menu">
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                    <i class="material-icons">share</i>
+                </button>
             </div>
         </div>
     </div>
+    <div>
+        <md-card-content >
+            <h2 class="md-title">About Me</h2>
+            <p>
+                A passionate Blogger and Developer. He has more then 5 years of experience on web application development. He loves to work in javascript programming language.At present he is exploring W3C Web Component specification.
+            </p>
+        </md-card-content>
+    </div>
 </div>
+<md-content flex="70" layout="column" flex layout="row">
+    <md-tabs flex md-stretch-tabs="always">
+        <md-tab id="b-tab1" aria-controls="b-tab1-content" style="float:right!important;">
+            Historia
+        </md-tab>
+        <md-tab id="b-tab2" aria-controls="b-tab2-content" style="float:right!important;">
+            <md-icon>location_on</md-icon>
+        </md-tab>
+        <md-tab id="b-tab3" aria-controls="b-tab3-content" style="float:right!important;">
+            Similares
+        </md-tab>
+        <md-tab id="b-tab4" aria-controls="b-tab4-content" style="float:right!important;">
+            Favoritos
+        </md-tab>
+        <md-tab id="b-tab5" aria-controls="b-tab5-content" style="float:right!important;">
+            Grupos
+        </md-tab>
+        <md-tab id="b-tab6" aria-controls="b-tab5-content" style="float:right!important;">
+            Agenda
+        </md-tab>
+    </md-tabs>
+</md-content>
