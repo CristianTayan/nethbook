@@ -57,16 +57,16 @@
 
                       </div>
                         <div flex>
-                                <md-icon class="md-primary" aria-label="añadir subcategoria" ng-click="inv_categoria_hijo_dialog_nuevo(node)">
+                                <md-icon class="md-primary" ng-show="node.id!=1" aria-label="añadir subcategoria" ng-click="inv_categoria_hijo_dialog_nuevo(node)">
                                 <md-tooltip md-direction="Bottom">Añadir Subcategoria</md-tooltip>
                                     add
                                 </md-icon>
-                                <md-icon class="md-primary" aria-label="añadir subcategoria" ng-show="node.nodes.length==0" ng-click="inv_categoria_dialog_editar(node)">
+                                <md-icon class="md-primary" ng-show="node.id!=1" aria-label="añadir subcategoria" ng-show="node.nodes.length==0" ng-click="inv_categoria_dialog_editar(node)">
                                 <md-tooltip md-direction="Bottom">Añadir Subcategoria</md-tooltip>
                                     mode_edit
                                 </md-icon>
                                 <md-icon class="md-accent" aria-label="eliminar" ng-click="">
-                                <md-switch ng-model="node.estado_s" ng-change="inv_categoria_dialog_eliminar(node)" aria-label="Switch 1"></md-switch>
+                                <md-switch ng-model="node.estado_s" ng-show="node.id!=1" ng-change="inv_categoria_dialog_eliminar(node)" aria-label="Switch 1"></md-switch>
                                 <!-- <md-tooltip md-direction="Bottom">Eliminar Subcategoria</md-tooltip>
                                     {{estado=(node.estado=='I')?'check':'remove'}}
                                 </md-icon>  -->        

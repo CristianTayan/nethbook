@@ -38,21 +38,57 @@
                 </md-switch>
             </div>
             <h3 class="text-center">A que se dedica la sucursal {{data.nom_sucursal | lowercase}}..?</h3>
-            <md-radio-group ng-model="cc.selectedId" >
-                <div ng-repeat='item in contacts'  layout-align="start center">
+            <md-radio-group ng-model="Tipo" ng-change="selected_Tipo(this)">
+                <div ng-repeat='item in tipo_bienes_servicios'  layout-align="start center">
                     <div flex layout='row' layout-align="start center">
                         <div flex style="max-width:200px; position: relative; top: -9px; text-align: right; padding-right: 10px">
-                            {{item.title}}
+                            {{item.nombre}}
                         </div>
                         <md-radio-button flex md-color="{background:green}" ng-value="item.id">
-                            {{item.fullName}}
+                            {{item.descripcion}}
                         </md-radio-button>
                     </div>
                 </div>
             </md-radio-group>
         </xmd-step>
         <xmd-step label="un poco mas y terminamos" xmd-required="true">
-        	<div layout="row">
+
+            <h3 class="text-center">¿Cual se actividad econónomica de {{data.nom_sucursal | lowercase}}..?</h3>
+
+            <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                        <md-icon class="md-primary">store_mall_directory</md-icon>
+                        <lx-select ng-model="ModelTipo_Tipo_Empresa.selectedTipo"
+                                   lx-allow-clear="true"
+                                   lx-choices="tipo_empresas"
+                                   lx-display-filter="true"
+                                   lx-fixed-label="true"
+                                   lx-label="Actividad econónomica"
+                                   required
+                                   >
+                            <lx-select-selected>
+                                <strong>{{ $selected.nombre}}</strong>  {{ ' - '+$selected.descripcion }}
+                            </lx-select-selected>
+                            <lx-select-choices>
+                                <strong>{{ $choice.nombre}}</strong>  {{ ' - '+$choice.descripcion }} 
+                            </lx-select-choices>
+                        </lx-select>
+            </md-input-container>
+
+           <!--  <md-radio-group ng-model="Actividad" ng-change="selected_actividad(this)">
+                <div ng-repeat='item in tipo_empresas'  layout-align="start center">
+                    <div flex layout='row' layout-align="start center">
+                        <div flex style="max-width:200px; position: relative; top: -9px; text-align: right; padding-right: 10px">
+                            {{item.nombre}}
+                        </div>
+                        <md-radio-button flex md-color="{background:green}" ng-value="item.id">
+                            {{item.descripcion}}
+                        </md-radio-button>
+                    </div>
+                </div>
+            </md-radio-group> -->
+
+
+        	<!-- <div layout="row">
 	            <md-input-container flex>
 				    <label>Hablanos un poco de lo que realizasas en este establecimiento</label>
 				    <textarea name="bio" ng-model="biography" required md-maxlength="150"></textarea>
@@ -61,18 +97,39 @@
 				      <div ng-message="md-maxlength">That's too long!</div>
 				    </div>
 				</md-input-container>
-			</div>
-
+			</div> -->
         </xmd-step>
         <xmd-step label="listo" flex>
-            <md-input-container>
-                <label>test 4</label>
-                <input type="text" ng-model="editData.test4">
+            <h3 class="text-center">Verifica si la siguiente información es correcta</h3><br>
+        <div layout="row">
+            <md-input-container flex>
+                <label>Nombre Comercial del establecimiento</label>
+                <input type="text" ng-model="data.nom_sucursal" readonly>
+            </md-input-container >
+        </div>
+        <div layout="row">
+            <md-input-container flex>
+                <label>Giro del Negocio</label>
+                <input type="text" value="{{tipo_bienes_servicios[Tipo].nombre+' - '+tipo_bienes_servicios[Tipo].descripcion}}" readonly>
+            </md-input-container >
+            <md-input-container flex>
+                <label>Actividad Economica</label>
+                <input type="text" value="{{ModelTipo_Tipo_Empresa.selectedTipo.nombre +' - '+ModelTipo_Tipo_Empresa.selectedTipo.descripcion}}" readonly>
             </md-input-container>
-            <md-input-container>
-                <label>test 5</label>
-                <input type="text" ng-model="editData.test5">
-            </md-input-container>
+        </div>
+
+        <div layout="row">
+             <md-input-container flex>
+                    <label>Hablanos un poco de lo que realizasas en este establecimiento</label>
+                    <textarea name="bio" ng-model="biography" required md-maxlength="150" rows="2"></textarea>
+                    <div ng-messages="userForm.bio.$error" ng-show="userForm.bio.$dirty">
+                      <div ng-message="required">This is required!</div>
+                      <div ng-message="md-maxlength">That's too long!</div>
+                    </div>
+                </md-input-container>
+        </div>
+
+            
         </xmd-step>
     </xmd-wizard>
 </div>

@@ -36,31 +36,61 @@ var app = angular.module('nextbook20App');
     }
   });
 
-  app.controller('actualizar_datos_sucursal_Ctrl', function ($scope, $mdDialog, $location, mainService, $localStorage) {
+  app.controller('actualizar_datos_sucursal_Ctrl', function ($scope, $mdDialog, $location, mainService, $localStorage,establecimientosService) {
     $scope.infoempresa = $localStorage.datosE;
     $scope.infosucursal = $localStorage.sucursal;
     $scope.data = {nom_sucursal: $scope.infosucursal.nombre};
+    var cm=$scope;
+    cm.ModelTipo_Tipo_Empresa={
+      selectedTipo:undefined
+    }
     var self = this;
+    //-------------------------------------------------------------- GET TIPOS BIENES SERVICIOS ------------------------------------
+    function success_tipo_bienes_servicios(result){
+      $scope.tipo_bienes_servicios=result.respuesta;
+    }
+    $scope.get_data_tipos_bienes_Servicios=function(){
+      mainService.Get_Tipo_Bienes_Servicios().get({},success_tipo_bienes_servicios).$promise.then(function(){},function(error){
+        //$scope.get_data_tipos_bienes_Servicios();
+      });
+    }
+    $scope.get_data_tipos_bienes_Servicios();
+    //-------------------------------------------------------------- GET TIPOS DE EMPRESAS ------------------------------------------
 
-    $scope.contacts = [{
-      'id': 1,
-      'fullName': 'Solo se dedica a venta de productos',
-      'lastName': 'Bienes',
-      'title': "Venta de Productos"
-    }, {
-      'id': 2,
-      'fullName': 'Solo se dedica a venta de servicios',
-      'lastName': 'Servicios',
-      'title': "Presta Servicios"
-    }, {
-      'id': 3,
-      'fullName': 'Se dedica prestar servicios y a la venta de productos',
-      'lastName': 'Mixta',
-      'title': "Mixta"
-    }];
-    $scope.selectedId = 2;
-    $scope.selectedUser = function() {
-      return $filter('filter')(self.contacts, { id: self.selectedId })[0].lastName;
+    function success_tipo_empresas(result){
+      $scope.tipo_empresas=result.respuesta;
+    }
+    $scope.get_data_tipos_empresas=function(){
+      mainService.Get_Tipo_Actividad_Economica().get({},success_tipo_empresas).$promise.then(function(){},function(error){
+        //$scope.get_data_tipos_empresas();
+      });
+    }
+    $scope.get_data_tipos_empresas();
+
+    // $scope.contacts = [{
+    //   'id': 1,
+    //   'fullName': 'Solo se dedica a venta de productos',
+    //   'lastName': 'Bienes',
+    //   'title': "Venta de Productos"
+    // }, {
+    //   'id': 2,
+    //   'fullName': 'Solo se dedica a venta de servicios',
+    //   'lastName': 'Servicios',
+    //   'title': "Presta Servicios"
+    // }, {
+    //   'id': 3,
+    //   'fullName': 'Se dedica prestar servicios y a la venta de productos',
+    //   'lastName': 'Mixta',
+    //   'title': "Mixta"
+    // }];
+    $scope.Tipo = 1;
+    $scope.Actividad = 1;
+    $scope.selected_Tipo = function(val) {
+      $scope.Tipo=val.Tipo;
+    };
+
+    $scope.selected_actividad = function(val) {
+      $scope.Actividad=val.Actividad;
     };
 
 
@@ -75,7 +105,11 @@ var app = angular.module('nextbook20App');
 
     $scope.wizardSaved = function()
     {
-      console.log('save clicked');
+      
+      establecimientosService.Update_Giro_Actividad().send().$promise.then(function(data){
+        
+      })
+
     };
   });
 

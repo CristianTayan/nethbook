@@ -21,4 +21,18 @@ angular.module('nextbook20App')
             }
         });
     };
+
+    this.Update_Giro_Actividad=function() {
+        return $resource(urlService.server().appnext()+'Update_Giro_Actividad', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                }
+            }
+        });
+    };
+    
+
   });
