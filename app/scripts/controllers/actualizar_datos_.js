@@ -40,53 +40,38 @@ var app = angular.module('nextbook20App');
     $scope.infoempresa = $localStorage.datosE;
     $scope.infosucursal = $localStorage.sucursal;
     $scope.data = {nom_sucursal: $scope.infosucursal.nombre};
+    $scope.form = {descripcion:''};
     var cm=$scope;
     cm.ModelTipo_Tipo_Empresa={
       selectedTipo:undefined
     }
     var self = this;
     //-------------------------------------------------------------- GET TIPOS BIENES SERVICIOS ------------------------------------
-    function success_tipo_bienes_servicios(result){
-      $scope.tipo_bienes_servicios=result.respuesta;
-    }
-    $scope.get_data_tipos_bienes_Servicios=function(){
-      mainService.Get_Tipo_Bienes_Servicios().get({},success_tipo_bienes_servicios).$promise.then(function(){},function(error){
-        //$scope.get_data_tipos_bienes_Servicios();
-      });
-    }
-    $scope.get_data_tipos_bienes_Servicios();
+      function success_tipo_bienes_servicios(result){
+        $scope.tipo_bienes_servicios=result.respuesta;
+      }
+      $scope.get_data_tipos_bienes_Servicios=function(){
+        mainService.Get_Tipo_Bienes_Servicios().get({},success_tipo_bienes_servicios).$promise.then(function(){},function(error){
+          //$scope.get_data_tipos_bienes_Servicios();
+        });
+      }
+      $scope.get_data_tipos_bienes_Servicios();
     //-------------------------------------------------------------- GET TIPOS DE EMPRESAS ------------------------------------------
+      function success_tipo_empresas(result){
+        $scope.tipo_empresas=result.respuesta;
+      }
+      $scope.get_data_tipos_empresas=function(id){
+        mainService.Get_Tipo_Actividad_Economica().get({id_bienes_servicios:id},success_tipo_empresas).$promise.then(function(){},function(error){
+          //$scope.get_data_tipos_empresas();
+        });
+      }
+     // ------------------------------------------------------------- PROCESOS GENERALES ---------------------------------------------
 
-    function success_tipo_empresas(result){
-      $scope.tipo_empresas=result.respuesta;
-    }
-    $scope.get_data_tipos_empresas=function(){
-      mainService.Get_Tipo_Actividad_Economica().get({},success_tipo_empresas).$promise.then(function(){},function(error){
-        //$scope.get_data_tipos_empresas();
-      });
-    }
-    $scope.get_data_tipos_empresas();
-
-    // $scope.contacts = [{
-    //   'id': 1,
-    //   'fullName': 'Solo se dedica a venta de productos',
-    //   'lastName': 'Bienes',
-    //   'title': "Venta de Productos"
-    // }, {
-    //   'id': 2,
-    //   'fullName': 'Solo se dedica a venta de servicios',
-    //   'lastName': 'Servicios',
-    //   'title': "Presta Servicios"
-    // }, {
-    //   'id': 3,
-    //   'fullName': 'Se dedica prestar servicios y a la venta de productos',
-    //   'lastName': 'Mixta',
-    //   'title': "Mixta"
-    // }];
-    $scope.Tipo = 1;
     $scope.Actividad = 1;
     $scope.selected_Tipo = function(val) {
-      $scope.Tipo=val.Tipo;
+      $scope.Tipo = val.Tipo;
+      $scope.Tipo_completo = val;
+      $scope.get_data_tipos_empresas(val.Tipo);
     };
 
     $scope.selected_actividad = function(val) {
@@ -98,18 +83,21 @@ var app = angular.module('nextbook20App');
       test1: 'test input'
     };
 
-    $scope.stepChanged = function()
-    {
+    $scope.stepChanged = function(){
       console.log('step changed');
     };
 
-    $scope.wizardSaved = function()
-    {
-      
-      establecimientosService.Update_Giro_Actividad().send().$promise.then(function(data){
-        
+    $scope.wizardSaved = function(){   
+      var x = {
+                                                              'tipo_bienes_servicios': $scope.Tipo_completo,
+                                                              'ModelTipo_Tipo_Empresa': cm.ModelTipo_Tipo_Empresa,
+                                                              'sucursal': $scope.data.nom_sucursal,
+                                                              'descripcion': $scope.form.descripcion
+                                                            };
+      console.log(x);
+      establecimientosService.Update_Giro_Actividad().send(x).$promise.then(function(data){
+        console.log(data);
       })
-
     };
   });
 

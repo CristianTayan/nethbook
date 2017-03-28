@@ -11,6 +11,12 @@ html {
 
 
 
+md-radio-button img {
+    margin: 0 40px 10px;
+    width: 100px;
+    height: 100px;
+}
+
 /*
 .lx-select.lx-select--default-style.lx-select--view-mode-field {
     padding-top: 3px;
