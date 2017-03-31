@@ -16,7 +16,6 @@ var app = angular.module('nextbook20App');
       $scope.menu = data.respuesta[0].children[0];
       // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 
-
       $scope.toppings = [
         { name: 'Pepperoni', wanted: true },
         { name: 'Sausage', wanted: false },
