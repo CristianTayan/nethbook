@@ -95,7 +95,7 @@ var app = angular.module('nextbook20App');
                                                               'descripcion': $scope.form.descripcion
                                                             };
       console.log(x);
-      establecimientosService.Update_Giro_Actividad().send(x).$promise.then(function(data){
+      establecimientosService.Update_Giro_Actividad().send({'hola':'hola'}).$promise.then(function(data){
         console.log(data);
       })
     };
