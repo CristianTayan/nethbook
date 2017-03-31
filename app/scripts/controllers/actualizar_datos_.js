@@ -89,6 +89,7 @@ var app = angular.module('nextbook20App');
     };
 
     $scope.wizardSaved = function(){   
+
       $scope.x = {
                   'tipo_bienes_servicios': $scope.Tipo_completo,
                   'ModelTipo_Tipo_Empresa': cm.ModelTipo_Tipo_Empresa.selectedTipo,
@@ -97,16 +98,9 @@ var app = angular.module('nextbook20App');
                 };
       console.log($scope.x);
       establecimientosService.Update_Giro_Actividad().send($scope.x).$promise.then(function(data){
-        if (data.respuesta) {
-          $mdToast.show({
-              hideDelay   : 5000,
-              position    : 'bottom right',
-              controller  : 'notificacionCtrl',
-              templateUrl : 'views/notificaciones/guardar.html'
-            });
-          $location.path('/App');
-        }
-      })
-    };
+
+      });
+    }
+    
   });
 
