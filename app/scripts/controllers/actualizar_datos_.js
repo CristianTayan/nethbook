@@ -96,11 +96,19 @@ var app = angular.module('nextbook20App');
                   'sucursal': $scope.infosucursal.id,
                   'descripcion': $scope.form.descripcion
                 };
-      console.log($scope.x);
       establecimientosService.Update_Giro_Actividad().send($scope.x).$promise.then(function(data){
-
+        if (data.respuesta) {
+          $localStorage.sucursal.giro_negocio=$scope.Tipo_completo.id;
+          $mdToast.show({
+              hideDelay   : 5000,
+              position    : 'bottom right',
+              controller  : 'notificacionCtrl',
+              templateUrl : 'views/notificaciones/guardar.html'
+            });
+          $location.path('/App');
+        }
       });
     }
-    
+
   });
 
