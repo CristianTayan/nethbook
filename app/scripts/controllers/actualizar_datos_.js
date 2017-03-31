@@ -36,7 +36,7 @@ var app = angular.module('nextbook20App');
     }
   });
 
-  app.controller('actualizar_datos_sucursal_Ctrl', function ($scope, $mdDialog, $location, mainService, $localStorage,establecimientosService) {
+  app.controller('actualizar_datos_sucursal_Ctrl', function ($scope, $mdToast, $location, mainService, $localStorage,establecimientosService) {
     $scope.infoempresa = $localStorage.datosE;
     $scope.infosucursal = $localStorage.sucursal;
     $scope.data = {nom_sucursal: $scope.infosucursal.nombre};
@@ -69,9 +69,10 @@ var app = angular.module('nextbook20App');
 
     $scope.Actividad = 1;
     $scope.selected_Tipo = function(val) {
+      console.log(val);
       $scope.Tipo = val.Tipo;
       $scope.Tipo_completo = val;
-      $scope.get_data_tipos_empresas(val.Tipo);
+      $scope.get_data_tipos_empresas(val.id);
     };
 
     $scope.selected_actividad = function(val) {
@@ -88,15 +89,23 @@ var app = angular.module('nextbook20App');
     };
 
     $scope.wizardSaved = function(){   
-      var x = {
-                                                              'tipo_bienes_servicios': $scope.Tipo_completo,
-                                                              'ModelTipo_Tipo_Empresa': cm.ModelTipo_Tipo_Empresa,
-                                                              'sucursal': $scope.data.nom_sucursal,
-                                                              'descripcion': $scope.form.descripcion
-                                                            };
-      console.log(x);
-      establecimientosService.Update_Giro_Actividad().send(x).$promise.then(function(data){
-        console.log(data);
+      $scope.x = {
+                  'tipo_bienes_servicios': $scope.Tipo_completo,
+                  'ModelTipo_Tipo_Empresa': cm.ModelTipo_Tipo_Empresa.selectedTipo,
+                  'sucursal': $scope.infosucursal.id,
+                  'descripcion': $scope.form.descripcion
+                };
+      console.log($scope.x);
+      establecimientosService.Update_Giro_Actividad().send($scope.x).$promise.then(function(data){
+        if (data.respuesta) {
+          $mdToast.show({
+              hideDelay   : 5000,
+              position    : 'bottom right',
+              controller  : 'notificacionCtrl',
+              templateUrl : 'views/notificaciones/guardar.html'
+            });
+          $location.path('/App');
+        }
       })
     };
   });
