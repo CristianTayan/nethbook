@@ -19,18 +19,18 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
         $location.path(menu.path);
     }
 
-    // $mdDialog.show({
-    //     controller: Dialog_procedimiento_Controller,
-    //     templateUrl: 'views/app/inventario/inicio/modal_.html',
-    //     parent: angular.element(document.body),
-    //     targetEvent: event,
-    //     ariaLabel: 'Respuesta Registro',
-    //     clickOutsideToClose: true,
-    //     fullscreen:false
-    //     // locals: {
-    //     //     obj: categoria
-    //     // }
-    // });
+    $mdDialog.show({
+        controller: Dialog_procedimiento_Controller,
+        templateUrl: 'views/app/inventario/inicio/modal_.html',
+        parent: angular.element(document.body),
+        targetEvent: event,
+        ariaLabel: 'Respuesta Registro',
+        clickOutsideToClose: true,
+        fullscreen:false
+        // locals: {
+        //     obj: categoria
+        // }
+    });
 
     // $scope.data_inv_tc = {nombre:'', descripcion:''};
     $scope.data_inv_tc_guardar = function() {
@@ -304,13 +304,14 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
             
     }
 });
-app.controller('inv_menu_Ctrl', function($scope, inventario_Service) {
+app.controller('inv_menu_Ctrl', function($scope, inventario_Service, $localStorage) {
     // $scope.data_inv_tc = {nombre:'', descripcion:''};
     $scope.data_inv_tc_guardar = function() {
         inventario_Service.Add_Tipo_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
             console.log(data);
         });
     }
+    $scope.info_sucursal = $localStorage.sucursal;
 });
 app.controller('inv_tipo_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
     // ---------------------------------------------------------PROCESO CREAR REGISTRO---------------------------------------------------------
