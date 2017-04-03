@@ -9,7 +9,15 @@ html {
     font-family: "Roboto";
 }
 
-
+md-expansion-panel {
+    display: block;
+    position: relative;
+    outline: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    box-shadow: 0px 1px 0px #F9F9F9;
+}
 
 md-radio-button img {
     margin: 0 40px 10px;
