@@ -400,14 +400,17 @@ var app = angular.module('nextbook20App')
 
 		    function DialogController_nuevo($scope,vistas,combinacion_privilegios, $mdDialog, $mdToast) {
 		    	$scope.selected=[];
+		    	$scope.procesando=false;
 		    	// ------------------------ GENERACION DE VISTAS PRIVILEGIOS---------------------------
 					$scope.stuff0 = vistas;//angular.copy(stuff);
 					$scope.combinacion_privilegios = combinacion_privilegios;
 		        // Nuevo registro tipo inventario
 		        $scope.col_tipo_usuario_nuevo = function() {
 		        	$scope.data_col_tipo_usuario.vistas = $scope.stuff0;
-		            colaboradores_Service.Add_Tipo_Usuario().add($scope.data_col_tipo_usuario).$promise.then(function(data) {
+		        	$scope.procesando=true;
+		            return colaboradores_Service.Add_Tipo_Usuario().add($scope.data_col_tipo_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_tipo_usuario", {});
+		                $scope.procesando=false;
 		                if (data.respuesta == true) {
 		                    $mdDialog.cancel();
 			                    $mdToast.show({

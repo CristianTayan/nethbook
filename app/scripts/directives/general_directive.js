@@ -140,3 +140,27 @@ var app = angular.module('nextbook20App');
         }
     };
 })
+
+app.directive('disableOnPromise',function($parse){
+  return {
+    restrict:'A',
+    compile:function($compile,attr){
+      var fn=$parse(attr.disableOnPromise);
+      return function clickHandler(scope, element, attrs) {
+        var ladda = (attrs.withLadda ? Ladda.create(element[0]) : false);
+        element.on('click', function(event) {
+          attrs.$set('disabled', true);
+          if(ladda) ladda.start();
+          scope.$apply(function() {
+            fn(scope, {$event:event}).finally(function() {
+              attrs.$set('disabled', false);
+              if(ladda) ladda.stop();
+            });
+          });
+        });
+      };
+    }
+
+  };
+
+})
