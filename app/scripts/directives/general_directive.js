@@ -141,6 +141,7 @@ var app = angular.module('nextbook20App');
     };
 })
 
+//bloquear boton al hacer un promise  
 app.directive('disableOnPromise',function($parse){
   return {
     restrict:'A',
@@ -164,3 +165,4 @@ app.directive('disableOnPromise',function($parse){
   };
 
 })
+
