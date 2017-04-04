@@ -17,7 +17,7 @@ angular.module('nextbook20App')
 	    });
 	    $scope.Select_Sucursal = function(index) {
 	        $localStorage.sucursal = index;
-	        (index.giro_negocio==0)?$location.path('/Actualizar_Datos_Sucursal'):$location.path('/nb/Inicio')
+	        (index.giro_negocio.id==0)?$location.path('/Actualizar_Datos_Sucursal'):$location.path('/nb/Inicio')
 	    }
 	    $scope.escapeRegExp = function(str) {
 			return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
