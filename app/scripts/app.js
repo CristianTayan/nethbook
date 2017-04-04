@@ -51,6 +51,12 @@ var app = angular.module('nextbook20App', [
     });
 
 
+    // app.module('material.components.expansionPanels', [
+    //     'material.core'
+    //   ]);
+    
+
+
 
     
     // ------------------------------------------------------IDIOMA------------------------------------------------------

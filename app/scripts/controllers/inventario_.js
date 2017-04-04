@@ -19,18 +19,18 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
         $location.path(menu.path);
     }
 
-    $mdDialog.show({
-        controller: Dialog_procedimiento_Controller,
-        templateUrl: 'views/app/inventario/inicio/modal_.html',
-        parent: angular.element(document.body),
-        targetEvent: event,
-        ariaLabel: 'Respuesta Registro',
-        clickOutsideToClose: true,
-        fullscreen:false
-        // locals: {
-        //     obj: categoria
-        // }
-    });
+    // $mdDialog.show({
+    //     controller: Dialog_procedimiento_Controller,
+    //     templateUrl: 'views/app/inventario/inicio/modal_.html',
+    //     parent: angular.element(document.body),
+    //     targetEvent: event,
+    //     ariaLabel: 'Respuesta Registro',
+    //     clickOutsideToClose: true,
+    //     fullscreen:false
+    //     // locals: {
+    //     //     obj: categoria
+    //     // }
+    // });
 
     // $scope.data_inv_tc = {nombre:'', descripcion:''};
     $scope.data_inv_tc_guardar = function() {
@@ -1315,7 +1315,6 @@ app.controller('inv_tipo_catalogo_Ctrl', function($scope, $rootScope, $mdDialog,
     });
 });
 
-
 app.controller('notificacionCtrl', function($scope, $mdToast, $mdDialog) {
     $scope.closeToast = function() {
 
@@ -2469,7 +2468,6 @@ app.controller('inv_categoria_Ctrl', function($scope, $rootScope, $mdDialog, inv
    $scope.toggle = function (node) {
         console.log(node);
     };
-
 });
 
 app.controller('inv_categoria_productos_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
@@ -2774,7 +2772,6 @@ app.controller('inv_categoria_productos_Ctrl', function($scope, $rootScope, $mdD
    $scope.toggle = function (node) {
         console.log(node);
     };
-
 });
 
 app.controller('inv_categoria_bienes_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service) {
@@ -3079,7 +3076,6 @@ app.controller('inv_categoria_bienes_Ctrl', function($scope, $rootScope, $mdDial
    $scope.toggle = function (node) {
         console.log(node);
     };
-
 });
 
 app.controller('inv_productos_Ctrl', function($scope, $rootScope, $mdDialog, inventario_Service,Contabilidad_Service) {

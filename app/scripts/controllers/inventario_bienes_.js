@@ -86,7 +86,6 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
 
      // ------------------------------------------------------- FIN SELECTS ----------------------------------------------------------------
     // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
-    $scope.customFullscreen = false;
     $scope.inv_producto_dialog_nuevo = function(event) {
         $mdDialog.show({
             controller: DialogController_nuevo,
@@ -95,7 +94,7 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
             clickOutsideToClose: false,
-            fullscreen: $scope.customFullscreen,
+            fullscreen: true,
             locals: {
                 select_tipo_categoria: $scope.categorias,
                 select_estado_descriptivo: $scope.estado_descriptivo,
@@ -109,7 +108,12 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
         });
     }
 
-    function DialogController_nuevo($scope, select_impuestos,select_tipo_categoria,select_estado_descriptivo,select_garantias,select_marcas,select_modelos,select_ubicaciones,select_tipo_consumos, $mdToast) {
+    function DialogController_nuevo($scope, $localStorage, $mdExpansionPanel, select_impuestos,select_tipo_categoria,select_estado_descriptivo,select_garantias,select_marcas,select_modelos,select_ubicaciones,select_tipo_consumos, $mdToast) {
+        $mdExpansionPanel().waitFor('expansionPanelOne').then(function (instance) { instance.expand(); });
+        $scope.inf_sucursal = $localStorage.sucursal;
+        
+
+
         // ------------------------------------------------------ INICIALIZACION CAMPOS ---------------------------------------------------------
         $scope.data_inv_producto = {precio:0.00,costo: 0.00, cantidad:1}
         $scope.data_inv_producto.categoria;
