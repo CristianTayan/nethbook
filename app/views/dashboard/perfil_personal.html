@@ -1,171 +1,170 @@
-<div layout="row" layout-align="center center">
-    <div flex-gt-sm="90" flex-gt-md="60">
-        <div layout-xs="column" layout="row">
-            <div layout-wrap flex-xs flex-gt-xs="30" layout="column" flex layout="row" layout-fill>
-                <div class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-                    <md-toolbar>
-                        <div class="md-toolbar-tools">
-                        </div>
-                    </md-toolbar>
-                    <md-toolbar>
-                        <div class="md-toolbar-tools">
-                            <h3 class="md-display-4">Alex Doil</h3>
-                        </div>
-                    </md-toolbar>
-                    <div>
-                        <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="100%">
-                        <md-card-content>
-                            <h2 class="md-title">About Me</h2>
-                            <p>
-                                A passionate Blogger and Developer. He has more then 5 years of experience on web application development. He loves to work in javascript programming language.At present he is exploring W3C Web Component specification.
-                            </p>
-                        </md-card-content>
-                    </div>
+<div layout-wrap flex="30" layout-fill>
+    <div class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar>
+                <div class="md-toolbar-tools">
                 </div>
+            </md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h3 class="md-display-4">{{data_usuario.primer_nombre}} {{data_usuario.primer_apellido}}</h3>
+                </div>
+                    <md-card>
+			        <md-card-header>
+			          <md-card-avatar>
+			            <md-icon class="md-avatar">menu</md-icon>
+			          </md-card-avatar>
+			          <md-card-header-text>
+			            <span class="md-title">Title</span>
+			            <span class="md-subhead">subhead</span>
+			          </md-card-header-text>
+			        </md-card-header>
+			    </md-card>
+            <div>
+                <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="100%">
+                <md-card-content>
+                    <h2 class="md-title">About Me</h2>
+                    <p>
+                        A passionate Blogger and Developer. He has more then 5 years of experience on web application development. He loves to work in javascript programming language.At present he is exploring W3C Web Component specification.
+                    </p>
+                </md-card-content>
             </div>
-            <div flex-xs flex-gt-xs="70" layout="column" flex layout="row" layout-padding>
-                <md-content class="md-padding">
-                    <md-tabs md-dynamic-height="" md-border-bottom="" md-selected="selectedIndex" md-center-tabs="true">
-                        <md-tab>
-                            <md-tab-label>
-                                <md-icon>perm_contact_calendar</md-icon> Información Perfil</md-tab-label>
-                            <md-tab-body>
-                            	<form name="form_usuario" ng-submit="col_usuario_nuevo()">
-                            		<div layout="row">
-			                            <md-input-container class="md-icon-float md-block" flex>
-			                                <md-icon class="md-primary">view_compact</md-icon>
-			                                <label>Primer Nombre</label>
-			                                <input name="primer_nombre" ng-model="data_usuario.primer_nombre" type="text" required>
-			                                <div ng-messages="form_usuario.primer_nombre.$error" ng-show="form_usuario.primer_nombre.$dirty">
-			                                    <div ng-message="required">Campo Requerido</div>
-			                                </div>
-			                            </md-input-container>
-			                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
-			                            <md-input-container class="md-icon-float md-block" flex>
-			                                <md-icon class="md-primary">view_compact</md-icon>
-			                                <label>Segundo Nombre</label>
-			                                <input name="segundo_nombre" ng-model="data_usuario.segundo_nombre" type="text" >
-			                                <div ng-messages="form_usuario.segundo_nombre.$error" ng-show="form_usuario.segundo_nombre.$dirty">
-			                                    <div ng-message="required">Campo Requerido</div>
-			                                </div>
-			                            </md-input-container>
-			                        </div>  
-			                        <div layout="row">
-			                        	<md-input-container class="md-icon-float md-block" flex>
-			                                <md-icon class="md-primary">view_compact</md-icon>
-			                                <label>Primer Apellido</label>
-			                                <input name="primer_apellido" ng-model="data_usuario.primer_apellido" type="text" required>
-			                                <div ng-messages="form_usuario.primer_apellido.$error" ng-show="form_usuario.primer_apellido.$dirty">
-			                                    <div ng-message="required">Campo Requerido</div>
-			                                </div>
-			                            </md-input-container>
-			                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
-			                            <md-input-container class="md-icon-float md-block" flex>
-			                                <md-icon class="md-primary">view_compact</md-icon>
-			                                <label>Segundo Apellido</label>
-			                                <input name="segundo_apellido" ng-model="data_usuario.segundo_apellido" type="text" >
-			                                <div ng-messages="form_usuario.segundo_apellido.$error" ng-show="form_usuario.segundo_apellido.$dirty">
-			                                    <div ng-message="required">Campo Requerido</div>
-			                                </div>
-			                            </md-input-container>
-			                        </div>
-			                        <div layout="row">
-			                        	<md-input-container class="md-icon-float md-block" flex>
-			                                <md-icon class="md-primary">email</md-icon>
-			                                <label>Correo Electrónico</label>
-			                                <input name="correo" ng-model="data_usuario.correo_electronico" type="email" required correoelectronico-validator>
-			                                <div ng-messages="form_usuario.correo.$error" ng-show="form_usuario.correo.$dirty">
-			                                    <div ng-message="required">Campo Requerido</div>
-			                                    <div ng-message="campo">Registro Existente</div>
-			                                    <div ng-message="email">Correo Invalido</div>
-			                                </div>
-			                            </md-input-container>                 
-			                        </div>
-			                        <div layout="row">
-			                            <md-input-container class="md-icon-float md-icon-left md-block" flex required>
-			                                <md-icon class="md-primary">supervisor_account</md-icon>
-			                                <lx-select name="ciudad" ng-model="selectModelCiudad.selectedCiudades"
-			                                           lx-allow-clear="true"
-			                                           lx-choices="selectCiudades"
-			                                           lx-display-filter="true"
-			                                           lx-fixed-label="true"
-			                                           lx-label="Ciudad">
-			                                    <lx-select-selected>
-			                                        {{ $selected.nombre }}
-			                                    </lx-select-selected>
-			                                    <lx-select-choices>
-			                                        {{ $choice.nombre }}
-			                                    </lx-select-choices>
-			                                </lx-select>
-			                                <div ng-messages="form_usuario.ciudad.$error" ng-show="selectedCiudades==undefined">
-			                                    <div ng-message="required">Campo Requerido</div>
-			                                </div>
-			                            </md-input-container>
-			                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
-		                                <md-input-container class="md-icon-float md-block" flex>
-		                                    <md-icon class="md-primary">view_compact</md-icon>
-		                                    <label>Calle Principal</label>
-		                                    <input name="calle" ng-model="data_usuario.calle" type="text" required>
-		                                    <div ng-messages="form_usuario.calle.$error" ng-show="form_usuario.calle.$dirty">
-		                                        <div ng-message="required">Campo Requerido</div>
-		                                    </div>
-		                                </md-input-container>
-			                        </div> 
-			                        <div layout="row">
-			                        	<md-input-container class="md-icon-float md-block" flex>
-		                                    <md-icon class="md-primary">view_compact</md-icon>
-		                                    <label>Calle Secundaria</label>
-		                                    <input name="transversal" ng-model="data_usuario.transversal" type="text" >
-		                                </md-input-container>
-		                                <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
-		                                <md-input-container class="md-icon-float md-block" flex>
-		                                    <md-icon class="md-primary">view_compact</md-icon>
-		                                    <label>Numero de Casa</label>
-		                                    <input name="numero" ng-model="data_usuario.numero" type="text" >
-		                                </md-input-container>
-			                        </div>
-			                        <div layout="row">
-							            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_usuario.$invalid">Guardar</md-button>
-							            <md-button class="md-raised md-primary" type="submit" ng-click="showPrompt(event)">fsdf</md-button>
-							        </div>
-                            	</form>
-                            </md-tab-body>
-                        </md-tab>
-                        <md-tab>
-                            <md-tab-label>
-                                <md-icon>lock_outline</md-icon> Password / Clave</md-tab-label>
-                            <md-tab-body>
-                            	<div layout="row" layout-align="center center">
-    								<div flex-gt-sm="90" flex-gt-md="40">
-    									<form name="form_password" ng-submit="col_usuario_nuevo()">
-				                            <md-input-container class="md-icon-float md-block" layout="row">
-				                                <md-icon class="md-primary">vpn_key</md-icon>
-				                                <label>Nueva Clave</label>
-				                                <input name="newpass" ng-model="data_usuario.newpass" type="text" required>
-				                                <div ng-messages="form_password.newpass.$error" ng-show="form_password.newpass.$dirty">
-				                                    <div ng-message="required">Campo Requerido</div>
-				                                </div>
-				                            </md-input-container>
-				                            <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
-			                                <md-input-container class="md-icon-float md-block" layout="row">
-			                                    <md-icon class="md-primary">repeat</md-icon>
-			                                    <label>Repita Nueva Clave</label>
-			                                    <input name="newpass1" ng-model="data_usuario.newpass1" type="text" required>
-			                                    <div ng-messages="form_password.newpass1.$error" ng-show="form_password.newpass1.$dirty">
-			                                        <div ng-message="required">Campo Requerido</div>
-			                                    </div>
-			                                </md-input-container>
-					                        <div layout="row">
-									            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_password.$invalid">Guardar</md-button>
-									        </div>
-		                            	</form>
-    								</div>
-    							</div>
-                            </md-tab-body>
-                        </md-tab>
-                    </md-tabs>
-                </md-content>
-            </div>
-        </div>
     </div>
+</div>
+<div flex="70" layout="column" class="md-padding">
+	<md-content layout-wrap>
+        <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex" md-center-tabs="true">
+		    <md-tab>
+		        <md-tab-label>
+		            <md-icon>perm_contact_calendar</md-icon> Información Perfil</md-tab-label>
+		        <md-tab-body >
+
+		            <form name="form_usuario" ng-submit="col_usuario_nuevo()" layout-padding>
+		            	<br>
+		                <div layout="row">
+		                    <md-input-container class="md-icon-float md-block" flex>
+		                        <md-icon class="md-primary">supervisor_account</md-icon>
+		                        <label>Primer Nombre</label>
+		                        <input name="primer_nombre" ng-model="data_usuario.primer_nombre" type="text" required>
+		                        <div ng-messages="form_usuario.primer_nombre.$error" ng-show="form_usuario.primer_nombre.$dirty">
+		                            <div ng-message="required">Campo Requerido</div>
+		                        </div>
+		                    </md-input-container>
+		                    <md-input-container class="md-icon-float md-block" flex>
+		                        <label>Segundo Nombre</label>
+		                        <input name="segundo_nombre" ng-model="data_usuario.segundo_nombre" type="text">
+		                        <div ng-messages="form_usuario.segundo_nombre.$error" ng-show="form_usuario.segundo_nombre.$dirty">
+		                            <div ng-message="required">Campo Requerido</div>
+		                        </div>
+		                    </md-input-container>
+		                    <md-input-container class="md-icon-float md-block" flex>
+		                        <label>Primer Apellido</label>
+		                        <input name="primer_apellido" ng-model="data_usuario.primer_apellido" type="text" required>
+		                        <div ng-messages="form_usuario.primer_apellido.$error" ng-show="form_usuario.primer_apellido.$dirty">
+		                            <div ng-message="required">Campo Requerido</div>
+		                        </div>
+		                    </md-input-container>
+		                    <md-input-container class="md-icon-float md-block" flex>
+		                        <label>Segundo Apellido</label>
+		                        <input name="segundo_apellido" ng-model="data_usuario.segundo_apellido" type="text">
+		                        <div ng-messages="form_usuario.segundo_apellido.$error" ng-show="form_usuario.segundo_apellido.$dirty">
+		                            <div ng-message="required">Campo Requerido</div>
+		                        </div>
+		                    </md-input-container>
+		                </div>
+	                    <md-input-container class="md-icon-float md-block" layout="row">
+	                        <md-icon class="md-primary">email</md-icon>
+	                        <label>Correo Electrónico</label>
+	                        <input name="correo" ng-model="data_usuario.correo_electronico" type="email" required correoelectronico-validator>
+	                        <div ng-messages="form_usuario.correo.$error" ng-show="form_usuario.correo.$dirty">
+	                            <div ng-message="required">Campo Requerido</div>
+	                            <div ng-message="campo">Registro Existente</div>
+	                            <div ng-message="email">Correo Invalido</div>
+	                        </div>
+	                    </md-input-container>
+		                <div layout="row">
+		                    <md-input-container class="md-icon-float md-icon-left " flex required>
+		                        <md-icon class="md-primary">supervisor_account</md-icon>
+		                        <lx-select name="ciudad" ng-model="selectModelCiudad.selectedCiudades" lx-allow-clear="true" lx-choices="selectCiudades" lx-display-filter="true" lx-fixed-label="true" lx-label="Ciudad">
+		                            <lx-select-selected>
+		                                {{ $selected.nombre }}
+		                            </lx-select-selected>
+		                            <lx-select-choices>
+		                                {{ $choice.nombre }}
+		                            </lx-select-choices>
+		                        </lx-select>
+		                        <div ng-messages="form_usuario.ciudad.$error" ng-show="selectedCiudades==undefined">
+		                            <div ng-message="required">Campo Requerido</div>
+		                        </div>
+		                    </md-input-container>
+		                    <div flex="5" hide-xs hide-sm>
+		                        <!-- Spacer //-->
+		                    </div>
+		                    <md-input-container class="md-icon-float md-block" flex>
+		                        <md-icon class="md-primary">view_compact</md-icon>
+		                        <label>Calle Principal</label>
+		                        <input name="calle" ng-model="data_usuario.calle" type="text" required>
+		                        <div ng-messages="form_usuario.calle.$error" ng-show="form_usuario.calle.$dirty">
+		                            <div ng-message="required">Campo Requerido</div>
+		                        </div>
+		                    </md-input-container>
+		                </div>
+		                <div layout="row">
+		                    <md-input-container class="md-icon-float md-block" flex>
+		                        <md-icon class="md-primary">view_compact</md-icon>
+		                        <label>Calle Secundaria</label>
+		                        <input name="transversal" ng-model="data_usuario.transversal" type="text">
+		                    </md-input-container>
+		                    <div flex="5" hide-xs hide-sm></div>
+		                    <md-input-container class="md-icon-float md-block" flex>
+		                        <md-icon class="md-primary">view_compact</md-icon>
+		                        <label>Numero de Casa</label>
+		                        <input name="numero" ng-model="data_usuario.numero" type="text">
+		                    </md-input-container>
+		                </div>
+		                <div layout="row">
+		                    <md-button class="md-raised md-primary" type="submit" ng-disabled="form_usuario.$invalid">Guardar</md-button>
+		                    <md-button class="md-raised md-primary" type="submit" ng-click="showPrompt(event)">Cancelar</md-button>
+		                </div>
+		            </form>
+		        </md-tab-body>
+		    </md-tab>
+		    <md-tab>
+		        <md-tab-label>
+		            <md-icon>lock_outline</md-icon> Password / Clave</md-tab-label>
+		        <md-tab-body>
+		            <div layout="row" layout-align="center center">
+		                <div flex-gt-sm="90" flex-gt-md="40">
+		                	<br>
+		                    <form name="form_password" ng-submit="cambiar_datos_password()">
+		                        <div layout-gt-sm="row">
+	                                <md-input-container class="md-block" flex-gt-sm>
+	                                    <label>Ingrese su nueva contraseña</label>
+	                                    <md-icon class="md-accent">streetview</md-icon>
+	                                    <input type="password" id="password" name="password" ng-model="data.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required />
+	                                    <div ng-messages="form_password.password.$error">
+	                                        <div ng-message="required" class="my-message">Ingrese una contraseña es requerido</div>
+	                                        <div ng-message="minlength" class="my-message">as contraseñas deben tener entre 8 y 20 caracteres.</div>
+	                                        <div ng-message="pattern" class="my-message">Debe contener una minuscula &amp;letra mayúscula y un carácter especial (un número o un símbolo.)</div>
+	                                    </div>
+	                                </md-input-container>
+	                            </div>            
+	                            <div layout-gt-sm="row">
+	                                <md-input-container class="md-block" flex-gt-sm>
+	                                        <label>Repita nueva contraseña</label>
+	                                        <md-icon class="md-accent">layers</md-icon>
+	                                        <input type="password" id="password_c" name="password_c" ng-model="data.password_c" valid-password-c="data.password" required />
+	                                        <div ng-messages="form_password.password_c.$error">
+	                                            <div ng-message="required">Campo es requerido</div>
+	                                        </div>
+	                                </md-input-container>
+	                            </div>
+		                        <div layout="row">
+		                            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_password.$invalid">Guardar</md-button>
+		                        </div>
+		                    </form>
+		                </div>
+		            </div>
+		        </md-tab-body>
+		    </md-tab>
+		</md-tabs>
+	</md-content>
 </div>

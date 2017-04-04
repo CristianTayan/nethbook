@@ -1,35 +1,50 @@
 <md-content flex layout="row" app-view-segment="2">
 </md-content>
-<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" layout="row" md-is-locked-open="$mdMedia('gt-sm')" ng-show="IsVisible">
-    <md-tabs md-border-bottom flex>
-        <md-tab label="Mi Musica">
-            <md-content>
-            <md-button play-all="songs"><md-icon>playlist_play</md-icon></md-button>
-                <md-list>
-                    <md-list-item class="md-2-line" ng-repeat="music in songs">
-                        <img src="https://yt3.ggpht.com/0v8T0CTAv8VPxA5lJtz-tqJe-tR-3VQc0ONhD6Az2RWjNRnwh5QQzPYz5I7wbYljU_tQjZ2ok2W59_v_=s900-nd-c-c0xffffffff-rj-k-no" class="md-avatar" alt="{{music.options.face}}" />
-                        <div class="md-list-item-text">
-                            <h3> {{ music.artista }} </h3>
-                            <p> {{ music.nombre_cancion }} </p>
-                        </div>
-                        <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" aria-label="call" music-player="play" add-song="music">
-                            <md-icon>play_circle_outline</md-icon>
-                        </md-button>
-                    </md-list-item>
-                </md-list>                
-            </md-content>
-        </md-tab>
-        <md-tab label="Soporte">
-            <md-content>
-                    <md-toolbar>
-                        <h4 class="md-padding">Soporte Técnico</h4>
-                    </md-toolbar>
-                    <!--Note: for scrollShrink to work, the toolbar must be a sibling of a md-content element, placed before it.-->
-                    <md-content>
-                        Hello!
-                    </md-content>
-            </md-content>
-        </md-tab>
-        
-    </md-tabs>
+<md-sidenav style="width: 200px;" md-component-id="right" md-is-locked-open="$mdMedia('gt-sm')" ng-show="IsVisible" >
+    <md-content layout="column">
+        <md-list>
+            <md-subheader class="md-no-sticky text-center">MENU PRINCIPAL</md-subheader>
+            <md-list-item ng-href="#/App/Inventario/">
+                <p> Inventario </p>
+                <md-icon class="md-accent">apps</md-icon>
+            </md-list-item>
+            <md-list-item ng-click="null" class="md-accent">
+                <p> Compras </p>
+                <md-icon class="md-accent">apps</md-icon>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <p> Clientes </p>
+                <md-icon class="md-accent">apps</md-icon>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <p> Proveedores </p>
+                <md-icon class="md-accent">apps</md-icon>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <p> Acumulados </p>
+                <md-icon class="md-accent">apps</md-icon>
+            </md-list-item>
+        </md-list>
+    </md-content>
 </md-sidenav>
+<!-- 
+<md-sidenav style="max-width:300px;" layout="column" md-component-id="right" md-is-locked-open="$mdMedia('gt-sm')"  flex  layout-align="center ">
+    <md-content layout="column">
+        <md-list-item href="#/App">
+            <md-icon>pages</md-icon>
+            <p>APP</p>
+            <md-icon>pages</md-icon>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-subheader class="md-no-sticky">Menu de Aplicación</md-subheader>
+        <md-list-item ng-href="#/App{{item.path}}" ng-repeat="item in menu.children" md-colors="{background: 'primary'}">
+            <p> {{item.nombre}} </p>
+            <md-icon>business</md-icon>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="null">
+            <p> Clientes </p>
+            <md-icon class="md-accent">home</md-icon>
+        </md-list-item>
+    </md-content>
+</md-sidenav> -->

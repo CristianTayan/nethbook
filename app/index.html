@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Conceptual</title>
+    <title>Nethbook</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="icon" type="image/ico" href="fluicon.png">
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
@@ -15,14 +16,18 @@
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <link rel="stylesheet" href="bower_components/angular-material-data-table/dist/md-data-table.css" />
     <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css" />
-    <link rel="stylesheet" href="bower_components/angular-ivh-treeview/dist/ivh-treeview.css" />
     <link rel="stylesheet" href="bower_components/material-steppers/dist/material-steppers.css" />
     <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
     <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/angular-material-accordion/dist/angular-material-accordion.css" />
+    <link rel="stylesheet" href="bower_components/angular-material-expansion-panel/dist/md-expansion-panel.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.css" />
+    <link rel="stylesheet" href="bower_components/angular-ivh-treeview/dist/ivh-treeview.css" />
+    <link rel="stylesheet" href="bower_components/xmdwizard/build/xmdWizard.css" />
     <!-- endbower -->
     <link rel="stylesheet" href="//rawgit.com/iVantage/angular-ivh-treeview/master/dist/ivh-treeview-theme-basic.css">
     <link rel="stylesheet" href="../bower_components/angular-material-sidemenu/dest/angular-material-sidemenu.css">
+    <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css">
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -62,7 +67,6 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
@@ -81,7 +85,6 @@
     <script src="bower_components/angular-material-sidemenu/dest/angular-material-sidemenu.js"></script>
     <script src="bower_components/material-design-lite/material.min.js"></script>
     <script src="bower_components/angular-money-directive/dist/angular-money-directive.js"></script>
-    <script src="bower_components/angular-ivh-treeview/dist/ivh-treeview.js"></script>
     <script src="bower_components/x2js/xml2json.min.js"></script>
     <script src="bower_components/angular-x2js/dist/x2js.min.js"></script>
     <script src="bower_components/angular-io-barcode/build/angular-io-barcode.js"></script>
@@ -97,6 +100,10 @@
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/angular-soundmanager2/dist/angular-soundmanager2.js"></script>
     <script src="bower_components/angular-material-accordion/dist/angular-material-accordion.js"></script>
+    <script src="bower_components/angular-material-expansion-panel/dist/md-expansion-panel.js"></script>
+    <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
+    <script src="bower_components/angular-ivh-treeview/dist/ivh-treeview.js"></script>
+    <script src="bower_components/xmdwizard/build/xmdWizard.directive.js"></script>
     <!-- endbower -->
     <script src="../bower_components/moment/locale/es.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
@@ -116,6 +123,7 @@
     <script src="scripts/controllers/registro_.js"></script>
     <script src="scripts/controllers/main_.js"></script>
     <script src="scripts/controllers/search_.js"></script>
+    <script src="scripts/controllers/facturacion_.js"></script>
     
     <script src="scripts/controllers/actualizar_datos_.js"></script>
 
@@ -135,6 +143,11 @@
     <script src="scripts/services/repositorio_facturas.js"></script>
     <script src="scripts/directives/repositorio_facturas.js"></script>
     <script src="scripts/services/menu_.js"></script>
+    <script src="scripts/services/contabilidad_.js"></script>
+    <script src="scripts/services/facturacion_.js"></script>
+    <script src="scripts/controllers/inventario_bienes_.js"></script>
+    <script src="scripts/controllers/configuracion_.js"></script>
+    <script src="scripts/services/configuracion_service.js"></script>
     <!-- endbuild -->
 </body>
 

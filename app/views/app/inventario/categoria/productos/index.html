@@ -1,0 +1,108 @@
+<div layout="row">
+    <a class="mdl-chip mdl-chip--contact" href="#/App/Inventario/">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">I</span>
+        <span class="mdl-chip__text">Inventario</span>
+    </a>
+    <a class="mdl-chip mdl-chip--contact">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">C</span>
+        <span class="mdl-chip__text">Categorías</span>
+    </a>
+    <a class="mdl-chip mdl-chip--contact">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">P</span>
+        <span class="mdl-chip__text">PRODUCTOS</span>
+    </a>
+</div>
+<br><md-divider></md-divider><br>
+<md-content layout-wrap>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <input name="nom_modelo" ng-model="query.filter" type="text" required placeholder="Buscar" class="toolbar_search">
+            <span flex></span>
+            <!-- <md-button layout="column" class="md-accent md-raised" ng-click="inv_categoria_padre_dialog_nuevo($event)">Nuevo</md-button> -->
+        </div>
+    </md-toolbar>
+    <md-table-container layout-padding>
+               <div layout="row">
+            <span flex></span>
+            <md-button class="md-fab md-mini md-primary" ng-click="inv_categoria_padre_dialog_nuevo()">
+                <md-tooltip md-direction="Bottom">Añadir Categoria Productos</md-tooltip>
+                <md-icon class="md-primary" aria-label="añadir subcategoria" >add</md-icon>
+            </md-button>
+        </div>
+            <md-divider></md-divider> <br>
+
+        <script type="text/ng-template" id="nodes_renderer.html">
+                   <div layout="row" ng-show="node.open">
+                      <div  layout="row" flex="90">
+                        <md-input-container style="margin: 0 0!important" flex>
+                                <md-icon class="md-primary" aria-label="añadir subcategoria" ng-show="node.nodes.length>0" ng-click="comprimir(node)">
+                                    <md-tooltip md-direction="Bottom">{{(node.nodes.open==true)?'Reducir':'Abrir'}}</md-tooltip>
+                                        {{node.icon}}
+                                    </md-icon>
+                                <md-icon class="md-primary" aria-label="añadir subcategoria" ng-show="node.nodes.length==0">
+                                    <md-tooltip md-direction="Bottom">Subcategoria</md-tooltip>
+                                    remove
+                                </md-icon>
+                            <input ng-model="node.nombre" type="text" aria-label="nombre" placeholder="Nombre" readonly>
+                        </md-input-container>
+                        <md-input-container style="margin: 0 0!important" flex>
+                            <input ng-model="node.descripcion" type="text" aria-label="descripción" placeholder="Descripción" readonly>
+                        </md-input-container>
+                        <md-input-container style="margin: 0 0!important" flex ng-show="node.nodes.length==0">
+                            <input ng-model="node.tipo_categoria.nombre" type="text" aria-label="descripción" placeholder="Tipo de Categoria" readonly>
+                        </md-input-container>
+                       <!--  <md-button class="md-button md-mini" ng-class="{'md-accent':node.estado=='I','md-primary':node.estado=='A'}" aria-label="Estado">
+                            {{estado=(node.estado=='I')?'INACTIVO':'ACTIVO'}}
+                        </md-button> -->
+
+                      </div>
+                        <div flex>
+                                <md-icon class="md-primary" ng-show="node.id!=1" aria-label="añadir subcategoria" ng-click="inv_categoria_hijo_dialog_nuevo(node)">
+                                <md-tooltip md-direction="Bottom">Añadir Subcategoria</md-tooltip>
+                                    add
+                                </md-icon>
+                                <md-icon class="md-primary" ng-show="node.id!=1" aria-label="añadir subcategoria" ng-show="node.nodes.length==0" ng-click="inv_categoria_dialog_editar(node)">
+                                <md-tooltip md-direction="Bottom">Añadir Subcategoria</md-tooltip>
+                                    mode_edit
+                                </md-icon>
+                                <md-icon class="md-accent" aria-label="eliminar" ng-click="">
+                                <md-switch ng-model="node.estado_s" ng-show="node.id!=1" ng-change="inv_categoria_dialog_eliminar(node)" aria-label="Switch 1"></md-switch>
+                                <!-- <md-tooltip md-direction="Bottom">Eliminar Subcategoria</md-tooltip>
+                                    {{estado=(node.estado=='I')?'check':'remove'}}
+                                </md-icon>  -->        
+                        </div>
+                   </div>
+                   <!-- <md-divider ></md-divider> -->
+                  <ol ui-tree-nodes="" ng-model="node.nodes" compact>
+                    <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'">
+                    </li>
+                  </ol>
+                </script>
+                <div ui-tree ng-show="categorias.length>0" compact>
+                  <ol ui-tree-nodes="" ng-model="categorias" id="tree-root">
+                    <li ng-repeat="node in categorias" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+                  </ol>
+                </div>
+
+<!--     <div ivh-treeview="categorias">
+      <script type="text/ng-template">
+        <span ivh-treeview-toggle>
+          <span ivh-treeview-twistie></span>
+        </span>
+        <span class="ivh-treeview-node-label" ivh-treeview-toggle>
+          {{trvw.label(node)}}
+        </span>
+        <div ivh-treeview-children></div>
+      </script>
+    </div> -->
+
+
+    </md-table-container>
+    <div layout="row" ng-show="guardar_categorias">
+    <span flex></span>
+        <md-button ng-click="cancel()">Cancelar</md-button>
+        <md-button type="reset">Limpiar</md-button>
+        <md-button class="md-raised md-primary" type="button" >Guardar</md-button>   
+    </div >
+
+    </div>

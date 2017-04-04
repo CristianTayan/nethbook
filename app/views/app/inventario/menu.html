@@ -6,51 +6,54 @@
 </div>
 <br><md-divider></md-divider><br>
 <div layout-xs="column" layout="row">
-    <div flex-xs flex-gt-xs="50" layout="column">
-        <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">Card with image</span>
-                    <span class="md-subhead">Large</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                    <div class="md-media-lg card-media"></div>
-                </md-card-title-media>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button>Action 1</md-button>
-                <md-button>Action 2</md-button>
-            </md-card-actions>
+        <md-card flex-xs flex-gt-xs="50" layout="column">
+            <img class="md-card-image" src="images/app/inventario/bienes.png" alt="image caption">
+            <md-list>
+                <md-subheader class="md-no-sticky txt-center">INVENTARIO DE BIENES DE {{info_sucursal.nombre}}</md-subheader>
+                <md-list-item ng-click="null">
+                    <md-icon>create</md-icon>
+                    <p> CREAR UN NUEVO PRODUCTO</p>
+                </md-list-item>
+                <md-list-item ng-click="null">
+                    <md-icon>search</md-icon>
+                    <p> BUSCAR PRODUCTO</p>
+                </md-list-item>
+                <md-list-item ng-click="null">
+                    <md-icon>content_paste</md-icon>
+                    <p> REPORTE GENERAL</p>
+                </md-list-item>
+                <md-list-item ng-click="null">
+                    <md-icon>picture_as_pdf</md-icon>
+                    <p> REPORTE x CATEGORÍAS</p>
+                </md-list-item>
+            </md-list>
         </md-card>
-        <md-card md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">Card with image</span>
-                    <span class="md-subhead">Extra Large</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content layout="row" layout-align="space-between">
-                <div class="md-media-xl card-media"></div>
-
-                <md-card-actions layout="column">
-                    <md-button class="md-icon-button" aria-label="Favorite">
-                        <md-icon>favorite</md-icon>
-                    </md-button>
-                    <md-button class="md-icon-button" aria-label="Settings">
-                        <md-icon>menu</md-icon>
-                    </md-button>
-                    <md-button class="md-icon-button" aria-label="Share">
-                        <md-icon>share_arrow</md-icon>
-                    </md-button>
-                </md-card-actions>
-            </md-card-content>
+        <md-card flex-xs flex-gt-xs="50" layout="column">
+            <img class="md-card-image" src="images/app/inventario/productos.png" alt="image caption">
+            <md-list>
+                <md-subheader class="md-no-sticky txt-center">INVENTARIO DE BIENES DE {{info_sucursal.nombre}}</md-subheader>
+                <md-list-item ng-click="null">
+                    <md-icon>create</md-icon>
+                    <p> CREAR UN NUEVO PRODUCTO</p>
+                </md-list-item>
+                <md-list-item ng-click="null">
+                    <md-icon>search</md-icon>
+                    <p> BUSCAR PRODUCTO</p>
+                </md-list-item>
+                <md-list-item ng-click="null">
+                    <md-icon>content_paste</md-icon>
+                    <p> REPORTE GENERAL</p>
+                </md-list-item>
+                <md-list-item ng-click="null">
+                    <md-icon>picture_as_pdf</md-icon>
+                    <p> REPORTE x CATEGORÍAS</p>
+                </md-list-item>
+            </md-list>
         </md-card>
-    </div>
-    <div flex-xs flex-gt-xs="50" layout="column">
-        <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+        <md-card flex-xs flex-gt-xs="50" layout="column">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">Card with image</span>
+                    <span class="md-headline">INVENTARIO DE PRODUCTOS </span>
                     <span class="md-subhead">Small</span>
                 </md-card-title-text>
                 <md-card-title-media>
@@ -58,11 +61,11 @@
                 </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-                <md-button>Action 1</md-button>
+                <md-button>INGRESAR</md-button>
                 <md-button>Action 2</md-button>
             </md-card-actions>
         </md-card>
-        <md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch>
+        <md-card flex-xs flex-gt-xs="50" layout="column">
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">Card with image</span>
@@ -77,10 +80,6 @@
                 <md-button>Action 2</md-button>
             </md-card-actions>
         </md-card>
-        <div layout layout-padding layout-align="center end" style="height:200px">
-            <md-checkbox ng-model="showDarkTheme">Use 'Dark' Themed Cards</md-checkbox>
-        </div>
-    </div>
 </div>
 
 

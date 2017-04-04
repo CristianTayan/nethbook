@@ -1,0 +1,65 @@
+<md-dialog aria-label="inve-tipo-">
+    <form name="categoria" ng-submit="data_inv_categoria_update()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Actualizar Garantia</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-content class="md-no-momentum">
+                     <div layout="row">
+                        <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                            <md-icon class="md-primary">add_alert</md-icon>
+                        <lx-select ng-model="selectModel.selectedPerson"
+                                   lx-allow-clear="true"
+                                   lx-choices="selectPeople"
+                                   lx-display-filter="true"
+                                   lx-fixed-label="true"
+                                   lx-label="Tipo de Categoría"
+                                   required
+                                   >
+                            <lx-select-selected>
+                                {{ $selected.nombre }}
+                            </lx-select-selected>
+                            <lx-select-choices>
+                                {{ $choice.nombre }}
+                            </lx-select-choices>
+                        </lx-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Nombre Garantia</label>
+                            <input name="nom_categoria" ng-model="data_inv_categoria.nombre" type="text" required garantiaupdate-validator>
+                            <div ng-messages="categoria.nom_categoria.$error" ng-show="categoria.nom_categoria.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container md-no-float class="md-block">
+                            <md-icon class="md-primary">description</md-icon>
+                            <label>Descripción</label>
+                            <textarea name="descripcion" ng-model="data_inv_categoria.descripcion" type="text" required></textarea>
+                            <div ng-messages="categoria.descripcion.$error" ng-show="categoria.descripcion.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </md-content>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">Cancelar</md-button>
+            <md-button type="reset">Limpiar</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="categoria.$invalid">Guardar</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

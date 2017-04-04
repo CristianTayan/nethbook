@@ -8,11 +8,18 @@
  * Controller of the nextbook20App
  */
 var app = angular.module('nextbook20App')
-app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mainService, $http, $translate) {
+
+app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mainService, $http, $translate, $routeSegment, menuService) {
+    
+    $scope.ruta = $routeSegment;
+    // console.log(ruta);
     $scope.changeLanguage = function (key) {
         console.log(key);
         $translate.use(key);
     };
+
+
+    
 
 
     // LISTA NOSTOP MUSICA
@@ -52,7 +59,6 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
                 url: 'http://www.freshly-ground.com/data/audio/binaural/Things%20that%20open,%20close%20and%20roll.mp3'
             }
         ];
-
 
 
 
@@ -99,7 +105,10 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
     $scope.toggleSidenav = function(menuId) {
         $mdSidenav(menuId).toggle();
     };
+
     $scope.nom_perfil = $localStorage.datosE.nombre_comercial;
+
+    $scope.datos_personales = $localStorage.datosPersona;
     var imagePath = 'img/list/60.jpeg';
 
     // $scope.todos = [];
@@ -169,7 +178,9 @@ app.controller('login_services_Ctrl', function($scope, $localStorage, mainServic
 });
 
 app.controller('cerrar_session_Ctrl', function($scope, $localStorage, $location, mainService) {
+    var storage = $localStorage.cook_session_init;
     $localStorage.$reset();
-    $location.path('/');
+    $localStorage.cook_session_init = storage;
+    $location.path('/Registro');
 
 });

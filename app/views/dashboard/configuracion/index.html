@@ -1,0 +1,40 @@
+<!-- app-view-segment="2" -->
+<md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="30" style="background: #EEEEEE">
+    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Configuración Perfil Personal</md-subheader>
+    <md-list-item  ng-href="#/nb/Config/Personal">
+        <md-icon>settings_aplication</md-icon>
+        <p>Información General</p>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Información Empresa</md-subheader>
+    <md-list-item ng-click="navigateTo('data usage', $event)">
+        <md-icon>business_center</md-icon>
+        <p>Configuración General</p>
+    </md-list-item>
+    <md-list-item ng-click="navigateTo('data usage', $event)">
+        <md-icon>markunread_mailbox</md-icon>
+        <p>Correos</p>
+    </md-list-item>
+    <md-list-item ng-click="navigateTo('data usage', $event)">
+        <md-icon>public</md-icon>
+        <p>Actualizar SRI</p>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Configuración Establecimiento / Sucursal</md-subheader>
+    <md-list-item ng-click="navigateTo('data usage', $event)">
+        <md-icon md-colors="{color:'blue'}">settings_aplication</md-icon>
+        <p>Información General</p>
+    </md-list-item>
+    <md-list-item ng-click="navigateTo(setting.extraScreen, $event)" ng-repeat="setting in settings">
+        <p> {{ setting.name }} </p>
+        <md-switch class="md-secondary" ng-model="setting.enabled"></md-switch>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-list-item  ng-href="#/nb/Config/Terminos">
+        <p>Terminos Y Condiciones</p>
+        <md-icon class="md-secondary"  aria-label="Chat">security</md-icon>
+    </md-list-item>
+</md-content>
+<md-content flex layout-padding app-view-segment="3">
+hola
+</md-content>

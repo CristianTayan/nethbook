@@ -1,22 +1,29 @@
-<md-sidenav style="max-width:250px;" layout="column" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4" flex>
+<md-sidenav style="max-width:300px;" layout="column" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4" flex>
     <md-content layout="column" >
-        <md-sidemenu class="scrollbar" id="style-2">
-        	<md-sidemenu-group>
-        		<md-sidemenu-button href="#/App">App</md-sidemenu-button>
-        	</md-sidemenu-group>
-            <md-divider></md-divider>
-            <md-sidemenu-group>
-                <md-sidemenu-button href="#{{item.path}}" ng-repeat="item in menu.children"  ng-if="item.children.length == 0">{{item.nombre}}</md-sidemenu-button>
-            </md-sidemenu-group>
-            <md-divider></md-divider>
-            <md-subheader class="md-no-sticky">CONFIGURACIÓN BASE</md-subheader>
-            <md-sidemenu-group>
-                <md-sidemenu-content md-icon="home" md-heading="{{item.nombre}}" md-arrow="true" ng-if="item.children.length != 0" ng-repeat="item in menu.children"> 
+        <md-list-item href="#/App">
+            <md-icon>pages</md-icon>
+            <p>APP</p>
+            <md-icon>pages</md-icon>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-subheader class="md-no-sticky">Menu de Aplicación</md-subheader>
+        <md-list-item href="#/App/Inventario/">
+            <md-icon>home</md-icon>
+            <p>inicio</p>
+        </md-list-item>
+        <md-list-item href="#{{item.path}}" ng-repeat="item in menu.children"  ng-if="item.children.length == 0">
+            <md-icon>{{item.personalizacion.icon}}</md-icon>
+            <p> {{item.nombre}} </p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-subheader class="md-no-sticky">Configuración Base</md-subheader>
+        <md-sidemenu class="scrollbar" id="style-1">
+            <md-sidemenu-group >
+                <md-sidemenu-content md-icon="home" ng-click="go_menu(item)" md-heading="{{item.nombre}}" md-arrow="true" ng-if="item.children.length != 0" ng-repeat="item in menu.children"> 
                     <md-sidemenu-button href="#{{item1.path}}" ng-repeat="item1 in item.children">{{item1.nombre}}</md-sidemenu-button>
                 </md-sidemenu-content>
             </md-sidemenu-group>     
         </md-sidemenu>
-        
     </md-content>
 </md-sidenav>
 <md-content flex class="md-padding" layout="column" >

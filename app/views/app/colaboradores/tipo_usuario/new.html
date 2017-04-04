@@ -18,31 +18,36 @@
                             <md-sidemenu>
                                 <md-sidemenu-group>
                                     <md-subheader class="md-no-sticky">PRIVILEGIOS</md-subheader>
-                                    <div ng-repeat="vista in stuff0">
-                                        <md-sidemenu-content md-icon="view_stream" md-heading="{{vista.nombre}}" md-arrow="true">
-                                            <div ng-repeat="children1 in vista.children">
-                                                <md-sidemenu-button ng-click="select_modulo(children1)" ng-show="children1.children.length==0">
-                                                    <md-icon>assessment</md-icon> {{children1.nombre}}
-                                                </md-sidemenu-button>
-                                                <md-sidemenu-content ng-if="children1.children.length>0" md-icon="view_stream" md-heading="{{children1.nombre}}" md-arrow="true">
-                                                    <div ng-repeat="children2 in children1.children">
-                                                        <md-sidemenu-content ng-if="children2.children.length>0" md-icon="view_stream" md-heading="{{children2.nombre}}" md-arrow="true">
-                                                            <div ng-repeat="children3 in children2.children">
-                                                                <md-sidemenu-button style="margin-left: 16%;" ng-click="select_modulo(children3)" ng-show="children3.children.length==0">
-                                                                    <md-icon>assessment</md-icon> {{children3.nombre}}
-                                                                </md-sidemenu-button>
-                                                                <md-sidemenu-content ng-if="children3.children.length>0" md-icon="view_stream" md-heading="{{children3.nombre}}" md-arrow="true">
-                                                                </md-sidemenu-content>
-                                                            </div>
-                                                        </md-sidemenu-content>
-                                                    </div>
-                                                </md-sidemenu-content>
-                                            </div>
-                                        </md-sidemenu-content>
-                                    </div>
-                            </md-sidemenu>
+                                    <md-progress-circular  ng-show="!stuff0" md-mode="indeterminate" md-diameter="20px"></md-progress-circular>
+                                        <script type="text/ng-template" id="nodes_renderer.html">
+                                               <div layout="row">
+                                                  <div  layout="row" flex="90">
+                                                    <md-input-container style="margin: 0 0!important" flex>
+                                                            <md-icon class="md-primary" aria-label="añadir subcategoria" ng-show="node.children.length>0">
+                                                            <!-- <md-tooltip md-direction="Bottom">Categoria Principal</md-tooltip> -->
+                                                                list_bulleted
+                                                            </md-icon>
+                                                            <md-icon class="md-primary" ng-click="select_modulo(node)" aria-label="añadir subcategoria" ng-show="node.children.length==0">
+                                                                <!-- <md-tooltip md-direction="Bottom">Subcategoria</md-tooltip> -->
+                                                                play_arrow
+                                                            </md-icon>
+                                                        <input ng-model="node.nombre" type="text" aria-label="nombre" placeholder="Nombre" style="cursor: pointer;" ng-click="select_modulo(node)" readonly>
+                                                    </md-input-container>
+                                                  </div>
+                                               </div>
+                                              <ol ui-tree-nodes="" ng-model="node.children">
+                                                <li ng-repeat="node in node.children" ui-tree-node ng-include="'nodes_renderer.html'">
+                                                </li>
+                                              </ol>
+                                        </script>
+                                        <div ui-tree ng-show="stuff0.length>0" style="width: 100%; padding-left: 11px;">
+                                          <ol ui-tree-nodes="" ng-model="stuff0" id="tree-root">
+                                            <li ng-repeat="node in stuff0" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+                                          </ol>
+                                        </div>
+                                </md-sidemenu-group>
+                            </md-sidemenu> 
                         </md-content>
-                        </md-sidemenu-group>
                     </md-sidenav>
                 </div>
                 <div flex>

@@ -5,8 +5,8 @@
     </div>
 </md-toolbar>
 <div layout="row" layout-align="center center">
-    <div flex-gt-sm="100" flex-gt-md="30">
-        <form name="form_ingreso_colaborador" ng-submit="ingresar_colaborador()">
+    <div flex-gt-sm="100" flex-gt-md="30">        
+        <form name="form_ingreso_colaborador" ng-submit="ingresar_colaborador()" flex>
             <md-card>
                 <div style="width: 100%; height: 150px; background: {{color}};">
                     <div style="position: relative; top: 40px; padding: 20px; color: #FFF">{{datosE.razon_social}}</div>
@@ -15,12 +15,18 @@
                     <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                         <label>Usuario</label>
                         <md-icon style="color:{{color}};">person_pin</md-icon>
-                        <input type="text" ng-model="data_ingreso_colaborador.nick" autocomplete="off">
+                        <input type="text" ng-model="data_ingreso_colaborador.nick" md-no-asterisk autocomplete="off" required>
+                        <div ng-messages="projectForm.description.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
                     </md-input-container>
                     <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                         <label>Contraseña</label>
                         <md-icon style="color:{{color}};">vpn_key</md-icon>
-                        <input type="password" ng-model="data_ingreso_colaborador.clave">
+                        <input type="password" ng-model="data_ingreso_colaborador.clave" md-no-asterisk required>
+                        <div ng-messages="projectForm.description.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
                     </md-input-container>
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end center">
@@ -31,3 +37,18 @@
         </form>
     </div>
 </div>
+
+<style>
+.demo-card-wide.mdl-card {
+  width: 158px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 138px;
+  width: 200px;
+  background: url('https://getmdl.io/assets/demos/welcome_card.jpg') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+</style>

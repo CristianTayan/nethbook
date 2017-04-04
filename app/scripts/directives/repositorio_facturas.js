@@ -26,7 +26,6 @@ angular.module('nextbook20App')
 	            
 				element.on('change', function(onChangeEvent) {
 					var reader = new FileReader();
-	                
 					reader.onload = function(onLoadEvent) {
 						scope.$apply(function() {
 							fn(scope, {$fileContent:onLoadEvent.target.result});
@@ -34,7 +33,7 @@ angular.module('nextbook20App')
 					};
 					if ((onChangeEvent.srcElement || onChangeEvent.target).files[0]) {
 						reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
-					}					
+					}
 				});
 			}
 		};

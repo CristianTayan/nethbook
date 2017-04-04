@@ -151,6 +151,52 @@ var app = angular.module('nextbook20App');
             });
         };
 
+        this.Verificar_Pass = function() {
+            return $resource(urlService.server().appnext()+'Verificar_Pass', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
+        this.Verificar_Existencia_Procesos_Sucursal = function() {
+            return $resource(urlService.server().appnext()+'Verificar_Existencia_Procesos_Sucursal', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
+        this.Get_Tipo_Bienes_Servicios = function() {
+            return $resource(urlService.server().appserviciosnext()+'Get_Tipo_Bienes_Servicios', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
+        this.Get_Tipo_Actividad_Economica = function() {
+            return $resource(urlService.server().appserviciosnext()+'Get_Tipo_Actividad_Economica', {} , {
+                get: {
+                    method: 'POST', isArray: false,
+                    params: {
+                        token: $localStorage.token
+                    }
+                }
+            });
+        };
+
+        
+
         
     });
 app.factory('mySocket', function (socketFactory) {

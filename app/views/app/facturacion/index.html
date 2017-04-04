@@ -1,25 +1,18 @@
-<div layout-xs="column" layout="row">
-	<div flex-xs flex-gt-xs="20" layout="column" md-content flex layout="row" layout-fill>
-		<md-sidenav layout="column" class="main-sidenav md-sidenav-left" style="position:fixed !important; top: 64px;" md-is-locked-open="$mdMedia('gt-md')">
-		    <md-content md-scroll-y flex layout="column">
-		        <md-sidemenu>
-		        	<md-sidemenu-group>
-		        		<md-sidemenu-button href="#/App"><md-icon>apps</md-icon> App</md-sidemenu-button>
-		        	</md-sidemenu-group>
-		            <md-sidemenu-group>
-		                <md-subheader class="md-no-sticky">Menu FACTURACION EN PROCESO</md-subheader>
-		                    <!-- <md-sidemenu-button href="#/App/Repositorio_Facturas/Inicio_Facturas"><md-icon>subtitles</md-icon>Inicio</md-sidemenu-button> -->
-		                    <!-- <md-sidemenu-button href="#/App/Repositorio_Facturas/Mis_Facturas"><md-icon>dialpad</md-icon>Mis Facturas</md-sidemenu-button> -->
-		                    <!-- <md-sidemenu-button href="#/App/Repositorio_Facturas/Subir_Facturas"><md-icon>view_module</md-icon>Subir Facturas</md-sidemenu-button> -->
-		                    <!-- <md-sidemenu-button href="#/App/Repositorio_Facturas/Facturas_Correo"><md-icon>markunread_mailbox</md-icon>Facturas Correo</md-sidemenu-button> -->
-		                    <!-- <md-sidemenu-button href="#/App/Repositorio_Facturas/Facturas_Rechazadas"><md-icon>error_outline</md-icon>Facturas Rechasadas</md-sidemenu-button> -->
-		            </md-sidemenu-group>
-		        </md-sidemenu>
-		    </md-content>
-		</md-sidenav>
-	</div>
-	<div layout-padding flex-xs flex-gt-xs="80" layout="column">
-		<!-- <div app-view-segment="2"></div> -->
-		FACTURACION EN PROCESO
-	</div>
-</div>
+<md-sidenav style="max-width:300px;" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" flex>
+    <md-content layout="column">
+        <md-list-item href="#/App" >
+            <md-icon>pages</md-icon>
+            <p>APP</p>
+            <md-icon>pages</md-icon>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-subheader class="md-no-sticky">Menu de Aplicación</md-subheader>
+        <md-list-item ng-href="#{{item.path}}" ng-show="item.permisos.accion_ver" ng-repeat="item in menu.children">
+            <p> {{item.nombre}}</p>
+            <md-icon>{{item.personalizacion.icon}}</md-icon>
+        </md-list-item>
+    </md-content>
+</md-sidenav>
+<md-content flex class="md-padding" layout="column" >
+    <div app-view-segment="3"></div>
+</md-content>

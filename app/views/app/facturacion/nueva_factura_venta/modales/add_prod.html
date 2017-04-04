@@ -1,0 +1,87 @@
+<md-dialog aria-label="Info" ng-keyup="nextStep($event);">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Añadir Producto a Factura..</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <form name="form_add" >
+        <md-dialog-content >
+            <md-stepper id="stepper-demo" md-mobile-step-text="isMobileStepText" md-vertical="isVertical" md-linear="isLinear" md-alternative="isAlternative">
+                <md-step md-label="Seleccionar Producto">
+
+                    <md-step-body layout-padding>
+                        <div layout="row">
+                            <input name="nom_modelo" id="txt_buscar" ng-model="query.filter" type="text" required placeholder="Buscar Productos" class="toolbar_search" select-on-click flex>
+                        </div>
+                        <div layout="row">
+                            
+                        <md-table-container>
+                          <table md-table ng-model="add_prods" md-progress="promise">
+                            <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                              <tr md-row>
+                                        <th md-column md-numeric>NOMBRE</th>
+                                        <th md-column md-numeric>PRECIO</th>
+                                        <th md-column md-numeric>MARCA</th> 
+                                        <th md-column md-numeric>UBICACION</th>
+                                        <th md-column md-numeric>STOCK</th>
+                              </tr>
+                            </thead>
+                            <tbody md-body>
+                              <tr md-row md-select="producto" md-select-id="nombre_corto" md-auto-select ng-repeat="producto in productos">
+                                        <td md-cell>{{producto.nombre_corto}}</td>
+                                        <td md-cell>{{producto.precio}}</td>
+                                        <td md-cell>{{producto.marca}}</td>
+                                        <td md-cell>{{producto.ubicacion}}</td>
+                                        <td md-cell>{{producto.cantidad}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </md-table-container>
+                        </div>
+                    </md-step-body>
+                    <md-step-actions layout="row" layout-align="center center">
+                        <md-button class="md-primary md-raised" ng-click="nextStep();" ng-disabled="form_add.$invalid">Siguiente</md-button>
+                        <md-button id="btn_cancel" class="md-primary" ng-click="cancel();">Cancelar</md-button>
+                    </md-step-actions>
+                </md-step>
+
+                <md-step md-label="Añadir cantidad">
+                    <md-step-body layout-padding>
+
+                        <md-content class="md-no-momentum">
+                            <md-input-container class="md-icon-float md-block" flex>
+                        <md-icon class="md-primary"></md-icon>
+                        <label>CANTIDAD</label>
+                        <input name="cantidad" id="txt_cantidad" ng-model="prod_selected.cantidad_fac" type="number" ng-keyup="add_prod_fac_from_input()" select-on-click required>
+                        <div ng-messages="form_add.cantidad.$error">
+                            <div ng-message="required" ng-show="form_add.cantidad.$error.required">Ingrese Cantidad</div>
+                        </div>
+                    </md-input-container>
+                        </md-content>
+                    </md-step-body>
+                    <md-step-actions>
+                        <md-button class="md-primary md-raised" ng-click="nextStep();" ng-disabled="form_add.$invalid">Continuar</md-button>
+                        <md-button class="md-primary" ng-click="previousStep();">Atras</md-button>
+                    </md-step-actions>
+                </md-step>
+
+            </md-stepper>
+        </md-dialog-content>
+    </form>
+    <!--   <md-dialog-actions layout="row">
+        <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+            More on Wikipedia
+        </md-button>
+        <span flex></span>
+        <md-button ng-click="answer('not useful')">
+            Not Useful
+        </md-button>
+        <md-button ng-click="answer('useful')">
+            Useful
+        </md-button>
+    </md-dialog-actions> -->
+</md-dialog>

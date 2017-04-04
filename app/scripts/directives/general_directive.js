@@ -27,6 +27,14 @@ var app = angular.module('nextbook20App');
         }
     });
 
+    app.filter('reverse', function() {
+      return function(items) {
+        if (items) {
+            return items.slice().reverse();
+        }        
+      };
+    });
+
     app.directive('mdBox', function(ivhTreeviewMgr) {
       return {
         restrict: 'AE',
@@ -45,7 +53,7 @@ var app = angular.module('nextbook20App');
         }
       };
     });
-
+    // validacion solo numero
     app.directive('numbersOnly', function () {
         return {
             require: 'ngModel',
@@ -66,3 +74,69 @@ var app = angular.module('nextbook20App');
             }
         };
     });
+
+    // -----------------------------------------------------------CONVERTIR LESTRAS A MAYUSCULAS-----------------------------------------------------------
+    app.directive('uppercase', function() {
+        return {
+            require: 'ngModel',
+            link: function(scope, element, attrs, modelCtrl) {
+                var capitalize = function(inputValue) {
+                    if (inputValue == undefined) inputValue = '';
+                    var capitalized = inputValue.toUpperCase();
+                    if (capitalized !== inputValue) {
+                        modelCtrl.$setViewValue(capitalized);
+                        modelCtrl.$render();
+                    }
+                    return capitalized;
+                }
+                modelCtrl.$parsers.push(capitalize);
+                capitalize(scope[attrs.ngModel]);
+            }
+        };
+    });
+
+ app.factory('focus', function($timeout, $window) {
+    return function(id) {
+      // timeout makes sure that it is invoked after any other event has been triggered.
+      // e.g. click events that need to run before the focus or
+      // inputs elements that are in a disabled state but are enabled when those events
+      // are triggered.
+      $timeout(function() {
+        var element = $window.document.getElementById(id);
+        if(element)
+          element.focus();
+      });
+    };
+  });
+
+  app.directive('eventFocus', function(focus) {
+    return function(scope, elem, attr) {
+      elem.on(attr.eventFocus, function() {
+        focus(attr.eventFocusId);
+      });
+
+      // Removes bound events in the element itself
+      // when the scope is destroyed
+      scope.$on('$destroy', function() {
+        elem.off(attr.eventFocus);
+      });
+    };
+  });
+
+  app.directive('selectOnClick', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element) {
+            var focusedElement;
+            element.on('click', function () {
+                if (focusedElement != this) {
+                    this.select();
+                    focusedElement = this;
+                }
+            });
+            element.on('blur', function () {
+                focusedElement = null;
+            });
+        }
+    };
+})

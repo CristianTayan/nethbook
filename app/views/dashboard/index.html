@@ -1,100 +1,24 @@
-<md-toolbar layout="row" layout-align="center center">
-    <div flex-gt-sm="90" flex-gt-md="60">
+<md-toolbar layout="row">
+    <div style="max-width:300px;" flex>
+    </div>
+    <div flex>
         <div class="md-toolbar-tools toolbar-center">
             <a href="#/Dash">
                 <img src="images/logo/logo.fw.png" alt="Logo">
             </a>
-            Nextbook 
-            <!-- <div class="contenedor-box"> -->
-                <!-- <input type="text" id="myInput" placeholder="Negocios, servicios, empresas">
-                <div id="delete">
-                    <md-button class="md-icon-button md-accent" aria-label="Favorite">
-                        <md-icon class="md-accent">search</md-icon>
-                    </md-button>
-                </div>
-                <div class="box-box">
-                    
-                    <style>
-                    .demo-list-three {
-                      width: 650px;
-                    }
-                    </style>
-
-                    <ul class="demo-list-three mdl-list">
-                      <li class="mdl-list__item mdl-list__item--three-line">
-                        <span class="mdl-list__item-primary-content">
-                          <i class="material-icons mdl-list__item-avatar">person</i>
-                          <span>Bryan Cranston</span>
-                          <span class="mdl-list__item-text-body">
-                            Bryan Cranston played the role of Walter in Breaking Bad. He is also known
-                            for playing Hal in Malcom in the Middle.
-                          </span>
-                        </span>
-                        <span class="mdl-list__item-secondary-content">
-                          <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-                        </span>
-                      </li>
-                      <li class="mdl-list__item mdl-list__item--three-line">
-                        <span class="mdl-list__item-primary-content">
-                          <i class="material-icons  mdl-list__item-avatar">person</i>
-                          <span>Aaron Paul</span>
-                          <span class="mdl-list__item-text-body">
-                            Aaron Paul played the role of Jesse in Breaking Bad. He also featured in
-                            the "Need For Speed" Movie.
-                          </span>
-                        </span>
-                        <span class="mdl-list__item-secondary-content">
-                          <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-                        </span>
-                      </li>
-                      <li class="mdl-list__item mdl-list__item--three-line">
-                        <span class="mdl-list__item-primary-content">
-                          <i class="material-icons  mdl-list__item-avatar">person</i>
-                          <span>Bob Odenkirk</span>
-                          <span class="mdl-list__item-text-body">
-                            Bob Odinkrik played the role of Saul in Breaking Bad. Due to public fondness for the
-                            character, Bob stars in his own show now, called "Better Call Saul".
-                          </span>
-                        </span>
-                        <span class="mdl-list__item-secondary-content">
-                          <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-                        </span>
-                      </li>
-                    </ul>
-                </div> -->
-            <!-- </div> -->
-
+            Nethbook
             <form class="search">
-              <input type="search" name="q" placeholder="Search..." autocomplete="off" ng-model="search">
+                <input type="search" name="q" placeholder="Search..." autocomplete="off" ng-model="search">
                 <ul class="search-ac">
-                    <li style="color:red" ng-repeat="item in registros | filter:search | limitTo: 5">{{item.nombre_comercial}}<br><span>{{item.ruc}}</span></li>
+                    <li style="color:red" ng-repeat="item in registros | filter:search | limitTo: 5">{{item.nombre_comercial}}
+                        <br><span>{{item.ruc}}</span></li>
                 </ul>
-                <!-- <md-content layout-padding layout-wrap class="search-ac">
-                    <md-list-item class="md-3-line" ng-repeat="item in registros | filter:search | limitTo: 5">
-                    <img ng-src="{{item.face}}" alt="{{item.who}}" class="md-avatar">
-
-                    <div class="md-list-item-text">
-                      <h3>{{item.actividad_economica}}</h3>
-                      <h4>{{item.ruc}}</h4>
-
-                      <p>
-                        {{item.notes}}
-                        <h4>{{$index}}</h4>
-                      </p>
-                    </div>
-                    <md-divider inset></md-divider>
-                  </md-list-item>
-                </md-content> -->
-              
             </form>
-            
-
-            
             <span flex></span>
-
-            <a href="#/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
-                <i class="mdi mdi-home"></i>
+            <a href="#/nb/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
+                <md-icon>home</md-icon>
             </a>
+            <md-button ng-href="#/nb/Personal" class="" style="min-width:0px">{{datos_personales.primer_nombre}}</md-button>
             <a href="#/App" class="btn btn--l btn--white btn--icon" lx-ripple>
                 <i class="mdi mdi-apps"></i>
             </a>
@@ -106,54 +30,51 @@
                     <ul>
                         <li>
                             <a href="#/Perfil_Personal" class="dropdown-link">
-                                <i class="mdi"><md-icon>perm_contact_calendar</md-icon></i>
-                                <span>Configuración Personal</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#/Perfil_Personal" class="dropdown-link">
-                                <i class="mdi"><md-icon>perm_contact_calendar</md-icon></i>
-                                <span>Configuración Establecimiento</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#/Perfil_Personal" class="dropdown-link">
-                                <i class="mdi"><md-icon>shopping_cart</md-icon></i>
+                                <i class="mdi material-icons">shopping_cart</i>
                                 <span>Planes</span>
                             </a>
                         </li>
+                        <li class="dropdown-divider"></li>
                         <li>
-                            <a href="#/Perfil_Personal" class="dropdown-link">
+                            <a class="dropdown-link" href="#/Config/Terminos">
+                                <i class="mdi material-icons">security</i>
+                                <span>Terminos y Condiciones</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-link">
                                 <i class="mdi"><md-icon>live_help</md-icon></i>
                                 <span>¡ Preguntas !</span>
                             </a>
                         </li>
+                        <li class="dropdown-divider"></li>
+                        <li>
+                            <a href="#/nb/Config" class="dropdown-link">
+                                <span>Configuración</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="#/Salir" class="dropdown-link">
-                                <i class="mdi"><md-icon>exit_to_app</md-icon></i>
-                                <span>Cerrar Sesión</span>
+                                <span>Salir</span>
                             </a>
                         </li>
                     </ul>
                 </lx-dropdown-menu>
             </lx-dropdown>
-            <a href="#/Perfil">
+            <a href="#/nb/Perfil">
                 <span class="mdl-chip mdl-chip--contact">
                     <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">{{nom_perfil | limitTo: 1}}</span>
-                <span class="mdl-chip__text">{{nom_perfil}}</span>
+                <span class="mdl-chip__text">{{nom_perfil | limitTo: 20}}</span>
                 </span>
-            </a>
-
-            <a class="btn btn--l btn--white btn--icon" lx-ripple ng-click="ShowHide()">
-                <!-- <i class="mdi mdi-apps"></i> -->
-                <md-icon>tab</md-icon>
             </a>
         </div>
     </div>
+    <div style="max-width:300px;" flex></div>
 </md-toolbar>
+
 <div layout="row" flex app-view-segment="1" class="view-next"></div>
 <style type="text/css">
-    #myInput        {
+    #myInput {
         background: white url("file:///C:/Users/Deivid/Downloads/Compressed/10-search-dropdown_2/10-search-dropdown/img/search.png") 8px 6px no-repeat;
         font-size: 15px;
         height: 20px;
@@ -163,7 +84,7 @@
         -webkit-transition: width 0.3s ease-in-out;
         position: relative;
         left: 10px;
-        color: rgb(255,64,129);
+        color: rgb(255, 64, 129);
         border-top-right-radius: 30px;
         border-bottom-right-radius: 30px;
         outline: none;
@@ -172,37 +93,40 @@
         border: 0;
         height: 28px
     }
-    #myInput:focus  {
-      width:350px;
-      -webkit-transition:width 0.5s ease-in-out;
+    
+    #myInput:focus {
+        width: 350px;
+        -webkit-transition: width 0.5s ease-in-out;
     }
+    
     #delete {
         float: right;
         width: 16px;
         position: relative;
         left: -31px;
     }
-
-    .box-box{
+    
+    .box-box {
         position: fixed;
         top: 50px;
         right: 35%;
         background: #FFF;
         z-index: 1px;
     }
-    .contenedor-box{
+    
+    .contenedor-box {
         background: red;
         height: 10px
     }
-
-
+    
     .search {
-  position: relative;
-  margin: 0 auto;
-  width: 300px;
-}
-.search input {
-  font-size: 15px;
+        position: relative;
+        margin: 0 auto;
+        width: 300px;
+    }
+    
+    .search input {
+        font-size: 15px;
         height: 20px;
         border-radius: 20px;
         padding-left: 10px;
@@ -210,7 +134,7 @@
         -webkit-transition: width 0.3s ease-in-out;
         position: relative;
         left: 10px;
-        color: rgb(255,64,129);
+        color: rgb(255, 64, 129);
         border-top-right-radius: 30px;
         border-bottom-right-radius: 30px;
         outline: none;
@@ -218,125 +142,139 @@
         box-shadow: 0 0 1px #9ecaed;
         border: 0;
         height: 25px
-}
-.search input:focus {
-  width:350px;
-      -webkit-transition:width 0.5s ease-in-out;
-}
-.search input:focus + .search-ac {
-  display: block;
-}
-
-.search-ac {
-  display: none;
-  position: absolute;
-  top: 35px;
-  left: -50;
-  right: 0;
-  width: 350px;
-  z-index: 10;
-  background: #fdfdfd;
-  border: 1px solid;
-  border-color: #cbcfe2 #c8cee7 #c4c7d7;
-  border-radius: 3px;
-  background-image: -webkit-linear-gradient(top, #fdfdfd, #eceef4);
-  background-image: -moz-linear-gradient(top, #fdfdfd, #eceef4);
-  background-image: -o-linear-gradient(top, #fdfdfd, #eceef4);
-  background-image: linear-gradient(to bottom, #fdfdfd, #eceef4);
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-
-}
-.search-ac:hover {
-  display: block;
-}
-.search-ac li {
-  display: block;
-}
-.search-ac li:first-child {
-  margin-top: -1px;
-}
-.search-ac li:first-child:before, .search-ac li:first-child:after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  position: absolute;
-  left: 50%;
-  margin-left: -5px;
-  border: 5px outset transparent;
-}
-.search-ac li:first-child:before {
-  border-bottom: 5px solid #c4c7d7;
-  top: -11px;
-}
-.search-ac li:first-child:after {
-  border-bottom: 5px solid #fdfdfd;
-  top: -10px;
-}
-.search-ac li:first-child:hover:before, .search-ac li:first-child:hover:after {
-  display: none;
-}
-.search-ac li:last-child {
-  margin-bottom: -1px;
-}
-.search-ac a {
-  display: block;
-  position: relative;
-  margin: 0 -1px;
-  padding: 6px 40px 6px 10px;
-  color: #808394;
-  font-weight: 500;
-  text-decoration: none;
-  text-shadow: 0 1px white;
-  border: 1px solid transparent;
-  border-radius: 3px;
-}
-.search-ac a span {
-  font-weight: 200;
-
-}
-.search-ac a:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  margin-top: -9px;
-  width: 18px;
-  height: 18px;
-  background: url("../img/arrow.png") 0 0 no-repeat;
-  z-index: 99;
-}
-.search-ac a:hover {
-  color: white;
-  text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
-  background: #338cdf;
-  border-color: #2380dd #2179d5 #1a60aa;
-  background-image: -webkit-linear-gradient(top, #59aaf4, #338cdf);
-  background-image: -moz-linear-gradient(top, #59aaf4, #338cdf);
-  background-image: -o-linear-gradient(top, #59aaf4, #338cdf);
-  background-image: linear-gradient(to bottom, #59aaf4, #338cdf);
-  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
-}
-
-:-moz-placeholder {
-  color: #a7aabc;
-  font-weight: 200;
-}
-
-::-webkit-input-placeholder {
-  color: #a7aabc;
-  font-weight: 200;
-  line-height: 14px;
-}
-
-::-webkit-search-decoration,
-::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-}
-
-.lt-ie9 .search input {
-  line-height: 26px;
-}
+    }
+    
+    .search input:focus {
+        width: 350px;
+        -webkit-transition: width 0.5s ease-in-out;
+    }
+    
+    .search input:focus + .search-ac {
+        display: block;
+    }
+    
+    .search-ac {
+        display: none;
+        position: absolute;
+        top: 35px;
+        left: -50;
+        right: 0;
+        width: 350px;
+        z-index: 10;
+        background: #fdfdfd;
+        border: 1px solid;
+        border-color: #cbcfe2 #c8cee7 #c4c7d7;
+        border-radius: 3px;
+        background-image: -webkit-linear-gradient(top, #fdfdfd, #eceef4);
+        background-image: -moz-linear-gradient(top, #fdfdfd, #eceef4);
+        background-image: -o-linear-gradient(top, #fdfdfd, #eceef4);
+        background-image: linear-gradient(to bottom, #fdfdfd, #eceef4);
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    
+    .search-ac:hover {
+        display: block;
+    }
+    
+    .search-ac li {
+        display: block;
+    }
+    
+    .search-ac li:first-child {
+        margin-top: -1px;
+    }
+    
+    .search-ac li:first-child:before,
+    .search-ac li:first-child:after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: 50%;
+        margin-left: -5px;
+        border: 5px outset transparent;
+    }
+    
+    .search-ac li:first-child:before {
+        border-bottom: 5px solid #c4c7d7;
+        top: -11px;
+    }
+    
+    .search-ac li:first-child:after {
+        border-bottom: 5px solid #fdfdfd;
+        top: -10px;
+    }
+    
+    .search-ac li:first-child:hover:before,
+    .search-ac li:first-child:hover:after {
+        display: none;
+    }
+    
+    .search-ac li:last-child {
+        margin-bottom: -1px;
+    }
+    
+    .search-ac a {
+        display: block;
+        position: relative;
+        margin: 0 -1px;
+        padding: 6px 40px 6px 10px;
+        color: #808394;
+        font-weight: 500;
+        text-decoration: none;
+        text-shadow: 0 1px white;
+        border: 1px solid transparent;
+        border-radius: 3px;
+    }
+    
+    .search-ac a span {
+        font-weight: 200;
+    }
+    
+    .search-ac a:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -9px;
+        width: 18px;
+        height: 18px;
+        background: url("../img/arrow.png") 0 0 no-repeat;
+        z-index: 99;
+    }
+    
+    .search-ac a:hover {
+        color: white;
+        text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+        background: #338cdf;
+        border-color: #2380dd #2179d5 #1a60aa;
+        background-image: -webkit-linear-gradient(top, #59aaf4, #338cdf);
+        background-image: -moz-linear-gradient(top, #59aaf4, #338cdf);
+        background-image: -o-linear-gradient(top, #59aaf4, #338cdf);
+        background-image: linear-gradient(to bottom, #59aaf4, #338cdf);
+        -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
+        box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
+    }
+    
+    :-moz-placeholder {
+        color: #a7aabc;
+        font-weight: 200;
+    }
+    
+    ::-webkit-input-placeholder {
+        color: #a7aabc;
+        font-weight: 200;
+        line-height: 14px;
+    }
+    
+    ::-webkit-search-decoration,
+    ::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+    }
+    
+    .lt-ie9 .search input {
+        line-height: 26px;
+    }
 </style>
