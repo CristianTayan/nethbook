@@ -8,7 +8,10 @@ html {
     color: #757575!important;
     font-family: "Roboto";
 }
+.md-title{
+    color: #FF4081!important;
 
+}
 md-expansion-panel {
     display: block;
     position: relative;

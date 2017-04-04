@@ -138,11 +138,7 @@ angular.module('nextbook20App')
         }; 
         this.money = function(string) {
             
-            if (string !=0 ) {
-                var num = parseFloat(string.replace(/\€|,/g, ''));
-            }
-            
-            return num;
+            return parseFloat(string);
         }; 
 
 

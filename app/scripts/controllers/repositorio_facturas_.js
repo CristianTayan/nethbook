@@ -37,6 +37,9 @@
 	    	
 	    	for (var i = 0; i < data.length; i++) {
 	    		var valor = repositorioFacturas.money(data[i].total);
+	    		console.log(data);
+	    		console.log(valor);
+	    		console.log(data[i].nombre);
 	    		var sub_arrow = [{v:data[i].nombre},{v:valor}];
 	    		rows.push({c:sub_arrow});
 	    	}
@@ -298,6 +301,8 @@
 			                    .ok('ENTENDIDO')
 			                    .openFrom('#left')
 			                );
+
+			                $scope.data.clave = '';
 
 			            }else{
 			            	$mdDialog.show(
