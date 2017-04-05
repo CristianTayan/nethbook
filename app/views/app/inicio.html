@@ -9,7 +9,7 @@
         <md-subheader class="md-no-sticky">Menu de Aplicación</md-subheader>
         <md-list-item ng-href="#/App{{item.path}}" ng-repeat="item in menu.children">
             <p> {{item.nombre}} </p>
-            <md-icon>business</md-icon>
+            <md-icon>{{item.personalizacion.icon}}</md-icon>
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader class="md-no-sticky">Configuración</md-subheader>
