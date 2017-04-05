@@ -139,7 +139,7 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
         }
         
         vm.selectModel = {
-            selectedPerson:undefined
+            selectedPerson:[vm.categorias_list[0]]
         };
 
         // -------------------------------------------------------DIALOGO PRODUCTOS-------------------------------------------------------
@@ -156,35 +156,35 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
 
 
         vm.selectModelED = {
-            selectedED: undefined,
+            selectedED: vm.selectED[0],
             selectedPeopleED: [vm.selectED[0]]
         };
         vm.selectModelGarantia = {
-            selectedGarantia: undefined,
+            selectedGarantia: vm.selectGarantias[0],
             selectedGarantiaDefault: [vm.selectGarantias[0]]
         };
 
         vm.selectModelMarcas = {
-            selectedMarca: undefined,
+            selectedMarca: vm.selectMarcas[0],
             selectedMarcasDefault: [vm.selectMarcas[0]]
         };
         vm.selectModelModelos = {
-            selectedModelo: undefined,
+            selectedModelo: vm.selectModelos[0],
             selectedModeloDefault: [vm.selectModelos[0]]
         };
         vm.selectModelUbicaciones = {
-            selectedUbicacion: undefined,
+            selectedUbicacion: vm.selectUbicaciones[0],
             selectedUbicacionDefault: [vm.selectUbicaciones[0]]
         };
 
         vm.selectModelTipoConsumos = {
-            selectedTipoConsumo: undefined,
+            selectedTipoConsumo: vm.selectTipoConsumos[0],
             selectedTipoConsumoDefault: [vm.selectTipoConsumos[0]]
         };
 
         vm.selectModelImpuestos = {
-            selectedImpuesto: undefined,
-            selectedImpuestos: []
+            selectedImpuesto: [vm.selectImpuestos[0]],
+            selectedImpuestos: [vm.selectImpuestos[2]]
         };
 
         function selectCallback(_newValue, _oldValue) {

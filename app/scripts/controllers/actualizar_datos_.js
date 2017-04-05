@@ -14,8 +14,6 @@ var app = angular.module('nextbook20App');
     var fecha = moment(new Date()); // Fecha Actual
     $scope.fin = fecha.subtract(18, 'years').format("YYYY-MM-DD");  // resta 18 años a la fecha
 
-
-
     $scope.cambiar_datos_password = function(){
     	mainService.Update_Password().get({pass:$scope.data.password}).$promise.then(function(data){
         if (data.respuesta == true) {
