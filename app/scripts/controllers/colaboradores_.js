@@ -44,7 +44,7 @@ var app = angular.module('nextbook20App')
 
 		    function DialogController_nuevo($scope, tipo_usuario,ciudades,$mdToast) {
 				
-
+		    	$scope.procesando=false;
 					
 		    	// ------------------------------SELECT TIPO DOCUMENTO------------------------------
 			        // var vm = $scope;
@@ -94,11 +94,13 @@ var app = angular.module('nextbook20App')
 		        // Nuevo registro tipo inventario
 		        $scope.col_usuario_nuevo = function() {
 		        	$scope.data_usuario.id_localidad=cm.selectModelCiudad.selectedCiudades.id;
+		        	$scope.procesando=true;
 		        	// $scope.data_usuario.id_tipo_documento=vm.selectModelDocument.selectedPerson.id;
 		        	$scope.data_usuario.id_tipo_usuario=vd.selectModel.selectedPerson.id;
 		        	// $scope.data_usuario.id_operadora_telefonica=om.selectModelOperadora.selectedOperadora.id;
-		            colaboradores_Service.Add_Col_Usuario().add($scope.data_usuario).$promise.then(function(data) {
+		            return colaboradores_Service.Add_Col_Usuario().add($scope.data_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_usuario", {});
+		                $scope.procesando=false;
 		                if (data.respuesta == true) {
 						        $mdDialog.cancel();
 				                    $mdToast.show({
