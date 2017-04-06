@@ -72,12 +72,15 @@
                 $scope.data_caja={};
                 $scope.data_caja.inicio_numeracion=1;
                 $scope.data_caja.fin_numeracion=$scope.data_caja.inicio_numeracion+1;
+                $scope.procesando=false;
 
 
                 $scope.caja_nuevo = function() {
                     $scope.data_caja.id_sucursal=$localStorage.sucursal.id;
-                     Facturacion_Service.Add_Caja().send($scope.data_caja).$promise.then(function(data) {
+                    $scope.procesando=true;
+                     return Facturacion_Service.Add_Caja().send($scope.data_caja).$promise.then(function(data) {
                         $rootScope.$emit("actualizar_tabla_cajas", {});
+                        $scope.procesando=false;
                         if (data.respuesta == true) {
                                 // $mdDialog.cancel();
                                 //     $mdToast.show({
