@@ -108,12 +108,20 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
         });
     }
 
-    function DialogController_nuevo($scope, $localStorage, $mdExpansionPanel, select_impuestos,select_tipo_categoria,select_estado_descriptivo,select_garantias,select_marcas,select_modelos,select_ubicaciones,select_tipo_consumos, $mdToast) {
+    function DialogController_nuevo($scope, $localStorage, $mdExpansionPanel, select_impuestos,select_tipo_categoria,select_estado_descriptivo,select_garantias,select_marcas,select_modelos,select_ubicaciones,select_tipo_consumos, $mdToast,Servicios_Modal) {
         $mdExpansionPanel().waitFor('expansionPanelOne').then(function (instance) { instance.expand(); });
         $scope.inf_sucursal = $localStorage.sucursal;
-        
-
-
+        var vm = $scope;
+        // abrir modal remotamente
+        var servicios_remotos=Servicios_Modal;
+        $scope.abrir_modal=function(){
+            servicios_remotos.abrir_modal('categorias');
+        }
+        $scope.$on('actualizar_select_categorias', function() {
+            vm.categorias_list=servicios_remotos.lista;
+            vm.selectModel.selectedPerson=[vm.categorias_list[vm.categorias_list.length-1]];
+            console.log(servicios_remotos.lista);
+        });
         // ------------------------------------------------------ INICIALIZACION CAMPOS ---------------------------------------------------------
         $scope.data_inv_producto = {precio:0.00,costo: 0.00, cantidad:1}
         $scope.data_inv_producto.categoria;
@@ -122,7 +130,7 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
             $scope.data_inv_producto.categoria=categoria;
             $scope.selected_cat=categoria.nombre;
         }
-        var vm = $scope;
+        
         // ------------------------------------------------------ SELEC CATEGORIA ---------------------------------------------------------
         vm.categorias=select_tipo_categoria;
         vm.categorias_list=vm.categorias;
@@ -156,7 +164,7 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
 
 
         vm.selectModelED = {
-            selectedED: vm.selectED[0],
+            selectedED: vm.selectED[2],
             selectedPeopleED: [vm.selectED[0]]
         };
         vm.selectModelGarantia = {
@@ -178,7 +186,7 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
         };
 
         vm.selectModelTipoConsumos = {
-            selectedTipoConsumo: vm.selectTipoConsumos[0],
+            selectedTipoConsumo: vm.selectTipoConsumos[2],
             selectedTipoConsumoDefault: [vm.selectTipoConsumos[0]]
         };
 

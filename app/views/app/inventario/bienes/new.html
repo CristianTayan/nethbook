@@ -99,8 +99,19 @@
                         </md-expansion-panel-header>
                         <md-expansion-panel-content>
                             <div layout="row" flex>
-                                <md-input-container class="md-icon-float md-block" flex>
-                                    <lx-select ng-model="selectModel.selectedPerson" ng-change="change_hijo()" lx-fixed-label="true" lx-allow-clear="true" lx-choices="categorias_list" lx-display-filter="true" lx-fixed-label="true" lx-label="Categoría" lx-multiple="true" required>
+                                <md-input-container class="md-icon-float md-icon-right md-block" flex>
+                                <md-icon class="md-accent" style="cursor: pointer;" ng-click="abrir_modal()">add_circle</md-icon>
+                                    <lx-select 
+                                    ng-model="selectModel.selectedPerson" 
+                                    ng-change="change_hijo()" 
+                                    lx-fixed-label="true" 
+                                    lx-allow-clear="true" 
+                                    lx-choices="categorias_list" 
+                                    lx-display-filter="true" 
+                                    lx-fixed-label="true" 
+                                    lx-label="Categoría" 
+                                    lx-multiple="true"
+                                    required>
                                         <lx-select-selected>
                                             {{ $selected.nombre +'/'}}
                                         </lx-select-selected>
@@ -113,12 +124,12 @@
                                         <div ng-message="campo">Registro Repetido</div>
                                     </div>
                                 </md-input-container>
-                                <div flex="5" hide-xs hide-sm>
+                <!--                 <div flex="5" hide-xs hide-sm>
                                     <md-button class="md-icon-button md-accent" aria-label="More">
                                         <md-icon>add_circle</md-icon>
                                         <md-tooltip>Nueva Categoría</md-tooltip>
                                     </md-button>                                    
-                                </div>
+                                </div> -->
                                 <md-input-container class="md-icon-float md-block" flex>
                                     <lx-select ng-model="selectModelTipoConsumos.selectedTipoConsumo"
                                                lx-allow-clear="true"
@@ -137,12 +148,12 @@
                                         <div ng-message="required">Campo Requerido</div>
                                     </div>
                                 </md-input-container>
-                                <div flex="5" hide-xs hide-sm>
+<!--                                 <div flex="5" hide-xs hide-sm>
                                     <md-button class="md-icon-button md-accent" aria-label="More">
                                         <md-icon>add_circle</md-icon>
                                         <md-tooltip>Nuevo Tipo de Consumo</md-tooltip>
                                     </md-button>
-                                </div>
+                                </div> -->
                                 <md-input-container class="md-icon-float md-block" flex>
                                     <lx-select  ng-model="selectModelED.selectedED" 
                                                 lx-allow-clear="true" 
@@ -162,12 +173,12 @@
                                         <div ng-message="campo">Registro Repetido</div>
                                     </div>
                                 </md-input-container>
-                                <div flex="5" hide-xs hide-sm>
+<!--                                 <div flex="5" hide-xs hide-sm>
                                     <md-button class="md-icon-button md-accent" aria-label="More">
                                         <md-icon>add_circle</md-icon>
                                         <md-tooltip>Nuevo Estado Descriptivo</md-tooltip>
                                     </md-button>
-                                </div>
+                                </div> -->
                                 <md-input-container class="md-icon-float md-block" flex>
                                     <lx-select ng-model="selectModelImpuestos.selectedImpuestos"
                                                                    lx-choices="selectImpuestos"
@@ -182,12 +193,12 @@
                                         </lx-select-choices>
                                     </lx-select>
                                 </md-input-container>
-                                <div flex="5" hide-xs hide-sm>
+<!--                                 <div flex="5" hide-xs hide-sm>
                                     <md-button class="md-icon-button md-accent" aria-label="More">
                                         <md-icon>add_circle</md-icon>
                                         <md-tooltip>Nuevo Impuesto</md-tooltip>
                                     </md-button>
-                                </div>
+                                </div> -->
                             </div>
                         </md-expansion-panel-content>
                     </md-expansion-panel-expanded>
