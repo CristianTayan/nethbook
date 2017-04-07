@@ -100,7 +100,7 @@
                         <md-expansion-panel-content>
                             <div layout="row" flex>
                                 <md-input-container class="md-icon-float md-icon-right md-block" flex>
-                                <md-icon class="md-accent" style="cursor: pointer;" ng-click="abrir_modal()">add_circle</md-icon>
+                                <md-icon class="md-accent" style="cursor: pointer;" ng-click="abrir_modal('CAT')">add_circle</md-icon>
                                     <lx-select 
                                     ng-model="selectModel.selectedPerson" 
                                     ng-change="change_hijo()" 
@@ -130,7 +130,8 @@
                                         <md-tooltip>Nueva Categoría</md-tooltip>
                                     </md-button>                                    
                                 </div> -->
-                                <md-input-container class="md-icon-float md-block" flex>
+                                <md-input-container class="md-icon-float md-icon-right md-block" flex>
+                                <md-icon class="md-accent" style="cursor: pointer;" ng-click="abrir_modal('TIPOCONSUMO')">add_circle</md-icon>
                                     <lx-select ng-model="selectModelTipoConsumos.selectedTipoConsumo"
                                                lx-allow-clear="true"
                                                lx-choices="selectTipoConsumos"
@@ -154,7 +155,8 @@
                                         <md-tooltip>Nuevo Tipo de Consumo</md-tooltip>
                                     </md-button>
                                 </div> -->
-                                <md-input-container class="md-icon-float md-block" flex>
+                                <md-input-container class="md-icon-float md-icon-right md-block" flex>
+                                <md-icon class="md-accent" style="cursor: pointer;" ng-click="abrir_modal('ESTADODESCRIP')">add_circle</md-icon>
                                     <lx-select  ng-model="selectModelED.selectedED" 
                                                 lx-allow-clear="true" 
                                                 lx-choices="selectED" 
@@ -180,6 +182,7 @@
                                     </md-button>
                                 </div> -->
                                 <md-input-container class="md-icon-float md-block" flex>
+                                <!-- <md-icon class="md-accent" style="cursor: pointer;" ng-click="abrir_modal()">add_circle</md-icon> -->
                                     <lx-select ng-model="selectModelImpuestos.selectedImpuestos"
                                                                    lx-choices="selectImpuestos"
                                                                    lx-fixed-label="true"
@@ -218,7 +221,8 @@
                         </md-expansion-panel-header>
                         <md-expansion-panel-content>
                             <div layout="row" flex>
-                                <md-input-container class="md-icon-float md-block" flex>
+                                <md-input-container class="md-icon-float md-icon-right md-block" flex>
+                                <md-icon class="md-accent" style="cursor: pointer;" ng-click="abrir_modal('MARCA')">add_circle</md-icon>
                                     <lx-select ng-model="selectModelMarcas.selectedMarca"
                                                                    lx-allow-clear="true"
                                                                    lx-choices="selectMarcas"
@@ -238,7 +242,8 @@
                                     </div>
                                 </md-input-container>
                                 <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
-                                <md-input-container class="md-icon-float md-block" flex>
+                                <md-input-container class="md-icon-float md-icon-right md-block" flex>
+                                <md-icon class="md-accent" style="cursor: pointer;" ng-click="abrir_modal('MODELO')">add_circle</md-icon>
                                     <lx-select  ng-model="selectModelModelos.selectedModelo" 
                                                 lx-allow-clear="true" 
                                                 lx-choices="selectModelos" 
@@ -259,7 +264,8 @@
                                     </div>
                                 </md-input-container>
                                 <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
-                                <md-input-container class="md-icon-float md-block" flex>
+                                <md-input-container class="md-icon-float md-icon-right md-block" flex>
+                                <md-icon class="md-accent" style="cursor: pointer;" ng-click="abrir_modal('UBICACION')">add_circle</md-icon>
                                     <lx-select ng-model="selectModelUbicaciones.selectedUbicacion"
                                                                    lx-allow-clear="true"
                                                                    lx-choices="selectUbicaciones"
@@ -279,7 +285,8 @@
                                     </div>
                                 </md-input-container>
                                 <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
-                                <md-input-container class="md-icon-float md-block" flex>
+                                <md-input-container class="md-icon-float md-icon-right md-block" flex>
+                                    <md-icon class="md-accent" style="cursor: pointer;" ng-click="abrir_modal('GARANTIA')">add_circle</md-icon>
                                     <lx-select ng-model="selectModelGarantia.selectedGarantia"
                                                                    lx-allow-clear="true"
                                                                    lx-choices="selectGarantias"

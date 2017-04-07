@@ -112,15 +112,51 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
         $mdExpansionPanel().waitFor('expansionPanelOne').then(function (instance) { instance.expand(); });
         $scope.inf_sucursal = $localStorage.sucursal;
         var vm = $scope;
-        // abrir modal remotamente
+        //------------------------------------------------------ abrir modal remotamente------------------------------------------------------
         var servicios_remotos=Servicios_Modal;
-        $scope.abrir_modal=function(){
-            servicios_remotos.abrir_modal('categorias');
+        $scope.abrir_modal=function(id_modal){
+            servicios_remotos.abrir_modal(id_modal);
         }
-        $scope.$on('actualizar_select_categorias', function() {
-            vm.categorias_list=servicios_remotos.lista;
-            vm.selectModel.selectedPerson=[vm.categorias_list[vm.categorias_list.length-1]];
+        $scope.$on('actualizar_select', function() {
             console.log(servicios_remotos.lista);
+              switch(servicios_remotos.id_modal){
+                case "CAT":
+                    vm.categorias_list=servicios_remotos.lista;
+                    vm.categorias=servicios_remotos.lista;
+                    vm.selectModel.selectedPerson=[vm.categorias_list[vm.categorias_list.length-1]];
+                break;
+                case'TIPOCONSUMO':
+                    vm.selectTipoConsumos=servicios_remotos.lista;
+                    vm.selectModelTipoConsumos.selectedPerson=[vm.selectTipoConsumos[vm.selectTipoConsumos.length-1]];
+                     console.log(vm.selectTipoConsumos[vm.selectTipoConsumos.length-1]);
+                break;
+                case'ESTADODESCRIP':
+                    vm.selectED=servicios_remotos.lista;
+                    vm.selectModelED.selectedED=[vm.selectED[vm.selectED.length-1]];
+
+                break;
+                case'MARCA':
+                    vm.selectMarcas=servicios_remotos.lista;
+                    vm.selectModelMarcas.selectedMarca=[vm.selectMarcas[vm.selectMarcas.length-1]];
+
+                break;
+                case'MODELO':
+                    vm.selectModelos=servicios_remotos.lista;
+                    vm.selectModelModelos.selectedModelo=[vm.selectModelos[vm.selectModelos.length-1]];
+
+                break;
+                case'UBICACION':
+                    vm.selectUbicaciones=servicios_remotos.lista;
+                    vm.selectModelUbicaciones.selectedUbicacion=[vm.selectUbicaciones[vm.selectUbicaciones.length-1]];
+
+                break;
+                case'GARANTIA':
+                    vm.selectGarantias=servicios_remotos.lista;
+                    vm.selectModelGarantia.selectedGarantia=[vm.selectGarantias[vm.selectGarantias.length-1]];
+
+                break;
+
+            }
         });
         // ------------------------------------------------------ INICIALIZACION CAMPOS ---------------------------------------------------------
         $scope.data_inv_producto = {precio:0.00,costo: 0.00, cantidad:1}
