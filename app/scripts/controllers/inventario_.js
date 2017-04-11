@@ -726,7 +726,7 @@ app.controller('inv_tipo_consumo_Ctrl', function($scope, $rootScope, $mdDialog, 
     }
 
     function DialogController_nuevo($scope, $mdToast) {
-        // Nuevo registro tipo inventario
+        // Nuevo registro tipo consumo
         $scope.inv_tipo_consumo_nuevo = function() {
             inventario_Service.Add_Tipo_Consumo().add($scope.data_inv_tipo_consumo).$promise.then(function(data) {
                 $rootScope.$emit("actualizar_tabla_tipo_consumo", {});
