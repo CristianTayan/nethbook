@@ -1,74 +1,70 @@
-        <div flex="70">
-            <div layout="column" >
-                <div layout="row">
-                    <md-card flex>
-                        <div class="card card--big">
-                            <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image"></div>
-                            <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
-                        </div>
-                        <div style="position: absolute;">
-                            <md-button class="md-icon-button" aria-label="More">
-                                <md-icon ng-click="show_listaimg_modal('portada')">border_color</md-icon>
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="More">
-                                <md-icon ng-click="show_upload_img_modal('portada')">camera_alt</md-icon>
-                            </md-button>
-                        </div>
-                        <md-tabs>
-                            <md-tab id="b-tab1" aria-controls="b-tab1-content" style="float:right!important;">
-                                Historia
-                            </md-tab>
-                            <md-tab id="b-tab2" aria-controls="b-tab2-content" style="float:right!important;">
-                                <md-icon>location_on</md-icon>
-                            </md-tab>
-                            <md-tab id="b-tab3" aria-controls="b-tab3-content" style="float:right!important;">
-                                Similares
-                            </md-tab>
-                            <md-tab id="b-tab4" aria-controls="b-tab4-content" style="float:right!important;">
-                                Favoritos
-                            </md-tab>
-                            <md-tab id="b-tab5" aria-controls="b-tab5-content" style="float:right!important;">
-                                Grupos
-                            </md-tab>
-                            <md-tab id="b-tab6" aria-controls="b-tab5-content" style="float:right!important;">
-                                Agenda
-                            </md-tab>
-                        </md-tabs>
-                    </md-card>
-                </div>
-                <!-- <div layout="row" app-view-segment="2"></div> -->
-            </div>
+<md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="25" style="background: #EEEEEE">
+  <div layout="row">
+    <div class="demo-card-square mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title mdl-card--expand">
+            <h2 class="mdl-card__title-text">Mi Empresa</h2>
         </div>
-        <div flex="30" layout="column" flex layout="row" layout-padding>
-            <div style="position: fixed;top: 64px">
-                <div layout="row">
-                  <div class="demo-card-square mdl-card mdl-shadow--2dp">
-              <div class="mdl-card__title mdl-card--expand">
-                <h2 class="mdl-card__title-text">Mi Empresa</h2>
-              </div>
-              <div class="mdl-card__supporting-text">
-                {{datos2.razon_social}},
-                {{datos2.tipo_contribuyente}}
-              </div>
-            </div>
-                </div>
-                  <div layout="row">
-                  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-              <div class="mdl-card__title">
-                <h4 class="mdl-card__title-text">Actividad Economica</h4>
-              </div>
-              <div class="mdl-card__supporting-text">
-                {{datos2.actividad_economica | lowercase}}
-              </div>
-              <div class="mdl-card__menu">
-                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                  <i class="material-icons">share</i>
-                </button>
-              </div>
-            </div>
-          </div>
+        <div class="mdl-card__supporting-text">
+            {{datos2.razon_social}}, {{datos2.tipo_contribuyente}}
         </div>
+    </div>
+</div>
+<div layout="row">
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+            <h4 class="mdl-card__title-text">Actividad Economica</h4>
         </div>
+        <div class="mdl-card__supporting-text">
+            {{datos2.actividad_economica | lowercase}}
+        </div>
+        <div class="mdl-card__menu">
+            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons">share</i>
+            </button>
+        </div>
+    </div>
+</div>
+</md-content>
+<md-content flex  style="background: #EEEEEE"> <!-- app-view-segment="3" -->
+  <md-card flex>
+        <div class="card card--big">
+            <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image"></div>
+            <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
+        </div>
+        <div style="position: absolute;">
+            <md-button class="md-icon-button" aria-label="More">
+                <md-icon ng-click="show_listaimg_modal('portada')">border_color</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="More">
+                <md-icon ng-click="show_recordimg_modal('portada')">camera_alt</md-icon>
+            </md-button>
+        </div>
+        <md-tabs>
+            <md-tab id="b-tab1" aria-controls="b-tab1-content" style="float:right!important;">
+                Historia
+            </md-tab>
+            <md-tab id="b-tab2" aria-controls="b-tab2-content" style="float:right!important;">
+                <md-icon>location_on</md-icon>
+            </md-tab>
+            <md-tab id="b-tab3" aria-controls="b-tab3-content" style="float:right!important;">
+                Similares
+            </md-tab>
+            <md-tab id="b-tab4" aria-controls="b-tab4-content" style="float:right!important;">
+                Favoritos
+            </md-tab>
+            <md-tab id="b-tab5" aria-controls="b-tab5-content" style="float:right!important;">
+                Grupos
+            </md-tab>
+            <md-tab id="b-tab6" aria-controls="b-tab5-content" style="float:right!important;">
+                Agenda
+            </md-tab>
+        </md-tabs>
+    </md-card>
+    <md-content layout-padding layout-wrap style="background: #EEEEEE" app-view-segment="3"></md-content>
+</md-content>
+
+
+
 
 <style>
 .demo-card-square.mdl-card {

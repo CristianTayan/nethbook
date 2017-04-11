@@ -1,0 +1,57 @@
+<md-dialog aria-label="Cargar Imagen ">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Cargar Imagen Portada</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div ngf-drop ngf-select="uploader($files)" ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
+          accept="image/*,application/pdf" 
+          ngf-pattern="'image/*,application/pdf'">
+          <p>
+            Arrastra las fotos aqui 
+          </p>
+          <p>
+            <small>O si prefieres...</small>
+          </p>
+          <md-button class="md-accent">Selecciona la foto Para Subir</md-button>
+        </div>
+
+      <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+        More on Wikipedia
+      </md-button>
+      <span flex></span>
+      <md-button ng-click="answer('not useful')">
+       Not Useful
+      </md-button>
+      <md-button ng-click="upload()">
+        Useful
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+<style type="text/css">
+.drop-box {
+  background: #F8F8F8;
+  border: 2px dashed #DDD;
+  width: 100%;
+  height: 215px;
+  text-align: center;
+  padding-top: 25px;
+  font-size: 30px;
+}
+.dragover {
+    border: 5px dashed blue;
+}
+</style>

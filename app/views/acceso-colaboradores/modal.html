@@ -6,7 +6,7 @@
 	    </md-button>
     </md-list-item>
 </md-list>
-<md-content layout-padding layout-wrap>
+<div layout-padding layout-wrap>
     <md-list>
         <md-list-item class="md-2-line">
             <md-icon md-svg-icon="{{phone.options.icon}}" ng-if="phone.options.icon" ng-class="{'md-avatar-icon': phone.options.avatarIcon}"></md-icon>
@@ -23,7 +23,7 @@
         <form name="form_ingreso_colaborador" ng-submit="ingresar_colaborador()">
             <md-input-container class="md-block">
                 <label>Password / Clave</label>
-                <input type="password" required md-no-asterisk ng-model="clave">
+                <input name="pas_" type="password" required md-no-asterisk ng-model="clave" md-autofocus>
                 <div ng-messages="projectForm.description.$error">
                     <div ng-message="required">This is required.</div>
                     <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
@@ -38,4 +38,4 @@
             </div>
         </form>
     </md-list>
-</md-content>
+</div>

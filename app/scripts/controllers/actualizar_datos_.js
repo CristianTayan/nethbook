@@ -69,7 +69,7 @@ var app = angular.module('nextbook20App');
 
     $scope.Actividad = 1;
     $scope.selected_Tipo = function(val) {
-      console.log(val);
+      // console.log(val);
       $scope.Tipo = val.Tipo;
       $scope.Tipo_completo = val;
       $scope.get_data_tipos_empresas(val.id);
@@ -85,7 +85,7 @@ var app = angular.module('nextbook20App');
     };
 
     $scope.stepChanged = function(){
-      console.log('step changed');
+      // console.log('step changed');
     };
 
     $scope.wizardSaved = function(){   

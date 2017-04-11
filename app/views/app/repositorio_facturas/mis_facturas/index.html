@@ -15,6 +15,7 @@
                 <tr md-row>
                     <th md-column md-numeric>Nro</th>
                     <th md-column md-numeric><md-icon>markunread_mailbox</md-icon> EMISOR FACTURA</th>
+                    <th md-column md-numeric><md-icon>code</md-icon> CLAVE DE ACCESO</th>
                     <th md-column md-numeric><md-icon>attach_file</md-icon> TOTAL</th>
                     <th md-column md-numeric><md-icon>date_ranger</md-icon> FECHA</th>
                     <th md-column md-numeric>VER</th>
@@ -24,6 +25,14 @@
                 <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in mis_facturas">
                     <td md-cell>{{$index+1}}</td>
                     <td md-cell>{{dessert.nombre_comercial}}</td>
+                    <td md-cell>
+                         <md-button class="md-icon-button md-accent" ng-click="ver_clave_acceso(dessert)">
+                            <md-icon>remove_red_eye</md-icon>
+                            <md-tooltip>
+                                Visualizar Clave de Acceso
+                            </md-tooltip>
+                        </md-button>
+                    </td>
                     <td md-cell>{{dessert.total}}</td>
                     <td md-cell>{{dessert.fecha_emision | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase }}</td>
                     <td md-cell>

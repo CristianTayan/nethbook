@@ -1,6 +1,9 @@
 <md-toolbar layout="row" layout-align="center center">
     <div flex-gt-sm="90" flex-gt-md="80">
         <div class="md-toolbar-tools md-toolbar-registro">
+            <md-button ng-href="#/" class="md-icon-button">
+                <md-icon>search</md-icon>
+            </md-button>
             <h3>Nethbook, Red de Negocios</h3>
             <span flex></span>
             <form name="formlogin" layout="row" ng-submit="ingresar()">
@@ -13,11 +16,12 @@
                 </div>
             </form>
         </div>
-        <md-tabs class="md-primary" md-selected="data.selectedIndex" md-center-tabs="true">
+        <md-tabs class="md-primary" md-selected="data.selectedIndex" md-center-tabs="true" md-selected="2">
             <md-tab id="tab1" aria-controls="tab1-content">
                 <md-icon>dns</md-icon>
                 Para Empresas
             </md-tab>
+            
             <!-- <md-tab id="tab2" aria-controls="tab2-content">
                 <md-icon>account_box</md-icon>
                 Para Ti
@@ -32,7 +36,7 @@
 <md-content flex layout="row">
     <md-content flex>
         <div layout="row" layout-align="center center">
-            <div flex="70">
+            <div flex="60">
                 <ng-switch on="data.selectedIndex" class="tabpanel-container">
                     <md-content id="tab1-content" aria-labelledby="tab1" ng-switch-when="0">
                         <div layout-padding layout-wrap layout="row">

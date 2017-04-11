@@ -36,5 +36,23 @@ angular.module('nextbook20App')
 
             }
         }
+        this.selectedItemChange_ini = function(item) {
+            if (item) {                
+                var resultado = '';
+                if (item.nombre_comercial) {
+                    resultado = item.nombre_comercial.replace(/ /g, "_");
+                    // console.log(resultado);
+                    $location.path('/nb/search/' + resultado+'/Info');
+                }else if(item.razon_social){
+                    resultado = item.nombre_comercial.replace(/ /g, "_");
+                    // console.log(resultado);
+                    $location.path('/nb/search/' + resultado+'/Info');
+                }else{
+                    // console.log(resultado);
+                    $location.path('/nb/search/' + item.ruc+'/Info');
+                }
+
+            }
+        }
   	})
 

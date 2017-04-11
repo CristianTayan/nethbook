@@ -38,7 +38,10 @@ var app = angular.module('nextbook20App', [
                                             'pascalprecht.translate',
                                             'material.components.expansionPanels',
                                             'ui.tree',
-                                            'xmd.directives.xmdWizard'
+                                            'xmd.directives.xmdWizard',
+                                            'ngclipboard',
+                                            'pmImageEditor',
+                                            'ngFileUpload'
                                         ]);
     
     // themes configuration
@@ -182,18 +185,27 @@ var app = angular.module('nextbook20App', [
             // .when('/Perfil',    'dashboard.perfil')
             // configuracion setting
             .when('/nb',    'dashboard.nb')
+
+            .when('/nb/search/:id',    'dashboard.nb.search')
+                .when('/nb/search/:id/Publicacion',    'dashboard.nb.search.publicacion')
+                .when('/nb/search/:id/Info',    'dashboard.nb.search.info')
+                .when('/nb/search/:id/Ubicacion',    'dashboard.nb.search.ubicacion')
+                .when('/nb/search/:id/Similares',    'dashboard.nb.search.similares')
+                .when('/nb/search/:id/Favoritos',    'dashboard.nb.search.favoritos')
+
+
             .when('/nb/Inicio',    'dashboard.nb.inicio')
             .when('/nb/Perfil',    'dashboard.nb.perfil')
+
             .when('/nb/Personal',    'dashboard.nb.personal')
-
-
+            .when('/nb/Personal/Inicio',    'dashboard.nb.personal.inicio')
 
             // ---------------------------------------configuracion de procesos---------------------------------------
             .when('/nb/Config',    'dashboard.nb.config')
             .when('/nb/Config/Personal',    'dashboard.nb.config.personal')
             .when('/nb/Config/Terminos',    'dashboard.nb.config.terminos')
             // general
-            .when('/Perfil_Personal',    'dashboard.perfil_personal')
+            .when('/nb/Config/Empresa',    'dashboard.nb.config.empresa')
             .when('/App',    'dashboard.app')
             .when('/App/Inicio',    'dashboard.app.inicio')
             // --------------------------------------GESTION REPOSITORIO FACTURAS------------------------------------
@@ -257,6 +269,31 @@ var app = angular.module('nextbook20App', [
                                 templateUrl: 'views/dashboard/perfil_personal.html',
                                 controller: 'perfil_personal_Ctrl'
                             })
+                                .within()
+                                    .segment('inicio', {
+                                        default: true,
+                                        templateUrl: 'views/dashboard/perfil_personal/inicio.html',
+                                        // controller: 'informacion_generalCtrl'
+                                    })
+                                .up()
+
+                            .segment('search', {
+                                templateUrl: 'views/dashboard/buscador/index.html',
+                                controller: 'search_Ctrl',
+                            })
+                                .within()                
+                                    .segment('publicacion', {                        
+                                        templateUrl: 'views/perfil/publicacion.html'})                        
+                                    .segment('info', {
+                                        'default': true,
+                                        templateUrl: 'views/perfil/info.html'})
+                                    .segment('ubicacion', {
+                                        templateUrl: 'views/perfil/ubicacion.html'})
+                                    .segment('similares', {
+                                        templateUrl: 'views/perfil/similares.html'})
+                                    .segment('favoritos', {
+                                        templateUrl: 'views/perfil/favoritos.html'})
+                                .up()
                             .segment('config', {
                                 templateUrl: 'views/dashboard/configuracion/index.html',
                                 // controller: 'configuracionCtrl'
@@ -269,8 +306,8 @@ var app = angular.module('nextbook20App', [
                                     })
                                     .segment('empresa', {
                                         // default: true,
-                                        templateUrl: 'views/dashboard/configuracion/perfil/index.html',
-                                        // controller: 'informacion_generalCtrl'
+                                        templateUrl: 'views/dashboard/configuracion/establecimiento/index.html',
+                                        controller: 'informacion_general_empresaCtrl'
                                     })
                                     .segment('sucursal', {
                                         // default: true,
@@ -353,18 +390,15 @@ var app = angular.module('nextbook20App', [
                                             templateUrl: 'views/app/inventario/categoria/productos/index.html',
                                             controller: 'inv_categoria_productos_Ctrl'
                                         })
-                                        // .within()
-                                            .segment('cat_productos', {
-                                                default:true,
-                                                templateUrl: 'views/app/inventario/categoria/productos/index.html',
-                                                controller: 'inv_categoria_productos_Ctrl'
-                                            })
-                                            .segment('cat_bienes', {
-                                                templateUrl: 'views/app/inventario/categoria/bienes/index.html',
-                                                controller: 'inv_categoria_bienes_Ctrl'
-                                            })
-                                        // .up()
-
+                                        .segment('cat_productos', {
+                                            default:true,
+                                            templateUrl: 'views/app/inventario/categoria/productos/index.html',
+                                            controller: 'inv_categoria_productos_Ctrl'
+                                        })
+                                        .segment('cat_bienes', {
+                                            templateUrl: 'views/app/inventario/categoria/bienes/index.html',
+                                            controller: 'inv_categoria_bienes_Ctrl'
+                                        })
                                         .segment('marcas', {
                                             templateUrl: 'views/app/inventario/marcas/index.html',
                                             controller: 'inv_marcas_Ctrl'
@@ -483,6 +517,33 @@ var app = angular.module('nextbook20App', [
                     .segment('favoritos', {
                         templateUrl: 'views/perfil/favoritos.html'})
                 .up();
+
+        // -------------------------------------------    buscador  ini sessi  --------------------------------------------------
+        // $routeSegmentProvider
+        //     .when('/nb/search/:id',    'search_ini')
+        //         .when('/nb/search/:id/Publicacion',    'search_ini.publicacion')
+        //         .when('/nb/search/:id/Info',    'search_ini.info')
+        //         .when('/nb/search/:id/Ubicacion',    'search_ini.ubicacion')
+        //         .when('/nb/search/:id/Similares',    'search_ini.similares')
+        //         .when('/nb/search/:id/Favoritos',    'search_ini.favoritos')
+        //     .segment('search_ini', {
+        //         templateUrl: 'views/main/search_ini.html',
+        //         controller: 'search_Ctrl',
+        //         dependencies: ['id']
+        //     })
+        //         .within()                
+        //             .segment('publicacion', {                        
+        //                 templateUrl: 'views/perfil/publicacion.html'})                        
+        //             .segment('info', {
+        //                 'default': true,
+        //                 templateUrl: 'views/perfil/info.html'})
+        //             .segment('ubicacion', {
+        //                 templateUrl: 'views/perfil/ubicacion.html'})
+        //             .segment('similares', {
+        //                 templateUrl: 'views/perfil/similares.html'})
+        //             .segment('favoritos', {
+        //                 templateUrl: 'views/perfil/favoritos.html'})
+        //         .up();
         // -------------------------------------------    Alternativa de no encontrar     --------------------------------
         // $routeProvider.otherwise({redirectTo: '/'}); 
     });

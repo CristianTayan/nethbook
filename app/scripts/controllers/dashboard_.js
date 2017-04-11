@@ -107,6 +107,7 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
     };
 
     $scope.nom_perfil = $localStorage.datosE.nombre_comercial;
+    $scope.info_sucursal = $localStorage.sucursal;
 
     $scope.datos_personales = $localStorage.datosPersona;
     var imagePath = 'img/list/60.jpeg';

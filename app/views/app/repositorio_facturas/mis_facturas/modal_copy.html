@@ -1,0 +1,23 @@
+<md-dialog aria-label="Mango (Fruit)" style="width: 550px">
+    <md-dialog-content layout-padding>
+      <md-content class="md-no-momentum">
+        <md-input-container class="md-icon-float md-block">
+          <label>Emison de la Factura</label>
+          <md-icon class="md-primary">business</md-icon>
+          <input name="primer_nombre" ng-model="item.nombre_comercial" type="text" readonly>
+        </md-input-container>
+        <md-input-container class="md-icon-floay md-block">
+          <md-icon class="md-primary">attach_money</md-icon>
+          <label>Total</label>
+          <input name="primer_nombre" ng-model="item.total" type="text" readonly>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-icon-right md-block">
+          <md-icon class="md-primary">code</md-icon>
+            <label>Clave de Acceso</label>
+            <input name="primer_nombre" ng-model="item.clave_acceso" type="text" readonly>
+      </md-content>
+      <div layout="row">
+  		<md-button class="md-primary" flex ngclipboard data-clipboard-text="{{item.clave_acceso}}"><md-icon>content_copy</md-icon> Copiar contenido</md-button>
+      </div>
+    </md-dialog-content>
+</md-dialog>

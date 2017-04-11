@@ -29,7 +29,7 @@
     	
     	// -----------------------------------INFORMACION GASTOS--------------------------------
     	
-	    repositorioFacturas.Get_Totales_Facturas().get().$promise.then(function(data) {
+	    repositorioFacturas.Get_Totales_Facturas().get({codigo_sri:$localStorage.sucursal.codigo_sri}).$promise.then(function(data) {
 	    	$scope.myChartObject = {};
 	    	var data = data.respuesta;
 	    	// console.log(repositorioFacturas.money());
@@ -694,6 +694,24 @@
 
 	app.controller('mis_facturas_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES, $rootScope,$window) {
 
+		$scope.ver_clave_acceso = function(data){
+			$mdDialog.show({
+		        controller: ver_clave_acceso_Ctrl,
+		        templateUrl: 'views/app/repositorio_facturas/mis_facturas/modal_copy.html',
+		        parent: angular.element(document.body),
+		        clickOutsideToClose: true,
+		        locals: {
+		            obj: data
+		        }
+		    });
+		}
+
+		function ver_clave_acceso_Ctrl($scope, obj){
+			$scope.item = obj;
+		}
+
+
+
 		$scope.filtromoney = function(string){
 			return repositorioFacturas.money(string);
 		}
@@ -703,6 +721,7 @@
 	    });
 
 
+		console.log($localStorage.sucursal.codigo_sri);
 	    $scope.rep_fac_tipo_doc_filtro = function(data){
 	    	$scope.query = {
 			    filter: '',
@@ -710,6 +729,7 @@
 			    pagina_actual: 1,
 			    limit: '10',
 			    page_num: 1,
+			    codigo_sucursal: $localStorage.sucursal.codigo_sri,
 			    id_tipo_documento:data.id
 			};
 			$scope.data_mis_facturas_get()
@@ -726,6 +746,7 @@
 		    pagina_actual: 1,
 		    limit: '10',
 		    page_num: 1,
+		    codigo_sucursal: $localStorage.sucursal.codigo_sri,
 		    id_tipo_documento:'01'
 		};
 

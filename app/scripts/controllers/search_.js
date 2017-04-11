@@ -22,7 +22,16 @@ angular.module('nextbook20App')
 	    					{icon : 'location_on', title : '', url:'search/'+$routeParams.id+'/Ubicacion'},
 	    					{icon : 'business', title : 'Similares', url:'search/'+$routeParams.id+'/Similares'},
 	    					{icon : 'favorite', title : 'Favoritos', url:'search/'+$routeParams.id+'/Favoritos'},
-	    					{icon : 'group_work', title : 'Grupos', url:'search/'+$routeParams.id+'/Grupos'},
-	    					{icon : 'view_agenda', title : 'Agenda', url:'search/'+$routeParams.id+'/Agenda'}
+	    					// {icon : 'group_work', title : 'Grupos', url:'search/'+$routeParams.id+'/Grupos'},
+	    					// {icon : 'view_agenda', title : 'Agenda', url:'search/'+$routeParams.id+'/Agenda'}
+	    				];
+	    $scope.tabsini = 	[	
+	    					{icon : 'public', title : 'Biografia', url:'nb/search/'+$routeParams.id+'/Publicacion'},
+	    					{icon : 'account_box', title : 'Info', url:'nb/search/'+$routeParams.id+'/Info'},
+	    					{icon : 'location_on', title : '', url:'nb/search/'+$routeParams.id+'/Ubicacion'},
+	    					{icon : 'business', title : 'Similares', url:'nb/search/'+$routeParams.id+'/Similares'},
+	    					{icon : 'favorite', title : 'Favoritos', url:'nb/search/'+$routeParams.id+'/Favoritos'},
+	    					// {icon : 'group_work', title : 'Grupos', url:'nb/search/'+$routeParams.id+'/Grupos'},
+	    					// {icon : 'view_agenda', title : 'Agenda', url:'nb/search/'+$routeParams.id+'/Agenda'}
 	    				];
   	});
