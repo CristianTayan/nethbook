@@ -41,7 +41,8 @@ var app = angular.module('nextbook20App', [
                                             'xmd.directives.xmdWizard',
                                             'ngclipboard',
                                             'pmImageEditor',
-                                            'ngFileUpload'
+                                            // 'ngFileUpload'
+                                            'lfNgMdFileInput'
                                         ]);
     
     // themes configuration

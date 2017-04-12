@@ -118,41 +118,49 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
             servicios_remotos.abrir_modal(id_modal);
         }
         $scope.$on('actualizar_select', function() {
-            console.log(servicios_remotos.lista);
+            
+            var index=0;
+
+            for (var i = 0; i < servicios_remotos.lista.length; i++) {
+                if (servicios_remotos.lista[i].nombre==servicios_remotos.registro_nuevo.nombre) {
+                    index=i;
+                    break;
+                }
+            }
+
               switch(servicios_remotos.id_modal){
                 case "CAT":
                     vm.categorias_list=servicios_remotos.lista;
                     vm.categorias=servicios_remotos.lista;
-                    vm.selectModel.selectedPerson=[vm.categorias_list[vm.categorias_list.length-1]];
+                    vm.selectModel.selectedPerson=[vm.categorias_list[index]];
                 break;
                 case'TIPOCONSUMO':
                     vm.selectTipoConsumos=servicios_remotos.lista;
-                    vm.selectModelTipoConsumos.selectedPerson=[vm.selectTipoConsumos[vm.selectTipoConsumos.length-1]];
-                     console.log(vm.selectTipoConsumos[vm.selectTipoConsumos.length-1]);
+                    vm.selectModelTipoConsumos.selectedTipoConsumo=vm.selectTipoConsumos[index];
                 break;
                 case'ESTADODESCRIP':
                     vm.selectED=servicios_remotos.lista;
-                    vm.selectModelED.selectedED=[vm.selectED[vm.selectED.length-1]];
+                    vm.selectModelED.selectedED=vm.selectED[index]
 
                 break;
                 case'MARCA':
                     vm.selectMarcas=servicios_remotos.lista;
-                    vm.selectModelMarcas.selectedMarca=[vm.selectMarcas[vm.selectMarcas.length-1]];
+                    vm.selectModelMarcas.selectedMarca=vm.selectMarcas[index]
 
                 break;
                 case'MODELO':
                     vm.selectModelos=servicios_remotos.lista;
-                    vm.selectModelModelos.selectedModelo=[vm.selectModelos[vm.selectModelos.length-1]];
+                    vm.selectModelModelos.selectedModelo=vm.selectModelos[index]
 
                 break;
                 case'UBICACION':
                     vm.selectUbicaciones=servicios_remotos.lista;
-                    vm.selectModelUbicaciones.selectedUbicacion=[vm.selectUbicaciones[vm.selectUbicaciones.length-1]];
+                    vm.selectModelUbicaciones.selectedUbicacion=vm.selectUbicaciones[index]
 
                 break;
                 case'GARANTIA':
                     vm.selectGarantias=servicios_remotos.lista;
-                    vm.selectModelGarantia.selectedGarantia=[vm.selectGarantias[vm.selectGarantias.length-1]];
+                    vm.selectModelGarantia.selectedGarantia=vm.selectGarantias[index]
 
                 break;
 
@@ -177,8 +185,8 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
                 vm.categorias_list=vm.categorias;
             }
             if (vm.selectModel.selectedPerson.length>=1) {
-                    var limit=vm.selectModel.selectedPerson.length;
-                    vm.categorias_list=vm.selectModel.selectedPerson[limit-1].nodes;
+                var limit=vm.selectModel.selectedPerson.length;
+                vm.categorias_list=vm.selectModel.selectedPerson[limit-1].nodes;
             }
         }
         
@@ -200,21 +208,17 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
 
 
         vm.selectModelED = {
-            selectedED: vm.selectED[2],
-            selectedPeopleED: [vm.selectED[0]]
+            selectedED: vm.selectED[2]
         };
         vm.selectModelGarantia = {
-            selectedGarantia: vm.selectGarantias[0],
-            selectedGarantiaDefault: [vm.selectGarantias[0]]
+            selectedGarantia: vm.selectGarantias[0]
         };
 
         vm.selectModelMarcas = {
-            selectedMarca: vm.selectMarcas[0],
-            selectedMarcasDefault: [vm.selectMarcas[0]]
+            selectedMarca: vm.selectMarcas[0]
         };
         vm.selectModelModelos = {
-            selectedModelo: vm.selectModelos[0],
-            selectedModeloDefault: [vm.selectModelos[0]]
+            selectedModelo: vm.selectModelos[0]
         };
         vm.selectModelUbicaciones = {
             selectedUbicacion: vm.selectUbicaciones[0],
@@ -222,12 +226,10 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
         };
 
         vm.selectModelTipoConsumos = {
-            selectedTipoConsumo: vm.selectTipoConsumos[2],
-            selectedTipoConsumoDefault: [vm.selectTipoConsumos[0]]
+            selectedTipoConsumo: vm.selectTipoConsumos[2]
         };
 
         vm.selectModelImpuestos = {
-            selectedImpuesto: [vm.selectImpuestos[0]],
             selectedImpuestos: [vm.selectImpuestos[2]]
         };
 
