@@ -20,6 +20,7 @@ app.factory('Servicios_Modal', function($rootScope,$mdDialog,inventario_Service)
         };
     
     obj_serv_modal.id_modal = '';
+    obj_serv_modal.registro_nuevo = '';
     obj_serv_modal.lista = {};
 
     obj_serv_modal.abrir_modal = function(id_modal) {
@@ -61,14 +62,65 @@ app.factory('Servicios_Modal', function($rootScope,$mdDialog,inventario_Service)
             break;
             case'MARCA':
 
+                $mdDialog.show({
+                    controller: DialogController_nuevo,
+                    multiple:true,
+                    templateUrl: 'views/app/inventario/marcas/new.html',
+                    parent: angular.element(document.body),
+                    targetEvent: event,
+                    ariaLabel: 'Respuesta Registro',
+                    clickOutsideToClose: false
+                });
             break;
             case'MODELO':
+
+            $mdDialog.show({
+                controller: DialogController_nuevo,
+                multiple:true,
+                templateUrl: 'views/app/inventario/modelos/new.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: false
+            });
 
             break;
             case'UBICACION':
 
+            $mdDialog.show({
+                controller: DialogController_nuevo,
+                multiple:true,
+                templateUrl: 'views/app/inventario/ubicacion/new.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                ariaLabel: 'Respuesta Registro',
+                clickOutsideToClose: false
+            });
+
             break;
             case'GARANTIA':
+                var tipo_garantia;
+                // ---------------------------------------------------tipo garantia select--------------------------------------------------------------
+                function success_tipo_garantia(desserts) {
+                    tipo_garantia = desserts.respuesta.data;
+                    $mdDialog.show({
+                        controller: DialogController_nueva_garantia,
+                        multiple:true,
+                        templateUrl: 'views/app/inventario/garantia/new.html',
+                        parent: angular.element(document.body),
+                        targetEvent: event,
+                        ariaLabel: 'Respuesta Registro',
+                        clickOutsideToClose: false,
+                        locals: {
+                            select_tipo_garantia: tipo_garantia
+                        }
+                    });
+                }
+                obj_serv_modal.data_inv_tipo_garantia_get = function() {
+                    inventario_Service.Get_Tipo_Garantia().get(query, success_tipo_garantia).$promise;
+                }
+
+                obj_serv_modal.data_inv_tipo_garantia_get();
 
             break;
 
@@ -87,6 +139,7 @@ app.factory('Servicios_Modal', function($rootScope,$mdDialog,inventario_Service)
             $scope.data_inv_categoria.id_padre=3;
             inventario_Service.Add_Categoria_Padre().add($scope.data_inv_categoria).$promise.then(function(data) {
                     obj_serv_modal.actualizar_select();
+                    obj_serv_modal.registro_nuevo=$scope.data_inv_categoria;
                     if (data.respuesta == true) {
                          $mdDialog.cancel();
                         $mdToast.show({
@@ -120,6 +173,7 @@ app.factory('Servicios_Modal', function($rootScope,$mdDialog,inventario_Service)
                 inventario_Service.Add_Tipo_Consumo().add($scope.data_inv_tipo_consumo).$promise.then(function(data) {
                     //$rootScope.$emit("actualizar_tabla_tipo_consumo", {});
                     obj_serv_modal.actualizar_select();
+                    obj_serv_modal.registro_nuevo=$scope.data_inv_tipo_consumo;
                     if (data.respuesta == true) {
                         $mdDialog.cancel();
                         $mdToast.show({
@@ -160,6 +214,7 @@ app.factory('Servicios_Modal', function($rootScope,$mdDialog,inventario_Service)
             $scope.inv_estado_descriptivo_nuevo = function() {
                 inventario_Service.Add_Estado_Descriptivo().add($scope.data_inv_estado_descriptivo).$promise.then(function(data) {
                     obj_serv_modal.actualizar_select();
+                    obj_serv_modal.registro_nuevo=$scope.data_inv_estado_descriptivo;
                     if (data.respuesta == true) {
 
                         $mdDialog.cancel();
@@ -197,10 +252,198 @@ app.factory('Servicios_Modal', function($rootScope,$mdDialog,inventario_Service)
                 });
             }
 
+            // //----------------------------------------------------------------- MARCAS
+            $scope.inv_marca_nuevo = function() {
+                inventario_Service.Add_Marca().add($scope.data_inv_marca).$promise.then(function(data) {
+                    obj_serv_modal.actualizar_select();
+                    obj_serv_modal.registro_nuevo=$scope.data_inv_marca;
+
+                    if (data.respuesta == true) {
+                        $mdDialog.cancel();
+                        $mdToast.show({
+                            hideDelay: 5000,
+                            position: 'bottom right',
+                            controller: 'notificacionCtrl',
+                            templateUrl: 'views/notificaciones/guardar.html'
+                        });
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+
+            // //----------------------------------------------------------------- MODELOS
+            $scope.inv_modelo_nuevo = function() {
+                inventario_Service.Add_Modelo().add($scope.data_inv_modelo).$promise.then(function(data) {
+                    obj_serv_modal.actualizar_select();
+                    obj_serv_modal.registro_nuevo=$scope.data_inv_modelo;
+                    if (data.respuesta == true) {
+                         $mdDialog.cancel();
+                         $mdToast.show({
+                          hideDelay   : 5000,
+                          position    : 'bottom right',
+                          controller  : 'notificacionCtrl',
+                          templateUrl : 'views/notificaciones/guardar.html'
+                        });
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+
+            // //----------------------------------------------------------------- UBICACION
+            $scope.inv_ubicacion_nuevo = function() {
+                inventario_Service.Add_Ubicacion().add($scope.data_inv_ubicacion).$promise.then(function(data) {
+                    obj_serv_modal.actualizar_select();
+                    obj_serv_modal.registro_nuevo=$scope.data_inv_ubicacion;
+                    if (data.respuesta == true) {
+                        
+                        $mdDialog.cancel();
+                        $mdToast.show({
+                          hideDelay   : 5000,
+                          position    : 'bottom right',
+                          controller  : 'notificacionCtrl',
+                          templateUrl : 'views/notificaciones/guardar.html'
+                        });
+                    }
+                    if (data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                    if (data.respuesta == true && data.respuesta == false) {
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('LO SENTIMOS :(')
+                            .textContent('Proceso no permitido intente mas tarde.')
+                            .ariaLabel('Respuesta Registro')
+                            .ok('Entendido')
+                            .targetEvent()
+                        );
+                    }
+                });
+            }
+
             $scope.cancel = function() {
                 $mdDialog.cancel();
             };
         }
+
+
+        function DialogController_nueva_garantia($scope, select_tipo_garantia, $mdToast) {
+
+        // -------------------------------------------------------tipo_garantia-------------------------------------------------------
+        console.log(select_tipo_garantia);
+        var vm = $scope;
+        vm.selectCallback = selectCallback;
+        vm.selectPeople = select_tipo_garantia;
+        vm.selectModel = {
+            selectedPerson: undefined
+        };
+
+        function selectCallback(_newValue, _oldValue) {
+            LxNotificationService.notify('Change detected');
+        }
+
+        // Nuevo registro tipo inventario
+        $scope.inv_garantia_nuevo = function() {
+            $scope.data_inv_garantia.tipo_garantia = vm.selectModel.selectedPerson.id;
+            inventario_Service.Add_Garantia().add($scope.data_inv_garantia).$promise.then(function(data) {
+                obj_serv_modal.actualizar_select();
+                obj_serv_modal.registro_nuevo=$scope.data_inv_garantia;
+                if (data.respuesta == true) {
+                      $mdDialog.cancel();
+                    $mdToast.show({
+                      hideDelay   : 5000,
+                      position    : 'bottom right',
+                      controller  : 'notificacionCtrl',
+                      templateUrl : 'views/notificaciones/guardar.html'
+                    });
+                }
+                if (data.respuesta == false) {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('LO SENTIMOS 😞')
+                        .textContent('Intente mas tarde.')
+                        .ariaLabel('Respuesta Registro')
+                        .ok('Entendido')
+                        .targetEvent()
+                    );
+                }
+                if (data.respuesta == true && data.respuesta == false) {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('LO SENTIMOS 😞')
+                        .textContent('Proceso no permitido intente mas tarde.')
+                        .ariaLabel('Respuesta Registro')
+                        .ok('Entendido')
+                        .targetEvent()
+                    );
+                }
+            });
+        }
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+    }
+        
 
         
         // ------------------------------------------------------- INICIO AUTO COMPLETES ---------------------------------------------------------------- 

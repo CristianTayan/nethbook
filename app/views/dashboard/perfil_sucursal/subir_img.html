@@ -11,31 +11,19 @@
     </md-toolbar>
 
     <md-dialog-content>
-      <div ngf-drop ngf-select="uploader($files)" ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
-          accept="image/*,application/pdf" 
-          ngf-pattern="'image/*,application/pdf'">
-          <p>
-            Arrastra las fotos aqui 
-          </p>
-          <p>
-            <small>O si prefieres...</small>
-          </p>
-          <md-button class="md-accent">Selecciona la foto Para Subir</md-button>
-        </div>
+      <lf-ng-md-file-input  name="files00" lf-files="files" lf-api="api09" lf-required lf-maxcount="5" lf-filesize="10MB" lf-mimetype="image/*" 
+      lf-remove-label="Limpiar"
+      lf-drag-and-drop-label="Arrastra las fotos aqui" 
+      drag preview lf-browse-label="Buscar"></lf-ng-md-file-input>
 
-      <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-        More on Wikipedia
+      <md-button ng-click="cancel()">
+       Cancelar
       </md-button>
-      <span flex></span>
-      <md-button ng-click="answer('not useful')">
-       Not Useful
-      </md-button>
-      <md-button ng-click="upload()">
-        Useful
+      <md-button ng-click="Upload()">
+        Guardar
       </md-button>
     </md-dialog-actions>
   </form>

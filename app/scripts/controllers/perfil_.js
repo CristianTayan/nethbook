@@ -8,7 +8,7 @@
  * Controller of the nextbook20App
  */
 angular.module('nextbook20App')
-  .controller('perfil_Ctrl', function ($scope, $localStorage, $mdDialog, Upload, $timeout, urlService) {
+  .controller('perfil_Ctrl', function ($scope, $localStorage, $mdDialog, $timeout, urlService) {
     $scope.imgPortada = 'http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png';
     $scope.datos2 = $localStorage.datosE;
 
@@ -31,63 +31,88 @@ angular.module('nextbook20App')
     }
 
 
-    function Dialog_subir_image_Controller($scope, Upload, $timeout, urlService, $localStorage){
+    function Dialog_subir_image_Controller($scope, $timeout, urlService, $localStorage,$http){
 
 
-    	// -------------------------------elementos acciones show_listaimg_modal-------------------------------
-    	$scope.hide = function() {
-	      $mdDialog.hide();
-	    };
+    	// // -------------------------------elementos acciones show_listaimg_modal-------------------------------
+    	// $scope.hide = function() {
+	    //   $mdDialog.hide();
+	    // };
 
 	    $scope.cancel = function() {
 	      $mdDialog.cancel();
 	    };
 
-	    $scope.answer = function(answer) {
-	      $mdDialog.hide(answer);
-	    };
-    	// -------------------------------elementos acciones upload file-------------------------------
-    	$scope.$watch('files', function () {
-	        $scope.upload($scope.files);
-	    });
-	    $scope.$watch('file', function () {
-	        if ($scope.file != null) {
-	            $scope.files = [$scope.file]; 
-	        }
-	    });
-	    $scope.log = '';
+	    // $scope.answer = function(answer) {
+	    //   $mdDialog.hide(answer);
+	    // };
+    	// // -------------------------------elementos acciones upload file-------------------------------
+    	// $scope.$watch('files', function () {
+	    //     $scope.upload($scope.files);
+	    // });
+	    // $scope.$watch('file', function () {
+	    //     if ($scope.file != null) {
+	    //         $scope.files = [$scope.file]; 
+	    //     }
+	    // });
+	    // $scope.log = '';
 
-    	$scope.upload = function (files) {
+    	// $scope.upload = function (files) {
    		
-	        if (files) {
-	          	console.log(files);
-	            Upload.upload({
-	                url: urlService.server().appnext()+'Add_Img_Portada',
-	                method: 'POST',
-	                // url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-	                data: {
-	                  file: files,
-	                  token: $localStorage.token
-	                }
-	            }).then(function (resp) {
-	            	console.log('resp',resp);
-	                // $timeout(function() {
-	                //     $scope.log = 'file: ' +
-	                //     resp.config.data.file.name +
-	                //     ', Response: ' + JSON.stringify(resp.data) +
-	                //     '\n' + $scope.log;
-	                // });
-	            }, null, function (evt) {
-	            	console.log('evt', evt);
-	                // var progressPercentage = parseInt(100.0 *
-	                // 		evt.loaded / evt.total);
-	                // $scope.log = 'progress: ' + progressPercentage + 
-	                // 	'% ' + evt.config.data.file.name + '\n' + 
-	                //   $scope.log;
-	            });
-	        }
+	    //     if (files) {
+	    //       	console.log(files);
+	    //         Upload.upload({
+	    //             url: urlService.server().appnext()+'Add_Img_Portada',
+	    //             method: 'POST',
+	    //             // url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+	    //             data: {
+	    //               file: files,
+	    //               token: $localStorage.token
+	    //             }
+	    //         }).then(function (resp) {
+	    //         	console.log('resp',resp);
+	    //             // $timeout(function() {
+	    //             //     $scope.log = 'file: ' +
+	    //             //     resp.config.data.file.name +
+	    //             //     ', Response: ' + JSON.stringify(resp.data) +
+	    //             //     '\n' + $scope.log;
+	    //             // });
+	    //         }, null, function (evt) {
+	    //         	console.log('evt', evt);
+	    //             // var progressPercentage = parseInt(100.0 *
+	    //             // 		evt.loaded / evt.total);
+	    //             // $scope.log = 'progress: ' + progressPercentage + 
+	    //             // 	'% ' + evt.config.data.file.name + '\n' + 
+	    //             //   $scope.log;
+	    //         });
+	    //     }
 	    	
-    	}
+    	// }
+
+
+    	 $scope.Upload = function(){
+            var formData = new FormData();
+            formData.append('token', $localStorage.token);
+
+            angular.forEach($scope.files,function(obj){
+                if(!obj.isRemote){
+                    formData.append('files[]', obj.lfFile);
+                }
+            });
+            $http.post(urlService.server().appnext()+'Add_Img_Portada', formData, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined,Authorization: 'Bearer ' + $localStorage.token}
+            }).then(function(result){
+                console.log('Datos Guardados Correctamente');               
+            },function(err){
+                if (err.status==401) {
+                    $localStorage.$reset();
+                    $location.path('/');
+            }
+            console.log('Ha ocurrido un error intentalo nuevamente :(');
+            });
+        };
+
     }
 
     $scope.show_recordimg_modal = function(ev){

@@ -29,7 +29,6 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-material/angular-material.js',
-      'bower_components/ng-file-upload/ng-file-upload.js',
       'bower_components/angular-route-segment/build/angular-route-segment.js',
       'bower_components/ngstorage/ngStorage.js',
       'bower_components/moment/moment.js',
@@ -64,6 +63,8 @@ module.exports = function(config) {
       'bower_components/clipboard/dist/clipboard.js',
       'bower_components/ngclipboard/dist/ngclipboard.js',
       'bower_components/pm-image-editor/compile/minified/pm-image-editor.js',
+      'bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js',
+      'bower_components/angular-file-upload/dist/angular-file-upload.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
