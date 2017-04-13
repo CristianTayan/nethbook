@@ -32,14 +32,9 @@
 	    repositorioFacturas.Get_Totales_Facturas().get({codigo_sri:$localStorage.sucursal.codigo_sri}).$promise.then(function(data) {
 	    	$scope.myChartObject = {};
 	    	var data = data.respuesta;
-	    	// console.log(repositorioFacturas.money());
-	    	var rows = [];
-	    	
+	    	var rows = [];	    	
 	    	for (var i = 0; i < data.length; i++) {
 	    		var valor = repositorioFacturas.money(data[i].total);
-	    		console.log(data);
-	    		console.log(valor);
-	    		console.log(data[i].nombre);
 	    		var sub_arrow = [{v:data[i].nombre},{v:valor}];
 	    		rows.push({c:sub_arrow});
 	    	}

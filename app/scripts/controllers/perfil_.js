@@ -59,35 +59,6 @@ angular.module('nextbook20App')
 
     	// $scope.upload = function (files) {
    		
-<<<<<<< HEAD
-	        // if (files) {
-	        //   	console.log(files);
-	        //     Upload.upload({
-	        //         url: urlService.server().appnext()+'Add_Img_Portada',
-	        //         method: 'POST',
-	        //         // url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-	        //         data: {
-	        //           file: files,
-	        //           token: $localStorage.token
-	        //         }
-	        //     }).then(function (resp) {
-	        //     	console.log('resp',resp);
-	        //         // $timeout(function() {
-	        //         //     $scope.log = 'file: ' +
-	        //         //     resp.config.data.file.name +
-	        //         //     ', Response: ' + JSON.stringify(resp.data) +
-	        //         //     '\n' + $scope.log;
-	        //         // });
-	        //     }, null, function (evt) {
-	        //     	console.log('evt', evt);
-	        //         // var progressPercentage = parseInt(100.0 *
-	        //         // 		evt.loaded / evt.total);
-	        //         // $scope.log = 'progress: ' + progressPercentage + 
-	        //         // 	'% ' + evt.config.data.file.name + '\n' + 
-	        //         //   $scope.log;
-	        //     });
-	        // }
-=======
 	    //     if (files) {
 	    //       	console.log(files);
 	    //         Upload.upload({
@@ -115,7 +86,6 @@ angular.module('nextbook20App')
 	    //             //   $scope.log;
 	    //         });
 	    //     }
->>>>>>> origin/master
 	    	
     	// }
 
@@ -139,7 +109,7 @@ angular.module('nextbook20App')
                     $localStorage.$reset();
                     $location.path('/');
             }
-            console.log('Ha ocurrido un error intentalo nuevamente :(');
+            console.log('Ha ocurrido un error intentalo nuevamente 😞');
             });
         };
 

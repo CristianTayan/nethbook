@@ -8,43 +8,26 @@
                 <p> Inventario </p>
                 <md-icon class="md-accent">apps</md-icon>
             </md-list-item>
-            <md-list-item ng-click="null" class="md-accent">
+            <!-- <md-list-item ng-click="null" class="md-accent">
                 <p> Compras </p>
                 <md-icon class="md-accent">apps</md-icon>
-            </md-list-item>
+            </md-list-item> -->
             <md-list-item ng-click="null">
                 <p> Clientes </p>
-                <md-icon class="md-accent">apps</md-icon>
+                <md-icon class="md-accent">account_box</md-icon>
             </md-list-item>
-            <md-list-item ng-click="null">
+            <!-- <md-list-item ng-click="null">
                 <p> Proveedores </p>
                 <md-icon class="md-accent">apps</md-icon>
-            </md-list-item>
+            </md-list-item> -->
             <md-list-item ng-click="null">
                 <p> Acumulados </p>
                 <md-icon class="md-accent">apps</md-icon>
             </md-list-item>
+            <md-list-item ng-href="#/App/Parametrizacion">
+                <p> Parametrización </p>
+                <md-icon class="md-accent">settings</md-icon>
+            </md-list-item>
         </md-list>
     </md-content>
 </md-sidenav>
-<!-- 
-<md-sidenav style="max-width:300px;" layout="column" md-component-id="right" md-is-locked-open="$mdMedia('gt-sm')"  flex  layout-align="center ">
-    <md-content layout="column">
-        <md-list-item href="#/App">
-            <md-icon>pages</md-icon>
-            <p>APP</p>
-            <md-icon>pages</md-icon>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-subheader class="md-no-sticky">Menu de Aplicación</md-subheader>
-        <md-list-item ng-href="#/App{{item.path}}" ng-repeat="item in menu.children" md-colors="{background: 'primary'}">
-            <p> {{item.nombre}} </p>
-            <md-icon>business</md-icon>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item ng-click="null">
-            <p> Clientes </p>
-            <md-icon class="md-accent">home</md-icon>
-        </md-list-item>
-    </md-content>
-</md-sidenav> -->

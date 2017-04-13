@@ -1,0 +1,22 @@
+<md-sidenav style="max-width:250px;" layout="column" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4" flex>
+    <md-content layout="column" >
+        <md-list-item href="#/App">
+            <md-icon>pages</md-icon>
+            <p>APP</p>
+            <md-icon>pages</md-icon>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-subheader class="md-no-sticky">Menu de Aplicación</md-subheader>
+        <md-list-item href="#/App/Parametrizacion">
+            <md-icon>home</md-icon>
+            <p>INICIO</p>
+        </md-list-item>
+        <md-list-item href="#/App/Parametrizacion/Impuestos">
+            <md-icon>monetization_on</md-icon>
+            <p>IMPUESTOS</p>
+        </md-list-item>
+    </md-content>
+</md-sidenav>
+<md-content flex class="md-padding" layout="column" >
+    <div app-view-segment="3"></div>
+</md-content>

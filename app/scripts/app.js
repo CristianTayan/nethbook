@@ -246,6 +246,10 @@ var app = angular.module('nextbook20App', [
                 .when('/App/Inventario/Tipo_Catalogo',    'dashboard.app.inventario.tipo_catalogo')
                 .when('/App/Inventario/Bodegas',    'dashboard.app.inventario.bodegas')
                 .when('/App/Inventario/Bienes',    'dashboard.app.inventario.bienes')
+            // -------------------------------------------PARAMETROS GENERALES-------------------------------------------
+            .when('/App/Parametrizacion',    'dashboard.app.parametrizacion')
+            .when('/App/Parametrizacion/Inicio',    'dashboard.app.parametrizacion.menu')
+            .when('/App/Parametrizacion/Impuestos',    'dashboard.app.parametrizacion.impuestos')
 
             .segment('dashboard', {
                 templateUrl: 'views/dashboard/index.html',
@@ -306,12 +310,10 @@ var app = angular.module('nextbook20App', [
                                         controller: 'informacion_generalCtrl'
                                     })
                                     .segment('empresa', {
-                                        // default: true,
                                         templateUrl: 'views/dashboard/configuracion/establecimiento/index.html',
                                         controller: 'informacion_general_empresaCtrl'
                                     })
                                     .segment('sucursal', {
-                                        // default: true,
                                         templateUrl: 'views/dashboard/configuracion/perfil/index.html',
                                         // controller: 'informacion_generalCtrl'
                                     })
@@ -374,6 +376,21 @@ var app = angular.module('nextbook20App', [
                                         .segment('tipo_usuario', {
                                             templateUrl: 'views/app/colaboradores/tipo_usuario/index.html',
                                             controller: 'col_tipo_usuario_Ctrl'
+                                        })
+                                    .up()
+                            // ------------------------------------PARAMETRIZACION GENERAL------------------------------------
+                                .segment('parametrizacion', {
+                                    templateUrl: 'views/app/parametrizacion/index.html',
+                                    controller: 'ParametrizacionCtrl'
+                                })
+                                    .within()
+                                        .segment('menu', {
+                                            default: true,
+                                            templateUrl: 'views/app/parametrizacion/menu.html',
+                                        })
+                                        .segment('impuestos', {
+                                            templateUrl: 'views/app/parametrizacion/impuestos/index.html',
+                                            controller: 'param_impuestos_Ctrl'
                                         })
                                     .up()
                             // --------------------------------------INVENTARIO--------------------------------------
