@@ -327,7 +327,7 @@
 
             }
             $scope.get_tabla=function(){
-                inventario_Service.Get_Producto().get($scope.query,success_tabla).$promise.then(function(){},function(error){
+                Facturacion_Service.Buscar_Productos_Facturacion().get($scope.query,success_tabla).$promise.then(function(){},function(error){
                     $scope.get_tabla();
                     focus('txt_buscar');
                 })
@@ -414,8 +414,6 @@
                             $scope.add_prods[index].total_fac=parseFloat(parseFloat($scope.add_prods[index].precio.replace('$','')).toFixed($rootScope.decimales)*$scope.add_prods[index].cantidad_fac).toFixed($rootScope.decimales);
                         // }
                     }
-
-
             }
 
             $scope.ok_add_prods=function(){
