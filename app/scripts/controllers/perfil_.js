@@ -63,7 +63,7 @@ angular.module('nextbook20App')
                     $localStorage.$reset();
                     $location.path('/');
             }
-            console.log('Ha ocurrido un error intentalo nuevamente :(');
+            console.log('Ha ocurrido un error intentalo nuevamente 😞');
             });
         };
 
