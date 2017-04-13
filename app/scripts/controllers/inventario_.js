@@ -10,6 +10,7 @@
 var app = angular.module('nextbook20App')
 
 app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog, menuService,$location) {
+
     // ------------------------------------inicio generacion vista menu personalizacion------------------------------------
         var data = menuService.Get_Vistas_Loged_User();
         $scope.menu = data.respuesta[0].children[0].children[2];
@@ -3782,6 +3783,7 @@ app.controller('inv_bodegas_Ctrl', function($scope, $rootScope, $mdDialog, inven
     function DialogController_nuevo($scope,$localStorage,obj) {
 
         // -------------------------------------------------------DIALOGO BODEGAS-------------------------------------------------------
+        $scope.procesando=false; // pone boton espera si no a retornado el resultado esperado
         var vm=$scope;
         vm.selectSucursales = obj;
         vm.selectModelSucursal = {
@@ -3791,8 +3793,10 @@ app.controller('inv_bodegas_Ctrl', function($scope, $rootScope, $mdDialog, inven
         // Nuevo registro Bodega
         $scope.data_inv_bodega_guardar = function() {
             $scope.data_inv_bodega.id_sucursal=vm.selectModelSucursal.selectedSucursal.id;
-            inventario_Service.Add_Bodega().add($scope.data_inv_bodega).$promise.then(function(data) {
+            $scope.procesando=true; // pone boton espera si no a retornado el resultado esperado
+            return inventario_Service.Add_Bodega().add($scope.data_inv_bodega).$promise.then(function(data) {
                 $rootScope.$emit("actualizar_tabla_bodega", {});
+                $scope.procesando=false;
                 if (data.respuesta == true) {
                     $mdDialog.show(
                         $mdDialog.alert()

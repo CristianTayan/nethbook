@@ -98,7 +98,7 @@ var app = angular.module('nextbook20App')
 		        	// $scope.data_usuario.id_tipo_documento=vm.selectModelDocument.selectedPerson.id;
 		        	$scope.data_usuario.id_tipo_usuario=vd.selectModel.selectedPerson.id;
 		        	// $scope.data_usuario.id_operadora_telefonica=om.selectModelOperadora.selectedOperadora.id;
-		        	// el return evita el erro de desvordamiento en el boton de espera
+		        	// el return evita el error de desvordamiento en el boton de espera
 		            return colaboradores_Service.Add_Col_Usuario().add($scope.data_usuario).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_usuario", {});
 		                $scope.procesando=false;
