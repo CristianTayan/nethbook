@@ -108,12 +108,12 @@ app.controller('inv_bienes_Ctrl', function($scope, $rootScope, $mdDialog, invent
         });
     }
 
-    function DialogController_nuevo($scope, $localStorage, $mdExpansionPanel, select_impuestos,select_tipo_categoria,select_estado_descriptivo,select_garantias,select_marcas,select_modelos,select_ubicaciones,select_tipo_consumos, $mdToast,Servicios_Modal) {
+    function DialogController_nuevo($scope, $localStorage, $mdExpansionPanel, select_impuestos,select_tipo_categoria,select_estado_descriptivo,select_garantias,select_marcas,select_modelos,select_ubicaciones,select_tipo_consumos, $mdToast,Servicios_Modal_Bienes) {
         $mdExpansionPanel().waitFor('expansionPanelOne').then(function (instance) { instance.expand(); });
         $scope.inf_sucursal = $localStorage.sucursal;
         var vm = $scope;
         //------------------------------------------------------ abrir modal remotamente------------------------------------------------------
-        var servicios_remotos=Servicios_Modal;
+        var servicios_remotos=Servicios_Modal_Bienes;
         $scope.abrir_modal=function(id_modal){
             servicios_remotos.abrir_modal(id_modal);
         }

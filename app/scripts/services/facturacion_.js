@@ -68,4 +68,15 @@ angular.module('nextbook20App')
         return -1;
     }
 
+    this.Buscar_Productos_Facturacion= function() {
+        return $resource(urlService.server().appnext()+'Buscar_Productos_Facturacion', {} , {
+            get: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
+
   });
