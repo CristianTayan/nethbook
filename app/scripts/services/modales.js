@@ -125,10 +125,6 @@ app.factory('Servicios_Modal_Bienes', function($rootScope,$mdDialog,inventario_S
             break;
 
         }
-
-
-        
-
         
     };
 
