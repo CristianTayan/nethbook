@@ -1084,7 +1084,7 @@ app.factory('Servicios_Modal_Personas', function($rootScope,$mdDialog,colaborado
                 })
     }
 
-    function DialogController_nuevo($scope, $mdToast,mainService,Personas_Service) {
+    function DialogController_nuevo($scope, $mdToast,mainService,Personas_Service,Facturacion_Service) {
             var cm = $scope;
             function selectCallback(_newValue, _oldValue) {
                     LxNotificationService.notify('Change detected');
@@ -1135,6 +1135,21 @@ app.factory('Servicios_Modal_Personas', function($rootScope,$mdDialog,colaborado
                     colaboradores_Service.Get_Ciudades().get(query, success_ciudades).$promise;
                 }
                 $scope.data_ciudades();
+                // fin
+
+                //----------------SELECT TIPO DOCUMETO---------------//
+                function success_tipo_documento(desserts) {
+                    cm.selectCallback = selectCallback;
+                    cm.selectTipoDocument = desserts.respuesta;
+                    cm.selectModelTipoDocumento = {
+                        selectedTipoDocumento: undefined
+                    };
+                }
+                $scope.data_tipo_documento = function() {
+                    Facturacion_Service.Tipo_Documentos_Persona().get(query, success_tipo_documento).$promise;
+                }
+                $scope.data_tipo_documento();
+                // fin
  
 
                 $scope.procesando=false; // pone boton espera si no a retornado el resultado esperado

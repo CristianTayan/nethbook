@@ -23,6 +23,18 @@ angular.module('nextbook20App')
         });
     };
 
+    this.Tipo_Documentos_Persona=function() {
+        return $resource(urlService.server().appnext()+'Get_Documentos_Identificacion', {}
+        , {
+            get: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                }
+            }
+        });
+    };
+
     this.Existencia_Persona=function() {
         return $resource(urlService.server().appnext()+'Existencia_Persona', {}
         , {
