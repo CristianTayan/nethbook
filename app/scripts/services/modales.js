@@ -1146,17 +1146,17 @@ app.factory('Servicios_Modal_Personas', function($rootScope,$mdDialog,colaborado
                 // fin
 
                 //----------------SELECT TIPO DOCUMETO---------------//
-                function success_tipo_documento(desserts) {
-                    cm.selectCallback = selectCallback;
-                    cm.selectTipoDocument = desserts.respuesta;
-                    cm.selectModelTipoDocumento = {
-                        selectedTipoDocumento: undefined
-                    };
-                }
-                $scope.data_tipo_documento = function() {
-                    Facturacion_Service.Tipo_Documentos_Persona().get(query, success_tipo_documento).$promise;
-                }
-                $scope.data_tipo_documento();
+                // function success_tipo_documento(desserts) {
+                //     cm.selectCallback = selectCallback;
+                //     cm.selectTipoDocument = desserts.respuesta;
+                //     cm.selectModelTipoDocumento = {
+                //         selectedTipoDocumento: undefined
+                //     };
+                // }
+                // $scope.data_tipo_documento = function() {
+                //     Facturacion_Service.Tipo_Documentos_Persona().get(query, success_tipo_documento).$promise;
+                // }
+                // $scope.data_tipo_documento();
                 // fin
  
 

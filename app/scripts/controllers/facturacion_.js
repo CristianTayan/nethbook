@@ -912,11 +912,24 @@
                 $scope.data_ciudades();
 
                 function success_buscar_cliente(result) {
-                    if (result.respuesta==true) {
-                        console.log(result.respuesta);
-                        $scope.data=result.datos;
-                        $scope.data.nombres_completos=result.datos.primer_nombre+' '+result.datos.segundo_nombre + ' ' +result.datos.primer_apellido+' '+result.datos.segundo_apellido;;
-                        $scope.data.direccion=result.datos.calle+', '+result.datos.transversal+', '+result.datos.numero;
+                    if (result.respuesta == true) {
+
+                        if (result.datos.tipo_doc =='CEDULA') {
+                            // $scope.data=result.datos;
+                            $scope.data.correo = result.datos.correo;
+                            $scope.data.nombres_completos = result.datos.primer_nombre+' '+result.datos.segundo_nombre + ' ' +result.datos.primer_apellido+' '+result.datos.segundo_apellido;;
+                            $scope.data.direccion = result.datos.calle;
+                            console.log(result.datos);
+                            $scope.data.telefono = result.datos.telefono;
+                        }
+                        else if(result.datos.tipo_doc =='RUC'){
+                            $scope.data=result.datos;
+                            $scope.data.nombres_completos=result.datos.razon_social;
+                            $scope.data.direccion=result.datos.info.localizacion_sucursal.direccion;
+                            $scope.data.correo = result.datos.info.datos_empresariales.correo;
+                            $scope.data.telefono = result.datos.info.datos_empresariales.telefono;
+                        }
+                        
                         //$scope.data.apellidos=result.persona.primer_apellido+' '+result.persona.segundo_apellido;
                         
 
