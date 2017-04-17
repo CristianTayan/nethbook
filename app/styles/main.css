@@ -12,6 +12,10 @@ html {
     color: #FF4081!important;
 
 }
+
+.lx-select.lx-select--default-style.lx-select--view-mode-field{
+    padding-top: 0px;
+}
 md-expansion-panel {
     display: block;
     position: relative;
@@ -479,6 +483,20 @@ md-autocomplete input:not(.md-input) {
     position: relative;
     height: 25px;
     width: 300px;
+    border-radius: 20px;
+    padding-left: 8px;
+    right: 8px;
+}
+.toolbar_factura_pre{
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset, 0 -1px 0 rgba(0, 0, 0, 0.05) inset;
+    transition: all 0.2s linear;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 13px;
+    color: #222222;
+    position: relative;
+    height: 25px;
+    width: 200px;
     border-radius: 20px;
     padding-left: 8px;
     right: 8px;
