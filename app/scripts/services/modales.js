@@ -1084,8 +1084,9 @@ app.factory('Servicios_Modal_Personas', function($rootScope,$mdDialog,colaborado
                 })
     }
 
-    function DialogController_nuevo($scope, $mdToast,mainService,Personas_Service,Facturacion_Service) {
+    function DialogController_nuevo($scope, $mdToast,mainService,Clientes_Service,Facturacion_Service) {
             var cm = $scope;
+            $scope.tipo_cliente='';
             function selectCallback(_newValue, _oldValue) {
                     LxNotificationService.notify('Change detected');
                     console.log('Old value: ', _oldValue);
@@ -1101,20 +1102,27 @@ app.factory('Servicios_Modal_Personas', function($rootScope,$mdDialog,colaborado
                             $scope.data_usuario.segundo_nombre=array_nombres[3];
                             $scope.data_usuario.primer_apellido=array_nombres[0];
                             $scope.data_usuario.segundo_apellido=array_nombres[1];
-                            // for (var i = 0; i < cm.ListLocalizacion.length; i++) {
-                            //     if (cm.ListLocalizacion[i].id==result.persona.id_localidad) {
-                            //         cm.ModelLocalizacion.selectedLocalizacion=cm.ListLocalizacion[i];
-                            //         break;
-                            //     }
-                            // }
                         }
+                    }
+                    if (result.datosEmpresa) {
+                        $scope.data_usuario.nombres_completos = result.datosEmpresa.razon_social;
+                        $scope.data_usuario.establecimientos=result.establecimientos;
+                        $scope.data_usuario.datosEmpresa=result.datosEmpresa;
                     }
 
                 }
             $scope.buscar_persona=function(){
                 if ($scope.data_usuario&&$scope.data_usuario.numero_documento) {
                     if ($scope.data_usuario.numero_documento.length==10||$scope.data_usuario.numero_documento.length==13) {
-                            mainService.buscar_informacion_cedula().get({nrodocumento:$scope.data_usuario.numero_documento,tipodocumento:'CEDULA'},success_buscar_cliente).$promise;
+                        if ($scope.data_usuario.numero_documento.length==10) {
+                            var datos={nrodocumento:$scope.data_usuario.numero_documento,tipodocumento:'CEDULA'};
+                            $scope.tipo_cliente='P';
+                        };
+                        if ($scope.data_usuario.numero_documento.length==13) {
+                            var datos={nrodocumento:$scope.data_usuario.numero_documento,tipodocumento:'RUC'};
+                            $scope.tipo_cliente='E';
+                        };
+                            mainService.buscar_informacion_cedula().get(datos,success_buscar_cliente).$promise;
                         }
                 }else{
                     $scope.data_usuario={};
@@ -1158,8 +1166,10 @@ app.factory('Servicios_Modal_Personas', function($rootScope,$mdDialog,colaborado
                 $scope.col_usuario_nuevo = function() {
                     $scope.data_usuario.id_localidad=cm.selectModelCiudad.selectedCiudades.id;
                     $scope.procesando=true; // pone boton espera si no a retornado el resultado esperado
-                    // el return evita el erro de desvordamiento en el boton de espera
-                    return Personas_Service.Add_Persona().add($scope.data_usuario).$promise.then(function(data) {
+                    // el return evita el error de desvordamiento en el boton de espera
+                    // GUARDAR DATOS DE PERSONA
+                    if ($scope.tipo_cliente=='P') {
+                    return Clientes_Service.Add_Persona().add($scope.data_usuario).$promise.then(function(data) {
                         $rootScope.$emit("actualizar_tabla_usuario", {});
                         $scope.procesando=false;
                         if (data.respuesta == true) {
@@ -1198,6 +1208,49 @@ app.factory('Servicios_Modal_Personas', function($rootScope,$mdDialog,colaborado
                     },function(error){
                         $scope.procesando=false;
                     });
+                    }
+                    //GUARDAT DATOS DE EMPRESA
+                    if ($scope.tipo_cliente=='E') {
+                    return Clientes_Service.Add_Empresa().add($scope.data_usuario).$promise.then(function(data) {
+                        $rootScope.$emit("actualizar_tabla_usuario", {});
+                        $scope.procesando=false;
+                        if (data.respuesta == true) {
+                                $mdDialog.cancel();
+                                    $mdToast.show({
+                                      hideDelay   : 5000,
+                                      position    : 'bottom right',
+                                      controller  : 'notificacionCtrl',
+                                      templateUrl : 'views/notificaciones/guardar.html'
+                                    });
+                        }
+                        if (data.respuesta == false) {
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('LO SENTIMOS :(')
+                                .textContent('Intente mas tarde.')
+                                .ariaLabel('Respuesta Registro')
+                                .ok('Entendido')
+                                .targetEvent()
+                            );
+                        }
+                        if (data.respuesta == true && data.respuesta == false) {
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('LO SENTIMOS :(')
+                                .textContent('Proceso no permitido intente mas tarde.')
+                                .ariaLabel('Respuesta Registro')
+                                .ok('Entendido')
+                                .targetEvent()
+                            );
+                        }
+                    },function(error){
+                        $scope.procesando=false;
+                    });
+                    }
                 }
                 $scope.cancel = function() {
                     $mdDialog.cancel();
