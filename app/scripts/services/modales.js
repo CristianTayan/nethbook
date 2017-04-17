@@ -1063,3 +1063,136 @@ app.factory('Servicios_Modal_Servicios', function($rootScope,$mdDialog,inventari
 
     return obj_serv_modal;
 });
+
+//------------------------------------ SERVICIOS COMPARTIDOS DE PERSONAS --------------------------------------
+app.factory('Servicios_Modal_Personas', function($rootScope,$mdDialog,colaboradores_Service) {
+    var obj_serv_modal = {};
+
+    var query = {
+            filter: '',
+            num_registros: 5,
+            pagina_actual: 1,
+            limit: '15',
+            page_num: 1
+        };
+           
+    obj_serv_modal.abrir_modal = function() {
+            $mdDialog.show({
+                    controller: DialogController_nuevo,
+                    templateUrl: 'views/app/facturacion/personas/new.html',
+                    parent: angular.element(document.body),
+                    targetEvent: event,
+                    ariaLabel: 'Respuesta Registro',
+                    clickOutsideToClose: false,
+                    fullscreen: true
+                })
+    }
+
+    function DialogController_nuevo($scope, $mdToast,mainService,Personas_Service) {
+            var cm = $scope;
+            function selectCallback(_newValue, _oldValue) {
+                    LxNotificationService.notify('Change detected');
+                    console.log('Old value: ', _oldValue);
+                    console.log('New value: ', _newValue);
+                }
+            // ----------------------------------------------------------- Buscar Persona 
+            function success_buscar_cliente(result){
+                    if (result.datosPersona) {
+                        if (result.datosPersona.valid==true) {
+                            var array_nombres = result.datosPersona.name.split(" ");
+                            $scope.data_usuario.primer_nombre=array_nombres[2];
+                            $scope.data_usuario.segundo_nombre=array_nombres[3];
+                            $scope.data_usuario.primer_apellido=array_nombres[0];
+                            $scope.data_usuario.segundo_apellido=array_nombres[1];
+                            // for (var i = 0; i < cm.ListLocalizacion.length; i++) {
+                            //     if (cm.ListLocalizacion[i].id==result.persona.id_localidad) {
+                            //         cm.ModelLocalizacion.selectedLocalizacion=cm.ListLocalizacion[i];
+                            //         break;
+                            //     }
+                            // }
+                        }
+                    }
+
+                }
+            $scope.buscar_persona=function(){
+                if ($scope.data_usuario&&$scope.data_usuario.numero_documento) {
+                    if ($scope.data_usuario.numero_documento.length==10||$scope.data_usuario.numero_documento.length==13) {
+                            mainService.buscar_informacion_cedula().get({nrodocumento:$scope.data_usuario.numero_documento,tipodocumento:'CEDULA'},success_buscar_cliente).$promise;
+                        }
+                }else{
+                    $scope.data_usuario={};
+                    cm.selectModelCiudad.selectedCiudades=undefined;
+                }
+            }
+             //----------------SELECT CIUDADES---------------//
+                function success_ciudades(desserts) {
+                    cm.selectCallback = selectCallback;
+                    cm.selectCiudades = desserts.respuesta;
+                    cm.selectModelCiudad = {
+                        selectedCiudades: undefined,
+                        selectedPeople: [cm.selectCiudades[2], cm.selectCiudades[4]],
+                        selectedPeopleSections: []
+                    };
+                }
+                $scope.data_ciudades = function() {
+                    colaboradores_Service.Get_Ciudades().get(query, success_ciudades).$promise;
+                }
+                $scope.data_ciudades();
+ 
+
+                $scope.procesando=false; // pone boton espera si no a retornado el resultado esperado
+
+                // Nuevo registro Persona
+                $scope.col_usuario_nuevo = function() {
+                    $scope.data_usuario.id_localidad=cm.selectModelCiudad.selectedCiudades.id;
+                    $scope.procesando=true; // pone boton espera si no a retornado el resultado esperado
+                    // el return evita el erro de desvordamiento en el boton de espera
+                    return Personas_Service.Add_Persona().add($scope.data_usuario).$promise.then(function(data) {
+                        $rootScope.$emit("actualizar_tabla_usuario", {});
+                        $scope.procesando=false;
+                        if (data.respuesta == true) {
+                                $mdDialog.cancel();
+                                    $mdToast.show({
+                                      hideDelay   : 5000,
+                                      position    : 'bottom right',
+                                      controller  : 'notificacionCtrl',
+                                      templateUrl : 'views/notificaciones/guardar.html'
+                                    });
+                        }
+                        if (data.respuesta == false) {
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('LO SENTIMOS :(')
+                                .textContent('Intente mas tarde.')
+                                .ariaLabel('Respuesta Registro')
+                                .ok('Entendido')
+                                .targetEvent()
+                            );
+                        }
+                        if (data.respuesta == true && data.respuesta == false) {
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('LO SENTIMOS :(')
+                                .textContent('Proceso no permitido intente mas tarde.')
+                                .ariaLabel('Respuesta Registro')
+                                .ok('Entendido')
+                                .targetEvent()
+                            );
+                        }
+                    },function(error){
+                        $scope.procesando=false;
+                    });
+                }
+                $scope.cancel = function() {
+                    $mdDialog.cancel();
+                };
+
+        }
+
+    return obj_serv_modal;
+});
+

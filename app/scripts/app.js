@@ -226,6 +226,7 @@ var app = angular.module('nextbook20App', [
             .when('/App/Facturacion/Mis_Facturas_Venta',    'dashboard.app.facturacion.mis_facturas_venta')
             .when('/App/Facturacion/Nueva_Factura_Venta',    'dashboard.app.facturacion.nueva_factura_venta')
             .when('/App/Facturacion/Cajas',    'dashboard.app.facturacion.cajas')
+            .when('/App/Facturacion/Clientes',    'dashboard.app.facturacion.cientes')
             // ------------------------------------------GESTION INVENTARIO -----------------------------------------
             .when('/App/Inventario',    'dashboard.app.inventario')
                 .when('/App/Inventario/',    'dashboard.app.inventario.menu')
@@ -495,6 +496,10 @@ var app = angular.module('nextbook20App', [
                                         .segment('mis_facturas_venta', {
                                             templateUrl: 'views/app/facturacion/mis_facturas/index.html',
                                             controller: 'fac_mis_facturas_venta_Ctrl'
+                                        })
+                                        .segment('cientes', {
+                                            templateUrl: 'views/app/facturacion/personas/index.html',
+                                            controller: 'fac_personas_Ctrl'
                                         })
                                     .up()
 

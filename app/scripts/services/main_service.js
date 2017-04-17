@@ -47,6 +47,15 @@ var app = angular.module('nextbook20App');
             });
         };
 
+         // -----------------------------------------------------    BUSCAR INFORMACION RUC   -----------------------------------------------------------
+        this.buscar_informacion_cedula = function() {
+            return $resource(urlService.server().appserviciosnext()+'getDatos', {}, {
+            get:    {
+                        method: 'GET', isArray: false
+                    }
+            });
+        };
+
         // -----------------------------------------------------    BUSCAR INFORMACION RUC   -----------------------------------------------------------
         this.guardar_datos_ruc = function($data) {
             return $resource(urlService.server().appnext()+'Save_Datos_Ruc', {}, {

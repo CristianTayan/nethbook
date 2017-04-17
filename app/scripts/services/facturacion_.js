@@ -23,6 +23,18 @@ angular.module('nextbook20App')
         });
     };
 
+    this.Existencia_Persona=function() {
+        return $resource(urlService.server().appnext()+'Existencia_Persona', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                }
+            }
+        });
+    };
+
     this.Get_Empleado_By_Ruc_Ci=function() {
         return $resource(urlService.server().appnext()+'Get_Empleado_By_Ruc_Ci', {}
         , {
