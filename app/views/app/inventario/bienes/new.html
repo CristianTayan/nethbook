@@ -27,27 +27,44 @@
                         <md-expansion-panel-content>
                             <div layout="row" flex>
                                 <md-input-container class="md-icon-float md-block" flex>
+                                    <md-icon class="md-primary">equalizer</md-icon>
+                                    <label>Codigo de Barras</label>
+                                    <input name="cod_barras" ng-model="data_inv_producto.codigo_baras" type="text">
+                                </md-input-container>
+                                <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                                <md-input-container class="md-icon-float md-block" flex>
                                     <md-icon class="md-primary">view_compact</md-icon>
-                                    <label>Nombre del Bien</label>
+                                    <label>Nombre Corto {{info_sucursal.giro_negocio.nombre}}</label>
                                     <input name="nom_producto" ng-model="data_inv_producto.nombre_corto" type="text" required >
                                     <div ng-messages="form_inv_producto.nom_producto.$error" ng-show="form_inv_producto.nom_producto.$dirty">
                                         <div ng-message="required">Campo Requerido</div>
                                         <div ng-message="campo">Registro Repetido</div>
                                     </div>
                                 </md-input-container>
-                                <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+                                <div flex="5" hide-xs hide-sm></div>
+                                <md-input-container class="md-icon-float md-block" flex>
+                                    <md-icon class="md-primary">view_compact</md-icon>
+                                    <label>Nombre del Servicio / Descripción</label>
+                                    <input name="nom_descripcion" ng-model="data_inv_producto.descripcion" type="text">
+                                    <div ng-messages="form_inv_producto.nom_descripcion.$error" ng-show="form_inv_producto.nom_descripcion.$dirty">
+                                        <div ng-message="required">Campo Requerido</div>
+                                        <div ng-message="campo">Registro Repetido</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div layout="row" flex>
                                 <md-input-container class="md-icon-float md-block" flex>
                                     <md-icon class="md-primary">attach_money</md-icon>
-                                    <label>Precio</label>
+                                    <label>Precio Costo</label>
                                     <input name="nom_precio" ng-model="data_inv_producto.precio" money  required value="0">
                                     <div ng-messages="form_inv_producto.nom_precio.$error" ng-show="form_inv_producto.nom_precio.$dirty">
                                         <div ng-message="required">Campo Requerido</div>
                                     </div>
                                 </md-input-container>
-                                <!-- <div flex="5" hide-xs hide-sm></div> -->
-                                <md-input-container class="md-icon-float md-block" flex ng-show="false">
+                                <div flex="5" hide-xs hide-sm></div>
+                                <md-input-container class="md-icon-float md-block" flex>
                                     <md-icon class="md-primary">monetization_on</md-icon>
-                                    <label>Costo</label>
+                                    <label>Precio Venta / Sin Impuestos</label>
                                     <input name="nom_modelo" ng-model="data_inv_producto.costo" money type="text">
                                     <div ng-messages="form_inv_producto.nom_modelo.$error" ng-show="form_inv_producto.nom_modelo.$dirty">
                                         <div ng-message="campo">Registro Repetido</div>
@@ -56,28 +73,11 @@
                                 <div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
                                 <md-input-container class="md-icon-float md-block" flex>
                                     <md-icon class="md-primary">view_agenda</md-icon>
-                                    <label>Cantidad</label>
+                                    <label>Stock / Cantidad</label>
                                     <input name="nom_cantidad" ng-model="data_inv_producto.cantidad" type="number" ng-pattern="/^([0-9])*$/" required >
                                     <div ng-messages="form_inv_producto.nom_cantidad.$error" ng-show="form_inv_producto.nom_cantidad.$dirty">
                                         <div ng-message="required">Campo Requerido</div>
                                         <div ng-message="pattern">Solo numeros enteros</div>
-                                    </div>
-                                </md-input-container>
-                            </div>
-                            <div layout="row" flex>
-                                <md-input-container class="md-icon-float md-block" flex>
-                                    <md-icon class="md-primary">equalizer</md-icon>
-                                    <label>Codigo de Barras</label>
-                                    <input name="cod_barras" ng-model="data_inv_producto.codigo_baras" type="text">
-                                </md-input-container>
-                                <div flex="5" hide-xs hide-sm></div>
-                                <md-input-container class="md-icon-float md-block" flex>
-                                    <md-icon class="md-primary">view_compact</md-icon>
-                                    <label>Descripción</label>
-                                    <input name="nom_descripcion" ng-model="data_inv_producto.descripcion" type="text">
-                                    <div ng-messages="form_inv_producto.nom_descripcion.$error" ng-show="form_inv_producto.nom_descripcion.$dirty">
-                                        <div ng-message="required">Campo Requerido</div>
-                                        <div ng-message="campo">Registro Repetido</div>
                                     </div>
                                 </md-input-container>
                             </div>

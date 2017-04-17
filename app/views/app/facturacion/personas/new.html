@@ -10,12 +10,11 @@
             </div>
         </md-toolbar>
         <md-dialog-content style="width: 1000px!important">
-                <md-content class="md-padding">
-                    <div class="md-dialog-content">
+                <div class="md-padding">
                         <div layout="row">
                             <md-input-container class="md-icon-float md-icon-left md-block" flex required>
                                 <md-icon class="md-primary">supervisor_account</md-icon>
-                                <lx-select name="ciudad" ng-model="selectModelTipoDocumento.selectedTipoDocumento"
+                                <lx-select ng-model="selectModelTipoDocumento.selectedTipoDocumento"
                                            lx-allow-clear="true"
                                            lx-choices="selectTipoDocument"
                                            lx-display-filter="true"
@@ -109,8 +108,7 @@
                                 <input name="numero_casa" ng-model="data_usuario.numero_casa" type="text" >
                             </md-input-container>
                              </div> 
-                    </div>
-                </md-content>
+                </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="cancel()">Cancelar</md-button>

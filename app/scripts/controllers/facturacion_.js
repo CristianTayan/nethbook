@@ -9,12 +9,10 @@
  */
 	var app = angular.module('nextbook20App')
     app.controller('facturacion_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
-    	
     	// ------------------------------------inicio generacion vista menu personalizacion------------------------------------
             var data = menuService.Get_Vistas_Loged_User();
             $scope.menu = data.respuesta[0].children[0].children[1];
         // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
-
     });
 
     app.controller('fac_personas_Ctrl', function ($scope, colaboradores_Service, $rootScope, $mdDialog,Servicios_Modal_Personas) {
@@ -75,6 +73,8 @@
                         $scope.selected_tipo_user=tipo_usuario[i];
                     }
                 }
+
+
                 // ---------------------------SELECT BUSQUEDA TIPO USUARIO---------------------
                     var vd = $scope;
                     vd.selectCallback = selectCallback;
@@ -255,9 +255,6 @@
                 $scope.data_colaborado_get();
             });
     });
-
-
-
 
     app.controller('fac_cajas_Ctrl', function($mdDialog, $scope,$rootScope,Facturacion_Service) {
         
@@ -479,16 +476,50 @@
     });
 
 	app.controller('fac_mis_facturas_venta_Ctrl', function($mdDialog, $scope) {
-    	
     	console.log('mis facturas');
-
     });
 
-    app.controller('fac_nueva_factura_venta_Ctrl', function($mdDialog,$document, $scope,inventario_Service,Contabilidad_Service,$rootScope,$localStorage,colaboradores_Service,Facturacion_Service,Servicios_Modal_Personas,$timeout) {
-            function selectCallback(_newValue, _oldValue) {
-                console.log('Old value: ', _oldValue);
-                console.log('New value: ', _newValue);
+    app.controller('fac_nueva_factura_venta_Ctrl', function(repositorioFacturas, $mdDialog,$document, $scope,inventario_Service,Contabilidad_Service,$rootScope,$localStorage,colaboradores_Service,Facturacion_Service,Servicios_Modal_Personas,$timeout) {
+            
+
+        // ---------------------------------------------------tipo comprobantes--------------------------------------------------------------
+            function success_tipo_comprobantes(desserts) {
+                console.log(desserts);
+                $scope.tipo_comprobantes = desserts.respuesta;
+                var vm=$scope;
+                    vm.selectComprobante = desserts.respuesta;
+                    vm.selectModelTipoComprobantes = {
+                        selectedAmbito: undefined,
+                        selectedAmbitoDefault: [vm.selectComprobante[0]]
+                    };
             }
+            $scope.data_tipo_comprobantes_get = function() {
+                repositorioFacturas.Get_Tipo_Documentos().get($scope.query, success_tipo_comprobantes).$promise;
+            }
+            $scope.data_tipo_comprobantes_get();
+        // ---------------------------------------------------forma de Pago--------------------------------------------------------------
+        function success_forma_pagos(desserts) {
+                $scope.tipo_comprobantes = desserts.respuesta;
+                var vm=$scope;
+                    vm.selectForma_Pago = desserts.respuesta;
+                    vm.Select_Forma_Pago = {
+                        selectedAmbito: undefined,
+                        selectedAmbitoDefault: [vm.selectForma_Pago[0]]
+                    };
+            }
+            $scope.data_forma_pago_get = function() {
+                Facturacion_Service.Get_Formas_Pagos().get($scope.query, success_forma_pagos).$promise;
+            }
+            $scope.data_forma_pago_get();
+
+            
+
+
+
+        function selectCallback(_newValue, _oldValue) {
+            console.log('Old value: ', _oldValue);
+            console.log('New value: ', _newValue);
+        }
         $scope.detalles_fac=[];
         var modal=Servicios_Modal_Personas;
 
@@ -875,19 +906,21 @@
                 }
                 $scope.data_ciudades();
 
-                function success_buscar_cliente(result){
+                function success_buscar_cliente(result) {
                     if (result.respuesta==true) {
-                        $scope.data=result.persona;
-                    $scope.data.nombres=result.persona.primer_nombre+' '+result.persona.segundo_nombre;
-                    $scope.data.apellidos=result.persona.primer_apellido+' '+result.persona.segundo_apellido;
-                    $scope.data.direccion=result.persona.calle+', '+result.persona.transversal+', '+result.persona.numero;
+                        console.log(result.respuesta);
+                        $scope.data=result.datos;
+                        $scope.data.nombres_completos=result.datos.primer_nombre+' '+result.datos.segundo_nombre + ' ' +result.datos.primer_apellido+' '+result.datos.segundo_apellido;;
+                        $scope.data.direccion=result.datos.calle+', '+result.datos.transversal+', '+result.datos.numero;
+                        //$scope.data.apellidos=result.persona.primer_apellido+' '+result.persona.segundo_apellido;
+                        
 
-                    for (var i = 0; i < cm.ListLocalizacion.length; i++) {
-                        if (cm.ListLocalizacion[i].id==result.persona.id_localidad) {
-                            cm.ModelLocalizacion.selectedLocalizacion=cm.ListLocalizacion[i];
-                            break;
-                        }
-                    }
+                        // for (var i = 0; i < cm.ListLocalizacion.length; i++) {
+                        //     if (cm.ListLocalizacion[i].id==result.persona.id_localidad) {
+                        //         cm.ModelLocalizacion.selectedLocalizacion=cm.ListLocalizacion[i];
+                        //         break;
+                        //     }
+                        // }
                     }
 
                 }
@@ -920,12 +953,7 @@
                 }
             }
 
-            $scope.cambiar_tipo_cliente();
-
-            
-            
-    	
-
+            // $scope.cambiar_tipo_cliente();
     });
    
 

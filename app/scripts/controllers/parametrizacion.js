@@ -41,18 +41,18 @@ var app = angular.module('nextbook20App')
 	    function DialogController_nuevo($scope,$localStorage,obj,Contabilidad_Service, parametrizacion) {
 	        //-------------------------------------------------------DIALOGO SELECT AMBITO IMPUESTO-------------------------------------------------------
 		        var vm=$scope;
-		        vm.selectAmbito = obj.ambito;
-		        vm.selectModelAmbito_impuesto = {
-		            selectedAmbito: undefined,
-		            selectedAmbitoDefault: [vm.selectAmbito[0]]
-		        };
+			        vm.selectAmbito = obj.ambito;
+			        vm.selectModelAmbito_impuesto = {
+			            selectedAmbito: undefined,
+			            selectedAmbitoDefault: [vm.selectAmbito[0]]
+			        };
 	        //-------------------------------------------------------DIALOGO SELECT TIPO IMPUESTO-------------------------------------------------------
 		        var vm=$scope;
-		        vm.selectAmbito = obj.tipo_impuesto;
-		        vm.selectModelTipo_impuesto = {
-		            selectedTipo: undefined,
-		            selectedTipoDefault: [vm.selectTipo[0]]
-		        };
+			        vm.selectAmbito = obj.tipo_impuesto;
+			        vm.selectModelTipo_impuesto = {
+			            selectedTipo: undefined,
+			            selectedTipoDefault: [vm.selectTipo[0]]
+			        };
 	        // ---------------------------------------------------Nuevo registro Bodega---------------------------------------------------
 	        $scope.data_param_impuesto_guardar = function() {
 
