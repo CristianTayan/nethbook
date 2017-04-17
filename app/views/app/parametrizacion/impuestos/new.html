@@ -1,0 +1,96 @@
+<md-dialog aria-label="FormBodegas">
+    <form name="form_param_ambito_impuesto" ng-submit="data_param_impuesto_guardar()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Nuevo Impuesto</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width: 650px!important">
+            <div class="md-dialog-content">
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                            <md-icon class="md-primary">add_alert</md-icon>
+                            <lx-select ng-model="selectModelAmbito.selectedAmbito"
+                                       lx-allow-clear="true"
+                                       lx-choices="selectAmbito"
+                                       lx-display-filter="true"
+                                       lx-fixed-label="true"
+                                       lx-label="Seleccione Ambito de Impuesto">
+                                <lx-select-selected>
+                                    {{ $selected.nombre}}
+                                </lx-select-selected>
+                                <lx-select-choices>
+                                    {{ $choice.nombre}}
+                                </lx-select-choices>
+                            </lx-select>
+                        </md-input-container>
+                        <div flex="5"></div>
+                        <md-input-container class="md-icon-float md-icon-left md-block" flex>
+                            <md-icon class="md-primary">add_alert</md-icon>
+                            <lx-select ng-model="selectModelTipo.selectedTipo"
+                                       lx-allow-clear="true"
+                                       lx-choices="selectTipo"
+                                       lx-display-filter="true"
+                                       lx-fixed-label="true"
+                                       lx-label="Tipo Impuesto">
+                                <lx-select-selected>
+                                    {{ $selected.nombre}}
+                                </lx-select-selected>
+                                <lx-select-choices>
+                                    {{ $choice.nombre}}
+                                </lx-select-choices>
+                            </lx-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">view_compact</md-icon>
+                            <label>Nombre Impuesto</label>
+                            <input name="nom_bodega" ng-model="data_param_impuesto.nombre" type="text" impuestos-validator required>
+                            <div ng-messages="form_param_ambito_impuesto.nom_bodega.$error" ng-show="form_param_ambito_impuesto.nom_bodega.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="campo">Registro Repetido</div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5"></div>
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">description</md-icon>
+                            <label>Porcentaje (%) Impuesto</label>
+                            <input name="cantidad" ng-model="data_param_impuesto.cantidad" type="text" numbers_Only required>
+                            <div ng-messages="form_param_ambito_impuesto.cantidad.$error" ng-show="form_param_ambito_impuesto.cantidad.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block" flex>
+                            <md-icon class="md-primary">description</md-icon>
+                            <label>Codigo SRI</label>
+                            <input name="codigo_sri" ng-model="data_param_impuesto.codigo_sri" type="text" numbers_Only required>
+                            <div ng-messages="form_param_ambito_impuesto.codigo_sri.$error" ng-show="form_param_ambito_impuesto.codigo_sri.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container md-no-float class="md-block" flex>
+                            <md-icon class="md-primary">description</md-icon>
+                            <label>Descripción</label>
+                            <textarea name="descripcion" ng-model="data_param_impuesto.descripcion" type="text" required></textarea>
+                            <div ng-messages="form_param_ambito_impuesto.descripcion.$error" ng-show="form_param_ambito_impuesto.descripcion.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">Cancelar</md-button>
+            <md-button type="reset">Limpiar</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="form_param_ambito_impuesto.$invalid">Guardar</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

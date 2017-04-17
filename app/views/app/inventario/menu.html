@@ -6,80 +6,94 @@
 </div>
 <br><md-divider></md-divider><br>
 <div layout-xs="column" layout="row">
-        <md-card flex-xs flex-gt-xs="50" layout="column">
-            <img class="md-card-image" src="images/app/inventario/bienes.png" alt="image caption">
-            <md-list>
-                <md-subheader class="md-no-sticky txt-center">INVENTARIO DE BIENES DE {{info_sucursal.nombre}}</md-subheader>
-                <md-list-item ng-href="#/App/Inventario/Bienes">
-                    <md-icon>create</md-icon>
-                    <p> CREAR UN NUEVO PRODUCTO</p>
-                </md-list-item>
-                <md-list-item ng-click="null">
-                    <md-icon>search</md-icon>
-                    <p> BUSCAR PRODUCTO</p>
-                </md-list-item>
-                <md-list-item ng-click="null">
-                    <md-icon>content_paste</md-icon>
-                    <p> REPORTE GENERAL</p>
-                </md-list-item>
-                <md-list-item ng-click="null">
-                    <md-icon>picture_as_pdf</md-icon>
-                    <p> REPORTE x CATEGORÍAS</p>
-                </md-list-item>
-            </md-list>
-        </md-card>
-        <md-card flex-xs flex-gt-xs="50" layout="column">
-            <img class="md-card-image" src="images/app/inventario/productos.png" alt="image caption">
-            <md-list>
-                <md-subheader class="md-no-sticky txt-center">INVENTARIO DE BIENES DE {{info_sucursal.nombre}}</md-subheader>
-                <md-list-item ng-click="null">
-                    <md-icon>create</md-icon>
-                    <p> CREAR UN NUEVO PRODUCTO</p>
-                </md-list-item>
-                <md-list-item ng-click="null">
-                    <md-icon>search</md-icon>
-                    <p> BUSCAR PRODUCTO</p>
-                </md-list-item>
-                <md-list-item ng-click="null">
-                    <md-icon>content_paste</md-icon>
-                    <p> REPORTE GENERAL</p>
-                </md-list-item>
-                <md-list-item ng-click="null">
-                    <md-icon>picture_as_pdf</md-icon>
-                    <p> REPORTE x CATEGORÍAS</p>
-                </md-list-item>
-            </md-list>
-        </md-card>
-        <md-card flex-xs flex-gt-xs="50" layout="column">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">INVENTARIO DE PRODUCTOS </span>
-                    <span class="md-subhead">Small</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                    <div class="md-media-sm card-media"></div>
-                </md-card-title-media>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button>INGRESAR</md-button>
-                <md-button>Action 2</md-button>
-            </md-card-actions>
-        </md-card>
-        <md-card flex-xs flex-gt-xs="50" layout="column">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">Card with image</span>
-                    <span class="md-subhead">Medium</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                    <div class="md-media-md card-media"></div>
-                </md-card-title-media>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button>Action 1</md-button>
-                <md-button>Action 2</md-button>
-            </md-card-actions>
-        </md-card>
+    <md-card flex-xs flex-gt-xs="50" layout="column">
+        <img class="md-card-image" src="images/app/inventario/bienes.png" alt="image caption">
+        <md-list>
+            <md-subheader class="md-no-sticky txt-center">INVENTARIO DE {{info_sucursal.giro_negocio.nombre | uppercase }}</md-subheader>
+            <md-list-item ng-href="#/App/Inventario/Bienes">
+                <md-icon>create</md-icon>
+                <p> CREAR UN NUEVO PRODUCTO</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>search</md-icon>
+                <p> BUSCAR PRODUCTO</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>content_paste</md-icon>
+                <p> REPORTE GENERAL</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>picture_as_pdf</md-icon>
+                <p> REPORTE x CATEGORÍAS</p>
+            </md-list-item>
+        </md-list>
+    </md-card>
+    <md-card flex-xs flex-gt-xs="50" layout="column">
+        <img class="md-card-image" src="images/app/inventario/productos.png" alt="image caption">
+        <md-list>
+            <md-subheader class="md-no-sticky txt-center">INVENTARIO DE BIENES DE LOS RECURSOS DE {{info_sucursal.nombre}}</md-subheader>
+            <md-list-item ng-click="null">
+                <md-icon>create</md-icon>
+                <p> CREAR UN NUEVO PRODUCTO</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>search</md-icon>
+                <p> BUSCAR PRODUCTO</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>content_paste</md-icon>
+                <p> REPORTE GENERAL</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>picture_as_pdf</md-icon>
+                <p> REPORTE x CATEGORÍAS</p>
+            </md-list-item>
+        </md-list>
+    </md-card>
+    <md-card flex-xs flex-gt-xs="50" layout="column">
+        <img class="md-card-image" src="images/app/tipos/tipo_consumo.png" alt="image caption">
+        <md-list>
+            <md-subheader class="md-no-sticky txt-center">TIPOS</md-subheader>
+            <md-list-item ng-href="#/App/Inventario/Tipo_Consumo">
+                <md-icon>card_giftcard</md-icon>
+                <p> TIPOS CONSUMO</p>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inventario/Tipo_Productos">
+                <md-icon>create</md-icon>
+                <p> TIPOS PRODUCTOS</p>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inventario/Garantia">
+                <md-icon>security</md-icon>
+                <p> TIPOS GARANTIA</p>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inventario/Bienes">
+                <md-icon>card_giftcard</md-icon>
+                <p> TIPOS CONSUMO</p>
+            </md-list-item>
+        </md-list>
+    </md-card>
+    <md-card flex-xs flex-gt-xs="50" layout="column">
+        <img class="md-card-image" src="images/app/tipos/categorias.png" alt="image caption">
+        <md-list>
+            <md-subheader class="md-no-sticky txt-center">CATEGORIAS</md-subheader>
+            <md-list-item ng-href="#/App/Inventario/Bienes">
+                <md-icon>create</md-icon>
+                <p> CREAR UN NUEVO CATEGORIA</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>search</md-icon>
+                <p> BUSCAR PRODUCTO</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>content_paste</md-icon>
+                <p> REPORTE GENERAL</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>picture_as_pdf</md-icon>
+                <p> REPORTE x CATEGORÍAS</p>
+            </md-list-item>
+        </md-list>
+    </md-card>
 </div>
 
 
