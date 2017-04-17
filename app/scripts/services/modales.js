@@ -1096,6 +1096,7 @@ app.factory('Servicios_Modal_Personas', function($rootScope,$mdDialog,colaborado
                     if (result.datosPersona) {
                         if (result.datosPersona.valid==true) {
                             var array_nombres = result.datosPersona.name.split(" ");
+                            $scope.data_usuario.nombres_completos=result.datosPersona.name;
                             $scope.data_usuario.primer_nombre=array_nombres[2];
                             $scope.data_usuario.segundo_nombre=array_nombres[3];
                             $scope.data_usuario.primer_apellido=array_nombres[0];

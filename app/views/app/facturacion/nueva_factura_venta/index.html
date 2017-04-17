@@ -9,14 +9,18 @@
             <button ng-show='cliente=="SI"' class="md-fab md-mini md-button md-ink-ripple" type="button" ng-click="buscar_cliente()">
                 <md-icon class="material-icons ng-scope">search</md-icon>
             </button>
+            <button ng-show='cliente=="SI"' class="md-fab md-mini md-button md-ink-ripple" type="button" ng-click="add_cliente()">
+                <md-tooltip md-direction="Bottom">Añadir Cliente</md-tooltip>
+                <md-icon class="material-icons ng-scope">add</md-icon>
+            </button>
             <span flex></span>
             <md-switch ng-model="cliente" ng-change="cambiar_tipo_cliente()" ng-true-value="'SI'" ng-false-value="'NO'" aria-label="Switch Cliente" flex>
             CLIENTE
             </md-switch>
-            <md-button class="md-icon-button " aria-label="Añadir producto" ng-click="dialog_add_prod()">
+            <!-- <md-button class="md-icon-button " aria-label="Añadir producto" ng-click="dialog_add_prod()">
                 <md-tooltip md-direction="Bottom">Añadir Producto</md-tooltip>
                 <md-icon class="material-icons">add_circle</md-icon>
-            </md-button>
+            </md-button> -->
         </div>
     </md-toolbar>
     <md-table-container layout-padding>

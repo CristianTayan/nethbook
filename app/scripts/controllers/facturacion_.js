@@ -28,9 +28,9 @@
         }
         // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
 
-            $scope.colaboradores_dialog_nuevo = function(event) {
-                modal.abrir_modal();
-            }
+        $scope.colaboradores_dialog_nuevo = function(event) {
+            modal.abrir_modal();
+        }
 
         // -------------------------------------------------------PROCESO EDITAR REGISTRO-----------------------------------------------------------
             $scope.usuarios_dialog_modificar = function(col_usuario) {
@@ -484,12 +484,17 @@
 
     });
 
-    app.controller('fac_nueva_factura_venta_Ctrl', function($mdDialog,$document, $scope,inventario_Service,Contabilidad_Service,$rootScope,$localStorage,colaboradores_Service,Facturacion_Service,$timeout) {
+    app.controller('fac_nueva_factura_venta_Ctrl', function($mdDialog,$document, $scope,inventario_Service,Contabilidad_Service,$rootScope,$localStorage,colaboradores_Service,Facturacion_Service,Servicios_Modal_Personas,$timeout) {
             function selectCallback(_newValue, _oldValue) {
                 console.log('Old value: ', _oldValue);
                 console.log('New value: ', _newValue);
             }
         $scope.detalles_fac=[];
+        var modal=Servicios_Modal_Personas;
+
+        $scope.add_cliente = function(event) {
+            modal.abrir_modal();
+        }
         //------------------------------------------- MODAL AÑADIR PRODUCTO -------------------------------
 
         $scope.dialog_add_prod = function(event) {

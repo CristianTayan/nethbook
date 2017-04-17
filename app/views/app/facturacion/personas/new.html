@@ -24,38 +24,12 @@
                             </md-input-container>
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
-                                <label>Primer Nombre</label>
-                                <input name="primer_nombre" ng-model="data_usuario.primer_nombre" uppercase type="text" required>
-                                <div ng-messages="form_usuario.primer_nombre.$error" ng-show="form_usuario.primer_nombre.$dirty">
+                                <label>Nombres Completos</label>
+                                <input name="nombres_completos" ng-model="data_usuario.nombres_completos" uppercase type="text" required>
+                                <div ng-messages="form_usuario.nombres_completos.$error" ng-show="form_usuario.nombres_completos.$dirty">
                                     <div ng-message="required">Campo Requerido</div>
                                 </div>
                             </md-input-container>
-                            <md-input-container class="md-icon-float md-block" flex>
-                                <md-icon class="md-primary">view_compact</md-icon>
-                                <label>Segundo Nombre</label>
-                                <input name="segundo_nombre" ng-model="data_usuario.segundo_nombre" uppercase type="text" >
-                                <div ng-messages="form_usuario.segundo_nombre.$error" ng-show="form_usuario.segundo_nombre.$dirty">
-                                    <div ng-message="required">Campo Requerido</div>
-                                </div>
-                            </md-input-container>
-                            <md-input-container class="md-icon-float md-block" flex>
-                                <md-icon class="md-primary">view_compact</md-icon>
-                                <label>Primer Apellido</label>
-                                <input name="primer_apellido" ng-model="data_usuario.primer_apellido" uppercase type="text" required>
-                                <div ng-messages="form_usuario.primer_apellido.$error" ng-show="form_usuario.primer_apellido.$dirty">
-                                    <div ng-message="required">Campo Requerido</div>
-                                </div>
-                            </md-input-container>
-                            <md-input-container class="md-icon-float md-block" flex>
-                                <md-icon class="md-primary">view_compact</md-icon>
-                                <label>Segundo Apellido</label>
-                                <input name="segundo_apellido" ng-model="data_usuario.segundo_apellido" uppercase type="text" >
-                                <div ng-messages="form_usuario.segundo_apellido.$error" ng-show="form_usuario.segundo_apellido.$dirty">
-                                    <div ng-message="required">Campo Requerido</div>
-                                </div>
-                            </md-input-container>
-                        </div>  
-                        <div layout="row">
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">email</md-icon>
                                 <label>Correo Electrónico</label>
@@ -66,10 +40,13 @@
                                     <div ng-message="email">Correo Invalido</div>
                                 </div>
                             </md-input-container>
+                        </div>  
+                        <div layout="row">
+
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">email</md-icon>
-                                <label>Correo Electrónico</label>
-                                <input name="numero_telefono" ng-model="data_usuario.numero_telefono" type="email" required numeros-only>
+                                <label>Número de Telefono</label>
+                                <input name="numero_telefono" ng-model="data_usuario.numero_telefono" type="text" required numeros-only>
                                 <div ng-messages="form_usuario.numero_telefono.$error" ng-show="form_usuario.numero_telefono.$dirty">
                                     <div ng-message="required">Campo Requerido</div>
                                     <div ng-message="campo">Registro Existente</div>
