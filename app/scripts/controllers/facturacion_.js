@@ -256,9 +256,6 @@
             });
     });
 
-
-
-
     app.controller('fac_cajas_Ctrl', function($mdDialog, $scope,$rootScope,Facturacion_Service) {
         
         function selectCallback(_newValue, _oldValue) {
@@ -684,9 +681,14 @@
             });
         //-----------------------------------------------------FUNCIONES TECLADO-----------------------------------------------------
         var handler = function(e){
+            //presionar boton + añadir producto
             if(e.keyCode === 107||e.keyCode === 187) {
               $scope.dialog_add_prod();
             }
+            //presionar boton C añadir CLiente
+            // if(e.keyCode === 67) {
+            //   $scope.add_cliente();
+            // }
         };
 
         var $doc = angular.element(document);
