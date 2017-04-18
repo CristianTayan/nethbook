@@ -112,13 +112,15 @@
                     <tbody md-body>
                         <tr md-row md-select="detalle" md-select-id="name" md-auto-select ng-repeat="detalle in detalles_fac">
                             <td md-cell>{{detalle.nombre_corto}}</td>
-                            <td md-cell>{{detalle.precio}}</td>
+                            <td md-cell>{{detalle.descripcion}}</td>
                             <td md-cell>
                                 <md-input-container>
                                     <input value="{{detalle.cantidad_fac}}" ng-model="detalle.cantidad_fac" ng-keyup="add_prod_fac_from_input(detalle)" ng-change="add_prod_fac_from_input(detalle)" type="number" style="width: 50px;" aria-label="Cantidad Modal" select-on-click>
 
                                 </md-input-container>
                             </td>
+                            <td md-cell>{{detalle.precio}}</td>
+                            <td md-cell>{{descuento|| '0'}}</td>
                             <td md-cell>{{detalle.total_fac}}</td>
                             <td md-cell>
                                 <md-button class="md-icon-button md-accent" aria-label="Quitar" ng-click="delete_prod_fac(dessert)">
@@ -133,24 +135,28 @@
                     <table md-table flex>
                         <thead md-head md-order="query.order" md-on-reorder="data_inv_producto_get">
                         <tr md-row>
-                            <th md-column md-numeric>SUBTORAL</th><th md-column md-numeric>00.00</th>
+                            <th md-column md-numeric>SUBTOTAL</th><th md-column md-numeric>{{subtotal || '00.00'}}</th>
                         </tr>
                         <tr md-row>
-                            <th md-column md-numeric>TARIFA 0</th><th md-column md-numeric>00.00</th>
+                            <th md-column md-numeric>TARIFA 0</th><th md-column md-numeric>{{subtotal_0 || '00.00'}}</th>
                         </tr>
                         <tr md-row>
-                            <th md-column md-numeric>TARIFA 14</th><th md-column md-numeric>00.00</th>
+                            <th md-column md-numeric>TARIFA 14</th><th md-column md-numeric>{{subtotal_14 || '00.00'}}</th>
                         </tr>
                         <tr md-row>
-                            <th md-column md-numeric>DESCUENTO</th><th md-column md-numeric>00.00</th>
+                            <th md-column md-numeric>IVA 14</th><th md-column md-numeric>{{iva_14 || '00.00'}}</th>
                         </tr>
                         <tr md-row>
-                            <th md-column md-numeric>TOTAL A PAGAR</th><th md-column md-numeric>00.00</th>
+                            <th md-column md-numeric>DESCUENTO</th><th md-column md-numeric>{{descuento || '00.00'}}</th>
+                        </tr>
+                        <tr md-row>
+                            <th md-column md-numeric>TOTAL A PAGAR</th><th md-column md-numeric>{{total_pagar || '00.00'}}</th>
                         </tr>
                     </thead>
                     <tbody md-body>
                     </tbody>
                     </table>
+
                     <!-- <table md-table ng-model="selected" md-progress="promise" flex>
                         <tbody style="font-size: 12px; font-family: Roboto,Helvetica Neue, sans-serif;">
                             <tr ng-repeat="dessert in totales">
@@ -175,7 +181,8 @@
                         </tbody>
                     </table> -->
                 </div>
-            </div>            
+            </div>   
+            <md-button  class="md-raised md-primary" type="button" ng-show="!procesando" disable-on-promise="save_factura()">Guardar</md-button>         
         </md-table-container>
     </div>
 </div>

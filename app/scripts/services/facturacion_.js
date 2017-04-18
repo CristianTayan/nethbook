@@ -117,4 +117,15 @@ angular.module('nextbook20App')
         });
     };
 
+    this.Add_Factura= function() {
+        return $resource(urlService.server().appnext()+'Add_Factura', {} , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
+
   });

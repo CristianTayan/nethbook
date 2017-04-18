@@ -792,85 +792,26 @@
                 $scope.calc_totales($scope.detalles_fac);
             }
 
-
+            
             $scope.calc_totales=function(detalles_fac){
-                $scope.subtotal_12=0.00;
+                // SUBTOTAL
+                $scope.subtotal=0.00;
                 $scope.subtotal_14=0.00;
                 $scope.subtotal_0=0.00;
-                $scope.subtotal_No_Objeto=0.00;
-                $scope.subtotal_Excento=0.00;
-                $scope.Total_Sin_Impuesto=0.00;
-                $scope.Total_Con_Impuesto=0.00;
-                $scope.iva_0=0.00;
-                $scope.iva_12=0.00;
                 $scope.iva_14=0.00;
                 for (var i = 0; i < detalles_fac.length; i++) {
-                    switch(detalles_fac[i].impuesto) {
-                        case 0:
-                            $scope.subtotal_0=parseFloat(parseFloat($scope.subtotal_0)+parseFloat(detalles_fac[i].total_fac)).toFixed($rootScope.decimales);
+                    $scope.subtotal=parseFloat(parseFloat(detalles_fac[i].total_fac)+parseFloat($scope.subtotal)).toFixed($rootScope.decimales);
+                    switch(detalles_fac[i].impuestos[0].cantidad) {
+                            case 14:
+                                $scope.subtotal_14=parseFloat(parseFloat(detalles_fac[i].total_fac)+parseFloat($scope.subtotal_14)).toFixed($rootScope.decimales);
+                                $scope.iva_14=parseFloat((detalles_fac[i].impuestos[0].cantidad/100)*$scope.subtotal_14).toFixed($rootScope.decimales);
                             break;
-                        case 2:
-                        $scope.subtotal_12=parseFloat(parseFloat($scope.subtotal_12)+parseFloat(detalles_fac[i].total_fac)).toFixed($rootScope.decimales);
-                            break;
-                        case 3:
-                        $scope.subtotal_14=parseFloat(parseFloat($scope.subtotal_14)+parseFloat(detalles_fac[i].total_fac)).toFixed($rootScope.decimales);
-                            break;
-                            case 6:
-                        $scope.subtotal_No_Objeto=parseFloat(parseFloat($scope.subtotal_No_Objeto)+parseFloat(detalles_fac[i].total_fac)).toFixed($rootScope.decimales);
-                            break;
-                            case 7:
-                        $scope.subtotal_Excento=parseFloat(parseFloat($scope.subtotal_Excento)+parseFloat(detalles_fac[i].total_fac)).toFixed($rootScope.decimales);
-                            break;
-                    }
-
-                    $scope.Total_Sin_Impuesto=parseFloat(parseFloat($scope.Total_Sin_Impuesto)+parseFloat(detalles_fac[i].total_fac)).toFixed($rootScope.decimales);
-                }
-
-
-                for (var i = 0; i < $scope.totales.length; i++) {
-                    switch($scope.totales[i].codigo) {
-                        case 0:
-                        $scope.totales[i].valor=$scope.subtotal_0;
-                            break;
-                        case 2:
-                        $scope.totales[i].valor=$scope.subtotal_12;
-                            break;
-                        case 3:
-                        $scope.totales[i].valor=$scope.subtotal_14;
-                            break;
-                            case 6:
-                        $scope.totales[i].valor=$scope.subtotal_No_Objeto;
-                            break;
-                            case 7:
-                        $scope.totales[i].valor=$scope.subtotal_Excento;
-                            break;
-                            case 'iva0':
-                            for (var j = 0; j < $scope.totales.length; j++) {
-                                if ($scope.totales[j].codigo==0) {
-                                    $scope.iva_0=parseFloat(($scope.totales[j].valor*$scope.totales[j].porcentaje)/100).toFixed($rootScope.decimales);
-                                    $scope.totales[i].valor=$scope.iva_0;
-
-                                }
-                            }
-                            break;
-                            case 'iva3':
-                            for (var j = 0; j < $scope.totales.length; j++) {
-                                if ($scope.totales[j].codigo==3) {
-                                    $scope.iva_14=parseFloat(($scope.totales[j].valor*$scope.totales[j].porcentaje)/100).toFixed($rootScope.decimales);
-                                    $scope.totales[i].valor=$scope.iva_14;
-                                }
-                            }
-                            break;
-                            case 'total_sin_impuestos':
-                            $scope.totales[i].valor=parseFloat($scope.Total_Sin_Impuesto).toFixed($rootScope.decimales);
-                            break;
-
-                            case 'total_con_impuestos':
-                            $scope.Total_Con_Impuesto=(parseFloat($scope.Total_Sin_Impuesto) + parseFloat($scope.iva_14)).toFixed($rootScope.decimales);
-                            $scope.totales[i].valor=$scope.Total_Con_Impuesto;
+                            case 0:
+                                $scope.subtotal_0=parseFloat(parseFloat(detalles_fac[i].total_fac)+parseFloat($scope.subtotal_0)).toFixed($rootScope.decimales);
                             break;
                     }
                 }
+                $scope.total_pagar=parseFloat(parseFloat($scope.subtotal_14)+parseFloat($scope.subtotal_0)+parseFloat($scope.iva_14)).toFixed($rootScope.decimales);
 
             }
 
@@ -916,6 +857,7 @@
 
                         if (result.datos.tipo_doc =='CEDULA') {
                             // $scope.data=result.datos;
+                            $scope.data.id = result.datos.id;
                             $scope.data.correo = result.datos.correo;
                             $scope.data.nombres_completos = result.datos.primer_nombre+' '+result.datos.segundo_nombre + ' ' +result.datos.primer_apellido+' '+result.datos.segundo_apellido;;
                             $scope.data.direccion = result.datos.calle;
@@ -971,6 +913,28 @@
                 }
             }
 
+            // Guardar Factura
+            $scope.save_factura=function(){
+                $scope.factura={};
+                $scope.factura.detalles=$scope.detalles_fac;
+                $scope.factura.totales={
+                    subtotal:$scope.subtotal,
+                    subtotal_14:$scope.subtotal_14,
+                    subtotal_0:$scope.subtotal_0,
+                    total_pagar:$scope.total_pagar,
+                    descuentos:0,
+                    iva_14:$scope.iva_14
+                };
+                $scope.factura.cliente=$scope.data;
+                $scope.factura.empresa=$localStorage.datosE;
+                $scope.factura.sucursal=$localStorage.sucursal;
+
+                return Facturacion_Service.Add_Factura().send($scope.factura).$promise.then(function(data){
+                    console.log(data);
+                },function(error){
+                    console.log(error);
+                })
+            }
             // $scope.cambiar_tipo_cliente();
     });
    
