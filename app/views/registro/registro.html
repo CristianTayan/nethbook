@@ -79,27 +79,33 @@
                                     </md-input-container>
                                 </form>
                                 <img src="images/registro/welcome.png" width="100%" class="animated zoomIn" ng-show="elemennotviewimg" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                <div flex ng-show="elemennotviewsession">
+                                <div flex ng-show="elemennotviewsession" layout-align="center center" >
                                     <h3 class="text-center" style="color:#757575">Inicios de sesión recientes</h3>
-                                    <md-card ng-repeat="item in session | reverse">
-                                        <md-list>
-                                            <md-list-item class="md-3-line">
-                                                <img ng-src="http://cratebarrelpe.vteximg.com.br/arquivos/ids/161994/Mesa-de-Centro-Cuadrada-con-Parte-Superior-de-Vidrio-Transparente-Parsons.jpg" class="md-avatar" />
-                                                <div class="md-list-item-text" layout="column">
-                                                    <p>{{ item.nick }}</p>
-                                                    <h4>{{ item.datos_usuario | lowercase}}</h4>
-                                                    <p>{{ item.razon_social}}</p>
-                                                </div>
-                                                <md-icon ng-click="entrar_recordatorio(item)" class="md-secondary md-hue-3" aria-label="Send Email">
-                                                    send
-                                                    <md-tooltip md-direction="top">Cuenta de {{ item.datos_usuario}} </md-tooltip>
-                                                </md-icon>
-                                                <md-icon ng-click="quitar_recordatorio($index, item)" class="md-secondary md-hue-3" aria-label="Chat">
-                                                    close
-                                                    <md-tooltip md-direction="top">Eliminar la cuenta de esta página </md-tooltip>
-                                                </md-icon>
-                                            </md-list-item>
-                                        </md-list>
+                                    <md-card layout="row" flex-gt-sm="90" flex-gt-md="80" ng-repeat="item in session | reverse">
+                                        <div flex="25">
+                                        <img ng-src="images/login/user.png" class="md-media-md card-media" />
+                                        </div>
+                                        <div flex="75" layout-align="center center" layout="row">
+                                            <md-list flex-gt-sm flex-gt-md>
+                                                <md-list-item class="md-3-line">
+                                                    <div class="md-list-item-text" layout="column">
+                                                        <p><md-icon>school</md-icon> {{ item.nick }}</p>
+                                                        <h4><md-icon>person</md-icon> {{ item.datos_usuario }}</h4>
+                                                        <p style="font-size: 12px;">{{ item.razon_social | limitTo: 30}}</p>
+                                                    </div>
+                                                    <div layout="column">
+                                                        <md-button class="md-icon-button" aria-label="send" ng-click="entrar_recordatorio(item)">
+                                                          <md-icon>send</md-icon>
+                                                          <md-tooltip md-direction="top">Cuenta de {{ item.datos_usuario}} </md-tooltip>
+                                                        </md-button>
+                                                        <md-button class="md-icon-button" aria-label="close" ng-click="quitar_recordatorio($index, item)">
+                                                          <md-icon>close</md-icon>
+                                                          <md-tooltip md-direction="top">Eliminar la cuenta de esta página </md-tooltip>
+                                                        </md-button>
+                                                    </div>                                                    
+                                                </md-list-item>
+                                            </md-list>
+                                        </div>
                                     </md-card>
                                 </div>
                             </div>
@@ -220,3 +226,7 @@
         </div>
         </div>
     </md-content>
+    <style type="text/css">
+        .carddemoBasicUsage .card-media {
+  background-color: #999999; }
+    </style>

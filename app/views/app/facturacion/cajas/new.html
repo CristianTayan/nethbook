@@ -10,36 +10,36 @@
             </div>
         </md-toolbar>
         <md-dialog-content >
-                <md-content class="md-padding">
-                    <div class="md-dialog-content">
-                        <div layout="row">
-                            <md-input-container class="md-icon-float md-block" flex="60">
-                                <md-icon class="md-primary">view_compact</md-icon>
-                                <label>Nombre de la caja ej: CAJA 1</label>
-                                <input name="nombre_caja" ng-model="data_caja.nombre_caja" uppercase type="text" required>
-                                <div ng-messages="form_caja.nombre_caja.$error" ng-show="form_caja.nombre_caja.$dirty">
-                                    <div ng-message="required">Campo Requerido</div>
-                                </div>
-                            </md-input-container>
-                            <md-input-container class="md-icon-float md-block" flex="20">
-                                <md-icon class="md-primary">view_compact</md-icon>
-                                <label>Inicio de numeración</label>
-                                <input name="inicio_numeracion" ng-model="data_caja.inicio_numeracion" type="number" min="1" required>
-                                <div ng-messages="form_caja.inicio_numeracion.$error" ng-show="form_caja.inicio_numeracion.$dirty">
-                                    <div ng-message="required">Campo Requerido</div>
-                                </div>
-                            </md-input-container>
-                            <md-input-container class="md-icon-float md-block" flex="20">
-                                <md-icon class="md-primary">view_compact</md-icon>
-                                <label>Fin de la Numeración</label>
-                                <input name="fin_numeracion" ng-model="data_caja.fin_numeracion" type="number" min="{{data_caja.inicio_numeracion+1}}" required>
-                                <div ng-messages="form_caja.fin_numeracion.$error" ng-show="form_caja.fin_numeracion.$dirty">
-                                    <div ng-message="required">Campo Requerido</div>
-                                </div>
-                            </md-input-container>
-                        </div>  
-                    </div>
-                </md-content>
+            <div class="md-padding">
+                <div layout="row">
+                    <md-input-container class="md-icon-float md-block" flex>
+                        <md-icon class="md-primary">view_compact</md-icon>
+                        <label>Nombre de la caja ej: CAJA 1</label>
+                        <input name="nombre_caja" ng-model="data_caja.nombre_caja" uppercase type="text" required>
+                        <div ng-messages="form_caja.nombre_caja.$error" ng-show="form_caja.nombre_caja.$dirty">
+                            <div ng-message="required">Campo Requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container class="md-icon-float md-block" flex>
+                        <md-icon class="md-primary">view_compact</md-icon>
+                        <label>Inicio de numeración</label>
+                        <input name="inicio_numeracion" ng-model="data_caja.inicio_numeracion" type="number" min="1" required>
+                        <div ng-messages="form_caja.inicio_numeracion.$error" ng-show="form_caja.inicio_numeracion.$dirty">
+                            <div ng-message="required">Campo Requerido</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block" flex>
+                        <md-icon class="md-primary">view_compact</md-icon>
+                        <label>Fin de la Numeración</label>
+                        <input name="fin_numeracion" ng-model="data_caja.fin_numeracion" type="number" min="{{data_caja.inicio_numeracion+1}}" required>
+                        <div ng-messages="form_caja.fin_numeracion.$error" ng-show="form_caja.fin_numeracion.$dirty">
+                            <div ng-message="required">Campo Requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="cancel()">Cancelar</md-button>

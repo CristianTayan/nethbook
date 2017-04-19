@@ -1,18 +1,22 @@
-<md-button ng-href="#/App/Repositorio_Facturas/Inicio_Facturas" aria-label="btn_in">REPOSITORIO FACTURAS</md-button>/
-<md-button ng-disabled="true" class="md-primary" aria-label="btn_in">MIS FACTURAS</md-button>
-<md-divider></md-divider>
 <div layout-wrap>
-    <md-toolbar class="md-toolbar-second">
-        <div class="md-toolbar-tools">
-            <input name="nom_modelo" ng-model="query.filter" type="text" required placeholder="Buscar" class="toolbar_search">
+    <!-- <md-toolbar class="md-toolbar-second"> -->
+        <!-- <div class="md-toolbar-tools"> -->
+            <!-- <input name="nom_modelo" ng-model="query.filter" type="text" required placeholder="Buscar" class="toolbar_search"> -->
             <span flex></span>
-            <md-button ng-repeat="item in tipo_consumos" layout="column" class="md-accent md-raised" ng-click="rep_fac_tipo_doc_filtro(item)">{{item.nombre}}</md-button>
-        </div>
-    </md-toolbar>
+            <md-nav-bar md-selected-nav-item="1" nav-bar-aria-label="navigation links" class="md-primary">
+              <md-nav-item md-nav-click="rep_fac_tipo_doc_filtro(item)" name="{{item.id}}" ng-repeat="item in tipo_consumos">
+                {{item.nombre}}
+              </md-nav-item>
+
+            </md-nav-bar>
+            
+            
+        <!-- </div> -->
+    <!-- </md-toolbar> -->
     <md-table-container layout-padding>
         <table md-table md-row-select ng-model="selected" md-progress="promise">
-            <thead md-head md-order="query.order" md-on-reorder="data_rep_facturas_get">
-                <tr md-row>
+            <thead md-head md-order="query.order" md-on-reorder="data_rep_facturas_get" >
+                <tr md-row md-color="{background: 'indigo'}">
                     <th md-column md-numeric>Nro</th>
                     <th md-column md-numeric><md-icon>markunread_mailbox</md-icon> EMISOR FACTURA</th>
                     <th md-column md-numeric><md-icon>code</md-icon> CLAVE DE ACCESO</th>
@@ -34,7 +38,7 @@
                         </md-button>
                     </td>
                     <td md-cell>{{dessert.total}}</td>
-                    <td md-cell>{{dessert.fecha_emision | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase }}</td>
+                    <td md-cell>{{dessert.fecha_emision | amDateFormat:'dddd, MMMM YYYY' | uppercase }}</td>
                     <td md-cell>
                         <md-button class="md-icon-button md-accent" ng-click="ver_factura(dessert)">
                             <md-icon>picture_as_pdf</md-icon>

@@ -84,12 +84,16 @@
                     </ul>
                 </lx-dropdown-menu>
             </lx-dropdown>
-            <a href="#/nb/Perfil">
-                <span class="mdl-chip mdl-chip--contact">
-                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" style="font-size: 12px">{{info_sucursal.codigo_sri}}</span>
-                    <span class="mdl-chip__text">{{nom_perfil | limitTo: 20}}</span>
-                </span>
-            </a>
+            <span class="mdl-chip mdl-chip--contact">
+                <a href="#/Seleccionar_Sucursal">
+                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white mdl-chip_hover_contact" style="font-size: 12px">       
+                        {{info_sucursal.codigo_sri}}
+                    </span>
+                </a>
+                <a href="#/nb/Perfil">
+                    <span class="mdl-chip__text mdl-chip_hover_text">{{nom_perfil | limitTo: 20}}</span>
+                </a>
+            </span>
         </div>
     </div>
     <div style="max-width:250px;" flex></div>
@@ -97,6 +101,13 @@
 
 <div layout="row" flex app-view-segment="1" class="view-next"></div>
 <style type="text/css">
+    .mdl-chip_hover_text:hover{
+        color: #E91E63!important;
+    }
+    .mdl-chip_hover_contact:hover{
+        background: #E91E63!important;
+    }
+
     #myInput {
         background: white url("file:///C:/Users/Deivid/Downloads/Compressed/10-search-dropdown_2/10-search-dropdown/img/search.png") 8px 6px no-repeat;
         font-size: 15px;
