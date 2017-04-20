@@ -2,7 +2,31 @@
     <div flex>
         <md-toolbar class="md-toolbar-second">
             <div class="md-toolbar-tools">
-                <input ng-model="data.ruc_ci" type="text" required placeholder="Buscar Cliente (Cedula,Ruc)" class="toolbar_search" ng-keyup="buscar_cliente()">
+                <!-- <input ng-model="data.ruc_ci" type="text" required placeholder="Buscar Cliente (Cedula,Ruc)" class="toolbar_search" ng-keyup="buscar_cliente()"> -->
+                <div ng-controller="fac_nueva_factura_venta_Ctrl as fac_nueva_factura_venta_Ctrl">
+                  <md-autocomplete
+                        class="main-input-search"
+                        ng-disabled="isDisabled" 
+                        md-no-cache="Cache" 
+                        md-selected-item="selectedItem" 
+                        md-search-text-change="fac_nueva_factura_venta_Ctrl.searchTextChange(searchText)" 
+                        md-search-text="searchText" 
+                        md-selected-item-change="fac_nueva_factura_venta_Ctrl.selectedItemChange_ini(item)" 
+                        md-items="item in items" 
+                        md-item-text="item.nombres_completos" 
+                        md-min-length="0" 
+                        placeholder="Clientes (nombre,ruc)" 
+                        md-menu-class="autocomplete-custom-template">
+                        <md-item-template>
+                            <span class="item-title">
+                                <span class="search-text"> {{item.nombres_completos}} </span>
+                            </span>
+                        </md-item-template>
+                        <md-not-found>
+                           No hay clientes, negocios con ese valor.
+                        </md-not-found>
+                  </md-autocomplete>
+                  </div>
                 <button class="md-fab md-mini md-button md-ink-ripple" type="button" ng-click="buscar_cliente()">
                     <md-icon class="material-icons ng-scope">search</md-icon>
                 </button>
@@ -56,10 +80,10 @@
                     </md-input-container>
                     <div flex="5"></div>
                     <md-input-container class="md-icon-float md-block" flex>
-                            <lx-select  ng-model="form_add.selectModelTipoComprobantes" 
+                            <lx-select  ng-model="selectModelTipoComprobantes.selectedAmbito" 
                                         lx-fixed-label="true" 
                                         lx-allow-clear="true" 
-                                        lx-choices="selectComprobante" 
+                                        lx-choices="tipo_comprobantes" 
                                         lx-display-filter="true" 
                                         lx-fixed-label="true" 
                                         lx-label="TIPO COMPROBANTE" required>
@@ -70,14 +94,14 @@
                                     {{ $choice.nombre }}
                                 </lx-select-choices>
                             </lx-select>
-                            <div ng-show="form_add.selectModelTipoComprobantes==undefinied" style="color: rgba(255, 0, 0, 0.64);  font-size: 12px;">Campo Requerido *</div>
+                            <div ng-show="selectModelTipoComprobantes.selectedAmbito==undefinied" style="color: rgba(255, 0, 0, 0.64);  font-size: 12px;">Campo Requerido *</div>
                         </md-input-container>
                     <div flex="5"></div>
                     <md-input-container class="md-icon-float md-block" flex>
-                        <lx-select ng-model="form_add.Select_Forma_Pago" 
+                        <lx-select ng-model="Select_Forma_Pago.selectedAmbito" 
                         lx-fixed-label="true" 
                         lx-allow-clear="true" 
-                        lx-choices="selectForma_Pago" 
+                        lx-choices="tipo_forma_pagos" 
                         lx-display-filter="true" 
                         lx-fixed-label="true" 
                         lx-label="FORMA DE PAGO" required>
@@ -88,7 +112,7 @@
                                 {{ $choice.nombre }}
                             </lx-select-choices>
                         </lx-select>
-                        <div ng-show="form_add.Select_Forma_Pago==undefinied" style="color: rgba(255, 0, 0, 0.64);  font-size: 12px;">Campo Requerido *</div>
+                        <div ng-show="Select_Forma_Pago.selectedAmbito==undefinied" style="color: rgba(255, 0, 0, 0.64);  font-size: 12px;">Campo Requerido *</div>
                     </md-input-container>
                 </div>
             </form>

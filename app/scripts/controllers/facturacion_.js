@@ -47,7 +47,7 @@
                 });
             }
 
-            function DialogController_editar($scope, tipo_usuario,colaboradores_Service, col_usuario,ciudades) {                
+        function DialogController_editar($scope, tipo_usuario,colaboradores_Service, col_usuario,ciudades) {                
                 //$scope.data_usuario=col_usuario;
                 
                 function succes_data_usuario(data){
@@ -479,42 +479,30 @@
     	console.log('mis facturas');
     });
 
-    app.controller('fac_nueva_factura_venta_Ctrl', function(repositorioFacturas, $mdDialog,$document, $scope,inventario_Service,Contabilidad_Service,$rootScope,$localStorage,colaboradores_Service,Facturacion_Service,Servicios_Modal_Personas,$timeout) {
+    app.controller('fac_nueva_factura_venta_Ctrl', function(repositorioFacturas, $mdDialog,$document, $scope,inventario_Service,Contabilidad_Service,$rootScope,$localStorage,colaboradores_Service,Facturacion_Service,Servicios_Modal_Personas,$timeout,$mdToast,$window) {
             
-
-        // ---------------------------------------------------tipo comprobantes--------------------------------------------------------------
-            function success_tipo_comprobantes(desserts) {
-                console.log(desserts);
+        // ---------------------------------------------------tipo comprobantes------------------------------------------------------------
+        function success_tipo_comprobantes(desserts) {
                 $scope.tipo_comprobantes = desserts.respuesta;
-                var vm=$scope;
-                    vm.selectComprobante = desserts.respuesta;
-                    vm.selectModelTipoComprobantes = {
-                        selectedAmbito: undefined,
-                        selectedAmbitoDefault: [vm.selectComprobante[0]]
-                    };
             }
+            $scope.selectModelTipoComprobantes = {
+                    selectedAmbito: undefined
+                };
             $scope.data_tipo_comprobantes_get = function() {
                 repositorioFacturas.Get_Tipo_Documentos().get($scope.query, success_tipo_comprobantes).$promise;
             }
             $scope.data_tipo_comprobantes_get();
         // ---------------------------------------------------forma de Pago--------------------------------------------------------------
         function success_forma_pagos(desserts) {
-                $scope.tipo_comprobantes = desserts.respuesta;
-                var vm=$scope;
-                    vm.selectForma_Pago = desserts.respuesta;
-                    vm.Select_Forma_Pago = {
-                        selectedAmbito: undefined,
-                        selectedAmbitoDefault: [vm.selectForma_Pago[0]]
-                    };
+                $scope.tipo_forma_pagos = desserts.respuesta;
             }
+            $scope.Select_Forma_Pago = {
+                        selectedAmbito: undefined
+                    };
             $scope.data_forma_pago_get = function() {
                 Facturacion_Service.Get_Formas_Pagos().get($scope.query, success_forma_pagos).$promise;
             }
             $scope.data_forma_pago_get();
-
-            
-
-
 
         function selectCallback(_newValue, _oldValue) {
             console.log('Old value: ', _oldValue);
@@ -635,37 +623,6 @@
                 focus('txt_buscar');
             }, 700);
 
-            //------------------------------------------------- FUNCIONES PARA MODODAL ADD PRODUCTOS  -------------------------------------------------
-            // $scope.add_prod_fac=function(prod){
-
-            //     if (Facturacion_Service.ObjIndexOf($scope.add_prods,prod)==-1) {
-            //         prod.cantidad_fac=1;
-            //         prod.total_fac=parseFloat(prod.precio.replace('$','')).toFixed($rootScope.decimales);
-            //         $scope.add_prods.push(prod);
-            //     }else{
-            //         var index=Facturacion_Service.ObjIndexOf($scope.add_prods,prod);
-            //         if ($scope.add_prods[index].cantidad_fac<$scope.add_prods[index].cantidad) {
-            //             $scope.add_prods[index].cantidad_fac=$scope.add_prods[index].cantidad_fac+1;
-            //             prod.cantidad_fac=$scope.add_prods[index].cantidad_fac;
-            //             $scope.add_prods[index].total_fac=parseFloat(parseFloat($scope.add_prods[index].precio.replace('$','')).toFixed($rootScope.decimales)*$scope.add_prods[index].cantidad_fac).toFixed($rootScope.decimales);
-            //         }
-            //     }
-                    
-            // }
-
-            // $scope.remove_prod_fac=function(prod){
-
-            //     var index=Facturacion_Service.ObjIndexOf($scope.add_prods,prod);
-            //     if (index!=-1) {
-            //         if ($scope.add_prods[index].cantidad_fac>1) {
-            //             $scope.add_prods[index].cantidad_fac=$scope.add_prods[index].cantidad_fac-1;
-            //             prod.cantidad_fac=$scope.add_prods[index].cantidad_fac;
-            //             $scope.add_prods[index].total_fac=parseFloat(parseFloat($scope.add_prods[index].precio.replace('$','')).toFixed($scope.decimales)*$scope.add_prods[index].cantidad_fac).toFixed($rootScope.decimales);
-            //         }
-            //     }
-
-            // }
-
 
             $scope.add_prod_fac_from_input=function(){
                     
@@ -700,7 +657,6 @@
                 $mdDialog.cancel();
             }
 
-            
             // -------------------------------------------------FIN DIALOG ADD-------------------------------------------------
 
         }
@@ -851,50 +807,55 @@
                     colaboradores_Service.Get_Ciudades().get($scope.query, success_ciudades).$promise;
                 }
                 $scope.data_ciudades();
-
+                // ----------------------------------------Busqueda de clientes
                 function success_buscar_cliente(result) {
-                    if (result.respuesta == true) {
-
-                        if (result.datos.tipo_doc =='CEDULA') {
-                            // $scope.data=result.datos;
-                            $scope.data.id = result.datos.id;
-                            $scope.data.correo = result.datos.correo;
-                            $scope.data.nombres_completos = result.datos.primer_nombre+' '+result.datos.segundo_nombre + ' ' +result.datos.primer_apellido+' '+result.datos.segundo_apellido;;
-                            $scope.data.direccion = result.datos.calle;
-                            console.log(result.datos);
-                            $scope.data.telefono = result.datos.telefono;
-                        }
-                        else if(result.datos.tipo_doc =='RUC'){
-                            $scope.data=result.datos;
-                            $scope.data.nombres_completos=result.datos.razon_social;
-                            $scope.data.direccion=result.datos.info.localizacion_sucursal.direccion;
-                            $scope.data.correo = result.datos.info.datos_empresariales.correo;
-                            $scope.data.telefono = result.datos.info.datos_empresariales.telefono;
-                        }
-                        
-                        //$scope.data.apellidos=result.persona.primer_apellido+' '+result.persona.segundo_apellido;
-                        
-
-                        // for (var i = 0; i < cm.ListLocalizacion.length; i++) {
-                        //     if (cm.ListLocalizacion[i].id==result.persona.id_localidad) {
-                        //         cm.ModelLocalizacion.selectedLocalizacion=cm.ListLocalizacion[i];
-                        //         break;
-                        //     }
-                        // }
-                    }
-
+                    $scope.items=result.respuesta;
                 }
 
-            $scope.buscar_cliente=function(){
-                if ($scope.data&&$scope.data.ruc_ci) {
-                    if ($scope.data.ruc_ci.length==10||$scope.data.ruc_ci.length==13) {
-                            Facturacion_Service.Get_Cliente_By_Ruc_Ci().send({ruc_ci:$scope.data.ruc_ci},success_buscar_cliente).$promise;
-                        }
-                }else{
-                    $scope.data={};
-                    cm.ModelLocalizacion.selectedLocalizacion=undefined;
+                this.searchTextChange = function(text) {
+                    // if (text.length>0) {
+                        // if ($scope.data.ruc_ci.length==10||$scope.data.ruc_ci.length==13) {
+                                Facturacion_Service.Get_Cliente_By_Ruc_Ci().send({ruc_ci:text},success_buscar_cliente).$promise;
+                            // }
+                    // }else{
+                    //     $scope.data={};
+                    //     cm.ModelLocalizacion.selectedLocalizacion=undefined;
+                    // }
                 }
-            }
+                this.selectedItemChange = function(item) {
+
+                       
+                }
+                this.selectedItemChange_ini = function(item) {
+                     if (item.tipo_doc =='CEDULA') {
+                            // $scope.data=item;
+                            // $scope.data.id = item.id_cliente;
+                            $scope.data.correo = item.correo;
+                            $scope.data.nombres_completos = item.nombres_completos;
+                            $scope.data.direccion = item.calle;
+                            $scope.data.telefono = item.telefono;
+                        }
+                        else if(item.tipo_doc =='RUC'){
+                            $scope.data=item;
+                            $scope.data.nombres_completos=item.nombres_completos;
+                            $scope.data.direccion=item.info.localizacion_sucursal.direccion;
+                            $scope.data.correo = item.info.datos_empresariales.correo;
+                            $scope.data.telefono = item.info.datos_empresariales.telefono;
+                            console.log($scope.data);
+                        }
+                }
+
+                // $scope.buscar_cliente=function(){
+                //     if ($scope.data&&$scope.data.ruc_ci) {
+                //         if ($scope.data.ruc_ci.length==10||$scope.data.ruc_ci.length==13) {
+                //                 Facturacion_Service.Get_Cliente_By_Ruc_Ci().send({ruc_ci:$scope.data.ruc_ci},success_buscar_cliente).$promise;
+                //             }
+                //     }else{
+                //         $scope.data={};
+                //         cm.ModelLocalizacion.selectedLocalizacion=undefined;
+                //     }
+                // }
+                // FIN
 
             $scope.cambiar_tipo_cliente=function(){
                 if ($scope.cliente=='SI') {
@@ -928,11 +889,43 @@
                 $scope.factura.cliente=$scope.data;
                 $scope.factura.empresa=$localStorage.datosE;
                 $scope.factura.sucursal=$localStorage.sucursal;
+                $scope.factura.pago=$scope.Select_Forma_Pago.selectedAmbito;
+                $scope.factura.tipo_comprobante=$scope.selectModelTipoComprobantes.selectedAmbito;
 
                 return Facturacion_Service.Add_Factura().send($scope.factura).$promise.then(function(data){
-                    console.log(data);
+                    if (data.respuesta==true) {
+                        //Limpiar datos 
+                        $scope.factura={};
+                        $scope.detalles_fac=[];
+                        $scope.subtotal=0.00;
+                        $scope.subtotal_14=0.00;
+                        $scope.subtotal_0=0.00;
+                        $scope.iva_14=0.00;
+                        $scope.data={};
+                        $scope.Select_Forma_Pago.selectedAmbito=undefined;
+                        $scope.selectModelTipoComprobantes.selectedAmbito=undefined;
+                        $scope.total_pagar=0.00;
+                        //Fin
+                        $mdToast.show({
+                                      hideDelay   : 5000,
+                                      position    : 'bottom right',
+                                      controller  : 'notificacionCtrl',
+                                      templateUrl : 'views/notificaciones/guardar.html'
+                                    });
+                        $window.open(data.comprobante, 'C-Sharpcorner', 'width=800,height=700');
+                    }
                 },function(error){
                     console.log(error);
+                     $mdDialog.show(
+                                $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('LO SENTIMOS :(')
+                                .textContent('Ha ocurrido un error, intentalo nuevamente.')
+                                .ariaLabel('Respuesta Registro')
+                                .ok('Entendido')
+                                .targetEvent()
+                            );
                 })
             }
             // $scope.cambiar_tipo_cliente();
