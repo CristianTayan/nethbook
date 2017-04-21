@@ -1,8 +1,8 @@
-<md-sidenav style="max-width:250px!important;" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"  flex>
+<!-- <md-sidenav style="max-width:250px!important;" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"  flex>
     <md-content layout="column">
         <md-list-item href="#/App">
             <md-icon>pages</md-icon>
-            <p>APP</p>
+            <p>APPa</p>
             <md-icon>pages</md-icon>
         </md-list-item>
         <md-divider></md-divider>
@@ -19,94 +19,180 @@
             <md-switch class="md-secondary" ng-model="setting.enabled"></md-switch>
         </md-list-item>
     </md-content>
-</md-sidenav>
-<md-content flex>
-    <div layout="row">
-        <div flex="40">
-            <md-card>
-                <img class="md-card-image" src="images/app/facturacion.fw.png" alt="image caption">
+</md-sidenav> -->
+<md-content layout="row" layout-align="center center">
+    <div layout="row" flex-xs="80" flex-gt-xs="90">
+        <div flex="30">
+            <div layout="row">
+                <md-card>
+                    <img class="md-card-image" src="images/app/facturacion/facturacion.fw.png" alt="image caption">
+                    <md-list ng-cloak>
+                        <md-subheader class="md-no-sticky">FACTURACIÓN</md-subheader>
+                        <md-list-item ng-href="#/App/Facturacion/Nueva_Factura_Venta">
+                            <md-icon>dashboard</md-icon>
+                            <p>Cajas</p>
+                        </md-list-item>
+                        <md-list-item ng-href="#/App/Facturacion/Mis_Facturas_Venta">
+                            <md-icon>assignment_ind</md-icon>
+                            <p>Clientes</p>
+                        </md-list-item>
+                        <md-list-item ng-href="#/App/Facturacion/Nueva_Factura_Venta">
+                            <md-icon>receipt</md-icon>
+                            <p>Nueva Factura</p>
+                        </md-list-item>
+                        <md-list-item ng-href="#/App/Facturacion/Mis_Facturas_Venta">
+                            <md-icon>list</md-icon>
+                            <p>Mis Factura</p>
+                        </md-list-item>
+                    </md-list>
+                </md-card>
+            </div>
+            <div layout="row">
+                <md-card flex>
+                    <img class="md-card-image" src="images/app/inventario/inventario.fw.png" alt="image caption">
+                    <md-list ng-cloak>
+                        <md-subheader class="md-no-sticky">INVENTARIO BIENES INMUEBLES</md-subheader>
+                        <md-list-item ng-href="#/App/Inventario/Bienes">
+                            <md-icon>dvr</md-icon>
+                            <p>Nuevo Inmueble</p>
+                        </md-list-item>
+                        <md-list-item ng-href="#/App/Inventario/Categorias/Bienes">
+                            <md-icon>loyalty</md-icon>
+                            <p>Categorias</p>
+                        </md-list-item>
+                        <md-list-item ng-href="#/App/Inventario/Modelos">
+                            <md-icon>person</md-icon>
+                            <p>Modelos</p>
+                        </md-list-item>
+                        <md-list-item ng-href="#/App/Inventario/Bodegas">
+                            <md-icon>dashboard</md-icon>
+                            <p>Bodegas</p>
+                        </md-list-item>
+                    </md-list>
+                </md-card>
+            </div>
+        </div>
+        <div flex="30">
+            <div layout="row">
+            <md-card flex>
+                <img class="md-card-image" src="images/app/repositorio/repositorio_facturas.fw.png" alt="image caption">
                 <md-list ng-cloak>
-                    <md-subheader class="md-no-sticky" md-colors="{background: 'green'}">FACTURACIÓN</md-subheader>
-                    <md-list-item ng-href="#/App/Facturacion/Nueva_Factura_Venta">
-                        <md-icon>person</md-icon>
-                        <p>Nueva Factura</p>
+                    <md-subheader class="md-no-sticky">REPOSITORIO FAC. ELECTRONICAS</md-subheader>
+                    <md-list-item ng-href="#/App/Repositorio_Facturas/Inicio_Facturas">
+                        <md-icon>home</md-icon>
+                        <p>Inicio</p>
                     </md-list-item>
-                    <md-list-item ng-href="#/App/Facturacion/Mis_Facturas_Venta">
-                        <md-icon>person</md-icon>
-                        <p>Mis Factura</p>
+                    <md-list-item ng-href="#/App/Repositorio_Facturas/Facturas_Correo">
+                        <md-icon>move_to_inbox</md-icon>
+                        <p>Correos</p>
                     </md-list-item>
-                    <md-list-item ng-href="#/App/Facturacion/Nueva_Factura_Venta">
-                        <md-icon>person</md-icon>
-                        <p>Nueva Factura</p>
+                    <md-list-item ng-href="#/App/Repositorio_Facturas/Subir_Facturas">
+                        <md-icon>cloud</md-icon>
+                        <p>Subir Facturas</p>
                     </md-list-item>
-                    <md-list-item ng-href="#/App/Facturacion/Mis_Facturas_Venta">
-                        <md-icon>person</md-icon>
-                        <p>Mis Factura</p>
+                    <md-list-item ng-href="#/App/Repositorio_Facturas/Mis_Facturas">
+                        <md-icon>email</md-icon>
+                        <p>Mis Facturas</p>
+                    </md-list-item>
+                    <md-list-item ng-href="#/App/Repositorio_Facturas/Facturas_Rechazadas">
+                        <md-icon>security</md-icon>
+                        <p>Facturas Rechazadas</p>
                     </md-list-item>
                 </md-list>
             </md-card>
-        </div>
-        <div flex="60">
-            <div layout="row">
-                <md-card flex>
-                    <img class="md-card-image" src="images/app/repositorio_facturas.fw.png" alt="image caption">
-                    <md-list ng-cloak>
-                        <md-subheader class="md-no-sticky">REPOSITORIO FAC. ELECTRONICAS</md-subheader>
-                        <md-list-item ng-href="#/App/Facturacion/Nueva_Factura_Venta">
-                            <md-icon>person</md-icon>
-                            <p>Nueva Factura</p>
-                        </md-list-item>
-                        <md-list-item ng-href="#/App/Facturacion/Mis_Facturas_Venta">
-                            <md-icon>person</md-icon>
-                            <p>Mis Factura</p>
-                        </md-list-item>
-                    </md-list>
-                </md-card>
-                <md-card flex>
-                    <img class="md-card-image" src="images/app/inventario.fw.png" alt="image caption">
-                    <md-list ng-cloak>
-                        <md-subheader class="md-no-sticky">INVENTARIO GENERAL</md-subheader>
-                        <md-list-item ng-href="#/App/Facturacion/Nueva_Factura_Venta">
-                            <md-icon>person</md-icon>
-                            <p>Nueva Factura</p>
-                        </md-list-item>
-                        <md-list-item ng-href="#/App/Facturacion/Mis_Facturas_Venta">
-                            <md-icon>person</md-icon>
-                            <p>Mis Factura</p>
-                        </md-list-item>
-                    </md-list>
-                </md-card>
             </div>
             <div layout="row">
                 <md-card flex>
-                    <img class="md-card-image" src="images/app/colaboradores.fw.png" alt="image caption">
+                    <img class="md-card-image" src="images/app/colaboradores/colaboradores.fw.png" alt="image caption">
                     <md-list ng-cloak>
                         <md-subheader class="md-no-sticky">COLABORADORES</md-subheader>
-                        <md-list-item ng-href="#/App/Facturacion/Nueva_Factura_Venta">
-                            <md-icon>person</md-icon>
-                            <p>Nueva Factura</p>
+                        <md-list-item ng-href="#/App/Colaboradores">
+                            <md-icon>account_circle</md-icon>
+                            <p>Inicio</p>
                         </md-list-item>
-                        <md-list-item ng-href="#/App/Facturacion/Mis_Facturas_Venta">
-                            <md-icon>person</md-icon>
-                            <p>Mis Factura</p>
+                        <md-list-item ng-href="#/App/Colaboradores/Usuario">
+                            <md-icon>accessibility</md-icon>
+                            <p>Nuevo Usuario</p>
                         </md-list-item>
-                    </md-list>
-                </md-card>
-                <md-card flex>
-                    <img class="md-card-image" src="images/app/inventario_bienes.png" alt="image caption">
-                    <md-list ng-cloak>
-                        <md-subheader class="md-no-sticky">INVENTARIO BIENES INMUEBLES</md-subheader>
-                        <md-list-item ng-href="#/App/Facturacion/Nueva_Factura_Venta">
-                            <md-icon>person</md-icon>
-                            <p>Nueva Factura</p>
-                        </md-list-item>
-                        <md-list-item ng-href="#/App/Facturacion/Mis_Facturas_Venta">
-                            <md-icon>person</md-icon>
-                            <p>Mis Factura</p>
-                        </md-list-item>
+                        <md-list-item ng-href="#/App/Colaboradores/Tipo_Usuario">
+                            <md-icon>supervisor_account</md-icon>
+                            <p>Tipos de Usuario</p>
+                        </md-list-item>                        
                     </md-list>
                 </md-card>
             </div>
         </div>
+        <div flex="40">
+            <div layout="row">
+                <md-card flex>
+                    <img class="md-card-image" src="images/app/bienes_inmuebles/Inventario_bienes.png" alt="image caption">
+                    <div layout="row">
+                        <md-list ng-cloak flex>
+                            <md-subheader class="md-no-sticky">INVENTARIO SERVICIOS/ PRODUCTO</md-subheader>
+                            <md-list-item ng-href="#/App/Inventario/">
+                                <md-icon>home</md-icon>
+                                <p>Inicio</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Productos">
+                                <md-icon>person</md-icon>
+                                <p>Producto/Servicio</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Categorias/Productos">
+                                <md-icon>person</md-icon>
+                                <p>Categorias</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Marcas">
+                                <md-icon>brightness_auto</md-icon>
+                                <p>Marcas</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Ubicacion">
+                                <md-icon>location_on</md-icon>
+                                <p>Ubicacion</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Modelos">
+                                <md-icon>person</md-icon>
+                                <p>Modelos</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Bodegas">
+                                <md-icon>dashboard</md-icon>
+                                <p>Bodegas</p>
+                            </md-list-item>
+                        </md-list>
+                        <md-list ng-cloak flex>
+                            <md-subheader class="md-no-sticky">INVENTARIO SERVICIOS/ PRODUCTO</md-subheader>
+                            <md-list-item ng-href="#/App/Inventario/">
+                                <md-icon>home</md-icon>
+                                <p>Inicio</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Productos">
+                                <md-icon>person</md-icon>
+                                <p>Producto/Servicio</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Categorias/Productos">
+                                <md-icon>person</md-icon>
+                                <p>Categorias</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Marcas">
+                                <md-icon>brightness_auto</md-icon>
+                                <p>Marcas</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Ubicacion">
+                                <md-icon>location_on</md-icon>
+                                <p>Ubicacion</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Modelos">
+                                <md-icon>person</md-icon>
+                                <p>Modelos</p>
+                            </md-list-item>
+                            <md-list-item ng-href="#/App/Inventario/Bodegas">
+                                <md-icon>dashboard</md-icon>
+                                <p>Bodegas</p>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </md-card>
+            </div>
+        </div>
+        <!-- <div flex="25"></div> -->
     </div>
 </div>
