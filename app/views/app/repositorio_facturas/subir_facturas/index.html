@@ -33,7 +33,7 @@
                 <md-input-container class="md-icon-float md-block" flex-gt-xs>
                     <label>INGRESE CLAVE DE ACCESO</label>
                     <md-icon class="md-accent">dns</md-icon>
-                    <input type="text" id="ruc" name="ruc" ng-model="data.clave" maxlength="49" ng-minlength="49" autocomplete="off" numbers-only required>
+                    <input type="text" id="ruc" name="ruc" ng-model="data.clave" maxlength="49" ng-minlength="49" autocomplete="off" md-autofocus numbers-only required >
                     <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
                         <div ng-message="required" class="my-message">La clave de ecceso es requerido</div>
                         <div ng-message="minlength" class="my-message">La clave de ecceso contiene minimo 49 digitos</div>
