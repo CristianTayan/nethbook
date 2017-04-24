@@ -1,0 +1,813 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.10
+-- Dumped by pg_dump version 9.4.10
+-- Started on 2017-04-24 08:36:58 ECT
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 13 (class 2615 OID 20434)
+-- Name: ventas; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA ventas;
+
+
+ALTER SCHEMA ventas OWNER TO postgres;
+
+SET search_path = ventas, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 265 (class 1259 OID 20828)
+-- Name: formas_pago; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE formas_pago (
+    id integer NOT NULL,
+    nombre character varying(50) NOT NULL,
+    codigo_sri character varying(5),
+    descripcion character varying(500),
+    estado character varying(5) NOT NULL,
+    fecha date DEFAULT now() NOT NULL,
+    id_padre integer
+);
+
+
+ALTER TABLE formas_pago OWNER TO postgres;
+
+--
+-- TOC entry 280 (class 1259 OID 82967)
+-- Name: caja; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE caja (
+    id integer NOT NULL,
+    nombre character varying(75) NOT NULL,
+    id_sucursal integer NOT NULL,
+    inicio_numero_factura integer NOT NULL,
+    numero_fin_factura integer NOT NULL,
+    estado character varying(5) NOT NULL,
+    fecha date DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE caja OWNER TO postgres;
+
+--
+-- TOC entry 279 (class 1259 OID 82965)
+-- Name: caja_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
+--
+
+CREATE SEQUENCE caja_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE caja_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3391 (class 0 OID 0)
+-- Dependencies: 279
+-- Name: caja_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
+--
+
+ALTER SEQUENCE caja_id_seq OWNED BY caja.id;
+
+
+--
+-- TOC entry 282 (class 1259 OID 83632)
+-- Name: caja_usuario; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE caja_usuario (
+    id_caja integer NOT NULL,
+    id_usuario character varying(75) NOT NULL,
+    id_empleado integer NOT NULL,
+    estado character varying(5) NOT NULL,
+    fecha date DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE caja_usuario OWNER TO postgres;
+
+--
+-- TOC entry 263 (class 1259 OID 20814)
+-- Name: detalle_factura; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE detalle_factura (
+    id integer NOT NULL,
+    id_factura integer NOT NULL,
+    id_producto integer NOT NULL,
+    precio_venta real NOT NULL,
+    cantidad integer NOT NULL,
+    descuento real,
+    subtotal_item real NOT NULL
+);
+
+
+ALTER TABLE detalle_factura OWNER TO postgres;
+
+--
+-- TOC entry 264 (class 1259 OID 20817)
+-- Name: detalle_factura_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
+--
+
+CREATE SEQUENCE detalle_factura_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE detalle_factura_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3392 (class 0 OID 0)
+-- Dependencies: 264
+-- Name: detalle_factura_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
+--
+
+ALTER SEQUENCE detalle_factura_id_seq OWNED BY detalle_factura.id;
+
+
+--
+-- TOC entry 281 (class 1259 OID 82998)
+-- Name: empleado_factura; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE empleado_factura (
+    id_empleado integer NOT NULL,
+    id_factura integer NOT NULL,
+    fecha date DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE empleado_factura OWNER TO postgres;
+
+--
+-- TOC entry 314 (class 1259 OID 131291)
+-- Name: facturas; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE facturas (
+    id integer NOT NULL,
+    numero_factura character varying(10) NOT NULL,
+    numero_autorizacion integer NOT NULL,
+    ruc_emisor character varying(15) NOT NULL,
+    denominacion character varying(15) DEFAULT 'FACTURA'::character varying NOT NULL,
+    direccion_matriz character varying(250) NOT NULL,
+    direccion_sucursal character varying(250),
+    fecha_autorizacion timestamp with time zone NOT NULL,
+    fecha_emicion timestamp with time zone NOT NULL,
+    guia_remision character varying(15),
+    fecha_caducidad_factura timestamp with time zone NOT NULL,
+    datos_imprenta character varying(500),
+    subtotal_iva real NOT NULL,
+    subtotal_sin_iva real NOT NULL,
+    descuentos real NOT NULL,
+    valor_iva real NOT NULL,
+    ice real NOT NULL,
+    total real NOT NULL,
+    estado character varying(5) NOT NULL,
+    id_cliente character(50)[]
+);
+
+
+ALTER TABLE facturas OWNER TO postgres;
+
+--
+-- TOC entry 313 (class 1259 OID 131289)
+-- Name: facturas_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
+--
+
+CREATE SEQUENCE facturas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE facturas_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3393 (class 0 OID 0)
+-- Dependencies: 313
+-- Name: facturas_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
+--
+
+ALTER SEQUENCE facturas_id_seq OWNED BY facturas.id;
+
+
+--
+-- TOC entry 316 (class 1259 OID 131370)
+-- Name: finaciaminto; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE finaciaminto (
+    id integer NOT NULL,
+    id_factura integer NOT NULL,
+    total_factura real NOT NULL,
+    pago_parcial real NOT NULL,
+    numero_cuotas integer NOT NULL,
+    fecha_prestamo time without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE finaciaminto OWNER TO postgres;
+
+--
+-- TOC entry 315 (class 1259 OID 131368)
+-- Name: finaciaminto_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
+--
+
+CREATE SEQUENCE finaciaminto_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE finaciaminto_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3394 (class 0 OID 0)
+-- Dependencies: 315
+-- Name: finaciaminto_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
+--
+
+ALTER SEQUENCE finaciaminto_id_seq OWNED BY finaciaminto.id;
+
+
+--
+-- TOC entry 266 (class 1259 OID 20835)
+-- Name: formas_pago_facturas; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE formas_pago_facturas (
+    id integer NOT NULL,
+    id_factura integer NOT NULL,
+    id_formas_pago integer NOT NULL
+);
+
+
+ALTER TABLE formas_pago_facturas OWNER TO postgres;
+
+--
+-- TOC entry 267 (class 1259 OID 20838)
+-- Name: formas_pago_facturas_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
+--
+
+CREATE SEQUENCE formas_pago_facturas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE formas_pago_facturas_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3395 (class 0 OID 0)
+-- Dependencies: 267
+-- Name: formas_pago_facturas_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
+--
+
+ALTER SEQUENCE formas_pago_facturas_id_seq OWNED BY formas_pago_facturas.id;
+
+
+--
+-- TOC entry 268 (class 1259 OID 20840)
+-- Name: formas_pago_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
+--
+
+CREATE SEQUENCE formas_pago_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE formas_pago_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3396 (class 0 OID 0)
+-- Dependencies: 268
+-- Name: formas_pago_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
+--
+
+ALTER SEQUENCE formas_pago_id_seq OWNED BY formas_pago.id;
+
+
+--
+-- TOC entry 269 (class 1259 OID 20842)
+-- Name: producto_descuento; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE producto_descuento (
+    id integer NOT NULL,
+    id_producto integer NOT NULL,
+    id_catalogo integer NOT NULL,
+    estado character varying(5) NOT NULL,
+    fecha_fin_descuento timestamp with time zone NOT NULL,
+    fecha_inicio_descuento timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE producto_descuento OWNER TO postgres;
+
+--
+-- TOC entry 270 (class 1259 OID 20845)
+-- Name: producto_descuento_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
+--
+
+CREATE SEQUENCE producto_descuento_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE producto_descuento_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3397 (class 0 OID 0)
+-- Dependencies: 270
+-- Name: producto_descuento_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
+--
+
+ALTER SEQUENCE producto_descuento_id_seq OWNED BY producto_descuento.id;
+
+
+--
+-- TOC entry 3215 (class 2604 OID 82970)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY caja ALTER COLUMN id SET DEFAULT nextval('caja_id_seq'::regclass);
+
+
+--
+-- TOC entry 3210 (class 2604 OID 21515)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY detalle_factura ALTER COLUMN id SET DEFAULT nextval('detalle_factura_id_seq'::regclass);
+
+
+--
+-- TOC entry 3219 (class 2604 OID 131294)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY facturas ALTER COLUMN id SET DEFAULT nextval('facturas_id_seq'::regclass);
+
+
+--
+-- TOC entry 3221 (class 2604 OID 131373)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY finaciaminto ALTER COLUMN id SET DEFAULT nextval('finaciaminto_id_seq'::regclass);
+
+
+--
+-- TOC entry 3212 (class 2604 OID 21517)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY formas_pago ALTER COLUMN id SET DEFAULT nextval('formas_pago_id_seq'::regclass);
+
+
+--
+-- TOC entry 3213 (class 2604 OID 21518)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY formas_pago_facturas ALTER COLUMN id SET DEFAULT nextval('formas_pago_facturas_id_seq'::regclass);
+
+
+--
+-- TOC entry 3214 (class 2604 OID 21519)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY producto_descuento ALTER COLUMN id SET DEFAULT nextval('producto_descuento_id_seq'::regclass);
+
+
+--
+-- TOC entry 3380 (class 0 OID 82967)
+-- Dependencies: 280
+-- Data for Name: caja; Type: TABLE DATA; Schema: ventas; Owner: postgres
+--
+
+COPY caja (id, nombre, id_sucursal, inicio_numero_factura, numero_fin_factura, estado, fecha) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3398 (class 0 OID 0)
+-- Dependencies: 279
+-- Name: caja_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
+--
+
+SELECT pg_catalog.setval('caja_id_seq', 1, false);
+
+
+--
+-- TOC entry 3382 (class 0 OID 83632)
+-- Dependencies: 282
+-- Data for Name: caja_usuario; Type: TABLE DATA; Schema: ventas; Owner: postgres
+--
+
+COPY caja_usuario (id_caja, id_usuario, id_empleado, estado, fecha) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3371 (class 0 OID 20814)
+-- Dependencies: 263
+-- Data for Name: detalle_factura; Type: TABLE DATA; Schema: ventas; Owner: postgres
+--
+
+COPY detalle_factura (id, id_factura, id_producto, precio_venta, cantidad, descuento, subtotal_item) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3399 (class 0 OID 0)
+-- Dependencies: 264
+-- Name: detalle_factura_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
+--
+
+SELECT pg_catalog.setval('detalle_factura_id_seq', 1, false);
+
+
+--
+-- TOC entry 3381 (class 0 OID 82998)
+-- Dependencies: 281
+-- Data for Name: empleado_factura; Type: TABLE DATA; Schema: ventas; Owner: postgres
+--
+
+COPY empleado_factura (id_empleado, id_factura, fecha) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3384 (class 0 OID 131291)
+-- Dependencies: 314
+-- Data for Name: facturas; Type: TABLE DATA; Schema: ventas; Owner: postgres
+--
+
+COPY facturas (id, numero_factura, numero_autorizacion, ruc_emisor, denominacion, direccion_matriz, direccion_sucursal, fecha_autorizacion, fecha_emicion, guia_remision, fecha_caducidad_factura, datos_imprenta, subtotal_iva, subtotal_sin_iva, descuentos, valor_iva, ice, total, estado, id_cliente) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3400 (class 0 OID 0)
+-- Dependencies: 313
+-- Name: facturas_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
+--
+
+SELECT pg_catalog.setval('facturas_id_seq', 1, false);
+
+
+--
+-- TOC entry 3386 (class 0 OID 131370)
+-- Dependencies: 316
+-- Data for Name: finaciaminto; Type: TABLE DATA; Schema: ventas; Owner: postgres
+--
+
+COPY finaciaminto (id, id_factura, total_factura, pago_parcial, numero_cuotas, fecha_prestamo) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3401 (class 0 OID 0)
+-- Dependencies: 315
+-- Name: finaciaminto_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
+--
+
+SELECT pg_catalog.setval('finaciaminto_id_seq', 1, false);
+
+
+--
+-- TOC entry 3373 (class 0 OID 20828)
+-- Dependencies: 265
+-- Data for Name: formas_pago; Type: TABLE DATA; Schema: ventas; Owner: postgres
+--
+
+COPY formas_pago (id, nombre, codigo_sri, descripcion, estado, fecha, id_padre) FROM stdin;
+1	Contado	00	TODOS LOS PAGOS QUE SE REALICEN DE FORMA INMEDIATA	A	2017-04-21	0
+6	EFECTIVO	01	SIN UTILIZACION DEL SISTEMA FINANCIERO	A	2017-01-20	1
+7	COMPENSACION	15	COMPENSACION DE DEUDAS	A	2017-01-20	1
+8	DEBITO	16	TARJETA DE DEBITO	A	2017-01-20	1
+9	DINERO ELECTRONICO	17	DINERO ELECTRONICO	A	2017-01-20	1
+11	TARJETA PREPAGO	18	TARJETA PREPAGO	A	2017-01-20	1
+12	TARJETA CREDITO 	19	TARJETA DE CREDITO	A	2017-01-20	1
+14	ENDOSO DE TITULOS	21	ENDOSO DE TITULOS	A	2017-01-20	1
+13	OTROS FINACIERO	20	OTROS UTILIZACION DEL SISTEMA FINANCIERO	A	2017-01-20	1
+2	Credito	00	LOS CREDITOS A LOS CLIENTES	A	2017-04-21	0
+\.
+
+
+--
+-- TOC entry 3374 (class 0 OID 20835)
+-- Dependencies: 266
+-- Data for Name: formas_pago_facturas; Type: TABLE DATA; Schema: ventas; Owner: postgres
+--
+
+COPY formas_pago_facturas (id, id_factura, id_formas_pago) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3402 (class 0 OID 0)
+-- Dependencies: 267
+-- Name: formas_pago_facturas_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
+--
+
+SELECT pg_catalog.setval('formas_pago_facturas_id_seq', 1, false);
+
+
+--
+-- TOC entry 3403 (class 0 OID 0)
+-- Dependencies: 268
+-- Name: formas_pago_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
+--
+
+SELECT pg_catalog.setval('formas_pago_id_seq', 14, true);
+
+
+--
+-- TOC entry 3377 (class 0 OID 20842)
+-- Dependencies: 269
+-- Data for Name: producto_descuento; Type: TABLE DATA; Schema: ventas; Owner: postgres
+--
+
+COPY producto_descuento (id, id_producto, id_catalogo, estado, fecha_fin_descuento, fecha_inicio_descuento) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3404 (class 0 OID 0)
+-- Dependencies: 270
+-- Name: producto_descuento_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
+--
+
+SELECT pg_catalog.setval('producto_descuento_id_seq', 1, false);
+
+
+--
+-- TOC entry 3236 (class 2606 OID 83637)
+-- Name: caja_usuario_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY caja_usuario
+    ADD CONSTRAINT "caja_usuario_PK" PRIMARY KEY (id_caja, id_usuario, id_empleado);
+
+
+--
+-- TOC entry 3224 (class 2606 OID 21003)
+-- Name: detalle_factura_pkey; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY detalle_factura
+    ADD CONSTRAINT detalle_factura_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3234 (class 2606 OID 83006)
+-- Name: empleado_factura_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY empleado_factura
+    ADD CONSTRAINT "empleado_factura_PK" PRIMARY KEY (id_empleado, id_factura);
+
+
+--
+-- TOC entry 3238 (class 2606 OID 131300)
+-- Name: factura_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY facturas
+    ADD CONSTRAINT "factura_PK" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3240 (class 2606 OID 131375)
+-- Name: finaciamiento_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY finaciaminto
+    ADD CONSTRAINT "finaciamiento_PK" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3228 (class 2606 OID 21007)
+-- Name: formas_pago_facturas_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY formas_pago_facturas
+    ADD CONSTRAINT "formas_pago_facturas_PK" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3226 (class 2606 OID 21009)
+-- Name: formas_pago_pkey; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY formas_pago
+    ADD CONSTRAINT formas_pago_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3232 (class 2606 OID 82972)
+-- Name: id_caja_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY caja
+    ADD CONSTRAINT "id_caja_PK" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3230 (class 2606 OID 21011)
+-- Name: producto_descuento_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY producto_descuento
+    ADD CONSTRAINT "producto_descuento_PK" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3254 (class 2620 OID 131036)
+-- Name: caja_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
+--
+
+CREATE TRIGGER caja_tg_audit AFTER INSERT OR DELETE OR UPDATE ON caja FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
+
+
+--
+-- TOC entry 3256 (class 2620 OID 131037)
+-- Name: caja_usuario_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
+--
+
+CREATE TRIGGER caja_usuario_tg_audit AFTER INSERT OR DELETE OR UPDATE ON caja_usuario FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
+
+
+--
+-- TOC entry 3250 (class 2620 OID 131038)
+-- Name: detalle_factura_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
+--
+
+CREATE TRIGGER detalle_factura_tg_audit AFTER INSERT OR DELETE OR UPDATE ON detalle_factura FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
+
+
+--
+-- TOC entry 3255 (class 2620 OID 131039)
+-- Name: empleado_factura_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
+--
+
+CREATE TRIGGER empleado_factura_tg_audit AFTER INSERT OR DELETE OR UPDATE ON empleado_factura FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
+
+
+--
+-- TOC entry 3257 (class 2620 OID 131311)
+-- Name: facturas_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
+--
+
+CREATE TRIGGER facturas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON facturas FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
+
+
+--
+-- TOC entry 3252 (class 2620 OID 131042)
+-- Name: formas_pago_facturas_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
+--
+
+CREATE TRIGGER formas_pago_facturas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON formas_pago_facturas FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
+
+
+--
+-- TOC entry 3251 (class 2620 OID 131041)
+-- Name: formas_pago_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
+--
+
+CREATE TRIGGER formas_pago_tg_audit AFTER INSERT OR DELETE OR UPDATE ON formas_pago FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
+
+
+--
+-- TOC entry 3253 (class 2620 OID 131043)
+-- Name: producto_descuento_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
+--
+
+CREATE TRIGGER producto_descuento_tg_audit AFTER INSERT OR DELETE OR UPDATE ON producto_descuento FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
+
+
+--
+-- TOC entry 3248 (class 2606 OID 131301)
+-- Name: factura_estado_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY facturas
+    ADD CONSTRAINT "factura_estado_FK" FOREIGN KEY (estado) REFERENCES public.estados(id);
+
+
+--
+-- TOC entry 3249 (class 2606 OID 131376)
+-- Name: factura_finaciamiento_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY finaciaminto
+    ADD CONSTRAINT "factura_finaciamiento_FK" FOREIGN KEY (id_factura) REFERENCES facturas(id);
+
+
+--
+-- TOC entry 3241 (class 2606 OID 21375)
+-- Name: forma_pago_estado_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY formas_pago
+    ADD CONSTRAINT "forma_pago_estado_FK" FOREIGN KEY (estado) REFERENCES public.estados(id);
+
+
+--
+-- TOC entry 3245 (class 2606 OID 83638)
+-- Name: id_caja_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY caja_usuario
+    ADD CONSTRAINT "id_caja_FK" FOREIGN KEY (id_caja) REFERENCES caja(id);
+
+
+--
+-- TOC entry 3244 (class 2606 OID 83007)
+-- Name: id_empleado; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY empleado_factura
+    ADD CONSTRAINT id_empleado FOREIGN KEY (id_empleado) REFERENCES talento_humano.empleados(id);
+
+
+--
+-- TOC entry 3247 (class 2606 OID 83648)
+-- Name: id_empleado_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY caja_usuario
+    ADD CONSTRAINT "id_empleado_FK" FOREIGN KEY (id_empleado) REFERENCES talento_humano.empleados(id);
+
+
+--
+-- TOC entry 3243 (class 2606 OID 83835)
+-- Name: id_sucursal; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY caja
+    ADD CONSTRAINT id_sucursal FOREIGN KEY (id_sucursal) REFERENCES administracion.sucursales(id);
+
+
+--
+-- TOC entry 3246 (class 2606 OID 83643)
+-- Name: id_usuario_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY caja_usuario
+    ADD CONSTRAINT "id_usuario_FK" FOREIGN KEY (id_usuario) REFERENCES usuarios.usuarios(id);
+
+
+--
+-- TOC entry 3242 (class 2606 OID 21385)
+-- Name: producto_catalogo_catalogo; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
+--
+
+ALTER TABLE ONLY producto_descuento
+    ADD CONSTRAINT producto_catalogo_catalogo FOREIGN KEY (id_catalogo) REFERENCES inventario.catalogos(id);
+
+
+-- Completed on 2017-04-24 08:36:58 ECT
+
+--
+-- PostgreSQL database dump complete
+--
+
