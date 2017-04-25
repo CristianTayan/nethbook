@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 /**
  * @ngdoc overview
@@ -63,7 +63,7 @@ var app = angular.module('nextbook20App', [
 
 
     
-    // ------------------------------------------------------IDIOMA------------------------------------------------------
+    // ------------------------------------------------------IDIOMA-------------------------------------------------------
         app.config(function ($translateProvider) {
           $translateProvider.translations('en', {
             MENU_COLABORADORES: 'Collaborators',
@@ -96,27 +96,27 @@ var app = angular.module('nextbook20App', [
           $translateProvider.preferredLanguage('es');
         });
 
-
     // -----------------------------------------------SEGMENTACION QUERY UI-----------------------------------------------
-    app.config(function(ivhTreeviewOptionsProvider) {
-     ivhTreeviewOptionsProvider.set({
-       defaultSelectedState: false,
-       validate: true,
-       expandToDepth: -1,
-       twistieCollapsedTpl: '+',
-       twistieExpandedTpl: '-',
-       twistieLeafTpl: '->',
-     });
-    });
+        app.config(function(ivhTreeviewOptionsProvider) {
+           ivhTreeviewOptionsProvider.set({
+             defaultSelectedState: false,
+             validate: true,
+             expandToDepth: -1,
+             twistieCollapsedTpl: '+',
+             twistieExpandedTpl: '-',
+             twistieLeafTpl: '->',
+           });
+        });
 
     // ---------------------------------------------concversion html------------------------------------------------------
-    app.filter('to_trusted', ['$sce', function($sce){
-        return function(text) {
+        app.filter('to_trusted', ['$sce', function($sce){
+          return function(text) {
 
-            return $sce.trustAsHtml(text.replace(/\n/g, '<br/>'));
-        };
-    }]);
+              return $sce.trustAsHtml(text.replace(/\n/g, '<br/>'));
+          };
+      }]);
     
+    // --------------------------------------------vistas generadas rutas ------------------------------------------------
     app.config(function ($routeSegmentProvider, $routeProvider,$locationProvider) {
          $locationProvider.hashPrefix('');
         // Configuring provider options    
@@ -179,6 +179,13 @@ var app = angular.module('nextbook20App', [
                     templateUrl: 'views/dashboard/login_nick.html',
                     controller: 'login_services_Ctrl'
                 });
+        // activar cuenta
+        $routeSegmentProvider    
+            .when('/activarcuenta/:codigo',    'activar')        
+            .segment('activar', {
+                controller: 'activar_Ctrl',
+                dependencies: ['id']
+            });
         // Escritorio General
         $routeSegmentProvider
             .when('/Dash',    'dashboard')
@@ -221,13 +228,13 @@ var app = angular.module('nextbook20App', [
             .when('/App/Colaboradores',    'dashboard.app.colaboradores')
                 .when('/App/Colaboradores/Usuario',    'dashboard.app.colaboradores.usuario')
                 .when('/App/Colaboradores/Tipo_Usuario',    'dashboard.app.colaboradores.tipo_usuario')
-            // ------------------------------------------FACTURACION-----------------------------------------
+            // ------------------------------------------FACTURACION------------------------------------------------
             .when('/App/Facturacion',    'dashboard.app.facturacion')
             .when('/App/Facturacion/Mis_Facturas_Venta',    'dashboard.app.facturacion.mis_facturas_venta')
             .when('/App/Facturacion/Nueva_Factura_Venta',    'dashboard.app.facturacion.nueva_factura_venta')
             .when('/App/Facturacion/Cajas',    'dashboard.app.facturacion.cajas')
             .when('/App/Facturacion/Clientes',    'dashboard.app.facturacion.cientes')
-            // ------------------------------------------GESTION INVENTARIO -----------------------------------------
+            // ------------------------------------------INVENTARIO BIENES------------------------------------------
             .when('/App/Inventario',    'dashboard.app.inventario')
                 .when('/App/Inventario/',    'dashboard.app.inventario.menu')
                 .when('/App/Inventario/Categorias',    'dashboard.app.inventario.categoria')
@@ -247,7 +254,39 @@ var app = angular.module('nextbook20App', [
                 .when('/App/Inventario/Tipo_Catalogo',    'dashboard.app.inventario.tipo_catalogo')
                 .when('/App/Inventario/Bodegas',    'dashboard.app.inventario.bodegas')
                 .when('/App/Inventario/Bienes',    'dashboard.app.inventario.bienes')
-            // -------------------------------------------PARAMETROS GENERALES-------------------------------------------
+            // ------------------------------------------INVENTARIO SERVICIOS-----------------------------------------
+              .when('/App/Inv_Servicios',    'dashboard.app.inv_servicios')
+              .when('/App/Inv_Servicios/Menu',    'dashboard.app.inv_servicios.menu')
+              .when('/App/Inv_Servicios/Categorias',    'dashboard.app.inv_servicios.categorias')
+              .when('/App/Inv_Servicios/Tipo_Categorias',    'dashboard.app.inv_servicios.tipo_categorias')
+              .when('/App/Inv_Servicios/Garantia',    'dashboard.app.inv_servicios.garantia')
+              .when('/App/Inv_Servicios/Tipo_Garantia',    'dashboard.app.inv_servicios.tipo_garantia')
+              .when('/App/Inv_Servicios/Ubicacion',    'dashboard.app.inv_servicios.ubicacion')
+              .when('/App/Inv_Servicios/Modelos',    'dashboard.app.inv_servicios.modelo')
+              .when('/App/Inv_Servicios/Tipo_Consumo',    'dashboard.app.inv_servicios.tipo_consumo')
+              .when('/App/Inv_Servicios/Estado_Descriptivo',    'dashboard.app.inv_servicios.estado_descriptivo')
+              .when('/App/Inv_Servicios/Servicios',    'dashboard.app.inv_servicios.servicios')
+
+              
+            // ------------------------------------------INVENTARIO PRODUCTOS-----------------------------------------
+              .when('/App/Inv_Productos',    'dashboard.app.inv_productos')
+              .when('/App/Inv_Productos/',    'dashboard.app.inv_productos.menu')
+              .when('/App/Inv_Productos/Categorias',    'dashboard.app.inv_productos.categorias')
+              .when('/App/Inv_Productos/Tipo_Categoria',    'dashboard.app.inv_productos.tipo_categorias')
+              .when('/App/Inv_Productos/Garantia',    'dashboard.app.inv_productos.garantia')
+              .when('/App/Inv_Productos/Tipo_Garantia',    'dashboard.app.inv_productos.tipo_garantia')
+              .when('/App/Inv_Productos/Ubicacion',    'dashboard.app.inv_productos.ubicacion')
+              .when('/App/Inv_Productos/Modelos',    'dashboard.app.inv_productos.modelo')
+              .when('/App/Inv_Productos/Tipo_Consumo',    'dashboard.app.inv_productos.tipo_consumo')
+              .when('/App/Inv_Productos/Estado_Descriptivo',    'dashboard.app.inv_productos.estado_descriptivo')
+              .when('/App/Inv_Productos/Productos',    'dashboard.app.inv_productos.productos')
+              .when('/App/Inv_Productos/Bodegas',    'dashboard.app.inv_productos.bodegas')
+              .when('/App/Inv_Productos/Marcas',    'dashboard.app.inv_productos.marcas')
+            // ------------------------------------------INVENTARIO BIENES--------------------------------------------
+              .when('/App/Inv_Bienes',    'dashboard.app.inv_bienes')
+              .when('/App/Inv_Bienes/',    'dashboard.app.inv_bienes.menu')
+
+            // -------------------------------------------PARAMETROS GENERALES----------------------------------------
             .when('/App/Parametrizacion',    'dashboard.app.parametrizacion')
             .when('/App/Parametrizacion/Inicio',    'dashboard.app.parametrizacion.menu')
             .when('/App/Parametrizacion/Impuestos',    'dashboard.app.parametrizacion.impuestos')
@@ -256,7 +295,7 @@ var app = angular.module('nextbook20App', [
                 templateUrl: 'views/dashboard/index.html',
                 controller: 'dashboard_Ctrl'
             })
-            .within()
+                .within()
                     .segment('nb', {
                         templateUrl: 'views/dashboard/general.html',
                         // controller: 'inicio_Ctrl',
@@ -328,13 +367,12 @@ var app = angular.module('nextbook20App', [
                         controller: 'app_Ctrl'
                     })
                         .within()
-                            // ------------------------------------INICIO APP------------------------------------
-                            .segment('inicio', {
-                                default: true,
-                                templateUrl: 'views/app/inicio.html',
-                                // controller: 'repositorio_facturas_Ctrl'
-                            })
-
+                            // ------------------------------------INICIO APP----------------------------------------------
+                                .segment('inicio', {
+                                    default: true,
+                                    templateUrl: 'views/app/inicio.html',
+                                    // controller: 'repositorio_facturas_Ctrl'
+                                })
                             // ------------------------------------REPOSITORIO FACTURAS------------------------------------
                                 .segment('repositorio_facturas', {
                                     templateUrl: 'views/app/repositorio_facturas/index.html',
@@ -363,12 +401,12 @@ var app = angular.module('nextbook20App', [
                                         controller: 'rechazadas_facturas_electronica_Ctrl'
                                     })   
                                 .up()
-                            // ------------------------------------COLABORADORES------------------------------------
+                            // ------------------------------------COLABORADORES-------------------------------------------
                                 .segment('colaboradores', {
                                     templateUrl: 'views/app/colaboradores/index.html',
                                     controller: 'colaboradores_Ctrl'
                                 })
-                                    .within()
+                                   .within()
                                         .segment('usuario', {
                                             default: true,
                                             templateUrl: 'views/app/colaboradores/usuario/index.html',
@@ -379,7 +417,7 @@ var app = angular.module('nextbook20App', [
                                             controller: 'col_tipo_usuario_Ctrl'
                                         })
                                     .up()
-                            // ------------------------------------PARAMETRIZACION GENERAL------------------------------------
+                            // ------------------------------------PARAMETRIZACION GENERAL---------------------------------
                                 .segment('parametrizacion', {
                                     templateUrl: 'views/app/parametrizacion/index.html',
                                     controller: 'ParametrizacionCtrl'
@@ -394,7 +432,124 @@ var app = angular.module('nextbook20App', [
                                             controller: 'param_impuestos_Ctrl'
                                         })
                                     .up()
+                            // --------------------------------------INVENTARIO SERVICIOS----------------------------------
+                                .segment('inv_servicios', {
+                                  templateUrl: 'views/app/inv_servicios/index.html',
+                                  controller: 'inv_serviciosCtrl'
+                                })
+                                    .within()
+                                        .segment('menu', {
+                                            default: true,
+                                            templateUrl: 'views/app/inv_servicios/menu.html',
+                                            controller: 'inv_servicios_menuCtrl'
+                                        })
+                                        .segment('categorias', {
+                                            templateUrl: 'views/app/inv_servicios/categorias/index.html',
+                                            controller: 'inv_servicios_categoriasCtrl'
+                                        })
+                                        .segment('tipo_categorias', {
+                                            templateUrl: 'views/app/inv_servicios/tipo_categorias/index.html',
+                                            controller: 'inv_servicios_tipo_categoriasCtrl'
+                                        })
+                                        .segment('garantia', {
+                                            templateUrl: 'views/app/inv_servicios/garantia/index.html',
+                                            controller: 'inv_servicios_garantiaCtrl'
+                                        })
+                                        .segment('ubicacion', {
+                                            templateUrl: 'views/app/inv_servicios/ubicacion/index.html',
+                                            controller: 'inv_servicios_ubicacionCtrl'
+                                        })
+                                        .segment('modelo', {
+                                            templateUrl: 'views/app/inv_servicios/modelos/index.html',
+                                            controller: 'inv_servicios_modeloCtrl'
+                                        })
+                                        .segment('tipo_consumo', {
+                                            templateUrl: 'views/app/inv_servicios/tipo_consumo/index.html',
+                                            controller: 'inv_servicios_tipo_consumoCtrl'
+                                        })
+                                        .segment('estado_descriptivo', {
+                                            templateUrl: 'views/app/inv_servicios/estado_descriptivo/index.html',
+                                            controller: 'inv_servicios_estado_descriptivoCtrl'
+                                        })
+                                        .segment('tipo_garantia', {
+                                            templateUrl: 'views/app/inv_servicios/tipo_garantia/index.html',
+                                            controller: 'inv_servicios_tipo_garantiaCtrl'
+                                        })
+                                        .segment('servicios', {
+                                            templateUrl: 'views/app/inv_servicios/servicios/index.html',
+                                            controller: 'inv_servicios_serviciosCtrl'
+                                        })
+                                    .up()
+                            // --------------------------------------INVENTARIO PRODUCTOS----------------------------------
+                                .segment('inv_productos', {
+                                  templateUrl: 'views/app/inv_productos/index.html',
+                                  controller: 'inv_productosCtrl'
+                                })
+                                    .within()
+                                        .segment('menu', {
+                                            default: true,
+                                            templateUrl: 'views/app/inv_productos/menu.html',
+                                            controller: 'inv_productos_menuCtrl'
+                                        })
+                                        .segment('categorias', {
+                                            templateUrl: 'views/app/inv_productos/categorias/index.html',
+                                            controller: 'inv_productos_categoriasCtrl'
+                                        })
+                                        .segment('tipo_categorias', {
+                                            templateUrl: 'views/app/inv_productos/tipo_categoria/index.html',
+                                            controller: 'inv_productos_tipo_categoriasCtrl'
+                                        })
+                                        .segment('garantia', {
+                                            templateUrl: 'views/app/inv_productos/garantia/index.html',
+                                            controller: 'inv_productos_garantiaCtrl'
+                                        })
+                                        .segment('ubicacion', {
+                                            templateUrl: 'views/app/inv_productos/ubicacion/index.html',
+                                            controller: 'inv_productos_ubicacionCtrl'
+                                        })
+                                        .segment('modelo', {
+                                            templateUrl: 'views/app/inv_productos/modelos/index.html',
+                                            controller: 'inv_productos_modeloCtrl'
+                                        })
+                                        .segment('tipo_consumo', {
+                                            templateUrl: 'views/app/inv_productos/tipo_consumo/index.html',
+                                            controller: 'inv_productos_tipo_consumoCtrl'
+                                        })
+                                        .segment('estado_descriptivo', {
+                                            templateUrl: 'views/app/inv_productos/estado_descriptivo/index.html',
+                                            controller: 'inv_productos_estado_descriptivoCtrl'
+                                        })
+                                        .segment('tipo_garantia', {
+                                            templateUrl: 'views/app/inv_productos/tipo_garantia/index.html',
+                                            controller: 'inv_productos_tipo_garantiaCtrl'
+                                        })
+                                        .segment('productos', {
+                                            templateUrl: 'views/app/inv_productos/productos/index.html',
+                                            controller: 'inv_productos_productosCtrl'
+                                        })
+                                        .segment('bodegas', {
+                                            templateUrl: 'views/app/inv_productos/bodega/index.html',
+                                            controller: 'inv_productos_bodegasCtrl'
+                                        })
+                                        .segment('marcas', {
+                                            templateUrl: 'views/app/inv_productos/marcas/index.html',
+                                            controller: 'inv_productos_marcasCtrl'
+                                        })
+                                    .up()
+                            // --------------------------------------INVENTARIO BIENES----------------------------------
+                                .segment('inv_bienes', {
+                                  templateUrl: 'views/app/inv_bienes/index.html',
+                                  controller: 'inv_bienesCtrl'
+                                })
+                                    .within()
+                                        .segment('menu', {
+                                            default: true,
+                                            templateUrl: 'views/app/inv_bienes/menu.html',
+                                            controller: 'inv_bienes_menuCtrl'
+                                        })
+                                    .up()
                             // --------------------------------------INVENTARIO--------------------------------------
+                                
                                 .segment('inventario', {
                                     templateUrl: 'views/app/inventario/index.html',
                                     controller: 'inventario_Ctrl'
@@ -502,18 +657,8 @@ var app = angular.module('nextbook20App', [
                                             controller: 'fac_personas_Ctrl'
                                         })
                                     .up()
-
                         .up()
-                    
-                .up();
-        // activar cuenta
-        $routeSegmentProvider    
-            .when('/activarcuenta/:codigo',    'activar')        
-            .segment('activar', {
-                controller: 'activar_Ctrl',
-                dependencies: ['id']
-            });
-            
+                .up();            
         // -------------------------------------------    buscador    ----------------------------------------------------
         $routeSegmentProvider
             .when('/search/:id',    'search')
@@ -540,7 +685,6 @@ var app = angular.module('nextbook20App', [
                     .segment('favoritos', {
                         templateUrl: 'views/perfil/favoritos.html'})
                 .up();
-
         // -------------------------------------------    buscador  ini sessi  --------------------------------------------------
         // $routeSegmentProvider
         //     .when('/nb/search/:id',    'search_ini')

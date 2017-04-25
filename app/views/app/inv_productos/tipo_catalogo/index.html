@@ -1,0 +1,55 @@
+<div layout="row">
+    <a class="mdl-chip mdl-chip--contact" href="#/App/Inventario/">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">I</span>
+        <span class="mdl-chip__text">Inventario</span>
+    </a>
+    <a class="mdl-chip mdl-chip--contact">
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">T</span>
+        <span class="mdl-chip__text">Tipo Catalogo</span>
+    </a>
+</div>
+<br>
+<md-divider></md-divider>
+<br>
+<md-content layout-wrap>
+    <md-table-container>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <input name="nom_modelo" ng-model="query.filter" type="text" required placeholder="Buscar" class="toolbar_search">
+                <span flex></span>
+                <md-button  class="md-accent md-raised" ng-click="inv_tipo_catalogo_dialog_nuevo($event)"><md-icon>add_circle</md-icon> Nuevo</md-button>
+            </div>
+        </md-toolbar>
+        </div>
+        <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+            <thead md-head md-order="query.order" md-on-reorder="data_inv_tipo_catalogo_get">
+                <tr md-row>
+                    <th md-column md-order-by="nameToLower"><span>NOMBRE</span></th>
+                    <th md-column md-numeric>DESCRIPCIÓN</th>
+                    <th md-column md-numeric>MODIFICAR/ELIMINAR</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in tipo_catalogo">
+                    <td md-cell>{{dessert.nombre}}</td>
+                    <td md-cell>{{dessert.descripcion}}</td>
+                    <td md-cell>
+                        <md-button class="md-icon-button" ng-click="inv_tipo_catalogo_dialog_editar(dessert)" type="button">
+                            <md-tooltip md-direction="top">
+                                Modificar
+                            </md-tooltip>
+                            <md-icon class="md-primary">mode_edit</md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" ng-click="inv_tipo_catalogo_dialog_eliminar(dessert)" type="button">
+                            <md-tooltip md-direction="top">
+                                Eliminar
+                            </md-tooltip>
+                            <md-icon class="md-primary">delete</md-icon>
+                        </md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{total}}" md-on-paginate="data_inv_tipo_catalogo_get" md-page-select></md-table-pagination>
+</md-content>

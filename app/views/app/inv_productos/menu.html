@@ -1,0 +1,82 @@
+<h1 class="text-center">INVENTARIO PRODUCTOS</h1>
+<div layout-xs="column" layout="row">
+    
+    <md-card flex-xs flex-gt-xs="50" layout="column">
+        <img class="md-card-image" src="images/app/tipos/tipo_consumo.png" alt="image caption">
+        <md-list>
+            <md-subheader class="md-no-sticky txt-center">INVENTARIO DE {{info_sucursal.giro_negocio.nombre | uppercase }}</md-subheader>
+            <md-list-item ng-href="#/App/Inv_Productos/Ubicacion">
+                <md-icon>dashboard</md-icon>
+                <p>UBICACIÓN</p>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inv_Productos/Garantia">
+                <md-icon>security</md-icon>
+                <p> GARANTÍA</p>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inv_Productos/Tipo_Garantia">
+                <md-icon>security</md-icon>
+                <p> TIPO GARANTÍA</p>
+            </md-list-item>
+        </md-list>
+    </md-card>
+    <md-card flex-xs flex-gt-xs="50" layout="column">
+        <img class="md-card-image" src="images/app/inventario/bienes.png" alt="image caption">
+        <md-list>
+            <md-subheader class="md-no-sticky txt-center">INVENTARIO DE {{info_sucursal.giro_negocio.nombre | uppercase }}</md-subheader>
+            <md-list-item ng-href="#/App/Inv_Productos/Servicios">
+                <md-icon>dashboard</md-icon>
+                <p>SERVICIOS</p>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inv_Productos/Categorias">
+                <md-icon>dashboard</md-icon>
+                <p> CATEGORIAS</p>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inv_Productos/Tipo_Categorias">
+                <md-icon>dashboard</md-icon>
+                <p> TIPOS CATEGORIAS</p>
+            </md-list-item>            
+        </md-list>
+    </md-card>
+    <md-card flex-xs flex-gt-xs="50" layout="column">
+        <img class="md-card-image" src="images/app/inventario/productos.png" alt="image caption">
+        <md-list>
+            <md-subheader class="md-no-sticky txt-center">INVENTARIO DE {{info_sucursal.giro_negocio.nombre | uppercase }}</md-subheader>
+            <md-list-item ng-href="#/App/Inv_Productos/Modelos">
+                <md-icon>dashboard</md-icon>
+                <p> MODELOS</p>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inv_Productos/Tipo_Consumo">
+                <md-icon>dashboard</md-icon>
+                <p> TIPOS CONSUMO</p>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inv_Productos/Estado_Descriptivo">
+                <md-icon>assistant</md-icon>
+                <p> ESTADO DESCRIPTIVO</p>
+            </md-list-item>
+        </md-list>
+    </md-card>
+    <md-card flex-xs flex-gt-xs="50" layout="column">
+        <img class="md-card-image" src="images/app/tipos/categorias.png" alt="image caption">
+        <md-list>
+            <md-subheader class="md-no-sticky txt-center">CATEGORIAS</md-subheader>
+            <md-list-item ng-href="#/App/Inventario/Bienes">
+                <md-icon>create</md-icon>
+                <p> CREAR UN NUEVO CATEGORIA</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>search</md-icon>
+                <p> BUSCAR PRODUCTO</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>content_paste</md-icon>
+                <p> REPORTE GENERAL</p>
+            </md-list-item>
+            <md-list-item ng-click="null">
+                <md-icon>picture_as_pdf</md-icon>
+                <p> REPORTE x CATEGORÍAS</p>
+            </md-list-item>
+        </md-list>
+    </md-card>
+</div>
+
+
