@@ -3,15 +3,15 @@
         <md-toolbar class="md-toolbar-second">
             <div class="md-toolbar-tools">
                 <!-- <input ng-model="data.ruc_ci" type="text" required placeholder="Buscar Cliente (Cedula,Ruc)" class="toolbar_search" ng-keyup="buscar_cliente()"> -->
-                <div ng-controller="fac_nueva_factura_venta_Ctrl as fac_nueva_factura_venta_Ctrl">
+                <div >
                   <md-autocomplete
                         class="main-input-search"
                         ng-disabled="isDisabled" 
                         md-no-cache="Cache" 
                         md-selected-item="selectedItem" 
-                        md-search-text-change="fac_nueva_factura_venta_Ctrl.searchTextChange(searchText)" 
+                        md-search-text-change="searchTextChange(searchText)" 
                         md-search-text="searchText" 
-                        md-selected-item-change="fac_nueva_factura_venta_Ctrl.selectedItemChange_ini(item)" 
+                        md-selected-item-change="selectedItemChange(item)" 
                         md-items="item in items" 
                         md-item-text="item.nombres_completos" 
                         md-min-length="0" 

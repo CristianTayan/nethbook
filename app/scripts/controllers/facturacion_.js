@@ -481,6 +481,7 @@
 
     app.controller('fac_nueva_factura_venta_Ctrl', function(repositorioFacturas, $mdDialog,$document, $scope,inventario_Service,Contabilidad_Service,$rootScope,$localStorage,colaboradores_Service,Facturacion_Service,Servicios_Modal_Personas,$timeout,$mdToast,$window) {
             
+               
         // ---------------------------------------------------tipo comprobantes------------------------------------------------------------
         function success_tipo_comprobantes(desserts) {
                 $scope.tipo_comprobantes = desserts.respuesta;
@@ -808,11 +809,12 @@
                 }
                 $scope.data_ciudades();
                 // ----------------------------------------Busqueda de clientes
+                $scope.items=[];
                 function success_buscar_cliente(result) {
                     $scope.items=result.respuesta;
                 }
 
-                this.searchTextChange = function(text) {
+                cm.searchTextChange = function(text) {
                     // if (text.length>0) {
                         // if ($scope.data.ruc_ci.length==10||$scope.data.ruc_ci.length==13) {
                                 Facturacion_Service.Get_Cliente_By_Ruc_Ci().send({ruc_ci:text},success_buscar_cliente).$promise;
@@ -822,26 +824,23 @@
                     //     cm.ModelLocalizacion.selectedLocalizacion=undefined;
                     // }
                 }
-                this.selectedItemChange = function(item) {
-
-                       
-                }
-                this.selectedItemChange_ini = function(item) {
-                     if (item.tipo_doc =='CEDULA') {
-                            // $scope.data=item;
-                            // $scope.data.id = item.id_cliente;
-                            $scope.data.correo = item.correo;
-                            $scope.data.nombres_completos = item.nombres_completos;
-                            $scope.data.direccion = item.calle;
-                            $scope.data.telefono = item.telefono;
-                        }
-                        else if(item.tipo_doc =='RUC'){
-                            $scope.data=item;
-                            $scope.data.nombres_completos=item.nombres_completos;
-                            $scope.data.direccion=item.info.localizacion_sucursal.direccion;
-                            $scope.data.correo = item.info.datos_empresariales.correo;
-                            $scope.data.telefono = item.info.datos_empresariales.telefono;
-                            console.log($scope.data);
+                cm.selectedItemChange = function(item) {
+                    if (item!=null) {
+                         if (item.tipo_doc =='CEDULA') {
+                                // $scope.data=item;
+                                // $scope.data.id = item.id_cliente;
+                                $scope.data.correo = item.correo;
+                                $scope.data.nombres_completos = item.nombres_completos;
+                                $scope.data.direccion = item.calle;
+                                $scope.data.telefono = item.telefono;
+                            }
+                            else if(item.tipo_doc =='RUC'){
+                                $scope.data=item;
+                                $scope.data.nombres_completos=item.nombres_completos;
+                                $scope.data.direccion=item.info.localizacion_sucursal.direccion;
+                                $scope.data.correo = item.info.datos_empresariales.correo;
+                                $scope.data.telefono = item.info.datos_empresariales.telefono;
+                            }
                         }
                 }
 
