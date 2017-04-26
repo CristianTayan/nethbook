@@ -37,7 +37,7 @@ var app = angular.module('nextbook20App')
 			    pagina_actual: 1,
 			    limit: '10',
 			    page_num: 1,
-			    id: 4
+			    id: 2
 			};
 			//Tipos categorias
 			function success_tipo_categorias(desserts) {
@@ -122,7 +122,7 @@ var app = angular.module('nextbook20App')
 			    $scope.data_inv_categoria = obj;
 			    $scope.data_inv_categoria_update = function() {
 			        $scope.data_inv_categoria.tipo_categoria = vm.selectModel.selectedPerson.id;
-			        inventario_Service.Update_Categoria().actualizar($scope.data_inv_categoria).$promise.then(function(data) {
+			        return inventario_Service.Update_Categoria().actualizar($scope.data_inv_categoria).$promise.then(function(data) {
 			            $rootScope.$emit("actualizar_tabla_categoria", {});
 			            if (data.respuesta == true) {
 			                $mdDialog.show(
@@ -210,7 +210,7 @@ var app = angular.module('nextbook20App')
 		//------------------------------------------------CONTROLADOR PADRE --------------------------------------------------
 			function Controller_add_cat_padre($scope, $mdToast) {
 			    $scope.data_inv_categoria_guardar = function() {
-			        $scope.data_inv_categoria.id_padre = 3;
+			        $scope.data_inv_categoria.id_padre = 2;
 
 			        inventario_Service.Add_Categoria_Padre().add($scope.data_inv_categoria).$promise.then(function(data) {
 			            $rootScope.$emit("actualizar_tabla_categoria", {});

@@ -481,7 +481,7 @@
 
     app.controller('fac_nueva_factura_venta_Ctrl', function(repositorioFacturas, $mdDialog,$document, $scope,inventario_Service,Contabilidad_Service,$rootScope,$localStorage,colaboradores_Service,Facturacion_Service,Servicios_Modal_Personas,$timeout,$mdToast,$window) {
             
-               
+        $scope.data={};
         // ---------------------------------------------------tipo comprobantes------------------------------------------------------------
         function success_tipo_comprobantes(desserts) {
                 $scope.tipo_comprobantes = desserts.respuesta;
@@ -827,11 +827,11 @@
                 cm.selectedItemChange = function(item) {
                     if (item!=null) {
                          if (item.tipo_doc =='CEDULA') {
-                                // $scope.data=item;
+                                $scope.data=item;
                                 // $scope.data.id = item.id_cliente;
                                 $scope.data.correo = item.correo;
                                 $scope.data.nombres_completos = item.nombres_completos;
-                                $scope.data.direccion = item.calle;
+                                $scope.data.direccion = item.direccion;
                                 $scope.data.telefono = item.telefono;
                             }
                             else if(item.tipo_doc =='RUC'){

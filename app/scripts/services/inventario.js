@@ -113,8 +113,7 @@ angular.module('nextbook20App')
 		            get: {
 		                method: 'POST', isArray: false,
 		                params: {
-		                    token: $localStorage.token,
-		                    id_categoria:2
+		                    token: $localStorage.token
 		                }
 		            }
 		        });

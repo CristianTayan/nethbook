@@ -330,7 +330,7 @@ app.controller('inv_tipo_categoria_Ctrl', function($scope, $rootScope, $mdDialog
     function DialogController_nuevo($scope, $mdToast) {
         // Nuevo registro tipo inventario
         $scope.data_inv_tc_save = function() {
-            inventario_Service.Add_Tipo_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
+            return inventario_Service.Add_Tipo_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
                 $rootScope.$emit("actualizar_tabla_tipo_categoria", {});
                 if (data.respuesta == true) {
                      $mdDialog.cancel();
