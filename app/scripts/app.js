@@ -285,6 +285,17 @@ var app = angular.module('nextbook20App', [
             // ------------------------------------------INVENTARIO BIENES--------------------------------------------
               .when('/App/Inv_Bienes',    'dashboard.app.inv_bienes')
               .when('/App/Inv_Bienes/',    'dashboard.app.inv_bienes.menu')
+              .when('/App/Inv_Bienes/Categorias',    'dashboard.app.inv_bienes.categorias')
+              .when('/App/Inv_Bienes/Tipo_Categorias',    'dashboard.app.inv_bienes.tipo_categorias')
+              .when('/App/Inv_Bienes/Garantia',    'dashboard.app.inv_bienes.garantia')
+              .when('/App/Inv_Bienes/Tipo_Garantia',    'dashboard.app.inv_bienes.tipo_garantia')
+              .when('/App/Inv_Bienes/Ubicacion',    'dashboard.app.inv_bienes.ubicacion')
+              .when('/App/Inv_Bienes/Modelos',    'dashboard.app.inv_bienes.modelo')
+              .when('/App/Inv_Bienes/Tipo_Consumo',    'dashboard.app.inv_bienes.tipo_consumo')
+              .when('/App/Inv_Bienes/Estado_Descriptivo',    'dashboard.app.inv_bienes.estado_descriptivo')
+              .when('/App/Inv_Bienes/Bienes',    'dashboard.app.inv_bienes.bienes')
+              .when('/App/Inv_Bienes/Marcas',    'dashboard.app.inv_bienes.marcas')
+              .when('/App/Inv_Bienes/Tipo_Categoria',    'dashboard.app.inv_bienes.tipo_categorias')
 
             // -------------------------------------------PARAMETROS GENERALES----------------------------------------
             .when('/App/Parametrizacion',    'dashboard.app.parametrizacion')
@@ -546,6 +557,46 @@ var app = angular.module('nextbook20App', [
                                             default: true,
                                             templateUrl: 'views/app/inv_bienes/menu.html',
                                             controller: 'inv_bienes_menuCtrl'
+                                        })
+                                        .segment('categorias', {
+                                            templateUrl: 'views/app/inv_bienes/categorias/index.html',
+                                            controller: 'inv_bienes_categoriasCtrl'
+                                        })
+                                        .segment('tipo_categorias', {
+                                            templateUrl: 'views/app/inv_bienes/tipo_categorias/index.html',
+                                            controller: 'inv_bienes_tipo_categoriasCtrl'
+                                        })
+                                        .segment('garantia', {
+                                            templateUrl: 'views/app/inv_bienes/garantia/index.html',
+                                            controller: 'inv_bienes_garantiaCtrl'
+                                        })
+                                        .segment('ubicacion', {
+                                            templateUrl: 'views/app/inv_bienes/ubicacion/index.html',
+                                            controller: 'inv_bienes_ubicacionCtrl'
+                                        })
+                                        .segment('modelo', {
+                                            templateUrl: 'views/app/inv_bienes/modelos/index.html',
+                                            controller: 'inv_bienes_modeloCtrl'
+                                        })
+                                        .segment('tipo_consumo', {
+                                            templateUrl: 'views/app/inv_bienes/tipo_consumo/index.html',
+                                            controller: 'inv_bienes_tipo_consumoCtrl'
+                                        })
+                                        .segment('estado_descriptivo', {
+                                            templateUrl: 'views/app/inv_bienes/estado_descriptivo/index.html',
+                                            controller: 'inv_bienes_estado_descriptivoCtrl'
+                                        })
+                                        .segment('tipo_garantia', {
+                                            templateUrl: 'views/app/inv_bienes/tipo_garantia/index.html',
+                                            controller: 'inv_bienes_tipo_garantiaCtrl'
+                                        })
+                                        .segment('bienes', {
+                                            templateUrl: 'views/app/inv_bienes/bienes/index.html',
+                                            controller: 'inv_bienes_bienesCtrl'
+                                        })
+                                        .segment('marcas', {
+                                            templateUrl: 'views/app/inv_bienes/marcas/index.html',
+                                            controller: 'inv_bienes_marcasCtrl'
                                         })
                                     .up()
                             // --------------------------------------INVENTARIO--------------------------------------

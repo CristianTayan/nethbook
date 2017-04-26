@@ -20,7 +20,7 @@
 
         // ------------------------------------inicio generacion vista menu personalizacion------------------------------------
 	        var data = menuService.Get_Vistas_Loged_User();
-	        $scope.menu = data.respuesta[0].children[0].children[3];
+	        $scope.menu = data.respuesta[0].children[0].children[5];
 	    // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 
     });

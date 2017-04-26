@@ -1,0 +1,17 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form name="form_inv_tc" ng-submit="data_inv_categoria_eliminar()">
+        <md-toolbar class="md-accent">
+            <div class="md-toolbar-tools">
+                <h2>¿DESEA {{tipo_eliminar}}?</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">Cancelar</md-button>
+            <md-button class="md-raised md-accent" type="submit">{{tipo_eliminar}}</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

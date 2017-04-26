@@ -2086,7 +2086,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_bodega_dialog_nuevo = function(event) {
 		        $mdDialog.show({
 		            controller: DialogController_nuevo,
-		            templateUrl: 'views/app/inventario/bodega/new.html',
+		            templateUrl: 'views/app/inv_productos/bodega/new.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -2159,7 +2159,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_bodega_dialog_editar = function(bodega) {
 		        $mdDialog.show({
 		            controller: DialogController_editar,
-		            templateUrl: 'views/app/inventario/bodega/update.html',
+		            templateUrl: 'views/app/inv_productos/bodega/update.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -2223,7 +2223,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_bodega_dialog_eliminar = function(bodega) {
 		        $mdDialog.show({
 		            controller: Dialog_eliminar_Ctrl,
-		            templateUrl: 'views/app/inventario/bodega/eliminar.html',
+		            templateUrl: 'views/app/inv_productos/bodega/eliminar.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -2302,7 +2302,7 @@ var app = angular.module('nextbook20App')
 	    $scope.inv_marca_dialog_nuevo = function(event) {
 	        $mdDialog.show({
 	            controller: DialogController_nuevo,
-	            templateUrl: 'views/app/inventario/marcas/new.html',
+	            templateUrl: 'views/app/inv_productos/marcas/new.html',
 	            parent: angular.element(document.body),
 	            targetEvent: event,
 	            ariaLabel: 'Respuesta Registro',
@@ -2360,7 +2360,7 @@ var app = angular.module('nextbook20App')
 	    $scope.inv_marca_dialog_editar = function(categoria) {
 	        $mdDialog.show({
 	            controller: DialogController_editar,
-	            templateUrl: 'views/app/inventario/marcas/update.html',
+	            templateUrl: 'views/app/inv_productos/marcas/update.html',
 	            parent: angular.element(document.body),
 	            targetEvent: event,
 	            ariaLabel: 'Respuesta Registro',
@@ -2423,7 +2423,7 @@ var app = angular.module('nextbook20App')
 	    $scope.inv_marca_dialog_eliminar = function(tipocategoria) {
 	        $mdDialog.show({
 	            controller: Dialog_eliminar_Ctrl,
-	            templateUrl: 'views/app/inventario/marcas/eliminar.html',
+	            templateUrl: 'views/app/inv_productos/marcas/eliminar.html',
 	            parent: angular.element(document.body),
 	            targetEvent: event,
 	            ariaLabel: 'Respuesta Registro',
