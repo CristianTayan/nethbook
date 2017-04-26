@@ -1,6 +1,5 @@
 <h1 class="text-center">INVENTARIO PRODUCTOS</h1>
 <div layout-xs="column" layout="row">
-    
     <md-card flex-xs flex-gt-xs="50" layout="column">
         <img class="md-card-image" src="images/app/tipos/tipo_consumo.png" alt="image caption">
         <md-list>
@@ -58,22 +57,18 @@
     <md-card flex-xs flex-gt-xs="50" layout="column">
         <img class="md-card-image" src="images/app/tipos/categorias.png" alt="image caption">
         <md-list>
-            <md-subheader class="md-no-sticky txt-center">CATEGORIAS</md-subheader>
-            <md-list-item ng-href="#/App/Inventario/Bienes">
-                <md-icon>create</md-icon>
-                <p> CREAR UN NUEVO CATEGORIA</p>
+            <md-subheader class="md-no-sticky txt-center">PROCESOS</md-subheader>
+            <md-list-item ng-href="#/App/Inv_Productos/Marcas">
+                <md-icon>view_day</md-icon>
+                <p> MARCAS</p>
             </md-list-item>
-            <md-list-item ng-click="null">
-                <md-icon>search</md-icon>
-                <p> BUSCAR PRODUCTO</p>
+            <md-list-item ng-href="#/App/Inv_Productos/Bodegas">
+                <md-icon>pageview</md-icon>
+                <p> BODEGAS</p>
             </md-list-item>
             <md-list-item ng-click="null">
                 <md-icon>content_paste</md-icon>
                 <p> REPORTE GENERAL</p>
-            </md-list-item>
-            <md-list-item ng-click="null">
-                <md-icon>picture_as_pdf</md-icon>
-                <p> REPORTE x CATEGORÍAS</p>
             </md-list-item>
         </md-list>
     </md-card>

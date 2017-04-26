@@ -1823,7 +1823,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_producto_dialog_nuevo = function(event) {
 		        $mdDialog.show({
 		            controller: DialogController_nuevo,
-		            templateUrl: 'views/app/inv_productos/servicios/new.html',
+		            templateUrl: 'views/app/inv_productos/productos/new.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
