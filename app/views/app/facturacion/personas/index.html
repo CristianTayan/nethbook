@@ -12,19 +12,23 @@
           </div>
       </div>
       <table md-table md-row-select ng-model="selected" md-progress="promise">
-        <thead md-head md-order="query.order" md-on-reorder="data_col_usuario_get">
+        <thead md-head md-order="query.order" md-on-reorder="data_clientes_get">
           <tr md-row>
-            <th md-column md-order-by="nameToLower"><span>NOMBRE</span></th>
-            <th md-column md-order-by="nameToLower"><span>NICK</span></th>
-            <th md-column md-numeric>TIPO DE USUARIO</th>
+            <th md-column md-order-by="nameToLower"><span>CEDULA/RUC</span></th>
+            <th md-column md-order-by="nameToLower"><span>NOMBRES APELLIDOS</span></th>
+            <th md-column md-order-by="nameToLower"><span>DIRECCIÓN</span></th>
+            <th md-column md-order-by="nameToLower"><span>TELÉFONO</span></th>
+            <th md-column md-numeric>TIPO DE CLIENTE</th>
             <th md-column md-numeric>ELIMINAR/MODIFICAR</th>
           </tr>
         </thead>
         <tbody md-body>
-          <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in usuarios">
-            <td md-cell>{{dessert.persona.primer_nombre}} {{dessert.persona.primer_apellido}}</td>
-            <td md-cell>{{dessert.nick}}</td>
-            <td md-cell>{{dessert.tipo_usuario}}</td>
+          <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in clientes">
+            <td md-cell>{{dessert.ruc_ci}}</td>
+            <td md-cell>{{dessert.nombres_completos}}</td>
+            <td md-cell>{{dessert.direccion||dessert.info.localizacion_sucursal.direccion}}</td>
+            <td md-cell>{{dessert.telefono||dessert.info.datos_empresariales.telefono}}</td>
+            <td md-cell>{{dessert.tipo_cliente}}</td>
             <td md-cell>
                 <md-button class="md-icon-button" ng-click="usuarios_dialog_modificar(dessert)" type="button">
                 <md-tooltip md-direction="top">

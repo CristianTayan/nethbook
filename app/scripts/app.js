@@ -705,7 +705,7 @@ var app = angular.module('nextbook20App', [
                                         })
                                         .segment('cientes', {
                                             templateUrl: 'views/app/facturacion/personas/index.html',
-                                            controller: 'fac_personas_Ctrl'
+                                            controller: 'fac_clientes_Ctrl'
                                         })
                                     .up()
                         .up()

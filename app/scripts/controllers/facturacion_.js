@@ -15,7 +15,7 @@
         // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
     });
 
-    app.controller('fac_personas_Ctrl', function ($scope, colaboradores_Service, $rootScope, $mdDialog,Servicios_Modal_Personas) {
+    app.controller('fac_clientes_Ctrl', function ($scope, colaboradores_Service, $rootScope, $mdDialog,Servicios_Modal_Personas,Clientes_Service) {
 
         var modal=Servicios_Modal_Personas;
 
@@ -215,20 +215,20 @@
 
 
             $rootScope.$on("actualizar_tabla_categoria", function() {
-                $scope.data_colaborado_get();
+                $scope.data_clientes_get();
             });
 
             function success(desserts) {
                 $scope.total = desserts.respuesta.total;
-                $scope.usuarios = desserts.respuesta.data;
+                $scope.clientes = desserts.data;
             }
 
-            $scope.data_colaborado_get = function() {
-                colaboradores_Service.Get_Col_Usuario().get($scope.query, success).$promise;
+            $scope.data_clientes_get = function() {
+                Clientes_Service.Get_Clientes().get($scope.query, success).$promise;
             }
 
             $rootScope.$on("actualizar_tabla_usuario", function() {
-                $scope.data_colaborado_get();
+                $scope.data_clientes_get();
             });
 
             $scope.removeFilter = function() {
@@ -252,7 +252,7 @@
                 if (!newValue) {
                     $scope.query.page = bookmark;
                 }
-                $scope.data_colaborado_get();
+                $scope.data_clientes_get();
             });
     });
 
