@@ -475,8 +475,38 @@
             });
     });
 
-	app.controller('fac_mis_facturas_venta_Ctrl', function($mdDialog, $scope) {
+	app.controller('fac_mis_facturas_venta_Ctrl', function($mdDialog, $scope,Facturacion_Service,$window) {
     	console.log('mis facturas');
+
+         $scope.query = {
+                    filter: '',
+                    num_registros: 5,
+                    pagina_actual: 1,
+                    limit: '15',
+                    page_num: 1
+                };
+        // GET MIS FACTURAS
+        function succes_mis_facturas(res){
+            $scope.mis_facturas=res.respuesta.data;
+
+        }
+        $scope.data_mis_facturas_get=function(){
+            Facturacion_Service.Get_Mis_Facturas().get($scope.query,succes_mis_facturas).$promise;
+        }
+        $scope.data_mis_facturas_get();
+
+        // VER FACTURA PDF
+        $scope.ver_factura = function(factura) {
+            
+            Facturacion_Service.Generar_Comprobante_Factura().send({factura:factura}).$promise.then(function(data) {
+                if (data.respuesta==true) {
+                    var url = data.url;
+                    $window.open(url, 'C-Sharpcorner', 'width=800,height=700');
+                }
+            });
+            
+        }
+
     });
 
     app.controller('fac_nueva_factura_venta_Ctrl', function(repositorioFacturas, $mdDialog,$document, $scope,inventario_Service,Contabilidad_Service,$rootScope,$localStorage,colaboradores_Service,Facturacion_Service,Servicios_Modal_Personas,$timeout,$mdToast,$window) {

@@ -128,4 +128,28 @@ angular.module('nextbook20App')
         });
     };
 
+    this.Get_Mis_Facturas= function() {
+        return $resource(urlService.server().appnext()+'Get_Mis_Facturas', {} , {
+            get: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
+
+    this.Generar_Comprobante_Factura= function() {
+        return $resource(urlService.server().appnext()+'Generar_Comprobante_Factura', {} , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
+
+    
+
   });
