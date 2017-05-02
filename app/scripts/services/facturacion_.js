@@ -99,6 +99,7 @@ angular.module('nextbook20App')
 
      this.ObjIndexOf=function(arr, obj){
                 for(var i = 0; i < arr.length; i++){
+                    // console.log('id arr='+arr[i].id+'-- id obj='+obj.id);
                     if(arr[i].id== obj.id){
                         return i;
                     }
@@ -128,8 +129,8 @@ angular.module('nextbook20App')
         });
     };
 
-    this.Get_Mis_Facturas= function() {
-        return $resource(urlService.server().appnext()+'Get_Mis_Facturas', {} , {
+    this.Get_Mis_Facturas_Venta= function() {
+        return $resource(urlService.server().appnext()+'Get_Mis_Facturas_Venta', {} , {
             get: {
                 method: 'POST', isArray: false,
                 params: {

@@ -491,7 +491,7 @@
 
         }
         $scope.data_mis_facturas_get=function(){
-            Facturacion_Service.Get_Mis_Facturas().get($scope.query,succes_mis_facturas).$promise;
+            Facturacion_Service.Get_Mis_Facturas_Venta().get($scope.query,succes_mis_facturas).$promise;
         }
         $scope.data_mis_facturas_get();
 
@@ -561,6 +561,7 @@
 
         function DialogController_add($scope,detalles_fac,$rootScope,Facturacion_Service, $mdStepper,$timeout,focus) {
             $scope.add_prods=(detalles_fac.length>0) ?detalles_fac:[];
+            $scope.back_length=detalles_fac.length;
             
             var vm = $scope;
             vm.$mdStepper = $mdStepper;
@@ -573,23 +574,39 @@
 
 
             $scope.previousStep = function () {
+                
+                if ($scope.add_prods.length>$scope.back_length) {
+                    $scope.add_prods.pop();
+                }
+
                 var steppers = this.$mdStepper('stepper-demo');
                 steppers.back();
             };
 
-            $scope.nextStep = function (e) {
-                if(e.which === 13) {
-                    
-                    var steppers = this.$mdStepper('stepper-demo');
-                    if (steppers.currentStep==steppers.steps.length-1) {
-                        // focus('txt_buscar');
-                        $scope.ok_add_prods();
-                    }else{
-                        focus('txt_cantidad');
-                        $scope.prod_selected=$scope.productos[0];
-                        steppers.next();
+            $scope.nextStep = function (e,prod) {
+                if (e) {
+                        if(e.which === 13) {
+                        var steppers = this.$mdStepper('stepper-demo');
+                        if (steppers.currentStep==steppers.steps.length-1) {
+                            // focus('txt_buscar');
+                            $scope.ok_add_prods();
+                        }else{
+                            focus('txt_cantidad');
+                            $scope.prod_selected=$scope.productos[0];
+                            steppers.next();
+                        }
+                        
                     }
-                    
+                }else{
+
+                    var steppers = this.$mdStepper('stepper-demo');
+                        if (steppers.currentStep==steppers.steps.length-1) {
+                            // focus('txt_buscar');
+                            $scope.ok_add_prods();
+                        }else{
+                            focus('txt_cantidad');
+                            steppers.next();
+                        }
                 }
                 
             };
@@ -662,7 +679,7 @@
                     }
 
                      if ($scope.prod_selected.cantidad_fac>$scope.prod_selected.cantidad) {
-                        $scope.prod_selected.cantidad_fac=$scope.cantidad_fac;
+                        $scope.prod_selected.cantidad_fac=$scope.prod_selected.cantidad;
                         $scope.prod_selected.total_fac=parseFloat(parseFloat($scope.prod_selected.precio.replace('$','')).toFixed($rootScope.decimales)*$scope.prod_selected.cantidad_fac).toFixed($rootScope.decimales);
                     }else{
                         $scope.prod_selected.total_fac=parseFloat(parseFloat($scope.prod_selected.precio.replace('$','')).toFixed($rootScope.decimales)*$scope.prod_selected.cantidad_fac).toFixed($rootScope.decimales);
@@ -683,11 +700,15 @@
             }
 
             $scope.ok_add_prods=function(){
-
                 $rootScope.$emit("update_detalles_fac", $scope.add_prods);
                 $mdDialog.cancel();
             }
 
+            $scope.select_prod_click=(prod_click)=>{
+                // console.log(prod_click);
+                $scope.prod_selected=prod_click;
+                $scope.nextStep();
+            }
             // -------------------------------------------------FIN DIALOG ADD-------------------------------------------------
 
         }

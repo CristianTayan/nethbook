@@ -15,7 +15,7 @@
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
                                 <label>Documento de Identificación (Cédula)</label>
-                                <input name="numero_documento" ng-model="data_usuario.numero_documento" numeros-only limit-to="10" ng-keyup="buscar_persona()"  type="text" required>
+                                <input name="numero_documento" ng-model="data_usuario.numero_documento" autocomplete="false" numeros-only limit-to="10" ng-keyup="buscar_persona()"  type="text" required>
                                 <div ng-messages="form_usuario.numero_documento.$error" ng-show="form_usuario.numero_documento.$dirty">
                                     <div ng-message="required">Campo Requerido</div>
                                     <div ng-message="campo">Registro Repetido</div>
