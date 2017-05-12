@@ -65,6 +65,7 @@ module.exports = function(config) {
       'bower_components/pm-image-editor/compile/minified/pm-image-editor.js',
       'bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js',
       'bower_components/angular-file-upload/dist/angular-file-upload.min.js',
+      'bower_components/angular-img-cropper/dist/angular-img-cropper.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

@@ -28,15 +28,15 @@
 <md-content flex  style="background: #EEEEEE"> <!-- app-view-segment="3" -->
   <md-card flex>
         <div class="card card--big">
-            <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image"></div>
+            <div style="background-image: url({{imgPortada}}); background-position-y: 0;" class="card__image"></div>
             <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
         </div>
         <div style="position: absolute;">
             <md-button class="md-icon-button" aria-label="More">
-                <md-icon ng-click="show_listaimg_modal('portada')">border_color</md-icon>
+                <md-icon ng-click="show_upload_img_modal()">add_a_photo</md-icon>
             </md-button>
             <md-button class="md-icon-button" aria-label="More">
-                <md-icon ng-click="show_recordimg_modal('portada')">camera_alt</md-icon>
+                <md-icon ng-click="show_lista_img_modal()">mode_edit</md-icon>
             </md-button>
         </div>
         <md-tabs>

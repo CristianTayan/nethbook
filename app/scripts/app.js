@@ -42,7 +42,8 @@ var app = angular.module('nextbook20App', [
                                             'ngclipboard',
                                             'pmImageEditor',
                                             // 'ngFileUpload'
-                                            'lfNgMdFileInput'
+                                            'lfNgMdFileInput',
+                                            'angular-img-cropper'
                                         ]);
     
     // themes configuration
