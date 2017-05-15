@@ -84,26 +84,6 @@ var app = angular.module('nextbook20App')
 			            $localStorage.token = data.token;
 			            $localStorage.datosE = data.datosE;
 			            $localStorage.datosPersona = data.datosPersona;
-			            //--------------------cargar imagen perfil-----------
-			            mainService.Get_Img_Perfil().get().$promise.then(function(data) {
-			            	$localStorage.imgPerfil = data.img;		                
-			            },function(error){
-			            	$localStorage.imgPerfil="images/users/avatar-001.jpg";
-			            });
-			            //--------------------cargar imagen Portada-----------
-			            mainService.Get_Img_Portada().get().$promise.then(function(data) {
-			            	$localStorage.imgPortada = data.img;
-			            },function(error){
-			            	$localStorage.imgPortada="images/samples/w1.jpg";
-			            });
-			            // -------------------------	 fin
-			            //--------------------cargar imagen Logo-----------
-			            mainService.Get_Img_Logo().get().$promise.then(function(data) {
-			            	$localStorage.imgLogo = data.img;
-			            },function(error){
-			            	$localStorage.imgPortada="images/samples/x2.jpg";
-			            });
-			            // ----------------------------- fin -----------------------------------
 
 			            // generacion acceso personalizado
 			            menuService.Generar_Vista().get().$promise.then(function(data) {

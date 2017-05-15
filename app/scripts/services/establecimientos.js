@@ -33,6 +33,43 @@ angular.module('nextbook20App')
             }
         });
     };
-    
+    //-------------------------------------------------------------- Añadir imagen de portada
+     this.Add_Img_Portada=function() {
+        return $resource(urlService.server().appnext()+'Add_Img_Portada', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                }
+            }
+        });
+    };
+    //----------------------------------------------------------------- Get Imagenes de Portada
+    this.Load_Imgs_Portada=function() {
+        return $resource(urlService.server().appnext()+'Load_Imgs_Portada', {}
+        , {
+            get: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                    sucursal:$localStorage.sucursal.id
+                }
+            }
+        });
+    };
 
+     //----------------------------------------------------------------- Set Imagen de Portada
+    this.Set_Img_Portada=function() {
+        return $resource(urlService.server().appnext()+'Set_Img_Portada', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                    sucursal:$localStorage.sucursal.id
+                }
+            }
+        });
+    };
   });

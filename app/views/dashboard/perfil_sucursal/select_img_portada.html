@@ -1,0 +1,37 @@
+<md-dialog aria-label="Cargar Imagen " style="width: 1000px !important;">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Cargar Imagen Portada</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content layout="row">
+      
+       <md-card flex ng-repeat="img in imgs" style="cursor: pointer;" ng-click="set_img_portada(img)">
+        <div class="card card--big">
+            <div style="background-image: url({{img.direccion_imagen_empresa}}); background-position-y: 0;" class="card__image"></div>
+        </div>
+        <div style="position: fixed;">
+            <md-button class="md-icon-button" aria-label="More">
+                <md-icon ng-click="show_delete_modal()">delete</md-icon>
+            </md-button>
+        </div>
+      </md-card>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="cancel()">
+       Cancelar
+      </md-button>
+      <md-button ng-click="Upload()">
+        Guardar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

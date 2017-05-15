@@ -43,7 +43,8 @@ var app = angular.module('nextbook20App', [
                                             'pmImageEditor',
                                             'ng.inputSearch',
                                             'lfNgMdFileInput',
-                                            'firebase'
+                                            'lfNgMdFileInput',
+                                            'angular-img-cropper'
                                         ]);
     
     // themes configuration

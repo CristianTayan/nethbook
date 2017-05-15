@@ -34,6 +34,11 @@ angular.module('nextbook20App')
                 return "http://186.4.167.12:3000/";
 
             }
+            ,dir: function() {
+                // return "http://186.4.167.12/mod_radio/";
+                return "http://186.4.167.12/appnext1.1/";
+
+            }
         }
     };
   });
