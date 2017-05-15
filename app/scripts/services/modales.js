@@ -101,32 +101,29 @@ app.factory('Servicios_Modal_Bienes', function($rootScope,$mdDialog,inventario_S
             case'GARANTIA':
                 var tipo_garantia;
                 // ---------------------------------------------------tipo garantia select--------------------------------------------------------------
-                function success_tipo_garantia(desserts) {
-                    tipo_garantia = desserts.respuesta.data;
-                    $mdDialog.show({
-                        controller: DialogController_nueva_garantia,
-                        multiple:true,
-                        templateUrl: 'views/app/inventario/garantia/new.html',
-                        parent: angular.element(document.body),
-                        targetEvent: event,
-                        ariaLabel: 'Respuesta Registro',
-                        clickOutsideToClose: false,
-                        locals: {
-                            select_tipo_garantia: tipo_garantia
-                        }
-                    });
-                }
                 obj_serv_modal.data_inv_tipo_garantia_get = function() {
                     inventario_Service.Get_Tipo_Garantia().get(query, success_tipo_garantia).$promise;
                 }
-
                 obj_serv_modal.data_inv_tipo_garantia_get();
-
             break;
-
         }
         
     };
+    function success_tipo_garantia(desserts) {
+        tipo_garantia = desserts.respuesta.data;
+        $mdDialog.show({
+            controller: DialogController_nueva_garantia,
+            multiple:true,
+            templateUrl: 'views/app/inventario/garantia/new.html',
+            parent: angular.element(document.body),
+            targetEvent: event,
+            ariaLabel: 'Respuesta Registro',
+            clickOutsideToClose: false,
+            locals: {
+                select_tipo_garantia: tipo_garantia
+            }
+        });
+    }
 
     //-----------------------------------------------------------------CONTROLADOR CATEGORIA PADRE //-----------------------------------------------------------------
        function Controller_add_cat_padre($scope,$mdToast,inventario_Service){
@@ -627,32 +624,28 @@ app.factory('Servicios_Modal_Servicios', function($rootScope,$mdDialog,inventari
             case'GARANTIA':
                 var tipo_garantia;
                 // ---------------------------------------------------tipo garantia select--------------------------------------------------------------
-                function success_tipo_garantia(desserts) {
-                    tipo_garantia = desserts.respuesta.data;
-                    $mdDialog.show({
-                        controller: DialogController_nueva_garantia,
-                        multiple:true,
-                        templateUrl: 'views/app/inventario/garantia/new.html',
-                        parent: angular.element(document.body),
-                        targetEvent: event,
-                        ariaLabel: 'Respuesta Registro',
-                        clickOutsideToClose: false,
-                        locals: {
-                            select_tipo_garantia: tipo_garantia
-                        }
-                    });
-                }
                 obj_serv_modal.data_inv_tipo_garantia_get = function() {
                     inventario_Service.Get_Tipo_Garantia().get(query, success_tipo_garantia).$promise;
                 }
-
                 obj_serv_modal.data_inv_tipo_garantia_get();
-
             break;
-
         }
-
     };
+    function success_tipo_garantia(desserts) {
+        tipo_garantia = desserts.respuesta.data;
+        $mdDialog.show({
+            controller: DialogController_nueva_garantia,
+            multiple:true,
+            templateUrl: 'views/app/inventario/garantia/new.html',
+            parent: angular.element(document.body),
+            targetEvent: event,
+            ariaLabel: 'Respuesta Registro',
+            clickOutsideToClose: false,
+            locals: {
+                select_tipo_garantia: tipo_garantia
+            }
+        });
+    }
 
     //-----------------------------------------------------------------CONTROLADOR CATEGORIA PADRE //-----------------------------------------------------------------
        function Controller_add_cat_padre($scope,$mdToast,inventario_Service){

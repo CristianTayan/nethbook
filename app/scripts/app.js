@@ -41,18 +41,31 @@ var app = angular.module('nextbook20App', [
                                             'xmd.directives.xmdWizard',
                                             'ngclipboard',
                                             'pmImageEditor',
-                                            // 'ngFileUpload'
-                                            'lfNgMdFileInput'
+                                            'ng.inputSearch',
+                                            'lfNgMdFileInput',
+                                            'firebase'
                                         ]);
     
     // themes configuration
-    app.config(function($mdThemingProvider,ivhTreeviewOptionsProvider) {
-      $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
-      $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
-      $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
-      $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+    app.config(function($mdThemingProvider) {
+        $mdThemingProvider.theme('indigo')
+          .primaryPalette('indigo')
+          .accentPalette('pink');
 
+        $mdThemingProvider.theme('lime')
+          .primaryPalette('lime')
+          .accentPalette('orange')
+          .warnPalette('blue');
+
+
+        $mdThemingProvider.alwaysWatchTheme(true);
     });
+    // app.config(function($mdThemingProvider) {
+    //       $mdThemingProvider.theme('default')
+    //         .primaryPalette('blue');
+    //       $mdThemingProvider.theme('default-toolbar')
+    //         .primaryPalette('pink');
+    //     })
 
 
     // app.module('material.components.expansionPanels', [
@@ -72,7 +85,7 @@ var app = angular.module('nextbook20App', [
             MENU_INVENTARIO: 'Inventory',
             MENU_REP_INICIO: 'Home',
             MENU_REP_FAC_CORREO: 'Mail',
-            MENU_REP_FACTURAS: 'My Check-in',
+            MENU_REP_MI_FAC: 'My Check-in',
             MENU_REP_FAC_SUBIR: 'Upload Check-in',
             MENU_REP_FAC_RECHAZADA: 'Check-in Rejected',
 
@@ -86,7 +99,7 @@ var app = angular.module('nextbook20App', [
             MENU_INVENTARIO: 'Inventario',
             MENU_REP_INICIO: 'Inicio',
             MENU_REP_FAC_CORREO: 'Correo',
-            MENU_REP_FACTURAS: 'Mis Facturas',
+            MENU_REP_MI_FAC: 'Mis Facturas',
             MENU_REP_FAC_SUBIR: 'Subir Facturas',
             MENU_REP_FAC_RECHAZADA: 'Facturas Rechazadas',
 
@@ -387,7 +400,7 @@ var app = angular.module('nextbook20App', [
                             // ------------------------------------REPOSITORIO FACTURAS------------------------------------
                                 .segment('repositorio_facturas', {
                                     templateUrl: 'views/app/repositorio_facturas/index.html',
-                                    controller: 'repositorio_facturas_Ctrl'
+                                    controller: 'RepositorioFacturasCtrl'
                                 })
                                 .within()
                                     .segment('inicio_facturas', {

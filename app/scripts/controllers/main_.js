@@ -8,48 +8,34 @@
  * Controller of the nextbook20App
  */
 angular.module('nextbook20App')
-  	.controller('main_Ctrl', function ($scope, $location, mainService) {
-  		$scope.items=[];
-    	function sucesssearch(data) {
-            $scope.items = data.respuesta;
-        }
-        this.searchTextChange = function(text) {
-            mainService.buscar_empresas().get({
-                filter: text
-            }, sucesssearch);
-        }
-        this.selectedItemChange = function(item) {
-            if (item) {                
-                var resultado = '';
-                if (item.nombre_comercial) {
-                	resultado = item.nombre_comercial.replace(/ /g, "_");
-                	// console.log(resultado);
-                	$location.path('/search/' + resultado);
-                }else if(item.razon_social){
-                	resultado = item.nombre_comercial.replace(/ /g, "_");
-                	// console.log(resultado);
-                	$location.path('/search/' + resultado);
-                }else{
-                	// console.log(resultado);
-                	$location.path('/search/' + item.ruc);
-                }
-
+  	.controller('main_Ctrl', function ($scope, $location, mainService, $http) {
+        $scope.buscando = function(){
+            $scope.elementos = [];
+            var texto = $scope.data_search;       
+            if (texto.length > 2) {
+                mainService.search_empresas().get({id: texto}).$promise.then(function (res) {
+                    $scope.elementos = [];
+                    $scope.elementos = res.data;
+                });
+            }else{
+                $scope.elementos = [];
             }
         }
-        this.selectedItemChange_ini = function(item) {
+        $scope.selectedItemChange = function(item) {
+            console.log(item);
             if (item) {                
                 var resultado = '';
                 if (item.nombre_comercial) {
                     resultado = item.nombre_comercial.replace(/ /g, "_");
                     // console.log(resultado);
-                    $location.path('/nb/search/' + resultado+'/Info');
+                    $location.path('/search/' + resultado);
                 }else if(item.razon_social){
                     resultado = item.nombre_comercial.replace(/ /g, "_");
                     // console.log(resultado);
-                    $location.path('/nb/search/' + resultado+'/Info');
+                    $location.path('/search/' + resultado);
                 }else{
                     // console.log(resultado);
-                    $location.path('/nb/search/' + item.ruc+'/Info');
+                    $location.path('/search/' + item.ruc);
                 }
 
             }

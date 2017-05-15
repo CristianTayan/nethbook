@@ -9,8 +9,60 @@
  */
 var app = angular.module('nextbook20App')
 
-app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mainService, $http, $translate, $routeSegment, menuService) {
-    
+app.controller('GridBottomSheetCtrl', function($scope, $mdBottomSheet) {
+      $scope.items = [
+        { name: 'Hangout', icon: 'person' },
+        { name: 'Mail', icon: 'mail' },
+        { name: 'Message', icon: 'message' },
+        { name: 'Copy', icon: 'copy' },
+        { name: 'Facebook', icon: 'facebook' },
+        { name: 'Twitter', icon: 'home' },
+      ];
+
+      $scope.listItemClick = function($index) {
+        var clickedItem = $scope.items[$index];
+            $mdBottomSheet.hide(clickedItem);
+      };
+    })
+
+app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mainService, $http, $translate, $routeSegment, menuService, $mdBottomSheet) {
+        
+    $scope.fullscreen=function() {
+        console.log('test');
+        var elem=document;
+        if(!document.fullscreenElement&&!document.mozFullScreenElement&&!document.webkitFullscreenElement&&!document.msFullscreenElement) {
+            if(elem.requestFullscreen) {
+                elem.requestFullscreen();
+            }
+            else if(elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+            else if(elem.mozRequestFullScreen) {
+                elem.mozRequestFullScreen();
+            }
+            else if(elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            }
+        }
+        else {
+            if(document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+            else if(document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+            else if(document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            }
+            else if(document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+        }
+    }
+
+
+
+
     $scope.ruta = $routeSegment;
     // console.log(ruta);
     $scope.changeLanguage = function (key) {
@@ -18,9 +70,25 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
         $translate.use(key);
     };
 
-
+    $scope.modal_footer = function() {
+        $scope.alert = '';
+        $mdBottomSheet.show({
+          templateUrl: 'views/dashboard/modal-footer.html',
+          controller: 'GridBottomSheetCtrl',
+          // clickOutsideToClose: false
+        }).then(function(clickedItem) {
+          $mdToast.show(
+                $mdToast.simple()
+                  .textContent(clickedItem['name'] + ' clicked!')
+                  .position('top right')
+                  .hideDelay(1500)
+              );
+        }).catch(function(error) {
+          // User clicked outside or hit escape
+        });
+      };
     
-
+    
 
     // LISTA NOSTOP MUSICA
     mainService.gettop10().get().$promise.then(function(data) {

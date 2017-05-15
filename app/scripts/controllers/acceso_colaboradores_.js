@@ -91,15 +91,14 @@ var app = angular.module('nextbook20App')
 		            			acumulador.push(obj);
 		            			$localStorage.cook_session_init = acumulador;
 		            		}
-
-		            	function buscar_existencia(acumulador, obj){
-		            		for (var i = 0; i < acumulador.length; i++) {
-		            			if ( acumulador[i].ruc_empresa == obj.ruc_empresa && acumulador[i].nick == obj.nick) 
-		            				return true;
-		            		}
-		            	}
 		            }
 		        }
 	        });
 	    }
+	    function buscar_existencia(acumulador, obj){
+    		for (var i = 0; i < acumulador.length; i++) {
+    			if ( acumulador[i].ruc_empresa == obj.ruc_empresa && acumulador[i].nick == obj.nick) 
+    				return true;
+    		}
+    	}
   	});

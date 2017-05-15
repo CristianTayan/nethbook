@@ -1,56 +1,106 @@
-<div class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="30" layout-padding>
+<md-sidenav class="md-sidenav-left" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" >
     <md-toolbar>
         <div class="md-toolbar-tools">
         </div>
     </md-toolbar>
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h3 class="md-display-4">Alex Doil</h3>
+            <h3 class="md-display-4">{{datos2}}</h3>
         </div>
     </md-toolbar>
-    <div>
-        <div layout="row">
-            <div class="mdl-card__title">
-                <h4 class="mdl-card__title-text">Actividad Economica</h4>
-            </div>
-            <div class="mdl-card__supporting-text">
-                {{datos2.actividad_economica | lowercase}}
-            </div>
-            <div class="mdl-card__menu">
-                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                    <i class="material-icons">share</i>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div>
-        <md-card-content >
-            <h2 class="md-title">About Me</h2>
-            <p>
-                A passionate Blogger and Developer. He has more then 5 years of experience on web application development. He loves to work in javascript programming language.At present he is exploring W3C Web Component specification.
-            </p>
-        </md-card-content>
-    </div>
-</div>
-<md-content flex="70" layout="column" flex layout="row">
-    <md-tabs flex md-stretch-tabs="always">
-        <md-tab id="b-tab1" aria-controls="b-tab1-content" style="float:right!important;">
-            Historia
-        </md-tab>
-        <md-tab id="b-tab2" aria-controls="b-tab2-content" style="float:right!important;">
-            <md-icon>location_on</md-icon>
-        </md-tab>
-        <md-tab id="b-tab3" aria-controls="b-tab3-content" style="float:right!important;">
-            Similares
-        </md-tab>
-        <md-tab id="b-tab4" aria-controls="b-tab4-content" style="float:right!important;">
-            Favoritos
-        </md-tab>
-        <md-tab id="b-tab5" aria-controls="b-tab5-content" style="float:right!important;">
-            Grupos
-        </md-tab>
-        <md-tab id="b-tab6" aria-controls="b-tab5-content" style="float:right!important;">
-            Agenda
-        </md-tab>
+    <md-list>
+        <md-subheader class="md-no-sticky">Clickable Items with Secondary Controls</md-subheader>
+        <md-list-item ng-href="#/nb/Estructura_Empresa">
+            <md-icon>business</md-icon>
+            <p>Estructura Empresa</p>
+        </md-list-item>
+        <md-list-item ng-click="fullscreen()">
+            <md-icon>date_range</md-icon>
+            <p>Calendario</p>
+        </md-list-item>
+    </md-list>    
+</md-sidenav>
+<md-content flex layout-padding style="background: #EEEEEE">
+    <md-tabs md-center-tabs md-dynamic-height flex style="background: #FFF">
+      <md-tab id="tab1">
+        <md-tab-label>Mensaje</md-tab-label>
+        <md-tab-body>
+            <md-card flex ng-class="{sm: $mdMedia('sm'), md: $mdMedia('md'), lg: $mdMedia('lg')}">
+                <form name="postForm">
+                    <md-card-header class="row">
+                        <md-card-avatar>
+                            <img class="md-user-avatar" src="https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png" />
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <md-input-container class="md-block" md-no-float>
+                              <textarea autofocus placeholder="Message"></textarea>
+                            </md-input-container>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-header class="row">
+                        <md-card-avatar class="mr12">
+                            <img class="md-user-avatar" src="https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png" />
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <md-input-container class="md-block">
+                                <label>Post something</label>
+                                <textarea ng-model="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
+                            </md-input-container>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content class="p0" flex>
+                        <md-card-actions layout="row" layout-align="start center">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <md-button class="btn btn-default btn-file">
+                                    <label for="fileToUpload">
+                                        <i class="mdi mdi-cloud-upload mr10"></i>
+                                    </label><span class="fileinput-new">Upload</span><span class="fileinput-exists">Change</span>
+                                    <input type="file" file="" data-ng-model="file" name="...">
+                                </md-button>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                            </div>
+                            <md-card-icon-actions class="pull-right" layout-align="end center">
+                                <button class="md-raised md-primary md-button md-ink-ripple pull-right" aria-label="toggle" type="button" data-ng-click="createPost()"><span class="ng-scope"><i class="mdi mdi-message-text mr10"></i>Post</span>
+                                    <div class="md-ripple-container"></div>
+                                </button>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card-content>
+                </form>
+            </md-card>
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="tab2">
+        <md-tab-label>Evento</md-tab-label>
+        <md-tab-body>
+          View for Item #2 <br/>
+          data.selectedIndex = 1;
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="tab3">
+        <md-tab-label>Anuncios</md-tab-label>
+        <md-tab-body>
+          View for Item #3 <br/>
+          data.selectedIndex = 2;
+        </md-tab-body>
+      </md-tab>
+      </md-tab>
     </md-tabs>
+    <div layout="row">
+        hola mundo
+    </div>
 </md-content>
+<md-content flex="25" layout-padding style="background: #EEEEEE">
+    <div layout="row" style="background: #FFF">
+        log puglicidad
+    </div>
+</md-content>
+
+<style type="text/css">
+    textarea {
+      max-height: 150px;
+      overflow: auto;
+      background: red
+    }
+</style>

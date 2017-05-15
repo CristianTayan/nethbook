@@ -8,12 +8,13 @@
  * Controller of the nextbook20App
  */
 	var app = angular.module('nextbook20App')
-    app.controller('RepositorioFacturasCtrl', function() {
-        this.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
+    app.controller('RepositorioFacturasCtrl', function($scope) {
+        console.log('test');
+        // $scope.theme = 'teal';
+	      // $scope.changeTheme = function() {
+	        $scope.theme = $scope.theme === 'indigo' ? 'lime' : 'indigo'; 
+	      // };
+
     });
 
     app.controller('repositorio_facturas_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
@@ -42,12 +43,12 @@
 		    $scope.myChartObject.type = "PieChart";	    
 		    $scope.onions = [
 		        {v: "Onions"},
-		        {v: 3},
+		        {v: 3}
 		    ];
 		    $scope.myChartObject.data = {"cols": [
 		        {id: "t", label: "Compras", type: "string"},
 		        {id: "s", label: "Gastos", type: "number"}
-		    ], rows};
+		    ], rows: rows};
 		    $scope.myChartObject.options = {
 		        'title': 'GASTOS GENERADOS'
 		    };

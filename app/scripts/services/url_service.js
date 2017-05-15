@@ -29,6 +29,9 @@ angular.module('nextbook20App')
             },topmusical: function() {
                 // return "http://186.4.167.12/mod_radio/";
                 return "http://186.4.167.12/api-admin-oyefm/public/index.php/";
+            },search_empresas: function() {
+                // return "http://186.4.167.12/mod_radio/";
+                return "http://186.4.167.12:3000/";
 
             }
         }
