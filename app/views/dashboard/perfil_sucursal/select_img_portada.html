@@ -10,27 +10,35 @@
       </div>
     </md-toolbar>
 
-    <md-dialog-content layout="row">
-      
-       <md-card flex ng-repeat="img in imgs" style="cursor: pointer;" ng-click="set_img_portada(img)">
-        <div class="card card--big">
-            <div style="background-image: url({{img.direccion_imagen_empresa}}); background-position-y: 0;" class="card__image"></div>
-        </div>
-        <div style="position: fixed;">
-            <md-button class="md-icon-button" aria-label="More">
-                <md-icon ng-click="show_delete_modal()">delete</md-icon>
-            </md-button>
-        </div>
-      </md-card>
-
+    <md-dialog-content >
+      <div id="gridContainer" ng-cloak>
+         <md-content layout-padding>
+            <md-grid-list
+               md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
+               md-row-height-gt-md="1:1" md-row-height="4:9"
+               md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+               <md-grid-tile
+                  ng-repeat="img in imgs"
+                  ng-style="{'background-image': 'url(' + img.direccion_imagen_empresa_dir + ')','background-position-y': 0,'background-size': '100% 100%'}"
+                  md-colspan-gt-sm="{{img.colspan}}"
+                  md-rowspan-gt-sm="{{img.rowspan}}">
+                  <md-grid-tile-footer>
+                      <md-button class="md-icon-button md-accent" aria-label="More">
+                          <md-icon ng-click="show_delete_modal($event,img)">delete</md-icon>
+                      </md-button>
+                      <md-button class="md-icon-button md-accent" aria-label="More">
+                          <md-icon ng-click="set_img_portada(img)">check</md-icon>
+                      </md-button>
+                </md-grid-tile-footer>
+               </md-grid-tile>
+            </md-grid-list>
+         </md-content>
+      </div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
       <md-button ng-click="cancel()">
        Cancelar
-      </md-button>
-      <md-button ng-click="Upload()">
-        Guardar
       </md-button>
     </md-dialog-actions>
   </form>

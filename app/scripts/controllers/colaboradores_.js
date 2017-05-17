@@ -42,7 +42,7 @@ var app = angular.module('nextbook20App')
 		        })
 		    }
 
-		    function DialogController_nuevo($scope, tipo_usuario,ciudades,$mdToast) {
+		    function DialogController_nuevo($scope, tipo_usuario,ciudades,$mdToast,mainService) {
 				
 		    	$scope.procesando=false; // pone boton espera si no a retornado el resultado esperado
 					
@@ -66,9 +66,7 @@ var app = angular.module('nextbook20App')
 			        cm.selectCallback = selectCallback;
 			        cm.selectCiudades = ciudades;
 			        cm.selectModelCiudad = {
-			            selectedCiudades: undefined,
-			            selectedPeople: [cm.selectCiudades[2], cm.selectCiudades[4]],
-			            selectedPeopleSections: []
+			            selectedCiudades: undefined
 			        };
 
 			    // // ------------------------------SELECT OPERADORAS TELEFONICA------------------
@@ -91,10 +89,47 @@ var app = angular.module('nextbook20App')
 			            selectedPeopleSections: []
 			        };
 
+			    function success_buscar_colaborador(result){
+
+                    if (result.respuesta==true) {
+	                    if (result.data) {
+	                    		$scope.data_usuario=result.data;
+	                    		$scope.data_usuario.nombres_completos=result.data.primer_apellido+' '+result.data.segundo_apellido+' '+result.data.primer_nombre+' '+result.data.segundo_nombre;
+	                    		$scope.data_usuario.nick=result.data.numero_documento;
+	                    		for (var i = 0; i < ciudades.length; i++) {
+	                    			if (ciudades[i].id==result.data.id_localidad||ciudades[i].nombre_bus==result.data.id_localidad) {
+	                    				$scope.selectModelCiudad.selectedCiudades=ciudades[i];
+	                    				break;
+	                    			}
+	                    		}
+	                    }
+                    }
+
+                }
+	            $scope.buscar_persona=function(){
+	                if ($scope.data_usuario&&$scope.data_usuario.numero_documento) {
+	                    if ($scope.data_usuario.numero_documento.length==10) {
+	                        // if ($scope.data_usuario.numero_documento.length==10) {
+	                            var datos={numero_documento:$scope.data_usuario.numero_documento,tipodocumento:'CEDULA'};
+	                            $scope.tipo_cliente='P';
+	                        // };
+	                        // if ($scope.data_usuario.numero_documento.length==13) {
+	                        //     var datos={nrodocumento:$scope.data_usuario.numero_documento,tipodocumento:'RUC'};
+	                        //     $scope.tipo_cliente='E';
+	                        // };
+	                           colaboradores_Service.Existencia_Colaborador().get(datos,success_buscar_colaborador).$promise;
+	                        }
+	                }else{
+	                    $scope.data_usuario={};
+	                    cm.selectModelCiudad.selectedCiudades=undefined;
+	                }
+	            }
+
 		        // Nuevo registro tipo inventario
 		        $scope.col_usuario_nuevo = function() {
 		        	$scope.data_usuario.id_localidad=cm.selectModelCiudad.selectedCiudades.id;
-		        	$scope.procesando=true; // pone boton espera si no a retornado el resultado esperado
+		        	$scope.procesando=true; 
+		        	// pone boton espera si no a retornado el resultado esperado
 		        	// $scope.data_usuario.id_tipo_documento=vm.selectModelDocument.selectedPerson.id;
 		        	$scope.data_usuario.id_tipo_usuario=vd.selectModel.selectedPerson.id;
 		        	// $scope.data_usuario.id_operadora_telefonica=om.selectModelOperadora.selectedOperadora.id;

@@ -84,6 +84,17 @@ angular.module('nextbook20App')
 	            }
 	        });
     	};
+
+    	this.Existencia_Colaborador = function() {
+	        return $resource(urlService.server().appnext()+'Existencia_Colaborador', {} , {
+	            get: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                    token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
     	this.Update_Col_Usuario = function(){
     		return $resource(urlService.server().appnext()+'Update_Col_Usuario', {} , {
 	            actualizar: {

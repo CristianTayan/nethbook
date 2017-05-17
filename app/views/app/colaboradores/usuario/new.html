@@ -15,34 +15,29 @@
                         <div layout="row">
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
-                                <label>Primer Nombre</label>
-                                <input name="primer_nombre" ng-model="data_usuario.primer_nombre" uppercase type="text" required>
-                                <div ng-messages="form_usuario.primer_nombre.$error" ng-show="form_usuario.primer_nombre.$dirty">
+                                <label>Documento de Identificación (Cédula)</label>
+                                <input name="numero_documento" ng-model="data_usuario.numero_documento" autocomplete="false" numeros-only limit-to="10" ng-keyup="buscar_persona()"  type="text" required>
+                                <div ng-messages="form_usuario.numero_documento.$error" ng-show="form_usuario.numero_documento.$dirty">
                                     <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Repetido</div>
                                 </div>
                             </md-input-container>
                             <md-input-container class="md-icon-float md-block" flex>
                                 <md-icon class="md-primary">view_compact</md-icon>
-                                <label>Segundo Nombre</label>
-                                <input name="segundo_nombre" ng-model="data_usuario.segundo_nombre" uppercase type="text" >
-                                <div ng-messages="form_usuario.segundo_nombre.$error" ng-show="form_usuario.segundo_nombre.$dirty">
+                                <label>Nombres Completos</label>
+                                <input name="nombres_completos" ng-model="data_usuario.nombres_completos" uppercase type="text" required>
+                                <div ng-messages="form_usuario.nombres_completos.$error" ng-show="form_usuario.nombres_completos.$dirty">
                                     <div ng-message="required">Campo Requerido</div>
                                 </div>
                             </md-input-container>
                             <md-input-container class="md-icon-float md-block" flex>
-                                <md-icon class="md-primary">view_compact</md-icon>
-                                <label>Primer Apellido</label>
-                                <input name="primer_apellido" ng-model="data_usuario.primer_apellido" uppercase type="text" required>
-                                <div ng-messages="form_usuario.primer_apellido.$error" ng-show="form_usuario.primer_apellido.$dirty">
+                                <md-icon class="md-primary">email</md-icon>
+                                <label>Correo Electrónico</label>
+                                <input name="correo" ng-model="data_usuario.correo_electronico" type="email" required correoelectronico-validator>
+                                <div ng-messages="form_usuario.correo.$error" ng-show="form_usuario.correo.$dirty">
                                     <div ng-message="required">Campo Requerido</div>
-                                </div>
-                            </md-input-container>
-                            <md-input-container class="md-icon-float md-block" flex>
-                                <md-icon class="md-primary">view_compact</md-icon>
-                                <label>Segundo Apellido</label>
-                                <input name="segundo_apellido" ng-model="data_usuario.segundo_apellido" uppercase type="text" >
-                                <div ng-messages="form_usuario.segundo_apellido.$error" ng-show="form_usuario.segundo_apellido.$dirty">
-                                    <div ng-message="required">Campo Requerido</div>
+                                    <div ng-message="campo">Registro Existente</div>
+                                    <div ng-message="email">Correo Invalido</div>
                                 </div>
                             </md-input-container>
                         </div>  
@@ -85,17 +80,7 @@
                                 <input name="numero_casa" ng-model="data_usuario.numero_casa" type="text" >
                             </md-input-container>
                         </div> 
-                        <div layout="row">   
-                        <md-input-container class="md-icon-float md-block" flex>
-                                <md-icon class="md-primary">email</md-icon>
-                                <label>Correo Electrónico</label>
-                                <input name="correo" ng-model="data_usuario.correo_electronico" type="email" required correoelectronico-validator>
-                                <div ng-messages="form_usuario.correo.$error" ng-show="form_usuario.correo.$dirty">
-                                    <div ng-message="required">Campo Requerido</div>
-                                    <div ng-message="campo">Registro Existente</div>
-                                    <div ng-message="email">Correo Invalido</div>
-                                </div>
-                            </md-input-container>                 
+                        <div layout="row">           
                             <md-input-container class="md-icon-float md-icon-left md-block" flex>
                                 <md-icon class="md-primary">supervisor_account</md-icon>
                                 <lx-select ng-model="selectModel.selectedPerson"

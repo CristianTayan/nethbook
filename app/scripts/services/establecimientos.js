@@ -72,4 +72,17 @@ angular.module('nextbook20App')
             }
         });
     };
+    //----------------------------------------------------------------- Delete Imagen de Portada
+    this.Delete_Img_Portada=function() {
+        return $resource(urlService.server().appnext()+'Delete_Img_Portada', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                    sucursal:$localStorage.sucursal.id
+                }
+            }
+        });
+    };
   });
