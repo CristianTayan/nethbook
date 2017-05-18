@@ -31,7 +31,7 @@ angular.module('nextbook20App')
                 return "http://186.4.167.12/api-admin-oyefm/public/index.php/";
             },search_empresas: function() {
                 // return "http://186.4.167.12/mod_radio/";
-                return "http://186.4.167.12:3000/";
+                return "http://186.4.167.6:3000/";
 
             }
             ,dir: function() {
