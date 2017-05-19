@@ -205,7 +205,7 @@ var app = angular.module('nextbook20App');
         };
 
          this.search_empresas = function() {
-            return $resource(urlService.server().search_empresas()+'empresas/:id',
+            return $resource(urlService.server().search_empresas()+':id',
                     {id: '@_id'},
                     {query: {method:'GET',isArray:false}
             });
