@@ -33,6 +33,7 @@ angular.module('nextbook20App')
             }
         });
     };
+    //-------------------------------------------------------------- PORTADA --------------------------------------------------------------
     //-------------------------------------------------------------- Añadir imagen de portada
      this.Add_Img_Portada=function() {
         return $resource(urlService.server().appnext()+'Add_Img_Portada', {}
@@ -75,6 +76,59 @@ angular.module('nextbook20App')
     //----------------------------------------------------------------- Delete Imagen de Portada
     this.Delete_Img_Portada=function() {
         return $resource(urlService.server().appnext()+'Delete_Img_Portada', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                    sucursal:$localStorage.sucursal.id
+                }
+            }
+        });
+    };
+    //-------------------------------------------------------------- PERFIL --------------------------------------------------------------
+    //-------------------------------------------------------------- Añadir imagen de Perfil
+     this.Add_Img_Perfil=function() {
+        return $resource(urlService.server().appnext()+'Add_Img_Perfil', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                }
+            }
+        });
+    };
+    //----------------------------------------------------------------- Get Imagenes de Perfil
+    this.Load_Imgs_Perfil=function() {
+        return $resource(urlService.server().appnext()+'Load_Imgs_Perfil', {}
+        , {
+            get: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                    sucursal:$localStorage.sucursal.id
+                }
+            }
+        });
+    };
+
+     //----------------------------------------------------------------- Set Imagen de Perfil
+    this.Set_Img_Perfil=function() {
+        return $resource(urlService.server().appnext()+'Set_Img_Perfil', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                    sucursal:$localStorage.sucursal.id
+                }
+            }
+        });
+    };
+    //----------------------------------------------------------------- Delete Imagen de Perfil
+    this.Delete_Img_Perfil=function() {
+        return $resource(urlService.server().appnext()+'Delete_Img_Perfil', {}
         , {
             send: {
                 method: 'POST', isArray: false,

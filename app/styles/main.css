@@ -149,12 +149,12 @@ md-dialog {
 }
 
  .demo-card-square.mdl-card {
-    height: 320px;
+    height: 200px;
 }
 
 .demo-card-square > .mdl-card__title {
     color: #fff;
-    background: #46B6AC;
+    /*background: #46B6AC;*/
 }
 
 /*main search*/

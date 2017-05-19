@@ -13,10 +13,14 @@
     <md-dialog-content >
       <div id="gridContainer" ng-cloak>
          <md-content layout-padding>
+            <div layout="row" layout-sm="column" layout-align="space-around" ng-show="cargando">
+              <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
             <md-grid-list
                md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
                md-row-height-gt-md="1:1" md-row-height="4:9"
-               md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+               md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px"
+               ng-show="!cargando">
                <md-grid-tile
                   ng-repeat="img in imgs"
                   ng-style="{'background-image': 'url(' + img.direccion_imagen_empresa_dir + ')','background-position-y': 0,'background-size': '100% 100%'}"
@@ -27,11 +31,16 @@
                           <md-icon ng-click="show_delete_modal($event,img)">delete</md-icon>
                       </md-button>
                       <md-button class="md-icon-button md-accent" aria-label="More">
-                          <md-icon ng-click="set_img_portada(img)">check</md-icon>
+                          <md-icon ng-click="set_img(img)">check</md-icon>
                       </md-button>
                 </md-grid-tile-footer>
                </md-grid-tile>
             </md-grid-list>
+            <div layout="row" layout-sm="column" layout-align="space-around">
+              <md-button class="md-fab md-mini md-primary" aria-label="More">
+                <md-icon>expand_more</md-icon>
+              </md-button>
+            </div>
          </md-content>
       </div>
     </md-dialog-content>
