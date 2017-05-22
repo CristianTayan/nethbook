@@ -13,7 +13,43 @@ angular.module('nextbook20App')
     $rootScope.imgPerfil=urlService.server().dir()+$localStorage.imgPerfil;
 
     $scope.datos2 = $localStorage.datosE;
+    // Show imagen de perfil,portada
 
+    $scope.show_img = function(ev,tipo_img){
+      $mdDialog.show({
+        controller: Dialog_show_image_Controller,
+        templateUrl: 'views/dashboard/perfil_sucursal/show_img.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:false,
+        fullscreen: $scope.customFullscreen, // Only for -xs, -sm breakpoints.
+        locals:{tipo:tipo_img}
+      });
+    }
+    // Controlador Mostrar 
+    function Dialog_show_image_Controller($scope, tipo,mainService,urlService){
+      $scope.cargando=true;
+      function ok_img(resul){
+        $scope.cargando=false;
+        $scope.img=urlService.server().dir()+resul.img;
+      }
+      switch(tipo){
+          case 'Perfil':
+            //--------------------cargar imagen perfil-----------
+                mainService.Get_Img_Perfil().get({sucursal:$localStorage.sucursal.id},ok_img).$promise;
+          break;
+          case 'Portada':
+            //--------------------cargar imagen Portada-----------
+                mainService.Get_Img_Portada().get({sucursal:$localStorage.sucursal.id},ok_img).$promise;
+                // -------------------------   fin
+          break;
+        }
+      // // -------------------------------elementos acciones show_listaimg_modal-------------------------------
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+    }
 
 //------------------------------------------------------------------------------- PORTADA
 //------------------------------------------------------------------------------- SUBIR IMAGEN DE PORTADA
@@ -40,7 +76,7 @@ angular.module('nextbook20App')
        $scope.Upload = function(){
         switch(tipo_img){
           case 'Portada':
-            establecimientosService.Add_Img_Portada().send({img:$scope.cropper.croppedImage,sucursal:$localStorage.sucursal.id}).$promise.then((resul)=>{
+            establecimientosService.Add_Img_Portada().send({img:$scope.cropper,sucursal:$localStorage.sucursal.id}).$promise.then((resul)=>{
             if (resul.respuesta==true) {
               $rootScope.imgPortada=urlService.server().dir()+resul.img;
               $localStorage.imgPortada=resul.img;
@@ -49,7 +85,7 @@ angular.module('nextbook20App')
             });
           break;
           case 'Perfil':
-          establecimientosService.Add_Img_Perfil().send({img:$scope.cropper.croppedImage,sucursal:$localStorage.sucursal.id}).$promise.then((resul)=>{
+          establecimientosService.Add_Img_Perfil().send({img:$scope.cropper,sucursal:$localStorage.sucursal.id}).$promise.then((resul)=>{
             if (resul.respuesta==true) {
               $rootScope.imgPerfil=urlService.server().dir()+resul.img;
               $localStorage.imgPerfil=resul.img;
@@ -115,7 +151,7 @@ angular.module('nextbook20App')
         establecimientosService.Set_Img_Portada().send({img:img.id}).$promise.then((resul)=>{
           if (resul.respuesta==true) {
             $rootScope.imgPortada=img.direccion_imagen_empresa_dir;
-            $localStorage.imgPortada=img.direccion_imagen_empresa;
+            $localStorage.imgPortada=img.direccion_imagen_recorte;
             $mdDialog.hide();
           }
         });
@@ -154,7 +190,7 @@ angular.module('nextbook20App')
 
         }
     }
-    // Controlador Perfil
+    // Controlador Grid de Imagenes Perfil
 
     function Dialog_lista_image_Perfil_Controller($scope,$rootScope, $timeout, urlService, $localStorage,establecimientosService){
       $scope.cargando=true;
@@ -185,7 +221,7 @@ angular.module('nextbook20App')
         establecimientosService.Set_Img_Perfil().send({img:img.id}).$promise.then((resul)=>{
           if (resul.respuesta==true) {
             $rootScope.imgPerfil=img.direccion_imagen_empresa_dir;
-            $localStorage.imgPerfil=img.direccion_imagen_empresa;
+            $localStorage.imgPerfil=img.direccion_imagen_recorte;
             $mdDialog.hide();
           }
         });

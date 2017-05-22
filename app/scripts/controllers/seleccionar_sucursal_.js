@@ -17,7 +17,7 @@ angular.module('nextbook20App')
 	    });
 	    $scope.Select_Sucursal = function(index) {
 	        $localStorage.sucursal = index;
-	         //--------------------cargar imagen perfil-----------
+	         		//--------------------cargar imagen perfil-----------
 		            mainService.Get_Img_Perfil().get({sucursal:index.id}).$promise.then(function(data) {
 		            	$localStorage.imgPerfil = data.img;		                
 		            },function(error){

@@ -16,9 +16,9 @@
       lf-drag-and-drop-label="Arrastra las fotos aqui" 
       drag preview lf-browse-label="Buscar"></lf-ng-md-file-input> -->
 
-      <input type="file" img-cropper-fileread image="cropper.sourceImage" accept="image/*" />
+      <input type="file" img-cropper-fileread image="cropper.full" accept="image/*" />
         <div>
-             <canvas ng-show="cropper.sourceImage!=undefinied" width="800" height="300" id="canvas" image-cropper image="cropper.sourceImage" cropped-image="cropper.croppedImage" crop-width="1000" crop-height="600" keep-aspect="true" touch-radius="30" crop-area-bounds="bounds" cors="no"></canvas>
+             <canvas ng-show="cropper.full!=undefinied" crop-width="1000" crop-height="300" width="600" height="300" id="canvas" image-cropper image="cropper.full" cropped-image="cropper.crop"  keep-aspect="true" touch-radius="30" crop-area-bounds="bounds" cors="no"></canvas>
         </div>
     </md-dialog-content>
 
