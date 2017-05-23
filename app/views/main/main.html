@@ -1,131 +1,192 @@
 <md-toolbar>
-  <div class="md-toolbar-tools md-toolbar-registro">
-    <span flex></span>
-    <md-button class="md-accent md-raised" aria-label="Learn More" ng-href="#/Registro">
-      Iniciar Sesion
-    </md-button>
-  </div>
+    <div class="md-toolbar-tools md-toolbar-registro">
+        <h1>Nethbook, Red de Negocios</h1>
+        <span flex></span>
+        <md-button class="md-accent md-raised" aria-label="Learn More" ng-href="#/Registro">
+            Iniciar Sesion
+        </md-button>
+    </div>
 </md-toolbar>
-<div layout="column" layout-align="center center">
-    <h1>Nethbook, Red de Negocios</h1>
-    <img ng-src="images/main/publi1.png">
-    <div ng-controller="main_Ctrl as main_Ctrl">
-      <div class="mjd">
-        <md-input-container class="md-icon-float md-icon-right md-block">
-          <label>Buscar por serviciosm negocios, empresas, provincias.</label>
-          <input ng-model="data_search" type="text" ng-keyup="buscando()" autocomplete="off">
-          <md-icon class="md-accent">search</md-icon>
-        </md-input-container>
-      </div>
-      <md-content style="height: 410px; background: #EEEEEE">
-        <ul class="ca-menu">
-          <li ng-repeat="item in elementos | limitTo:5" >
-            <a href="" click="selectedItemChange({{item}})">
-              <div class="ca-icon"><md-icon>home</md-icon></div>
-              <div class="ca-content">
-                <div class="ca-main">{{item.NOMBRE_COMERCIAL}}</div>
-                <div class="ca-sub">{{item.NUMERO_RUC}}</div>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </md-content>
-      
-    </div>
-    </div>
-</div>
+<md-content flex layout="row">
+    <md-content flex style="background: #EEEEEE!important;">
+        <!-- <div layout="row" layout-align="center center"> -->
+            <div ng-controller="main_Ctrl as main_Ctrl">
+                <div layout="column" layout-align="center center">
+                    <img ng-show="img" ng-src="images/main/publi1.png">
+                    <div class="mjd">
+                        <form name="formsearch">
+                            <div layout="row" flex>
+                                <md-input-container class="md-icon-float md-block" flex-gt-xs>
+                                    <label>Buscar por servicios, negocios, empresas</label>
+                                    <md-icon class="md-accent">widgets</md-icon>
+                                    <input type="text" id="sc" ng-model="data_search" ng-keyup="buscando()" md-no-asterisk autocomplete="off"  md-autofocus="true" required>
+                                </md-input-container>
+                                <md-button class="md-fab md-mini" type="submit" ng-disabled="formsearch.$invalid">
+                                    <md-icon class="material-icons">search</md-icon>
+                                </md-button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div layout="column" layout-align="center center">
+                <md-content style=" background: #EEEEEE;" layout-padding flex>
+                    <!-- <ul class="ca-menu" flex>
+                        <li ng-repeat="item in elementos ">
+                            <a href="" ng-click="selectedItemChange(item)">
+                                <div class="ca-content">
+                                    <div class="ca-sub" >
+                                        {{isNAN(data_search)}}
+                                        {{item.ruc | limitTo: 10}}
+                                        <span class="ca-main" ng-if="item.nombre_comercial">
+                                          {{item.nombre_comercial | limitTo: 35}}
+                                        </span>
+                                        <span ng-if="!item.nombre_comercial">
+                                            <span ng-if="item.razon_social">
+                                              {{item.razon_social | limitTo: 35}}
+                                              <span ng-if="item.razon_social.length > 36">...</span>
+                                            </span>
+                                        </span>
+                                        {{item.actividad_economica}}
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul> -->
+                    <md-list flex>
+                        <md-list-item class="md-3-line" ng-repeat="item in elementos" ng-click="null">
+                            <md-icon class="md-avatar-icon">business</md-icon>
+                            <div class="md-list-item-text" layout="column">
 
+                                <h3>
+                                                    <span ng-if="!item.nombre_comercial">
+                                                        <span ng-if="item.razon_social">
+                                                          {{item.razon_social | limitTo: 35}}
+                                                          <span ng-if="item.razon_social.length > 36">...</span>
+                                                        </span>
+                                                    </span>
+                                                </h3>
+                                <h4>{{item.ruc | limitTo: 10}}</h4>
+                                <p>
+                                    {{item.actividad_economica | lowercase | limitTo:250}}
+                                    <span ng-if="item.actividad_economica.length > 250">...</span>
+                                </p>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+                </div>
+            </div>
+        <!-- </div> -->
+    </md-content>
+</md-content>
 <style type="text/css">
-  .mjd{
-    background: #FFF;
-    padding-top: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 11px;
-    width: 500px;
-    max-width: 500px;
-  }
-  md-input-container {
-    display: inline-block;
-    position: relative;
-    padding: 0px;
-    margin: 0px 0;
-    vertical-align: middle;
-}
 
-.ca-menu li{
-  width: 500px;
-  height: 70px;
-  overflow: hidden;
-  display: block;
-  background: #fff;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-  margin-bottom: 4px;
-  border-left: 10px solid #000;
-  transition: all 300ms ease-in-out;
-}
-.ca-menu li:last-child{
-    margin-bottom: 0px;
-}
-.ca-menu li a{
-    text-align: left;
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: #333;
-    position:relative;
-}
-.ca-icon {
-    font-family: 'WebSymbolsRegular', cursive;
-    font-size: 20px;
-    text-shadow: 0px 0px 1px #333;
-    line-height: 70px;
-    position: absolute;
-    width: 70px;
-    left: 0px;
-    text-align: center;
-    transition: all 300ms linear;
-}
+    md-list-item{
+        background: #FFF;
+        border-left: 10px solid #757575!important;
+        margin-bottom: 4px;
+    }
 
-.ca-menu{
-    padding: 0;
-    margin: 20px auto;
-    width: 500px;
-}
 
-.ca-content {
-    position: absolute;
-    left: 69px;
-    width: 370px;
-    height: 60px;
-    top: 12px;
-}
+    .mjd {
+      background: #FFF;
+      padding-top: 30px;
+      padding-left: 10px;
+      padding-right: 10px;
+      border-radius: 11px;
+      width: 500px;
+      max-width: 500px;
+    }
 
-.ca-main{
-    font-size: 15px;
-    transition: all 300ms linear;
-}
-.ca-sub{
-    font-size: 14px;
-    color: #666;
-    transition: all 300ms linear; 
-}
+    md-input-container {
+      display: inline-block;
+      position: relative;
+      padding: 0px;
+      margin: 0px 0;
+      vertical-align: middle;
+    }
 
-.ca-menu li:hover{
-    border-color: #FF4081;
-    background: #333333;
-}
-.ca-menu li:hover .ca-icon{
-    color: #FF4081;
-    text-shadow: 0px 0px 1px #FF4081;
-    font-size: 50px;
-}
-.ca-menu li:hover .ca-main{
-    color: #FF4081;
-    font-size: 14px;
-}
-.ca-menu li:hover .ca-sub{
-    color: #fff;
-    font-size: 20px;
-}
+    .ca-menu li {
+      /*width: 500px;*/
+      background: green:;
+      height: 40px;
+      overflow: hidden;
+      display: block;
+      background: #fff;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      margin-bottom: 4px;
+      border-left: 10px solid #757575;
+      transition: all 300ms ease-in-out;
+    }
+
+    .ca-menu li:last-child {
+      margin-bottom: 0px;
+    }
+
+    .ca-menu li a {
+      text-align: left;
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: #333;
+      position: relative;
+    }
+
+    .ca-icon {
+      font-family: 'WebSymbolsRegular', cursive;
+      font-size: 20px;
+      text-shadow: 0px 0px 1px #333;
+      line-height: 70px;
+      position: absolute;
+      width: 70px;
+      left: 0px;
+      text-align: center;
+      transition: all 300ms linear;
+    }
+
+    .ca-menu {
+      padding: 0;
+      margin: 20px auto;
+      /*width: 500px;*/
+    }
+
+    .ca-content {
+      position: absolute;
+      left: 10px;
+      /*width: 370px;*/
+      height: 60px;
+      top: 9px;
+    }
+
+    .ca-main {
+      font-size: 15px;
+      transition: all 300ms linear;
+    }
+
+    .ca-sub {
+      font-size: 14px;
+      color: #666;
+      transition: all 300ms linear;
+    }
+
+    .ca-menu li:hover {
+      border-color: #FF4081;
+      background: #333333;
+    }
+
+    .ca-menu li:hover .ca-icon {
+      color: #FF4081;
+      text-shadow: 0px 0px 1px #FF4081;
+      font-size: 50px;
+    }
+
+    .ca-menu li:hover .ca-main {
+      color: #FF4081;
+      font-size: 12px;
+    }
+
+    .ca-menu li:hover .ca-sub {
+      color: #fff;
+      font-size: 16px;
+    }
 </style>
