@@ -11,14 +11,9 @@
     </md-toolbar>
 
     <md-dialog-content>
-      <!-- <lf-ng-md-file-input  name="files00" lf-files="files" lf-api="api09" lf-required lf-maxcount="5" lf-filesize="10MB" lf-mimetype="image/*" 
-      lf-remove-label="Limpiar"
-      lf-drag-and-drop-label="Arrastra las fotos aqui" 
-      drag preview lf-browse-label="Buscar"></lf-ng-md-file-input> -->
-
       <input type="file" img-cropper-fileread image="cropper.full" accept="image/*" />
         <div>
-             <canvas ng-show="cropper.full!=undefinied" crop-width="1000" crop-height="300" width="600" height="300" id="canvas" image-cropper image="cropper.full" cropped-image="cropper.crop"  keep-aspect="true" touch-radius="30" crop-area-bounds="bounds" cors="no"></canvas>
+             <canvas ng-show="cropper.full!=undefinied" crop-width="crop_size.width" crop-height="crop_size.height" width="600" height="300" id="canvas" image-cropper image="cropper.full" cropped-image="cropper.crop"  keep-aspect="true" touch-radius="30" crop-area-bounds="bounds" cors="no"></canvas>
         </div>
     </md-dialog-content>
 
@@ -26,7 +21,7 @@
       <md-button ng-click="cancel()">
        Cancelar
       </md-button>
-      <md-button ng-click="Upload()">
+      <md-button ng-click="Upload()" ng-disabled="cropper.full==undefinied">
         Guardar
       </md-button>
     </md-dialog-actions>

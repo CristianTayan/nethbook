@@ -27,11 +27,11 @@
                   md-colspan-gt-sm="{{img.colspan}}"
                   md-rowspan-gt-sm="{{img.rowspan}}">
                   <md-grid-tile-footer>
-                      <md-button class="md-icon-button md-accent" aria-label="More">
-                          <md-icon ng-click="show_delete_modal($event,img)">delete</md-icon>
+                      <md-button class="md-icon-button md-accent" ng-click="show_delete_modal($event,img)" aria-label="More">
+                          <md-icon>delete</md-icon>
                       </md-button>
-                      <md-button class="md-icon-button md-accent" aria-label="More">
-                          <md-icon ng-click="set_img(img)">check</md-icon>
+                      <md-button class="md-icon-button md-accent" ng-click="set_img(img)" aria-label="More">
+                          <md-icon>check</md-icon>
                       </md-button>
                 </md-grid-tile-footer>
                </md-grid-tile>

@@ -64,11 +64,14 @@ var app = angular.module('nextbook20App')
 
 
 
-		function DialogController($scope, item, menuService){
+		function DialogController($scope, item, menuService,mainService){
 			$scope.nick = item;
 			$scope.ingresar_colaborador = function() {
+
+				console.log($scope.hora);
 				var obj = {'ruc' : $scope.nick.ruc_empresa, clave: $scope.clave, 'nick':$scope.nick.nick};
-		        colaboradores_Service.Ingresar_Colaborador().acceso({acceso:obj,info_servidor:'', ip_cliente:'192.168.0.1', macadress:'00:00:00:00:00'}).$promise.then(function(data) {
+		        colaboradores_Service.Ingresar_Colaborador().acceso({acceso:obj,info_servidor:'', ip_cliente:'192.168.0.1', macadress:'00:00:00:00:00',hora:$scope.hora}).$promise.then(function(data) {
+		     	       		
 		        	$mdDialog.cancel();
 		        	if (data.respuesta == false) {
 		            	$mdDialog.show(
@@ -84,6 +87,7 @@ var app = angular.module('nextbook20App')
 			            $localStorage.token = data.token;
 			            $localStorage.datosE = data.datosE;
 			            $localStorage.datosPersona = data.datosPersona;
+			            $localStorage.hsesion={hora_fin:new Date(data.hora_fin).getTime() / 1000};
 
 			            // generacion acceso personalizado
 			            menuService.Generar_Vista().get().$promise.then(function(data) {

@@ -8,7 +8,7 @@
  * Service in the nextbook20App.
  */
 var app = angular.module('nextbook20App');
-    app.service('mainService', function ($resource, urlService, $localStorage) {
+    app.service('mainService', function ($resource, urlService, $localStorage,$filter) {
 
         // AngularJS will instantiate a singleton by calling "new" on this function
         //------------------------------------------------------    INICIO BUSQUEDA DE EMPRESAS -------------------------------------------------------
@@ -211,9 +211,12 @@ var app = angular.module('nextbook20App');
             });
         };
 
+        this.Get_Hora_in_Time = function() {
+            var date_in_time = new Date().getTime() / 1000;
+            return date_in_time;
+        };
         
 
-        
     });
 app.factory('mySocket', function (socketFactory) {
     // console.log(socketFactory());

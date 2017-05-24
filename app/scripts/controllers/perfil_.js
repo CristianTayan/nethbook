@@ -11,7 +11,7 @@ angular.module('nextbook20App')
   .controller('perfil_Ctrl', function ($scope,$rootScope, $localStorage, $mdDialog, $timeout, urlService) {
     $rootScope.imgPortada=urlService.server().dir()+$localStorage.imgPortada;
     $rootScope.imgPerfil=urlService.server().dir()+$localStorage.imgPerfil;
-
+    console.log($rootScope.imgPortada);
     $scope.datos2 = $localStorage.datosE;
     // Show imagen de perfil,portada
 
@@ -68,7 +68,17 @@ angular.module('nextbook20App')
 
     function Dialog_subir_image_Controller($scope, $timeout, urlService, $localStorage,establecimientosService,tipo_img){
       
-      // // -------------------------------elementos acciones show_listaimg_modal-------------------------------
+      
+       switch(tipo_img){
+          case 'Portada':
+            $scope.crop_size={width:1000,height:300};
+          break;
+          case 'Perfil':
+            $scope.crop_size={width:500,height:250};
+          break;
+        }
+
+      // // -------------------------------elementos acciones show_lista img_modal-------------------------------
       $scope.cancel = function() {
         $mdDialog.cancel();
       };
@@ -129,8 +139,8 @@ angular.module('nextbook20App')
         $scope.cargando=false;
         $scope.imgs=result.imgs;
         for (var i = 0; i < $scope.imgs.length; i++) {
-            $scope.imgs[i].direccion_imagen_empresa_dir=urlService.server().dir()+$scope.imgs[i].direccion_imagen_empresa;
-            $scope.imgs[i].colspan= 3;
+            $scope.imgs[i].direccion_imagen_empresa_dir=urlService.server().dir()+$scope.imgs[i].direccion_imagen_recorte;
+            $scope.imgs[i].colspan= 4;
             $scope.imgs[i].rowspan= 2;
         }
       }
@@ -150,6 +160,7 @@ angular.module('nextbook20App')
        $scope.set_img = function(img){
         establecimientosService.Set_Img_Portada().send({img:img.id}).$promise.then((resul)=>{
           if (resul.respuesta==true) {
+            console.log(img.direccion_imagen_recorte);
             $rootScope.imgPortada=img.direccion_imagen_empresa_dir;
             $localStorage.imgPortada=img.direccion_imagen_recorte;
             $mdDialog.hide();
@@ -199,8 +210,8 @@ angular.module('nextbook20App')
         $scope.cargando=false;
         $scope.imgs=result.imgs;
         for (var i = 0; i < $scope.imgs.length; i++) {
-            $scope.imgs[i].direccion_imagen_empresa_dir=urlService.server().dir()+$scope.imgs[i].direccion_imagen_empresa;
-            $scope.imgs[i].colspan= 3;
+            $scope.imgs[i].direccion_imagen_empresa_dir=urlService.server().dir()+$scope.imgs[i].direccion_imagen_recorte;
+            $scope.imgs[i].colspan= 4;
             $scope.imgs[i].rowspan= 2;
         }
       }

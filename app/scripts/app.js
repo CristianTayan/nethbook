@@ -73,7 +73,38 @@ var app = angular.module('nextbook20App', [
     //     'material.core'
     //   ]);
     
+    app.controller('mouseCtrl',($scope,$localStorage,$location, mainService)=>{
+        $scope.verify_Session=function(){
+            if ($localStorage.token) {
+                $scope.hora=mainService.Get_Hora_in_Time();
+                $scope.hora_cliente=parseInt($scope.hora);
+                $scope.resta=$localStorage.hsesion.hora_fin-$scope.hora_cliente;
+                //si esta sincronizado
+                if ($scope.resta<=60&&$scope.resta>-60) {
+                    console.log('sincronizado');
+                    // si mueve el mouse antes de los 30 segundos, renovar token
+                    if ($scope.resta>0&&$scope.resta<30) {
 
+                    }
+                    // si mueve el mouse al llegar al 0, terminar sesion;
+                    if ($scope.resta==0||$scope.resta<0) {
+                        var storage = $localStorage.cook_session_init;
+                            $localStorage.$reset();
+                            $localStorage.cook_session_init = storage;
+                            $location.path('/Registro');
+                    }
+                    console.log($scope.resta);
+                }
+                //No esta sincronizado
+                else if($scope.resta>60&&$scope.resta<-60){
+                    console.log('no sincronizado');
+                    console.log($scope.resta);
+                };
+                
+            }
+            
+        }
+    });
 
 
     
