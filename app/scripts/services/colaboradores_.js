@@ -265,5 +265,16 @@ angular.module('nextbook20App')
 	            }
 	        });
     	};
+    	//---------------------------------------------------------------- SEIONES COLABORADORES ----------------------------------------------------------------//
+    	this.Refresh_Token = function() {
+	        return $resource(urlService.server().appnext()+'Refresh_Token', {} , {
+	            send: {
+	                method: 'POST', isArray: false,
+	                params: {
+	                   token: $localStorage.token
+	                }
+	            }
+	        });
+    	};
 
   });

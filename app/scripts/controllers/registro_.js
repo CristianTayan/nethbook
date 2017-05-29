@@ -64,11 +64,10 @@ var app = angular.module('nextbook20App')
 
 
 
-		function DialogController($scope, item, menuService,mainService){
+		function DialogController($rootScope,$scope, item, menuService,mainService){
 			$scope.nick = item;
 			$scope.ingresar_colaborador = function() {
 
-				console.log($scope.hora);
 				var obj = {'ruc' : $scope.nick.ruc_empresa, clave: $scope.clave, 'nick':$scope.nick.nick};
 		        colaboradores_Service.Ingresar_Colaborador().acceso({acceso:obj,info_servidor:'', ip_cliente:'192.168.0.1', macadress:'00:00:00:00:00',hora:$scope.hora}).$promise.then(function(data) {
 		     	       		
@@ -87,8 +86,9 @@ var app = angular.module('nextbook20App')
 			            $localStorage.token = data.token;
 			            $localStorage.datosE = data.datosE;
 			            $localStorage.datosPersona = data.datosPersona;
-			            $localStorage.hsesion={hora_fin:new Date(data.hora_fin).getTime() / 1000};
-
+			            //datos para control de session
+			            $localStorage.hsesion={hora_fin:new Date(data.hora_fin).getTime() / 1000,estado_token:1};			     
+		                //fin
 			            // generacion acceso personalizado
 			            menuService.Generar_Vista().get().$promise.then(function(data) {
 					        $localStorage.menu = data;
@@ -96,6 +96,8 @@ var app = angular.module('nextbook20App')
 			            //---------------------- verificar si existe datos de persona-----------
 			            mainService.Get_Datos_Empresa().get().$promise.then(function(data) {
 			                if (data.respuesta) {
+			                	//iniciar sesion
+			                	$rootScope.$emit('start_session',{});
 			                    $location.path('/Seleccionar_Sucursal');
 			                } else {
 			                    $location.path('/Actualizar_Datos');

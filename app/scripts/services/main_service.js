@@ -215,6 +215,10 @@ var app = angular.module('nextbook20App');
             var date_in_time = new Date().getTime() / 1000;
             return date_in_time;
         };
+
+        this.Tiempo_espera_sesion = function() {
+            return 600;
+        };
         
 
     });

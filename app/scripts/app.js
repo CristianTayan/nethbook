@@ -73,34 +73,56 @@ var app = angular.module('nextbook20App', [
     //     'material.core'
     //   ]);
     
-    app.controller('mouseCtrl',($scope,$localStorage,$location, mainService)=>{
+    app.controller('mouseCtrl',($rootScope,$scope,$localStorage,$location, mainService,colaboradores_Service)=>{
+       
+        $scope.primera_vez=()=>{
+             if ($localStorage.hsesion) {
+                console.log('ok sesion');
+                $scope.t=mainService.Tiempo_espera_sesion();
+                $scope.s=$localStorage.hsesion.hora_fin;
+                if ($localStorage.hsesion.u1) {
+                    $scope.u1=$localStorage.hsesion.u1;
+                }else{
+                    $scope.u1=parseInt(mainService.Get_Hora_in_Time());
+                    $localStorage.hsesion.u1=$scope.u1;
+                }
+                $scope.d1=$scope.s-$scope.u1;
+            }
+        }
+        $rootScope.$on("start_session", function() {
+                $scope.primera_vez();
+            });
+        $scope.primera_vez();
         $scope.verify_Session=function(){
-            if ($localStorage.token) {
-                $scope.hora=mainService.Get_Hora_in_Time();
-                $scope.hora_cliente=parseInt($scope.hora);
-                $scope.resta=$localStorage.hsesion.hora_fin-$scope.hora_cliente;
-                //si esta sincronizado
-                if ($scope.resta<=60&&$scope.resta>-60) {
-                    console.log('sincronizado');
+            if ($localStorage.hsesion) {
+                var a,u,d,f;
+                u=parseInt(mainService.Get_Hora_in_Time());
+                d=$scope.s-u;
+                 a=d+$scope.t;
+                    f=a-$scope.d1;
+                    console.log(f);
                     // si mueve el mouse antes de los 30 segundos, renovar token
-                    if ($scope.resta>0&&$scope.resta<30) {
-
+                    if (f>0&&f<30) {
+                        $localStorage.hsesion.estado_token=0;
+                        console.log('update token');
+                        if ($localStorage.hsesion.estado_token==0) {
+                            colaboradores_Service.Refresh_Token().send({}).$promise.then((data)=>{
+                                if (data.respuesta) {
+                                    delete $localStorage.hsesion;
+                                    $localStorage.token=data.new_token;
+                                    $localStorage.hsesion={hora_fin:new Date(data.hora_fin).getTime() / 1000,estado_token:1};
+                                    $scope.primera_vez();
+                                }
+                            });
+                        }
                     }
                     // si mueve el mouse al llegar al 0, terminar sesion;
-                    if ($scope.resta==0||$scope.resta<0) {
+                    if (f==0||f<0) {
                         var storage = $localStorage.cook_session_init;
                             $localStorage.$reset();
                             $localStorage.cook_session_init = storage;
                             $location.path('/Registro');
                     }
-                    console.log($scope.resta);
-                }
-                //No esta sincronizado
-                else if($scope.resta>60&&$scope.resta<-60){
-                    console.log('no sincronizado');
-                    console.log($scope.resta);
-                };
-                
             }
             
         }
