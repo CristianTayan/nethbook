@@ -1,5 +1,51 @@
-<md-content layout="row" layout-align="center center">
-    <div layout="row" flex-xs="80" flex-gt-xs="80">
+<md-content flex layout-align="center center">
+    <div layout="column">
+        <div layout="row" layout-align="center center">
+            <div flex="80">
+                <md-card flex style="overflow-x:scroll;" ng-repeat="padre in [1,2,3]">
+                    <div layout="row">
+                        <md-card flex="5" style="background: rgba(0, 150, 136, 0.26);">
+                            <div class="md-accent" style="  transform: rotate(-90deg);
+                                                            width: 330px;
+                                                            margin-left: -134px;
+                                                            font-size: 22px;
+                                                            text-transform: uppercase;
+                                                            text-align: center;
+                                                            margin-top: 237%;" >Card with image</div>
+                        </md-card>
+                        <md-card ng-repeat="menu in [1,2,3,4,5]">
+                            <!-- <img class="md-card-image" src="images/app/inv_servicios/banner.png" alt="image caption"> -->
+                            <md-list ng-cloak>
+                                <md-subheader class="md-no-sticky">INVENTARIO SERVICIOS</md-subheader>
+                                <md-list-item ng-href="#/App/Inv_Servicios/">
+                                    <md-icon>keyboard_tab</md-icon>
+                                    <p>Entrar</p>
+                                </md-list-item>
+                                <md-list-item ng-href="#/App/Inv_Servicios/Servicios">
+                                    <md-icon>dvr</md-icon>
+                                    <p>Nuevo Servicio</p>
+                                </md-list-item>
+                                <md-list-item ng-href="#/App/Inv_Servicios/Categorias">
+                                    <md-icon>loyalty</md-icon>
+                                    <p>Categorias</p>
+                                </md-list-item>
+                                <md-list-item ng-href="#/App/Inv_Servicios/Modelos">
+                                    <md-icon>subject</md-icon>
+                                    <p>Modelos</p>
+                                </md-list-item>
+                                <md-list-item ng-href="#/App/Inv_Servicios/Bodegas">
+                                    <md-icon>dashboard</md-icon>
+                                    <p>Bodegas</p>
+                                </md-list-item>
+                            </md-list>
+                        </md-card>
+                    </div>
+                </md-card>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div layout="row" flex-xs="80" flex-gt-xs="80">
         <div flex="50">
             <div layout="row">
                 <md-card flex>
@@ -152,5 +198,5 @@
                 </md-card>
             </div>
         </div>
-    </div>
+    </div> -->
 </md-content>

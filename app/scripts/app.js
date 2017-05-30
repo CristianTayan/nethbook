@@ -77,7 +77,6 @@ var app = angular.module('nextbook20App', [
        
         $scope.primera_vez=()=>{
              if ($localStorage.hsesion) {
-                console.log('ok sesion');
                 $scope.t=mainService.Tiempo_espera_sesion();
                 $scope.s=$localStorage.hsesion.hora_fin;
                 if ($localStorage.hsesion.u1) {
@@ -100,11 +99,11 @@ var app = angular.module('nextbook20App', [
                 d=$scope.s-u;
                  a=d+$scope.t;
                     f=a-$scope.d1;
-                    console.log(f);
+                    // console.log(f);
                     // si mueve el mouse antes de los 30 segundos, renovar token
                     if (f>0&&f<30) {
                         $localStorage.hsesion.estado_token=0;
-                        console.log('update token');
+                        // console.log('update token');
                         if ($localStorage.hsesion.estado_token==0) {
                             colaboradores_Service.Refresh_Token().send({}).$promise.then((data)=>{
                                 if (data.respuesta) {
@@ -117,7 +116,7 @@ var app = angular.module('nextbook20App', [
                         }
                     }
                     // si mueve el mouse al llegar al 0, terminar sesion;
-                    if (f==0||f<0) {
+                    if (f==0||f<0||f>$scope.t) {
                         var storage = $localStorage.cook_session_init;
                             $localStorage.$reset();
                             $localStorage.cook_session_init = storage;

@@ -31,7 +31,7 @@ angular.module('nextbook20App')
       $scope.cargando=true;
       function ok_img(resul){
         $scope.cargando=false;
-        $scope.img=urlService.server().dir()+resul.img;
+        $scope.img=urlService.server().dir()+resul.img_full;
       }
       switch(tipo){
           case 'Perfil':

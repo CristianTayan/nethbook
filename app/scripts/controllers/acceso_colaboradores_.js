@@ -8,7 +8,7 @@
  * Controller of the nextbook20App
  */
 var app = angular.module('nextbook20App')
-  	app.controller('acceso_colaboradores_Ctrl', function ($scope, $location, $routeParams,$mdDialog, mainService, colaboradores_Service,consumirService, $localStorage, menuService) {
+  	app.controller('acceso_colaboradores_Ctrl', function ($scope, $rootScope,$location, $routeParams,$mdDialog, mainService, colaboradores_Service,consumirService, $localStorage, menuService) {
   		function success_data_ruc(data){
   			$scope.datosE=data.respuesta;
   		}
@@ -35,10 +35,15 @@ var app = angular.module('nextbook20App')
 		            $localStorage.token = data.token;
 		            $localStorage.datosE = data.datosE;
 		            $localStorage.datosPersona = data.datosPersona;
+		            //datos para control de session
+		            $localStorage.hsesion={hora_fin:new Date(data.hora_fin).getTime() / 1000,estado_token:1};			     
+	                //fin
 		            // ----------------------------- fin -----------------------------------
 		            //---------------------- verificar si existe datos de persona-----------
 		            mainService.Get_Datos_Empresa().get().$promise.then(function(data) {
 		                if (data.respuesta) {
+		                	//iniciar sesion
+		                	$rootScope.$emit('start_session',{});
 		                    $location.path('/Seleccionar_Sucursal');
 		                } else {
 		                    $location.path('/Actualizar_Datos');
