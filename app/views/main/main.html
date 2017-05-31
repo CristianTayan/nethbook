@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div layout="column" layout-align="center center">
-                <md-content style=" background: #EEEEEE;" layout-padding flex>
+                <md-content style=" background: #EEEEEE;" flex="80">
                     <!-- <ul class="ca-menu" flex>
                         <li ng-repeat="item in elementos ">
                             <a href="" ng-click="selectedItemChange(item)">
@@ -52,23 +52,31 @@
                             </a>
                         </li>
                     </ul> -->
-                    <md-list flex>
-                        <md-list-item class="md-3-line" ng-repeat="item in elementos" ng-click="null">
+                    <md-list>
+                        <md-list-item class="md-3-line" ng-repeat="item in elementos | limitTo: 6" ng-click="selectedItemChange(item)">
                             <md-icon class="md-avatar-icon">business</md-icon>
                             <div class="md-list-item-text" layout="column">
-
                                 <h3>
-                                                    <span ng-if="!item.nombre_comercial">
-                                                        <span ng-if="item.razon_social">
-                                                          {{item.razon_social | limitTo: 35}}
-                                                          <span ng-if="item.razon_social.length > 36">...</span>
-                                                        </span>
-                                                    </span>
-                                                </h3>
+                                    <span ng-if="item.nombre_comercial">
+                                    {{item.nombre_comercial | limitTo: 20}}, 
+                                    </span>
+                                    <span ng-if="item.nombre_fantacia">
+                                        {{item.nombre_fantacia | limitTo: 20}}, 
+                                    </span>
+                                    
+                                    {{item.razon_social | limitTo: 20}}
+
+                                    <!-- <span ng-if="!item.nombre_comercial">
+                                        <span ng-if="item.nombre_comercial">
+                                          {{item.nombre_comercial | limitTo: 35}}
+                                          <span ng-if="item.nombre_comercial.length > 36">...</span>
+                                        </span>
+                                    </span> -->
+                                </h3>
                                 <h4>{{item.ruc | limitTo: 10}}</h4>
                                 <p>
-                                    {{item.actividad_economica | lowercase | limitTo:250}}
-                                    <span ng-if="item.actividad_economica.length > 250">...</span>
+                                    {{item.actividad_economica | lowercase | limitTo: 150}}
+                                    <span ng-if="item.actividad_economica.length > 160">...</span>
                                 </p>
                             </div>
                         </md-list-item>
