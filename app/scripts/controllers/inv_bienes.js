@@ -12,7 +12,7 @@ var app = angular.module('nextbook20App')
     	// ------------------------------------inicio generacion vista menu personalizacion------------------------------------
 	        var data = menuService.Get_Vistas_Loged_User();
 	        $scope.menu = data.respuesta[0].children[0].children[2];
-	        console.log($scope.menu);
+	        // console.log($scope.menu);
 	        $scope.go_menu=function(menu){
 		        $location.path(menu.path);
 		    }
@@ -21,7 +21,7 @@ var app = angular.module('nextbook20App')
 	    // $scope.data_inv_tc = {nombre:'', descripcion:''};
 	    $scope.data_inv_tc_guardar = function() {
 	        inventario_Service.Add_Tipo_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
-	            console.log(data);
+	            // console.log(data);
 	        });
 	    }
 	    $scope.info_sucursal = $localStorage.sucursal;
@@ -265,7 +265,7 @@ var app = angular.module('nextbook20App')
 		            // if ($scope.data_inv_producto.vendible==undefined) {
 		                $scope.data_inv_producto.vendible=true;
 		            // }else $scope.data_inv_producto.vendible=true;
-		            console.log($scope.data_inv_producto);
+		            // console.log($scope.data_inv_producto);
 
 		            inventario_Service.Add_Producto().add($scope.data_inv_producto).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_productos", {});
@@ -1641,7 +1641,7 @@ var app = angular.module('nextbook20App')
 			}
 
 			$scope.toggle = function(node) {
-			    console.log(node);
+			    // console.log(node);
 			};
 	});
 	app.controller('inv_bienes_tipo_categoriasCtrl', function($scope, $rootScope, inventario_Service, $localStorage, $mdDialog, $location) {

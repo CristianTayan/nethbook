@@ -11,7 +11,6 @@ angular.module('nextbook20App')
   .controller('perfil_Ctrl', function ($scope,$rootScope, $localStorage, $mdDialog, $timeout, urlService) {
     $rootScope.imgPortada=urlService.server().dir()+$localStorage.imgPortada;
     $rootScope.imgPerfil=urlService.server().dir()+$localStorage.imgPerfil;
-    console.log($rootScope.imgPortada);
     $scope.datos2 = $localStorage.datosE;
     // Show imagen de perfil,portada
 

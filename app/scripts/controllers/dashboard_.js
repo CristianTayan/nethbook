@@ -28,7 +28,7 @@ app.controller('GridBottomSheetCtrl', function($scope, $mdBottomSheet) {
 app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mainService, $http, $translate, $routeSegment, menuService, $mdBottomSheet) {
         
     $scope.fullscreen=function() {
-        console.log('test');
+        // console.log('test');
         var elem=document;
         if(!document.fullscreenElement&&!document.mozFullScreenElement&&!document.webkitFullscreenElement&&!document.msFullscreenElement) {
             if(elem.requestFullscreen) {
@@ -66,7 +66,7 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
     $scope.ruta = $routeSegment;
     // console.log(ruta);
     $scope.changeLanguage = function (key) {
-        console.log(key);
+        // console.log(key);
         $translate.use(key);
     };
 

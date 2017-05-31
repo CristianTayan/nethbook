@@ -11,7 +11,7 @@ var app = angular.module('nextbook20App');
   	app.controller('configuracionCtrl', function ($scope, $mdExpansionPanelGroup, configuracionService, $routeSegment,  $mdDialog) {
   		// $scope.showBox = configuracionService.ico_sidemenu_2($routeSegment)
   		$scope.showBox = 'hola';
-  		console.log($scope.showBox);
+  		// console.log($scope.showBox);
   		$scope.toppings = [
     { name: 'Pepperoni', wanted: true },
     { name: 'Sausage', wanted: false },
@@ -116,11 +116,11 @@ var app = angular.module('nextbook20App');
       function DialogController($scope, $mdDialog, mainService, $localStorage, data) {
   	    $scope.verificar = function(){
   	    	mainService.Verificar_Pass().get({pass:$scope.pass}).$promise.then(function(response){
-  	    		console.log(response);
+  	    		// console.log(response);
   	    		if (response.respuesta) {
   	    			$mdDialog.hide();
   		    		mainService.Update_Password().get({pass:$scope.password}).$promise.then(function(data){
-  		    			console.log('test');
+  		    			// console.log('test');
   				   //      if (data.respuesta == true) {
   				   //        $location.path('/Seleccionar_Sucursal');
   				   //      }else{
@@ -179,7 +179,7 @@ var app = angular.module('nextbook20App');
     
 
     //---------------------------------------- Get datos Localstorage -------------------------------------------------------
-    console.log($localStorage);
+    // console.log($localStorage);
     $scope.info_empresa = $localStorage.datosE;
     $scope.info_sucursal = $localStorage.sucursal;
     $scope.get_data_tipos_empresas($scope.info_sucursal.giro_negocio.id);

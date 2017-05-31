@@ -476,7 +476,7 @@
     });
 
 	app.controller('fac_mis_facturas_venta_Ctrl', function($mdDialog, $scope,Facturacion_Service,$window) {
-    	console.log('mis facturas');
+    	// console.log('mis facturas');
 
          $scope.query = {
                     filter: '',
@@ -965,7 +965,7 @@
                         $window.open(data.comprobante, 'C-Sharpcorner', 'width=800,height=700');
                     }
                 },function(error){
-                    console.log(error);
+                    // console.log(error);
                      $mdDialog.show(
                                 $mdDialog.alert()
                                 .parent(angular.element(document.querySelector('#popupContainer')))

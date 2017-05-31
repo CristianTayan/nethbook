@@ -12,7 +12,7 @@ var app = angular.module('nextbook20App')
     	// ------------------------------------inicio generacion vista menu personalizacion------------------------------------
 	        var data = menuService.Get_Vistas_Loged_User();
 	        $scope.menu = data.respuesta[0].children[0].children[4];
-	        console.log($scope.menu);
+	        // console.log($scope.menu);
 	        $scope.go_menu=function(menu){
 		        $location.path(menu.path);
 		    }
@@ -20,7 +20,7 @@ var app = angular.module('nextbook20App')
   	app.controller('inv_servicios_menuCtrl', function($scope, inventario_Service, $localStorage) {
 	    $scope.data_inv_tc_guardar = function() {
 	        inventario_Service.Add_Tipo_Categoria().add($scope.data_inv_tc).$promise.then(function(data) {
-	            console.log(data);
+	            // console.log(data);
 	        });
 	    }
 	    $scope.info_sucursal = $localStorage.sucursal;
@@ -319,7 +319,7 @@ var app = angular.module('nextbook20App')
 			}
 
 			$scope.toggle = function(node) {
-			    console.log(node);
+			    // console.log(node);
 			};
 	});
 	app.controller('inv_servicios_tipo_categoriasCtrl', function($scope, $rootScope, inventario_Service, $localStorage, $mdDialog, $location) {
@@ -1984,7 +1984,7 @@ var app = angular.module('nextbook20App')
 		                $scope.data_inv_producto.comprable=true;
 
 		                $scope.data_inv_producto.vendible=false;
-		            console.log($scope.data_inv_producto);
+		            // console.log($scope.data_inv_producto);
 
 		            inventario_Service.Add_Producto().add($scope.data_inv_producto).$promise.then(function(data) {
 		                $rootScope.$emit("actualizar_tabla_productos", {});

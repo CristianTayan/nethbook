@@ -630,7 +630,7 @@ var app = angular.module('nextbook20App')
 		        			for (var j = 0; j < $scope.vistas_tipo_user[i].children.length; j++) {
 		        				if ($scope.vistas_tipo_user[i].children[j].id==$scope.modulo.id) {
 		        					$scope.vistas_tipo_user[i].children[j].permisos=permisos;
-		        					console.log(permisos);
+		        					// console.log(permisos);
 		        					break;
 		        				}else{
 		        					if ($scope.vistas_tipo_user[i].children[j].children.length>0) {
