@@ -217,7 +217,7 @@ var app = angular.module('nextbook20App');
         };
 
         this.Tiempo_espera_sesion = function() {
-            return 600;
+            return 28800;
         };
         
 

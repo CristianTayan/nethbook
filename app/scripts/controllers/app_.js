@@ -14,6 +14,7 @@ app.controller('app_Ctrl', function($scope, $mdToast, $translate, menuService, c
     // ------------------------------------inicio generacion vista menu personalizacion------------------------------------
     var data = menuService.Get_Vistas_Loged_User();
     $scope.menu = data.respuesta[0].children[0];
+    console.log($scope.menu);
     // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 
         $scope.toppings = [{
