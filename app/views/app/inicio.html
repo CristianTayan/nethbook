@@ -1,40 +1,33 @@
 <md-content flex layout-align="center center">
- <!--    <div layout="column">
+    <div layout="column">
         <div layout="row" layout-align="center center">
             <div flex="80">
-                <md-card flex style="overflow-x:scroll;" ng-repeat="padre in [1,2,3]">
+                <md-card flex style="overflow-x:scroll;" ng-repeat="m_padre in menu" ng-show="m_padre.children.length>0">
                     <div layout="row">
                         <md-card flex="5" style="background: rgba(0, 150, 136, 0.26);">
                             <div class="md-accent" style="  transform: rotate(-90deg);
-                                                            width: 330px;
-                                                            margin-left: -134px;
+                                                            width: 100%;
+                                                            margin-left: 0px;
                                                             font-size: 22px;
                                                             text-transform: uppercase;
                                                             text-align: center;
-                                                            margin-top: 237%;" >Card with image</div>
+                                                            margin-top: 237%;" >{{m_padre.nombre}}</div>
                         </md-card>
-                        <md-card ng-repeat="menu in [1,2,3,4,5]">
+                        <md-card ng-repeat="m_hijo in m_padre.children" ng-show="m_hijo.children.length>0">
                             <md-list ng-cloak>
-                                <md-subheader class="md-no-sticky">INVENTARIO SERVICIOS</md-subheader>
-                                <md-list-item ng-href="#/App/Inv_Servicios/">
-                                    <md-icon>keyboard_tab</md-icon>
-                                    <p>Entrar</p>
+                                <md-subheader class="md-no-sticky">{{m_hijo.nombre}}</md-subheader>
+                                <md-list-item ng-href="{{'#'+m_nieto.path}}" ng-repeat="m_nieto in m_hijo.children">
+                                    <md-icon>{{m_nieto.personalizacion.icon}}</md-icon>
+                                    <p>{{m_nieto.nombre}}</p>
                                 </md-list-item>
-                                <md-list-item ng-href="#/App/Inv_Servicios/Servicios">
-                                    <md-icon>dvr</md-icon>
-                                    <p>Nuevo Servicio</p>
-                                </md-list-item>
-                                <md-list-item ng-href="#/App/Inv_Servicios/Categorias">
-                                    <md-icon>loyalty</md-icon>
-                                    <p>Categorias</p>
-                                </md-list-item>
-                                <md-list-item ng-href="#/App/Inv_Servicios/Modelos">
-                                    <md-icon>subject</md-icon>
-                                    <p>Modelos</p>
-                                </md-list-item>
-                                <md-list-item ng-href="#/App/Inv_Servicios/Bodegas">
-                                    <md-icon>dashboard</md-icon>
-                                    <p>Bodegas</p>
+                            </md-list>
+                        </md-card>
+                        <md-card ng-repeat="m_hijo in m_padre.children | limitTo:m_padre.limit" ng-show="m_hijo.children.length==0">
+                            <md-list ng-cloak>
+                                <md-subheader class="md-no-sticky">{{m_padre.nombre}}</md-subheader>
+                                <md-list-item ng-href="{{'#'+m_hijo.path}}" ng-repeat="m_hijo in m_padre.children" ng-show="m_hijo.children.length==0">
+                                    <md-icon>{{m_hijo.personalizacion.icon}}</md-icon>
+                                    <p>{{m_hijo.nombre}}</p>
                                 </md-list-item>
                             </md-list>
                         </md-card>
@@ -42,9 +35,9 @@
                 </md-card>
             </div>
         </div>
-    </div> -->
+    </div>
 
-    <div layout="row" flex-xs="80" flex-gt-xs="80">
+    <!-- <div layout="row" flex-xs="80" flex-gt-xs="80">
         <div flex="50">
             <div layout="row">
                 <md-card flex>
@@ -197,5 +190,37 @@
                 </md-card>
             </div>
         </div>
-    </div>
+    </div> -->
 </md-content>
+
+<md-sidenav style="width: 250px;" md-component-id="right" md-is-locked-open="$mdMedia('gt-sm')" ng-show="IsVisible" >
+    <md-content layout="column">
+        <md-list>
+            <md-subheader class="md-no-sticky text-center">MENU PRINCIPAL</md-subheader>
+            <md-list-item ng-href="#/App/Facturacion/Nueva_Factura_Venta">
+                <p> Nueva Factura</p>
+                <md-icon class="md-teal">receipt</md-icon>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inv_Productos/">
+                <p> Inv. Productos </p>
+                <md-icon class="md-accent">apps</md-icon>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inv_Servicios/">
+                <p> Inv. Servicios </p>
+                <md-icon class="md-accent">apps</md-icon>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Inv_Bienes/">
+                <p> Inv. Bienes </p>
+                <md-icon class="md-accent">apps</md-icon>
+            </md-list-item>
+            <md-list-item ng-href="#App/Facturacion/Clientes">
+                <p> Clientes </p>
+                <md-icon class="md-accent">account_box</md-icon>
+            </md-list-item>
+            <md-list-item ng-href="#/App/Parametrizacion">
+                <p> Parametrización </p>
+                <md-icon class="md-accent">settings</md-icon>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-sidenav>

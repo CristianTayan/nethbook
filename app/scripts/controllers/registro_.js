@@ -91,7 +91,7 @@ var app = angular.module('nextbook20App')
 		                //fin
 			            // generacion acceso personalizado
 			            menuService.Generar_Vista().get().$promise.then(function(data) {
-					        $localStorage.menu = data;
+					        $localStorage.menu = data.respuesta;
 					    });
 			            //---------------------- verificar si existe datos de persona-----------
 			            mainService.Get_Datos_Empresa().get().$promise.then(function(data) {

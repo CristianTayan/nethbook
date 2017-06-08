@@ -1,65 +1,70 @@
-<md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="25" style="background: #EEEEEE">
-    <md-toolbar>
-        <div class="md-toolbar-tools"></div>
-    </md-toolbar>
-        <div class="md-toolbar-tools">
-            <h3 class="md-display-4">{{data_usuario.primer_nombre}} {{data_usuario.primer_apellido}}</h3>
-        </div>
+<div layout="column">
+    <div layout="row">
+        <md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="25" style="background: #EEEEEE">
+            <md-toolbar>
+                <div class="md-toolbar-tools"></div>
+            </md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3 class="md-display-4">{{data_usuario.primer_nombre}} {{data_usuario.primer_apellido}}</h3>
+            </div>
             <md-card>
-	        <md-card-header>
-	          <md-card-avatar>
-	            <md-icon class="md-avatar">menu</md-icon>
-	          </md-card-avatar>
-	          <md-card-header-text>
-	            <span class="md-title">Title</span>
-	            <span class="md-subhead">subhead</span>
-	          </md-card-header-text>
-	        </md-card-header>
-	    </md-card>
-    <div>
-        <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="100%">
-        <md-card-content>
-            <h2 class="md-title">Sobre Mi</h2>
-            <p>
-             contenido en proceso
-            </p>
-        </md-card-content>
+                <md-card-header>
+                    <md-card-avatar>
+                        <md-icon class="md-avatar">menu</md-icon>
+                    </md-card-avatar>
+                    <md-card-header-text>
+                        <span class="md-title">Title</span>
+                        <span class="md-subhead">subhead</span>
+                    </md-card-header-text>
+                </md-card-header>
+            </md-card>
+            <div>
+                <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="100%">
+                <md-card-content>
+                    <h2 class="md-title">Sobre Mi</h2>
+                    <p>
+                        contenido en proceso
+                    </p>
+                </md-card-content>
+            </div>
+        </md-content>
+        <md-content flex style="background: #EEEEEE">
+            <!-- app-view-segment="3" -->
+            <md-card flex>
+                <div class="card card--big">
+                    <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image"></div>
+                    <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
+                </div>
+                <div style="position: absolute;">
+                    <md-button class="md-icon-button" aria-label="More">
+                        <md-icon ng-click="show_listaimg_modal('portada')">border_color</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="More">
+                        <md-icon ng-click="show_upload_img_modal('portada')">camera_alt</md-icon>
+                    </md-button>
+                </div>
+                <md-tabs>
+                    <md-tab id="b-tab1" aria-controls="b-tab1-content" style="float:right!important;">
+                        Historia
+                    </md-tab>
+                    <md-tab id="b-tab2" aria-controls="b-tab2-content" style="float:right!important;">
+                        <md-icon>location_on</md-icon>
+                    </md-tab>
+                    <md-tab id="b-tab3" aria-controls="b-tab3-content" style="float:right!important;">
+                        Similares
+                    </md-tab>
+                    <md-tab id="b-tab4" aria-controls="b-tab4-content" style="float:right!important;">
+                        Favoritos
+                    </md-tab>
+                    <md-tab id="b-tab5" aria-controls="b-tab5-content" style="float:right!important;">
+                        Grupos
+                    </md-tab>
+                    <md-tab id="b-tab6" aria-controls="b-tab5-content" style="float:right!important;">
+                        Agenda
+                    </md-tab>
+                </md-tabs>
+            </md-card>
+            <md-content layout-padding layout-wrap style="background: #EEEEEE" app-view-segment="4"></md-content>
+        </md-content>
     </div>
-</md-content>
-<md-content flex  style="background: #EEEEEE"> <!-- app-view-segment="3" -->
-	<md-card flex>
-        <div class="card card--big">
-            <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image"></div>
-            <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
-        </div>
-        <div style="position: absolute;">
-            <md-button class="md-icon-button" aria-label="More">
-                <md-icon ng-click="show_listaimg_modal('portada')">border_color</md-icon>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="More">
-                <md-icon ng-click="show_upload_img_modal('portada')">camera_alt</md-icon>
-            </md-button>
-        </div>
-        <md-tabs>
-            <md-tab id="b-tab1" aria-controls="b-tab1-content" style="float:right!important;">
-                Historia
-            </md-tab>
-            <md-tab id="b-tab2" aria-controls="b-tab2-content" style="float:right!important;">
-                <md-icon>location_on</md-icon>
-            </md-tab>
-            <md-tab id="b-tab3" aria-controls="b-tab3-content" style="float:right!important;">
-                Similares
-            </md-tab>
-            <md-tab id="b-tab4" aria-controls="b-tab4-content" style="float:right!important;">
-                Favoritos
-            </md-tab>
-            <md-tab id="b-tab5" aria-controls="b-tab5-content" style="float:right!important;">
-                Grupos
-            </md-tab>
-            <md-tab id="b-tab6" aria-controls="b-tab5-content" style="float:right!important;">
-                Agenda
-            </md-tab>
-        </md-tabs>
-    </md-card>
-    <md-content layout-padding layout-wrap style="background: #EEEEEE" app-view-segment="3"></md-content>
-</md-content>
+</div>

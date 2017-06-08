@@ -5,7 +5,7 @@
             <md-button class="md-icon-button" aria-label="Settings" ng-click="modal_footer()">
               <md-icon>menu</md-icon>
             </md-button>
-            <a href="#/nb">
+            <a href="#/Nb">
                 <img src="images/logo/logo.fw.png" alt="Logo">
             </a>
             <div ng-controller="main_Ctrl as main_Ctrl">
@@ -36,15 +36,15 @@
               </form>    
             </div>
             <span flex></span>
-            <a href="#/nb/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
+            <a href="#/Nb/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
                 <md-icon>home</md-icon>
             </a>
-            <a href="#/nb/Personal">
+            <a href="#/Nb/App/Administracion/Perfil_Personal">
                 <span class="mdl-chip">
                     <span class="mdl-chip__text">{{datos_personales.primer_nombre}}</span>
                 </span>
             </a>
-            <a href="#/App" class="btn btn--l btn--white btn--icon" lx-ripple>
+            <a href="#/Nb/App" class="btn btn--l btn--white btn--icon" lx-ripple>
                 <i class="mdi mdi-apps"></i>
             </a>
             <lx-dropdown lx-position="right">
@@ -61,7 +61,7 @@
                         </li>
                         <li class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-link" href="#/Config/Terminos">
+                            <a class="dropdown-link" href="#/Nb/App/Administracion/Terminos">
                                 <i class="mdi material-icons">security</i>
                                 <span>Terminos y Condiciones</span>
                             </a>
@@ -74,7 +74,7 @@
                         </li>
                         <li class="dropdown-divider"></li>
                         <li>
-                            <a href="#/nb/Config" class="dropdown-link">
+                            <a href="#/Nb/App/Administracion/Datos_Personal" class="dropdown-link">
                                 <span>Configuración</span>
                             </a>
                         </li>
@@ -92,7 +92,7 @@
                         {{info_sucursal.codigo_sri}}
                     </span>
                 </a>
-                <a href="#/nb/Perfil">
+                <a href="#/Nb/App/Administracion/Perfil_Sucursal">
                     <span class="mdl-chip__text mdl-chip_hover_text">{{nom_perfil | limitTo: 20}}</span>
                 </a>
             </span>

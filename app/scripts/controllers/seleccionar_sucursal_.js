@@ -37,9 +37,11 @@ angular.module('nextbook20App')
 		            	$localStorage.imgPortada="images/samples/x2.jpg";
 		            });
 
-	        (index.giro_negocio.id==0)?$location.path('/Actualizar_Datos_Sucursal'):$location.path('/nb/Inicio')
+	        (index.giro_negocio.id==0)?$location.path('/Actualizar_Datos_Sucursal'):$location.path('/Nb')
 	    }
 	    $scope.escapeRegExp = function(str) {
 			return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 		}
   	});
+
+	

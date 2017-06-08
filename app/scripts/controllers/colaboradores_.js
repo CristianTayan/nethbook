@@ -11,7 +11,7 @@ var app = angular.module('nextbook20App')
 	app.controller('colaboradores_Ctrl', function ($scope, menuService) {
   		// ------------------------------------inicio generacion vista menu personalizacion------------------------------------
 	      	var data = menuService.Get_Vistas_Loged_User();
-	      	$scope.menu = data.respuesta[0].children[0].children[0];
+	      	// $scope.menu = data.respuesta[0].children[0].children[0];
 	    // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 	});
 
