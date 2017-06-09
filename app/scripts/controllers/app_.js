@@ -9,7 +9,7 @@
  */
 var app = angular.module('nextbook20App');
 
-app.controller('app_Ctrl', function($scope, $mdToast, $translate, menuService, configuracionService, $routeSegment) {
+app.controller('app_Ctrl', function($scope, $mdToast, $translate, menuService, configuracionService, $routeSegment,$localStorage) {
 
     // ------------------------------------inicio generacion vista menu personalizacion------------------------------------
     $scope.menu= menuService.Get_Vistas_Loged_User();
@@ -22,7 +22,7 @@ app.controller('app_Ctrl', function($scope, $mdToast, $translate, menuService, c
         }
     }
 
-
+    //tipos de menus
     for (var i = 0; i < $scope.menu.length; i++) {
         for (var j = 0; j < $scope.menu[i].children.length; j++) {
                 if ($scope.menu[i].children[j].children.length>0) {
@@ -33,6 +33,9 @@ app.controller('app_Ctrl', function($scope, $mdToast, $translate, menuService, c
         }
     }
 
+    $scope.set_menu=(submenu)=>{
+        $localStorage.submenu=submenu;
+    }
     // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 
         $scope.toppings = [{

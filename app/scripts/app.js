@@ -72,6 +72,14 @@ var app = angular.module('nextbook20App', [
     // app.module('material.components.expansionPanels', [
     //     'material.core'
     //   ]);
+    //
+       app.run(['$rootScope', '$location',function($rootScope, $location) {
+            $rootScope.$on('$routeChangeStart', function(event) {
+                var path=$location.path();
+                var res = path.split('/');
+                $rootScope.view_segment=res.length-2;
+            });
+        }]);
     
     app.controller('mouseCtrl',($rootScope,$scope,$localStorage,$location, mainService,colaboradores_Service)=>{
        
@@ -93,7 +101,7 @@ var app = angular.module('nextbook20App', [
             });
         $scope.primera_vez();
         $scope.verify_Session=function(){
-            if ($localStorage.hsesion) {
+            if ($localStorage.hsesion&&($location.path()!='/Registro'||$location.path()!='/')) {
                 var a,u,d,f;
                 u=parseInt(mainService.Get_Hora_in_Time());
                 d=$scope.s-u;
@@ -122,8 +130,6 @@ var app = angular.module('nextbook20App', [
                             $localStorage.cook_session_init = storage;
                             $location.path('/Registro');
                     }
-            }else{
-                $location.path('/Registro');
             }
             
         }
@@ -268,29 +274,30 @@ var app = angular.module('nextbook20App', [
             .when('/Nb/App/Finanzas','nb.app.finanzas')
             .when('/Nb/App/Finanzas/Contable','nb.app.finanzas.contable')
                 .when('/Nb/App/Finanzas/Contable/Repositorio_Facturas','nb.app.finanzas.contable.repositorio_facturas')
-                .when('/Nb/App/Finanzas/Contable/Repositorio_Facturas/Inicio_Facturas','nb.app.finanzas.contable.repositorio_facturas.inicio_facturas')
-                .when('/Nb/App/Finanzas/Contable/Repositorio_Facturas/Mis_Facturas','nb.app.finanzas.contable.repositorio_facturas.mis_facturas')
-                .when('/Nb/App/Finanzas/Contable/Repositorio_Facturas/Subir_Facturas','nb.app.finanzas.contable.repositorio_facturas.subir_facturas')
-                .when('/Nb/App/Finanzas/Contable/Repositorio_Facturas/Facturas_Correo','nb.app.finanzas.contable.repositorio_facturas.facturas_correo')
-                .when('/Nb/App/Finanzas/Contable/Repositorio_Facturas/Facturas_Rechazadas','nb.app.finanzas.contable.repositorio_facturas.facturas_rechazadas')
+                    .when('/Nb/App/Finanzas/Contable/Repositorio_Facturas/Inicio_Facturas','nb.app.finanzas.contable.repositorio_facturas.inicio_facturas')
+                    .when('/Nb/App/Finanzas/Contable/Repositorio_Facturas/Mis_Facturas','nb.app.finanzas.contable.repositorio_facturas.mis_facturas')
+                    .when('/Nb/App/Finanzas/Contable/Repositorio_Facturas/Subir_Facturas','nb.app.finanzas.contable.repositorio_facturas.subir_facturas')
+                    .when('/Nb/App/Finanzas/Contable/Repositorio_Facturas/Facturas_Correo','nb.app.finanzas.contable.repositorio_facturas.facturas_correo')
+                    .when('/Nb/App/Finanzas/Contable/Repositorio_Facturas/Facturas_Rechazadas','nb.app.finanzas.contable.repositorio_facturas.facturas_rechazadas')
                 // Modulo de Finanzas-Ventas
             .when('/Nb/App/Finanzas/Ventas','nb.app.finanzas.ventas')
-                .when('/Nb/App/Finanzas/Ventas/Nueva_Factura_Venta','nb.app.finanzas.ventas.nueva_factura_venta')
-                .when('/Nb/App/Finanzas/Ventas/Cajas','nb.app.finanzas.ventas.cajas')
-                .when('/Nb/App/Finanzas/Ventas/Mis_Facturas_Venta','nb.app.finanzas.ventas.mis_facturas_venta')
-                .when('/Nb/App/Finanzas/Ventas/Clientes','nb.app.finanzas.ventas.clientes')
+                .when('/Nb/App/Finanzas/Ventas/Facturacion','nb.app.finanzas.ventas.facturacion')
+                    .when('/Nb/App/Finanzas/Ventas/Facturacion/Nueva_Factura_Venta','nb.app.finanzas.ventas.facturacion.nueva_factura_venta')
+                    .when('/Nb/App/Finanzas/Ventas/Facturacion/Cajas','nb.app.finanzas.ventas.facturacion.cajas')
+                    .when('/Nb/App/Finanzas/Ventas/Facturacion/Mis_Facturas_Venta','nb.app.finanzas.ventas.facturacion.mis_facturas_venta')
+                    .when('/Nb/App/Finanzas/Ventas/Facturacion/Clientes','nb.app.finanzas.ventas.facturacion.clientes')
                 // Modulo de Finanzas-Inventario
             .when('/Nb/App/Finanzas/Inventario','nb.app.finanzas.inventario')
                 // Modulo de Finanzas- Inventario Bienes
             .when('/Nb/App/Finanzas/Inventario/Inv_Bienes','nb.app.finanzas.inventario.Inv_Bienes')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Categorias','nb.app.finanzas.inventario.Inv_Bienes.categoria')
-                .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Categorias/Tipo_Categoria','nb.app.finanzas.inventario.Inv_Bienes.categoria.tipo_categoria')
+                .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Categorias/Tipo_Categoria','nb.app.finanzas.inventario.Inv_Bienes.categoria.tipo_categorias')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Marcas','nb.app.finanzas.inventario.Inv_Bienes.marcas')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Modelos','nb.app.finanzas.inventario.Inv_Bienes.modelos')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Bienes','nb.app.finanzas.inventario.Inv_Bienes.bienes')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Ubicacion','nb.app.finanzas.inventario.Inv_Bienes.ubicacion')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Garantia','nb.app.finanzas.inventario.Inv_Bienes.garantia')
-                .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Garantia/Tipo_Garantia','nb.app.finanzas.inventario.Inv_Bienes.garantia.tipo_garantia')
+                .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Garantia/Tipo_Garantia','nb.app.finanzas.inventario.Inv_Bienes.garantia.tipo_garantias')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Estado_Descriptivo','nb.app.finanzas.inventario.Inv_Bienes.estado_descriptivo')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Bienes/Tipo_Consumo','nb.app.finanzas.inventario.Inv_Bienes.tipo_consumo')
                 // Modulo de Finanzas- Inventario Servicios
@@ -301,19 +308,19 @@ var app = angular.module('nextbook20App', [
                 .when('/Nb/App/Finanzas/Inventario/Inv_Servicios/Servicios','nb.app.finanzas.inventario.Inv_Servicios.servicios')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Servicios/Ubicacion','nb.app.finanzas.inventario.Inv_Servicios.ubicacion')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Servicios/Garantia','nb.app.finanzas.inventario.Inv_Servicios.garantia')
-                .when('/Nb/App/Finanzas/Inventario/Inv_Servicios/Garantia/Tipo_Garantia','nb.app.finanzas.inventario.Inv_Servicios.garantia.tipo_garantia')
+                .when('/Nb/App/Finanzas/Inventario/Inv_Servicios/Garantia/Tipo_Garantia','nb.app.finanzas.inventario.Inv_Servicios.garantia.tipo_garantias')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Servicios/Estado_Descriptivo','nb.app.finanzas.inventario.Inv_Servicios.estado_descriptivo')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Servicios/Tipo_Consumo','nb.app.finanzas.inventario.Inv_Servicios.tipo_consumo')
                 // Modulo de Finanzas- Inventario Productos
             .when('/Nb/App/Finanzas/Inventario/Inv_Productos','nb.app.finanzas.inventario.Inv_Productos')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Categorias','nb.app.finanzas.inventario.Inv_Productos.categoria')
-                .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Categorias/Tipo_Categoria','nb.app.finanzas.inventario.Inv_Productos.categoria.tipo_categoria')
+                .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Categorias/Tipo_Categoria','nb.app.finanzas.inventario.Inv_Productos.categoria.tipo_categorias')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Marcas','nb.app.finanzas.inventario.Inv_Productos.marcas')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Modelos','nb.app.finanzas.inventario.Inv_Productos.modelos')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Productos','nb.app.finanzas.inventario.Inv_Productos.productos')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Ubicacion','nb.app.finanzas.inventario.Inv_Productos.ubicacion')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Garantia','nb.app.finanzas.inventario.Inv_Productos.garantia')
-                .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Garantia/Tipo_Garantia','nb.app.finanzas.inventario.Inv_Productos.garantia.tipo_garantia')
+                .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Garantia/Tipo_Garantia','nb.app.finanzas.inventario.Inv_Productos.garantia.tipo_garantias')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Estado_Descriptivo','nb.app.finanzas.inventario.Inv_Productos.estado_descriptivo')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Tipo_Consumo','nb.app.finanzas.inventario.Inv_Productos.tipo_consumo')
                 .when('/Nb/App/Finanzas/Inventario/Inv_Productos/Tipo_Catalogo','nb.app.finanzas.inventario.Inv_Productos.tipo_catalogo')
@@ -382,6 +389,259 @@ var app = angular.module('nextbook20App', [
                                     controller: 'col_usuario_Ctrl'
                             })
                         .up()
+                    // Modulo de Finanzas
+                    .segment('finanzas', {
+                            templateUrl: 'views/app/finanzas/index.html',
+                            // controller: 'administracion_Ctrl'
+                    })
+                        .within()
+                            //Modulo Contable
+                            .segment('contable', {
+                                    templateUrl: 'views/app/finanzas/contable/index.html'
+                            })
+                            .within()
+                                // Repositorio de Facturas
+                                .segment('repositorio_facturas', {
+                                    templateUrl: 'views/app/finanzas/contable/repositorio_facturas/index.html',
+                                    controller: 'RepositorioFacturasCtrl'
+                                })
+                                .within()
+                                     .segment('inicio_facturas', {
+                                        default: true,
+                                        templateUrl: 'views/app/finanzas/contable/repositorio_facturas/inicio_facturas/index.html',
+                                        controller: 'repfac_inicio_Ctrl'
+                                    })
+                                    .segment('mis_facturas', {
+                                        templateUrl: 'views/app/finanzas/contable/repositorio_facturas/mis_facturas/index.html',
+                                        controller: 'mis_facturas_Ctrl'
+                                    })
+                                    .segment('subir_facturas', {
+                                        templateUrl: 'views/app/finanzas/contable/repositorio_facturas/subir_facturas/index.html',
+                                        controller: 'subir_factura_electronica_Ctrl'
+                                    })
+                                    .segment('facturas_correo', {
+                                        templateUrl: 'views/app/finanzas/contable/repositorio_facturas/facturas_correo/index.html',
+                                        controller: 'leer_correo_facturas_electronica_Ctrl'
+                                    })   
+                                    .segment('facturas_rechazadas', {
+                                        templateUrl: 'views/app/finanzas/contable/repositorio_facturas/facturas_rechazadas/index.html',
+                                        controller: 'rechazadas_facturas_electronica_Ctrl'
+                                    }) 
+                                .up()
+                                //Fin
+                            .up()
+                            //fin
+                            // Modulo de Fcturacion-Ventas
+                           .segment('ventas', {
+                                templateUrl: 'views/app/finanzas/ventas/index.html'
+                            })
+                            .within()
+                                .segment('facturacion', {
+                                    templateUrl: 'views/app/finanzas/ventas/facturacion/index.html',
+                                    controller: 'facturacion_Ctrl'
+                                })
+                                .within()
+                                    .segment('cajas', {
+                                        templateUrl: 'views/app/finanzas/ventas/facturacion/cajas/index.html',
+                                        controller: 'fac_cajas_Ctrl'
+                                    })
+                                    .segment('nueva_factura_venta', {
+                                        default:true,
+                                        templateUrl: 'views/app/finanzas/ventas/facturacion/nueva_factura_venta/index.html',
+                                        controller: 'fac_nueva_factura_venta_Ctrl'
+                                    })
+        
+                                    .segment('mis_facturas_venta', {
+                                        templateUrl: 'views/app/finanzas/ventas/facturacion/mis_facturas/index.html',
+                                        controller: 'fac_mis_facturas_venta_Ctrl'
+                                    })
+                                    .segment('clientes', {
+                                        templateUrl: 'views/app/finanzas/ventas/facturacion/personas/index.html',
+                                        controller: 'fac_clientes_Ctrl'
+                                    })
+                                .up()
+                            .up()
+                            //Fin
+                            // Modulo de Inventario
+                           .segment('inventario', {
+                                templateUrl: 'views/app/finanzas/inventario/index.html'
+                            })
+                            .within()
+                                //Inventario de Bienes
+                                .segment('Inv_Bienes', {
+                                    templateUrl: 'views/app/finanzas/inventario/inv_bienes/index.html',
+                                    controller: 'inventario_Ctrl'
+                                })
+                                .within()
+                                    .segment('menu', {
+                                            default: true,
+                                            templateUrl: 'views/app/finanzas/inventario/inv_bienes/menu.html',
+                                            controller: 'inv_bienes_menuCtrl'
+                                        })
+                                    .segment('categoria', {
+                                        templateUrl: 'views/app/finanzas/inventario/inv_bienes/categorias/index.html',
+                                        controller: 'inv_bienes_categoriasCtrl'
+                                    })
+                                        .within()
+                                            .segment('tipo_categorias', {
+                                                templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_categorias/index.html',
+                                                controller: 'inv_bienes_tipo_categoriasCtrl'
+                                            })
+                                        .up()
+                                    .segment('garantia', {
+                                        templateUrl: 'views/app/finanzas/inventario/inv_bienes/garantia/index.html',
+                                        controller: 'inv_bienes_garantiaCtrl'
+                                    })
+                                        .within()
+                                                .segment('tipo_garantias', {
+                                                    templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_garantias/index.html',
+                                                    controller: 'inv_bienes_tipo_garantiaCtrl'
+                                                })
+                                        .up()
+                                    .segment('ubicacion', {
+                                        templateUrl: 'views/app/finanzas/inventario/inv_bienes/ubicacion/index.html',
+                                        controller: 'inv_bienes_ubicacionCtrl'
+                                    })
+                                    .segment('modelos', {
+                                        templateUrl: 'views/app/finanzas/inventario/inv_bienes/modelos/index.html',
+                                        controller: 'inv_bienes_modeloCtrl'
+                                    })
+                                    .segment('tipo_consumo', {
+                                        templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_consumo/index.html',
+                                        controller: 'inv_bienes_tipo_consumoCtrl'
+                                    })
+                                    .segment('estado_descriptivo', {
+                                        templateUrl: 'views/app/finanzas/inventario/inv_bienes/estado_descriptivo/index.html',
+                                        controller: 'inv_bienes_estado_descriptivoCtrl'
+                                    })
+
+                                    .segment('bienes', {
+                                        templateUrl: 'views/app/finanzas/inventario/inv_bienes/bienes/index.html',
+                                        controller: 'inv_bienes_bienesCtrl'
+                                    })
+                                    .segment('marcas', {
+                                        templateUrl: 'views/app/finanzas/inventario/inv_bienes/marcas/index.html',
+                                        controller: 'inv_bienes_marcasCtrl'
+                                    })
+                                .up()
+                                //fin
+                                //Inventario de Productos
+                                .segment('Inv_Productos', {
+                                    templateUrl: 'views/app/finanzas/inventario/inv_productos/index.html',
+                                    controller: 'inventario_Ctrl'
+                                })
+                                .within()
+                                        .segment('menu', {
+                                            default: true,
+                                            templateUrl: 'views/app/finanzas/inventario/inv_productos/menu.html',
+                                            controller: 'inv_productos_menuCtrl'
+                                        })
+                                        .segment('categoria', {
+                                                templateUrl: 'views/app/finanzas/inventario/inv_productos/categorias/index.html',
+                                                controller: 'inv_bienes_categoriasCtrl'
+                                            })
+                                                .within()
+                                                    .segment('tipo_categorias', {
+                                                        templateUrl: 'views/app/finanzas/inventario/inv_productos/tipo_categorias/index.html',
+                                                        controller: 'inv_bienes_tipo_categoriasCtrl'
+                                                    })
+                                                .up()
+                                        .segment('garantia', {
+                                                templateUrl: 'views/app/finanzas/inventario/inv_productos/garantia/index.html',
+                                                controller: 'inv_bienes_garantiaCtrl'
+                                            })
+                                                .within()
+                                                        .segment('tipo_garantias', {
+                                                            templateUrl: 'views/app/finanzas/inventario/inv_productos/tipo_garantias/index.html',
+                                                            controller: 'inv_bienes_tipo_garantiaCtrl'
+                                                        })
+                                                .up()
+                                        .segment('ubicacion', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_productos/ubicacion/index.html',
+                                            controller: 'inv_productos_ubicacionCtrl'
+                                        })
+                                        .segment('modelo', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_productos/modelos/index.html',
+                                            controller: 'inv_productos_modeloCtrl'
+                                        })
+                                        .segment('tipo_consumo', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_productos/tipo_consumo/index.html',
+                                            controller: 'inv_productos_tipo_consumoCtrl'
+                                        })
+                                        .segment('estado_descriptivo', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_productos/estado_descriptivo/index.html',
+                                            controller: 'inv_productos_estado_descriptivoCtrl'
+                                        })
+                                        .segment('productos', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_productos/productos/index.html',
+                                            controller: 'inv_productos_productosCtrl'
+                                        })
+                                        .segment('bodegas', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_productos/bodega/index.html',
+                                            controller: 'inv_productos_bodegasCtrl'
+                                        })
+                                        .segment('marcas', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_productos/marcas/index.html',
+                                            controller: 'inv_productos_marcasCtrl'
+                                        })
+                                .up()
+                                //fin
+                                //Inventario de Servicios
+                                .segment('Inv_Servicios', {
+                                    templateUrl: 'views/app/finanzas/inventario/inv_productos/index.html',
+                                    controller: 'inventario_Ctrl'
+                                })
+                                .within()
+                                        .segment('menu', {
+                                            default: true,
+                                            templateUrl: 'views/app/finanzas/inventario/inv_servicios/menu.html',
+                                            controller: 'inv_servicios_menuCtrl'
+                                        })
+                                        .segment('categorias', {
+                                                templateUrl: 'views/app/finanzas/inventario/inv_servicios/categorias/index.html',
+                                                controller: 'inv_bienes_categoriasCtrl'
+                                            })
+                                                .within()
+                                                    .segment('tipo_categorias', {
+                                                        templateUrl: 'views/app/finanzas/inventario/inv_servicios/tipo_categorias/index.html',
+                                                        controller: 'inv_bienes_tipo_categoriasCtrl'
+                                                    })
+                                                .up()
+                                        .segment('garantia', {
+                                                templateUrl: 'views/app/finanzas/inventario/inv_servicios/garantia/index.html',
+                                                controller: 'inv_bienes_garantiaCtrl'
+                                            })
+                                                .within()
+                                                        .segment('tipo_garantias', {
+                                                            templateUrl: 'views/app/finanzas/inventario/inv_servicios/tipo_garantias/index.html',
+                                                            controller: 'inv_bienes_tipo_garantiaCtrl'
+                                                        })
+                                                .up()
+                                        .segment('ubicacion', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_servicios/ubicacion/index.html',
+                                            controller: 'inv_servicios_ubicacionCtrl'
+                                        })
+                                        .segment('modelos', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_servicios/modelos/index.html',
+                                            controller: 'inv_servicios_modeloCtrl'
+                                        })
+                                        .segment('tipo_consumo', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_servicios/tipo_consumo/index.html',
+                                            controller: 'inv_servicios_tipo_consumoCtrl'
+                                        })
+                                        .segment('estado_descriptivo', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_servicios/estado_descriptivo/index.html',
+                                            controller: 'inv_servicios_estado_descriptivoCtrl'
+                                        })
+                                        .segment('servicios', {
+                                            templateUrl: 'views/app/finanzas/inventario/inv_servicios/servicios/index.html',
+                                            controller: 'inv_servicios_serviciosCtrl'
+                                        })
+                                .up()
+                                //fin
+                            .up()
+                            //Fin
+                        .up()
                 .up()
             .up();
 
@@ -445,7 +705,7 @@ var app = angular.module('nextbook20App', [
         //         .when('/App/Inventario/Estado_Descriptivo',    'dashboard.app.inventario.estado_descriptivo')
         //         // Parametrizacion Tipos
         //         .when('/App/Inventario/Tipo_Categoria',    'dashboard.app.inventario.tipo_categoria')
-        //         .when('/App/Inventario/Tipo_Garantia',    'dashboard.app.inventario.tipo_garantia')
+        //         .when('/App/Inventario/Tipo_Garantia',    'dashboard.app.inventario.tipo_garantias')
         //         .when('/App/Inventario/Tipo_Consumo',    'dashboard.app.inventario.tipo_consumo')
         //         .when('/App/Inventario/Tipo_Productos',    'dashboard.app.inventario.tipo_productos')
         //         .when('/App/Inventario/Tipo_Catalogo',    'dashboard.app.inventario.tipo_catalogo')

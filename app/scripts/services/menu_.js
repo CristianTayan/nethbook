@@ -39,3 +39,13 @@ angular.module('nextbook20App')
 	    	};
 	    	
 	});
+
+// //------------------------------------ SERVICIOS COMPARTIDOS DE MENU--------------------------------------
+// app.factory('Servicios_SubMenu', function($localStorage) {
+//     var obj_serv_modal = {};
+   	
+//    	obj_serv_modal.actualizar_submenu = function(array) {
+//           obj_serv_modal.menu=array;
+//     };
+//     return obj_serv_modal;
+// });

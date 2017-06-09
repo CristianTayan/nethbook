@@ -1068,7 +1068,7 @@ app.factory('Servicios_Modal_Personas', function($rootScope,$mdDialog,colaborado
     obj_serv_modal.abrir_modal = function() {
             $mdDialog.show({
                     controller: DialogController_nuevo,
-                    templateUrl: 'views/app/facturacion/personas/new.html',
+                    templateUrl: 'views/app/finanzas/ventas/facturacion/personas/new.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',

@@ -1,14 +1,15 @@
+<div layout="row" flex>
 <md-sidenav style="max-width:250px;" layout="column" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4" flex>
     <md-content layout="column" >
-        <img class="md-card-image" src="images/app/inv_productos/menu.png" alt="image caption">
-        <md-list-item href="#/App">
+        <img class="md-card-image" src="images/app/inv_servicios/menu.png" alt="image caption">
+        <md-list-item href="#/Nb/App">
             <md-icon>arrow_back</md-icon>
             <p>Atras</p>
             <md-icon>pages</md-icon>
         </md-list-item>
         <md-divider></md-divider>
-        <md-subheader class="md-no-sticky">Menu de Aplicación</md-subheader>
-        <md-list-item href="#/App/Inv_Productos/">
+        <md-subheader class="md-no-sticky">Menu de Inventario de Servicios</md-subheader>
+        <md-list-item href="#/Nb/App/Finanzas/Inventario/Inv_Servicios">
             <md-icon>home</md-icon>
             <p>INICIO</p>
         </md-list-item>
@@ -27,7 +28,12 @@
         </md-sidemenu>
     </md-content>
 </md-sidenav>
-<md-content flex class="md-padding" layout="column" >
+<md-content flex class="md-padding" layout="column" ng-show="view_segment<=5">
     <sound-manager></sound-manager>
-    <div app-view-segment="3"></div>
+    <div app-view-segment="5"></div>
 </md-content>
+<md-content flex class="md-padding" layout="column" ng-show="view_segment>5">
+    <sound-manager></sound-manager>
+    <div app-view-segment="6"></div>
+</md-content>
+</div>

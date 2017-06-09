@@ -10,8 +10,7 @@
 	var app = angular.module('nextbook20App')
     app.controller('facturacion_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
     	// ------------------------------------inicio generacion vista menu personalizacion------------------------------------
-            var data = menuService.Get_Vistas_Loged_User();
-            $scope.menu = data.respuesta[0].children[0].children[1];
+            $scope.menu = $localStorage.submenu;
         // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
     });
 
@@ -34,7 +33,7 @@
             $scope.usuarios_dialog_modificar = function(col_usuario) {
                 $mdDialog.show({
                     controller: DialogController_editar,
-                    templateUrl: 'views/app/facturacion/personas/update.html',
+                    templateUrl: 'views/app/finanzas/ventas/facturacion/personas/update.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',
@@ -138,7 +137,7 @@
             $scope.usuarios_dialog_eliminar = function(usuario) {
                 $mdDialog.show({
                     controller: Dialog_eliminar_Ctrl,
-                    templateUrl: 'views/app/facturacion/personas/eliminar.html',
+                    templateUrl: 'views/app/finanzas/ventas/facturacion/personas/eliminar.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',
@@ -279,7 +278,7 @@
             $scope.cajas_dialog_nuevo = function(event) {
                 $mdDialog.show({
                     controller: DialogController_nuevo,
-                    templateUrl: 'views/app/facturacion/cajas/new.html',
+                    templateUrl: 'views/app/finanzas/ventas/facturacion/cajas/new.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',
@@ -294,7 +293,7 @@
             $scope.usuarios_dialog_asignar = function(caja) {
                  $mdDialog.show({
                             controller: DialogController_asignar,
-                            templateUrl: 'views/app/facturacion/cajas/asignacion_usuario.html',
+                            templateUrl: 'views/app/finanzas/ventas/facturacion/cajas/asignacion_usuario.html',
                             parent: angular.element(document.body),
                             targetEvent: event,
                             ariaLabel: 'Respuesta Registro',
@@ -331,7 +330,7 @@
 
                                 $mdDialog.show({
                                     controller: DialogController_asignar,
-                                    templateUrl: 'views/app/facturacion/cajas/asignacion_usuario.html',
+                                    templateUrl: 'views/app/finanzas/ventas/facturacion/cajas/asignacion_usuario.html',
                                     parent: angular.element(document.body),
                                     targetEvent: event,
                                     ariaLabel: 'Respuesta Registro',
@@ -550,7 +549,7 @@
         $scope.dialog_add_prod = function(event) {
             $mdDialog.show({
                 controller: DialogController_add,
-                templateUrl: 'views/app/facturacion/nueva_factura_venta/modales/add_prod.html',
+                templateUrl: 'views/app/finanzas/ventas/facturacion/nueva_factura_venta/modales/add_prod.html',
                 parent: angular.element(document.body),
                 targetEvent: event,
                 ariaLabel: 'Respuesta Registro',

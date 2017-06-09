@@ -1,12 +1,14 @@
-<md-sidenav style="max-width:250px;" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" flex>
+<div layout="row" flex>
+<md-sidenav style="max-width:250px;" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"  flex>
     <md-content layout="column">
-        <img src="images/app/facturacion/menu.png">
-        <md-list-item href="#/App">
+        <img src="images/app/repositorio/menu.png">
+        <md-list-item href="#/Nb/App">
             <md-icon>arrow_back</md-icon>
             <p>Atras</p>
             <md-icon>pages</md-icon>
         </md-list-item>
-        <md-subheader class="md-no-sticky text-center">Menu Facturación</md-subheader>
+        <md-subheader class="md-no-sticky text-center">Menu Repositorio Factura</md-subheader>
+        
         <md-list-item ng-href="#{{item.path}}" ng-show="item.permisos.accion_ver" ng-repeat="item in menu.children">
             <p> {{item.nombre}}</p>
             <md-icon>{{item.personalizacion.icon}}</md-icon>
@@ -14,5 +16,6 @@
     </md-content>
 </md-sidenav>
 <md-content flex class="md-padding" layout="column" >
-    <div app-view-segment="3"></div>
+    <div app-view-segment="5"></div>
 </md-content>
+</div>

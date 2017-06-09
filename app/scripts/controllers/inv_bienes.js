@@ -100,7 +100,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_producto_dialog_nuevo = function(event) {
 		        $mdDialog.show({
 		            controller: DialogController_nuevo,
-		            templateUrl: 'views/app/inv_bienes/bienes/new.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/bienes/new.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -362,7 +362,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_estado_descriptivo_nuevo = function(event) {
 		        $mdDialog.show({
 		            controller: DialogController_nuevo,
-		            templateUrl: 'views/app/inv_bienes/estado_descriptivo/new.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/estado_descriptivo/new.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -424,7 +424,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_estado_descriptivo_editar = function(estadodescriptivo) {
 		        $mdDialog.show({
 		            controller: DialogController_editar,
-		            templateUrl: 'views/app/inv_bienes/estado_descriptivo/update.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/estado_descriptivo/update.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -488,7 +488,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_estado_descriptivo_eliminar = function(estadodescriptivo) {
 		        $mdDialog.show({
 		            controller: Dialog_eliminar_Ctrl,
-		            templateUrl: 'views/app/inv_bienes/estado_descriptivo/eliminar.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/estado_descriptivo/eliminar.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -567,7 +567,7 @@ var app = angular.module('nextbook20App')
 	    $scope.inv_marca_dialog_nuevo = function(event) {
 	        $mdDialog.show({
 	            controller: DialogController_nuevo,
-	            templateUrl: 'views/app/inv_bienes/marcas/new.html',
+	            templateUrl: 'views/app/finanzas/inventario/inv_bienes/marcas/new.html',
 	            parent: angular.element(document.body),
 	            targetEvent: event,
 	            ariaLabel: 'Respuesta Registro',
@@ -625,7 +625,7 @@ var app = angular.module('nextbook20App')
 	    $scope.inv_marca_dialog_editar = function(categoria) {
 	        $mdDialog.show({
 	            controller: DialogController_editar,
-	            templateUrl: 'views/app/inv_bienes/marcas/update.html',
+	            templateUrl: 'views/app/finanzas/inventario/inv_bienes/marcas/update.html',
 	            parent: angular.element(document.body),
 	            targetEvent: event,
 	            ariaLabel: 'Respuesta Registro',
@@ -688,7 +688,7 @@ var app = angular.module('nextbook20App')
 	    $scope.inv_marca_dialog_eliminar = function(tipocategoria) {
 	        $mdDialog.show({
 	            controller: Dialog_eliminar_Ctrl,
-	            templateUrl: 'views/app/inv_bienes/marcas/eliminar.html',
+	            templateUrl: 'views/app/finanzas/inventario/inv_bienes/marcas/eliminar.html',
 	            parent: angular.element(document.body),
 	            targetEvent: event,
 	            ariaLabel: 'Respuesta Registro',
@@ -766,7 +766,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_modelo_dialog_nuevo = function(event) {
 			    $mdDialog.show({
 			        controller: DialogController_nuevo,
-			        templateUrl: 'views/app/inv_bienes/modelos/new.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/modelos/new.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -822,7 +822,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_modelo_dialog_editar = function(categoria) {
 			    $mdDialog.show({
 			        controller: DialogController_editar,
-			        templateUrl: 'views/app/inv_bienes/modelos/update.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/modelos/update.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -884,7 +884,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_modelo_dialog_eliminar = function(tipocategoria) {
 			    $mdDialog.show({
 			        controller: Dialog_eliminar_Ctrl,
-			        templateUrl: 'views/app/inv_bienes/modelos/eliminar.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/modelos/eliminar.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -961,7 +961,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_tipo_consumo_dialog_nuevo = function(event) {
 		        $mdDialog.show({
 		            controller: DialogController_nuevo,
-		            templateUrl: 'views/app/inv_bienes/tipo_consumo/new.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_consumo/new.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -1017,7 +1017,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_tipo_consumo_dialog_editar = function(categoria) {
 		        $mdDialog.show({
 		            controller: DialogController_editar,
-		            templateUrl: 'views/app/inv_bienes/tipo_consumo/update.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_consumo/update.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -1079,7 +1079,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_tipo_consumo_dialog_eliminar = function(tipocategoria) {
 		        $mdDialog.show({
 		            controller: Dialog_eliminar_Ctrl,
-		            templateUrl: 'views/app/inv_bienes/tipo_consumo/eliminar.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_consumo/eliminar.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -1156,7 +1156,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_ubicacion_dialog_nuevo = function(event) {
 			    $mdDialog.show({
 			        controller: DialogController_nuevo,
-			        templateUrl: 'views/app/inv_bienes/ubicacion/new.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/ubicacion/new.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -1213,7 +1213,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_ubicacion_dialog_editar = function(categoria) {
 			    $mdDialog.show({
 			        controller: DialogController_editar,
-			        templateUrl: 'views/app/inv_bienes/ubicacion/update.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/ubicacion/update.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -1275,7 +1275,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_ubicacion_dialog_eliminar = function(tipocategoria) {
 			    $mdDialog.show({
 			        controller: Dialog_eliminar_Ctrl,
-			        templateUrl: 'views/app/inv_bienes/ubicacion/eliminar.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/ubicacion/eliminar.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -1414,7 +1414,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_categoria_dialog_editar = function(tipo_categoria) {
 			    $mdDialog.show({
 			        controller: DialogController_editar,
-			        templateUrl: 'views/app/inv_bienes/categorias/update.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/categorias/update.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -1506,7 +1506,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_categoria_padre_dialog_nuevo = function(event) {
 			        $mdDialog.show({
 			            controller: Controller_add_cat_padre,
-			            templateUrl: 'views/app/inv_bienes/categorias/new_cat_padre.html',
+			            templateUrl: 'views/app/finanzas/inventario/inv_bienes/categorias/new_cat_padre.html',
 			            parent: angular.element(document.body),
 			            targetEvent: event,
 			            ariaLabel: 'Respuesta Registro',
@@ -1517,7 +1517,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_categoria_hijo_dialog_nuevo = function(padre) {
 			        $mdDialog.show({
 			            controller: Controller_add_cat_hijo,
-			            templateUrl: 'views/app/inv_bienes/categorias/new_cat_hijo.html',
+			            templateUrl: 'views/app/finanzas/inventario/inv_bienes/categorias/new_cat_hijo.html',
 			            parent: angular.element(document.body),
 			            targetEvent: event,
 			            ariaLabel: 'Respuesta Registro',
@@ -1608,7 +1608,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_categoria_dialog_eliminar = function(categoria) {
 			    $mdDialog.show({
 			        controller: Dialog_eliminar_Ctrl,
-			        templateUrl: 'views/app/inv_bienes/categorias/eliminar.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/categorias/eliminar.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -1649,7 +1649,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_tc_dialog_nuevo = function(event) {
 			    $mdDialog.show({
 			        controller: DialogController_nuevo,
-			        templateUrl: 'views/app/inv_bienes/tipo_categorias/new.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_categorias/new.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -1705,7 +1705,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_tc_dialog_editar = function(categoria) {
 			    $mdDialog.show({
 			        controller: DialogController_editar,
-			        templateUrl: 'views/app/inv_bienes/tipo_categorias/update.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_categorias/update.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -1767,7 +1767,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_tc_dialog_eliminar = function(tipocategoria) {
 			    $mdDialog.show({
 			        controller: Dialog_eliminar_Ctrl,
-			        templateUrl: 'views/app/inv_bienes/tipo_categorias/eliminar.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_categorias/eliminar.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -1855,7 +1855,7 @@ var app = angular.module('nextbook20App')
 			    $scope.data_inv_tipo_garantia_get();
 			    $mdDialog.show({
 			        controller: DialogController_nuevo,
-			        templateUrl: 'views/app/inv_bienes/garantia/new.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/garantia/new.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -1931,7 +1931,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_garantia_dialog_editar = function(categoria) {
 			    $mdDialog.show({
 			        controller: DialogController_editar,
-			        templateUrl: 'views/app/inv_bienes/garantia/update.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/garantia/update.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -2008,7 +2008,7 @@ var app = angular.module('nextbook20App')
 			$scope.inv_garantia_dialog_eliminar = function(tipocategoria) {
 			    $mdDialog.show({
 			        controller: Dialog_eliminar_Ctrl,
-			        templateUrl: 'views/app/inv_bienes/garantia/eliminar.html',
+			        templateUrl: 'views/app/finanzas/inventario/inv_bienes/garantia/eliminar.html',
 			        parent: angular.element(document.body),
 			        targetEvent: event,
 			        ariaLabel: 'Respuesta Registro',
@@ -2085,7 +2085,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_tipo_garantia_dialog_nuevo = function(event) {
 		        $mdDialog.show({
 		            controller: DialogController_nuevo,
-		            templateUrl: 'views/app/inv_bienes/tipo_garantia/new.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_garantia/new.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -2142,7 +2142,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_tipo_garantia_dialog_editar = function(categoria) {
 		        $mdDialog.show({
 		            controller: DialogController_editar,
-		            templateUrl: 'views/app/inv_bienes/tipo_garantia/update.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_garantia/update.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -2205,7 +2205,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_tipo_garantia_dialog_eliminar = function(tipocategoria) {
 		        $mdDialog.show({
 		            controller: Dialog_eliminar_Ctrl,
-		            templateUrl: 'views/app/inv_bienes/tipo_garantia/eliminar.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_garantia/eliminar.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',

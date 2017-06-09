@@ -16,7 +16,7 @@
                         <md-card ng-repeat="m_hijo in m_padre.children" ng-show="m_hijo.children.length>0">
                             <md-list ng-cloak>
                                 <md-subheader class="md-no-sticky">{{m_hijo.nombre}}</md-subheader>
-                                <md-list-item ng-href="{{'#'+m_nieto.path}}" ng-repeat="m_nieto in m_hijo.children">
+                                <md-list-item ng-href="{{'#'+m_nieto.path}}" ng-repeat="m_nieto in m_hijo.children" ng-click="set_menu(m_nieto)">
                                     <md-icon>{{m_nieto.personalizacion.icon}}</md-icon>
                                     <p>{{m_nieto.nombre}}</p>
                                 </md-list-item>
@@ -25,7 +25,7 @@
                         <md-card ng-repeat="m_hijo in m_padre.children | limitTo:m_padre.limit" ng-show="m_hijo.children.length==0">
                             <md-list ng-cloak>
                                 <md-subheader class="md-no-sticky">{{m_padre.nombre}}</md-subheader>
-                                <md-list-item ng-href="{{'#'+m_hijo.path}}" ng-repeat="m_hijo in m_padre.children" ng-show="m_hijo.children.length==0">
+                                <md-list-item ng-href="{{'#'+m_hijo.path}}" ng-repeat="m_hijo in m_padre.children" ng-show="m_hijo.children.length==0" >
                                     <md-icon>{{m_hijo.personalizacion.icon}}</md-icon>
                                     <p>{{m_hijo.nombre}}</p>
                                 </md-list-item>

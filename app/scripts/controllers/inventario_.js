@@ -9,11 +9,11 @@
  */
 var app = angular.module('nextbook20App')
 
-app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog, menuService,$location) {
+app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog, menuService,$location,$localStorage) {
 
     // ------------------------------------inicio generacion vista menu personalizacion------------------------------------
         var data = menuService.Get_Vistas_Loged_User();
-        $scope.menu = data.respuesta[0].children[0].children[2];
+        $scope.menu = $localStorage.submenu;
     // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
     
     $scope.go_menu=function(menu){

@@ -8,23 +8,24 @@
  * Controller of the nextbook20App
  */
 	var app = angular.module('nextbook20App')
-    app.controller('RepositorioFacturasCtrl', function($scope) {
+    app.controller('RepositorioFacturasCtrl', function($scope,menuService,$localStorage) {
         console.log('test');
         // $scope.theme = 'teal';
 	      // $scope.changeTheme = function() {
 	        $scope.theme = $scope.theme === 'indigo' ? 'lime' : 'indigo'; 
 	      // };
+	      $scope.menu = $localStorage.submenu;
 
     });
 
-    app.controller('repositorio_facturas_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
+    // app.controller('repositorio_facturas_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
 
-        // ------------------------------------inicio generacion vista menu personalizacion------------------------------------
-	        var data = menuService.Get_Vistas_Loged_User();
-	        $scope.menu = data.respuesta[0].children[0].children[5];
-	    // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
+    //     // ------------------------------------inicio generacion vista menu personalizacion------------------------------------
+	   //      var data = menuService.Get_Vistas_Loged_User();
+	   //      $scope.menu = data.respuesta[0].children[0].children[5];
+	   //  // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
 
-    });
+    // });
 
     app.controller('repfac_inicio_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
     	
