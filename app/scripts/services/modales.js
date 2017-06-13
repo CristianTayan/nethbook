@@ -30,7 +30,7 @@ app.factory('Servicios_Modal_Bienes', function($rootScope,$mdDialog,inventario_S
                 $mdDialog.show({
                     controller: Controller_add_cat_padre,
                     multiple:true,
-                    templateUrl: 'views/app/inventario/categoria/new_cat_padre.html',
+                    templateUrl: 'views/app/finanzas/inventario_root/categoria/new_cat_padre.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',
@@ -41,7 +41,7 @@ app.factory('Servicios_Modal_Bienes', function($rootScope,$mdDialog,inventario_S
                 $mdDialog.show({
                     controller: DialogController_nuevo,
                     multiple:true,
-                    templateUrl: 'views/app/inventario/tipo_consumo/new.html',
+                    templateUrl: 'views/app/finanzas/inventario_root/tipo_consumo/new.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',
@@ -52,7 +52,7 @@ app.factory('Servicios_Modal_Bienes', function($rootScope,$mdDialog,inventario_S
                    $mdDialog.show({
                         controller: DialogController_nuevo,
                         multiple:true,
-                        templateUrl: 'views/app/inventario/estado_descriptivo/new.html',
+                        templateUrl: 'views/app/finanzas/inventario_root/estado_descriptivo/new.html',
                         parent: angular.element(document.body),
                         targetEvent: event,
                         ariaLabel: 'Respuesta Registro',
@@ -65,7 +65,7 @@ app.factory('Servicios_Modal_Bienes', function($rootScope,$mdDialog,inventario_S
                 $mdDialog.show({
                     controller: DialogController_nuevo,
                     multiple:true,
-                    templateUrl: 'views/app/inventario/marcas/new.html',
+                    templateUrl: 'views/app/finanzas/inventario_root/marcas/new.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',
@@ -77,7 +77,7 @@ app.factory('Servicios_Modal_Bienes', function($rootScope,$mdDialog,inventario_S
             $mdDialog.show({
                 controller: DialogController_nuevo,
                 multiple:true,
-                templateUrl: 'views/app/inventario/modelos/new.html',
+                templateUrl: 'views/app/finanzas/inventario_root/modelos/new.html',
                 parent: angular.element(document.body),
                 targetEvent: event,
                 ariaLabel: 'Respuesta Registro',
@@ -90,7 +90,7 @@ app.factory('Servicios_Modal_Bienes', function($rootScope,$mdDialog,inventario_S
             $mdDialog.show({
                 controller: DialogController_nuevo,
                 multiple:true,
-                templateUrl: 'views/app/inventario/ubicacion/new.html',
+                templateUrl: 'views/app/finanzas/inventario_root/ubicacion/new.html',
                 parent: angular.element(document.body),
                 targetEvent: event,
                 ariaLabel: 'Respuesta Registro',
@@ -99,7 +99,7 @@ app.factory('Servicios_Modal_Bienes', function($rootScope,$mdDialog,inventario_S
 
             break;
             case'GARANTIA':
-                var tipo_garantia;
+                // var tipo_garantia;
                 // ---------------------------------------------------tipo garantia select--------------------------------------------------------------
                 obj_serv_modal.data_inv_tipo_garantia_get = function() {
                     inventario_Service.Get_Tipo_Garantia().get(query, success_tipo_garantia).$promise;
@@ -110,11 +110,11 @@ app.factory('Servicios_Modal_Bienes', function($rootScope,$mdDialog,inventario_S
         
     };
     function success_tipo_garantia(desserts) {
-        tipo_garantia = desserts.respuesta.data;
+        var tipo_garantia = desserts.respuesta.data;
         $mdDialog.show({
             controller: DialogController_nueva_garantia,
             multiple:true,
-            templateUrl: 'views/app/inventario/garantia/new.html',
+            templateUrl: 'views/app/finanzas/inventario_root/garantia/new.html',
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
@@ -553,7 +553,7 @@ app.factory('Servicios_Modal_Servicios', function($rootScope,$mdDialog,inventari
                 $mdDialog.show({
                     controller: Controller_add_cat_padre,
                     multiple:true,
-                    templateUrl: 'views/app/inventario/categoria/new_cat_padre.html',
+                    templateUrl: 'views/app/finanzas/inventario_root/categoria/new_cat_padre.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',
@@ -564,7 +564,7 @@ app.factory('Servicios_Modal_Servicios', function($rootScope,$mdDialog,inventari
                 $mdDialog.show({
                     controller: DialogController_nuevo,
                     multiple:true,
-                    templateUrl: 'views/app/inventario/tipo_consumo/new.html',
+                    templateUrl: 'views/app/finanzas/inventario_root/tipo_consumo/new.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',
@@ -575,7 +575,7 @@ app.factory('Servicios_Modal_Servicios', function($rootScope,$mdDialog,inventari
                    $mdDialog.show({
                         controller: DialogController_nuevo,
                         multiple:true,
-                        templateUrl: 'views/app/inventario/estado_descriptivo/new.html',
+                        templateUrl: 'views/app/finanzas/inventario_root/estado_descriptivo/new.html',
                         parent: angular.element(document.body),
                         targetEvent: event,
                         ariaLabel: 'Respuesta Registro',
@@ -588,7 +588,7 @@ app.factory('Servicios_Modal_Servicios', function($rootScope,$mdDialog,inventari
                 $mdDialog.show({
                     controller: DialogController_nuevo,
                     multiple:true,
-                    templateUrl: 'views/app/inventario/marcas/new.html',
+                    templateUrl: 'views/app/finanzas/inventario_root/marcas/new.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     ariaLabel: 'Respuesta Registro',
@@ -600,7 +600,7 @@ app.factory('Servicios_Modal_Servicios', function($rootScope,$mdDialog,inventari
             $mdDialog.show({
                 controller: DialogController_nuevo,
                 multiple:true,
-                templateUrl: 'views/app/inventario/modelos/new.html',
+                templateUrl: 'views/app/finanzas/inventario_root/modelos/new.html',
                 parent: angular.element(document.body),
                 targetEvent: event,
                 ariaLabel: 'Respuesta Registro',
@@ -613,7 +613,7 @@ app.factory('Servicios_Modal_Servicios', function($rootScope,$mdDialog,inventari
             $mdDialog.show({
                 controller: DialogController_nuevo,
                 multiple:true,
-                templateUrl: 'views/app/inventario/ubicacion/new.html',
+                templateUrl: 'views/app/finanzas/inventario_root/ubicacion/new.html',
                 parent: angular.element(document.body),
                 targetEvent: event,
                 ariaLabel: 'Respuesta Registro',
@@ -622,7 +622,7 @@ app.factory('Servicios_Modal_Servicios', function($rootScope,$mdDialog,inventari
 
             break;
             case'GARANTIA':
-                var tipo_garantia;
+                // var tipo_garantia;
                 // ---------------------------------------------------tipo garantia select--------------------------------------------------------------
                 obj_serv_modal.data_inv_tipo_garantia_get = function() {
                     inventario_Service.Get_Tipo_Garantia().get(query, success_tipo_garantia).$promise;
@@ -632,11 +632,11 @@ app.factory('Servicios_Modal_Servicios', function($rootScope,$mdDialog,inventari
         }
     };
     function success_tipo_garantia(desserts) {
-        tipo_garantia = desserts.respuesta.data;
+        var tipo_garantia = desserts.respuesta.data;
         $mdDialog.show({
             controller: DialogController_nueva_garantia,
             multiple:true,
-            templateUrl: 'views/app/inventario/garantia/new.html',
+            templateUrl: 'views/app/finanzas/inventario_root/garantia/new.html',
             parent: angular.element(document.body),
             targetEvent: event,
             ariaLabel: 'Respuesta Registro',
