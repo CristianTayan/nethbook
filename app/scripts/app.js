@@ -262,6 +262,31 @@ var app = angular.module('nextbook20App', [
                 templateUrl: 'views/actualizar_datos/sucursal.html',
                 controller: 'actualizar_datos_sucursal_Ctrl'
             });
+        // Buscardor 
+        $routeSegmentProvider
+        .when('/search/:id',    'search')
+        .when('/nb/search/:id/Publicacion',    'search.publicacion')
+        .when('/nb/search/:id/Info',    'search.info')
+        .when('/nb/search/:id/Ubicacion',    'search.ubicacion')
+        .when('/nb/search/:id/Similares',    'search.similares')
+        .when('/nb/search/:id/Favoritos',    'search.favoritos')
+        .segment('search', {
+            templateUrl: 'views/dashboard/buscador/index.html',
+            controller: 'search_Ctrl',
+        })
+            .within()                
+                .segment('publicacion', {                        
+                    templateUrl: 'views/perfil/publicacion.html'})                        
+                .segment('info', {
+                    'default': true,
+                    templateUrl: 'views/perfil/info.html'})
+                .segment('ubicacion', {
+                    templateUrl: 'views/perfil/ubicacion.html'})
+                .segment('similares', {
+                    templateUrl: 'views/perfil/similares.html'})
+                .segment('favoritos', {
+                    templateUrl: 'views/perfil/favoritos.html'})
+            .up()
         $routeSegmentProvider
 
         .when('/Nb',    'nb')
@@ -651,12 +676,7 @@ var app = angular.module('nextbook20App', [
         //     // configuracion setting
         //     .when('/nb',    'dashboard.nb')
 
-        //     .when('/nb/search/:id',    'dashboard.nb.search')
-        //         .when('/nb/search/:id/Publicacion',    'dashboard.nb.search.publicacion')
-        //         .when('/nb/search/:id/Info',    'dashboard.nb.search.info')
-        //         .when('/nb/search/:id/Ubicacion',    'dashboard.nb.search.ubicacion')
-        //         .when('/nb/search/:id/Similares',    'dashboard.nb.search.similares')
-        //         .when('/nb/search/:id/Favoritos',    'dashboard.nb.search.favoritos')
+
 
 
         //     .when('/nb/Inicio',    'dashboard.nb.inicio')
@@ -790,23 +810,6 @@ var app = angular.module('nextbook20App', [
         //                             })
         //                         .up()
 
-        //                     .segment('search', {
-        //                         templateUrl: 'views/dashboard/buscador/index.html',
-        //                         controller: 'search_Ctrl',
-        //                     })
-        //                         .within()                
-        //                             .segment('publicacion', {                        
-        //                                 templateUrl: 'views/perfil/publicacion.html'})                        
-        //                             .segment('info', {
-        //                                 'default': true,
-        //                                 templateUrl: 'views/perfil/info.html'})
-        //                             .segment('ubicacion', {
-        //                                 templateUrl: 'views/perfil/ubicacion.html'})
-        //                             .segment('similares', {
-        //                                 templateUrl: 'views/perfil/similares.html'})
-        //                             .segment('favoritos', {
-        //                                 templateUrl: 'views/perfil/favoritos.html'})
-        //                         .up()
         //                     .segment('config', {
         //                         templateUrl: 'views/dashboard/configuracion/index.html',
         //                         // controller: 'configuracionCtrl'

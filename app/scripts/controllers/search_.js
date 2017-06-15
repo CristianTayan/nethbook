@@ -8,13 +8,33 @@
  * Controller of the nextbook20App
  */
 angular.module('nextbook20App')
-  	.controller('search_Ctrl', function ($scope, $routeParams, mainService, $location, $routeSegment) {
+  	.controller('search_Ctrl', function ($scope, $routeParams, mainService, $location, $routeSegment,colaboradores_Service) {
 		mainService.info_perfil_busqueda().get({perfil:$routeParams.id}).$promise.then(function(data){
 			$scope.data = data.respuesta;
 		});
 		$scope.tabnavigation = function(url) {
 	   		$location.path(url);
 	   	}
+
+	   	$scope.ingresar = function() {
+  			var ruc = $scope.email+'001'
+  			colaboradores_Service.Get_Data_By_Ruc().get({ruc:ruc}).$promise.then(function(data){
+  				if (data.respuesta) {
+  					$location.path('/Colaboradores/'+$scope.email+'001');
+  				}else{
+  					$mdDialog.show(
+			            $mdDialog.alert()
+			            .parent(angular.element(document.querySelector('#dialogContainer')))
+			            .clickOutsideToClose(true)
+			            .title('LO SENTIMOS :(')
+			            .textContent('NÚMERO DE RUC NO EXISTE')
+			            .ok('ENTENDIDO')
+			            .openFrom('#left')
+			        );
+  				}
+  			});
+	    }
+
 	   	$scope.$routeSegment = $routeSegment;
 	   	$scope.tabs = 	[	
 	    					{icon : 'public', title : 'Biografia', url:'search/'+$routeParams.id+'/Publicacion'},

@@ -2,18 +2,36 @@
     <div layout="column">
         <div layout="row" layout-align="center center">
             <div flex="80">
-                <md-card flex style="overflow-x:scroll;" ng-repeat="m_padre in menu" ng-show="m_padre.children.length>0">
-                    <div layout="row">
-                        <md-card flex="5" style="background: rgba(0, 150, 136, 0.26);">
+            <!-- style="overflow-x:scroll;"  -->
+                <div flex ng-repeat="m_padre in menu" ng-show="m_padre.children.length>0" 
+                style="border-radius: 5px 5px 5px 5px;
+                        -moz-border-radius: 5px 5px 5px 5px;
+                        -webkit-border-radius: 5px 5px 5px 5px;
+                        border: 2px dashed rgba(63, 81, 181, 0.46);
+                            margin: 10px;">
+                    <div layout="column">
+                        <!-- <md-card flex="5" style="background: rgb(63, 81, 181);">
                             <div class="md-accent" style="  transform: rotate(-90deg);
+                                                            color: white;
                                                             width: 100%;
                                                             margin-left: 0px;
                                                             font-size: 22px;
                                                             text-transform: uppercase;
                                                             text-align: center;
                                                             margin-top: 237%;" >{{m_padre.nombre}}</div>
-                        </md-card>
-                        <md-card ng-repeat="m_hijo in m_padre.children" ng-show="m_hijo.children.length>0">
+                        </md-card> -->
+                        <div layout="row">
+                            <md-button class="md-raised md-primary" style="width: 100%;"><md-icon>{{m_padre.personalizacion.icon}}</md-icon> {{m_padre.nombre}}</md-button>
+                        </div>
+                        <!-- <md-toolbar layout="row" layout-align="center center">
+                                <div class="md-toolbar-tools md-toolbar-registro">
+                                    <span flex></span>
+                                    <h3><md-icon>{{m_padre.personalizacion.icon}}</md-icon> {{m_padre.nombre}}</h3>
+                                    <span flex></span>
+                                </div>
+                        </md-toolbar> -->
+                        <div layout="row">
+                        <md-card ng-repeat="m_hijo in m_padre.children" ng-show="m_hijo.children.length>0" >
                             <md-list ng-cloak>
                                 <md-subheader class="md-no-sticky">{{m_hijo.nombre}}</md-subheader>
                                 <md-list-item ng-href="{{'#'+m_nieto.path}}" ng-repeat="m_nieto in m_hijo.children" ng-click="set_menu(m_nieto)">
@@ -31,8 +49,9 @@
                                 </md-list-item>
                             </md-list>
                         </md-card>
+                        </div>
                     </div>
-                </md-card>
+                </div>
             </div>
         </div>
     </div>
