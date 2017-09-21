@@ -1,5 +1,5 @@
 /node_modules
-/searchServer/node_modules
+/searchServe/node_modules
 /dist
 /.tmp
 /.sass-cache
