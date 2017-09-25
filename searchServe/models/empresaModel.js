@@ -1,9 +1,7 @@
 var mongoose = require('mongoose');
-	mongoose.connect('mongodb://localhost/dataEmpresas');
+var db = require("./../libs/conexion.js");
 var Schema   = mongoose.Schema;
 
-var empresaSchema = new Schema({
-	'empresa' : String
-});
+var empresaSchema = new Schema();
 
 module.exports = mongoose.model('empresa', empresaSchema);

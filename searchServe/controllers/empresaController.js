@@ -1,20 +1,11 @@
 var empresaModel = require('../models/empresaModel.js');
 
+/**
+ * empresaController.js
+ *
+ * @description :: Server-side logic for managing empresas.
+ */
 module.exports = {
-
-    list: function (req, res) {
-
-        empresaModel.find(function (err, empresas) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting empresa.',
-                    error: err
-                });
-            }
-            return res.json(empresas);
-        });
-    }, 
-
     show: function (req, res) {
         var id = req.params.id;
         empresaModel.find({empresa: { $regex: id, $options: 'i' }}, function (err, empresa) {
@@ -30,6 +21,6 @@ module.exports = {
                 });
             }
             return res.json(empresa);
-        });
-    }    
+        }).limit(20);
+    }
 };

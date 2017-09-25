@@ -56,6 +56,7 @@
                         <md-list-item class="md-3-line" ng-repeat="item in elementos | limitTo: 6" ng-click="selectedItemChange(item)">
                             <md-icon class="md-avatar-icon">business</md-icon>
                             <div class="md-list-item-text" layout="column">
+                              {{item}}
                                 <h3>
                                     <span ng-if="item.nombre_comercial">
                                     {{item.nombre_comercial | limitTo: 20}}, 

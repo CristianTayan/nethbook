@@ -16,6 +16,7 @@ var app = angular.module('nextbook20App')
             if (texto.length > 2) {
                 $scope.img = false;
                 mainService.search_empresas().get({id: texto}).$promise.then(function (res) {
+                    console.log('test', res);
                     $scope.elementos = [];
                     $scope.elementos = res.data;
                 });
