@@ -1,12 +1,22 @@
-# nextbook20
+# nethbook
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.15.1.
+# InitStart installation
+Install 
+  front-end
+    node
+  back-end
+    apache 
+  DB
+    mongo
+    PostgreSQL
+
+npm install -g grunt-cli bower yo generator-karma generator-angular
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+init service front-end
+  grunt start
 
 ## Testing
 
-Running `grunt test` will run the unit tests with karma.
+grunt test.
