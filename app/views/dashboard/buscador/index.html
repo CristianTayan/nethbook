@@ -2,23 +2,25 @@
     <div flex-gt-sm="90" flex-gt-md="80">
         <div class="md-toolbar-tools md-toolbar-registro">
             <md-button ng-href="#/" class="md-icon-button">
-                <md-icon>search</md-icon>
+                <md-icon>reply_all</md-icon>
+           
             </md-button>
             <h3>Nethbook, Red de Negocios</h3>
             <span flex></span>
             <form name="formlogin" layout="row" ng-submit="ingresar()">
                 <div>
                     <input id="email" name="email" type="text" ng-model="email" class="inp" numbers-only maxlength="10" placeholder="Número de ruc">
-                    <label class="suffix">001@nextbook.ec</label>
+                    <label class="suffix">001@netbook.ec</label>
                     <md-button class="md-raised md-accent" type="submit">
-                        Entrar
+                        Ingresar
                     </md-button>
                 </div>
             </form>
         </div>
     </div>
 </md-toolbar>
-<div layout="column">
+
+<div layout="column" style="max-width: 90%; margin-left: 5%;">
     <div layout="row">
         <md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="20" style="background: #EEEEEE;padding-top: 8px;    padding-left: 10px;">
             <div layout="row" style="height: 30%;">
@@ -45,6 +47,8 @@
                 </div>
             </div>
         </md-content>
+
+
         <md-content flex style="background: #EEEEEE">
             <md-card flex>
                 <div class="card card--big">
