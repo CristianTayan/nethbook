@@ -30,55 +30,11 @@
                 </div>
                 <div layout="column" layout-align="center center">
                 <md-content style=" background: #EEEEEE;" flex="80">
-                    <!-- <ul class="ca-menu" flex>
-                        <li ng-repeat="item in elementos ">
-                            <a href="" ng-click="selectedItemChange(item)">
-                                <div class="ca-content">
-                                    <div class="ca-sub" >
-                                        {{isNAN(data_search)}}
-                                        {{item.ruc | limitTo: 10}}
-                                        <span class="ca-main" ng-if="item.nombre_comercial">
-                                          {{item.nombre_comercial | limitTo: 35}}
-                                        </span>
-                                        <span ng-if="!item.nombre_comercial">
-                                            <span ng-if="item.razon_social">
-                                              {{item.razon_social | limitTo: 35}}
-                                              <span ng-if="item.razon_social.length > 36">...</span>
-                                            </span>
-                                        </span>
-                                        {{item.actividad_economica}}
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul> -->
                     <md-list>
                         <md-list-item class="md-3-line" ng-repeat="item in elementos | limitTo: 6" ng-click="selectedItemChange(item)">
                             <md-icon class="md-avatar-icon">business</md-icon>
-                            <div class="md-list-item-text" layout="column">
-                              {{item}}
-                                <h3>
-                                    <span ng-if="item.nombre_comercial">
-                                    {{item.nombre_comercial | limitTo: 20}}, 
-                                    </span>
-                                    <span ng-if="item.nombre_fantacia">
-                                        {{item.nombre_fantacia | limitTo: 20}}, 
-                                    </span>
-                                    
-                                    {{item.razon_social | limitTo: 20}}
-
-                                    <!-- <span ng-if="!item.nombre_comercial">
-                                        <span ng-if="item.nombre_comercial">
-                                          {{item.nombre_comercial | limitTo: 35}}
-                                          <span ng-if="item.nombre_comercial.length > 36">...</span>
-                                        </span>
-                                    </span> -->
-                                </h3>
-                                <h4>{{item.ruc | limitTo: 10}}</h4>
-                                <p>
-                                    {{item.actividad_economica | lowercase | limitTo: 150}}
-                                    <span ng-if="item.actividad_economica.length > 160">...</span>
-                                </p>
+                            <div class="md-list-item-text" layout="column">                              
+                                <h4>{{item.empresa}}</h4>
                             </div>
                         </md-list-item>
                     </md-list>

@@ -12,22 +12,25 @@ var app = angular.module('nextbook20App')
         $scope.img = true;
         $scope.buscando = function(){
             $scope.elementos = [];
-            var texto = $scope.data_search;       
-            if (texto.length > 2) {
-                $scope.img = false;
-                mainService.search_empresas().get({id: texto}).$promise.then(function (res) {
-                    console.log('test', res);
+            var texto = $scope.data_search;
+            if (texto) {
+                if (texto.length > 2) {
+                    $scope.img = false;
+                    mainService.search_empresas().get({id: texto}).$promise.then((res) => {
+                        $scope.elementos = [];
+                        $scope.elementos = res;
+                    });
+                }else{
                     $scope.elementos = [];
-                    $scope.elementos = res.data;
-                });
-            }else{
-                $scope.elementos = [];
-                $scope.img = true;
-            }
+                    $scope.img = true;
+                }
+            }            
         }
         $scope.selectedItemChange = function(item) {
+
             if (item) {
-                $location.path('/search/' + item.ruc);
+                const res = item.empresa.split(',');
+                $location.path('/search/' + res[0]);
             }
         }
   	})

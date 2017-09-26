@@ -204,11 +204,16 @@ var app = angular.module('nextbook20App');
             });
         };
 
-         this.search_empresas = function() {
-            return $resource(urlService.server().search_empresas()+':id',
-                    {id: '@_id'},
-                    {query: {method:'GET',isArray:false}
-            });
+        this.search_empresas = function() {
+            return $resource(
+                urlService.server().search_empresas()+':id',
+                {id: '@id'},
+                {
+                    get: {
+                        method: 'GET', isArray: true,
+                    }              
+                }
+            );
         };
 
         this.Get_Hora_in_Time = function() {
