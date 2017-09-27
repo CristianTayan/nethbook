@@ -1,3 +1,4 @@
+
 <md-toolbar layout="row" layout-align="center center">
     <div flex-gt-sm="90" flex-gt-md="80">
         <div class="md-toolbar-tools md-toolbar-registro">
@@ -136,7 +137,7 @@
                                             <md-icon class="md-accent">airplay</md-icon>
                                             <label class="text-brand">Provincias</label>
                                             <md-select name="myselect" id="myselect" ng-change="update_phone()" ng-model="rucdata.provincia" required>
-                                                <md-option ng-repeat="state in states" ng-value="state">
+                                                <md-option ng-repeat="state in states" ng-value="state" class='md-option2' id='md-option2'>
                                                     {{state.nombre}}
                                                 </md-option>
                                             </md-select>
