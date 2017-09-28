@@ -8,7 +8,7 @@
  * Controller of the nextbook20App
  */
 angular.module('nextbook20App')
-  	.controller('search_Ctrl', function ($scope, $routeParams, mainService, $location, $routeSegment,colaboradores_Service) {
+  	.controller('search_Ctrl', function ($scope, $routeParams, mainService, $location, $routeSegment,colaboradores_Service,$mdDialog) {
 		mainService.info_perfil_busqueda().get({perfil:$routeParams.id}).$promise.then(function(data){
 			$scope.data = data.respuesta;
 		});
@@ -21,18 +21,25 @@ angular.module('nextbook20App')
   			colaboradores_Service.Get_Data_By_Ruc().get({ruc:ruc}).$promise.then(function(data){
   				if (data.respuesta) {
   					$location.path('/Colaboradores/'+$scope.email+'001');
-  				}else{
+  				}
+  					if (data.respuesta==false){
+  				
   					$mdDialog.show(
 			            $mdDialog.alert()
 			            .parent(angular.element(document.querySelector('#dialogContainer')))
 			            .clickOutsideToClose(true)
-			            .title('LO SENTIMOS :(')
-			            .textContent('NÚMERO DE RUC NO EXISTE')
-			            .ok('ENTENDIDO')
+			            .title('LO SENTIMOS ESTA CUENTA NO EXISTE:(')
+			            .textContent('DEBES REGISTRARTE')
+			            .ok('REGISTRATE')
 			            .openFrom('#left')
+
 			        );
+			       
+			        
   				}
+
   			});
+  			$location.path('/Registro');
 	    }
 
 	   	$scope.$routeSegment = $routeSegment;
