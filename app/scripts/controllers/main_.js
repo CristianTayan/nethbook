@@ -29,8 +29,6 @@ $scope.buscando = function(){
                         .openFrom('#left')
                         .closeTo(angular.element(document.querySelector('#right')))
                     );
-
-                  //alert('no encontrado en el sri');
                 }
             });
         }else{
