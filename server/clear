@@ -1,0 +1,11 @@
+
+                                                                  
+  [Symfony\Component\Console\Exception\CommandNotFoundException]  
+  Command "cache" is not defined.                                 
+  Did you mean one of these?                                      
+      cache:clear                                                 
+      cache:table                                                 
+      route:cache                                                 
+      config:cache                                                
+                                                                  
+
