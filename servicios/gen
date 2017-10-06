@@ -1,0 +1,8 @@
+
+                                                                  
+  [Symfony\Component\Console\Exception\CommandNotFoundException]  
+  Command "key" is not defined.                                   
+  Did you mean this?                                              
+      key:generate                                                
+                                                                  
+

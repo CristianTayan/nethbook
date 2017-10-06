@@ -72,6 +72,7 @@ class Registro extends Controller
                                               // 'fecha_reinicio_actividades'=>$respuesta['datosEmpresa']['fecha_reinicio_actividades']
                                               // 'fecha_actualizacion'=>$respuesta['datosEmpresa']['fecha_actualizacion']
                                               ));*/
+
 $responsable=$respuesta['establecimientos']['adicional'];
 $direccion=explode('/', $respuesta['establecimientos']['sucursal'][0]['direccion']);
 $direccion[0]=preg_replace('/(\v|\s)+/', '',$direccion[0]);
@@ -255,7 +256,10 @@ $fecha_actualizacion=Carbon::parse($respuesta['datosEmpresa']['fecha_actualizaci
       if ($create) {
        // exec("PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < /var/www/html/appnext1.1/postgres/basico.sql", $cmdout, $cmdresult );
         // $exce = "PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < C:/xampp/htdocs/nethbook/server/postgres/basico.sql"; centos
-        $exce = "PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f 'C:/xampp/htdocs/nethbook/server/postgres/basico.sql'";
+
+        $exce = "pg_dump PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f C:/xampp/htdocs/nethbook/server/postgres/basico.sql";
+      //$exce = "pg_dump user=postgres password=rootdow databases bd_consejo > /C:/MI-RESPALDO.SQL";
+
         exec($exce, $cmdout, $cmdresult );
         echo $cmdout;
         $pass_email=$this->funciones->generarPass();
