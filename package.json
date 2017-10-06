@@ -48,6 +48,9 @@
     "test": "karma start test\\karma.conf.js"
   },
   "dependencies": {
+    "@angular/cdk": "^2.0.0-beta.11",
+    "@angular/material": "^2.0.0-beta.11",
+    "bootstrap": "^3.3.7",
     "grunt-clearcache": "0.0.4",
     "load-grunt-config": "^0.19.2"
   }

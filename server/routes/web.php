@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'cors'], function(){
     Route::post('Save_Datos_Ruc','Registro@Save_Datos_Ruc');
     //----------------------------------------------------------------Pruebas
-    //Route::get('crear_bdd','pruebas@crear_bdd');
+    Route::get('crear_bdd','pruebas@crear_bdd');
     //Route::get('buscar_empresas','pruebas@buscar_empresas');
     //Route::get('edit_script','pruebas@edit_script');
     Route::post('generar_xml_fac','pruebas@generar_xml_fac');

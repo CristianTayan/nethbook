@@ -1,23 +1,48 @@
+<!-- <md-menu-bar>
+  <md-menu>
+        <md-button ng-href="#/" class="md-icon-button">
+                <md-icon>reply_all</md-icon>           
+        </md-button>
+         <h3>Netbook, Red de Negocios</h3>
+    <md-menu-content>
+      <md-menu-item>
+        <input id="email" name="email" type="text" ng-model="email" class="inp" numbers-only maxlength="10" placeholder="Número de ruc">
+      </md-menu-item>
+      <md-menu-divider>gfgd</md-menu-divider>
+      <md-menu-item>gdfg</md-menu-item>
+    </md-menu-content>
+  </md-menu>
+</md-menu-bar> -->
+
 <md-toolbar layout="row" layout-align="center center">
     <div flex-gt-sm="90" flex-gt-md="80">
-        <div class="md-toolbar-tools md-toolbar-registro">
-            <md-button ng-href="#/" class="md-icon-button">
+        <div class="md-toolbar-tools md-toolbar-registro">       <div class="col-xs-2">
+              <md-button ng-href="#/" class="md-icon-button">
                 <md-icon>reply_all</md-icon>           
-            </md-button>
-            <h3>Netbook, Red de Negocios</h3>
-            <span flex></span>
-            <form name="formlogin" layout="row" ng-submit="ingresar()">
-                <div>
-                    <input id="email" name="email" type="text" ng-model="email" class="inp" numbers-only maxlength="10" placeholder="Número de ruc">
-                    <label class="suffix">001@netbook.ec</label>
-                    <md-button class="md-raised md-accent" type="submit">
-                        Ingresar
-                    </md-button>
-                </div>
-            </form>
+              </md-button>
+        </div>
+            <div class="col-xs-6">
+              <h3>Netbook, Red de Negocios</h3>
+            </div>
+              <form name="formlogin" layout="row" ng-submit="ingresar()">
+                   <div class="col-xs-2">
+                      <input id="email" name="email" type="text" ng-model="email" class="inp" numbers-only maxlength="10" placeholder="Número de ruc">
+                    </div>
+                    <div class="col-xs-1">
+                      <label class="suffix">001@netbook.ec</label>
+                    </div>
+                    <div class="col-xs-1">
+                      <md-button class="md-raised md-accent" type="submit">Ingresar
+                      </md-button>
+                    </div>                 
+              </form> 
         </div>
     </div>
 </md-toolbar>
+
+
+
+
 
 <div layout="column" style="max-width: 90%; margin-left: 5%;">
     <div layout="row">

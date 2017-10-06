@@ -70,7 +70,8 @@ return [
 
         'scripts' => [
             'driver' => 'local',
-            'root'   => '/bash',
+            // 'root'   => '/bash',
+            'root'   => 'C:/bash',
         ],
 
         's3' => [

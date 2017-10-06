@@ -15,11 +15,15 @@ use GuzzleHttp\Client;
 class pruebas extends Controller
 {
     public function crear_bdd(Request $request){
-		$name='rivadeneira_1001611381001';
+		$name='bdd';
 		$pass_user='1001611381001';
-    	$create =DB::connection('nextbookconex')->statement('CREATE DATABASE '.$name.' OWNER '.$name.' ');
+    	// $create =DB::connection('nextbookconex')->statement('CREATE DATABASE '.$name.' OWNER postgres ');
     	//exec("export PATH=/opt/PostgreSQL/9.5/bin:$PATH", $cmdout_export, $cmdresult_export );
-		exec("PGPASSWORD=".$pass_user." psql -U ".$name." -d ".$name." -p 5432 -h localhost < /var/www/html/appnext1.1/postgres/basico.sql", $cmdout, $cmdresult );
+		// exec("PGPASSWORD=".$pass_user." psql -U ".$name." -d ".$name." -p 5432 -h localhost < C:/xampp/htdocs/nethbook/server/postgres/basico.sql", $cmdout, $  cmdresult );
+     // $exce = 'PGPASSWORD=rootdow psql -d bdd -U postgres -f "C:/xampp/htdocs/nethbook/server/postgres/basico.sql"';
+     $exce = "PGPASSWORD=rootdow psql -U postgres -d bdd -f 'C:/xampp/htdocs/nethbook/server/postgres/basico.sql'";
+        exec($exce, $cmdresult );
+
     	return response()->json(['respuesta'=>$cmdresult]);
     }
 

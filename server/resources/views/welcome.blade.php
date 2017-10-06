@@ -75,7 +75,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                Nethbook Web
+                Netbook Web
                 </div>
             </div>
         </div>

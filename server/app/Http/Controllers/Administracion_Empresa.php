@@ -79,7 +79,6 @@ class Administracion_Empresa extends Controller
     else return response()->json(["respuesta" => false], 200);
   }
   public function Update_Informacion_Empresa(Request $request)
-
   {
     DB::connection($this->name_bdd)->table('public.personas')->where('id', $request->id)->update(['primer_nombre' => $request->primer_nombre, 'segundo_nombre' => $request->segundo_nombre, 'primer_apellido' => $request->primer_apellido, 'segundo_apellido' => $request->segundo_apellido, 'id_localidad' => $request->id_localidad, 'calle' => $request->calle, 'transversal' => $request->transversal, 'numero' => $request->numero]);
     DB::connection($this->name_bdd)->table('public.personas_correo_electronico')->where('correo_electronico', $request->correo_electronico)->update(['correo_electronico' => $request->correo_electronico]);

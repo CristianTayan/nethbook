@@ -13,15 +13,16 @@ angular.module('nextbook20App')
     this.server=function() {
         return {
             appserviciosnext: function() {
-                return "http://186.4.167.12/appserviciosnext/public/index.php/";
+               // return "http://186.4.167.12/appserviciosnext/public/index.php/";
+               return "http://localhost:8001/";
             }
             ,appnext: function() {
                 // return "http://186.4.167.12/appnext/";
-                return "http://186.4.167.12/appnext1.1/public/index.php/";
+                return "http://localhost:8000/";
 
             },appnextxml: function() {
                 // return "http://186.4.167.12/appnextP/";
-                return "http://186.4.167.12/appnext1.1";
+                //return "http://localhost:8000/";
             },mod_radio: function() {
                 // return "http://186.4.167.12/mod_radio/";
                 return "http://192.168.0.109/mod_radio/";
@@ -36,9 +37,14 @@ angular.module('nextbook20App')
             }
             ,dir: function() {
                 // return "http://186.4.167.12/mod_radio/";
-                return "http://186.4.167.12/appnext1.1/";
+                return "http://localhost:8000/";
 
             }
         }
     };
   });
+
+
+
+
+//http://localhost:8000/index.php/Get_Provincias

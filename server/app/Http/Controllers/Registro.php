@@ -41,7 +41,7 @@ class Registro extends Controller
       $resultado = DB::connection('nextbookconex')->table('informacion.empresas_consultadas')->where('ruc', '=', $request->input('ruc'))->first();
     if (count($resultado)==0)
       {
-      $res = $this->client->request('GET', config('global.appserviciosnext').'/public/index.php/getDatos', ['json' => ['tipodocumento' => 'RUC', 'nrodocumento' => $request->input('ruc') ]]);
+      $res = $this->client->request('GET', config('global.appserviciosnext').'/getDatos', ['json' => ['tipodocumento' => 'RUC', 'nrodocumento' => $request->input('ruc') ]]);
       $respuesta = json_decode($res->getBody()->getContents() , true);
       if ($respuesta['datosEmpresa']['valid']!='false') {
         
@@ -212,7 +212,7 @@ $fecha_actualizacion=Carbon::parse($respuesta['datosEmpresa']['fecha_actualizaci
     }
 
     public function consultar_SRI($ruc){
-      $res = $this->client->request('GET', config('global.appserviciosnext').'/public/index.php/getDatos', ['json' => ['tipodocumento' => 'RUC', 'nrodocumento' => $ruc ]]);
+      $res = $this->client->request('GET', config('global.appserviciosnext').'/getDatos', ['json' => ['tipodocumento' => 'RUC', 'nrodocumento' => $ruc ]]);
       $respuesta = json_decode($res->getBody()->getContents() , false);
       if (!is_array($respuesta)) {
         $respuesta = json_decode(json_encode($respuesta), true);
@@ -253,7 +253,11 @@ $fecha_actualizacion=Carbon::parse($respuesta['datosEmpresa']['fecha_actualizaci
       $create=DB::connection('infoconex')->statement("CREATE DATABASE $name OWNER $name ");
       $create=true;
       if ($create) {
-        exec("PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < /var/www/html/appnext1.1/postgres/basico.sql", $cmdout, $cmdresult );
+       // exec("PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < /var/www/html/appnext1.1/postgres/basico.sql", $cmdout, $cmdresult );
+        // $exce = "PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < C:/xampp/htdocs/nethbook/server/postgres/basico.sql"; centos
+        $exce = "PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f 'C:/xampp/htdocs/nethbook/server/postgres/basico.sql'";
+        exec($exce, $cmdout, $cmdresult );
+        echo $cmdout;
         $pass_email=$this->funciones->generarPass();
         $pass_next=$this->funciones->generarPass();
                         
@@ -287,13 +291,13 @@ $fecha_actualizacion=Carbon::parse($respuesta['datosEmpresa']['fecha_actualizaci
             //print_r($json);
             echo "\nOBTENIENDO CORREOS DE: '.$ruc_empresa.'.......";
               ?>';
-          Storage::disk('scripts')->put('/leer_correos/'.$ruc_empresa.'.php',$contenido_php);
+          // Storage::disk('scripts')->put('/leer_correos/'.$ruc_empresa.'.php',$contenido_php);
 
           //Add a la lista de batch php
-          $contenido_old = Storage::disk('scripts')->get('script.sh');
-          $contenido_new=$contenido_old.' php leer_correos/'.$ruc_empresa.'.php;';
-          $contenido_new = Storage::disk('scripts')->put('script.sh',$contenido_new);
-          $contenido_old = Storage::disk('scripts')->get('script.sh');  
+          // $contenido_old = Storage::disk('scripts')->get('script.sh');
+          // $contenido_new = $contenido_old.' php leer_correos/'.$ruc_empresa.'.php;';
+          // $contenido_new = Storage::disk('scripts')->put('script.sh',$contenido_new);
+          // $contenido_old = Storage::disk('scripts')->get('script.sh');  
 
         //--------------------------------------------------------- FIN BATCH LEER CORREOS -----------------------------------------
           ///CREAR USUARIO
