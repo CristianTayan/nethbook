@@ -16,15 +16,15 @@ class pruebas extends Controller
 {
     public function crear_bdd(Request $request){
 		$name='bdd';
-		$pass_user='1001611381001';
+		$pass_user='1090084247001';
     	// $create =DB::connection('nextbookconex')->statement('CREATE DATABASE '.$name.' OWNER postgres ');
     	//exec("export PATH=/opt/PostgreSQL/9.5/bin:$PATH", $cmdout_export, $cmdresult_export );
 		// exec("PGPASSWORD=".$pass_user." psql -U ".$name." -d ".$name." -p 5432 -h localhost < C:/xampp/htdocs/nethbook/server/postgres/basico.sql", $cmdout, $  cmdresult );
      // $exce = 'PGPASSWORD=rootdow psql -d bdd -U postgres -f "C:/xampp/htdocs/nethbook/server/postgres/basico.sql"';
-     $exce = "PGPASSWORD=rootdow psql -U postgres -d bdd -f 'C:/xampp/htdocs/nethbook/server/postgres/basico.sql'";
-        exec($exce, $cmdresult );
+     // $exce = "PGPASSWORD=rootdow psql -U postgres -d bdd -f 'C:/xampp/htdocs/nethbook/server/postgres/basico.sql'";
+        // exec($exce, $cmdresult );
 
-    	return response()->json(['respuesta'=>$cmdresult]);
+    	return response()->json(['respuesta'=>bcrypt($pass_user)]);
     }
 
     public function edit_script(Request $request){

@@ -179,13 +179,13 @@ class login extends Controller
 
     public function Get_Data_By_Ruc(Request $request){
 
+// return view( "respuesta--------".$request);
        $datos=$this->usuarios->select('nick','id')->where('id',$request->ruc)->get();
         if (count($datos)==0) {
             return response()->json(["respuesta"=>false]);
         }
 
         $name_bdd = $datos[0]['nick'];
-
         $name_bdd=strtolower($datos[0]['nick']);
         $pass_bdd=$datos[0]['id'];
 
@@ -201,15 +201,17 @@ class login extends Controller
                 'schema' => 'usuarios',
                 'sslmode' => 'prefer',
         ));
-
-///-**************-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+///-**************-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 /// comentamos las direcciones de las img
        // $img=DB::connection($name_bdd)->table('administracion.imagen_empresa')->select('direccion_imagen_empresa')->where('estado','A')->first();
         $dataE=DB::connection($name_bdd)->table('administracion.empresas')->select('razon_social')->where('id_estado','A')->first();
-        if ($img==null) {
-        //   $img="http://localhost/appnext1.1/storage/default/portada-default.jpg";
-        }
-        $dataE->img_portada=$img;
+            // return view("------------".$dataE);
+            // if ($img==null) {
+        //$img="http://localhost/appnext1.1/storage/default/portada-default.jpg";
+        // $img="http://localhost:8000/server/storage/default/portada-default.jpg";
+        
+        // }
+        // $dataE->img_portada=$img;
         return response()->json(["respuesta"=>$dataE]);
     }
 
