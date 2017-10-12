@@ -179,7 +179,6 @@ class login extends Controller
 
     public function Get_Data_By_Ruc(Request $request){
 
-// return view( "respuesta--------".$request);
        $datos=$this->usuarios->select('nick','id')->where('id',$request->ruc)->get();
         if (count($datos)==0) {
             return response()->json(["respuesta"=>false]);
