@@ -1,10 +1,13 @@
 <md-toolbar>
-    <div class="md-toolbar-tools md-toolbar-registro">
-        <md-button ng-href="#/Registro/" class="md-icon-button">
-                <md-icon>reply_all</md-icon>           
-        </md-button>
-        <h3>Netbook, Red de Negocios</h3>
-        <span flex></span>
+    <div style="margin: 0px auto; text-align: center;" class="md-toolbar-tools md-toolbar-registro" >
+        <md-button ng-href="#/Registro/">
+            <div style="display: inline-block;">
+                <md-icon>reply_all</md-icon>
+            </div>
+            <div style="display: inline-block;">
+                <h6>Netbook, Red de Negocios</h6>
+            </div>                        
+        </md-button>     
     </div>
 </md-toolbar>
 <br><br><br><br>
@@ -12,8 +15,12 @@
     <div flex-gt-sm="100" flex-gt-md="30">        
         <form name="form_ingreso_colaborador" ng-submit="ingresar_colaborador()" flex>
             <md-card>
-                <div style="width: 100%; height: 150px; background: #3f51b5;">
-                    <div style="position: relative; top: 40px; padding: 20px; color: #FFF;">{{datosE.razon_social}}</div>
+
+                <div style=" width: 100%; height: 200px; background-color: whitesmoke;">
+                    <div style="margin-left: 5%; margin-right: 5%; padding-top: 5%; color: black; border-bottom: 2px solid #3f51b5;"><img style="display: inline-block;" src="fluicon.png">
+                        <h6 style="display: inline-block;">NETBOOK</h6> </div>
+                    <div style="margin-left: 5%;padding-top: 5%; color: #ff3399; font-size: 90%">Sign in</div>
+                    <div style="  padding: 20px; color: black;">{{datosE.razon_social}}</div>
                 </div>
                 <md-card-content>
                     <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
@@ -34,7 +41,8 @@
                     </md-input-container>
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button href="#/" type="button">CANCELAR</md-button>
+                    <md-button href="#/" class="md-raised " type="button">CANCELAR</md-button>
+                     <div style="width: 5px;"></div>
                     <md-button class="md-raised md-primary" type="submit" ng-disabled="form_ingreso_colaborador.$invalid">INGRESAR</md-button>
                 </md-card-actions>
             </md-card>
