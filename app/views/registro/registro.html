@@ -1,10 +1,21 @@
-<md-toolbar layout="row" layout-align="center center">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-sscale=1.0, minimun-scale=1.0">
+</head>
+<body>
+
+
+<div class="contenedor">
+  
+<header>
+  <md-toolbar layout="row" layout-align="center center">
     <div flex-gt-sm="90" flex-gt-md="80">
         <div class="md-toolbar-tools md-toolbar-registro">
             <md-button ng-href="#/" class="md-icon-button">
-                <md-icon>search</md-icon>
+                <md-icon>reply_all</md-icon>
             </md-button>
-            <h3>Nethbook, Red de Negocios</h3>
+            <h3 style="font-size:1vw" >Nethbook, Red de Negocios</h3>
             <span flex></span>
             <form name="formlogin" layout="row" ng-submit="ingresar()">
                 <div>
@@ -20,20 +31,21 @@
             <md-tab id="tab1" aria-controls="tab1-content">
                 <md-icon>dns</md-icon>
                 Registre su Empresas
-            </md-tab>
-            
-            <!-- <md-tab id="tab2" aria-controls="tab2-content">
+            </md-tab>            
+            <md-tab id="tab2" aria-controls="tab2-content">
                 <md-icon>account_box</md-icon>
                 Para Personas
             </md-tab>
             <md-tab id="tab3" aria-controls="tab3-content">
                 <md-icon>assignment_ind</md-icon>
                 Quienes Somos
-            </md-tab> -->
-            
+            </md-tab>            
         </md-tabs>
     </div>
 </md-toolbar>
+</header>
+
+
 <md-content flex layout="row">
     <md-content flex>
         <div layout="row" layout-align="center center">
@@ -80,6 +92,7 @@
                                     </md-input-container>
                                 </form>
                                 <img src="images/registro/welcome.png" width="100%" class="animated zoomIn" ng-show="elemennotviewimg" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                               
                                 <div flex ng-show="elemennotviewsession" layout-align="center center" >
                                     <h3 class="text-center" style="color:#757575">Inicios de sesión recientes</h3>
                                     <md-card layout="row" flex-gt-sm="90" flex-gt-md="80" ng-repeat="item in session | reverse">
@@ -109,6 +122,7 @@
                                         </div>
                                     </md-card>
                                 </div>
+
                             </div>
                             <div flex="40">
                                 <form name="formsearchruc" ng-submit="buscar_ruc()">
@@ -225,9 +239,23 @@
                 </ng-switch>
             </div>
         </div>
-        </div>
+      
     </md-content>
+
+    </div>
+</body>
+</html>
+
+
     <style type="text/css">
-        .carddemoBasicUsage .card-media {
-  background-color: #999999; }
-    </style>
+  .carddemoBasicUsage .card-media {
+    background-color: #999999; }
+
+  .contenedor{
+    height: 100%;
+    max-width: 1950px; 
+    width: 100%;
+    margin:0 auto;
+    overflow: hidden;
+  }
+    </style> 
