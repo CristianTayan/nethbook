@@ -1,0 +1,6 @@
+/*card, dialog uso general*/
+md-card.md-default-theme,
+md-card {
+    color: #6D6D6D!important;
+    font-weight: 500;
+}

@@ -59,7 +59,7 @@ var app = angular.module('nextbook20App')
 			var session = $localStorage.cook_session_init;
 			
 			$localStorage.cook_session_init = $scope.session
-			$scope.session.splice(0, index);
+			$scope.session.splice(-1, index);
 		}
 
 
