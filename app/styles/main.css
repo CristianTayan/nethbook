@@ -2,6 +2,10 @@
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900);
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700);
+@import url("md-card.css");
+@import url("md-tabs.css");
+
+
 body,
 html {
     background: #EEEEEE!important;
@@ -128,15 +132,6 @@ md-input-container .md-input {
 md-input-container .md-input {
     color: #ff4081;
     border-color: rgba(0, 0, 0, 0.12);
-}
-
-
-/*card, dialog uso general*/
-
-md-card.md-default-theme,
-md-card {
-    color: #6D6D6D!important;
-    font-weight: 500;
 }
 
 md-dialog.md-default-theme,
