@@ -35,7 +35,7 @@ class Vistas extends Controller
                 $this->add_vistas_recursive($row['children'],$last_id,$nivel_arbol,$name_bdd);
             }
     } 
-
+  
     //---------------------------------- INICIO VISTAS -----------
     public function Add_Vistas($array,$bdd_name)
     {

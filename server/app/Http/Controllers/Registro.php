@@ -255,10 +255,15 @@ $fecha_actualizacion=Carbon::parse($respuesta['datosEmpresa']['fecha_actualizaci
       $create=true;
       if ($create) {
        // exec("PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < /var/www/html/appnext1.1/postgres/basico.sql", $cmdout, $cmdresult );
+
         // $exce = "PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < C:/xampp/htdocs/nethbook/server/postgres/basico.sql"; centos
 
         $exce = "pg_dump PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f C:/xampp/htdocs/nethbook/server/postgres/basico.sql";
+
+
       //$exce = "pg_dump user=postgres password=rootdow databases bd_consejo > /C:/MI-RESPALDO.SQL";
+
+
 
         exec($exce, $cmdout, $cmdresult );
         echo $cmdout;

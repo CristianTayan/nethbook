@@ -1,10 +1,13 @@
 <md-toolbar>
     <div class="md-toolbar-tools md-toolbar-registro">
+      <div flex="90%">
         <h1>Netbook, Red de Negocios</h1>
-        <span flex></span>
+      </div>
+      <div  layout-align="end center">
         <md-button class="md-accent md-raised" aria-label="Learn More" ng-href="#/Registro">
             Iniciar Sesion
         </md-button>
+      </div>
     </div>
 </md-toolbar>
 <md-content flex layout="row">
@@ -15,15 +18,23 @@
                     <img ng-show="img" ng-src="images/main/publi1.png">
                     <div class="mjd">
                         <form name="formsearch">
-                            <div layout="row" flex>
-                                <md-input-container class="md-icon-float md-block" flex-gt-xs>
-                                    <label>Buscar por servicios, negocios, empresas</label>
-                                    <md-icon class="md-accent">widgets</md-icon>
-                                    <input type="text" id="sc" ng-model="data_search" ng-keyup="buscando()" md-no-asterisk autocomplete="off"  md-autofocus="true" required>
-                                </md-input-container>
-                                <md-button class="md-fab md-mini" type="submit" ng-disabled="formsearch.$invalid">
-                                    <md-icon class="material-icons">search</md-icon>
-                                </md-button>
+                            <div layout="row" layout-sm="column">
+                              <div>
+                                  <md-icon class="md-accent">widgets</md-icon>
+                              </div>
+                              <md-input-container class="md-icon-float md-block" >                                    
+                                  <div flex="50%">
+                                     <label>Buscar por servicios, negocios, empresas...</label>
+                                  </div>                                 
+                                  <div flex="50%">
+                                     <input type="text" id="sc" ng-model="data_search" ng-keyup="buscando()" md-no-asterisk autocomplete="off"  md-autofocus="true" required>
+                                  </div>                               
+                              </md-input-container>
+                               <div>
+                                  <md-button class="md-fab md-mini" type="submit" ng-disabled="formsearch.$invalid">
+                                      <md-icon class="material-icons">search</md-icon>
+                                  </md-button>
+                              </div>
                             </div>
                         </form>
                     </div>
@@ -60,7 +71,7 @@
       padding-right: 10px;
       border-radius: 11px;
       width: 500px;
-      max-width: 500px;
+      flex: auto;
     }
 
     md-input-container {
@@ -69,6 +80,7 @@
       padding: 0px;
       margin: 0px 0;
       vertical-align: middle;
+      flex: auto;
     }
 
     .ca-menu li {
