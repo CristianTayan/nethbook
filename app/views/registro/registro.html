@@ -43,25 +43,30 @@
 <div class="banner2">
   <md-toolbar layout="row" layout-align="center center">
     <div flex-gt-sm="80" flex-gt-md="70">
-     <div layout="row" layout-xs="column" layout-align="center center">
-        <div flex="45">
-            <md-button ng-href="#/" class="md-icon-button">
-                <md-icon>reply_all</md-icon>
-            </md-button>            
-            Nethbook 
-        </div>            
-        <form name="formlogin" layout="row" ng-submit="ingresar()">     
-           <div flex="40">         
-                <input id="email" name="email" type="text" ng-model="email" class="inp" numbers-only maxlength="10" placeholder="Número de ruc">           
-                <label class="suffix">001@nextbook.ec</label>
-           </div>  
-           <div flex="15" layout-align="end center">   
-             <md-button class="md-raised md-accent" type="submit">
-                 Entrar
-             </md-button>
-           </div>
-        </form>                   
-     </div>
+     <div flex="100" layout-align="center center" >
+        <div align="center">
+      <h4>Nethbook, Red de Negocios</h4>            
+        </div>
+        <md-list >
+            <md-list-item class="md-4-line">  
+                <div layout="row">
+                      <md-button ng-href="#/" class="md-icon-button">
+                      <md-icon>reply_all</md-icon>
+                    </md-button>   
+                      <form name="formlogin" layout="row" ng-submit="ingresar()">     
+                         <div >         
+                              <input id="email" name="email" type="text" ng-model="email" class="inp" numbers-only maxlength="10" placeholder="Número de ruc"><label class="suffix">001@nextbook.ec</label>
+                         </div>  
+                         <div  layout-align="end center">   
+                           <md-button class="md-raised md-accent" type="submit">
+                               Entrar
+                           </md-button>
+                         </div>
+                      </form>
+                </div>                                                    
+            </md-list-item>
+        </md-list>
+    </div>
         <md-tabs class="md-primary" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
             <md-tab id="tab1" aria-controls="tab1-content">
                 <md-icon>dns</md-icon>
