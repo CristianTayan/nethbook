@@ -1,13 +1,14 @@
 <md-toolbar>
     <div style="margin: 0px auto; text-align: center;" class="md-toolbar-tools md-toolbar-registro" >
         <md-button ng-href="#/Registro/">
-            <div style="display: inline-block;">
-                <md-icon>reply_all</md-icon>
-            </div>
-            <div style="display: inline-block;">
-                <h6>Netbook, Red de Negocios</h6>
-            </div>                        
-        </md-button>     
+            <md-icon>reply_all</md-icon>  
+        </md-button> 
+        <div class="banner1" >
+            <h1>Netbook, Red de Negocios</h1>
+        </div>                      
+        <div class="banner2">
+            <h1>Netbook</h1>
+        </div>    
     </div>
 </md-toolbar>
 <br><br><br><br>
@@ -63,4 +64,15 @@
 .demo-card-wide > .mdl-card__menu {
   color: #fff;
 }
+.banner2 {
+        display: none;
+       }
+     @media screen and (max-width: 430px) {
+       .banner2 {
+        display: block;
+       }
+       .banner1 {
+        display: none;
+       }
+    }
 </style>
