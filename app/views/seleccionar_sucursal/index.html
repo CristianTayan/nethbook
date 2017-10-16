@@ -1,8 +1,8 @@
 <md-toolbar layout="row" layout-align="center center">
-    <div flex-gt-sm="90" flex-gt-md="80">
+    <div style="font-size: 80%" flex-gt-sm="90" flex-gt-md="80">
         <div class="md-toolbar-tools md-toolbar-registro">
             <img src="images/logo/logo.fw.png" alt="Logo">
-            Nextbook, Red de Negocios
+            Netbook, Red de Negocios
             <span flex></span>
             <lx-dropdown lx-position="right">
                 <lx-dropdown-toggle>
@@ -22,10 +22,11 @@
         </div>
     </div>
 </md-toolbar>
-<md-content flex layout="row">
-    <md-content flex>
-        <div layout="row" layout-align="center center">
-            <div flex="50">
+<br>
+<div layout="row" >
+    <div flex-gt-sm="60" flex="90" style=" margin: 0px auto;" >
+        <div  layout="row" layout-align="center center">
+            <div style="width: 100%;">
                 <div class="card">
                     <md-toolbar layout="row">
                             <div class="md-toolbar-tools">
@@ -39,14 +40,14 @@
                                     <md-card-content class="md-accent">
                                         <md-input-container md-no-float class="md-block">
                                           <md-icon>search</md-icon>
-                                          <input ng-model="sucursalSearch" name="dc" placeholder="Buscar por: codigo establesimiento, direccion" class="md-accent">
+                                          <input ng-model="sucursalSearch" name="dc" placeholder="Buscar por: codigo establecimiento, dirección" class="md-accent">
                                         </md-input-container>
                                     </md-card-content>
                                 </md-card>
                             </div>
                         </div>
                     </div>
-                    <div flex-container="row">                
+                    <div  flex-container="row">                
                         <div layout="column"  flex>
                             <div class="p+" ng-repeat="items in data_establecimiento | filter: sucursalSearch">
                                 <div class="card">
@@ -69,5 +70,5 @@
                 </div>
             </div>
         </div>
-    </md-content>
-</md-content>
+    </div>
+</div>
