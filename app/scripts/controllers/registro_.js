@@ -56,13 +56,14 @@ var app = angular.module('nextbook20App')
 		};
 
 		$scope.quitar_recordatorio = function(index, item) {
-			var session = $localStorage.cook_session_init;
-			
+			var session = $localStorage.cook_session_init;		
 			$localStorage.cook_session_init = $scope.session
-			$scope.session.splice(-1, index);
+		    $scope.session.splice(0, "index");
+		    //revisar cuando tengamos un mayor numero de cuentas abiertas 
+		$localStorage.cook_session_init = 0;  
+	    $scope.elemennotviewimg = true;
+	  	$scope.elemennotviewsession = false;
 		}
-
-
 
 		function DialogController($rootScope,$scope, item, menuService,mainService){
 			$scope.nick = item;
