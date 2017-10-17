@@ -1,26 +1,21 @@
 <md-toolbar layout="row" layout-align="center center">
     <div flex-gt-sm="90" flex-gt-md="80">
-        <div class="md-toolbar-tools md-toolbar-registro">       <div class="col-xs-2">
-              <md-button ng-href="#/" class="md-icon-button">
-                <md-icon>reply_all</md-icon>           
-              </md-button>
-        </div>
-            <div class="col-xs-6">
-              <h3>Netbook, Red de Negocios</h3>
-            </div>
-              <form name="formlogin" layout="row" ng-submit="ingresar()">
-                   <div class="col-xs-2">
-                      <input id="email" name="email" type="text" ng-model="email" class="inp" numbers-only maxlength="10" placeholder="Número de ruc">
-                    </div>
-                    <div class="col-xs-1">
-                      <label class="suffix">001@netbook.ec</label>
-                    </div>
-                    <div class="col-xs-1">
-                      <md-button class="md-raised md-accent" type="submit">Ingresar
-                      </md-button>
-                    </div>                 
-              </form> 
-        </div>
+        <div class="md-toolbar-tools md-toolbar-registro">
+  <md-button ng-href="#/" class="md-icon-button">
+      <md-icon>reply_all</md-icon>
+  </md-button>
+  <h1>Nethbook, Red de Negocios</h1>
+  <span flex></span>
+  <form name="formlogin" layout="row" ng-submit="ingresar()">
+    <div>
+        <input id="email" name="email" type="text" ng-model="email" class="inp" numbers-only maxlength="10" placeholder="Número de ruc">
+        <label class="suffix">001@nextbook.ec</label>
+        <md-button class="md-raised md-accent" type="submit">
+            Entrar
+        </md-button>
+    </div>
+  </form>
+</div>
     </div>
 </md-toolbar>
 
@@ -31,10 +26,13 @@
 <div layout="column" style="max-width: 90%; margin-left: 5%;">
     <div layout="row">
         <md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="20" style="background: #EEEEEE;padding-top: 8px;    padding-left: 10px;">
+
             <div layout="row" style="height: 30%;">
                 <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                    
                     <div class="demo-card-square mdl-card mdl-shadow--2dp" ng-click="show_img($event,'Perfil')" 
-                ng-style="{'background-image': 'url(' + data.img.perfil + ')','background-position': '0 0','background-size': 'contain'}">
+                ng-style="{'background-image': 'url('nethbook/server/storage/default/db.png')','background-position': '0 0','background-size': 'contain'}">
+                    
                     <div class="mdl-card__title mdl-card--expand" style="padding-bottom: 46px;">
                         <h2 class="mdl-card__title-text">Mi Empresa, {{data.nombre_comercial}}</h2>
                     </div>
@@ -44,6 +42,7 @@
                     </div>
                 </div>
             </div>
+
             <div layout="row">
                 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                     <div class="mdl-card__title">
