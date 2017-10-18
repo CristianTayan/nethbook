@@ -31,7 +31,6 @@
     "socket.io-client": "^1.7.2",
     "angucomplete-alt": "^3.0.0",
     "angular-translate": "^2.13.1",
-    "angular-soundmanager2": "^0.5.6",
     "angular-material-accordion": "^1.0.5",
     "angular-material-expansion-panel": "^0.7.2",
     "angular-ui-tree": "^2.22.5",

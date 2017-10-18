@@ -21,7 +21,6 @@ var app = angular.module('nextbook20App', [
                                             'view-segment', //vista segmentos 
                                             'ngResource', //llamar recursos por $http api-res
                                             'mdPickers',
-                                            'angularSoundManager',
                                             'angular-loading-bar',
                                             'ngStorage',
                                             'ngMaterialSidemenu',
