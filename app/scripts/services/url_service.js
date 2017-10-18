@@ -14,11 +14,11 @@ angular.module('nextbook20App')
         return {
             appserviciosnext: function() {
                // return "http://186.4.167.12/appserviciosnext/public/index.php/";
-               return "http://localhost:8001/";
+               return "http://www.nethbook.com/nethbook/servicios/public/index.php/";
             }
             ,appnext: function() {
                 // return "http://186.4.167.12/appnext/";
-                return "http://localhost:8000/";
+                return "http://www.nethbook.com/nethbook/server/public/index.php/";
 
             },appnextxml: function() {
                 // return "http://186.4.167.12/appnextP/";
