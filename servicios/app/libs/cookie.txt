@@ -4,5 +4,5 @@
 
 declaraciones.sri.gob.ec	FALSE	/	TRUE	0	JSESSIONID	4368557FBC98F751F2DEB7C96AC1276A.sriinternet02
 declaraciones.sri.gob.ec	FALSE	/	FALSE	0	BIGipServerDeclaraciones_sri.gob.ec	186515722.47873.0000
-declaraciones.sri.gob.ec	FALSE	/facturacion-internet	TRUE	0	JSESSIONID	ZNO300zP+pRIh7W1+gMSeuYM.sriinternet12i2
-#HttpOnly_declaraciones.sri.gob.ec	FALSE	/facturacion-internet/consultas/publico/	TRUE	0	f5avrbbbbbbbbbbbbbbbb	HKBNAGIDACEOOLACIGCCAIJKCBHGGELFLJBNMFJDMMPLHENOHIHBOGCEBFAGCOMAHAKDNMINBJOFPALLDAMANHFPLDIKDCKMEPPBEJEAFDMMHJONKLKJCNNEDOKFMHNK
+declaraciones.sri.gob.ec	FALSE	/facturacion-internet	TRUE	0	JSESSIONID	M5+ZwgjLERzvpYyv0o23LCN6.sriinternet12i2
+#HttpOnly_declaraciones.sri.gob.ec	FALSE	/facturacion-internet/consultas/publico/	TRUE	0	f5avrbbbbbbbbbbbbbbbb	JBCILDOIHDLHGJANICJAGCGPBDHBBGGFGDFOMFBDMOKIBAMEIGBHCFOLNEFOMCPDIBNDJGMBOABGEJFOIONAFCDHGBGDMPCPLCGIHHLDFFLHFIHIEOCHDACBFIPBKPEE

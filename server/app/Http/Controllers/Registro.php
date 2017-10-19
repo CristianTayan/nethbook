@@ -25,124 +25,162 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class Registro extends Controller
 {
-    public function __construct(){
-    	// Modelos
-    	$this->empresas=new empresas();
-    	// Funciones
-    	$this->funciones=new Funciones();
-      // Extras
-      $this->client=new Client();
-      // Autenticacion
-      // $this->user = JWTAuth::parseToken()->authenticate();
-    }
+  public function __construct(){
+  	// Modelos
+  	$this->empresas=new empresas();
+  	// Funciones
+  	$this->funciones=new Funciones();
+    // Extras
+    $this->client=new Client();
+    // Autenticacion
+    // $this->user = JWTAuth::parseToken()->authenticate();
+  }
 
     public function Buscar_Informacion_Ruc(Request $request){
-      //$resultado=DB::connection('nextbookconex')->select("SELECT * FROM empresa_ruc('".$request->input('ruc')."')");
-      $resultado = DB::connection('nextbookconex')->table('informacion.empresas_consultadas')->where('ruc', '=', $request->input('ruc'))->first();
-    if (count($resultado)==0)
-      {
-      $res = $this->client->request('GET', config('global.appserviciosnext').'/getDatos', ['json' => ['tipodocumento' => 'RUC', 'nrodocumento' => $request->input('ruc') ]]);
-      $respuesta = json_decode($res->getBody()->getContents() , true);
-      if ($respuesta['datosEmpresa']['valid']!='false') {
-        
-      $modifiedString = str_replace('&nbsp;', null,$respuesta['datosEmpresa']['fecha_inicio_actividades']);
-      $respuesta['datosEmpresa']['fecha_inicio_actividades']=$modifiedString;
+      $existenciaRucEnSistema = DB::connection('nextbookconex')->select("SELECT ruc_ci FROM administracion.empresas WHERE ruc_ci = '".$request->input('ruc')."'");
 
-      $modifiedString = str_replace('&nbsp;', null, $respuesta['datosEmpresa']['fecha_reinicio_actividades']);
-      $respuesta['datosEmpresa']['fecha_reinicio_actividades']=$modifiedString;
-
-      $modifiedString =str_replace('&nbsp;', null, $respuesta['datosEmpresa']['fecha_cese_actividades']);
-      $respuesta['datosEmpresa']['fecha_cese_actividades']=$modifiedString;
-
-      $modifiedString =str_replace('&nbsp;', null, $respuesta['datosEmpresa']['fecha_actualizacion']);
-      $respuesta['datosEmpresa']['fecha_actualizacion']=$modifiedString;
-
-      /*DB::connection('infoconex')->table('empresas')
-            ->where('ruc', $request->input('ruc'))
-                                  ->update(array( 
-                                              'razon_social'=>$respuesta['datosEmpresa']['razon_social'],
-                                              'nombre_comercial'=>$respuesta['datosEmpresa']['nombre_comercial'],
-                                              'estado_contribuyente'=>$respuesta['datosEmpresa']['estado_contribuyente'],
-                                              'clase_contribuyente'=>$respuesta['datosEmpresa']['clase_contribuyente'],
-                                              'tipo_contribuyente'=>$respuesta['datosEmpresa']['tipo_contribuyente'],
-                                              'obligado_llevar_contabilidad'=>$respuesta['datosEmpresa']['obligado_llevar_contabilidad'],
-                                              'actividad_economica'=>$respuesta['datosEmpresa']['actividad_economica'],
-                                              // 'fecha_inicio_actividades'=>$respuesta['datosEmpresa']['fecha_inicio_actividades'],
-                                              // 'fecha_cese_actividades'=>$respuesta['datosEmpresa']['fecha_cese_actividades'],
-                                              // 'fecha_reinicio_actividades'=>$respuesta['datosEmpresa']['fecha_reinicio_actividades']
-                                              // 'fecha_actualizacion'=>$respuesta['datosEmpresa']['fecha_actualizacion']
-                                              ));*/
-
-$responsable=$respuesta['establecimientos']['adicional'];
-$direccion=explode('/', $respuesta['establecimientos']['sucursal'][0]['direccion']);
-$direccion[0]=preg_replace('/(\v|\s)+/', '',$direccion[0]);
-//$direccion[1]=preg_replace(' ', '',$direccion[1]);
-$fecha_inicio_actividades=Carbon::parse($respuesta['datosEmpresa']['fecha_inicio_actividades'])->toDateTimeString();
-$fecha_cese_actividades=Carbon::parse($respuesta['datosEmpresa']['fecha_cese_actividades'])->toDateTimeString();
-$fecha_reinicio_actividades=Carbon::parse($respuesta['datosEmpresa']['fecha_reinicio_actividades'])->toDateTimeString();
-$fecha_actualizacion=Carbon::parse($respuesta['datosEmpresa']['fecha_actualizacion'])->toDateTimeString();
-//$direccion=explode('/', $direccion);
-     $id_empresa= DB::connection('nextbookconex')->table('informacion.empresas_consultadas')->insertGetId([
-        'ruc'=>$request->input('ruc'),
-        'razon_social'=>$respuesta['datosEmpresa']['razon_social'],
-        'nombre_comercial'=>$respuesta['datosEmpresa']['nombre_comercial'],
-        'estado_contribuyente'=>$respuesta['datosEmpresa']['estado_contribuyente'],
-        'clase_contribuyente'=>$respuesta['datosEmpresa']['clase_contribuyente'],
-        'fecha_inicio_actividades'=>$fecha_inicio_actividades,
-        'fecha_actualizacion'=>$fecha_actualizacion,
-        'fecha_cese_actividades'=>$fecha_cese_actividades,
-        'fecha_reinicio_actividades'=>$fecha_reinicio_actividades,
-        'obligado_llevar_contabilidad'=>$respuesta['datosEmpresa']['obligado_llevar_contabilidad'],
-        'tipo_contribuyente'=>$respuesta['datosEmpresa']['tipo_contribuyente'],
-        'numero_establecimiento'=>1,
-        'nombre_fantasia_comercial'=>'',
-        'provincia'=>$direccion[0],
-        'canton'=>$direccion[1],
-        'direccion'=>$direccion[2],
-        'actividad_economica'=>$respuesta['datosEmpresa']['actividad_economica']
-        ]);
-
-        $responsable=$respuesta['establecimientos']['adicional'];
-
-        foreach ($respuesta['establecimientos']['sucursal'] as $key => $value) {
-
-
-          $direccion=explode('/', $value['direccion']);
-          $direccion[0]=preg_replace('/(\v|\s)+/', '',$direccion[0]);
-
-          DB::connection('nextbookconex')->table('informacion.sucursales')->insert([
-                 'id_empresa_consultada'=>$id_empresa,
-                 'nombre'=>$value['nombre_sucursal'],
-                 'responsable'=>json_encode($responsable),
-                 'datos_empresariales'=>json_encode(['data'=>'']),
-                 'localizacion_sucursal'=>json_encode($direccion),
-                 'datos_adiconales'=>json_encode(['data'=>'']),
-                 'codigo_sri'=>$value['codigo']
-              ]);
-
+      if (!$existenciaRucEnSistema) { // verificar si ruc NO esta registrado
+        $existenciaConsultasPrevias = DB::connection('nextbookconex')->select("SELECT ruc FROM informacion.empresas_consultadas WHERE ruc = '".$request->input('ruc')."'");
+        if ($existenciaConsultasPrevias) { // si a realizado consultas anteriores retorna informacion del ruc consultado
+          $resultado = DB::connection('nextbookconex')->table('informacion.empresas_consultadas')->where('ruc', '=', $request->input('ruc'))->first();
+          $resultado->valid="true";
+          return response()->json(["respuesta" => $resultado], 200);
         }
-      return response()->json(["respuesta" => $respuesta['datosEmpresa']], 200);
-      }else{
-        return response()->json(["respuesta" => 'false-sri',"error"=>'no-registro-SRI'], 200);
-      }
-      }
-      else
-      {
+        if (!$existenciaConsultasPrevias) { // si es la primera vez que realiza la consulta del ruc
+          $existenciaRepositorioLocal= DB::connection('nextbookconex')->select("SELECT ruc FROM informacion.empresas WHERE ruc = '".$request->input('ruc')."'");
 
-        $sql=DB::connection('nextbookconex')->select("SELECT ruc_ci FROM empresas WHERE ruc_ci='".$request->input('ruc')."'");
-        if (count($sql)==0) {
-            $resultado = DB::connection('nextbookconex')->table('informacion.empresas_consultadas')->where('ruc', '=', $request->input('ruc'))->first();
-            $resultado->valid="true";
-            return response()->json(["respuesta" =>$resultado], 200);
-        }else{
-          return response()->json(["respuesta" =>false,"error"=>'registro-existente'], 200);
+          $res = $this->client->request('GET',
+            config('global.appserviciosnext').'getDatos',
+            ['json' => ['tipodocumento' => 'RUC', 'nrodocumento' => $request->input('ruc') ]]
+          );
+
+          $respuesta = json_decode($res->getBody()->getContents() , true);
+
+          if ($existenciaRepositorioLocal) { // SI existe en el repositorio local
+            if ($respuesta['datosEmpresa']['valid'] === 'true') {
+              $respuesta['datosEmpresa']['fecha_inicio_actividades'] = str_replace('&nbsp;', null, $respuesta['datosEmpresa']['fecha_inicio_actividades']);              
+              $respuesta['datosEmpresa']['fecha_reinicio_actividades'] = str_replace('&nbsp;', null, $respuesta['datosEmpresa']['fecha_reinicio_actividades']);            
+              $respuesta['datosEmpresa']['fecha_cese_actividades'] = str_replace('&nbsp;', null, $respuesta['datosEmpresa']['fecha_cese_actividades']);
+              $respuesta['datosEmpresa']['fecha_actualizacion'] = str_replace('&nbsp;', null, $respuesta['datosEmpresa']['fecha_actualizacion']);
+
+              $responsable = $respuesta['establecimientos']['adicional'];
+              $direccion = explode('/', $respuesta['establecimientos']['sucursal'][0]['direccion']);
+              $direccion[0] = preg_replace('/(\v|\s)+/', '', $direccion[0]);
+              $fecha_inicio_actividades=Carbon::parse($respuesta['datosEmpresa']['fecha_inicio_actividades'])->toDateTimeString();
+              $fecha_cese_actividades=Carbon::parse($respuesta['datosEmpresa']['fecha_cese_actividades'])->toDateTimeString();
+              $fecha_reinicio_actividades=Carbon::parse($respuesta['datosEmpresa']['fecha_reinicio_actividades'])->toDateTimeString();
+              $fecha_actualizacion=Carbon::parse($respuesta['datosEmpresa']['fecha_actualizacion'])->toDateTimeString();
+
+              $id_empresa = DB::connection('nextbookconex')->
+                table('informacion.empresas_consultadas')->
+                  insertGetId([
+                    'ruc'=>$request->input('ruc'),
+                    'razon_social' => $respuesta['datosEmpresa']['razon_social'],
+                    'nombre_comercial' => $respuesta['datosEmpresa']['nombre_comercial'],
+                    'estado_contribuyente' => $respuesta['datosEmpresa']['estado_contribuyente'],
+                    'clase_contribuyente' => $respuesta['datosEmpresa']['clase_contribuyente'],
+                    'fecha_inicio_actividades' => $fecha_inicio_actividades,
+                    'fecha_actualizacion' => $fecha_actualizacion,
+                    'fecha_cese_actividades' => $fecha_cese_actividades,
+                    'fecha_reinicio_actividades' => $fecha_reinicio_actividades,
+                    'obligado_llevar_contabilidad' => $respuesta['datosEmpresa']['obligado_llevar_contabilidad'],
+                    'tipo_contribuyente' => $respuesta['datosEmpresa']['tipo_contribuyente'],
+                    'numero_establecimiento' => 1,
+                    'nombre_fantasia_comercial' => '',
+                    'provincia' => $direccion[0],
+                    'canton' => $direccion[1],
+                    'direccion' => $direccion[2],
+                    'actividad_economica' => $respuesta['datosEmpresa']['actividad_economica']
+                  ]);
+
+              $responsable=$respuesta['establecimientos']['adicional'];
+              foreach ($respuesta['establecimientos']['sucursal'] as $key => $value) {
+                $direccion=explode('/', $value['direccion']);
+                $direccion[0]=preg_replace('/(\v|\s)+/', '',$direccion[0]);
+
+                DB::connection('nextbookconex')->table('informacion.sucursales')->insert([
+                   'id_empresa_consultada' => $id_empresa,
+                   'nombre' => $value['nombre_sucursal'],
+                   'responsable' => json_encode($responsable),
+                   'datos_empresariales' => json_encode(['data' => '']),
+                   'localizacion_sucursal' => json_encode($direccion),
+                   'datos_adiconales' => json_encode(['data' => '']),
+                   'codigo_sri' => $value['codigo']
+                ]);
+              }              
+              return response()->json(["respuesta" => $respuesta['datosEmpresa']], 200);
+            }
+
+            if ($respuesta['datosEmpresa']['valid'] === 'false') {
+              return response()->json(["respuesta" => 'false-sri',"error"=>'no-registro-SRI'], 200);
+            }
+          }
+          if (!$existenciaRepositorioLocal) { // NO existe en el repositorio local
+            if ($respuesta['datosEmpresa']['valid'] === 'true') {
+              $respuesta['datosEmpresa']['fecha_inicio_actividades'] = str_replace('&nbsp;', null, $respuesta['datosEmpresa']['fecha_inicio_actividades']);              
+              $respuesta['datosEmpresa']['fecha_reinicio_actividades'] = str_replace('&nbsp;', null, $respuesta['datosEmpresa']['fecha_reinicio_actividades']);            
+              $respuesta['datosEmpresa']['fecha_cese_actividades'] = str_replace('&nbsp;', null, $respuesta['datosEmpresa']['fecha_cese_actividades']);
+              $respuesta['datosEmpresa']['fecha_actualizacion'] = str_replace('&nbsp;', null, $respuesta['datosEmpresa']['fecha_actualizacion']);
+
+              $responsable = $respuesta['establecimientos']['adicional'];
+              $direccion = explode('/', $respuesta['establecimientos']['sucursal'][0]['direccion']);
+              $direccion[0] = preg_replace('/(\v|\s)+/', '', $direccion[0]);
+              $fecha_inicio_actividades=Carbon::parse($respuesta['datosEmpresa']['fecha_inicio_actividades'])->toDateTimeString();
+              $fecha_cese_actividades=Carbon::parse($respuesta['datosEmpresa']['fecha_cese_actividades'])->toDateTimeString();
+              $fecha_reinicio_actividades=Carbon::parse($respuesta['datosEmpresa']['fecha_reinicio_actividades'])->toDateTimeString();
+              $fecha_actualizacion=Carbon::parse($respuesta['datosEmpresa']['fecha_actualizacion'])->toDateTimeString();
+
+              $id_empresa = DB::connection('nextbookconex')->
+                table('informacion.empresas_consultadas')->
+                  insertGetId([
+                    'ruc'=>$request->input('ruc'),
+                    'razon_social' => $respuesta['datosEmpresa']['razon_social'],
+                    'nombre_comercial' => $respuesta['datosEmpresa']['nombre_comercial'],
+                    'estado_contribuyente' => $respuesta['datosEmpresa']['estado_contribuyente'],
+                    'clase_contribuyente' => $respuesta['datosEmpresa']['clase_contribuyente'],
+                    'fecha_inicio_actividades' => $fecha_inicio_actividades,
+                    'fecha_actualizacion' => $fecha_actualizacion,
+                    'fecha_cese_actividades' => $fecha_cese_actividades,
+                    'fecha_reinicio_actividades' => $fecha_reinicio_actividades,
+                    'obligado_llevar_contabilidad' => $respuesta['datosEmpresa']['obligado_llevar_contabilidad'],
+                    'tipo_contribuyente' => $respuesta['datosEmpresa']['tipo_contribuyente'],
+                    'numero_establecimiento' => 1,
+                    'nombre_fantasia_comercial' => '',
+                    'provincia' => $direccion[0],
+                    'canton' => $direccion[1],
+                    'direccion' => $direccion[2],
+                    'actividad_economica' => $respuesta['datosEmpresa']['actividad_economica']
+                  ]);
+
+              $responsable=$respuesta['establecimientos']['adicional'];
+              foreach ($respuesta['establecimientos']['sucursal'] as $key => $value) {
+                $direccion=explode('/', $value['direccion']);
+                $direccion[0]=preg_replace('/(\v|\s)+/', '',$direccion[0]);
+
+                DB::connection('nextbookconex')->table('informacion.sucursales')->insert([
+                   'id_empresa_consultada' => $id_empresa,
+                   'nombre' => $value['nombre_sucursal'],
+                   'responsable' => json_encode($responsable),
+                   'datos_empresariales' => json_encode(['data' => '']),
+                   'localizacion_sucursal' => json_encode($direccion),
+                   'datos_adiconales' => json_encode(['data' => '']),
+                   'codigo_sri' => $value['codigo']
+                ]);
+              }              
+              return response()->json(["respuesta" => $respuesta['datosEmpresa']], 200);
+            }
+
+            if ($respuesta['datosEmpresa']['valid'] === 'false') {
+              return response()->json(["respuesta" => 'false-sri',"error"=>'no-registro-SRI'], 200);
+            }
+          }
         }
       }
+      return response()->json(["respuesta" =>false,"error"=>'registro-existente'], 200); // verificar si ruc esta registrado
     }
 
     public function Save_Datos_Ruc(Request $request){
-      $resultado=$this->empresas->select('id','razon_social','informacion_localizar_empresa')->where('id_estado','P')->where('ruc_ci',$request->input('ruc'))->first();
-      //return response()->json(['respuesta'=>]);
+      $resultado = $this->empresas->select('id','razon_social','informacion_localizar_empresa')->where('id_estado','P')->where('ruc_ci',$request->input('ruc'))->first();
 
       if (count($resultado)==0) {
         $data = ["correo"=>$request->input('correo'),
@@ -157,7 +195,6 @@ $fecha_actualizacion=Carbon::parse($respuesta['datosEmpresa']['fecha_actualizaci
 
         $ruc_ci=$request->input('ruc');
         $nick=substr(str_replace(' ', '_', $request->input('razon_social')),0,11).'_'.$request->input('ruc');
-        //echo strlen($nick);
         $this->empresas->id=$this->funciones->generarID(); 
         $this->empresas->razon_social=$request->input('razon_social'); 
         $this->empresas->actividad_economica=$request->input('actividad_economica'); 
@@ -169,14 +206,10 @@ $fecha_actualizacion=Carbon::parse($respuesta['datosEmpresa']['fecha_actualizaci
         $this->empresas->tipo_contribuyente=$request->input('tipo_contribuyente'); 
         $this->empresas->id_estado='P';
         $this->empresas->nick=$nick;
-        //$this->empresas->tipo_empresa=0;
         $this->empresas->informacion_localizar_empresa=json_encode($data);
         $save=$this->empresas->save();
-
         $last_id=$this->empresas->id;
-
         $data['codigo']=$last_id;
-
         $this->enviar_correo_registro($data);
       }else{
         $result=json_decode($resultado->informacion_localizar_empresa);
@@ -185,31 +218,29 @@ $fecha_actualizacion=Carbon::parse($respuesta['datosEmpresa']['fecha_actualizaci
         $data['razon_social']=$resultado->razon_social;
         $this->enviar_correo_registro($data);
       }
-
-    	// if ($save) {
-    		return response()->json(['respuesta'=>true],200);
-    	// }
+    	return response()->json(['respuesta'=>true],200);
     }
 
     public function enviar_correo_registro($data){
-        $correo_enviar=$data['correo'];
-        $razon_social=$data['razon_social'];
-    Mail::send('email_registro', $data, function($message)use ($correo_enviar,$razon_social)
-            {
-                $message->from("sistemas@nethbook.com",'Nethbook');
-                $message->to($correo_enviar,$razon_social)->subject('Verifica tu cuenta');
-            });
+      $correo_enviar = $data['correo'];
+      $razon_social = $data['razon_social'];
+      Mail::send('email_registro', $data, function($message) use ($correo_enviar,$razon_social)
+        {
+          $message->from("sistemas@nethbook.com",'Nethbook');
+          $message->to($correo_enviar,$razon_social)->subject('Verifica tu cuenta');
+        }
+      );
     }
 
     
     public function enviar_correo_credenciales($data){
         $correo_enviar=$data['correo'];
         $razon_social=$data['razon_social'];
-    Mail::send('credenciales_ingreso', $data, function($message)use ($correo_enviar,$razon_social)
-            {
-                $message->from("sistemas@nethbook.com",'Nextbook');
-                $message->to($correo_enviar,$razon_social)->subject('Credenciales de Ingreso');
-            });
+        Mail::send('credenciales_ingreso', $data, function($message)use ($correo_enviar,$razon_social)
+          {
+            $message->from("sistemas@nethbook.com",'Nextbook');
+            $message->to($correo_enviar,$razon_social)->subject('Credenciales de Ingreso');
+        });
     }
 
     public function consultar_SRI($ruc){

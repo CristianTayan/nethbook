@@ -8,7 +8,7 @@ return [
 	//'appnext' => 'http://186.4.167.12/appnext1.1',
 	'appnext' => 'http://localhost:8000/',
 	'servicios_especiales' => 'http://186.4.167.12/special_services/public/index.php/',
-	'appserviciosnext' => 'http://localhost:8001',
+	'appserviciosnext' => 'http://' . $_SERVER['SERVER_NAME'] . '/nethbook/servicios/public/index.php/',
 	//'appserviciosnext' => 'http://localhost:8001/public/index.php/', centos para produccion
 
 	// 'appserviciosnext' => 'http://186.4.167.12/appserviciosnext',
@@ -34,7 +34,8 @@ return [
 	'pathLogoDefault'=>"/storage/default/logo-default.jpg",
 	'pathPortadaCatalogoDefault'=>"/storage/default/catportada-default.jpg",
 	'pathContraportadaDefault'=>"/storage/default/contraportada-default.jpg",
-	'dominio'=>"nextbook.ec"
+	'dominio' => $_SERVER['SERVER_NAME'],
+  'dominioActivarCuentaCorreo' => $_SERVER['SERVER_NAME'] . 'nethbook/app/'
 	// 'appnext' => 'https://servicios.nextbook.ec'
 
 ];
