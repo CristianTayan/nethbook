@@ -285,14 +285,49 @@ class Registro extends Controller {
         $resultado = $this->empresas->where('ruc_ci',$ruc_empresa)->first();
         $name = strtolower(substr(str_replace(' ', '_', $resultado['razon_social']),0,11).'_'.$ruc_empresa);
 
-        // DB::connection('nextbookconex')->statement("SELECT * from crea_usuario('".$name."','".$ruc_empresa."') ");
-        // $create = DB::connection('infoconex')->statement("CREATE DATABASE $name OWNER $name ");
+        DB::connection('nextbookconex')->statement("SELECT * from crea_usuario('".$name."','".$ruc_empresa."') ");
+        $create = DB::connection('infoconex')->statement("CREATE DATABASE $name OWNER $name ");
 
-        $exce = "pg_dump PGPASSWORD = rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f C:/xampp/htdocs/nethbook/server/postgres/basico.sql";
+        $exce = "pg_dump psql -U postgres -w -d ".$name." -p 5432 -h localhost -f C:/xampp/htdocs/nethbook/server/postgres/basico.sql";
         exec($exce, $cmdout, $cmdresult );
-          // echo $cmdout;
-
+        
         return response($cmdout);
+
+        
+        
+        // $pass_email=$this->funciones->generarPass();
+        // $pass_next=$this->funciones->generarPass();
+                        
+
+        // $this->crear_email($ruc_empresa,$pass_email);
+        // Config::set('database.connections.'.$name, array(
+        //       'driver' => 'pgsql',
+        //       'host' => 'localhost',
+        //       'port' =>  '5432',
+        //       'database' =>  $name,
+        //       'username' =>  $name,
+        //       'password' =>  $ruc_empresa,
+        //       'charset' => 'utf8',
+        //       'prefix' => '',
+        //       'schema' => 'usuarios',
+        //       'sslmode' => 'prefer',
+        // ));
+
+        //--------------------------------------------------------- BATCH LEER CORREOS -----------------------------------------
+          
+          $contenido_php='<?php 
+            $url = "'.config('global.servicios_especiales').'Read_Emails?email='.$ruc_empresa.'@'.config('global.dominio').'";
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, "email='.$ruc_empresa.'@'.config('global.dominio').'");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
+            //$json = json_decode($response, true);
+            //print_r($json);
+            echo "\nOBTENIENDO CORREOS DE: '.$ruc_empresa.'.......";
+            ?>';
+
       };
 
 
@@ -326,6 +361,7 @@ class Registro extends Controller {
 
           exec($exce, $cmdout, $cmdresult );
           echo $cmdout;
+
           $pass_email=$this->funciones->generarPass();
           $pass_next=$this->funciones->generarPass();
                         
