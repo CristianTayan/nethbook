@@ -52,7 +52,9 @@
     "@angular/animations": "^4.4.4",
     "@angular/cdk": "^2.0.0-beta.12",
     "@angular/material": "^2.0.0-beta.12",
+    "angular-material": "^1.1.5",
     "bootstrap": "^3.3.7",
+    "generator-angular-module": "^1.0.3",
     "grunt-clearcache": "0.0.4",
     "hammerjs": "^2.0.8",
     "load-grunt-config": "^0.19.2"

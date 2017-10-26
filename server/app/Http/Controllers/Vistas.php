@@ -37,8 +37,7 @@ class Vistas extends Controller
     } 
   
     //---------------------------------- INICIO VISTAS -----------
-    public function Add_Vistas($array,$bdd_name)
-    {
+    public function Add_Vistas($array,$bdd_name) {
         DB::connection($bdd_name)->table('administracion.vistas')->delete();
         $this->add_vistas_recursive($array,0,-1,$bdd_name);
 
