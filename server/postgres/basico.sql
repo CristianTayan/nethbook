@@ -2,9 +2,9 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.2.20
--- Dumped by pg_dump version 9.2.20
--- Started on 2017-10-24 09:57:30
+-- Dumped from database version 9.2.23
+-- Dumped by pg_dump version 9.2.23
+-- Started on 2017-10-26 16:13:14 -05
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -13,82 +13,106 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- TOC entry 7 (class 2615 OID 48131)
--- Name: administracion; Type: SCHEMA; Schema: -; Owner: -
+-- TOC entry 7 (class 2615 OID 26330)
+-- Name: Taller_mecanico; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA "Taller_mecanico";
+
+
+ALTER SCHEMA "Taller_mecanico" OWNER TO postgres;
+
+--
+-- TOC entry 8 (class 2615 OID 26331)
+-- Name: administracion; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
 CREATE SCHEMA administracion;
 
 
+ALTER SCHEMA administracion OWNER TO postgres;
+
 --
--- TOC entry 8 (class 2615 OID 48132)
--- Name: auditoria; Type: SCHEMA; Schema: -; Owner: -
+-- TOC entry 9 (class 2615 OID 26332)
+-- Name: auditoria; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
 CREATE SCHEMA auditoria;
 
 
+ALTER SCHEMA auditoria OWNER TO postgres;
+
 --
--- TOC entry 3001 (class 0 OID 0)
--- Dependencies: 8
--- Name: SCHEMA auditoria; Type: COMMENT; Schema: -; Owner: -
+-- TOC entry 3947 (class 0 OID 0)
+-- Dependencies: 9
+-- Name: SCHEMA auditoria; Type: COMMENT; Schema: -; Owner: postgres
 --
 
 COMMENT ON SCHEMA auditoria IS 'auditoria de los cambios en la bd';
 
 
 --
--- TOC entry 9 (class 2615 OID 48133)
--- Name: contabilidad; Type: SCHEMA; Schema: -; Owner: -
+-- TOC entry 10 (class 2615 OID 26333)
+-- Name: contabilidad; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
 CREATE SCHEMA contabilidad;
 
 
+ALTER SCHEMA contabilidad OWNER TO postgres;
+
 --
--- TOC entry 10 (class 2615 OID 48134)
--- Name: inventario; Type: SCHEMA; Schema: -; Owner: -
+-- TOC entry 11 (class 2615 OID 26334)
+-- Name: inventario; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
 CREATE SCHEMA inventario;
 
 
+ALTER SCHEMA inventario OWNER TO postgres;
+
 --
--- TOC entry 11 (class 2615 OID 48135)
--- Name: talento_humano; Type: SCHEMA; Schema: -; Owner: -
+-- TOC entry 12 (class 2615 OID 26335)
+-- Name: talento_humano; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
 CREATE SCHEMA talento_humano;
 
 
+ALTER SCHEMA talento_humano OWNER TO postgres;
+
 --
--- TOC entry 12 (class 2615 OID 48136)
--- Name: usuarios; Type: SCHEMA; Schema: -; Owner: -
+-- TOC entry 13 (class 2615 OID 26336)
+-- Name: usuarios; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
 CREATE SCHEMA usuarios;
 
 
+ALTER SCHEMA usuarios OWNER TO postgres;
+
 --
--- TOC entry 13 (class 2615 OID 48137)
--- Name: ventas; Type: SCHEMA; Schema: -; Owner: -
+-- TOC entry 14 (class 2615 OID 26337)
+-- Name: ventas; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
 CREATE SCHEMA ventas;
 
 
+ALTER SCHEMA ventas OWNER TO postgres;
+
 --
--- TOC entry 1 (class 3079 OID 11727)
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+-- TOC entry 1 (class 3079 OID 12649)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 3003 (class 0 OID 0)
+-- TOC entry 3950 (class 0 OID 0)
 -- Dependencies: 1
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -97,8 +121,8 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 334 (class 1255 OID 48138)
--- Name: f_convnl(numeric); Type: FUNCTION; Schema: public; Owner: -
+-- TOC entry 339 (class 1255 OID 26338)
+-- Name: f_convnl(numeric); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION f_convnl(num numeric) RETURNS character varying
@@ -220,9 +244,11 @@ END;
 $$;
 
 
+ALTER FUNCTION public.f_convnl(num numeric) OWNER TO postgres;
+
 --
--- TOC entry 335 (class 1255 OID 48139)
--- Name: fun_auditoria(); Type: FUNCTION; Schema: public; Owner: -
+-- TOC entry 340 (class 1255 OID 26339)
+-- Name: fun_auditoria(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION fun_auditoria() RETURNS trigger
@@ -247,9 +273,11 @@ END;
 $$;
 
 
+ALTER FUNCTION public.fun_auditoria() OWNER TO postgres;
+
 --
--- TOC entry 336 (class 1255 OID 48140)
--- Name: fun_cliente_empresa(); Type: FUNCTION; Schema: public; Owner: -
+-- TOC entry 341 (class 1255 OID 26340)
+-- Name: fun_cliente_empresa(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION fun_cliente_empresa() RETURNS trigger
@@ -276,9 +304,11 @@ END;
 $$;
 
 
+ALTER FUNCTION public.fun_cliente_empresa() OWNER TO postgres;
+
 --
--- TOC entry 337 (class 1255 OID 48141)
--- Name: fun_cliente_persona(); Type: FUNCTION; Schema: public; Owner: -
+-- TOC entry 342 (class 1255 OID 26341)
+-- Name: fun_cliente_persona(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION fun_cliente_persona() RETURNS trigger
@@ -305,11 +335,13 @@ END;
 $$;
 
 
+ALTER FUNCTION public.fun_cliente_persona() OWNER TO postgres;
+
 SET search_path = usuarios, pg_catalog;
 
 --
--- TOC entry 338 (class 1255 OID 48142)
--- Name: actualiza_clave(character varying, character varying); Type: FUNCTION; Schema: usuarios; Owner: -
+-- TOC entry 343 (class 1255 OID 26342)
+-- Name: actualiza_clave(character varying, character varying); Type: FUNCTION; Schema: usuarios; Owner: postgres
 --
 
 CREATE FUNCTION actualiza_clave(iden character varying, contra character varying) RETURNS boolean
@@ -335,15 +367,57 @@ END;
 $$;
 
 
-SET search_path = administracion, pg_catalog;
+ALTER FUNCTION usuarios.actualiza_clave(iden character varying, contra character varying) OWNER TO postgres;
+
+SET search_path = "Taller_mecanico", pg_catalog;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- TOC entry 176 (class 1259 OID 48143)
--- Name: actividad_economica; Type: TABLE; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 177 (class 1259 OID 26343)
+-- Name: Aseguradora; Type: TABLE; Schema: Taller_mecanico; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Aseguradora" (
+    id integer NOT NULL,
+    contacto json,
+    id_empresa integer NOT NULL
+);
+
+
+ALTER TABLE "Taller_mecanico"."Aseguradora" OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 26349)
+-- Name: Aseguradora_id_seq; Type: SEQUENCE; Schema: Taller_mecanico; Owner: postgres
+--
+
+CREATE SEQUENCE "Aseguradora_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Taller_mecanico"."Aseguradora_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3951 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: Aseguradora_id_seq; Type: SEQUENCE OWNED BY; Schema: Taller_mecanico; Owner: postgres
+--
+
+ALTER SEQUENCE "Aseguradora_id_seq" OWNED BY "Aseguradora".id;
+
+
+SET search_path = administracion, pg_catalog;
+
+--
+-- TOC entry 179 (class 1259 OID 26351)
+-- Name: actividad_economica; Type: TABLE; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE actividad_economica (
@@ -357,9 +431,11 @@ CREATE TABLE actividad_economica (
 );
 
 
+ALTER TABLE administracion.actividad_economica OWNER TO postgres;
+
 --
--- TOC entry 177 (class 1259 OID 48150)
--- Name: actividad_economica_id_seq; Type: SEQUENCE; Schema: administracion; Owner: -
+-- TOC entry 180 (class 1259 OID 26358)
+-- Name: actividad_economica_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
 --
 
 CREATE SEQUENCE actividad_economica_id_seq
@@ -370,18 +446,20 @@ CREATE SEQUENCE actividad_economica_id_seq
     CACHE 1;
 
 
+ALTER TABLE administracion.actividad_economica_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3004 (class 0 OID 0)
--- Dependencies: 177
--- Name: actividad_economica_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: -
+-- TOC entry 3952 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: actividad_economica_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
 --
 
 ALTER SEQUENCE actividad_economica_id_seq OWNED BY actividad_economica.id;
 
 
 --
--- TOC entry 178 (class 1259 OID 48152)
--- Name: clientes; Type: TABLE; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 181 (class 1259 OID 26360)
+-- Name: clientes; Type: TABLE; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE clientes (
@@ -394,9 +472,11 @@ CREATE TABLE clientes (
 );
 
 
+ALTER TABLE administracion.clientes OWNER TO postgres;
+
 --
--- TOC entry 179 (class 1259 OID 48159)
--- Name: empresas; Type: TABLE; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 182 (class 1259 OID 26367)
+-- Name: empresas; Type: TABLE; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE empresas (
@@ -412,72 +492,74 @@ CREATE TABLE empresas (
 );
 
 
+ALTER TABLE administracion.empresas OWNER TO postgres;
+
 --
--- TOC entry 3005 (class 0 OID 0)
--- Dependencies: 179
--- Name: COLUMN empresas.id; Type: COMMENT; Schema: administracion; Owner: -
+-- TOC entry 3953 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: COLUMN empresas.id; Type: COMMENT; Schema: administracion; Owner: postgres
 --
 
 COMMENT ON COLUMN empresas.id IS 'define el identificador de la empresa';
 
 
 --
--- TOC entry 3006 (class 0 OID 0)
--- Dependencies: 179
--- Name: COLUMN empresas.razon_social; Type: COMMENT; Schema: administracion; Owner: -
+-- TOC entry 3954 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: COLUMN empresas.razon_social; Type: COMMENT; Schema: administracion; Owner: postgres
 --
 
 COMMENT ON COLUMN empresas.razon_social IS 'define la razon social de la empresa';
 
 
 --
--- TOC entry 3007 (class 0 OID 0)
--- Dependencies: 179
--- Name: COLUMN empresas.actividad_economica; Type: COMMENT; Schema: administracion; Owner: -
+-- TOC entry 3955 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: COLUMN empresas.actividad_economica; Type: COMMENT; Schema: administracion; Owner: postgres
 --
 
 COMMENT ON COLUMN empresas.actividad_economica IS 'actividad economica que realiza la empresa';
 
 
 --
--- TOC entry 3008 (class 0 OID 0)
--- Dependencies: 179
--- Name: COLUMN empresas.ruc_ci; Type: COMMENT; Schema: administracion; Owner: -
+-- TOC entry 3956 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: COLUMN empresas.ruc_ci; Type: COMMENT; Schema: administracion; Owner: postgres
 --
 
 COMMENT ON COLUMN empresas.ruc_ci IS 'ruc o cedula dependiendo el tipo de usuario';
 
 
 --
--- TOC entry 3009 (class 0 OID 0)
--- Dependencies: 179
--- Name: COLUMN empresas.nombre_comercial; Type: COMMENT; Schema: administracion; Owner: -
+-- TOC entry 3957 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: COLUMN empresas.nombre_comercial; Type: COMMENT; Schema: administracion; Owner: postgres
 --
 
 COMMENT ON COLUMN empresas.nombre_comercial IS 'nombre con el que se le conoce a la empresa';
 
 
 --
--- TOC entry 3010 (class 0 OID 0)
--- Dependencies: 179
--- Name: COLUMN empresas.tipo_persona; Type: COMMENT; Schema: administracion; Owner: -
+-- TOC entry 3958 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: COLUMN empresas.tipo_persona; Type: COMMENT; Schema: administracion; Owner: postgres
 --
 
 COMMENT ON COLUMN empresas.tipo_persona IS 'tipo de persona natural o juridica segun SRI';
 
 
 --
--- TOC entry 3011 (class 0 OID 0)
--- Dependencies: 179
--- Name: COLUMN empresas.id_estado; Type: COMMENT; Schema: administracion; Owner: -
+-- TOC entry 3959 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: COLUMN empresas.id_estado; Type: COMMENT; Schema: administracion; Owner: postgres
 --
 
 COMMENT ON COLUMN empresas.id_estado IS 'define el estado de la empresa para el sistema Nexbook';
 
 
 --
--- TOC entry 180 (class 1259 OID 48167)
--- Name: empresas_id_seq; Type: SEQUENCE; Schema: administracion; Owner: -
+-- TOC entry 183 (class 1259 OID 26375)
+-- Name: empresas_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
 --
 
 CREATE SEQUENCE empresas_id_seq
@@ -488,18 +570,20 @@ CREATE SEQUENCE empresas_id_seq
     CACHE 1;
 
 
+ALTER TABLE administracion.empresas_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3012 (class 0 OID 0)
--- Dependencies: 180
--- Name: empresas_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: -
+-- TOC entry 3960 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: empresas_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
 --
 
 ALTER SEQUENCE empresas_id_seq OWNED BY empresas.id;
 
 
 --
--- TOC entry 181 (class 1259 OID 48169)
--- Name: imagen_empresa; Type: TABLE; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 184 (class 1259 OID 26377)
+-- Name: imagen_empresa; Type: TABLE; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE imagen_empresa (
@@ -513,9 +597,11 @@ CREATE TABLE imagen_empresa (
 );
 
 
+ALTER TABLE administracion.imagen_empresa OWNER TO postgres;
+
 --
--- TOC entry 182 (class 1259 OID 48176)
--- Name: imagen_empresa_id_seq; Type: SEQUENCE; Schema: administracion; Owner: -
+-- TOC entry 185 (class 1259 OID 26384)
+-- Name: imagen_empresa_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
 --
 
 CREATE SEQUENCE imagen_empresa_id_seq
@@ -526,18 +612,41 @@ CREATE SEQUENCE imagen_empresa_id_seq
     CACHE 1;
 
 
+ALTER TABLE administracion.imagen_empresa_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3013 (class 0 OID 0)
--- Dependencies: 182
--- Name: imagen_empresa_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: -
+-- TOC entry 3961 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: imagen_empresa_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
 --
 
 ALTER SEQUENCE imagen_empresa_id_seq OWNED BY imagen_empresa.id;
 
 
 --
--- TOC entry 183 (class 1259 OID 48178)
--- Name: sucursales_id_seq; Type: SEQUENCE; Schema: administracion; Owner: -
+-- TOC entry 326 (class 1259 OID 27655)
+-- Name: sucursales; Type: TABLE; Schema: administracion; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE sucursales (
+    id integer NOT NULL,
+    nombre character varying(250) NOT NULL,
+    responsable integer NOT NULL,
+    datos_empresariales json NOT NULL,
+    localizacion_sucursal json NOT NULL,
+    datos_adiconales json,
+    codigo_sri character varying(3) NOT NULL,
+    giro_negocio integer DEFAULT 0 NOT NULL,
+    actividad_economica integer DEFAULT 0 NOT NULL,
+    id_empresa integer
+);
+
+
+ALTER TABLE administracion.sucursales OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 26386)
+-- Name: sucursales_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
 --
 
 CREATE SEQUENCE sucursales_id_seq
@@ -548,9 +657,35 @@ CREATE SEQUENCE sucursales_id_seq
     CACHE 1;
 
 
+ALTER TABLE administracion.sucursales_id_seq OWNER TO postgres;
+
 --
--- TOC entry 184 (class 1259 OID 48180)
--- Name: tipo_accion_vista; Type: TABLE; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 325 (class 1259 OID 27653)
+-- Name: sucursales_id_seq1; Type: SEQUENCE; Schema: administracion; Owner: postgres
+--
+
+CREATE SEQUENCE sucursales_id_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE administracion.sucursales_id_seq1 OWNER TO postgres;
+
+--
+-- TOC entry 3962 (class 0 OID 0)
+-- Dependencies: 325
+-- Name: sucursales_id_seq1; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
+--
+
+ALTER SEQUENCE sucursales_id_seq1 OWNED BY sucursales.id;
+
+
+--
+-- TOC entry 187 (class 1259 OID 26388)
+-- Name: tipo_accion_vista; Type: TABLE; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipo_accion_vista (
@@ -563,9 +698,11 @@ CREATE TABLE tipo_accion_vista (
 );
 
 
+ALTER TABLE administracion.tipo_accion_vista OWNER TO postgres;
+
 --
--- TOC entry 185 (class 1259 OID 48184)
--- Name: tipo_accion_vista_id_seq; Type: SEQUENCE; Schema: administracion; Owner: -
+-- TOC entry 188 (class 1259 OID 26392)
+-- Name: tipo_accion_vista_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
 --
 
 CREATE SEQUENCE tipo_accion_vista_id_seq
@@ -576,18 +713,20 @@ CREATE SEQUENCE tipo_accion_vista_id_seq
     CACHE 1;
 
 
+ALTER TABLE administracion.tipo_accion_vista_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3014 (class 0 OID 0)
--- Dependencies: 185
--- Name: tipo_accion_vista_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: -
+-- TOC entry 3963 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: tipo_accion_vista_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
 --
 
 ALTER SEQUENCE tipo_accion_vista_id_seq OWNED BY tipo_accion_vista.id;
 
 
 --
--- TOC entry 186 (class 1259 OID 48186)
--- Name: tipo_bienes_servicios; Type: TABLE; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 189 (class 1259 OID 26394)
+-- Name: tipo_bienes_servicios; Type: TABLE; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipo_bienes_servicios (
@@ -600,9 +739,11 @@ CREATE TABLE tipo_bienes_servicios (
 );
 
 
+ALTER TABLE administracion.tipo_bienes_servicios OWNER TO postgres;
+
 --
--- TOC entry 187 (class 1259 OID 48193)
--- Name: tipo_bienes_servicios_id_seq; Type: SEQUENCE; Schema: administracion; Owner: -
+-- TOC entry 190 (class 1259 OID 26401)
+-- Name: tipo_bienes_servicios_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
 --
 
 CREATE SEQUENCE tipo_bienes_servicios_id_seq
@@ -613,18 +754,20 @@ CREATE SEQUENCE tipo_bienes_servicios_id_seq
     CACHE 1;
 
 
+ALTER TABLE administracion.tipo_bienes_servicios_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3015 (class 0 OID 0)
--- Dependencies: 187
--- Name: tipo_bienes_servicios_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: -
+-- TOC entry 3964 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: tipo_bienes_servicios_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
 --
 
 ALTER SEQUENCE tipo_bienes_servicios_id_seq OWNED BY tipo_bienes_servicios.id;
 
 
 --
--- TOC entry 188 (class 1259 OID 48195)
--- Name: tipo_empresa; Type: TABLE; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 191 (class 1259 OID 26403)
+-- Name: tipo_empresa; Type: TABLE; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipo_empresa (
@@ -636,9 +779,11 @@ CREATE TABLE tipo_empresa (
 );
 
 
+ALTER TABLE administracion.tipo_empresa OWNER TO postgres;
+
 --
--- TOC entry 189 (class 1259 OID 48202)
--- Name: tipo_empresa_id_seq; Type: SEQUENCE; Schema: administracion; Owner: -
+-- TOC entry 192 (class 1259 OID 26410)
+-- Name: tipo_empresa_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
 --
 
 CREATE SEQUENCE tipo_empresa_id_seq
@@ -649,18 +794,20 @@ CREATE SEQUENCE tipo_empresa_id_seq
     CACHE 1;
 
 
+ALTER TABLE administracion.tipo_empresa_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3016 (class 0 OID 0)
--- Dependencies: 189
--- Name: tipo_empresa_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: -
+-- TOC entry 3965 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: tipo_empresa_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
 --
 
 ALTER SEQUENCE tipo_empresa_id_seq OWNED BY tipo_empresa.id;
 
 
 --
--- TOC entry 190 (class 1259 OID 48204)
--- Name: tipos_imagenes_empresas; Type: TABLE; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 193 (class 1259 OID 26412)
+-- Name: tipos_imagenes_empresas; Type: TABLE; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipos_imagenes_empresas (
@@ -671,9 +818,11 @@ CREATE TABLE tipos_imagenes_empresas (
 );
 
 
+ALTER TABLE administracion.tipos_imagenes_empresas OWNER TO postgres;
+
 --
--- TOC entry 191 (class 1259 OID 48208)
--- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE; Schema: administracion; Owner: -
+-- TOC entry 194 (class 1259 OID 26416)
+-- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
 --
 
 CREATE SEQUENCE tipos_imagenes_productos_id_seq
@@ -684,18 +833,20 @@ CREATE SEQUENCE tipos_imagenes_productos_id_seq
     CACHE 1;
 
 
+ALTER TABLE administracion.tipos_imagenes_productos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3017 (class 0 OID 0)
--- Dependencies: 191
--- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: -
+-- TOC entry 3966 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
 --
 
 ALTER SEQUENCE tipos_imagenes_productos_id_seq OWNED BY tipos_imagenes_empresas.id;
 
 
 --
--- TOC entry 192 (class 1259 OID 48210)
--- Name: usuarios_privilegios; Type: TABLE; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 195 (class 1259 OID 26418)
+-- Name: usuarios_privilegios; Type: TABLE; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE usuarios_privilegios (
@@ -708,9 +859,11 @@ CREATE TABLE usuarios_privilegios (
 );
 
 
+ALTER TABLE administracion.usuarios_privilegios OWNER TO postgres;
+
 --
--- TOC entry 193 (class 1259 OID 48214)
--- Name: usuarios_privilegios_id_seq; Type: SEQUENCE; Schema: administracion; Owner: -
+-- TOC entry 196 (class 1259 OID 26422)
+-- Name: usuarios_privilegios_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
 --
 
 CREATE SEQUENCE usuarios_privilegios_id_seq
@@ -721,18 +874,20 @@ CREATE SEQUENCE usuarios_privilegios_id_seq
     CACHE 1;
 
 
+ALTER TABLE administracion.usuarios_privilegios_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3018 (class 0 OID 0)
--- Dependencies: 193
--- Name: usuarios_privilegios_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: -
+-- TOC entry 3967 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: usuarios_privilegios_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
 --
 
 ALTER SEQUENCE usuarios_privilegios_id_seq OWNED BY usuarios_privilegios.id;
 
 
 --
--- TOC entry 194 (class 1259 OID 48216)
--- Name: vistas; Type: TABLE; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 197 (class 1259 OID 26424)
+-- Name: vistas; Type: TABLE; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE vistas (
@@ -744,15 +899,17 @@ CREATE TABLE vistas (
     estado character varying(5) NOT NULL,
     id_padre integer NOT NULL,
     nivel_arbol integer NOT NULL,
-    template_ character varying(500) NOT NULL,
-    controller_ character varying(500) NOT NULL,
+    template_ character varying(500),
+    controller_ character varying(500),
     fecha timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
+ALTER TABLE administracion.vistas OWNER TO postgres;
+
 --
--- TOC entry 195 (class 1259 OID 48224)
--- Name: vistas_id_seq; Type: SEQUENCE; Schema: administracion; Owner: -
+-- TOC entry 198 (class 1259 OID 26432)
+-- Name: vistas_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
 --
 
 CREATE SEQUENCE vistas_id_seq
@@ -763,10 +920,12 @@ CREATE SEQUENCE vistas_id_seq
     CACHE 1;
 
 
+ALTER TABLE administracion.vistas_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3019 (class 0 OID 0)
--- Dependencies: 195
--- Name: vistas_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: -
+-- TOC entry 3968 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: vistas_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
 --
 
 ALTER SEQUENCE vistas_id_seq OWNED BY vistas.id;
@@ -775,8 +934,8 @@ ALTER SEQUENCE vistas_id_seq OWNED BY vistas.id;
 SET search_path = auditoria, pg_catalog;
 
 --
--- TOC entry 196 (class 1259 OID 48226)
--- Name: auditoria; Type: TABLE; Schema: auditoria; Owner: -; Tablespace: 
+-- TOC entry 199 (class 1259 OID 26434)
+-- Name: auditoria; Type: TABLE; Schema: auditoria; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE auditoria (
@@ -790,72 +949,74 @@ CREATE TABLE auditoria (
 );
 
 
+ALTER TABLE auditoria.auditoria OWNER TO postgres;
+
 --
--- TOC entry 3020 (class 0 OID 0)
--- Dependencies: 196
--- Name: COLUMN auditoria.id; Type: COMMENT; Schema: auditoria; Owner: -
+-- TOC entry 3969 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: COLUMN auditoria.id; Type: COMMENT; Schema: auditoria; Owner: postgres
 --
 
 COMMENT ON COLUMN auditoria.id IS 'define el identificador de la tabla auditoria';
 
 
 --
--- TOC entry 3021 (class 0 OID 0)
--- Dependencies: 196
--- Name: COLUMN auditoria.tabla_afectada; Type: COMMENT; Schema: auditoria; Owner: -
+-- TOC entry 3970 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: COLUMN auditoria.tabla_afectada; Type: COMMENT; Schema: auditoria; Owner: postgres
 --
 
 COMMENT ON COLUMN auditoria.tabla_afectada IS 'almacena el nombre de la tabla que fue afectada';
 
 
 --
--- TOC entry 3022 (class 0 OID 0)
--- Dependencies: 196
--- Name: COLUMN auditoria.operacion; Type: COMMENT; Schema: auditoria; Owner: -
+-- TOC entry 3971 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: COLUMN auditoria.operacion; Type: COMMENT; Schema: auditoria; Owner: postgres
 --
 
 COMMENT ON COLUMN auditoria.operacion IS 'guarda la operacion realizada, I insertar / U actualizar/ D borrar  ';
 
 
 --
--- TOC entry 3023 (class 0 OID 0)
--- Dependencies: 196
--- Name: COLUMN auditoria.variable_anterior; Type: COMMENT; Schema: auditoria; Owner: -
+-- TOC entry 3972 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: COLUMN auditoria.variable_anterior; Type: COMMENT; Schema: auditoria; Owner: postgres
 --
 
 COMMENT ON COLUMN auditoria.variable_anterior IS 'almacena los valores viejos';
 
 
 --
--- TOC entry 3024 (class 0 OID 0)
--- Dependencies: 196
--- Name: COLUMN auditoria.variable_nueva; Type: COMMENT; Schema: auditoria; Owner: -
+-- TOC entry 3973 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: COLUMN auditoria.variable_nueva; Type: COMMENT; Schema: auditoria; Owner: postgres
 --
 
 COMMENT ON COLUMN auditoria.variable_nueva IS 'almacena los valores nuevos';
 
 
 --
--- TOC entry 3025 (class 0 OID 0)
--- Dependencies: 196
--- Name: COLUMN auditoria.fecha; Type: COMMENT; Schema: auditoria; Owner: -
+-- TOC entry 3974 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: COLUMN auditoria.fecha; Type: COMMENT; Schema: auditoria; Owner: postgres
 --
 
 COMMENT ON COLUMN auditoria.fecha IS 'almacena la fecha de modificacion de los datos';
 
 
 --
--- TOC entry 3026 (class 0 OID 0)
--- Dependencies: 196
--- Name: COLUMN auditoria.usuario; Type: COMMENT; Schema: auditoria; Owner: -
+-- TOC entry 3975 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: COLUMN auditoria.usuario; Type: COMMENT; Schema: auditoria; Owner: postgres
 --
 
 COMMENT ON COLUMN auditoria.usuario IS 'almacena el usuario de la BDD';
 
 
 --
--- TOC entry 197 (class 1259 OID 48232)
--- Name: auditoria_id_seq; Type: SEQUENCE; Schema: auditoria; Owner: -
+-- TOC entry 200 (class 1259 OID 26440)
+-- Name: auditoria_id_seq; Type: SEQUENCE; Schema: auditoria; Owner: postgres
 --
 
 CREATE SEQUENCE auditoria_id_seq
@@ -866,18 +1027,20 @@ CREATE SEQUENCE auditoria_id_seq
     CACHE 1;
 
 
+ALTER TABLE auditoria.auditoria_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3027 (class 0 OID 0)
--- Dependencies: 197
--- Name: auditoria_id_seq; Type: SEQUENCE OWNED BY; Schema: auditoria; Owner: -
+-- TOC entry 3976 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: auditoria_id_seq; Type: SEQUENCE OWNED BY; Schema: auditoria; Owner: postgres
 --
 
 ALTER SEQUENCE auditoria_id_seq OWNED BY auditoria.id;
 
 
 --
--- TOC entry 198 (class 1259 OID 48234)
--- Name: ingresos_usuarios; Type: TABLE; Schema: auditoria; Owner: -; Tablespace: 
+-- TOC entry 201 (class 1259 OID 26442)
+-- Name: ingresos_usuarios; Type: TABLE; Schema: auditoria; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE ingresos_usuarios (
@@ -889,9 +1052,11 @@ CREATE TABLE ingresos_usuarios (
 );
 
 
+ALTER TABLE auditoria.ingresos_usuarios OWNER TO postgres;
+
 --
--- TOC entry 199 (class 1259 OID 48241)
--- Name: ingresos_usuarios_id_seq; Type: SEQUENCE; Schema: auditoria; Owner: -
+-- TOC entry 202 (class 1259 OID 26449)
+-- Name: ingresos_usuarios_id_seq; Type: SEQUENCE; Schema: auditoria; Owner: postgres
 --
 
 CREATE SEQUENCE ingresos_usuarios_id_seq
@@ -902,10 +1067,12 @@ CREATE SEQUENCE ingresos_usuarios_id_seq
     CACHE 1;
 
 
+ALTER TABLE auditoria.ingresos_usuarios_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3028 (class 0 OID 0)
--- Dependencies: 199
--- Name: ingresos_usuarios_id_seq; Type: SEQUENCE OWNED BY; Schema: auditoria; Owner: -
+-- TOC entry 3977 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: ingresos_usuarios_id_seq; Type: SEQUENCE OWNED BY; Schema: auditoria; Owner: postgres
 --
 
 ALTER SEQUENCE ingresos_usuarios_id_seq OWNED BY ingresos_usuarios.id;
@@ -914,8 +1081,8 @@ ALTER SEQUENCE ingresos_usuarios_id_seq OWNED BY ingresos_usuarios.id;
 SET search_path = contabilidad, pg_catalog;
 
 --
--- TOC entry 200 (class 1259 OID 48243)
--- Name: plazos_credito; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 203 (class 1259 OID 26451)
+-- Name: plazos_credito; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE plazos_credito (
@@ -927,9 +1094,11 @@ CREATE TABLE plazos_credito (
 );
 
 
+ALTER TABLE contabilidad.plazos_credito OWNER TO postgres;
+
 --
--- TOC entry 201 (class 1259 OID 48248)
--- Name: Plazos_credito_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 204 (class 1259 OID 26456)
+-- Name: Plazos_credito_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE "Plazos_credito_id_seq"
@@ -940,18 +1109,20 @@ CREATE SEQUENCE "Plazos_credito_id_seq"
     CACHE 1;
 
 
+ALTER TABLE contabilidad."Plazos_credito_id_seq" OWNER TO postgres;
+
 --
--- TOC entry 3029 (class 0 OID 0)
--- Dependencies: 201
--- Name: Plazos_credito_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3978 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: Plazos_credito_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE "Plazos_credito_id_seq" OWNED BY plazos_credito.id;
 
 
 --
--- TOC entry 202 (class 1259 OID 48250)
--- Name: ambitos_impuestos; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 205 (class 1259 OID 26458)
+-- Name: ambitos_impuestos; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE ambitos_impuestos (
@@ -962,9 +1133,11 @@ CREATE TABLE ambitos_impuestos (
 );
 
 
+ALTER TABLE contabilidad.ambitos_impuestos OWNER TO postgres;
+
 --
--- TOC entry 203 (class 1259 OID 48254)
--- Name: ambitos_impuestos_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 206 (class 1259 OID 26462)
+-- Name: ambitos_impuestos_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE ambitos_impuestos_id_seq
@@ -975,18 +1148,20 @@ CREATE SEQUENCE ambitos_impuestos_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.ambitos_impuestos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3030 (class 0 OID 0)
--- Dependencies: 203
--- Name: ambitos_impuestos_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3979 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: ambitos_impuestos_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE ambitos_impuestos_id_seq OWNED BY ambitos_impuestos.id;
 
 
 --
--- TOC entry 204 (class 1259 OID 48256)
--- Name: asientos_contables_diario; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 207 (class 1259 OID 26464)
+-- Name: asientos_contables_diario; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE asientos_contables_diario (
@@ -1000,9 +1175,11 @@ CREATE TABLE asientos_contables_diario (
 );
 
 
+ALTER TABLE contabilidad.asientos_contables_diario OWNER TO postgres;
+
 --
--- TOC entry 205 (class 1259 OID 48260)
--- Name: asientos_contables_diario_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 208 (class 1259 OID 26468)
+-- Name: asientos_contables_diario_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE asientos_contables_diario_id_seq
@@ -1013,18 +1190,20 @@ CREATE SEQUENCE asientos_contables_diario_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.asientos_contables_diario_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3031 (class 0 OID 0)
--- Dependencies: 205
--- Name: asientos_contables_diario_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3980 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: asientos_contables_diario_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE asientos_contables_diario_id_seq OWNED BY asientos_contables_diario.id;
 
 
 --
--- TOC entry 206 (class 1259 OID 48262)
--- Name: bancos; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 209 (class 1259 OID 26470)
+-- Name: bancos; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE bancos (
@@ -1038,9 +1217,11 @@ CREATE TABLE bancos (
 );
 
 
+ALTER TABLE contabilidad.bancos OWNER TO postgres;
+
 --
--- TOC entry 207 (class 1259 OID 48269)
--- Name: bancos_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 210 (class 1259 OID 26477)
+-- Name: bancos_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE bancos_id_seq
@@ -1051,18 +1232,20 @@ CREATE SEQUENCE bancos_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.bancos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3032 (class 0 OID 0)
--- Dependencies: 207
--- Name: bancos_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3981 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: bancos_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE bancos_id_seq OWNED BY bancos.id;
 
 
 --
--- TOC entry 208 (class 1259 OID 48271)
--- Name: cuentas_contables; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 211 (class 1259 OID 26479)
+-- Name: cuentas_contables; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE cuentas_contables (
@@ -1075,9 +1258,11 @@ CREATE TABLE cuentas_contables (
 );
 
 
+ALTER TABLE contabilidad.cuentas_contables OWNER TO postgres;
+
 --
--- TOC entry 209 (class 1259 OID 48278)
--- Name: cuentas_contables_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 212 (class 1259 OID 26486)
+-- Name: cuentas_contables_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE cuentas_contables_id_seq
@@ -1088,18 +1273,20 @@ CREATE SEQUENCE cuentas_contables_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.cuentas_contables_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3033 (class 0 OID 0)
--- Dependencies: 209
--- Name: cuentas_contables_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3982 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: cuentas_contables_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE cuentas_contables_id_seq OWNED BY cuentas_contables.id;
 
 
 --
--- TOC entry 210 (class 1259 OID 48280)
--- Name: repositorio_facturas_correo; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 213 (class 1259 OID 26488)
+-- Name: repositorio_facturas_correo; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE repositorio_facturas_correo (
@@ -1114,9 +1301,11 @@ CREATE TABLE repositorio_facturas_correo (
 );
 
 
+ALTER TABLE contabilidad.repositorio_facturas_correo OWNER TO postgres;
+
 --
--- TOC entry 211 (class 1259 OID 48287)
--- Name: facturas_correo_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 214 (class 1259 OID 26495)
+-- Name: facturas_correo_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE facturas_correo_id_seq
@@ -1127,18 +1316,20 @@ CREATE SEQUENCE facturas_correo_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.facturas_correo_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3034 (class 0 OID 0)
--- Dependencies: 211
--- Name: facturas_correo_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3983 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: facturas_correo_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE facturas_correo_id_seq OWNED BY repositorio_facturas_correo.id;
 
 
 --
--- TOC entry 212 (class 1259 OID 48289)
--- Name: fecha_declaracion_ruc; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 215 (class 1259 OID 26497)
+-- Name: fecha_declaracion_ruc; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE fecha_declaracion_ruc (
@@ -1148,9 +1339,11 @@ CREATE TABLE fecha_declaracion_ruc (
 );
 
 
+ALTER TABLE contabilidad.fecha_declaracion_ruc OWNER TO postgres;
+
 --
--- TOC entry 213 (class 1259 OID 48292)
--- Name: finaciaminto; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 216 (class 1259 OID 26500)
+-- Name: finaciaminto; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE finaciaminto (
@@ -1172,9 +1365,11 @@ CREATE TABLE finaciaminto (
 );
 
 
+ALTER TABLE contabilidad.finaciaminto OWNER TO postgres;
+
 --
--- TOC entry 214 (class 1259 OID 48296)
--- Name: finaciaminto_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 217 (class 1259 OID 26504)
+-- Name: finaciaminto_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE finaciaminto_id_seq
@@ -1185,18 +1380,20 @@ CREATE SEQUENCE finaciaminto_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.finaciaminto_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3035 (class 0 OID 0)
--- Dependencies: 214
--- Name: finaciaminto_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3984 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: finaciaminto_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE finaciaminto_id_seq OWNED BY finaciaminto.id;
 
 
 --
--- TOC entry 215 (class 1259 OID 48298)
--- Name: gasto_mes_repositorio; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 218 (class 1259 OID 26506)
+-- Name: gasto_mes_repositorio; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE gasto_mes_repositorio (
@@ -1209,9 +1406,11 @@ CREATE TABLE gasto_mes_repositorio (
 );
 
 
+ALTER TABLE contabilidad.gasto_mes_repositorio OWNER TO postgres;
+
 --
--- TOC entry 216 (class 1259 OID 48302)
--- Name: gasto_mes_repositorio_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 219 (class 1259 OID 26510)
+-- Name: gasto_mes_repositorio_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE gasto_mes_repositorio_id_seq
@@ -1222,18 +1421,20 @@ CREATE SEQUENCE gasto_mes_repositorio_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.gasto_mes_repositorio_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3036 (class 0 OID 0)
--- Dependencies: 216
--- Name: gasto_mes_repositorio_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3985 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: gasto_mes_repositorio_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE gasto_mes_repositorio_id_seq OWNED BY gasto_mes_repositorio.id;
 
 
 --
--- TOC entry 217 (class 1259 OID 48304)
--- Name: gastos_impuestos_renta_deduccion; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 220 (class 1259 OID 26512)
+-- Name: gastos_impuestos_renta_deduccion; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE gastos_impuestos_renta_deduccion (
@@ -1246,9 +1447,11 @@ CREATE TABLE gastos_impuestos_renta_deduccion (
 );
 
 
+ALTER TABLE contabilidad.gastos_impuestos_renta_deduccion OWNER TO postgres;
+
 --
--- TOC entry 218 (class 1259 OID 48308)
--- Name: gastos_impuestos_renta_deduccion_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 221 (class 1259 OID 26516)
+-- Name: gastos_impuestos_renta_deduccion_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE gastos_impuestos_renta_deduccion_id_seq
@@ -1259,18 +1462,20 @@ CREATE SEQUENCE gastos_impuestos_renta_deduccion_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.gastos_impuestos_renta_deduccion_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3037 (class 0 OID 0)
--- Dependencies: 218
--- Name: gastos_impuestos_renta_deduccion_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3986 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: gastos_impuestos_renta_deduccion_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE gastos_impuestos_renta_deduccion_id_seq OWNED BY gastos_impuestos_renta_deduccion.id;
 
 
 --
--- TOC entry 219 (class 1259 OID 48310)
--- Name: genealogia_impuestos; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 222 (class 1259 OID 26518)
+-- Name: genealogia_impuestos; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE genealogia_impuestos (
@@ -1279,18 +1484,20 @@ CREATE TABLE genealogia_impuestos (
 );
 
 
+ALTER TABLE contabilidad.genealogia_impuestos OWNER TO postgres;
+
 --
--- TOC entry 3038 (class 0 OID 0)
--- Dependencies: 219
--- Name: TABLE genealogia_impuestos; Type: COMMENT; Schema: contabilidad; Owner: -
+-- TOC entry 3987 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: TABLE genealogia_impuestos; Type: COMMENT; Schema: contabilidad; Owner: postgres
 --
 
 COMMENT ON TABLE genealogia_impuestos IS 'define el arbol de los impuestos para el grupo';
 
 
 --
--- TOC entry 220 (class 1259 OID 48313)
--- Name: grupo_impuestos; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 223 (class 1259 OID 26521)
+-- Name: grupo_impuestos; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE grupo_impuestos (
@@ -1301,9 +1508,11 @@ CREATE TABLE grupo_impuestos (
 );
 
 
+ALTER TABLE contabilidad.grupo_impuestos OWNER TO postgres;
+
 --
--- TOC entry 221 (class 1259 OID 48316)
--- Name: grupo_impuestos_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 224 (class 1259 OID 26524)
+-- Name: grupo_impuestos_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE grupo_impuestos_id_seq
@@ -1314,18 +1523,20 @@ CREATE SEQUENCE grupo_impuestos_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.grupo_impuestos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3039 (class 0 OID 0)
--- Dependencies: 221
--- Name: grupo_impuestos_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3988 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: grupo_impuestos_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE grupo_impuestos_id_seq OWNED BY grupo_impuestos.id;
 
 
 --
--- TOC entry 222 (class 1259 OID 48318)
--- Name: impuestos; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 225 (class 1259 OID 26526)
+-- Name: impuestos; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE impuestos (
@@ -1341,9 +1552,11 @@ CREATE TABLE impuestos (
 );
 
 
+ALTER TABLE contabilidad.impuestos OWNER TO postgres;
+
 --
--- TOC entry 223 (class 1259 OID 48326)
--- Name: impuestos_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 226 (class 1259 OID 26534)
+-- Name: impuestos_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE impuestos_id_seq
@@ -1354,18 +1567,20 @@ CREATE SEQUENCE impuestos_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.impuestos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3040 (class 0 OID 0)
--- Dependencies: 223
--- Name: impuestos_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3989 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: impuestos_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE impuestos_id_seq OWNED BY impuestos.id;
 
 
 --
--- TOC entry 224 (class 1259 OID 48328)
--- Name: repositorio_facturas; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 227 (class 1259 OID 26536)
+-- Name: repositorio_facturas; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE repositorio_facturas (
@@ -1394,9 +1609,11 @@ CREATE TABLE repositorio_facturas (
 );
 
 
+ALTER TABLE contabilidad.repositorio_facturas OWNER TO postgres;
+
 --
--- TOC entry 225 (class 1259 OID 48335)
--- Name: repositorio_facturas_id_factura_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 228 (class 1259 OID 26543)
+-- Name: repositorio_facturas_id_factura_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE repositorio_facturas_id_factura_seq
@@ -1407,18 +1624,20 @@ CREATE SEQUENCE repositorio_facturas_id_factura_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.repositorio_facturas_id_factura_seq OWNER TO postgres;
+
 --
--- TOC entry 3041 (class 0 OID 0)
--- Dependencies: 225
--- Name: repositorio_facturas_id_factura_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3990 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: repositorio_facturas_id_factura_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE repositorio_facturas_id_factura_seq OWNED BY repositorio_facturas.id_factura;
 
 
 --
--- TOC entry 226 (class 1259 OID 48337)
--- Name: repositorio_facturas_rechazadas; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 229 (class 1259 OID 26545)
+-- Name: repositorio_facturas_rechazadas; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE repositorio_facturas_rechazadas (
@@ -1433,9 +1652,11 @@ CREATE TABLE repositorio_facturas_rechazadas (
 );
 
 
+ALTER TABLE contabilidad.repositorio_facturas_rechazadas OWNER TO postgres;
+
 --
--- TOC entry 227 (class 1259 OID 48344)
--- Name: repositorio_facturas_rechazadas_id_factura_r_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 230 (class 1259 OID 26552)
+-- Name: repositorio_facturas_rechazadas_id_factura_r_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE repositorio_facturas_rechazadas_id_factura_r_seq
@@ -1446,18 +1667,20 @@ CREATE SEQUENCE repositorio_facturas_rechazadas_id_factura_r_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.repositorio_facturas_rechazadas_id_factura_r_seq OWNER TO postgres;
+
 --
--- TOC entry 3042 (class 0 OID 0)
--- Dependencies: 227
--- Name: repositorio_facturas_rechazadas_id_factura_r_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3991 (class 0 OID 0)
+-- Dependencies: 230
+-- Name: repositorio_facturas_rechazadas_id_factura_r_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE repositorio_facturas_rechazadas_id_factura_r_seq OWNED BY repositorio_facturas_rechazadas.id_factura_r;
 
 
 --
--- TOC entry 228 (class 1259 OID 48346)
--- Name: rol_pagos_empleados; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 231 (class 1259 OID 26554)
+-- Name: rol_pagos_empleados; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE rol_pagos_empleados (
@@ -1467,9 +1690,11 @@ CREATE TABLE rol_pagos_empleados (
 );
 
 
+ALTER TABLE contabilidad.rol_pagos_empleados OWNER TO postgres;
+
 --
--- TOC entry 229 (class 1259 OID 48350)
--- Name: rol_pagos_empleados_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 232 (class 1259 OID 26558)
+-- Name: rol_pagos_empleados_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE rol_pagos_empleados_id_seq
@@ -1480,18 +1705,20 @@ CREATE SEQUENCE rol_pagos_empleados_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.rol_pagos_empleados_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3043 (class 0 OID 0)
--- Dependencies: 229
--- Name: rol_pagos_empleados_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3992 (class 0 OID 0)
+-- Dependencies: 232
+-- Name: rol_pagos_empleados_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE rol_pagos_empleados_id_seq OWNED BY rol_pagos_empleados.id;
 
 
 --
--- TOC entry 230 (class 1259 OID 48352)
--- Name: tipos_cuentas_contables; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 233 (class 1259 OID 26560)
+-- Name: tipos_cuentas_contables; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipos_cuentas_contables (
@@ -1503,9 +1730,11 @@ CREATE TABLE tipos_cuentas_contables (
 );
 
 
+ALTER TABLE contabilidad.tipos_cuentas_contables OWNER TO postgres;
+
 --
--- TOC entry 231 (class 1259 OID 48359)
--- Name: tipo_cuenta_contable_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 234 (class 1259 OID 26567)
+-- Name: tipo_cuenta_contable_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE tipo_cuenta_contable_id_seq
@@ -1516,18 +1745,20 @@ CREATE SEQUENCE tipo_cuenta_contable_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.tipo_cuenta_contable_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3044 (class 0 OID 0)
--- Dependencies: 231
--- Name: tipo_cuenta_contable_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3993 (class 0 OID 0)
+-- Dependencies: 234
+-- Name: tipo_cuenta_contable_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE tipo_cuenta_contable_id_seq OWNED BY tipos_cuentas_contables.id;
 
 
 --
--- TOC entry 232 (class 1259 OID 48361)
--- Name: tipo_documentos; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 235 (class 1259 OID 26569)
+-- Name: tipo_documentos; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipo_documentos (
@@ -1539,9 +1770,11 @@ CREATE TABLE tipo_documentos (
 );
 
 
+ALTER TABLE contabilidad.tipo_documentos OWNER TO postgres;
+
 --
--- TOC entry 233 (class 1259 OID 48365)
--- Name: tipo_impuestos; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 236 (class 1259 OID 26573)
+-- Name: tipo_impuestos; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipo_impuestos (
@@ -1553,9 +1786,11 @@ CREATE TABLE tipo_impuestos (
 );
 
 
+ALTER TABLE contabilidad.tipo_impuestos OWNER TO postgres;
+
 --
--- TOC entry 234 (class 1259 OID 48369)
--- Name: tipo_impuestos_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 237 (class 1259 OID 26577)
+-- Name: tipo_impuestos_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE tipo_impuestos_id_seq
@@ -1566,18 +1801,20 @@ CREATE SEQUENCE tipo_impuestos_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.tipo_impuestos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3045 (class 0 OID 0)
--- Dependencies: 234
--- Name: tipo_impuestos_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3994 (class 0 OID 0)
+-- Dependencies: 237
+-- Name: tipo_impuestos_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE tipo_impuestos_id_seq OWNED BY tipo_impuestos.id;
 
 
 --
--- TOC entry 235 (class 1259 OID 48371)
--- Name: tipos_gastos_personales; Type: TABLE; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 238 (class 1259 OID 26579)
+-- Name: tipos_gastos_personales; Type: TABLE; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipos_gastos_personales (
@@ -1590,9 +1827,11 @@ CREATE TABLE tipos_gastos_personales (
 );
 
 
+ALTER TABLE contabilidad.tipos_gastos_personales OWNER TO postgres;
+
 --
--- TOC entry 236 (class 1259 OID 48378)
--- Name: tipos_gastos_personales_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: -
+-- TOC entry 239 (class 1259 OID 26586)
+-- Name: tipos_gastos_personales_id_seq; Type: SEQUENCE; Schema: contabilidad; Owner: postgres
 --
 
 CREATE SEQUENCE tipos_gastos_personales_id_seq
@@ -1603,10 +1842,12 @@ CREATE SEQUENCE tipos_gastos_personales_id_seq
     CACHE 1;
 
 
+ALTER TABLE contabilidad.tipos_gastos_personales_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3046 (class 0 OID 0)
--- Dependencies: 236
--- Name: tipos_gastos_personales_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: -
+-- TOC entry 3995 (class 0 OID 0)
+-- Dependencies: 239
+-- Name: tipos_gastos_personales_id_seq; Type: SEQUENCE OWNED BY; Schema: contabilidad; Owner: postgres
 --
 
 ALTER SEQUENCE tipos_gastos_personales_id_seq OWNED BY tipos_gastos_personales.id;
@@ -1615,8 +1856,8 @@ ALTER SEQUENCE tipos_gastos_personales_id_seq OWNED BY tipos_gastos_personales.i
 SET search_path = inventario, pg_catalog;
 
 --
--- TOC entry 237 (class 1259 OID 48380)
--- Name: bodegas; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 240 (class 1259 OID 26588)
+-- Name: bodegas; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE bodegas (
@@ -1632,9 +1873,11 @@ CREATE TABLE bodegas (
 );
 
 
+ALTER TABLE inventario.bodegas OWNER TO postgres;
+
 --
--- TOC entry 238 (class 1259 OID 48387)
--- Name: bodegas_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 241 (class 1259 OID 26595)
+-- Name: bodegas_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE bodegas_id_seq
@@ -1645,18 +1888,20 @@ CREATE SEQUENCE bodegas_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.bodegas_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3047 (class 0 OID 0)
--- Dependencies: 238
--- Name: bodegas_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 3996 (class 0 OID 0)
+-- Dependencies: 241
+-- Name: bodegas_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE bodegas_id_seq OWNED BY bodegas.id;
 
 
 --
--- TOC entry 239 (class 1259 OID 48389)
--- Name: catalogos; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 242 (class 1259 OID 26597)
+-- Name: catalogos; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE catalogos (
@@ -1666,9 +1911,11 @@ CREATE TABLE catalogos (
 );
 
 
+ALTER TABLE inventario.catalogos OWNER TO postgres;
+
 --
--- TOC entry 240 (class 1259 OID 48392)
--- Name: catalogos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 243 (class 1259 OID 26600)
+-- Name: catalogos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE catalogos_id_seq
@@ -1679,18 +1926,20 @@ CREATE SEQUENCE catalogos_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.catalogos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3048 (class 0 OID 0)
--- Dependencies: 240
--- Name: catalogos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 3997 (class 0 OID 0)
+-- Dependencies: 243
+-- Name: catalogos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE catalogos_id_seq OWNED BY catalogos.id;
 
 
 --
--- TOC entry 241 (class 1259 OID 48394)
--- Name: categorias; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 244 (class 1259 OID 26602)
+-- Name: categorias; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE categorias (
@@ -1704,9 +1953,11 @@ CREATE TABLE categorias (
 );
 
 
+ALTER TABLE inventario.categorias OWNER TO postgres;
+
 --
--- TOC entry 242 (class 1259 OID 48402)
--- Name: categorias_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 245 (class 1259 OID 26610)
+-- Name: categorias_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE categorias_id_seq
@@ -1717,18 +1968,20 @@ CREATE SEQUENCE categorias_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.categorias_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3049 (class 0 OID 0)
--- Dependencies: 242
--- Name: categorias_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 3998 (class 0 OID 0)
+-- Dependencies: 245
+-- Name: categorias_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE categorias_id_seq OWNED BY categorias.id;
 
 
 --
--- TOC entry 243 (class 1259 OID 48404)
--- Name: descripcion_producto; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 246 (class 1259 OID 26612)
+-- Name: descripcion_producto; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE descripcion_producto (
@@ -1741,27 +1994,29 @@ CREATE TABLE descripcion_producto (
 );
 
 
+ALTER TABLE inventario.descripcion_producto OWNER TO postgres;
+
 --
--- TOC entry 3050 (class 0 OID 0)
--- Dependencies: 243
--- Name: COLUMN descripcion_producto.descripcion_corta; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 3999 (class 0 OID 0)
+-- Dependencies: 246
+-- Name: COLUMN descripcion_producto.descripcion_corta; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN descripcion_producto.descripcion_corta IS 'descripcion en caso de ubicar en la factura';
 
 
 --
--- TOC entry 3051 (class 0 OID 0)
--- Dependencies: 243
--- Name: COLUMN descripcion_producto.descripcion_proveedor; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4000 (class 0 OID 0)
+-- Dependencies: 246
+-- Name: COLUMN descripcion_producto.descripcion_proveedor; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN descripcion_producto.descripcion_proveedor IS 'descripcion para poner en solicitud del proveedor';
 
 
 --
--- TOC entry 244 (class 1259 OID 48410)
--- Name: descripcion_producto_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 247 (class 1259 OID 26618)
+-- Name: descripcion_producto_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE descripcion_producto_id_seq
@@ -1772,18 +2027,20 @@ CREATE SEQUENCE descripcion_producto_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.descripcion_producto_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3052 (class 0 OID 0)
--- Dependencies: 244
--- Name: descripcion_producto_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4001 (class 0 OID 0)
+-- Dependencies: 247
+-- Name: descripcion_producto_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE descripcion_producto_id_seq OWNED BY descripcion_producto.id;
 
 
 --
--- TOC entry 245 (class 1259 OID 48412)
--- Name: estado_descriptivo; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 248 (class 1259 OID 26620)
+-- Name: estado_descriptivo; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE estado_descriptivo (
@@ -1796,9 +2053,11 @@ CREATE TABLE estado_descriptivo (
 );
 
 
+ALTER TABLE inventario.estado_descriptivo OWNER TO postgres;
+
 --
--- TOC entry 246 (class 1259 OID 48419)
--- Name: estado_descriptivo_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 249 (class 1259 OID 26627)
+-- Name: estado_descriptivo_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE estado_descriptivo_id_seq
@@ -1809,18 +2068,20 @@ CREATE SEQUENCE estado_descriptivo_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.estado_descriptivo_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3053 (class 0 OID 0)
--- Dependencies: 246
--- Name: estado_descriptivo_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4002 (class 0 OID 0)
+-- Dependencies: 249
+-- Name: estado_descriptivo_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE estado_descriptivo_id_seq OWNED BY estado_descriptivo.id;
 
 
 --
--- TOC entry 247 (class 1259 OID 48421)
--- Name: garantias; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 250 (class 1259 OID 26629)
+-- Name: garantias; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE garantias (
@@ -1835,18 +2096,20 @@ CREATE TABLE garantias (
 );
 
 
+ALTER TABLE inventario.garantias OWNER TO postgres;
+
 --
--- TOC entry 3054 (class 0 OID 0)
--- Dependencies: 247
--- Name: COLUMN garantias.duracion; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4003 (class 0 OID 0)
+-- Dependencies: 250
+-- Name: COLUMN garantias.duracion; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN garantias.duracion IS 'duracion en meses de la garantia';
 
 
 --
--- TOC entry 248 (class 1259 OID 48428)
--- Name: garantias_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 251 (class 1259 OID 26636)
+-- Name: garantias_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE garantias_id_seq
@@ -1857,18 +2120,20 @@ CREATE SEQUENCE garantias_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.garantias_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3055 (class 0 OID 0)
--- Dependencies: 248
--- Name: garantias_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4004 (class 0 OID 0)
+-- Dependencies: 251
+-- Name: garantias_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE garantias_id_seq OWNED BY garantias.id;
 
 
 --
--- TOC entry 249 (class 1259 OID 48430)
--- Name: imagenes_productos; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 252 (class 1259 OID 26638)
+-- Name: imagenes_productos; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE imagenes_productos (
@@ -1882,45 +2147,47 @@ CREATE TABLE imagenes_productos (
 );
 
 
+ALTER TABLE inventario.imagenes_productos OWNER TO postgres;
+
 --
--- TOC entry 3056 (class 0 OID 0)
--- Dependencies: 249
--- Name: COLUMN imagenes_productos.id; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4005 (class 0 OID 0)
+-- Dependencies: 252
+-- Name: COLUMN imagenes_productos.id; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN imagenes_productos.id IS 'identificador';
 
 
 --
--- TOC entry 3057 (class 0 OID 0)
--- Dependencies: 249
--- Name: COLUMN imagenes_productos.nombre; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4006 (class 0 OID 0)
+-- Dependencies: 252
+-- Name: COLUMN imagenes_productos.nombre; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN imagenes_productos.nombre IS 'nombre de la imagen';
 
 
 --
--- TOC entry 3058 (class 0 OID 0)
--- Dependencies: 249
--- Name: COLUMN imagenes_productos.direccion; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4007 (class 0 OID 0)
+-- Dependencies: 252
+-- Name: COLUMN imagenes_productos.direccion; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN imagenes_productos.direccion IS 'direccion donde se encuentra la imagen';
 
 
 --
--- TOC entry 3059 (class 0 OID 0)
--- Dependencies: 249
--- Name: COLUMN imagenes_productos.tipo_imagen; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4008 (class 0 OID 0)
+-- Dependencies: 252
+-- Name: COLUMN imagenes_productos.tipo_imagen; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN imagenes_productos.tipo_imagen IS 'codigo del tipo de imagen';
 
 
 --
--- TOC entry 250 (class 1259 OID 48434)
--- Name: manejo_presios; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 253 (class 1259 OID 26642)
+-- Name: manejo_presios; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE manejo_presios (
@@ -1933,9 +2200,11 @@ CREATE TABLE manejo_presios (
 );
 
 
+ALTER TABLE inventario.manejo_presios OWNER TO postgres;
+
 --
--- TOC entry 251 (class 1259 OID 48441)
--- Name: manejo_presios_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 254 (class 1259 OID 26649)
+-- Name: manejo_presios_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE manejo_presios_id_seq
@@ -1946,18 +2215,20 @@ CREATE SEQUENCE manejo_presios_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.manejo_presios_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3060 (class 0 OID 0)
--- Dependencies: 251
--- Name: manejo_presios_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4009 (class 0 OID 0)
+-- Dependencies: 254
+-- Name: manejo_presios_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE manejo_presios_id_seq OWNED BY manejo_presios.id;
 
 
 --
--- TOC entry 252 (class 1259 OID 48443)
--- Name: marcas; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 255 (class 1259 OID 26651)
+-- Name: marcas; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE marcas (
@@ -1970,9 +2241,11 @@ CREATE TABLE marcas (
 );
 
 
+ALTER TABLE inventario.marcas OWNER TO postgres;
+
 --
--- TOC entry 253 (class 1259 OID 48450)
--- Name: marcas_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 256 (class 1259 OID 26658)
+-- Name: marcas_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE marcas_id_seq
@@ -1983,18 +2256,20 @@ CREATE SEQUENCE marcas_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.marcas_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3061 (class 0 OID 0)
--- Dependencies: 253
--- Name: marcas_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4010 (class 0 OID 0)
+-- Dependencies: 256
+-- Name: marcas_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE marcas_id_seq OWNED BY marcas.id;
 
 
 --
--- TOC entry 254 (class 1259 OID 48452)
--- Name: modelos; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 257 (class 1259 OID 26660)
+-- Name: modelos; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE modelos (
@@ -2007,9 +2282,11 @@ CREATE TABLE modelos (
 );
 
 
+ALTER TABLE inventario.modelos OWNER TO postgres;
+
 --
--- TOC entry 255 (class 1259 OID 48459)
--- Name: modelos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 258 (class 1259 OID 26667)
+-- Name: modelos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE modelos_id_seq
@@ -2020,18 +2297,20 @@ CREATE SEQUENCE modelos_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.modelos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3062 (class 0 OID 0)
--- Dependencies: 255
--- Name: modelos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4011 (class 0 OID 0)
+-- Dependencies: 258
+-- Name: modelos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE modelos_id_seq OWNED BY modelos.id;
 
 
 --
--- TOC entry 256 (class 1259 OID 48461)
--- Name: productos; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 259 (class 1259 OID 26669)
+-- Name: productos; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE productos (
@@ -2055,9 +2334,11 @@ CREATE TABLE productos (
 );
 
 
+ALTER TABLE inventario.productos OWNER TO postgres;
+
 --
--- TOC entry 257 (class 1259 OID 48467)
--- Name: productos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 260 (class 1259 OID 26675)
+-- Name: productos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE productos_id_seq
@@ -2068,18 +2349,20 @@ CREATE SEQUENCE productos_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.productos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3063 (class 0 OID 0)
--- Dependencies: 257
--- Name: productos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4012 (class 0 OID 0)
+-- Dependencies: 260
+-- Name: productos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE productos_id_seq OWNED BY productos.id;
 
 
 --
--- TOC entry 258 (class 1259 OID 48469)
--- Name: productos_impuestos; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 261 (class 1259 OID 26677)
+-- Name: productos_impuestos; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE productos_impuestos (
@@ -2089,9 +2372,11 @@ CREATE TABLE productos_impuestos (
 );
 
 
+ALTER TABLE inventario.productos_impuestos OWNER TO postgres;
+
 --
--- TOC entry 259 (class 1259 OID 48472)
--- Name: productos_impuestos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 262 (class 1259 OID 26680)
+-- Name: productos_impuestos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE productos_impuestos_id_seq
@@ -2102,18 +2387,20 @@ CREATE SEQUENCE productos_impuestos_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.productos_impuestos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3064 (class 0 OID 0)
--- Dependencies: 259
--- Name: productos_impuestos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4013 (class 0 OID 0)
+-- Dependencies: 262
+-- Name: productos_impuestos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE productos_impuestos_id_seq OWNED BY productos_impuestos.id;
 
 
 --
--- TOC entry 260 (class 1259 OID 48474)
--- Name: proveedores; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 263 (class 1259 OID 26682)
+-- Name: proveedores; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE proveedores (
@@ -2125,18 +2412,20 @@ CREATE TABLE proveedores (
 );
 
 
+ALTER TABLE inventario.proveedores OWNER TO postgres;
+
 --
--- TOC entry 3065 (class 0 OID 0)
--- Dependencies: 260
--- Name: COLUMN proveedores.id_empresa; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4014 (class 0 OID 0)
+-- Dependencies: 263
+-- Name: COLUMN proveedores.id_empresa; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN proveedores.id_empresa IS 'conenta el probedor con los datos de su empresa';
 
 
 --
--- TOC entry 261 (class 1259 OID 48480)
--- Name: proveedores_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 264 (class 1259 OID 26688)
+-- Name: proveedores_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE proveedores_id_seq
@@ -2147,18 +2436,20 @@ CREATE SEQUENCE proveedores_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.proveedores_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3066 (class 0 OID 0)
--- Dependencies: 261
--- Name: proveedores_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4015 (class 0 OID 0)
+-- Dependencies: 264
+-- Name: proveedores_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE proveedores_id_seq OWNED BY proveedores.id;
 
 
 --
--- TOC entry 262 (class 1259 OID 48482)
--- Name: tipo_consumo; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 265 (class 1259 OID 26690)
+-- Name: tipo_consumo; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipo_consumo (
@@ -2170,9 +2461,11 @@ CREATE TABLE tipo_consumo (
 );
 
 
+ALTER TABLE inventario.tipo_consumo OWNER TO postgres;
+
 --
--- TOC entry 263 (class 1259 OID 48489)
--- Name: tipo_consumo_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 266 (class 1259 OID 26697)
+-- Name: tipo_consumo_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE tipo_consumo_id_seq
@@ -2183,18 +2476,20 @@ CREATE SEQUENCE tipo_consumo_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.tipo_consumo_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3067 (class 0 OID 0)
--- Dependencies: 263
--- Name: tipo_consumo_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4016 (class 0 OID 0)
+-- Dependencies: 266
+-- Name: tipo_consumo_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE tipo_consumo_id_seq OWNED BY tipo_consumo.id;
 
 
 --
--- TOC entry 264 (class 1259 OID 48491)
--- Name: tipos_catalogos; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 267 (class 1259 OID 26699)
+-- Name: tipos_catalogos; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipos_catalogos (
@@ -2208,9 +2503,11 @@ CREATE TABLE tipos_catalogos (
 );
 
 
+ALTER TABLE inventario.tipos_catalogos OWNER TO postgres;
+
 --
--- TOC entry 265 (class 1259 OID 48498)
--- Name: tipos_catalogos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 268 (class 1259 OID 26706)
+-- Name: tipos_catalogos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE tipos_catalogos_id_seq
@@ -2221,18 +2518,20 @@ CREATE SEQUENCE tipos_catalogos_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.tipos_catalogos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3068 (class 0 OID 0)
--- Dependencies: 265
--- Name: tipos_catalogos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4017 (class 0 OID 0)
+-- Dependencies: 268
+-- Name: tipos_catalogos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE tipos_catalogos_id_seq OWNED BY tipos_catalogos.id;
 
 
 --
--- TOC entry 266 (class 1259 OID 48500)
--- Name: tipos_categorias; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 269 (class 1259 OID 26708)
+-- Name: tipos_categorias; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipos_categorias (
@@ -2244,9 +2543,11 @@ CREATE TABLE tipos_categorias (
 );
 
 
+ALTER TABLE inventario.tipos_categorias OWNER TO postgres;
+
 --
--- TOC entry 267 (class 1259 OID 48507)
--- Name: tipos_categorias_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 270 (class 1259 OID 26715)
+-- Name: tipos_categorias_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE tipos_categorias_id_seq
@@ -2257,18 +2558,20 @@ CREATE SEQUENCE tipos_categorias_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.tipos_categorias_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3069 (class 0 OID 0)
--- Dependencies: 267
--- Name: tipos_categorias_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4018 (class 0 OID 0)
+-- Dependencies: 270
+-- Name: tipos_categorias_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE tipos_categorias_id_seq OWNED BY tipos_categorias.id;
 
 
 --
--- TOC entry 268 (class 1259 OID 48509)
--- Name: tipos_garantias; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 271 (class 1259 OID 26717)
+-- Name: tipos_garantias; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipos_garantias (
@@ -2280,36 +2583,38 @@ CREATE TABLE tipos_garantias (
 );
 
 
+ALTER TABLE inventario.tipos_garantias OWNER TO postgres;
+
 --
--- TOC entry 3070 (class 0 OID 0)
--- Dependencies: 268
--- Name: COLUMN tipos_garantias.id; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4019 (class 0 OID 0)
+-- Dependencies: 271
+-- Name: COLUMN tipos_garantias.id; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN tipos_garantias.id IS 'identificador';
 
 
 --
--- TOC entry 3071 (class 0 OID 0)
--- Dependencies: 268
--- Name: COLUMN tipos_garantias.fecha; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4020 (class 0 OID 0)
+-- Dependencies: 271
+-- Name: COLUMN tipos_garantias.fecha; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN tipos_garantias.fecha IS 'fechade creacion del tipo de garantia';
 
 
 --
--- TOC entry 3072 (class 0 OID 0)
--- Dependencies: 268
--- Name: COLUMN tipos_garantias.estado; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4021 (class 0 OID 0)
+-- Dependencies: 271
+-- Name: COLUMN tipos_garantias.estado; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN tipos_garantias.estado IS 'define el estado del tipo de garantia';
 
 
 --
--- TOC entry 269 (class 1259 OID 48516)
--- Name: tipos_garantias_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 272 (class 1259 OID 26724)
+-- Name: tipos_garantias_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE tipos_garantias_id_seq
@@ -2320,18 +2625,20 @@ CREATE SEQUENCE tipos_garantias_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.tipos_garantias_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3073 (class 0 OID 0)
--- Dependencies: 269
--- Name: tipos_garantias_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4022 (class 0 OID 0)
+-- Dependencies: 272
+-- Name: tipos_garantias_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE tipos_garantias_id_seq OWNED BY tipos_garantias.id;
 
 
 --
--- TOC entry 270 (class 1259 OID 48518)
--- Name: tipos_imagenes_productos; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 273 (class 1259 OID 26726)
+-- Name: tipos_imagenes_productos; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipos_imagenes_productos (
@@ -2342,45 +2649,47 @@ CREATE TABLE tipos_imagenes_productos (
 );
 
 
+ALTER TABLE inventario.tipos_imagenes_productos OWNER TO postgres;
+
 --
--- TOC entry 3074 (class 0 OID 0)
--- Dependencies: 270
--- Name: TABLE tipos_imagenes_productos; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4023 (class 0 OID 0)
+-- Dependencies: 273
+-- Name: TABLE tipos_imagenes_productos; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON TABLE tipos_imagenes_productos IS 'contiene las direccioenes de las imagenes ';
 
 
 --
--- TOC entry 3075 (class 0 OID 0)
--- Dependencies: 270
--- Name: COLUMN tipos_imagenes_productos.id; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4024 (class 0 OID 0)
+-- Dependencies: 273
+-- Name: COLUMN tipos_imagenes_productos.id; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN tipos_imagenes_productos.id IS 'identificador de clave primaria';
 
 
 --
--- TOC entry 3076 (class 0 OID 0)
--- Dependencies: 270
--- Name: COLUMN tipos_imagenes_productos.nombre; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4025 (class 0 OID 0)
+-- Dependencies: 273
+-- Name: COLUMN tipos_imagenes_productos.nombre; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN tipos_imagenes_productos.nombre IS 'nombre del tipo de imagen';
 
 
 --
--- TOC entry 3077 (class 0 OID 0)
--- Dependencies: 270
--- Name: COLUMN tipos_imagenes_productos.estado; Type: COMMENT; Schema: inventario; Owner: -
+-- TOC entry 4026 (class 0 OID 0)
+-- Dependencies: 273
+-- Name: COLUMN tipos_imagenes_productos.estado; Type: COMMENT; Schema: inventario; Owner: postgres
 --
 
 COMMENT ON COLUMN tipos_imagenes_productos.estado IS 'define si esta activo o no le tipo de imagen';
 
 
 --
--- TOC entry 271 (class 1259 OID 48522)
--- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 274 (class 1259 OID 26730)
+-- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE tipos_imagenes_productos_id_seq
@@ -2391,18 +2700,20 @@ CREATE SEQUENCE tipos_imagenes_productos_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.tipos_imagenes_productos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3078 (class 0 OID 0)
--- Dependencies: 271
--- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4027 (class 0 OID 0)
+-- Dependencies: 274
+-- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE tipos_imagenes_productos_id_seq OWNED BY tipos_imagenes_productos.id;
 
 
 --
--- TOC entry 272 (class 1259 OID 48524)
--- Name: tipos_productos; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 275 (class 1259 OID 26732)
+-- Name: tipos_productos; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipos_productos (
@@ -2414,9 +2725,11 @@ CREATE TABLE tipos_productos (
 );
 
 
+ALTER TABLE inventario.tipos_productos OWNER TO postgres;
+
 --
--- TOC entry 273 (class 1259 OID 48531)
--- Name: tipos_productos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 276 (class 1259 OID 26739)
+-- Name: tipos_productos_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE tipos_productos_id_seq
@@ -2427,18 +2740,20 @@ CREATE SEQUENCE tipos_productos_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.tipos_productos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3079 (class 0 OID 0)
--- Dependencies: 273
--- Name: tipos_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4028 (class 0 OID 0)
+-- Dependencies: 276
+-- Name: tipos_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE tipos_productos_id_seq OWNED BY tipos_productos.id;
 
 
 --
--- TOC entry 274 (class 1259 OID 48533)
--- Name: tipos_tipo_consumo; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 277 (class 1259 OID 26741)
+-- Name: tipos_tipo_consumo; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipos_tipo_consumo (
@@ -2450,9 +2765,11 @@ CREATE TABLE tipos_tipo_consumo (
 );
 
 
+ALTER TABLE inventario.tipos_tipo_consumo OWNER TO postgres;
+
 --
--- TOC entry 275 (class 1259 OID 48540)
--- Name: tipos_tipo_consumo_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 278 (class 1259 OID 26748)
+-- Name: tipos_tipo_consumo_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE tipos_tipo_consumo_id_seq
@@ -2463,18 +2780,20 @@ CREATE SEQUENCE tipos_tipo_consumo_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.tipos_tipo_consumo_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3080 (class 0 OID 0)
--- Dependencies: 275
--- Name: tipos_tipo_consumo_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4029 (class 0 OID 0)
+-- Dependencies: 278
+-- Name: tipos_tipo_consumo_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE tipos_tipo_consumo_id_seq OWNED BY tipos_tipo_consumo.id;
 
 
 --
--- TOC entry 276 (class 1259 OID 48542)
--- Name: ubicaciones; Type: TABLE; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 279 (class 1259 OID 26750)
+-- Name: ubicaciones; Type: TABLE; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE ubicaciones (
@@ -2487,9 +2806,11 @@ CREATE TABLE ubicaciones (
 );
 
 
+ALTER TABLE inventario.ubicaciones OWNER TO postgres;
+
 --
--- TOC entry 277 (class 1259 OID 48550)
--- Name: ubicaciones_id_seq; Type: SEQUENCE; Schema: inventario; Owner: -
+-- TOC entry 280 (class 1259 OID 26758)
+-- Name: ubicaciones_id_seq; Type: SEQUENCE; Schema: inventario; Owner: postgres
 --
 
 CREATE SEQUENCE ubicaciones_id_seq
@@ -2500,10 +2821,12 @@ CREATE SEQUENCE ubicaciones_id_seq
     CACHE 1;
 
 
+ALTER TABLE inventario.ubicaciones_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3081 (class 0 OID 0)
--- Dependencies: 277
--- Name: ubicaciones_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: -
+-- TOC entry 4030 (class 0 OID 0)
+-- Dependencies: 280
+-- Name: ubicaciones_id_seq; Type: SEQUENCE OWNED BY; Schema: inventario; Owner: postgres
 --
 
 ALTER SEQUENCE ubicaciones_id_seq OWNED BY ubicaciones.id;
@@ -2512,8 +2835,8 @@ ALTER SEQUENCE ubicaciones_id_seq OWNED BY ubicaciones.id;
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 278 (class 1259 OID 48552)
--- Name: estados; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 281 (class 1259 OID 26760)
+-- Name: estados; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE estados (
@@ -2524,27 +2847,29 @@ CREATE TABLE estados (
 );
 
 
+ALTER TABLE public.estados OWNER TO postgres;
+
 --
--- TOC entry 3082 (class 0 OID 0)
--- Dependencies: 278
--- Name: COLUMN estados.id; Type: COMMENT; Schema: public; Owner: -
+-- TOC entry 4031 (class 0 OID 0)
+-- Dependencies: 281
+-- Name: COLUMN estados.id; Type: COMMENT; Schema: public; Owner: postgres
 --
 
 COMMENT ON COLUMN estados.id IS 'define el identificados';
 
 
 --
--- TOC entry 3083 (class 0 OID 0)
--- Dependencies: 278
--- Name: COLUMN estados.nombre; Type: COMMENT; Schema: public; Owner: -
+-- TOC entry 4032 (class 0 OID 0)
+-- Dependencies: 281
+-- Name: COLUMN estados.nombre; Type: COMMENT; Schema: public; Owner: postgres
 --
 
 COMMENT ON COLUMN estados.nombre IS 'define nombre corto del estado';
 
 
 --
--- TOC entry 279 (class 1259 OID 48556)
--- Name: operadoras_telefonicas; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 282 (class 1259 OID 26764)
+-- Name: operadoras_telefonicas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE operadoras_telefonicas (
@@ -2556,9 +2881,11 @@ CREATE TABLE operadoras_telefonicas (
 );
 
 
+ALTER TABLE public.operadoras_telefonicas OWNER TO postgres;
+
 --
--- TOC entry 280 (class 1259 OID 48563)
--- Name: operadoras_telefonicas_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 283 (class 1259 OID 26771)
+-- Name: operadoras_telefonicas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE operadoras_telefonicas_id_seq
@@ -2569,18 +2896,20 @@ CREATE SEQUENCE operadoras_telefonicas_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.operadoras_telefonicas_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3084 (class 0 OID 0)
--- Dependencies: 280
--- Name: operadoras_telefonicas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 4033 (class 0 OID 0)
+-- Dependencies: 283
+-- Name: operadoras_telefonicas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE operadoras_telefonicas_id_seq OWNED BY operadoras_telefonicas.id;
 
 
 --
--- TOC entry 281 (class 1259 OID 48565)
--- Name: personas; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 284 (class 1259 OID 26773)
+-- Name: personas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE personas (
@@ -2596,9 +2925,11 @@ CREATE TABLE personas (
 );
 
 
+ALTER TABLE public.personas OWNER TO postgres;
+
 --
--- TOC entry 282 (class 1259 OID 48571)
--- Name: personas_correo_electronico; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 285 (class 1259 OID 26779)
+-- Name: personas_correo_electronico; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE personas_correo_electronico (
@@ -2610,9 +2941,11 @@ CREATE TABLE personas_correo_electronico (
 );
 
 
+ALTER TABLE public.personas_correo_electronico OWNER TO postgres;
+
 --
--- TOC entry 283 (class 1259 OID 48575)
--- Name: personas_correo_electronico_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 286 (class 1259 OID 26783)
+-- Name: personas_correo_electronico_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE personas_correo_electronico_id_seq
@@ -2623,18 +2956,20 @@ CREATE SEQUENCE personas_correo_electronico_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.personas_correo_electronico_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3085 (class 0 OID 0)
--- Dependencies: 283
--- Name: personas_correo_electronico_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 4034 (class 0 OID 0)
+-- Dependencies: 286
+-- Name: personas_correo_electronico_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE personas_correo_electronico_id_seq OWNED BY personas_correo_electronico.id;
 
 
 --
--- TOC entry 284 (class 1259 OID 48577)
--- Name: personas_documentos_identificacion; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 287 (class 1259 OID 26785)
+-- Name: personas_documentos_identificacion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE personas_documentos_identificacion (
@@ -2647,9 +2982,11 @@ CREATE TABLE personas_documentos_identificacion (
 );
 
 
+ALTER TABLE public.personas_documentos_identificacion OWNER TO postgres;
+
 --
--- TOC entry 285 (class 1259 OID 48581)
--- Name: personas_documentos_identificacion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 288 (class 1259 OID 26789)
+-- Name: personas_documentos_identificacion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE personas_documentos_identificacion_id_seq
@@ -2660,18 +2997,20 @@ CREATE SEQUENCE personas_documentos_identificacion_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.personas_documentos_identificacion_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3086 (class 0 OID 0)
--- Dependencies: 285
--- Name: personas_documentos_identificacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 4035 (class 0 OID 0)
+-- Dependencies: 288
+-- Name: personas_documentos_identificacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE personas_documentos_identificacion_id_seq OWNED BY personas_documentos_identificacion.id;
 
 
 --
--- TOC entry 286 (class 1259 OID 48583)
--- Name: personas_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 289 (class 1259 OID 26791)
+-- Name: personas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE personas_id_seq
@@ -2682,18 +3021,20 @@ CREATE SEQUENCE personas_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.personas_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3087 (class 0 OID 0)
--- Dependencies: 286
--- Name: personas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 4036 (class 0 OID 0)
+-- Dependencies: 289
+-- Name: personas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE personas_id_seq OWNED BY personas.id;
 
 
 --
--- TOC entry 287 (class 1259 OID 48585)
--- Name: telefonos_personas; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 290 (class 1259 OID 26793)
+-- Name: telefonos_personas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE telefonos_personas (
@@ -2706,9 +3047,11 @@ CREATE TABLE telefonos_personas (
 );
 
 
+ALTER TABLE public.telefonos_personas OWNER TO postgres;
+
 --
--- TOC entry 288 (class 1259 OID 48589)
--- Name: telefonos_personas_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 291 (class 1259 OID 26797)
+-- Name: telefonos_personas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE telefonos_personas_id_seq
@@ -2719,18 +3062,20 @@ CREATE SEQUENCE telefonos_personas_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.telefonos_personas_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3088 (class 0 OID 0)
--- Dependencies: 288
--- Name: telefonos_personas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 4037 (class 0 OID 0)
+-- Dependencies: 291
+-- Name: telefonos_personas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE telefonos_personas_id_seq OWNED BY telefonos_personas.id;
 
 
 --
--- TOC entry 289 (class 1259 OID 48591)
--- Name: tipo_documento_identificacion; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 292 (class 1259 OID 26799)
+-- Name: tipo_documento_identificacion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipo_documento_identificacion (
@@ -2742,9 +3087,11 @@ CREATE TABLE tipo_documento_identificacion (
 );
 
 
+ALTER TABLE public.tipo_documento_identificacion OWNER TO postgres;
+
 --
--- TOC entry 290 (class 1259 OID 48598)
--- Name: tipo_documento_identificaion_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 293 (class 1259 OID 26806)
+-- Name: tipo_documento_identificaion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE tipo_documento_identificaion_id_seq
@@ -2755,28 +3102,32 @@ CREATE SEQUENCE tipo_documento_identificaion_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.tipo_documento_identificaion_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3089 (class 0 OID 0)
--- Dependencies: 290
--- Name: tipo_documento_identificaion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 4038 (class 0 OID 0)
+-- Dependencies: 293
+-- Name: tipo_documento_identificaion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE tipo_documento_identificaion_id_seq OWNED BY tipo_documento_identificacion.id;
 
 
 --
--- TOC entry 291 (class 1259 OID 48600)
--- Name: view_categorias; Type: VIEW; Schema: public; Owner: -
+-- TOC entry 294 (class 1259 OID 26808)
+-- Name: view_categorias; Type: VIEW; Schema: public; Owner: postgres
 --
 
 CREATE VIEW view_categorias AS
     WITH RECURSIVE path(nombre, descripcion, path, parent, id, tipo_categoria, id_padre, estado, fecha) AS (SELECT categorias.nombre, categorias.descripcion, '/'::text AS text, NULL::text AS text, categorias.id, categorias.tipo_categoria, categorias.id_padre, categorias.estado, categorias.fecha FROM inventario.categorias WHERE ((categorias.id_padre)::text = '0'::text) UNION SELECT categorias.nombre, categorias.descripcion, ((parentpath.path || CASE parentpath.path WHEN '/'::text THEN ''::text ELSE '/'::text END) || (categorias.nombre)::text), parentpath.path, categorias.id, categorias.tipo_categoria, categorias.id_padre, categorias.estado, categorias.fecha FROM inventario.categorias, path parentpath WHERE ((categorias.id_padre)::text = (parentpath.id)::text)) SELECT path.nombre, path.descripcion, path.path, path.parent, path.id, path.tipo_categoria, path.id_padre, path.estado, path.fecha FROM path;
 
 
+ALTER TABLE public.view_categorias OWNER TO postgres;
+
 --
--- TOC entry 3090 (class 0 OID 0)
--- Dependencies: 291
--- Name: VIEW view_categorias; Type: COMMENT; Schema: public; Owner: -
+-- TOC entry 4039 (class 0 OID 0)
+-- Dependencies: 294
+-- Name: VIEW view_categorias; Type: COMMENT; Schema: public; Owner: postgres
 --
 
 COMMENT ON VIEW view_categorias IS 'crea la vista categorias, definida como arbol';
@@ -2785,8 +3136,8 @@ COMMENT ON VIEW view_categorias IS 'crea la vista categorias, definida como arbo
 SET search_path = ventas, pg_catalog;
 
 --
--- TOC entry 292 (class 1259 OID 48605)
--- Name: formas_pago; Type: TABLE; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 295 (class 1259 OID 26813)
+-- Name: formas_pago; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE formas_pago (
@@ -2800,39 +3151,45 @@ CREATE TABLE formas_pago (
 );
 
 
+ALTER TABLE ventas.formas_pago OWNER TO postgres;
+
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 293 (class 1259 OID 48612)
--- Name: view_formas_pago; Type: VIEW; Schema: public; Owner: -
+-- TOC entry 296 (class 1259 OID 26820)
+-- Name: view_formas_pago; Type: VIEW; Schema: public; Owner: postgres
 --
 
 CREATE VIEW view_formas_pago AS
     WITH RECURSIVE path(nombre, descripcion, path, parent, id, codigo_sri, id_padre, estado, fecha) AS (SELECT formas_pago.nombre, formas_pago.descripcion, '/'::text AS text, NULL::text AS text, formas_pago.id, formas_pago.codigo_sri, formas_pago.id_padre, formas_pago.estado, formas_pago.fecha FROM ventas.formas_pago WHERE ((formas_pago.id_padre)::text = '0'::text) UNION SELECT formas_pago.nombre, formas_pago.descripcion, ((parentpath.path || CASE parentpath.path WHEN '/'::text THEN ''::text ELSE '/'::text END) || (formas_pago.nombre)::text), parentpath.path, formas_pago.id, formas_pago.codigo_sri, formas_pago.id_padre, formas_pago.estado, formas_pago.fecha FROM ventas.formas_pago, path parentpath WHERE ((formas_pago.id_padre)::text = (parentpath.id)::text)) SELECT path.nombre, path.descripcion, path.path, path.parent, path.id, path.codigo_sri, path.id_padre, path.estado, path.fecha FROM path;
 
 
+ALTER TABLE public.view_formas_pago OWNER TO postgres;
+
 --
--- TOC entry 3091 (class 0 OID 0)
--- Dependencies: 293
--- Name: VIEW view_formas_pago; Type: COMMENT; Schema: public; Owner: -
+-- TOC entry 4040 (class 0 OID 0)
+-- Dependencies: 296
+-- Name: VIEW view_formas_pago; Type: COMMENT; Schema: public; Owner: postgres
 --
 
 COMMENT ON VIEW view_formas_pago IS 'crea la vista formas de pago, definida como arbol';
 
 
 --
--- TOC entry 294 (class 1259 OID 48617)
--- Name: view_ubicaciones; Type: VIEW; Schema: public; Owner: -
+-- TOC entry 297 (class 1259 OID 26825)
+-- Name: view_ubicaciones; Type: VIEW; Schema: public; Owner: postgres
 --
 
 CREATE VIEW view_ubicaciones AS
     WITH RECURSIVE path(nombre, descripcion, path, parent, id, id_padre, estado, fecha) AS (SELECT ubicaciones.nombre, ubicaciones.descripcion, '/'::text AS text, NULL::text AS text, ubicaciones.id, ubicaciones.id_padre, ubicaciones.estado, ubicaciones.fecha FROM inventario.ubicaciones WHERE ((ubicaciones.id_padre)::text = '0'::text) UNION SELECT ubicaciones.nombre, ubicaciones.descripcion, ((parentpath.path || CASE parentpath.path WHEN '/'::text THEN ''::text ELSE '/'::text END) || (ubicaciones.nombre)::text), parentpath.path, ubicaciones.id, ubicaciones.id_padre, ubicaciones.estado, ubicaciones.fecha FROM inventario.ubicaciones, path parentpath WHERE ((ubicaciones.id_padre)::text = (parentpath.id)::text)) SELECT path.nombre, path.descripcion, path.path, path.parent, path.id, path.id_padre, path.estado, path.fecha FROM path;
 
 
+ALTER TABLE public.view_ubicaciones OWNER TO postgres;
+
 --
--- TOC entry 3092 (class 0 OID 0)
--- Dependencies: 294
--- Name: VIEW view_ubicaciones; Type: COMMENT; Schema: public; Owner: -
+-- TOC entry 4041 (class 0 OID 0)
+-- Dependencies: 297
+-- Name: VIEW view_ubicaciones; Type: COMMENT; Schema: public; Owner: postgres
 --
 
 COMMENT ON VIEW view_ubicaciones IS 'crea la vista ubicaciones, definida como arbol';
@@ -2841,8 +3198,8 @@ COMMENT ON VIEW view_ubicaciones IS 'crea la vista ubicaciones, definida como ar
 SET search_path = talento_humano, pg_catalog;
 
 --
--- TOC entry 295 (class 1259 OID 48622)
--- Name: cargos; Type: TABLE; Schema: talento_humano; Owner: -; Tablespace: 
+-- TOC entry 298 (class 1259 OID 26830)
+-- Name: cargos; Type: TABLE; Schema: talento_humano; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE cargos (
@@ -2854,9 +3211,11 @@ CREATE TABLE cargos (
 );
 
 
+ALTER TABLE talento_humano.cargos OWNER TO postgres;
+
 --
--- TOC entry 296 (class 1259 OID 48626)
--- Name: cargos_id_seq; Type: SEQUENCE; Schema: talento_humano; Owner: -
+-- TOC entry 299 (class 1259 OID 26834)
+-- Name: cargos_id_seq; Type: SEQUENCE; Schema: talento_humano; Owner: postgres
 --
 
 CREATE SEQUENCE cargos_id_seq
@@ -2867,18 +3226,20 @@ CREATE SEQUENCE cargos_id_seq
     CACHE 1;
 
 
+ALTER TABLE talento_humano.cargos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3093 (class 0 OID 0)
--- Dependencies: 296
--- Name: cargos_id_seq; Type: SEQUENCE OWNED BY; Schema: talento_humano; Owner: -
+-- TOC entry 4042 (class 0 OID 0)
+-- Dependencies: 299
+-- Name: cargos_id_seq; Type: SEQUENCE OWNED BY; Schema: talento_humano; Owner: postgres
 --
 
 ALTER SEQUENCE cargos_id_seq OWNED BY cargos.id;
 
 
 --
--- TOC entry 297 (class 1259 OID 48628)
--- Name: empleados; Type: TABLE; Schema: talento_humano; Owner: -; Tablespace: 
+-- TOC entry 300 (class 1259 OID 26836)
+-- Name: empleados; Type: TABLE; Schema: talento_humano; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE empleados (
@@ -2891,9 +3252,11 @@ CREATE TABLE empleados (
 );
 
 
+ALTER TABLE talento_humano.empleados OWNER TO postgres;
+
 --
--- TOC entry 298 (class 1259 OID 48632)
--- Name: empleados_id_seq; Type: SEQUENCE; Schema: talento_humano; Owner: -
+-- TOC entry 301 (class 1259 OID 26840)
+-- Name: empleados_id_seq; Type: SEQUENCE; Schema: talento_humano; Owner: postgres
 --
 
 CREATE SEQUENCE empleados_id_seq
@@ -2904,27 +3267,31 @@ CREATE SEQUENCE empleados_id_seq
     CACHE 1;
 
 
+ALTER TABLE talento_humano.empleados_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3094 (class 0 OID 0)
--- Dependencies: 298
--- Name: empleados_id_seq; Type: SEQUENCE OWNED BY; Schema: talento_humano; Owner: -
+-- TOC entry 4043 (class 0 OID 0)
+-- Dependencies: 301
+-- Name: empleados_id_seq; Type: SEQUENCE OWNED BY; Schema: talento_humano; Owner: postgres
 --
 
 ALTER SEQUENCE empleados_id_seq OWNED BY empleados.id;
 
 
 --
--- TOC entry 299 (class 1259 OID 48634)
--- Name: empleados_personas; Type: VIEW; Schema: talento_humano; Owner: -
+-- TOC entry 302 (class 1259 OID 26842)
+-- Name: empleados_personas; Type: VIEW; Schema: talento_humano; Owner: postgres
 --
 
 CREATE VIEW empleados_personas AS
     SELECT empleados.id_persona, empleados.id AS id_empleados, personas_documentos_identificacion.numero_identificacion, personas.primer_nombre, personas.segundo_nombre, personas.primer_apellido, personas.segundo_apellido, personas_correo_electronico.correo_electronico FROM public.personas, public.personas_correo_electronico, public.personas_documentos_identificacion, empleados WHERE ((empleados.id_persona = personas.id) AND (personas_documentos_identificacion.id_persona = empleados.id_persona));
 
 
+ALTER TABLE talento_humano.empleados_personas OWNER TO postgres;
+
 --
--- TOC entry 300 (class 1259 OID 48638)
--- Name: jornadas_de_trabajo; Type: TABLE; Schema: talento_humano; Owner: -; Tablespace: 
+-- TOC entry 303 (class 1259 OID 26846)
+-- Name: jornadas_de_trabajo; Type: TABLE; Schema: talento_humano; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE jornadas_de_trabajo (
@@ -2938,18 +3305,20 @@ CREATE TABLE jornadas_de_trabajo (
 );
 
 
+ALTER TABLE talento_humano.jornadas_de_trabajo OWNER TO postgres;
+
 --
--- TOC entry 3095 (class 0 OID 0)
--- Dependencies: 300
--- Name: COLUMN jornadas_de_trabajo.hora_descanso; Type: COMMENT; Schema: talento_humano; Owner: -
+-- TOC entry 4044 (class 0 OID 0)
+-- Dependencies: 303
+-- Name: COLUMN jornadas_de_trabajo.hora_descanso; Type: COMMENT; Schema: talento_humano; Owner: postgres
 --
 
 COMMENT ON COLUMN jornadas_de_trabajo.hora_descanso IS 'ingresar el dato en minutos';
 
 
 --
--- TOC entry 301 (class 1259 OID 48644)
--- Name: jornadas_de_trabajo_id_seq; Type: SEQUENCE; Schema: talento_humano; Owner: -
+-- TOC entry 304 (class 1259 OID 26852)
+-- Name: jornadas_de_trabajo_id_seq; Type: SEQUENCE; Schema: talento_humano; Owner: postgres
 --
 
 CREATE SEQUENCE jornadas_de_trabajo_id_seq
@@ -2960,18 +3329,20 @@ CREATE SEQUENCE jornadas_de_trabajo_id_seq
     CACHE 1;
 
 
+ALTER TABLE talento_humano.jornadas_de_trabajo_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3096 (class 0 OID 0)
--- Dependencies: 301
--- Name: jornadas_de_trabajo_id_seq; Type: SEQUENCE OWNED BY; Schema: talento_humano; Owner: -
+-- TOC entry 4045 (class 0 OID 0)
+-- Dependencies: 304
+-- Name: jornadas_de_trabajo_id_seq; Type: SEQUENCE OWNED BY; Schema: talento_humano; Owner: postgres
 --
 
 ALTER SEQUENCE jornadas_de_trabajo_id_seq OWNED BY jornadas_de_trabajo.id;
 
 
 --
--- TOC entry 302 (class 1259 OID 48646)
--- Name: tipos_contratos; Type: TABLE; Schema: talento_humano; Owner: -; Tablespace: 
+-- TOC entry 305 (class 1259 OID 26854)
+-- Name: tipos_contratos; Type: TABLE; Schema: talento_humano; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipos_contratos (
@@ -2983,9 +3354,11 @@ CREATE TABLE tipos_contratos (
 );
 
 
+ALTER TABLE talento_humano.tipos_contratos OWNER TO postgres;
+
 --
--- TOC entry 303 (class 1259 OID 48653)
--- Name: tipos_contratos_id_seq; Type: SEQUENCE; Schema: talento_humano; Owner: -
+-- TOC entry 306 (class 1259 OID 26861)
+-- Name: tipos_contratos_id_seq; Type: SEQUENCE; Schema: talento_humano; Owner: postgres
 --
 
 CREATE SEQUENCE tipos_contratos_id_seq
@@ -2996,10 +3369,12 @@ CREATE SEQUENCE tipos_contratos_id_seq
     CACHE 1;
 
 
+ALTER TABLE talento_humano.tipos_contratos_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3097 (class 0 OID 0)
--- Dependencies: 303
--- Name: tipos_contratos_id_seq; Type: SEQUENCE OWNED BY; Schema: talento_humano; Owner: -
+-- TOC entry 4046 (class 0 OID 0)
+-- Dependencies: 306
+-- Name: tipos_contratos_id_seq; Type: SEQUENCE OWNED BY; Schema: talento_humano; Owner: postgres
 --
 
 ALTER SEQUENCE tipos_contratos_id_seq OWNED BY tipos_contratos.id;
@@ -3008,8 +3383,8 @@ ALTER SEQUENCE tipos_contratos_id_seq OWNED BY tipos_contratos.id;
 SET search_path = usuarios, pg_catalog;
 
 --
--- TOC entry 304 (class 1259 OID 48655)
--- Name: tipo_usuario; Type: TABLE; Schema: usuarios; Owner: -; Tablespace: 
+-- TOC entry 307 (class 1259 OID 26863)
+-- Name: tipo_usuario; Type: TABLE; Schema: usuarios; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipo_usuario (
@@ -3021,9 +3396,11 @@ CREATE TABLE tipo_usuario (
 );
 
 
+ALTER TABLE usuarios.tipo_usuario OWNER TO postgres;
+
 --
--- TOC entry 305 (class 1259 OID 48662)
--- Name: tipo_usuario_id_seq; Type: SEQUENCE; Schema: usuarios; Owner: -
+-- TOC entry 308 (class 1259 OID 26870)
+-- Name: tipo_usuario_id_seq; Type: SEQUENCE; Schema: usuarios; Owner: postgres
 --
 
 CREATE SEQUENCE tipo_usuario_id_seq
@@ -3034,18 +3411,20 @@ CREATE SEQUENCE tipo_usuario_id_seq
     CACHE 1;
 
 
+ALTER TABLE usuarios.tipo_usuario_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3098 (class 0 OID 0)
--- Dependencies: 305
--- Name: tipo_usuario_id_seq; Type: SEQUENCE OWNED BY; Schema: usuarios; Owner: -
+-- TOC entry 4047 (class 0 OID 0)
+-- Dependencies: 308
+-- Name: tipo_usuario_id_seq; Type: SEQUENCE OWNED BY; Schema: usuarios; Owner: postgres
 --
 
 ALTER SEQUENCE tipo_usuario_id_seq OWNED BY tipo_usuario.id;
 
 
 --
--- TOC entry 306 (class 1259 OID 48664)
--- Name: usuarios; Type: TABLE; Schema: usuarios; Owner: -; Tablespace: 
+-- TOC entry 309 (class 1259 OID 26872)
+-- Name: usuarios; Type: TABLE; Schema: usuarios; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE usuarios (
@@ -3059,37 +3438,39 @@ CREATE TABLE usuarios (
 );
 
 
+ALTER TABLE usuarios.usuarios OWNER TO postgres;
+
 --
--- TOC entry 3099 (class 0 OID 0)
--- Dependencies: 306
--- Name: COLUMN usuarios.id; Type: COMMENT; Schema: usuarios; Owner: -
+-- TOC entry 4048 (class 0 OID 0)
+-- Dependencies: 309
+-- Name: COLUMN usuarios.id; Type: COMMENT; Schema: usuarios; Owner: postgres
 --
 
 COMMENT ON COLUMN usuarios.id IS 'id usuario del sistema Nexbook';
 
 
 --
--- TOC entry 3100 (class 0 OID 0)
--- Dependencies: 306
--- Name: COLUMN usuarios.clave_clave; Type: COMMENT; Schema: usuarios; Owner: -
+-- TOC entry 4049 (class 0 OID 0)
+-- Dependencies: 309
+-- Name: COLUMN usuarios.clave_clave; Type: COMMENT; Schema: usuarios; Owner: postgres
 --
 
 COMMENT ON COLUMN usuarios.clave_clave IS 'define la clave del usuario';
 
 
 --
--- TOC entry 3101 (class 0 OID 0)
--- Dependencies: 306
--- Name: COLUMN usuarios.id_estado; Type: COMMENT; Schema: usuarios; Owner: -
+-- TOC entry 4050 (class 0 OID 0)
+-- Dependencies: 309
+-- Name: COLUMN usuarios.id_estado; Type: COMMENT; Schema: usuarios; Owner: postgres
 --
 
 COMMENT ON COLUMN usuarios.id_estado IS 'estado del usuario';
 
 
 --
--- TOC entry 3102 (class 0 OID 0)
--- Dependencies: 306
--- Name: COLUMN usuarios.fecha_creacion; Type: COMMENT; Schema: usuarios; Owner: -
+-- TOC entry 4051 (class 0 OID 0)
+-- Dependencies: 309
+-- Name: COLUMN usuarios.fecha_creacion; Type: COMMENT; Schema: usuarios; Owner: postgres
 --
 
 COMMENT ON COLUMN usuarios.fecha_creacion IS 'fecha en la que fue creado el usuario';
@@ -3098,8 +3479,8 @@ COMMENT ON COLUMN usuarios.fecha_creacion IS 'fecha en la que fue creado el usua
 SET search_path = ventas, pg_catalog;
 
 --
--- TOC entry 307 (class 1259 OID 48668)
--- Name: caja; Type: TABLE; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 310 (class 1259 OID 26876)
+-- Name: caja; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE caja (
@@ -3113,9 +3494,11 @@ CREATE TABLE caja (
 );
 
 
+ALTER TABLE ventas.caja OWNER TO postgres;
+
 --
--- TOC entry 308 (class 1259 OID 48672)
--- Name: caja_id_seq; Type: SEQUENCE; Schema: ventas; Owner: -
+-- TOC entry 311 (class 1259 OID 26880)
+-- Name: caja_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
 --
 
 CREATE SEQUENCE caja_id_seq
@@ -3126,18 +3509,20 @@ CREATE SEQUENCE caja_id_seq
     CACHE 1;
 
 
+ALTER TABLE ventas.caja_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3103 (class 0 OID 0)
--- Dependencies: 308
--- Name: caja_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: -
+-- TOC entry 4052 (class 0 OID 0)
+-- Dependencies: 311
+-- Name: caja_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
 --
 
 ALTER SEQUENCE caja_id_seq OWNED BY caja.id;
 
 
 --
--- TOC entry 309 (class 1259 OID 48674)
--- Name: caja_usuario; Type: TABLE; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 312 (class 1259 OID 26882)
+-- Name: caja_usuario; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE caja_usuario (
@@ -3149,9 +3534,11 @@ CREATE TABLE caja_usuario (
 );
 
 
+ALTER TABLE ventas.caja_usuario OWNER TO postgres;
+
 --
--- TOC entry 310 (class 1259 OID 48678)
--- Name: clave_factura; Type: TABLE; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 313 (class 1259 OID 26886)
+-- Name: clave_factura; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE clave_factura (
@@ -3163,9 +3550,11 @@ CREATE TABLE clave_factura (
 );
 
 
+ALTER TABLE ventas.clave_factura OWNER TO postgres;
+
 --
--- TOC entry 311 (class 1259 OID 48682)
--- Name: clave_factura_id_seq; Type: SEQUENCE; Schema: ventas; Owner: -
+-- TOC entry 314 (class 1259 OID 26890)
+-- Name: clave_factura_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
 --
 
 CREATE SEQUENCE clave_factura_id_seq
@@ -3176,18 +3565,20 @@ CREATE SEQUENCE clave_factura_id_seq
     CACHE 1;
 
 
+ALTER TABLE ventas.clave_factura_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3104 (class 0 OID 0)
--- Dependencies: 311
--- Name: clave_factura_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: -
+-- TOC entry 4053 (class 0 OID 0)
+-- Dependencies: 314
+-- Name: clave_factura_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
 --
 
 ALTER SEQUENCE clave_factura_id_seq OWNED BY clave_factura.id;
 
 
 --
--- TOC entry 312 (class 1259 OID 48684)
--- Name: detalle_factura; Type: TABLE; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 315 (class 1259 OID 26892)
+-- Name: detalle_factura; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE detalle_factura (
@@ -3201,9 +3592,11 @@ CREATE TABLE detalle_factura (
 );
 
 
+ALTER TABLE ventas.detalle_factura OWNER TO postgres;
+
 --
--- TOC entry 313 (class 1259 OID 48687)
--- Name: detalle_factura_id_seq; Type: SEQUENCE; Schema: ventas; Owner: -
+-- TOC entry 316 (class 1259 OID 26895)
+-- Name: detalle_factura_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
 --
 
 CREATE SEQUENCE detalle_factura_id_seq
@@ -3214,18 +3607,20 @@ CREATE SEQUENCE detalle_factura_id_seq
     CACHE 1;
 
 
+ALTER TABLE ventas.detalle_factura_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3105 (class 0 OID 0)
--- Dependencies: 313
--- Name: detalle_factura_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: -
+-- TOC entry 4054 (class 0 OID 0)
+-- Dependencies: 316
+-- Name: detalle_factura_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
 --
 
 ALTER SEQUENCE detalle_factura_id_seq OWNED BY detalle_factura.id;
 
 
 --
--- TOC entry 314 (class 1259 OID 48689)
--- Name: empleado_factura; Type: TABLE; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 317 (class 1259 OID 26897)
+-- Name: empleado_factura; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE empleado_factura (
@@ -3235,9 +3630,11 @@ CREATE TABLE empleado_factura (
 );
 
 
+ALTER TABLE ventas.empleado_factura OWNER TO postgres;
+
 --
--- TOC entry 315 (class 1259 OID 48693)
--- Name: facturas; Type: TABLE; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 318 (class 1259 OID 26901)
+-- Name: facturas; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE facturas (
@@ -3264,9 +3661,11 @@ CREATE TABLE facturas (
 );
 
 
+ALTER TABLE ventas.facturas OWNER TO postgres;
+
 --
--- TOC entry 316 (class 1259 OID 48700)
--- Name: facturas_id_seq; Type: SEQUENCE; Schema: ventas; Owner: -
+-- TOC entry 319 (class 1259 OID 26908)
+-- Name: facturas_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
 --
 
 CREATE SEQUENCE facturas_id_seq
@@ -3277,18 +3676,20 @@ CREATE SEQUENCE facturas_id_seq
     CACHE 1;
 
 
+ALTER TABLE ventas.facturas_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3106 (class 0 OID 0)
--- Dependencies: 316
--- Name: facturas_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: -
+-- TOC entry 4055 (class 0 OID 0)
+-- Dependencies: 319
+-- Name: facturas_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
 --
 
 ALTER SEQUENCE facturas_id_seq OWNED BY facturas.id;
 
 
 --
--- TOC entry 317 (class 1259 OID 48702)
--- Name: formas_pago_facturas; Type: TABLE; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 320 (class 1259 OID 26910)
+-- Name: formas_pago_facturas; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE formas_pago_facturas (
@@ -3298,9 +3699,11 @@ CREATE TABLE formas_pago_facturas (
 );
 
 
+ALTER TABLE ventas.formas_pago_facturas OWNER TO postgres;
+
 --
--- TOC entry 318 (class 1259 OID 48705)
--- Name: formas_pago_facturas_id_seq; Type: SEQUENCE; Schema: ventas; Owner: -
+-- TOC entry 321 (class 1259 OID 26913)
+-- Name: formas_pago_facturas_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
 --
 
 CREATE SEQUENCE formas_pago_facturas_id_seq
@@ -3311,18 +3714,20 @@ CREATE SEQUENCE formas_pago_facturas_id_seq
     CACHE 1;
 
 
+ALTER TABLE ventas.formas_pago_facturas_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3107 (class 0 OID 0)
--- Dependencies: 318
--- Name: formas_pago_facturas_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: -
+-- TOC entry 4056 (class 0 OID 0)
+-- Dependencies: 321
+-- Name: formas_pago_facturas_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
 --
 
 ALTER SEQUENCE formas_pago_facturas_id_seq OWNED BY formas_pago_facturas.id;
 
 
 --
--- TOC entry 319 (class 1259 OID 48707)
--- Name: formas_pago_id_seq; Type: SEQUENCE; Schema: ventas; Owner: -
+-- TOC entry 322 (class 1259 OID 26915)
+-- Name: formas_pago_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
 --
 
 CREATE SEQUENCE formas_pago_id_seq
@@ -3333,18 +3738,20 @@ CREATE SEQUENCE formas_pago_id_seq
     CACHE 1;
 
 
+ALTER TABLE ventas.formas_pago_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3108 (class 0 OID 0)
--- Dependencies: 319
--- Name: formas_pago_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: -
+-- TOC entry 4057 (class 0 OID 0)
+-- Dependencies: 322
+-- Name: formas_pago_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
 --
 
 ALTER SEQUENCE formas_pago_id_seq OWNED BY formas_pago.id;
 
 
 --
--- TOC entry 320 (class 1259 OID 48709)
--- Name: producto_descuento; Type: TABLE; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 323 (class 1259 OID 26917)
+-- Name: producto_descuento; Type: TABLE; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE producto_descuento (
@@ -3357,9 +3764,11 @@ CREATE TABLE producto_descuento (
 );
 
 
+ALTER TABLE ventas.producto_descuento OWNER TO postgres;
+
 --
--- TOC entry 321 (class 1259 OID 48712)
--- Name: producto_descuento_id_seq; Type: SEQUENCE; Schema: ventas; Owner: -
+-- TOC entry 324 (class 1259 OID 26920)
+-- Name: producto_descuento_id_seq; Type: SEQUENCE; Schema: ventas; Owner: postgres
 --
 
 CREATE SEQUENCE producto_descuento_id_seq
@@ -3370,84 +3779,104 @@ CREATE SEQUENCE producto_descuento_id_seq
     CACHE 1;
 
 
+ALTER TABLE ventas.producto_descuento_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3109 (class 0 OID 0)
--- Dependencies: 321
--- Name: producto_descuento_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: -
+-- TOC entry 4058 (class 0 OID 0)
+-- Dependencies: 324
+-- Name: producto_descuento_id_seq; Type: SEQUENCE OWNED BY; Schema: ventas; Owner: postgres
 --
 
 ALTER SEQUENCE producto_descuento_id_seq OWNED BY producto_descuento.id;
 
 
+SET search_path = "Taller_mecanico", pg_catalog;
+
+--
+-- TOC entry 3243 (class 2604 OID 26922)
+-- Name: id; Type: DEFAULT; Schema: Taller_mecanico; Owner: postgres
+--
+
+ALTER TABLE ONLY "Aseguradora" ALTER COLUMN id SET DEFAULT nextval('"Aseguradora_id_seq"'::regclass);
+
+
 SET search_path = administracion, pg_catalog;
 
 --
--- TOC entry 2309 (class 2604 OID 49427)
--- Name: id; Type: DEFAULT; Schema: administracion; Owner: -
+-- TOC entry 3245 (class 2604 OID 26923)
+-- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY actividad_economica ALTER COLUMN id SET DEFAULT nextval('actividad_economica_id_seq'::regclass);
 
 
 --
--- TOC entry 2313 (class 2604 OID 49428)
--- Name: id; Type: DEFAULT; Schema: administracion; Owner: -
+-- TOC entry 3249 (class 2604 OID 26924)
+-- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY empresas ALTER COLUMN id SET DEFAULT nextval('empresas_id_seq'::regclass);
 
 
 --
--- TOC entry 2315 (class 2604 OID 49429)
--- Name: id; Type: DEFAULT; Schema: administracion; Owner: -
+-- TOC entry 3251 (class 2604 OID 26925)
+-- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY imagen_empresa ALTER COLUMN id SET DEFAULT nextval('imagen_empresa_id_seq'::regclass);
 
 
 --
--- TOC entry 2317 (class 2604 OID 49430)
--- Name: id; Type: DEFAULT; Schema: administracion; Owner: -
+-- TOC entry 3377 (class 2604 OID 27658)
+-- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
+--
+
+ALTER TABLE ONLY sucursales ALTER COLUMN id SET DEFAULT nextval('sucursales_id_seq1'::regclass);
+
+
+--
+-- TOC entry 3253 (class 2604 OID 26926)
+-- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_accion_vista ALTER COLUMN id SET DEFAULT nextval('tipo_accion_vista_id_seq'::regclass);
 
 
 --
--- TOC entry 2319 (class 2604 OID 49431)
--- Name: id; Type: DEFAULT; Schema: administracion; Owner: -
+-- TOC entry 3255 (class 2604 OID 26927)
+-- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_bienes_servicios ALTER COLUMN id SET DEFAULT nextval('tipo_bienes_servicios_id_seq'::regclass);
 
 
 --
--- TOC entry 2321 (class 2604 OID 49432)
--- Name: id; Type: DEFAULT; Schema: administracion; Owner: -
+-- TOC entry 3257 (class 2604 OID 26928)
+-- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_empresa ALTER COLUMN id SET DEFAULT nextval('tipo_empresa_id_seq'::regclass);
 
 
 --
--- TOC entry 2323 (class 2604 OID 49433)
--- Name: id; Type: DEFAULT; Schema: administracion; Owner: -
+-- TOC entry 3259 (class 2604 OID 26929)
+-- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_imagenes_empresas ALTER COLUMN id SET DEFAULT nextval('tipos_imagenes_productos_id_seq'::regclass);
 
 
 --
--- TOC entry 2325 (class 2604 OID 49434)
--- Name: id; Type: DEFAULT; Schema: administracion; Owner: -
+-- TOC entry 3261 (class 2604 OID 26930)
+-- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY usuarios_privilegios ALTER COLUMN id SET DEFAULT nextval('usuarios_privilegios_id_seq'::regclass);
 
 
 --
--- TOC entry 2328 (class 2604 OID 49435)
--- Name: id; Type: DEFAULT; Schema: administracion; Owner: -
+-- TOC entry 3264 (class 2604 OID 26931)
+-- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY vistas ALTER COLUMN id SET DEFAULT nextval('vistas_id_seq'::regclass);
@@ -3456,16 +3885,16 @@ ALTER TABLE ONLY vistas ALTER COLUMN id SET DEFAULT nextval('vistas_id_seq'::reg
 SET search_path = auditoria, pg_catalog;
 
 --
--- TOC entry 2329 (class 2604 OID 49436)
--- Name: id; Type: DEFAULT; Schema: auditoria; Owner: -
+-- TOC entry 3265 (class 2604 OID 26932)
+-- Name: id; Type: DEFAULT; Schema: auditoria; Owner: postgres
 --
 
 ALTER TABLE ONLY auditoria ALTER COLUMN id SET DEFAULT nextval('auditoria_id_seq'::regclass);
 
 
 --
--- TOC entry 2331 (class 2604 OID 49437)
--- Name: id; Type: DEFAULT; Schema: auditoria; Owner: -
+-- TOC entry 3267 (class 2604 OID 26933)
+-- Name: id; Type: DEFAULT; Schema: auditoria; Owner: postgres
 --
 
 ALTER TABLE ONLY ingresos_usuarios ALTER COLUMN id SET DEFAULT nextval('ingresos_usuarios_id_seq'::regclass);
@@ -3474,136 +3903,136 @@ ALTER TABLE ONLY ingresos_usuarios ALTER COLUMN id SET DEFAULT nextval('ingresos
 SET search_path = contabilidad, pg_catalog;
 
 --
--- TOC entry 2336 (class 2604 OID 49438)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3272 (class 2604 OID 26934)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY ambitos_impuestos ALTER COLUMN id SET DEFAULT nextval('ambitos_impuestos_id_seq'::regclass);
 
 
 --
--- TOC entry 2338 (class 2604 OID 49439)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3274 (class 2604 OID 26935)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY asientos_contables_diario ALTER COLUMN id SET DEFAULT nextval('asientos_contables_diario_id_seq'::regclass);
 
 
 --
--- TOC entry 2340 (class 2604 OID 49440)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3276 (class 2604 OID 26936)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY bancos ALTER COLUMN id SET DEFAULT nextval('bancos_id_seq'::regclass);
 
 
 --
--- TOC entry 2342 (class 2604 OID 49441)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3278 (class 2604 OID 26937)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY cuentas_contables ALTER COLUMN id SET DEFAULT nextval('cuentas_contables_id_seq'::regclass);
 
 
 --
--- TOC entry 2346 (class 2604 OID 49442)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3282 (class 2604 OID 26938)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY finaciaminto ALTER COLUMN id SET DEFAULT nextval('finaciaminto_id_seq'::regclass);
 
 
 --
--- TOC entry 2348 (class 2604 OID 49443)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3284 (class 2604 OID 26939)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY gasto_mes_repositorio ALTER COLUMN id SET DEFAULT nextval('gasto_mes_repositorio_id_seq'::regclass);
 
 
 --
--- TOC entry 2350 (class 2604 OID 49444)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3286 (class 2604 OID 26940)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY gastos_impuestos_renta_deduccion ALTER COLUMN id SET DEFAULT nextval('gastos_impuestos_renta_deduccion_id_seq'::regclass);
 
 
 --
--- TOC entry 2351 (class 2604 OID 49445)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3287 (class 2604 OID 26941)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY grupo_impuestos ALTER COLUMN id SET DEFAULT nextval('grupo_impuestos_id_seq'::regclass);
 
 
 --
--- TOC entry 2354 (class 2604 OID 49446)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3290 (class 2604 OID 26942)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY impuestos ALTER COLUMN id SET DEFAULT nextval('impuestos_id_seq'::regclass);
 
 
 --
--- TOC entry 2334 (class 2604 OID 49447)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3270 (class 2604 OID 26943)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY plazos_credito ALTER COLUMN id SET DEFAULT nextval('"Plazos_credito_id_seq"'::regclass);
 
 
 --
--- TOC entry 2356 (class 2604 OID 49448)
--- Name: id_factura; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3292 (class 2604 OID 26944)
+-- Name: id_factura; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY repositorio_facturas ALTER COLUMN id_factura SET DEFAULT nextval('repositorio_facturas_id_factura_seq'::regclass);
 
 
 --
--- TOC entry 2344 (class 2604 OID 49449)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3280 (class 2604 OID 26945)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY repositorio_facturas_correo ALTER COLUMN id SET DEFAULT nextval('facturas_correo_id_seq'::regclass);
 
 
 --
--- TOC entry 2358 (class 2604 OID 49450)
--- Name: id_factura_r; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3294 (class 2604 OID 26946)
+-- Name: id_factura_r; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY repositorio_facturas_rechazadas ALTER COLUMN id_factura_r SET DEFAULT nextval('repositorio_facturas_rechazadas_id_factura_r_seq'::regclass);
 
 
 --
--- TOC entry 2360 (class 2604 OID 49451)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3296 (class 2604 OID 26947)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY rol_pagos_empleados ALTER COLUMN id SET DEFAULT nextval('rol_pagos_empleados_id_seq'::regclass);
 
 
 --
--- TOC entry 2365 (class 2604 OID 49452)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3301 (class 2604 OID 26948)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_impuestos ALTER COLUMN id SET DEFAULT nextval('tipo_impuestos_id_seq'::regclass);
 
 
 --
--- TOC entry 2362 (class 2604 OID 49453)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3298 (class 2604 OID 26949)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_cuentas_contables ALTER COLUMN id SET DEFAULT nextval('tipo_cuenta_contable_id_seq'::regclass);
 
 
 --
--- TOC entry 2367 (class 2604 OID 49454)
--- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: -
+-- TOC entry 3303 (class 2604 OID 26950)
+-- Name: id; Type: DEFAULT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_gastos_personales ALTER COLUMN id SET DEFAULT nextval('tipos_gastos_personales_id_seq'::regclass);
@@ -3612,160 +4041,160 @@ ALTER TABLE ONLY tipos_gastos_personales ALTER COLUMN id SET DEFAULT nextval('ti
 SET search_path = inventario, pg_catalog;
 
 --
--- TOC entry 2369 (class 2604 OID 49455)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3305 (class 2604 OID 26951)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY bodegas ALTER COLUMN id SET DEFAULT nextval('bodegas_id_seq'::regclass);
 
 
 --
--- TOC entry 2370 (class 2604 OID 49456)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3306 (class 2604 OID 26952)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY catalogos ALTER COLUMN id SET DEFAULT nextval('catalogos_id_seq'::regclass);
 
 
 --
--- TOC entry 2373 (class 2604 OID 49457)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3309 (class 2604 OID 26953)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY categorias ALTER COLUMN id SET DEFAULT nextval('categorias_id_seq'::regclass);
 
 
 --
--- TOC entry 2374 (class 2604 OID 49458)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3310 (class 2604 OID 26954)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY descripcion_producto ALTER COLUMN id SET DEFAULT nextval('descripcion_producto_id_seq'::regclass);
 
 
 --
--- TOC entry 2376 (class 2604 OID 49459)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3312 (class 2604 OID 26955)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY estado_descriptivo ALTER COLUMN id SET DEFAULT nextval('estado_descriptivo_id_seq'::regclass);
 
 
 --
--- TOC entry 2378 (class 2604 OID 49460)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3314 (class 2604 OID 26956)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY garantias ALTER COLUMN id SET DEFAULT nextval('garantias_id_seq'::regclass);
 
 
 --
--- TOC entry 2381 (class 2604 OID 49461)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3317 (class 2604 OID 26957)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY manejo_presios ALTER COLUMN id SET DEFAULT nextval('manejo_presios_id_seq'::regclass);
 
 
 --
--- TOC entry 2383 (class 2604 OID 49462)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3319 (class 2604 OID 26958)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY marcas ALTER COLUMN id SET DEFAULT nextval('marcas_id_seq'::regclass);
 
 
 --
--- TOC entry 2385 (class 2604 OID 49463)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3321 (class 2604 OID 26959)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY modelos ALTER COLUMN id SET DEFAULT nextval('modelos_id_seq'::regclass);
 
 
 --
--- TOC entry 2386 (class 2604 OID 49464)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3322 (class 2604 OID 26960)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY productos ALTER COLUMN id SET DEFAULT nextval('productos_id_seq'::regclass);
 
 
 --
--- TOC entry 2387 (class 2604 OID 49465)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3323 (class 2604 OID 26961)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY productos_impuestos ALTER COLUMN id SET DEFAULT nextval('productos_impuestos_id_seq'::regclass);
 
 
 --
--- TOC entry 2388 (class 2604 OID 49466)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3324 (class 2604 OID 26962)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY proveedores ALTER COLUMN id SET DEFAULT nextval('proveedores_id_seq'::regclass);
 
 
 --
--- TOC entry 2390 (class 2604 OID 49467)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3326 (class 2604 OID 26963)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_consumo ALTER COLUMN id SET DEFAULT nextval('tipo_consumo_id_seq'::regclass);
 
 
 --
--- TOC entry 2392 (class 2604 OID 49468)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3328 (class 2604 OID 26964)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_catalogos ALTER COLUMN id SET DEFAULT nextval('tipos_catalogos_id_seq'::regclass);
 
 
 --
--- TOC entry 2394 (class 2604 OID 49469)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3330 (class 2604 OID 26965)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_categorias ALTER COLUMN id SET DEFAULT nextval('tipos_categorias_id_seq'::regclass);
 
 
 --
--- TOC entry 2396 (class 2604 OID 49470)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3332 (class 2604 OID 26966)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_garantias ALTER COLUMN id SET DEFAULT nextval('tipos_garantias_id_seq'::regclass);
 
 
 --
--- TOC entry 2398 (class 2604 OID 49471)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3334 (class 2604 OID 26967)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_imagenes_productos ALTER COLUMN id SET DEFAULT nextval('tipos_imagenes_productos_id_seq'::regclass);
 
 
 --
--- TOC entry 2400 (class 2604 OID 49472)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3336 (class 2604 OID 26968)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_productos ALTER COLUMN id SET DEFAULT nextval('tipos_productos_id_seq'::regclass);
 
 
 --
--- TOC entry 2402 (class 2604 OID 49473)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3338 (class 2604 OID 26969)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_tipo_consumo ALTER COLUMN id SET DEFAULT nextval('tipos_tipo_consumo_id_seq'::regclass);
 
 
 --
--- TOC entry 2405 (class 2604 OID 49474)
--- Name: id; Type: DEFAULT; Schema: inventario; Owner: -
+-- TOC entry 3341 (class 2604 OID 26970)
+-- Name: id; Type: DEFAULT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY ubicaciones ALTER COLUMN id SET DEFAULT nextval('ubicaciones_id_seq'::regclass);
@@ -3774,48 +4203,48 @@ ALTER TABLE ONLY ubicaciones ALTER COLUMN id SET DEFAULT nextval('ubicaciones_id
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2408 (class 2604 OID 49475)
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3344 (class 2604 OID 26971)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY operadoras_telefonicas ALTER COLUMN id SET DEFAULT nextval('operadoras_telefonicas_id_seq'::regclass);
 
 
 --
--- TOC entry 2409 (class 2604 OID 49476)
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3345 (class 2604 OID 26972)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY personas ALTER COLUMN id SET DEFAULT nextval('personas_id_seq'::regclass);
 
 
 --
--- TOC entry 2411 (class 2604 OID 49477)
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3347 (class 2604 OID 26973)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY personas_correo_electronico ALTER COLUMN id SET DEFAULT nextval('personas_correo_electronico_id_seq'::regclass);
 
 
 --
--- TOC entry 2413 (class 2604 OID 49478)
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3349 (class 2604 OID 26974)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY personas_documentos_identificacion ALTER COLUMN id SET DEFAULT nextval('personas_documentos_identificacion_id_seq'::regclass);
 
 
 --
--- TOC entry 2415 (class 2604 OID 49479)
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3351 (class 2604 OID 26975)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY telefonos_personas ALTER COLUMN id SET DEFAULT nextval('telefonos_personas_id_seq'::regclass);
 
 
 --
--- TOC entry 2417 (class 2604 OID 49480)
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3353 (class 2604 OID 26976)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_documento_identificacion ALTER COLUMN id SET DEFAULT nextval('tipo_documento_identificaion_id_seq'::regclass);
@@ -3824,32 +4253,32 @@ ALTER TABLE ONLY tipo_documento_identificacion ALTER COLUMN id SET DEFAULT nextv
 SET search_path = talento_humano, pg_catalog;
 
 --
--- TOC entry 2421 (class 2604 OID 49481)
--- Name: id; Type: DEFAULT; Schema: talento_humano; Owner: -
+-- TOC entry 3357 (class 2604 OID 26977)
+-- Name: id; Type: DEFAULT; Schema: talento_humano; Owner: postgres
 --
 
 ALTER TABLE ONLY cargos ALTER COLUMN id SET DEFAULT nextval('cargos_id_seq'::regclass);
 
 
 --
--- TOC entry 2423 (class 2604 OID 49482)
--- Name: id; Type: DEFAULT; Schema: talento_humano; Owner: -
+-- TOC entry 3359 (class 2604 OID 26978)
+-- Name: id; Type: DEFAULT; Schema: talento_humano; Owner: postgres
 --
 
 ALTER TABLE ONLY empleados ALTER COLUMN id SET DEFAULT nextval('empleados_id_seq'::regclass);
 
 
 --
--- TOC entry 2424 (class 2604 OID 49483)
--- Name: id; Type: DEFAULT; Schema: talento_humano; Owner: -
+-- TOC entry 3360 (class 2604 OID 26979)
+-- Name: id; Type: DEFAULT; Schema: talento_humano; Owner: postgres
 --
 
 ALTER TABLE ONLY jornadas_de_trabajo ALTER COLUMN id SET DEFAULT nextval('jornadas_de_trabajo_id_seq'::regclass);
 
 
 --
--- TOC entry 2426 (class 2604 OID 49484)
--- Name: id; Type: DEFAULT; Schema: talento_humano; Owner: -
+-- TOC entry 3362 (class 2604 OID 26980)
+-- Name: id; Type: DEFAULT; Schema: talento_humano; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_contratos ALTER COLUMN id SET DEFAULT nextval('tipos_contratos_id_seq'::regclass);
@@ -3858,8 +4287,8 @@ ALTER TABLE ONLY tipos_contratos ALTER COLUMN id SET DEFAULT nextval('tipos_cont
 SET search_path = usuarios, pg_catalog;
 
 --
--- TOC entry 2428 (class 2604 OID 49485)
--- Name: id; Type: DEFAULT; Schema: usuarios; Owner: -
+-- TOC entry 3364 (class 2604 OID 26981)
+-- Name: id; Type: DEFAULT; Schema: usuarios; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_usuario ALTER COLUMN id SET DEFAULT nextval('tipo_usuario_id_seq'::regclass);
@@ -3868,67 +4297,88 @@ ALTER TABLE ONLY tipo_usuario ALTER COLUMN id SET DEFAULT nextval('tipo_usuario_
 SET search_path = ventas, pg_catalog;
 
 --
--- TOC entry 2431 (class 2604 OID 49486)
--- Name: id; Type: DEFAULT; Schema: ventas; Owner: -
+-- TOC entry 3367 (class 2604 OID 26982)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY caja ALTER COLUMN id SET DEFAULT nextval('caja_id_seq'::regclass);
 
 
 --
--- TOC entry 2434 (class 2604 OID 49487)
--- Name: id; Type: DEFAULT; Schema: ventas; Owner: -
+-- TOC entry 3370 (class 2604 OID 26983)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY clave_factura ALTER COLUMN id SET DEFAULT nextval('clave_factura_id_seq'::regclass);
 
 
 --
--- TOC entry 2435 (class 2604 OID 49488)
--- Name: id; Type: DEFAULT; Schema: ventas; Owner: -
+-- TOC entry 3371 (class 2604 OID 26984)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY detalle_factura ALTER COLUMN id SET DEFAULT nextval('detalle_factura_id_seq'::regclass);
 
 
 --
--- TOC entry 2438 (class 2604 OID 49489)
--- Name: id; Type: DEFAULT; Schema: ventas; Owner: -
+-- TOC entry 3374 (class 2604 OID 26985)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY facturas ALTER COLUMN id SET DEFAULT nextval('facturas_id_seq'::regclass);
 
 
 --
--- TOC entry 2419 (class 2604 OID 49490)
--- Name: id; Type: DEFAULT; Schema: ventas; Owner: -
+-- TOC entry 3355 (class 2604 OID 26986)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY formas_pago ALTER COLUMN id SET DEFAULT nextval('formas_pago_id_seq'::regclass);
 
 
 --
--- TOC entry 2439 (class 2604 OID 49491)
--- Name: id; Type: DEFAULT; Schema: ventas; Owner: -
+-- TOC entry 3375 (class 2604 OID 26987)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY formas_pago_facturas ALTER COLUMN id SET DEFAULT nextval('formas_pago_facturas_id_seq'::regclass);
 
 
 --
--- TOC entry 2440 (class 2604 OID 49492)
--- Name: id; Type: DEFAULT; Schema: ventas; Owner: -
+-- TOC entry 3376 (class 2604 OID 26988)
+-- Name: id; Type: DEFAULT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY producto_descuento ALTER COLUMN id SET DEFAULT nextval('producto_descuento_id_seq'::regclass);
 
 
+SET search_path = "Taller_mecanico", pg_catalog;
+
+--
+-- TOC entry 3796 (class 0 OID 26343)
+-- Dependencies: 177
+-- Data for Name: Aseguradora; Type: TABLE DATA; Schema: Taller_mecanico; Owner: postgres
+--
+
+COPY "Aseguradora" (id, contacto, id_empresa) FROM stdin;
+\.
+
+
+--
+-- TOC entry 4059 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: Aseguradora_id_seq; Type: SEQUENCE SET; Schema: Taller_mecanico; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Aseguradora_id_seq"', 1, false);
+
+
 SET search_path = administracion, pg_catalog;
 
 --
--- TOC entry 2854 (class 0 OID 48143)
--- Dependencies: 176
--- Data for Name: actividad_economica; Type: TABLE DATA; Schema: administracion; Owner: -
+-- TOC entry 3798 (class 0 OID 26351)
+-- Dependencies: 179
+-- Data for Name: actividad_economica; Type: TABLE DATA; Schema: administracion; Owner: postgres
 --
 
 COPY actividad_economica (id, nombre, descripcion, id_tipo_bienes_servicios, estado, fecha, imagen) FROM stdin;
@@ -3936,18 +4386,18 @@ COPY actividad_economica (id, nombre, descripcion, id_tipo_bienes_servicios, est
 
 
 --
--- TOC entry 3110 (class 0 OID 0)
--- Dependencies: 177
--- Name: actividad_economica_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: -
+-- TOC entry 4060 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: actividad_economica_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
 SELECT pg_catalog.setval('actividad_economica_id_seq', 1, false);
 
 
 --
--- TOC entry 2856 (class 0 OID 48152)
--- Dependencies: 178
--- Data for Name: clientes; Type: TABLE DATA; Schema: administracion; Owner: -
+-- TOC entry 3800 (class 0 OID 26360)
+-- Dependencies: 181
+-- Data for Name: clientes; Type: TABLE DATA; Schema: administracion; Owner: postgres
 --
 
 COPY clientes (id, tipo_cliente, id_cliente, id_tipo_documento, fecha, estado) FROM stdin;
@@ -3955,9 +4405,9 @@ COPY clientes (id, tipo_cliente, id_cliente, id_tipo_documento, fecha, estado) F
 
 
 --
--- TOC entry 2857 (class 0 OID 48159)
--- Dependencies: 179
--- Data for Name: empresas; Type: TABLE DATA; Schema: administracion; Owner: -
+-- TOC entry 3801 (class 0 OID 26367)
+-- Dependencies: 182
+-- Data for Name: empresas; Type: TABLE DATA; Schema: administracion; Owner: postgres
 --
 
 COPY empresas (id, razon_social, actividad_economica, ruc_ci, nombre_comercial, tipo_persona, id_estado, fecha, tipo_empresa) FROM stdin;
@@ -3965,18 +4415,18 @@ COPY empresas (id, razon_social, actividad_economica, ruc_ci, nombre_comercial, 
 
 
 --
--- TOC entry 3111 (class 0 OID 0)
--- Dependencies: 180
--- Name: empresas_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: -
+-- TOC entry 4061 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: empresas_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
 SELECT pg_catalog.setval('empresas_id_seq', 1, false);
 
 
 --
--- TOC entry 2859 (class 0 OID 48169)
--- Dependencies: 181
--- Data for Name: imagen_empresa; Type: TABLE DATA; Schema: administracion; Owner: -
+-- TOC entry 3803 (class 0 OID 26377)
+-- Dependencies: 184
+-- Data for Name: imagen_empresa; Type: TABLE DATA; Schema: administracion; Owner: postgres
 --
 
 COPY imagen_empresa (id, sucursal, direccion_imagen_empresa, direccion_imagen_recorte, estado, fecha, tipo_imagen) FROM stdin;
@@ -3984,27 +4434,46 @@ COPY imagen_empresa (id, sucursal, direccion_imagen_empresa, direccion_imagen_re
 
 
 --
--- TOC entry 3112 (class 0 OID 0)
--- Dependencies: 182
--- Name: imagen_empresa_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: -
+-- TOC entry 4062 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: imagen_empresa_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
 SELECT pg_catalog.setval('imagen_empresa_id_seq', 1, false);
 
 
 --
--- TOC entry 3113 (class 0 OID 0)
--- Dependencies: 183
--- Name: sucursales_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: -
+-- TOC entry 3941 (class 0 OID 27655)
+-- Dependencies: 326
+-- Data for Name: sucursales; Type: TABLE DATA; Schema: administracion; Owner: postgres
+--
+
+COPY sucursales (id, nombre, responsable, datos_empresariales, localizacion_sucursal, datos_adiconales, codigo_sri, giro_negocio, actividad_economica, id_empresa) FROM stdin;
+\.
+
+
+--
+-- TOC entry 4063 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: sucursales_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
 SELECT pg_catalog.setval('sucursales_id_seq', 1, false);
 
 
 --
--- TOC entry 2862 (class 0 OID 48180)
--- Dependencies: 184
--- Data for Name: tipo_accion_vista; Type: TABLE DATA; Schema: administracion; Owner: -
+-- TOC entry 4064 (class 0 OID 0)
+-- Dependencies: 325
+-- Name: sucursales_id_seq1; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
+--
+
+SELECT pg_catalog.setval('sucursales_id_seq1', 1, false);
+
+
+--
+-- TOC entry 3806 (class 0 OID 26388)
+-- Dependencies: 187
+-- Data for Name: tipo_accion_vista; Type: TABLE DATA; Schema: administracion; Owner: postgres
 --
 
 COPY tipo_accion_vista (id, accion_ver, accion_guardar, accion_modificar, estado, fecha) FROM stdin;
@@ -4012,18 +4481,18 @@ COPY tipo_accion_vista (id, accion_ver, accion_guardar, accion_modificar, estado
 
 
 --
--- TOC entry 3114 (class 0 OID 0)
--- Dependencies: 185
--- Name: tipo_accion_vista_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: -
+-- TOC entry 4065 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: tipo_accion_vista_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipo_accion_vista_id_seq', 1, false);
 
 
 --
--- TOC entry 2864 (class 0 OID 48186)
--- Dependencies: 186
--- Data for Name: tipo_bienes_servicios; Type: TABLE DATA; Schema: administracion; Owner: -
+-- TOC entry 3808 (class 0 OID 26394)
+-- Dependencies: 189
+-- Data for Name: tipo_bienes_servicios; Type: TABLE DATA; Schema: administracion; Owner: postgres
 --
 
 COPY tipo_bienes_servicios (id, nombre, descripcion, fecha, estado, id_prestacion) FROM stdin;
@@ -4032,18 +4501,18 @@ COPY tipo_bienes_servicios (id, nombre, descripcion, fecha, estado, id_prestacio
 
 
 --
--- TOC entry 3115 (class 0 OID 0)
--- Dependencies: 187
--- Name: tipo_bienes_servicios_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: -
+-- TOC entry 4066 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: tipo_bienes_servicios_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipo_bienes_servicios_id_seq', 6, true);
 
 
 --
--- TOC entry 2866 (class 0 OID 48195)
--- Dependencies: 188
--- Data for Name: tipo_empresa; Type: TABLE DATA; Schema: administracion; Owner: -
+-- TOC entry 3810 (class 0 OID 26403)
+-- Dependencies: 191
+-- Data for Name: tipo_empresa; Type: TABLE DATA; Schema: administracion; Owner: postgres
 --
 
 COPY tipo_empresa (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -4053,18 +4522,18 @@ COPY tipo_empresa (id, nombre, descripcion, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3116 (class 0 OID 0)
--- Dependencies: 189
--- Name: tipo_empresa_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: -
+-- TOC entry 4067 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: tipo_empresa_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipo_empresa_id_seq', 3, true);
 
 
 --
--- TOC entry 2868 (class 0 OID 48204)
--- Dependencies: 190
--- Data for Name: tipos_imagenes_empresas; Type: TABLE DATA; Schema: administracion; Owner: -
+-- TOC entry 3812 (class 0 OID 26412)
+-- Dependencies: 193
+-- Data for Name: tipos_imagenes_empresas; Type: TABLE DATA; Schema: administracion; Owner: postgres
 --
 
 COPY tipos_imagenes_empresas (id, nombre, estado, fecha) FROM stdin;
@@ -4076,18 +4545,18 @@ COPY tipos_imagenes_empresas (id, nombre, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3117 (class 0 OID 0)
--- Dependencies: 191
--- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: -
+-- TOC entry 4068 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipos_imagenes_productos_id_seq', 3, true);
 
 
 --
--- TOC entry 2870 (class 0 OID 48210)
--- Dependencies: 192
--- Data for Name: usuarios_privilegios; Type: TABLE DATA; Schema: administracion; Owner: -
+-- TOC entry 3814 (class 0 OID 26418)
+-- Dependencies: 195
+-- Data for Name: usuarios_privilegios; Type: TABLE DATA; Schema: administracion; Owner: postgres
 --
 
 COPY usuarios_privilegios (id, estado, fecha, id_vista, id_tipo_usuario, id_tipo_accion_vistas) FROM stdin;
@@ -4095,18 +4564,18 @@ COPY usuarios_privilegios (id, estado, fecha, id_vista, id_tipo_usuario, id_tipo
 
 
 --
--- TOC entry 3118 (class 0 OID 0)
--- Dependencies: 193
--- Name: usuarios_privilegios_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: -
+-- TOC entry 4069 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: usuarios_privilegios_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
 SELECT pg_catalog.setval('usuarios_privilegios_id_seq', 1, false);
 
 
 --
--- TOC entry 2872 (class 0 OID 48216)
--- Dependencies: 194
--- Data for Name: vistas; Type: TABLE DATA; Schema: administracion; Owner: -
+-- TOC entry 3816 (class 0 OID 26424)
+-- Dependencies: 197
+-- Data for Name: vistas; Type: TABLE DATA; Schema: administracion; Owner: postgres
 --
 
 COPY vistas (id, nombre, path, url, personalizacion, estado, id_padre, nivel_arbol, template_, controller_, fecha) FROM stdin;
@@ -4114,9 +4583,9 @@ COPY vistas (id, nombre, path, url, personalizacion, estado, id_padre, nivel_arb
 
 
 --
--- TOC entry 3119 (class 0 OID 0)
--- Dependencies: 195
--- Name: vistas_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: -
+-- TOC entry 4070 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: vistas_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
 SELECT pg_catalog.setval('vistas_id_seq', 1, false);
@@ -4125,9 +4594,9 @@ SELECT pg_catalog.setval('vistas_id_seq', 1, false);
 SET search_path = auditoria, pg_catalog;
 
 --
--- TOC entry 2874 (class 0 OID 48226)
--- Dependencies: 196
--- Data for Name: auditoria; Type: TABLE DATA; Schema: auditoria; Owner: -
+-- TOC entry 3818 (class 0 OID 26434)
+-- Dependencies: 199
+-- Data for Name: auditoria; Type: TABLE DATA; Schema: auditoria; Owner: postgres
 --
 
 COPY auditoria (id, tabla_afectada, operacion, variable_anterior, variable_nueva, fecha, usuario) FROM stdin;
@@ -4140,18 +4609,18 @@ COPY auditoria (id, tabla_afectada, operacion, variable_anterior, variable_nueva
 
 
 --
--- TOC entry 3120 (class 0 OID 0)
--- Dependencies: 197
--- Name: auditoria_id_seq; Type: SEQUENCE SET; Schema: auditoria; Owner: -
+-- TOC entry 4071 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: auditoria_id_seq; Type: SEQUENCE SET; Schema: auditoria; Owner: postgres
 --
 
 SELECT pg_catalog.setval('auditoria_id_seq', 7, true);
 
 
 --
--- TOC entry 2876 (class 0 OID 48234)
--- Dependencies: 198
--- Data for Name: ingresos_usuarios; Type: TABLE DATA; Schema: auditoria; Owner: -
+-- TOC entry 3820 (class 0 OID 26442)
+-- Dependencies: 201
+-- Data for Name: ingresos_usuarios; Type: TABLE DATA; Schema: auditoria; Owner: postgres
 --
 
 COPY ingresos_usuarios (id, usuario, informacion_servidor, fecha, ip_acceso) FROM stdin;
@@ -4159,9 +4628,9 @@ COPY ingresos_usuarios (id, usuario, informacion_servidor, fecha, ip_acceso) FRO
 
 
 --
--- TOC entry 3121 (class 0 OID 0)
--- Dependencies: 199
--- Name: ingresos_usuarios_id_seq; Type: SEQUENCE SET; Schema: auditoria; Owner: -
+-- TOC entry 4072 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: ingresos_usuarios_id_seq; Type: SEQUENCE SET; Schema: auditoria; Owner: postgres
 --
 
 SELECT pg_catalog.setval('ingresos_usuarios_id_seq', 2, true);
@@ -4170,18 +4639,18 @@ SELECT pg_catalog.setval('ingresos_usuarios_id_seq', 2, true);
 SET search_path = contabilidad, pg_catalog;
 
 --
--- TOC entry 3122 (class 0 OID 0)
--- Dependencies: 201
--- Name: Plazos_credito_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4073 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: Plazos_credito_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('"Plazos_credito_id_seq"', 1, false);
 
 
 --
--- TOC entry 2880 (class 0 OID 48250)
--- Dependencies: 202
--- Data for Name: ambitos_impuestos; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3824 (class 0 OID 26458)
+-- Dependencies: 205
+-- Data for Name: ambitos_impuestos; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY ambitos_impuestos (id, nombre, estado, fecha) FROM stdin;
@@ -4191,18 +4660,18 @@ COPY ambitos_impuestos (id, nombre, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3123 (class 0 OID 0)
--- Dependencies: 203
--- Name: ambitos_impuestos_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4074 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: ambitos_impuestos_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('ambitos_impuestos_id_seq', 5, true);
 
 
 --
--- TOC entry 2882 (class 0 OID 48256)
--- Dependencies: 204
--- Data for Name: asientos_contables_diario; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3826 (class 0 OID 26464)
+-- Dependencies: 207
+-- Data for Name: asientos_contables_diario; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY asientos_contables_diario (id, id_tipo_cuenta_contable, referencia_asiento, debe, haber, fecha, estado) FROM stdin;
@@ -4210,18 +4679,18 @@ COPY asientos_contables_diario (id, id_tipo_cuenta_contable, referencia_asiento,
 
 
 --
--- TOC entry 3124 (class 0 OID 0)
--- Dependencies: 205
--- Name: asientos_contables_diario_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4075 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: asientos_contables_diario_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('asientos_contables_diario_id_seq', 1, false);
 
 
 --
--- TOC entry 2884 (class 0 OID 48262)
--- Dependencies: 206
--- Data for Name: bancos; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3828 (class 0 OID 26470)
+-- Dependencies: 209
+-- Data for Name: bancos; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY bancos (id, nombre_banco, numero_cuanta, titular_cuenta, direccion_sucursal_banco, estado, fecha) FROM stdin;
@@ -4229,18 +4698,18 @@ COPY bancos (id, nombre_banco, numero_cuanta, titular_cuenta, direccion_sucursal
 
 
 --
--- TOC entry 3125 (class 0 OID 0)
--- Dependencies: 207
--- Name: bancos_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4076 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: bancos_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('bancos_id_seq', 1, false);
 
 
 --
--- TOC entry 2886 (class 0 OID 48271)
--- Dependencies: 208
--- Data for Name: cuentas_contables; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3830 (class 0 OID 26479)
+-- Dependencies: 211
+-- Data for Name: cuentas_contables; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY cuentas_contables (id, codigo_contable, nombre_corto, descripcion, signo_cuenta, tipo_cuenta) FROM stdin;
@@ -4256,27 +4725,27 @@ COPY cuentas_contables (id, codigo_contable, nombre_corto, descripcion, signo_cu
 
 
 --
--- TOC entry 3126 (class 0 OID 0)
--- Dependencies: 209
--- Name: cuentas_contables_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4077 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: cuentas_contables_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('cuentas_contables_id_seq', 11, true);
 
 
 --
--- TOC entry 3127 (class 0 OID 0)
--- Dependencies: 211
--- Name: facturas_correo_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4078 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: facturas_correo_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('facturas_correo_id_seq', 1, false);
 
 
 --
--- TOC entry 2890 (class 0 OID 48289)
--- Dependencies: 212
--- Data for Name: fecha_declaracion_ruc; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3834 (class 0 OID 26497)
+-- Dependencies: 215
+-- Data for Name: fecha_declaracion_ruc; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY fecha_declaracion_ruc (noveno_dig, fecha_maxima_declaracion, numero_dias) FROM stdin;
@@ -4294,9 +4763,9 @@ COPY fecha_declaracion_ruc (noveno_dig, fecha_maxima_declaracion, numero_dias) F
 
 
 --
--- TOC entry 2891 (class 0 OID 48292)
--- Dependencies: 213
--- Data for Name: finaciaminto; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3835 (class 0 OID 26500)
+-- Dependencies: 216
+-- Data for Name: finaciaminto; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY finaciaminto (id, id_factura, total_factura, pago_parcial, numero_cuotas, id_plazos_credito, fecha_prestamo, subtotal_sin_iva, subtotal_iva, iva, fecha_vencimiento, estado_pago, porcentaje_sin_iva, porcentaje_iva, porcentaje_con_iva) FROM stdin;
@@ -4304,18 +4773,18 @@ COPY finaciaminto (id, id_factura, total_factura, pago_parcial, numero_cuotas, i
 
 
 --
--- TOC entry 3128 (class 0 OID 0)
--- Dependencies: 214
--- Name: finaciaminto_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4079 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: finaciaminto_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('finaciaminto_id_seq', 1, false);
 
 
 --
--- TOC entry 2893 (class 0 OID 48298)
--- Dependencies: 215
--- Data for Name: gasto_mes_repositorio; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3837 (class 0 OID 26506)
+-- Dependencies: 218
+-- Data for Name: gasto_mes_repositorio; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY gasto_mes_repositorio (id, id_factura, id_tipo_gasto, total_gasto, fecha, estado_revicion) FROM stdin;
@@ -4323,18 +4792,18 @@ COPY gasto_mes_repositorio (id, id_factura, id_tipo_gasto, total_gasto, fecha, e
 
 
 --
--- TOC entry 3129 (class 0 OID 0)
--- Dependencies: 216
--- Name: gasto_mes_repositorio_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4080 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: gasto_mes_repositorio_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('gasto_mes_repositorio_id_seq', 1, false);
 
 
 --
--- TOC entry 2895 (class 0 OID 48304)
--- Dependencies: 217
--- Data for Name: gastos_impuestos_renta_deduccion; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3839 (class 0 OID 26512)
+-- Dependencies: 220
+-- Data for Name: gastos_impuestos_renta_deduccion; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY gastos_impuestos_renta_deduccion (id, id_factura, id_tipo_gasto_personal, valor_acumular, estado, fecha) FROM stdin;
@@ -4342,18 +4811,18 @@ COPY gastos_impuestos_renta_deduccion (id, id_factura, id_tipo_gasto_personal, v
 
 
 --
--- TOC entry 3130 (class 0 OID 0)
--- Dependencies: 218
--- Name: gastos_impuestos_renta_deduccion_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4081 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: gastos_impuestos_renta_deduccion_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('gastos_impuestos_renta_deduccion_id_seq', 1, false);
 
 
 --
--- TOC entry 2897 (class 0 OID 48310)
--- Dependencies: 219
--- Data for Name: genealogia_impuestos; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3841 (class 0 OID 26518)
+-- Dependencies: 222
+-- Data for Name: genealogia_impuestos; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY genealogia_impuestos (id_impuesto_padre, id_impuesto_hijo) FROM stdin;
@@ -4361,9 +4830,9 @@ COPY genealogia_impuestos (id_impuesto_padre, id_impuesto_hijo) FROM stdin;
 
 
 --
--- TOC entry 2898 (class 0 OID 48313)
--- Dependencies: 220
--- Data for Name: grupo_impuestos; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3842 (class 0 OID 26521)
+-- Dependencies: 223
+-- Data for Name: grupo_impuestos; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY grupo_impuestos (id, nombre, estado, fecha) FROM stdin;
@@ -4371,18 +4840,18 @@ COPY grupo_impuestos (id, nombre, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3131 (class 0 OID 0)
--- Dependencies: 221
--- Name: grupo_impuestos_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4082 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: grupo_impuestos_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('grupo_impuestos_id_seq', 1, false);
 
 
 --
--- TOC entry 2900 (class 0 OID 48318)
--- Dependencies: 222
--- Data for Name: impuestos; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3844 (class 0 OID 26526)
+-- Dependencies: 225
+-- Data for Name: impuestos; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY impuestos (id, codigo_sri, nombre, descripcion, cantidad, estado, fecha, ambito, tipo_impuesto) FROM stdin;
@@ -4395,18 +4864,18 @@ COPY impuestos (id, codigo_sri, nombre, descripcion, cantidad, estado, fecha, am
 
 
 --
--- TOC entry 3132 (class 0 OID 0)
--- Dependencies: 223
--- Name: impuestos_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4083 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: impuestos_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('impuestos_id_seq', 9, true);
 
 
 --
--- TOC entry 2878 (class 0 OID 48243)
--- Dependencies: 200
--- Data for Name: plazos_credito; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3822 (class 0 OID 26451)
+-- Dependencies: 203
+-- Data for Name: plazos_credito; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY plazos_credito (id, nombre, dias_credito, estado, fecha) FROM stdin;
@@ -4414,9 +4883,9 @@ COPY plazos_credito (id, nombre, dias_credito, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 2902 (class 0 OID 48328)
--- Dependencies: 224
--- Data for Name: repositorio_facturas; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3846 (class 0 OID 26536)
+-- Dependencies: 227
+-- Data for Name: repositorio_facturas; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY repositorio_facturas (id_factura, num_factura, nombre_comercial, clave_acceso, ruc_prov, tipo_doc, total, contenido_fac, created_at, id_sucursal, fecha_emision, subtotal_12, subtotal_0, subtotal_no_sujeto, subtotal_exento_iva, subtotal_sin_impuestos, descuento, ice, iva_12, propina, estado, estado_view) FROM stdin;
@@ -4424,9 +4893,9 @@ COPY repositorio_facturas (id_factura, num_factura, nombre_comercial, clave_acce
 
 
 --
--- TOC entry 2888 (class 0 OID 48280)
--- Dependencies: 210
--- Data for Name: repositorio_facturas_correo; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3832 (class 0 OID 26488)
+-- Dependencies: 213
+-- Data for Name: repositorio_facturas_correo; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY repositorio_facturas_correo (id, ruta_acceso, id_correo, estado_proceso_factura, emisor_factura, nombre_archivo, fecha, asunto) FROM stdin;
@@ -4434,18 +4903,18 @@ COPY repositorio_facturas_correo (id, ruta_acceso, id_correo, estado_proceso_fac
 
 
 --
--- TOC entry 3133 (class 0 OID 0)
--- Dependencies: 225
--- Name: repositorio_facturas_id_factura_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4084 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: repositorio_facturas_id_factura_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('repositorio_facturas_id_factura_seq', 1, false);
 
 
 --
--- TOC entry 2904 (class 0 OID 48337)
--- Dependencies: 226
--- Data for Name: repositorio_facturas_rechazadas; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3848 (class 0 OID 26545)
+-- Dependencies: 229
+-- Data for Name: repositorio_facturas_rechazadas; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY repositorio_facturas_rechazadas (id_factura_r, clave_acceso, razon_rechazo, created_at, estado, contenido_correo, emisor_factura, asunto) FROM stdin;
@@ -4453,18 +4922,18 @@ COPY repositorio_facturas_rechazadas (id_factura_r, clave_acceso, razon_rechazo,
 
 
 --
--- TOC entry 3134 (class 0 OID 0)
--- Dependencies: 227
--- Name: repositorio_facturas_rechazadas_id_factura_r_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4085 (class 0 OID 0)
+-- Dependencies: 230
+-- Name: repositorio_facturas_rechazadas_id_factura_r_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('repositorio_facturas_rechazadas_id_factura_r_seq', 6, true);
 
 
 --
--- TOC entry 2906 (class 0 OID 48346)
--- Dependencies: 228
--- Data for Name: rol_pagos_empleados; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3850 (class 0 OID 26554)
+-- Dependencies: 231
+-- Data for Name: rol_pagos_empleados; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY rol_pagos_empleados (id, id_empleado, mes_pago) FROM stdin;
@@ -4474,27 +4943,27 @@ COPY rol_pagos_empleados (id, id_empleado, mes_pago) FROM stdin;
 
 
 --
--- TOC entry 3135 (class 0 OID 0)
--- Dependencies: 229
--- Name: rol_pagos_empleados_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4086 (class 0 OID 0)
+-- Dependencies: 232
+-- Name: rol_pagos_empleados_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('rol_pagos_empleados_id_seq', 4, true);
 
 
 --
--- TOC entry 3136 (class 0 OID 0)
--- Dependencies: 231
--- Name: tipo_cuenta_contable_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4087 (class 0 OID 0)
+-- Dependencies: 234
+-- Name: tipo_cuenta_contable_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipo_cuenta_contable_id_seq', 2, true);
 
 
 --
--- TOC entry 2910 (class 0 OID 48361)
--- Dependencies: 232
--- Data for Name: tipo_documentos; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3854 (class 0 OID 26569)
+-- Dependencies: 235
+-- Data for Name: tipo_documentos; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY tipo_documentos (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -4507,9 +4976,9 @@ COPY tipo_documentos (id, nombre, descripcion, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 2911 (class 0 OID 48365)
--- Dependencies: 233
--- Data for Name: tipo_impuestos; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3855 (class 0 OID 26573)
+-- Dependencies: 236
+-- Data for Name: tipo_impuestos; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY tipo_impuestos (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -4520,18 +4989,18 @@ COPY tipo_impuestos (id, nombre, descripcion, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3137 (class 0 OID 0)
--- Dependencies: 234
--- Name: tipo_impuestos_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4088 (class 0 OID 0)
+-- Dependencies: 237
+-- Name: tipo_impuestos_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipo_impuestos_id_seq', 1, false);
 
 
 --
--- TOC entry 2908 (class 0 OID 48352)
--- Dependencies: 230
--- Data for Name: tipos_cuentas_contables; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3852 (class 0 OID 26560)
+-- Dependencies: 233
+-- Data for Name: tipos_cuentas_contables; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY tipos_cuentas_contables (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -4541,9 +5010,9 @@ COPY tipos_cuentas_contables (id, nombre, descripcion, estado, fecha) FROM stdin
 
 
 --
--- TOC entry 2913 (class 0 OID 48371)
--- Dependencies: 235
--- Data for Name: tipos_gastos_personales; Type: TABLE DATA; Schema: contabilidad; Owner: -
+-- TOC entry 3857 (class 0 OID 26579)
+-- Dependencies: 238
+-- Data for Name: tipos_gastos_personales; Type: TABLE DATA; Schema: contabilidad; Owner: postgres
 --
 
 COPY tipos_gastos_personales (id, nombre, descripcion, valor_maximo, estado, fecha) FROM stdin;
@@ -4557,9 +5026,9 @@ COPY tipos_gastos_personales (id, nombre, descripcion, valor_maximo, estado, fec
 
 
 --
--- TOC entry 3138 (class 0 OID 0)
--- Dependencies: 236
--- Name: tipos_gastos_personales_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: -
+-- TOC entry 4089 (class 0 OID 0)
+-- Dependencies: 239
+-- Name: tipos_gastos_personales_id_seq; Type: SEQUENCE SET; Schema: contabilidad; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipos_gastos_personales_id_seq', 1, false);
@@ -4568,9 +5037,9 @@ SELECT pg_catalog.setval('tipos_gastos_personales_id_seq', 1, false);
 SET search_path = inventario, pg_catalog;
 
 --
--- TOC entry 2915 (class 0 OID 48380)
--- Dependencies: 237
--- Data for Name: bodegas; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3859 (class 0 OID 26588)
+-- Dependencies: 240
+-- Data for Name: bodegas; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY bodegas (id, id_sucursal, nombre, calle, numero, especificaciones, fecha, estado, giro_negocio) FROM stdin;
@@ -4578,18 +5047,18 @@ COPY bodegas (id, id_sucursal, nombre, calle, numero, especificaciones, fecha, e
 
 
 --
--- TOC entry 3139 (class 0 OID 0)
--- Dependencies: 238
--- Name: bodegas_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4090 (class 0 OID 0)
+-- Dependencies: 241
+-- Name: bodegas_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('bodegas_id_seq', 1, false);
 
 
 --
--- TOC entry 2917 (class 0 OID 48389)
--- Dependencies: 239
--- Data for Name: catalogos; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3861 (class 0 OID 26597)
+-- Dependencies: 242
+-- Data for Name: catalogos; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY catalogos (id, tipo_catalogo, producto) FROM stdin;
@@ -4597,18 +5066,18 @@ COPY catalogos (id, tipo_catalogo, producto) FROM stdin;
 
 
 --
--- TOC entry 3140 (class 0 OID 0)
--- Dependencies: 240
--- Name: catalogos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4091 (class 0 OID 0)
+-- Dependencies: 243
+-- Name: catalogos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('catalogos_id_seq', 1, false);
 
 
 --
--- TOC entry 2919 (class 0 OID 48394)
--- Dependencies: 241
--- Data for Name: categorias; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3863 (class 0 OID 26602)
+-- Dependencies: 244
+-- Data for Name: categorias; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY categorias (id, nombre, descripcion, tipo_categoria, estado, fecha, id_padre) FROM stdin;
@@ -4617,18 +5086,18 @@ COPY categorias (id, nombre, descripcion, tipo_categoria, estado, fecha, id_padr
 
 
 --
--- TOC entry 3141 (class 0 OID 0)
--- Dependencies: 242
--- Name: categorias_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4092 (class 0 OID 0)
+-- Dependencies: 245
+-- Name: categorias_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('categorias_id_seq', 3, true);
 
 
 --
--- TOC entry 2921 (class 0 OID 48404)
--- Dependencies: 243
--- Data for Name: descripcion_producto; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3865 (class 0 OID 26612)
+-- Dependencies: 246
+-- Data for Name: descripcion_producto; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY descripcion_producto (id, producto, descripcion_corta, descripcion_proveedor, descripcion_proformas, descripcion_movi_inventa) FROM stdin;
@@ -4636,18 +5105,18 @@ COPY descripcion_producto (id, producto, descripcion_corta, descripcion_proveedo
 
 
 --
--- TOC entry 3142 (class 0 OID 0)
--- Dependencies: 244
--- Name: descripcion_producto_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4093 (class 0 OID 0)
+-- Dependencies: 247
+-- Name: descripcion_producto_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('descripcion_producto_id_seq', 1, false);
 
 
 --
--- TOC entry 2923 (class 0 OID 48412)
--- Dependencies: 245
--- Data for Name: estado_descriptivo; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3867 (class 0 OID 26620)
+-- Dependencies: 248
+-- Data for Name: estado_descriptivo; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY estado_descriptivo (id, nombre, descripcion, estado, fecha, id_padre) FROM stdin;
@@ -4660,18 +5129,18 @@ COPY estado_descriptivo (id, nombre, descripcion, estado, fecha, id_padre) FROM 
 
 
 --
--- TOC entry 3143 (class 0 OID 0)
--- Dependencies: 246
--- Name: estado_descriptivo_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4094 (class 0 OID 0)
+-- Dependencies: 249
+-- Name: estado_descriptivo_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('estado_descriptivo_id_seq', 5, true);
 
 
 --
--- TOC entry 2925 (class 0 OID 48421)
--- Dependencies: 247
--- Data for Name: garantias; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3869 (class 0 OID 26629)
+-- Dependencies: 250
+-- Data for Name: garantias; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY garantias (id, nombre, descripcion, estado, fecha, tipo_garantia, duracion, id_padre) FROM stdin;
@@ -4680,18 +5149,18 @@ COPY garantias (id, nombre, descripcion, estado, fecha, tipo_garantia, duracion,
 
 
 --
--- TOC entry 3144 (class 0 OID 0)
--- Dependencies: 248
--- Name: garantias_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4095 (class 0 OID 0)
+-- Dependencies: 251
+-- Name: garantias_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('garantias_id_seq', 3, true);
 
 
 --
--- TOC entry 2927 (class 0 OID 48430)
--- Dependencies: 249
--- Data for Name: imagenes_productos; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3871 (class 0 OID 26638)
+-- Dependencies: 252
+-- Data for Name: imagenes_productos; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY imagenes_productos (id, nombre, direccion, tipo_imagen, estado, fecha, producto) FROM stdin;
@@ -4699,9 +5168,9 @@ COPY imagenes_productos (id, nombre, direccion, tipo_imagen, estado, fecha, prod
 
 
 --
--- TOC entry 2928 (class 0 OID 48434)
--- Dependencies: 250
--- Data for Name: manejo_presios; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3872 (class 0 OID 26642)
+-- Dependencies: 253
+-- Data for Name: manejo_presios; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY manejo_presios (id, id_producto, nombre, valor_precio, estado, fecha) FROM stdin;
@@ -4709,18 +5178,18 @@ COPY manejo_presios (id, id_producto, nombre, valor_precio, estado, fecha) FROM 
 
 
 --
--- TOC entry 3145 (class 0 OID 0)
--- Dependencies: 251
--- Name: manejo_presios_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4096 (class 0 OID 0)
+-- Dependencies: 254
+-- Name: manejo_presios_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('manejo_presios_id_seq', 1, false);
 
 
 --
--- TOC entry 2930 (class 0 OID 48443)
--- Dependencies: 252
--- Data for Name: marcas; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3874 (class 0 OID 26651)
+-- Dependencies: 255
+-- Data for Name: marcas; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY marcas (id, nombre, descripcion, estado, fecha, id_padre) FROM stdin;
@@ -4729,18 +5198,18 @@ COPY marcas (id, nombre, descripcion, estado, fecha, id_padre) FROM stdin;
 
 
 --
--- TOC entry 3146 (class 0 OID 0)
--- Dependencies: 253
--- Name: marcas_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4097 (class 0 OID 0)
+-- Dependencies: 256
+-- Name: marcas_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('marcas_id_seq', 1, true);
 
 
 --
--- TOC entry 2932 (class 0 OID 48452)
--- Dependencies: 254
--- Data for Name: modelos; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3876 (class 0 OID 26660)
+-- Dependencies: 257
+-- Data for Name: modelos; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY modelos (id, nombre, descripcion, estado, fecha, id_padre) FROM stdin;
@@ -4749,18 +5218,18 @@ COPY modelos (id, nombre, descripcion, estado, fecha, id_padre) FROM stdin;
 
 
 --
--- TOC entry 3147 (class 0 OID 0)
--- Dependencies: 255
--- Name: modelos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4098 (class 0 OID 0)
+-- Dependencies: 258
+-- Name: modelos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('modelos_id_seq', 1, true);
 
 
 --
--- TOC entry 2934 (class 0 OID 48461)
--- Dependencies: 256
--- Data for Name: productos; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3878 (class 0 OID 26669)
+-- Dependencies: 259
+-- Data for Name: productos; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY productos (id, nombre_corto, vendible, comprable, precio, costo, estado_descriptivo, categoria, garantia, marca, modelo, ubicacion, cantidad, descripcion, codigo_baras, tipo_consumo, bodega) FROM stdin;
@@ -4768,18 +5237,18 @@ COPY productos (id, nombre_corto, vendible, comprable, precio, costo, estado_des
 
 
 --
--- TOC entry 3148 (class 0 OID 0)
--- Dependencies: 257
--- Name: productos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4099 (class 0 OID 0)
+-- Dependencies: 260
+-- Name: productos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('productos_id_seq', 1, false);
 
 
 --
--- TOC entry 2936 (class 0 OID 48469)
--- Dependencies: 258
--- Data for Name: productos_impuestos; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3880 (class 0 OID 26677)
+-- Dependencies: 261
+-- Data for Name: productos_impuestos; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY productos_impuestos (id, producto, impuesto) FROM stdin;
@@ -4787,18 +5256,18 @@ COPY productos_impuestos (id, producto, impuesto) FROM stdin;
 
 
 --
--- TOC entry 3149 (class 0 OID 0)
--- Dependencies: 259
--- Name: productos_impuestos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4100 (class 0 OID 0)
+-- Dependencies: 262
+-- Name: productos_impuestos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('productos_impuestos_id_seq', 1, false);
 
 
 --
--- TOC entry 2938 (class 0 OID 48474)
--- Dependencies: 260
--- Data for Name: proveedores; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3882 (class 0 OID 26682)
+-- Dependencies: 263
+-- Data for Name: proveedores; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY proveedores (id, nombre, ruc, direccion, id_empresa) FROM stdin;
@@ -4806,18 +5275,18 @@ COPY proveedores (id, nombre, ruc, direccion, id_empresa) FROM stdin;
 
 
 --
--- TOC entry 3150 (class 0 OID 0)
--- Dependencies: 261
--- Name: proveedores_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4101 (class 0 OID 0)
+-- Dependencies: 264
+-- Name: proveedores_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('proveedores_id_seq', 1, false);
 
 
 --
--- TOC entry 2940 (class 0 OID 48482)
--- Dependencies: 262
--- Data for Name: tipo_consumo; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3884 (class 0 OID 26690)
+-- Dependencies: 265
+-- Data for Name: tipo_consumo; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY tipo_consumo (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -4831,18 +5300,18 @@ COPY tipo_consumo (id, nombre, descripcion, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3151 (class 0 OID 0)
--- Dependencies: 263
--- Name: tipo_consumo_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4102 (class 0 OID 0)
+-- Dependencies: 266
+-- Name: tipo_consumo_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipo_consumo_id_seq', 7, true);
 
 
 --
--- TOC entry 2942 (class 0 OID 48491)
--- Dependencies: 264
--- Data for Name: tipos_catalogos; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3886 (class 0 OID 26699)
+-- Dependencies: 267
+-- Data for Name: tipos_catalogos; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY tipos_catalogos (id, nombre, descripcion, fecha_inicio, fecha_fin, estado, fecha) FROM stdin;
@@ -4850,18 +5319,18 @@ COPY tipos_catalogos (id, nombre, descripcion, fecha_inicio, fecha_fin, estado, 
 
 
 --
--- TOC entry 3152 (class 0 OID 0)
--- Dependencies: 265
--- Name: tipos_catalogos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4103 (class 0 OID 0)
+-- Dependencies: 268
+-- Name: tipos_catalogos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipos_catalogos_id_seq', 1, false);
 
 
 --
--- TOC entry 2944 (class 0 OID 48500)
--- Dependencies: 266
--- Data for Name: tipos_categorias; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3888 (class 0 OID 26708)
+-- Dependencies: 269
+-- Data for Name: tipos_categorias; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY tipos_categorias (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -4870,18 +5339,18 @@ COPY tipos_categorias (id, nombre, descripcion, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3153 (class 0 OID 0)
--- Dependencies: 267
--- Name: tipos_categorias_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4104 (class 0 OID 0)
+-- Dependencies: 270
+-- Name: tipos_categorias_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipos_categorias_id_seq', 3, true);
 
 
 --
--- TOC entry 2946 (class 0 OID 48509)
--- Dependencies: 268
--- Data for Name: tipos_garantias; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3890 (class 0 OID 26717)
+-- Dependencies: 271
+-- Data for Name: tipos_garantias; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY tipos_garantias (id, nombre, descripcion, fecha, estado) FROM stdin;
@@ -4890,18 +5359,18 @@ COPY tipos_garantias (id, nombre, descripcion, fecha, estado) FROM stdin;
 
 
 --
--- TOC entry 3154 (class 0 OID 0)
--- Dependencies: 269
--- Name: tipos_garantias_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4105 (class 0 OID 0)
+-- Dependencies: 272
+-- Name: tipos_garantias_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipos_garantias_id_seq', 1, true);
 
 
 --
--- TOC entry 2948 (class 0 OID 48518)
--- Dependencies: 270
--- Data for Name: tipos_imagenes_productos; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3892 (class 0 OID 26726)
+-- Dependencies: 273
+-- Data for Name: tipos_imagenes_productos; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY tipos_imagenes_productos (id, nombre, estado, fecha) FROM stdin;
@@ -4909,18 +5378,18 @@ COPY tipos_imagenes_productos (id, nombre, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3155 (class 0 OID 0)
--- Dependencies: 271
--- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4106 (class 0 OID 0)
+-- Dependencies: 274
+-- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipos_imagenes_productos_id_seq', 1, false);
 
 
 --
--- TOC entry 2950 (class 0 OID 48524)
--- Dependencies: 272
--- Data for Name: tipos_productos; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3894 (class 0 OID 26732)
+-- Dependencies: 275
+-- Data for Name: tipos_productos; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY tipos_productos (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -4928,18 +5397,18 @@ COPY tipos_productos (id, nombre, descripcion, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3156 (class 0 OID 0)
--- Dependencies: 273
--- Name: tipos_productos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4107 (class 0 OID 0)
+-- Dependencies: 276
+-- Name: tipos_productos_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipos_productos_id_seq', 1, false);
 
 
 --
--- TOC entry 2952 (class 0 OID 48533)
--- Dependencies: 274
--- Data for Name: tipos_tipo_consumo; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3896 (class 0 OID 26741)
+-- Dependencies: 277
+-- Data for Name: tipos_tipo_consumo; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY tipos_tipo_consumo (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -4947,18 +5416,18 @@ COPY tipos_tipo_consumo (id, nombre, descripcion, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3157 (class 0 OID 0)
--- Dependencies: 275
--- Name: tipos_tipo_consumo_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4108 (class 0 OID 0)
+-- Dependencies: 278
+-- Name: tipos_tipo_consumo_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipos_tipo_consumo_id_seq', 1, false);
 
 
 --
--- TOC entry 2954 (class 0 OID 48542)
--- Dependencies: 276
--- Data for Name: ubicaciones; Type: TABLE DATA; Schema: inventario; Owner: -
+-- TOC entry 3898 (class 0 OID 26750)
+-- Dependencies: 279
+-- Data for Name: ubicaciones; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
 COPY ubicaciones (id, nombre, descripcion, id_padre, estado, fecha) FROM stdin;
@@ -4967,9 +5436,9 @@ COPY ubicaciones (id, nombre, descripcion, id_padre, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3158 (class 0 OID 0)
--- Dependencies: 277
--- Name: ubicaciones_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: -
+-- TOC entry 4109 (class 0 OID 0)
+-- Dependencies: 280
+-- Name: ubicaciones_id_seq; Type: SEQUENCE SET; Schema: inventario; Owner: postgres
 --
 
 SELECT pg_catalog.setval('ubicaciones_id_seq', 1, true);
@@ -4978,9 +5447,9 @@ SELECT pg_catalog.setval('ubicaciones_id_seq', 1, true);
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2956 (class 0 OID 48552)
--- Dependencies: 278
--- Data for Name: estados; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3900 (class 0 OID 26760)
+-- Dependencies: 281
+-- Data for Name: estados; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY estados (id, nombre, descripcion, fecha) FROM stdin;
@@ -4996,9 +5465,9 @@ FCP	Cancelado	Factura cancelada o pagada en su totalidad	2017-04-24
 
 
 --
--- TOC entry 2957 (class 0 OID 48556)
--- Dependencies: 279
--- Data for Name: operadoras_telefonicas; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3901 (class 0 OID 26764)
+-- Dependencies: 282
+-- Data for Name: operadoras_telefonicas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY operadoras_telefonicas (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -5010,18 +5479,18 @@ COPY operadoras_telefonicas (id, nombre, descripcion, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3159 (class 0 OID 0)
--- Dependencies: 280
--- Name: operadoras_telefonicas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 4110 (class 0 OID 0)
+-- Dependencies: 283
+-- Name: operadoras_telefonicas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('operadoras_telefonicas_id_seq', 1, false);
 
 
 --
--- TOC entry 2959 (class 0 OID 48565)
--- Dependencies: 281
--- Data for Name: personas; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3903 (class 0 OID 26773)
+-- Dependencies: 284
+-- Data for Name: personas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY personas (id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, id_localidad, calle, transversal, numero) FROM stdin;
@@ -5030,9 +5499,9 @@ COPY personas (id, primer_nombre, segundo_nombre, primer_apellido, segundo_apell
 
 
 --
--- TOC entry 2960 (class 0 OID 48571)
--- Dependencies: 282
--- Data for Name: personas_correo_electronico; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3904 (class 0 OID 26779)
+-- Dependencies: 285
+-- Data for Name: personas_correo_electronico; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY personas_correo_electronico (id, id_persona, correo_electronico, estado, fecha) FROM stdin;
@@ -5040,18 +5509,18 @@ COPY personas_correo_electronico (id, id_persona, correo_electronico, estado, fe
 
 
 --
--- TOC entry 3160 (class 0 OID 0)
--- Dependencies: 283
--- Name: personas_correo_electronico_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 4111 (class 0 OID 0)
+-- Dependencies: 286
+-- Name: personas_correo_electronico_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('personas_correo_electronico_id_seq', 1, false);
 
 
 --
--- TOC entry 2962 (class 0 OID 48577)
--- Dependencies: 284
--- Data for Name: personas_documentos_identificacion; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3906 (class 0 OID 26785)
+-- Dependencies: 287
+-- Data for Name: personas_documentos_identificacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY personas_documentos_identificacion (id, id_persona, id_tipo_documento, numero_identificacion, estado, fecha) FROM stdin;
@@ -5060,27 +5529,27 @@ COPY personas_documentos_identificacion (id, id_persona, id_tipo_documento, nume
 
 
 --
--- TOC entry 3161 (class 0 OID 0)
--- Dependencies: 285
--- Name: personas_documentos_identificacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 4112 (class 0 OID 0)
+-- Dependencies: 288
+-- Name: personas_documentos_identificacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('personas_documentos_identificacion_id_seq', 1, true);
 
 
 --
--- TOC entry 3162 (class 0 OID 0)
--- Dependencies: 286
--- Name: personas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 4113 (class 0 OID 0)
+-- Dependencies: 289
+-- Name: personas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('personas_id_seq', 2, true);
 
 
 --
--- TOC entry 2965 (class 0 OID 48585)
--- Dependencies: 287
--- Data for Name: telefonos_personas; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3909 (class 0 OID 26793)
+-- Dependencies: 290
+-- Data for Name: telefonos_personas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY telefonos_personas (id, id_persona, numero, fecha, estado, id_operadora_telefonica) FROM stdin;
@@ -5088,18 +5557,18 @@ COPY telefonos_personas (id, id_persona, numero, fecha, estado, id_operadora_tel
 
 
 --
--- TOC entry 3163 (class 0 OID 0)
--- Dependencies: 288
--- Name: telefonos_personas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 4114 (class 0 OID 0)
+-- Dependencies: 291
+-- Name: telefonos_personas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('telefonos_personas_id_seq', 1, false);
 
 
 --
--- TOC entry 2967 (class 0 OID 48591)
--- Dependencies: 289
--- Data for Name: tipo_documento_identificacion; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3911 (class 0 OID 26799)
+-- Dependencies: 292
+-- Data for Name: tipo_documento_identificacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY tipo_documento_identificacion (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -5110,9 +5579,9 @@ COPY tipo_documento_identificacion (id, nombre, descripcion, estado, fecha) FROM
 
 
 --
--- TOC entry 3164 (class 0 OID 0)
--- Dependencies: 290
--- Name: tipo_documento_identificaion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 4115 (class 0 OID 0)
+-- Dependencies: 293
+-- Name: tipo_documento_identificaion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipo_documento_identificaion_id_seq', 1, false);
@@ -5121,9 +5590,9 @@ SELECT pg_catalog.setval('tipo_documento_identificaion_id_seq', 1, false);
 SET search_path = talento_humano, pg_catalog;
 
 --
--- TOC entry 2970 (class 0 OID 48622)
--- Dependencies: 295
--- Data for Name: cargos; Type: TABLE DATA; Schema: talento_humano; Owner: -
+-- TOC entry 3914 (class 0 OID 26830)
+-- Dependencies: 298
+-- Data for Name: cargos; Type: TABLE DATA; Schema: talento_humano; Owner: postgres
 --
 
 COPY cargos (id, nombre, estado, fecha, id_padre) FROM stdin;
@@ -5132,18 +5601,18 @@ COPY cargos (id, nombre, estado, fecha, id_padre) FROM stdin;
 
 
 --
--- TOC entry 3165 (class 0 OID 0)
--- Dependencies: 296
--- Name: cargos_id_seq; Type: SEQUENCE SET; Schema: talento_humano; Owner: -
+-- TOC entry 4116 (class 0 OID 0)
+-- Dependencies: 299
+-- Name: cargos_id_seq; Type: SEQUENCE SET; Schema: talento_humano; Owner: postgres
 --
 
 SELECT pg_catalog.setval('cargos_id_seq', 1, false);
 
 
 --
--- TOC entry 2972 (class 0 OID 48628)
--- Dependencies: 297
--- Data for Name: empleados; Type: TABLE DATA; Schema: talento_humano; Owner: -
+-- TOC entry 3916 (class 0 OID 26836)
+-- Dependencies: 300
+-- Data for Name: empleados; Type: TABLE DATA; Schema: talento_humano; Owner: postgres
 --
 
 COPY empleados (id, id_persona, estado, fecha, id_usuario, id_cargo) FROM stdin;
@@ -5152,18 +5621,18 @@ COPY empleados (id, id_persona, estado, fecha, id_usuario, id_cargo) FROM stdin;
 
 
 --
--- TOC entry 3166 (class 0 OID 0)
--- Dependencies: 298
--- Name: empleados_id_seq; Type: SEQUENCE SET; Schema: talento_humano; Owner: -
+-- TOC entry 4117 (class 0 OID 0)
+-- Dependencies: 301
+-- Name: empleados_id_seq; Type: SEQUENCE SET; Schema: talento_humano; Owner: postgres
 --
 
 SELECT pg_catalog.setval('empleados_id_seq', 6, true);
 
 
 --
--- TOC entry 2974 (class 0 OID 48638)
--- Dependencies: 300
--- Data for Name: jornadas_de_trabajo; Type: TABLE DATA; Schema: talento_humano; Owner: -
+-- TOC entry 3918 (class 0 OID 26846)
+-- Dependencies: 303
+-- Data for Name: jornadas_de_trabajo; Type: TABLE DATA; Schema: talento_humano; Owner: postgres
 --
 
 COPY jornadas_de_trabajo (id, nombre, descripcion, porsentaje_cobro, hora_inicio, hora_fin, hora_descanso) FROM stdin;
@@ -5171,18 +5640,18 @@ COPY jornadas_de_trabajo (id, nombre, descripcion, porsentaje_cobro, hora_inicio
 
 
 --
--- TOC entry 3167 (class 0 OID 0)
--- Dependencies: 301
--- Name: jornadas_de_trabajo_id_seq; Type: SEQUENCE SET; Schema: talento_humano; Owner: -
+-- TOC entry 4118 (class 0 OID 0)
+-- Dependencies: 304
+-- Name: jornadas_de_trabajo_id_seq; Type: SEQUENCE SET; Schema: talento_humano; Owner: postgres
 --
 
 SELECT pg_catalog.setval('jornadas_de_trabajo_id_seq', 1, false);
 
 
 --
--- TOC entry 2976 (class 0 OID 48646)
--- Dependencies: 302
--- Data for Name: tipos_contratos; Type: TABLE DATA; Schema: talento_humano; Owner: -
+-- TOC entry 3920 (class 0 OID 26854)
+-- Dependencies: 305
+-- Data for Name: tipos_contratos; Type: TABLE DATA; Schema: talento_humano; Owner: postgres
 --
 
 COPY tipos_contratos (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -5197,9 +5666,9 @@ COPY tipos_contratos (id, nombre, descripcion, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3168 (class 0 OID 0)
--- Dependencies: 303
--- Name: tipos_contratos_id_seq; Type: SEQUENCE SET; Schema: talento_humano; Owner: -
+-- TOC entry 4119 (class 0 OID 0)
+-- Dependencies: 306
+-- Name: tipos_contratos_id_seq; Type: SEQUENCE SET; Schema: talento_humano; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipos_contratos_id_seq', 8, true);
@@ -5208,9 +5677,9 @@ SELECT pg_catalog.setval('tipos_contratos_id_seq', 8, true);
 SET search_path = usuarios, pg_catalog;
 
 --
--- TOC entry 2978 (class 0 OID 48655)
--- Dependencies: 304
--- Data for Name: tipo_usuario; Type: TABLE DATA; Schema: usuarios; Owner: -
+-- TOC entry 3922 (class 0 OID 26863)
+-- Dependencies: 307
+-- Data for Name: tipo_usuario; Type: TABLE DATA; Schema: usuarios; Owner: postgres
 --
 
 COPY tipo_usuario (id, nombre, descripcion, estado, fecha) FROM stdin;
@@ -5219,18 +5688,18 @@ COPY tipo_usuario (id, nombre, descripcion, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3169 (class 0 OID 0)
--- Dependencies: 305
--- Name: tipo_usuario_id_seq; Type: SEQUENCE SET; Schema: usuarios; Owner: -
+-- TOC entry 4120 (class 0 OID 0)
+-- Dependencies: 308
+-- Name: tipo_usuario_id_seq; Type: SEQUENCE SET; Schema: usuarios; Owner: postgres
 --
 
 SELECT pg_catalog.setval('tipo_usuario_id_seq', 1, true);
 
 
 --
--- TOC entry 2980 (class 0 OID 48664)
--- Dependencies: 306
--- Data for Name: usuarios; Type: TABLE DATA; Schema: usuarios; Owner: -
+-- TOC entry 3924 (class 0 OID 26872)
+-- Dependencies: 309
+-- Data for Name: usuarios; Type: TABLE DATA; Schema: usuarios; Owner: postgres
 --
 
 COPY usuarios (id, nick, clave_clave, id_estado, fecha_creacion, estado_clave, id_tipo_usuario) FROM stdin;
@@ -5241,9 +5710,9 @@ usuario prueba 1	prueba	123455	A	\N	t	1
 SET search_path = ventas, pg_catalog;
 
 --
--- TOC entry 2981 (class 0 OID 48668)
--- Dependencies: 307
--- Data for Name: caja; Type: TABLE DATA; Schema: ventas; Owner: -
+-- TOC entry 3925 (class 0 OID 26876)
+-- Dependencies: 310
+-- Data for Name: caja; Type: TABLE DATA; Schema: ventas; Owner: postgres
 --
 
 COPY caja (id, nombre, id_sucursal, inicio_numero_factura, numero_fin_factura, estado, fecha) FROM stdin;
@@ -5251,18 +5720,18 @@ COPY caja (id, nombre, id_sucursal, inicio_numero_factura, numero_fin_factura, e
 
 
 --
--- TOC entry 3170 (class 0 OID 0)
--- Dependencies: 308
--- Name: caja_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: -
+-- TOC entry 4121 (class 0 OID 0)
+-- Dependencies: 311
+-- Name: caja_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
 --
 
 SELECT pg_catalog.setval('caja_id_seq', 1, false);
 
 
 --
--- TOC entry 2983 (class 0 OID 48674)
--- Dependencies: 309
--- Data for Name: caja_usuario; Type: TABLE DATA; Schema: ventas; Owner: -
+-- TOC entry 3927 (class 0 OID 26882)
+-- Dependencies: 312
+-- Data for Name: caja_usuario; Type: TABLE DATA; Schema: ventas; Owner: postgres
 --
 
 COPY caja_usuario (id_caja, id_usuario, id_empleado, estado, fecha) FROM stdin;
@@ -5270,9 +5739,9 @@ COPY caja_usuario (id_caja, id_usuario, id_empleado, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 2984 (class 0 OID 48678)
--- Dependencies: 310
--- Data for Name: clave_factura; Type: TABLE DATA; Schema: ventas; Owner: -
+-- TOC entry 3928 (class 0 OID 26886)
+-- Dependencies: 313
+-- Data for Name: clave_factura; Type: TABLE DATA; Schema: ventas; Owner: postgres
 --
 
 COPY clave_factura (id, id_factura, clave_factura, estado, fecha) FROM stdin;
@@ -5280,18 +5749,18 @@ COPY clave_factura (id, id_factura, clave_factura, estado, fecha) FROM stdin;
 
 
 --
--- TOC entry 3171 (class 0 OID 0)
--- Dependencies: 311
--- Name: clave_factura_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: -
+-- TOC entry 4122 (class 0 OID 0)
+-- Dependencies: 314
+-- Name: clave_factura_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
 --
 
 SELECT pg_catalog.setval('clave_factura_id_seq', 1, false);
 
 
 --
--- TOC entry 2986 (class 0 OID 48684)
--- Dependencies: 312
--- Data for Name: detalle_factura; Type: TABLE DATA; Schema: ventas; Owner: -
+-- TOC entry 3930 (class 0 OID 26892)
+-- Dependencies: 315
+-- Data for Name: detalle_factura; Type: TABLE DATA; Schema: ventas; Owner: postgres
 --
 
 COPY detalle_factura (id, id_factura, id_producto, precio_venta, cantidad, descuento, subtotal_item) FROM stdin;
@@ -5299,18 +5768,18 @@ COPY detalle_factura (id, id_factura, id_producto, precio_venta, cantidad, descu
 
 
 --
--- TOC entry 3172 (class 0 OID 0)
--- Dependencies: 313
--- Name: detalle_factura_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: -
+-- TOC entry 4123 (class 0 OID 0)
+-- Dependencies: 316
+-- Name: detalle_factura_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
 --
 
 SELECT pg_catalog.setval('detalle_factura_id_seq', 1, false);
 
 
 --
--- TOC entry 2988 (class 0 OID 48689)
--- Dependencies: 314
--- Data for Name: empleado_factura; Type: TABLE DATA; Schema: ventas; Owner: -
+-- TOC entry 3932 (class 0 OID 26897)
+-- Dependencies: 317
+-- Data for Name: empleado_factura; Type: TABLE DATA; Schema: ventas; Owner: postgres
 --
 
 COPY empleado_factura (id_empleado, id_factura, fecha) FROM stdin;
@@ -5318,9 +5787,9 @@ COPY empleado_factura (id_empleado, id_factura, fecha) FROM stdin;
 
 
 --
--- TOC entry 2989 (class 0 OID 48693)
--- Dependencies: 315
--- Data for Name: facturas; Type: TABLE DATA; Schema: ventas; Owner: -
+-- TOC entry 3933 (class 0 OID 26901)
+-- Dependencies: 318
+-- Data for Name: facturas; Type: TABLE DATA; Schema: ventas; Owner: postgres
 --
 
 COPY facturas (id, numero_factura, numero_autorizacion, ruc_emisor, denominacion, direccion_matriz, direccion_sucursal, fecha_autorizacion, fecha_emicion, guia_remision, fecha_caducidad_factura, datos_imprenta, subtotal_iva, subtotal_sin_iva, descuentos, valor_iva, ice, total, estado, id_cliente) FROM stdin;
@@ -5328,18 +5797,18 @@ COPY facturas (id, numero_factura, numero_autorizacion, ruc_emisor, denominacion
 
 
 --
--- TOC entry 3173 (class 0 OID 0)
--- Dependencies: 316
--- Name: facturas_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: -
+-- TOC entry 4124 (class 0 OID 0)
+-- Dependencies: 319
+-- Name: facturas_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
 --
 
 SELECT pg_catalog.setval('facturas_id_seq', 1, false);
 
 
 --
--- TOC entry 2969 (class 0 OID 48605)
--- Dependencies: 292
--- Data for Name: formas_pago; Type: TABLE DATA; Schema: ventas; Owner: -
+-- TOC entry 3913 (class 0 OID 26813)
+-- Dependencies: 295
+-- Data for Name: formas_pago; Type: TABLE DATA; Schema: ventas; Owner: postgres
 --
 
 COPY formas_pago (id, nombre, codigo_sri, descripcion, estado, fecha, id_padre) FROM stdin;
@@ -5357,9 +5826,9 @@ COPY formas_pago (id, nombre, codigo_sri, descripcion, estado, fecha, id_padre) 
 
 
 --
--- TOC entry 2991 (class 0 OID 48702)
--- Dependencies: 317
--- Data for Name: formas_pago_facturas; Type: TABLE DATA; Schema: ventas; Owner: -
+-- TOC entry 3935 (class 0 OID 26910)
+-- Dependencies: 320
+-- Data for Name: formas_pago_facturas; Type: TABLE DATA; Schema: ventas; Owner: postgres
 --
 
 COPY formas_pago_facturas (id, id_factura, id_formas_pago) FROM stdin;
@@ -5367,27 +5836,27 @@ COPY formas_pago_facturas (id, id_factura, id_formas_pago) FROM stdin;
 
 
 --
--- TOC entry 3174 (class 0 OID 0)
--- Dependencies: 318
--- Name: formas_pago_facturas_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: -
+-- TOC entry 4125 (class 0 OID 0)
+-- Dependencies: 321
+-- Name: formas_pago_facturas_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
 --
 
 SELECT pg_catalog.setval('formas_pago_facturas_id_seq', 1, false);
 
 
 --
--- TOC entry 3175 (class 0 OID 0)
--- Dependencies: 319
--- Name: formas_pago_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: -
+-- TOC entry 4126 (class 0 OID 0)
+-- Dependencies: 322
+-- Name: formas_pago_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
 --
 
 SELECT pg_catalog.setval('formas_pago_id_seq', 14, true);
 
 
 --
--- TOC entry 2994 (class 0 OID 48709)
--- Dependencies: 320
--- Data for Name: producto_descuento; Type: TABLE DATA; Schema: ventas; Owner: -
+-- TOC entry 3938 (class 0 OID 26917)
+-- Dependencies: 323
+-- Data for Name: producto_descuento; Type: TABLE DATA; Schema: ventas; Owner: postgres
 --
 
 COPY producto_descuento (id, id_producto, id_catalogo, estado, fecha_fin_descuento, fecha_inicio_descuento) FROM stdin;
@@ -5395,19 +5864,30 @@ COPY producto_descuento (id, id_producto, id_catalogo, estado, fecha_fin_descuen
 
 
 --
--- TOC entry 3176 (class 0 OID 0)
--- Dependencies: 321
--- Name: producto_descuento_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: -
+-- TOC entry 4127 (class 0 OID 0)
+-- Dependencies: 324
+-- Name: producto_descuento_id_seq; Type: SEQUENCE SET; Schema: ventas; Owner: postgres
 --
 
 SELECT pg_catalog.setval('producto_descuento_id_seq', 1, false);
 
 
+SET search_path = "Taller_mecanico", pg_catalog;
+
+--
+-- TOC entry 3381 (class 2606 OID 26990)
+-- Name: Aseguradora_PK; Type: CONSTRAINT; Schema: Taller_mecanico; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Aseguradora"
+    ADD CONSTRAINT "Aseguradora_PK" PRIMARY KEY (id);
+
+
 SET search_path = administracion, pg_catalog;
 
 --
--- TOC entry 2442 (class 2606 OID 48781)
--- Name: actividad_economica_PK; Type: CONSTRAINT; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 3383 (class 2606 OID 26992)
+-- Name: actividad_economica_PK; Type: CONSTRAINT; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY actividad_economica
@@ -5415,8 +5895,8 @@ ALTER TABLE ONLY actividad_economica
 
 
 --
--- TOC entry 2444 (class 2606 OID 48783)
--- Name: clientes_PK; Type: CONSTRAINT; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 3385 (class 2606 OID 26994)
+-- Name: clientes_PK; Type: CONSTRAINT; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY clientes
@@ -5424,8 +5904,8 @@ ALTER TABLE ONLY clientes
 
 
 --
--- TOC entry 2446 (class 2606 OID 48785)
--- Name: empresas_PK; Type: CONSTRAINT; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 3387 (class 2606 OID 26996)
+-- Name: empresas_PK; Type: CONSTRAINT; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY empresas
@@ -5433,8 +5913,8 @@ ALTER TABLE ONLY empresas
 
 
 --
--- TOC entry 2452 (class 2606 OID 48787)
--- Name: id_tipo_accion_vista_PK; Type: CONSTRAINT; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 3393 (class 2606 OID 26998)
+-- Name: id_tipo_accion_vista_PK; Type: CONSTRAINT; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipo_accion_vista
@@ -5442,8 +5922,8 @@ ALTER TABLE ONLY tipo_accion_vista
 
 
 --
--- TOC entry 2450 (class 2606 OID 48789)
--- Name: imagen_empresa_PK; Type: CONSTRAINT; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 3391 (class 2606 OID 27000)
+-- Name: imagen_empresa_PK; Type: CONSTRAINT; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY imagen_empresa
@@ -5451,8 +5931,8 @@ ALTER TABLE ONLY imagen_empresa
 
 
 --
--- TOC entry 2454 (class 2606 OID 48791)
--- Name: tipo_bienes_servicios_PK; Type: CONSTRAINT; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 3395 (class 2606 OID 27002)
+-- Name: tipo_bienes_servicios_PK; Type: CONSTRAINT; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipo_bienes_servicios
@@ -5460,8 +5940,8 @@ ALTER TABLE ONLY tipo_bienes_servicios
 
 
 --
--- TOC entry 2456 (class 2606 OID 48793)
--- Name: tipo_empres; Type: CONSTRAINT; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 3397 (class 2606 OID 27004)
+-- Name: tipo_empres; Type: CONSTRAINT; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipo_empresa
@@ -5469,8 +5949,8 @@ ALTER TABLE ONLY tipo_empresa
 
 
 --
--- TOC entry 2458 (class 2606 OID 48795)
--- Name: tipo_imagen_producto_PK; Type: CONSTRAINT; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 3399 (class 2606 OID 27006)
+-- Name: tipo_imagen_producto_PK; Type: CONSTRAINT; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipos_imagenes_empresas
@@ -5478,8 +5958,8 @@ ALTER TABLE ONLY tipos_imagenes_empresas
 
 
 --
--- TOC entry 2460 (class 2606 OID 48797)
--- Name: usuarios_privilegios_PK; Type: CONSTRAINT; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 3401 (class 2606 OID 27008)
+-- Name: usuarios_privilegios_PK; Type: CONSTRAINT; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY usuarios_privilegios
@@ -5487,8 +5967,8 @@ ALTER TABLE ONLY usuarios_privilegios
 
 
 --
--- TOC entry 2448 (class 2606 OID 48799)
--- Name: valor_unico; Type: CONSTRAINT; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 3389 (class 2606 OID 27010)
+-- Name: valor_unico; Type: CONSTRAINT; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY empresas
@@ -5496,8 +5976,8 @@ ALTER TABLE ONLY empresas
 
 
 --
--- TOC entry 2462 (class 2606 OID 48801)
--- Name: vistas_PK; Type: CONSTRAINT; Schema: administracion; Owner: -; Tablespace: 
+-- TOC entry 3403 (class 2606 OID 27012)
+-- Name: vistas_PK; Type: CONSTRAINT; Schema: administracion; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY vistas
@@ -5507,8 +5987,8 @@ ALTER TABLE ONLY vistas
 SET search_path = auditoria, pg_catalog;
 
 --
--- TOC entry 2464 (class 2606 OID 48803)
--- Name: auditoria_pk; Type: CONSTRAINT; Schema: auditoria; Owner: -; Tablespace: 
+-- TOC entry 3405 (class 2606 OID 27014)
+-- Name: auditoria_pk; Type: CONSTRAINT; Schema: auditoria; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY auditoria
@@ -5516,8 +5996,8 @@ ALTER TABLE ONLY auditoria
 
 
 --
--- TOC entry 2466 (class 2606 OID 48805)
--- Name: ingreso_usuarios_PK; Type: CONSTRAINT; Schema: auditoria; Owner: -; Tablespace: 
+-- TOC entry 3407 (class 2606 OID 27016)
+-- Name: ingreso_usuarios_PK; Type: CONSTRAINT; Schema: auditoria; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY ingresos_usuarios
@@ -5527,8 +6007,8 @@ ALTER TABLE ONLY ingresos_usuarios
 SET search_path = contabilidad, pg_catalog;
 
 --
--- TOC entry 2470 (class 2606 OID 48807)
--- Name: ambito_impuesto_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3411 (class 2606 OID 27018)
+-- Name: ambito_impuesto_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY ambitos_impuestos
@@ -5536,8 +6016,8 @@ ALTER TABLE ONLY ambitos_impuestos
 
 
 --
--- TOC entry 2472 (class 2606 OID 48809)
--- Name: asiento_contable_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3413 (class 2606 OID 27020)
+-- Name: asiento_contable_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY asientos_contables_diario
@@ -5545,8 +6025,8 @@ ALTER TABLE ONLY asientos_contables_diario
 
 
 --
--- TOC entry 2474 (class 2606 OID 48811)
--- Name: bancos_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3415 (class 2606 OID 27022)
+-- Name: bancos_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY bancos
@@ -5554,8 +6034,8 @@ ALTER TABLE ONLY bancos
 
 
 --
--- TOC entry 2476 (class 2606 OID 48813)
--- Name: cuenta_contable_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3417 (class 2606 OID 27024)
+-- Name: cuenta_contable_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY cuentas_contables
@@ -5563,8 +6043,8 @@ ALTER TABLE ONLY cuentas_contables
 
 
 --
--- TOC entry 2492 (class 2606 OID 48815)
--- Name: facturas_pkey; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3433 (class 2606 OID 27026)
+-- Name: facturas_pkey; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY repositorio_facturas
@@ -5572,8 +6052,8 @@ ALTER TABLE ONLY repositorio_facturas
 
 
 --
--- TOC entry 2494 (class 2606 OID 48817)
--- Name: facturas_rechazadas_pkey; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3435 (class 2606 OID 27028)
+-- Name: facturas_rechazadas_pkey; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY repositorio_facturas_rechazadas
@@ -5581,8 +6061,8 @@ ALTER TABLE ONLY repositorio_facturas_rechazadas
 
 
 --
--- TOC entry 2480 (class 2606 OID 48819)
--- Name: fecha_declaracion_impuestos; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3421 (class 2606 OID 27030)
+-- Name: fecha_declaracion_impuestos; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY fecha_declaracion_ruc
@@ -5590,8 +6070,8 @@ ALTER TABLE ONLY fecha_declaracion_ruc
 
 
 --
--- TOC entry 2482 (class 2606 OID 48821)
--- Name: finaciamiento_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3423 (class 2606 OID 27032)
+-- Name: finaciamiento_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY finaciaminto
@@ -5599,8 +6079,8 @@ ALTER TABLE ONLY finaciaminto
 
 
 --
--- TOC entry 2484 (class 2606 OID 48823)
--- Name: gasto_mes_factura; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3425 (class 2606 OID 27034)
+-- Name: gasto_mes_factura; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY gasto_mes_repositorio
@@ -5608,8 +6088,8 @@ ALTER TABLE ONLY gasto_mes_repositorio
 
 
 --
--- TOC entry 2486 (class 2606 OID 48825)
--- Name: gastos_impueto_renta_deducion_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3427 (class 2606 OID 27036)
+-- Name: gastos_impueto_renta_deducion_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY gastos_impuestos_renta_deduccion
@@ -5617,8 +6097,8 @@ ALTER TABLE ONLY gastos_impuestos_renta_deduccion
 
 
 --
--- TOC entry 2504 (class 2606 OID 48827)
--- Name: gastos_personales_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3445 (class 2606 OID 27038)
+-- Name: gastos_personales_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipos_gastos_personales
@@ -5626,8 +6106,8 @@ ALTER TABLE ONLY tipos_gastos_personales
 
 
 --
--- TOC entry 2488 (class 2606 OID 48829)
--- Name: grupo_impuesto_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3429 (class 2606 OID 27040)
+-- Name: grupo_impuesto_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY grupo_impuestos
@@ -5635,8 +6115,8 @@ ALTER TABLE ONLY grupo_impuestos
 
 
 --
--- TOC entry 2490 (class 2606 OID 48831)
--- Name: impuesto_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3431 (class 2606 OID 27042)
+-- Name: impuesto_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY impuestos
@@ -5644,8 +6124,8 @@ ALTER TABLE ONLY impuestos
 
 
 --
--- TOC entry 2468 (class 2606 OID 48833)
--- Name: plazos_credito_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3409 (class 2606 OID 27044)
+-- Name: plazos_credito_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY plazos_credito
@@ -5653,8 +6133,8 @@ ALTER TABLE ONLY plazos_credito
 
 
 --
--- TOC entry 2478 (class 2606 OID 48835)
--- Name: repositorio_facturas_correo_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3419 (class 2606 OID 27046)
+-- Name: repositorio_facturas_correo_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY repositorio_facturas_correo
@@ -5662,8 +6142,8 @@ ALTER TABLE ONLY repositorio_facturas_correo
 
 
 --
--- TOC entry 2496 (class 2606 OID 48837)
--- Name: rol_pagos_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3437 (class 2606 OID 27048)
+-- Name: rol_pagos_PK; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY rol_pagos_empleados
@@ -5671,8 +6151,8 @@ ALTER TABLE ONLY rol_pagos_empleados
 
 
 --
--- TOC entry 2498 (class 2606 OID 48839)
--- Name: tipo_cueta_contable; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3439 (class 2606 OID 27050)
+-- Name: tipo_cueta_contable; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipos_cuentas_contables
@@ -5680,8 +6160,8 @@ ALTER TABLE ONLY tipos_cuentas_contables
 
 
 --
--- TOC entry 2500 (class 2606 OID 48841)
--- Name: tipo_documentos_pkey; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3441 (class 2606 OID 27052)
+-- Name: tipo_documentos_pkey; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipo_documentos
@@ -5689,8 +6169,8 @@ ALTER TABLE ONLY tipo_documentos
 
 
 --
--- TOC entry 2502 (class 2606 OID 48843)
--- Name: tipo_impuestos_pkey; Type: CONSTRAINT; Schema: contabilidad; Owner: -; Tablespace: 
+-- TOC entry 3443 (class 2606 OID 27054)
+-- Name: tipo_impuestos_pkey; Type: CONSTRAINT; Schema: contabilidad; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipo_impuestos
@@ -5700,8 +6180,8 @@ ALTER TABLE ONLY tipo_impuestos
 SET search_path = inventario, pg_catalog;
 
 --
--- TOC entry 2506 (class 2606 OID 48845)
--- Name: bodega_pro_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3447 (class 2606 OID 27056)
+-- Name: bodega_pro_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY bodegas
@@ -5709,8 +6189,8 @@ ALTER TABLE ONLY bodegas
 
 
 --
--- TOC entry 2510 (class 2606 OID 48847)
--- Name: categorias_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3451 (class 2606 OID 27058)
+-- Name: categorias_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY categorias
@@ -5718,8 +6198,8 @@ ALTER TABLE ONLY categorias
 
 
 --
--- TOC entry 2512 (class 2606 OID 48849)
--- Name: descripcion_producto_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3453 (class 2606 OID 27060)
+-- Name: descripcion_producto_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY descripcion_producto
@@ -5727,8 +6207,8 @@ ALTER TABLE ONLY descripcion_producto
 
 
 --
--- TOC entry 2514 (class 2606 OID 48851)
--- Name: estado_descriptivo_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3455 (class 2606 OID 27062)
+-- Name: estado_descriptivo_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY estado_descriptivo
@@ -5736,8 +6216,8 @@ ALTER TABLE ONLY estado_descriptivo
 
 
 --
--- TOC entry 2516 (class 2606 OID 48853)
--- Name: garantia_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3457 (class 2606 OID 27064)
+-- Name: garantia_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY garantias
@@ -5745,8 +6225,8 @@ ALTER TABLE ONLY garantias
 
 
 --
--- TOC entry 2508 (class 2606 OID 48855)
--- Name: id; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3449 (class 2606 OID 27066)
+-- Name: id; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY catalogos
@@ -5754,8 +6234,8 @@ ALTER TABLE ONLY catalogos
 
 
 --
--- TOC entry 2518 (class 2606 OID 48857)
--- Name: imagenes_productos_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3459 (class 2606 OID 27068)
+-- Name: imagenes_productos_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY imagenes_productos
@@ -5763,8 +6243,8 @@ ALTER TABLE ONLY imagenes_productos
 
 
 --
--- TOC entry 2520 (class 2606 OID 48859)
--- Name: manejo_presios_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3461 (class 2606 OID 27070)
+-- Name: manejo_presios_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY manejo_presios
@@ -5772,8 +6252,8 @@ ALTER TABLE ONLY manejo_presios
 
 
 --
--- TOC entry 2522 (class 2606 OID 48861)
--- Name: marca_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3463 (class 2606 OID 27072)
+-- Name: marca_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY marcas
@@ -5781,8 +6261,8 @@ ALTER TABLE ONLY marcas
 
 
 --
--- TOC entry 2524 (class 2606 OID 48863)
--- Name: modelos_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3465 (class 2606 OID 27074)
+-- Name: modelos_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY modelos
@@ -5790,8 +6270,8 @@ ALTER TABLE ONLY modelos
 
 
 --
--- TOC entry 2526 (class 2606 OID 48865)
--- Name: producto_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3467 (class 2606 OID 27076)
+-- Name: producto_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY productos
@@ -5799,8 +6279,8 @@ ALTER TABLE ONLY productos
 
 
 --
--- TOC entry 2528 (class 2606 OID 48867)
--- Name: productos_impuestos_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3469 (class 2606 OID 27078)
+-- Name: productos_impuestos_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY productos_impuestos
@@ -5808,8 +6288,8 @@ ALTER TABLE ONLY productos_impuestos
 
 
 --
--- TOC entry 2530 (class 2606 OID 48869)
--- Name: proveedores_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3471 (class 2606 OID 27080)
+-- Name: proveedores_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY proveedores
@@ -5817,8 +6297,8 @@ ALTER TABLE ONLY proveedores
 
 
 --
--- TOC entry 2534 (class 2606 OID 48871)
--- Name: tipo_catalogo_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3475 (class 2606 OID 27082)
+-- Name: tipo_catalogo_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipos_catalogos
@@ -5826,8 +6306,8 @@ ALTER TABLE ONLY tipos_catalogos
 
 
 --
--- TOC entry 2532 (class 2606 OID 48873)
--- Name: tipo_consumo_pkey; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3473 (class 2606 OID 27084)
+-- Name: tipo_consumo_pkey; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipo_consumo
@@ -5835,8 +6315,8 @@ ALTER TABLE ONLY tipo_consumo
 
 
 --
--- TOC entry 2540 (class 2606 OID 48875)
--- Name: tipo_imagen_producto_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3481 (class 2606 OID 27086)
+-- Name: tipo_imagen_producto_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipos_imagenes_productos
@@ -5844,8 +6324,8 @@ ALTER TABLE ONLY tipos_imagenes_productos
 
 
 --
--- TOC entry 2542 (class 2606 OID 48877)
--- Name: tipo_pruducto_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3483 (class 2606 OID 27088)
+-- Name: tipo_pruducto_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipos_productos
@@ -5853,8 +6333,8 @@ ALTER TABLE ONLY tipos_productos
 
 
 --
--- TOC entry 2536 (class 2606 OID 48879)
--- Name: tipos_categorias_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3477 (class 2606 OID 27090)
+-- Name: tipos_categorias_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipos_categorias
@@ -5862,8 +6342,8 @@ ALTER TABLE ONLY tipos_categorias
 
 
 --
--- TOC entry 2538 (class 2606 OID 48881)
--- Name: tipos_garantia_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3479 (class 2606 OID 27092)
+-- Name: tipos_garantia_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipos_garantias
@@ -5871,8 +6351,8 @@ ALTER TABLE ONLY tipos_garantias
 
 
 --
--- TOC entry 2544 (class 2606 OID 48883)
--- Name: tipos_tipo_consumo_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3485 (class 2606 OID 27094)
+-- Name: tipos_tipo_consumo_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipos_tipo_consumo
@@ -5880,8 +6360,8 @@ ALTER TABLE ONLY tipos_tipo_consumo
 
 
 --
--- TOC entry 2546 (class 2606 OID 48885)
--- Name: ubicacion_PK; Type: CONSTRAINT; Schema: inventario; Owner: -; Tablespace: 
+-- TOC entry 3487 (class 2606 OID 27096)
+-- Name: ubicacion_PK; Type: CONSTRAINT; Schema: inventario; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY ubicaciones
@@ -5891,8 +6371,8 @@ ALTER TABLE ONLY ubicaciones
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2554 (class 2606 OID 48887)
--- Name: correo_elctronico_PK; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 3495 (class 2606 OID 27098)
+-- Name: correo_elctronico_PK; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY personas_correo_electronico
@@ -5900,8 +6380,8 @@ ALTER TABLE ONLY personas_correo_electronico
 
 
 --
--- TOC entry 2556 (class 2606 OID 48889)
--- Name: documeto_identificacion; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 3497 (class 2606 OID 27100)
+-- Name: documeto_identificacion; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY personas_documentos_identificacion
@@ -5909,8 +6389,8 @@ ALTER TABLE ONLY personas_documentos_identificacion
 
 
 --
--- TOC entry 2548 (class 2606 OID 48891)
--- Name: estado_PK; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 3489 (class 2606 OID 27102)
+-- Name: estado_PK; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY estados
@@ -5918,8 +6398,8 @@ ALTER TABLE ONLY estados
 
 
 --
--- TOC entry 2550 (class 2606 OID 48893)
--- Name: operadoras_telefonicas_PK; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 3491 (class 2606 OID 27104)
+-- Name: operadoras_telefonicas_PK; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY operadoras_telefonicas
@@ -5927,8 +6407,8 @@ ALTER TABLE ONLY operadoras_telefonicas
 
 
 --
--- TOC entry 2552 (class 2606 OID 48895)
--- Name: persona_PK; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 3493 (class 2606 OID 27106)
+-- Name: persona_PK; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY personas
@@ -5936,8 +6416,8 @@ ALTER TABLE ONLY personas
 
 
 --
--- TOC entry 2558 (class 2606 OID 48897)
--- Name: telefonos_personas_PK; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 3499 (class 2606 OID 27108)
+-- Name: telefonos_personas_PK; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY telefonos_personas
@@ -5945,8 +6425,8 @@ ALTER TABLE ONLY telefonos_personas
 
 
 --
--- TOC entry 2560 (class 2606 OID 48899)
--- Name: tipo_documento_identificacion_PK; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- TOC entry 3501 (class 2606 OID 27110)
+-- Name: tipo_documento_identificacion_PK; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipo_documento_identificacion
@@ -5956,8 +6436,8 @@ ALTER TABLE ONLY tipo_documento_identificacion
 SET search_path = talento_humano, pg_catalog;
 
 --
--- TOC entry 2566 (class 2606 OID 48901)
--- Name: empleado_PK; Type: CONSTRAINT; Schema: talento_humano; Owner: -; Tablespace: 
+-- TOC entry 3507 (class 2606 OID 27112)
+-- Name: empleado_PK; Type: CONSTRAINT; Schema: talento_humano; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY empleados
@@ -5965,8 +6445,8 @@ ALTER TABLE ONLY empleados
 
 
 --
--- TOC entry 2564 (class 2606 OID 48903)
--- Name: id_cargo_PK; Type: CONSTRAINT; Schema: talento_humano; Owner: -; Tablespace: 
+-- TOC entry 3505 (class 2606 OID 27114)
+-- Name: id_cargo_PK; Type: CONSTRAINT; Schema: talento_humano; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY cargos
@@ -5974,8 +6454,8 @@ ALTER TABLE ONLY cargos
 
 
 --
--- TOC entry 2568 (class 2606 OID 48905)
--- Name: jornada_trabajo_PK; Type: CONSTRAINT; Schema: talento_humano; Owner: -; Tablespace: 
+-- TOC entry 3509 (class 2606 OID 27116)
+-- Name: jornada_trabajo_PK; Type: CONSTRAINT; Schema: talento_humano; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY jornadas_de_trabajo
@@ -5983,8 +6463,8 @@ ALTER TABLE ONLY jornadas_de_trabajo
 
 
 --
--- TOC entry 2570 (class 2606 OID 48907)
--- Name: tipo_contrato_PK; Type: CONSTRAINT; Schema: talento_humano; Owner: -; Tablespace: 
+-- TOC entry 3511 (class 2606 OID 27118)
+-- Name: tipo_contrato_PK; Type: CONSTRAINT; Schema: talento_humano; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipos_contratos
@@ -5994,8 +6474,8 @@ ALTER TABLE ONLY tipos_contratos
 SET search_path = usuarios, pg_catalog;
 
 --
--- TOC entry 2572 (class 2606 OID 48909)
--- Name: tipo_usuario_PK; Type: CONSTRAINT; Schema: usuarios; Owner: -; Tablespace: 
+-- TOC entry 3513 (class 2606 OID 27120)
+-- Name: tipo_usuario_PK; Type: CONSTRAINT; Schema: usuarios; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipo_usuario
@@ -6003,8 +6483,8 @@ ALTER TABLE ONLY tipo_usuario
 
 
 --
--- TOC entry 2574 (class 2606 OID 48911)
--- Name: usuarios_PK; Type: CONSTRAINT; Schema: usuarios; Owner: -; Tablespace: 
+-- TOC entry 3515 (class 2606 OID 27122)
+-- Name: usuarios_PK; Type: CONSTRAINT; Schema: usuarios; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY usuarios
@@ -6014,8 +6494,8 @@ ALTER TABLE ONLY usuarios
 SET search_path = ventas, pg_catalog;
 
 --
--- TOC entry 2578 (class 2606 OID 48913)
--- Name: caja_usuario_PK; Type: CONSTRAINT; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 3519 (class 2606 OID 27124)
+-- Name: caja_usuario_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY caja_usuario
@@ -6023,8 +6503,8 @@ ALTER TABLE ONLY caja_usuario
 
 
 --
--- TOC entry 2582 (class 2606 OID 48915)
--- Name: detalle_factura_pkey; Type: CONSTRAINT; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 3523 (class 2606 OID 27126)
+-- Name: detalle_factura_pkey; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY detalle_factura
@@ -6032,8 +6512,8 @@ ALTER TABLE ONLY detalle_factura
 
 
 --
--- TOC entry 2584 (class 2606 OID 48917)
--- Name: empleado_factura_PK; Type: CONSTRAINT; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 3525 (class 2606 OID 27128)
+-- Name: empleado_factura_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY empleado_factura
@@ -6041,8 +6521,8 @@ ALTER TABLE ONLY empleado_factura
 
 
 --
--- TOC entry 2586 (class 2606 OID 48919)
--- Name: factura_PK; Type: CONSTRAINT; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 3527 (class 2606 OID 27130)
+-- Name: factura_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY facturas
@@ -6050,8 +6530,8 @@ ALTER TABLE ONLY facturas
 
 
 --
--- TOC entry 2588 (class 2606 OID 48921)
--- Name: formas_pago_facturas_PK; Type: CONSTRAINT; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 3529 (class 2606 OID 27132)
+-- Name: formas_pago_facturas_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY formas_pago_facturas
@@ -6059,8 +6539,8 @@ ALTER TABLE ONLY formas_pago_facturas
 
 
 --
--- TOC entry 2562 (class 2606 OID 48923)
--- Name: formas_pago_pkey; Type: CONSTRAINT; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 3503 (class 2606 OID 27134)
+-- Name: formas_pago_pkey; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY formas_pago
@@ -6068,8 +6548,8 @@ ALTER TABLE ONLY formas_pago
 
 
 --
--- TOC entry 2576 (class 2606 OID 48925)
--- Name: id_caja_PK; Type: CONSTRAINT; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 3517 (class 2606 OID 27136)
+-- Name: id_caja_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY caja
@@ -6077,8 +6557,8 @@ ALTER TABLE ONLY caja
 
 
 --
--- TOC entry 2580 (class 2606 OID 48927)
--- Name: id_clave_factura_PK; Type: CONSTRAINT; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 3521 (class 2606 OID 27138)
+-- Name: id_clave_factura_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY clave_factura
@@ -6086,8 +6566,8 @@ ALTER TABLE ONLY clave_factura
 
 
 --
--- TOC entry 2590 (class 2606 OID 48929)
--- Name: producto_descuento_PK; Type: CONSTRAINT; Schema: ventas; Owner: -; Tablespace: 
+-- TOC entry 3531 (class 2606 OID 27140)
+-- Name: producto_descuento_PK; Type: CONSTRAINT; Schema: ventas; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY producto_descuento
@@ -6097,72 +6577,72 @@ ALTER TABLE ONLY producto_descuento
 SET search_path = administracion, pg_catalog;
 
 --
--- TOC entry 2677 (class 2620 OID 48930)
--- Name: actividad_economica_tg_audit; Type: TRIGGER; Schema: administracion; Owner: -
+-- TOC entry 3619 (class 2620 OID 27141)
+-- Name: actividad_economica_tg_audit; Type: TRIGGER; Schema: administracion; Owner: postgres
 --
 
 CREATE TRIGGER actividad_economica_tg_audit AFTER INSERT OR DELETE OR UPDATE ON actividad_economica FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2678 (class 2620 OID 48931)
--- Name: clientes_tg_audit; Type: TRIGGER; Schema: administracion; Owner: -
+-- TOC entry 3620 (class 2620 OID 27142)
+-- Name: clientes_tg_audit; Type: TRIGGER; Schema: administracion; Owner: postgres
 --
 
 CREATE TRIGGER clientes_tg_audit AFTER INSERT OR DELETE OR UPDATE ON clientes FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2679 (class 2620 OID 48932)
--- Name: empresas_tg_audit; Type: TRIGGER; Schema: administracion; Owner: -
+-- TOC entry 3621 (class 2620 OID 27143)
+-- Name: empresas_tg_audit; Type: TRIGGER; Schema: administracion; Owner: postgres
 --
 
 CREATE TRIGGER empresas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON empresas FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2681 (class 2620 OID 48933)
--- Name: empresas_tg_audit; Type: TRIGGER; Schema: administracion; Owner: -
+-- TOC entry 3623 (class 2620 OID 27144)
+-- Name: empresas_tg_audit; Type: TRIGGER; Schema: administracion; Owner: postgres
 --
 
 CREATE TRIGGER empresas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON imagen_empresa FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2680 (class 2620 OID 48934)
--- Name: empresas_tg_cliente; Type: TRIGGER; Schema: administracion; Owner: -
+-- TOC entry 3622 (class 2620 OID 27145)
+-- Name: empresas_tg_cliente; Type: TRIGGER; Schema: administracion; Owner: postgres
 --
 
 CREATE TRIGGER empresas_tg_cliente AFTER INSERT OR DELETE OR UPDATE ON empresas FOR EACH ROW EXECUTE PROCEDURE public.fun_cliente_empresa();
 
 
 --
--- TOC entry 2682 (class 2620 OID 48935)
--- Name: tipo_accion_vista_tg_audit; Type: TRIGGER; Schema: administracion; Owner: -
+-- TOC entry 3624 (class 2620 OID 27146)
+-- Name: tipo_accion_vista_tg_audit; Type: TRIGGER; Schema: administracion; Owner: postgres
 --
 
 CREATE TRIGGER tipo_accion_vista_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipo_accion_vista FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2683 (class 2620 OID 48936)
--- Name: tipo_bienes_servicios_vista_tg_audit; Type: TRIGGER; Schema: administracion; Owner: -
+-- TOC entry 3625 (class 2620 OID 27147)
+-- Name: tipo_bienes_servicios_vista_tg_audit; Type: TRIGGER; Schema: administracion; Owner: postgres
 --
 
 CREATE TRIGGER tipo_bienes_servicios_vista_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipo_bienes_servicios FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2684 (class 2620 OID 48937)
--- Name: tipo_empresa_tg_audit; Type: TRIGGER; Schema: administracion; Owner: -
+-- TOC entry 3626 (class 2620 OID 27148)
+-- Name: tipo_empresa_tg_audit; Type: TRIGGER; Schema: administracion; Owner: postgres
 --
 
 CREATE TRIGGER tipo_empresa_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipo_empresa FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2685 (class 2620 OID 48938)
--- Name: usuarios_privilegios_tg_audit; Type: TRIGGER; Schema: administracion; Owner: -
+-- TOC entry 3627 (class 2620 OID 27149)
+-- Name: usuarios_privilegios_tg_audit; Type: TRIGGER; Schema: administracion; Owner: postgres
 --
 
 CREATE TRIGGER usuarios_privilegios_tg_audit AFTER INSERT OR DELETE OR UPDATE ON usuarios_privilegios FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
@@ -6171,104 +6651,104 @@ CREATE TRIGGER usuarios_privilegios_tg_audit AFTER INSERT OR DELETE OR UPDATE ON
 SET search_path = contabilidad, pg_catalog;
 
 --
--- TOC entry 2687 (class 2620 OID 48939)
--- Name: asientos_contables_diario_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3629 (class 2620 OID 27150)
+-- Name: asientos_contables_diario_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER asientos_contables_diario_tg_audit AFTER INSERT OR DELETE OR UPDATE ON asientos_contables_diario FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2688 (class 2620 OID 48940)
--- Name: bancos_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3630 (class 2620 OID 27151)
+-- Name: bancos_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER bancos_tg_audit AFTER INSERT OR DELETE OR UPDATE ON bancos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2689 (class 2620 OID 48941)
--- Name: cuentas_contables_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3631 (class 2620 OID 27152)
+-- Name: cuentas_contables_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER cuentas_contables_tg_audit AFTER INSERT OR DELETE OR UPDATE ON cuentas_contables FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2690 (class 2620 OID 48942)
--- Name: gasto_mes_repositorio_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3632 (class 2620 OID 27153)
+-- Name: gasto_mes_repositorio_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER gasto_mes_repositorio_tg_audit AFTER INSERT OR DELETE OR UPDATE ON gasto_mes_repositorio FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2691 (class 2620 OID 48943)
--- Name: gastos_impuestos_renta_deduccion_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3633 (class 2620 OID 27154)
+-- Name: gastos_impuestos_renta_deduccion_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER gastos_impuestos_renta_deduccion_tg_audit AFTER INSERT OR DELETE OR UPDATE ON gastos_impuestos_renta_deduccion FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2692 (class 2620 OID 48944)
--- Name: genealogia_impuestos_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3634 (class 2620 OID 27155)
+-- Name: genealogia_impuestos_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER genealogia_impuestos_tg_audit AFTER INSERT OR DELETE OR UPDATE ON genealogia_impuestos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2686 (class 2620 OID 48945)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3628 (class 2620 OID 27157)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON ambitos_impuestos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2693 (class 2620 OID 48946)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3635 (class 2620 OID 27158)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON grupo_impuestos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2694 (class 2620 OID 48947)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3636 (class 2620 OID 27159)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON impuestos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2696 (class 2620 OID 48948)
--- Name: tipo_documentos_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3638 (class 2620 OID 27160)
+-- Name: tipo_documentos_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER tipo_documentos_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipo_documentos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2697 (class 2620 OID 48949)
--- Name: tipo_impuestos_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3639 (class 2620 OID 27161)
+-- Name: tipo_impuestos_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER tipo_impuestos_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipo_impuestos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2695 (class 2620 OID 48950)
--- Name: tipos_cuentas_contables_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3637 (class 2620 OID 27162)
+-- Name: tipos_cuentas_contables_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER tipos_cuentas_contables_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipos_cuentas_contables FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2698 (class 2620 OID 48951)
--- Name: tipos_gastos_personales_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: -
+-- TOC entry 3640 (class 2620 OID 27163)
+-- Name: tipos_gastos_personales_tg_audit; Type: TRIGGER; Schema: contabilidad; Owner: postgres
 --
 
 CREATE TRIGGER tipos_gastos_personales_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipos_gastos_personales FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
@@ -6277,168 +6757,168 @@ CREATE TRIGGER tipos_gastos_personales_tg_audit AFTER INSERT OR DELETE OR UPDATE
 SET search_path = inventario, pg_catalog;
 
 --
--- TOC entry 2699 (class 2620 OID 48952)
--- Name: bodegas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3641 (class 2620 OID 27164)
+-- Name: bodegas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER bodegas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON bodegas FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2701 (class 2620 OID 48953)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3643 (class 2620 OID 27165)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON categorias FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2702 (class 2620 OID 48954)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3644 (class 2620 OID 27166)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON descripcion_producto FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2703 (class 2620 OID 48955)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3645 (class 2620 OID 27167)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON estado_descriptivo FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2704 (class 2620 OID 48956)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3646 (class 2620 OID 27168)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON garantias FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2705 (class 2620 OID 48957)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3647 (class 2620 OID 27169)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON imagenes_productos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2706 (class 2620 OID 48958)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3648 (class 2620 OID 27170)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON marcas FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2707 (class 2620 OID 48959)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3649 (class 2620 OID 27172)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON modelos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2710 (class 2620 OID 48960)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3652 (class 2620 OID 27173)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON proveedores FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2714 (class 2620 OID 48961)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3656 (class 2620 OID 27174)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipos_categorias FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2715 (class 2620 OID 48962)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3657 (class 2620 OID 27175)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipos_garantias FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2716 (class 2620 OID 48963)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3658 (class 2620 OID 27176)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipos_imagenes_productos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2717 (class 2620 OID 48964)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3659 (class 2620 OID 27177)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipos_productos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2712 (class 2620 OID 48965)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3654 (class 2620 OID 27178)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipos_catalogos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2700 (class 2620 OID 48966)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3642 (class 2620 OID 27179)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON catalogos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2709 (class 2620 OID 48967)
--- Name: productos_impuestos_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3651 (class 2620 OID 27180)
+-- Name: productos_impuestos_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER productos_impuestos_tg_audit AFTER INSERT OR DELETE OR UPDATE ON productos_impuestos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2708 (class 2620 OID 48968)
--- Name: productos_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3650 (class 2620 OID 27181)
+-- Name: productos_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER productos_tg_audit AFTER INSERT OR DELETE OR UPDATE ON productos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2711 (class 2620 OID 48969)
--- Name: tipo_consumo_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3653 (class 2620 OID 27182)
+-- Name: tipo_consumo_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER tipo_consumo_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipo_consumo FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2713 (class 2620 OID 48970)
--- Name: tipos_catalogos_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3655 (class 2620 OID 27183)
+-- Name: tipos_catalogos_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER tipos_catalogos_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipos_catalogos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2718 (class 2620 OID 48971)
--- Name: tipos_tipo_consumo_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3660 (class 2620 OID 27184)
+-- Name: tipos_tipo_consumo_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER tipos_tipo_consumo_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipos_tipo_consumo FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2719 (class 2620 OID 48972)
--- Name: ubicaciones_tg_audit; Type: TRIGGER; Schema: inventario; Owner: -
+-- TOC entry 3661 (class 2620 OID 27185)
+-- Name: ubicaciones_tg_audit; Type: TRIGGER; Schema: inventario; Owner: postgres
 --
 
 CREATE TRIGGER ubicaciones_tg_audit AFTER INSERT OR DELETE OR UPDATE ON ubicaciones FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
@@ -6447,64 +6927,64 @@ CREATE TRIGGER ubicaciones_tg_audit AFTER INSERT OR DELETE OR UPDATE ON ubicacio
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2720 (class 2620 OID 48973)
--- Name: estados_tg_audit; Type: TRIGGER; Schema: public; Owner: -
+-- TOC entry 3662 (class 2620 OID 27186)
+-- Name: estados_tg_audit; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER estados_tg_audit AFTER INSERT OR DELETE OR UPDATE ON estados FOR EACH ROW EXECUTE PROCEDURE fun_auditoria();
 
 
 --
--- TOC entry 2724 (class 2620 OID 48974)
--- Name: inserta_cliente_tg_usuario; Type: TRIGGER; Schema: public; Owner: -
+-- TOC entry 3666 (class 2620 OID 27187)
+-- Name: inserta_cliente_tg_usuario; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER inserta_cliente_tg_usuario AFTER INSERT OR DELETE OR UPDATE ON personas_documentos_identificacion FOR EACH ROW EXECUTE PROCEDURE fun_cliente_persona();
 
 
 --
--- TOC entry 2721 (class 2620 OID 48975)
--- Name: operadoras_telefonicas_tg_audit; Type: TRIGGER; Schema: public; Owner: -
+-- TOC entry 3663 (class 2620 OID 27188)
+-- Name: operadoras_telefonicas_tg_audit; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER operadoras_telefonicas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON operadoras_telefonicas FOR EACH ROW EXECUTE PROCEDURE fun_auditoria();
 
 
 --
--- TOC entry 2723 (class 2620 OID 48976)
--- Name: personas_correo_electronico_tg_audit; Type: TRIGGER; Schema: public; Owner: -
+-- TOC entry 3665 (class 2620 OID 27189)
+-- Name: personas_correo_electronico_tg_audit; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER personas_correo_electronico_tg_audit AFTER INSERT OR DELETE OR UPDATE ON personas_correo_electronico FOR EACH ROW EXECUTE PROCEDURE fun_auditoria();
 
 
 --
--- TOC entry 2725 (class 2620 OID 48977)
--- Name: personas_documentos_identificacion_tg_audit; Type: TRIGGER; Schema: public; Owner: -
+-- TOC entry 3667 (class 2620 OID 27190)
+-- Name: personas_documentos_identificacion_tg_audit; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER personas_documentos_identificacion_tg_audit AFTER INSERT OR DELETE OR UPDATE ON personas_documentos_identificacion FOR EACH ROW EXECUTE PROCEDURE fun_auditoria();
 
 
 --
--- TOC entry 2722 (class 2620 OID 48978)
--- Name: personas_tg_audit; Type: TRIGGER; Schema: public; Owner: -
+-- TOC entry 3664 (class 2620 OID 27191)
+-- Name: personas_tg_audit; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON personas FOR EACH ROW EXECUTE PROCEDURE fun_auditoria();
 
 
 --
--- TOC entry 2726 (class 2620 OID 48979)
--- Name: telefonos_personas_tg_audit; Type: TRIGGER; Schema: public; Owner: -
+-- TOC entry 3668 (class 2620 OID 27192)
+-- Name: telefonos_personas_tg_audit; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER telefonos_personas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON telefonos_personas FOR EACH ROW EXECUTE PROCEDURE fun_auditoria();
 
 
 --
--- TOC entry 2727 (class 2620 OID 48980)
--- Name: tipo_documento_identificacion_tg_audit; Type: TRIGGER; Schema: public; Owner: -
+-- TOC entry 3669 (class 2620 OID 27193)
+-- Name: tipo_documento_identificacion_tg_audit; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE TRIGGER tipo_documento_identificacion_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipo_documento_identificacion FOR EACH ROW EXECUTE PROCEDURE fun_auditoria();
@@ -6513,40 +6993,40 @@ CREATE TRIGGER tipo_documento_identificacion_tg_audit AFTER INSERT OR DELETE OR 
 SET search_path = talento_humano, pg_catalog;
 
 --
--- TOC entry 2729 (class 2620 OID 48981)
--- Name: cargos_tg_audit; Type: TRIGGER; Schema: talento_humano; Owner: -
+-- TOC entry 3671 (class 2620 OID 27194)
+-- Name: cargos_tg_audit; Type: TRIGGER; Schema: talento_humano; Owner: postgres
 --
 
 CREATE TRIGGER cargos_tg_audit AFTER INSERT OR DELETE OR UPDATE ON cargos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2730 (class 2620 OID 48982)
--- Name: empleados_tg_audit; Type: TRIGGER; Schema: talento_humano; Owner: -
+-- TOC entry 3672 (class 2620 OID 27195)
+-- Name: empleados_tg_audit; Type: TRIGGER; Schema: talento_humano; Owner: postgres
 --
 
 CREATE TRIGGER empleados_tg_audit AFTER INSERT OR DELETE OR UPDATE ON empleados FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2731 (class 2620 OID 48983)
--- Name: jornadas_de_trabajo_tg_audit; Type: TRIGGER; Schema: talento_humano; Owner: -
+-- TOC entry 3673 (class 2620 OID 27196)
+-- Name: jornadas_de_trabajo_tg_audit; Type: TRIGGER; Schema: talento_humano; Owner: postgres
 --
 
 CREATE TRIGGER jornadas_de_trabajo_tg_audit AFTER INSERT OR DELETE OR UPDATE ON jornadas_de_trabajo FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2732 (class 2620 OID 48984)
--- Name: tipo_usuario_tg_audit; Type: TRIGGER; Schema: talento_humano; Owner: -
+-- TOC entry 3674 (class 2620 OID 27197)
+-- Name: tipo_usuario_tg_audit; Type: TRIGGER; Schema: talento_humano; Owner: postgres
 --
 
 CREATE TRIGGER tipo_usuario_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipos_contratos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2733 (class 2620 OID 48985)
--- Name: tipos_contratos_tg_audit; Type: TRIGGER; Schema: talento_humano; Owner: -
+-- TOC entry 3675 (class 2620 OID 27198)
+-- Name: tipos_contratos_tg_audit; Type: TRIGGER; Schema: talento_humano; Owner: postgres
 --
 
 CREATE TRIGGER tipos_contratos_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipos_contratos FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
@@ -6555,16 +7035,16 @@ CREATE TRIGGER tipos_contratos_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipo
 SET search_path = usuarios, pg_catalog;
 
 --
--- TOC entry 2734 (class 2620 OID 48986)
--- Name: tipo_usuario_tg_audit; Type: TRIGGER; Schema: usuarios; Owner: -
+-- TOC entry 3676 (class 2620 OID 27199)
+-- Name: tipo_usuario_tg_audit; Type: TRIGGER; Schema: usuarios; Owner: postgres
 --
 
 CREATE TRIGGER tipo_usuario_tg_audit AFTER INSERT OR DELETE OR UPDATE ON tipo_usuario FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2735 (class 2620 OID 48987)
--- Name: usuarios_tg_audit; Type: TRIGGER; Schema: usuarios; Owner: -
+-- TOC entry 3677 (class 2620 OID 27200)
+-- Name: usuarios_tg_audit; Type: TRIGGER; Schema: usuarios; Owner: postgres
 --
 
 CREATE TRIGGER usuarios_tg_audit AFTER INSERT OR DELETE OR UPDATE ON usuarios FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
@@ -6573,82 +7053,93 @@ CREATE TRIGGER usuarios_tg_audit AFTER INSERT OR DELETE OR UPDATE ON usuarios FO
 SET search_path = ventas, pg_catalog;
 
 --
--- TOC entry 2736 (class 2620 OID 48988)
--- Name: caja_tg_audit; Type: TRIGGER; Schema: ventas; Owner: -
+-- TOC entry 3678 (class 2620 OID 27201)
+-- Name: caja_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
 --
 
 CREATE TRIGGER caja_tg_audit AFTER INSERT OR DELETE OR UPDATE ON caja FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2737 (class 2620 OID 48989)
--- Name: caja_usuario_tg_audit; Type: TRIGGER; Schema: ventas; Owner: -
+-- TOC entry 3679 (class 2620 OID 27202)
+-- Name: caja_usuario_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
 --
 
 CREATE TRIGGER caja_usuario_tg_audit AFTER INSERT OR DELETE OR UPDATE ON caja_usuario FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2738 (class 2620 OID 48990)
--- Name: clave_factura_tg_audit; Type: TRIGGER; Schema: ventas; Owner: -
+-- TOC entry 3680 (class 2620 OID 27203)
+-- Name: clave_factura_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
 --
 
 CREATE TRIGGER clave_factura_tg_audit AFTER INSERT OR DELETE OR UPDATE ON clave_factura FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2739 (class 2620 OID 48991)
--- Name: detalle_factura_tg_audit; Type: TRIGGER; Schema: ventas; Owner: -
+-- TOC entry 3681 (class 2620 OID 27204)
+-- Name: detalle_factura_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
 --
 
 CREATE TRIGGER detalle_factura_tg_audit AFTER INSERT OR DELETE OR UPDATE ON detalle_factura FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2740 (class 2620 OID 48992)
--- Name: empleado_factura_tg_audit; Type: TRIGGER; Schema: ventas; Owner: -
+-- TOC entry 3682 (class 2620 OID 27205)
+-- Name: empleado_factura_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
 --
 
 CREATE TRIGGER empleado_factura_tg_audit AFTER INSERT OR DELETE OR UPDATE ON empleado_factura FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2741 (class 2620 OID 48993)
--- Name: facturas_tg_audit; Type: TRIGGER; Schema: ventas; Owner: -
+-- TOC entry 3683 (class 2620 OID 27206)
+-- Name: facturas_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
 --
 
 CREATE TRIGGER facturas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON facturas FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2742 (class 2620 OID 48994)
--- Name: formas_pago_facturas_tg_audit; Type: TRIGGER; Schema: ventas; Owner: -
+-- TOC entry 3684 (class 2620 OID 27207)
+-- Name: formas_pago_facturas_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
 --
 
 CREATE TRIGGER formas_pago_facturas_tg_audit AFTER INSERT OR DELETE OR UPDATE ON formas_pago_facturas FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2728 (class 2620 OID 48995)
--- Name: formas_pago_tg_audit; Type: TRIGGER; Schema: ventas; Owner: -
+-- TOC entry 3670 (class 2620 OID 27208)
+-- Name: formas_pago_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
 --
 
 CREATE TRIGGER formas_pago_tg_audit AFTER INSERT OR DELETE OR UPDATE ON formas_pago FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
 --
--- TOC entry 2743 (class 2620 OID 48996)
--- Name: producto_descuento_tg_audit; Type: TRIGGER; Schema: ventas; Owner: -
+-- TOC entry 3685 (class 2620 OID 27209)
+-- Name: producto_descuento_tg_audit; Type: TRIGGER; Schema: ventas; Owner: postgres
 --
 
 CREATE TRIGGER producto_descuento_tg_audit AFTER INSERT OR DELETE OR UPDATE ON producto_descuento FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
 
 
+SET search_path = "Taller_mecanico", pg_catalog;
+
+--
+-- TOC entry 3532 (class 2606 OID 27210)
+-- Name: Empresa_aseguradora_FK; Type: FK CONSTRAINT; Schema: Taller_mecanico; Owner: postgres
+--
+
+ALTER TABLE ONLY "Aseguradora"
+    ADD CONSTRAINT "Empresa_aseguradora_FK" FOREIGN KEY (id_empresa) REFERENCES administracion.empresas(id);
+
+
 SET search_path = administracion, pg_catalog;
 
 --
--- TOC entry 2598 (class 2606 OID 48997)
--- Name: estado; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3540 (class 2606 OID 27215)
+-- Name: estado; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_empresa
@@ -6656,8 +7147,8 @@ ALTER TABLE ONLY tipo_empresa
 
 
 --
--- TOC entry 2593 (class 2606 OID 49002)
--- Name: estado; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3535 (class 2606 OID 27220)
+-- Name: estado; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY clientes
@@ -6665,8 +7156,8 @@ ALTER TABLE ONLY clientes
 
 
 --
--- TOC entry 2597 (class 2606 OID 49007)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3539 (class 2606 OID 27225)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_bienes_servicios
@@ -6674,8 +7165,8 @@ ALTER TABLE ONLY tipo_bienes_servicios
 
 
 --
--- TOC entry 2591 (class 2606 OID 49012)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3533 (class 2606 OID 27230)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY actividad_economica
@@ -6683,8 +7174,8 @@ ALTER TABLE ONLY actividad_economica
 
 
 --
--- TOC entry 2600 (class 2606 OID 49017)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3542 (class 2606 OID 27235)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY usuarios_privilegios
@@ -6692,8 +7183,8 @@ ALTER TABLE ONLY usuarios_privilegios
 
 
 --
--- TOC entry 2599 (class 2606 OID 49022)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3541 (class 2606 OID 27240)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_imagenes_empresas
@@ -6701,8 +7192,8 @@ ALTER TABLE ONLY tipos_imagenes_empresas
 
 
 --
--- TOC entry 2594 (class 2606 OID 49027)
--- Name: estado_empresa_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3536 (class 2606 OID 27245)
+-- Name: estado_empresa_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY empresas
@@ -6710,8 +7201,8 @@ ALTER TABLE ONLY empresas
 
 
 --
--- TOC entry 2595 (class 2606 OID 49032)
--- Name: imagen_empresa_estado_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3537 (class 2606 OID 27250)
+-- Name: imagen_empresa_estado_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY imagen_empresa
@@ -6719,8 +7210,8 @@ ALTER TABLE ONLY imagen_empresa
 
 
 --
--- TOC entry 2592 (class 2606 OID 49037)
--- Name: tipo_bienes_servicios_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3534 (class 2606 OID 27255)
+-- Name: tipo_bienes_servicios_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY actividad_economica
@@ -6728,8 +7219,8 @@ ALTER TABLE ONLY actividad_economica
 
 
 --
--- TOC entry 2596 (class 2606 OID 49042)
--- Name: tipo_imagen_empresa_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3538 (class 2606 OID 27260)
+-- Name: tipo_imagen_empresa_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY imagen_empresa
@@ -6737,8 +7228,8 @@ ALTER TABLE ONLY imagen_empresa
 
 
 --
--- TOC entry 2601 (class 2606 OID 49047)
--- Name: usuario_privilegios_tipo_accion_vista_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3543 (class 2606 OID 27265)
+-- Name: usuario_privilegios_tipo_accion_vista_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY usuarios_privilegios
@@ -6746,8 +7237,8 @@ ALTER TABLE ONLY usuarios_privilegios
 
 
 --
--- TOC entry 2602 (class 2606 OID 49052)
--- Name: usuario_privilegios_tipo_usuario_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: -
+-- TOC entry 3544 (class 2606 OID 27270)
+-- Name: usuario_privilegios_tipo_usuario_FK; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY usuarios_privilegios
@@ -6757,8 +7248,8 @@ ALTER TABLE ONLY usuarios_privilegios
 SET search_path = contabilidad, pg_catalog;
 
 --
--- TOC entry 2614 (class 2606 OID 49057)
--- Name: ambito_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3556 (class 2606 OID 27275)
+-- Name: ambito_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY impuestos
@@ -6766,8 +7257,8 @@ ALTER TABLE ONLY impuestos
 
 
 --
--- TOC entry 2613 (class 2606 OID 49062)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3555 (class 2606 OID 27280)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY grupo_impuestos
@@ -6775,8 +7266,8 @@ ALTER TABLE ONLY grupo_impuestos
 
 
 --
--- TOC entry 2603 (class 2606 OID 49067)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3545 (class 2606 OID 27285)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY ambitos_impuestos
@@ -6784,8 +7275,8 @@ ALTER TABLE ONLY ambitos_impuestos
 
 
 --
--- TOC entry 2615 (class 2606 OID 49072)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3557 (class 2606 OID 27290)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY impuestos
@@ -6793,8 +7284,8 @@ ALTER TABLE ONLY impuestos
 
 
 --
--- TOC entry 2604 (class 2606 OID 49077)
--- Name: estado_asiento_contable_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3546 (class 2606 OID 27295)
+-- Name: estado_asiento_contable_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY asientos_contables_diario
@@ -6802,8 +7293,8 @@ ALTER TABLE ONLY asientos_contables_diario
 
 
 --
--- TOC entry 2605 (class 2606 OID 49082)
--- Name: estado_bancos_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3547 (class 2606 OID 27300)
+-- Name: estado_bancos_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY bancos
@@ -6811,8 +7302,8 @@ ALTER TABLE ONLY bancos
 
 
 --
--- TOC entry 2617 (class 2606 OID 49087)
--- Name: estado_factura; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3559 (class 2606 OID 27305)
+-- Name: estado_factura; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY repositorio_facturas
@@ -6820,8 +7311,8 @@ ALTER TABLE ONLY repositorio_facturas
 
 
 --
--- TOC entry 2608 (class 2606 OID 49092)
--- Name: estado_pago; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3550 (class 2606 OID 27310)
+-- Name: estado_pago; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY finaciaminto
@@ -6829,8 +7320,8 @@ ALTER TABLE ONLY finaciaminto
 
 
 --
--- TOC entry 2621 (class 2606 OID 49097)
--- Name: estado_tipo_cuenta_contable_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3563 (class 2606 OID 27315)
+-- Name: estado_tipo_cuenta_contable_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_cuentas_contables
@@ -6838,8 +7329,8 @@ ALTER TABLE ONLY tipos_cuentas_contables
 
 
 --
--- TOC entry 2622 (class 2606 OID 49102)
--- Name: estado_tipo_documento_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3564 (class 2606 OID 27320)
+-- Name: estado_tipo_documento_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_documentos
@@ -6847,8 +7338,8 @@ ALTER TABLE ONLY tipo_documentos
 
 
 --
--- TOC entry 2623 (class 2606 OID 49107)
--- Name: estado_tipo_impuesto_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3565 (class 2606 OID 27325)
+-- Name: estado_tipo_impuesto_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_impuestos
@@ -6856,8 +7347,8 @@ ALTER TABLE ONLY tipo_impuestos
 
 
 --
--- TOC entry 2618 (class 2606 OID 49112)
--- Name: estado_ver_factura; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3560 (class 2606 OID 27330)
+-- Name: estado_ver_factura; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY repositorio_facturas
@@ -6865,8 +7356,8 @@ ALTER TABLE ONLY repositorio_facturas
 
 
 --
--- TOC entry 2609 (class 2606 OID 49117)
--- Name: factura_finaciamiento_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3551 (class 2606 OID 27335)
+-- Name: factura_finaciamiento_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY finaciaminto
@@ -6874,8 +7365,8 @@ ALTER TABLE ONLY finaciaminto
 
 
 --
--- TOC entry 2611 (class 2606 OID 49122)
--- Name: gastos_impueto_renta_deducion_estado; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3553 (class 2606 OID 27340)
+-- Name: gastos_impueto_renta_deducion_estado; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY gastos_impuestos_renta_deduccion
@@ -6883,8 +7374,8 @@ ALTER TABLE ONLY gastos_impuestos_renta_deduccion
 
 
 --
--- TOC entry 2612 (class 2606 OID 49127)
--- Name: gastos_impueto_renta_deducion_factura; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3554 (class 2606 OID 27345)
+-- Name: gastos_impueto_renta_deducion_factura; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY gastos_impuestos_renta_deduccion
@@ -6892,8 +7383,8 @@ ALTER TABLE ONLY gastos_impuestos_renta_deduccion
 
 
 --
--- TOC entry 2620 (class 2606 OID 49132)
--- Name: id_empleasdo_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3562 (class 2606 OID 27350)
+-- Name: id_empleasdo_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY rol_pagos_empleados
@@ -6901,8 +7392,8 @@ ALTER TABLE ONLY rol_pagos_empleados
 
 
 --
--- TOC entry 2606 (class 2606 OID 49137)
--- Name: persona_bancos_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3548 (class 2606 OID 27355)
+-- Name: persona_bancos_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY bancos
@@ -6910,8 +7401,8 @@ ALTER TABLE ONLY bancos
 
 
 --
--- TOC entry 2610 (class 2606 OID 49142)
--- Name: plazos_credito_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3552 (class 2606 OID 27360)
+-- Name: plazos_credito_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY finaciaminto
@@ -6919,8 +7410,8 @@ ALTER TABLE ONLY finaciaminto
 
 
 --
--- TOC entry 2619 (class 2606 OID 49147)
--- Name: repositorio_facturas_rechazadas_estado_fkey; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3561 (class 2606 OID 27365)
+-- Name: repositorio_facturas_rechazadas_estado_fkey; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY repositorio_facturas_rechazadas
@@ -6928,8 +7419,8 @@ ALTER TABLE ONLY repositorio_facturas_rechazadas
 
 
 --
--- TOC entry 2607 (class 2606 OID 49152)
--- Name: tipo_cuenta_cuentas_contables_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3549 (class 2606 OID 27370)
+-- Name: tipo_cuenta_cuentas_contables_FK; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY cuentas_contables
@@ -6937,8 +7428,8 @@ ALTER TABLE ONLY cuentas_contables
 
 
 --
--- TOC entry 2616 (class 2606 OID 49157)
--- Name: tipo_impuesto; Type: FK CONSTRAINT; Schema: contabilidad; Owner: -
+-- TOC entry 3558 (class 2606 OID 27375)
+-- Name: tipo_impuesto; Type: FK CONSTRAINT; Schema: contabilidad; Owner: postgres
 --
 
 ALTER TABLE ONLY impuestos
@@ -6948,8 +7439,8 @@ ALTER TABLE ONLY impuestos
 SET search_path = inventario, pg_catalog;
 
 --
--- TOC entry 2639 (class 2606 OID 49162)
--- Name: bodega_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3581 (class 2606 OID 27380)
+-- Name: bodega_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY productos
@@ -6957,8 +7448,8 @@ ALTER TABLE ONLY productos
 
 
 --
--- TOC entry 2640 (class 2606 OID 49167)
--- Name: categoria_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3582 (class 2606 OID 27385)
+-- Name: categoria_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY productos
@@ -6966,8 +7457,8 @@ ALTER TABLE ONLY productos
 
 
 --
--- TOC entry 2651 (class 2606 OID 49172)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3593 (class 2606 OID 27390)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_imagenes_productos
@@ -6975,8 +7466,8 @@ ALTER TABLE ONLY tipos_imagenes_productos
 
 
 --
--- TOC entry 2632 (class 2606 OID 49177)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3574 (class 2606 OID 27395)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY imagenes_productos
@@ -6984,8 +7475,8 @@ ALTER TABLE ONLY imagenes_productos
 
 
 --
--- TOC entry 2630 (class 2606 OID 49182)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3572 (class 2606 OID 27400)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY garantias
@@ -6993,8 +7484,8 @@ ALTER TABLE ONLY garantias
 
 
 --
--- TOC entry 2649 (class 2606 OID 49187)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3591 (class 2606 OID 27405)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_categorias
@@ -7002,8 +7493,8 @@ ALTER TABLE ONLY tipos_categorias
 
 
 --
--- TOC entry 2637 (class 2606 OID 49192)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3579 (class 2606 OID 27410)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY marcas
@@ -7011,8 +7502,8 @@ ALTER TABLE ONLY marcas
 
 
 --
--- TOC entry 2638 (class 2606 OID 49197)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3580 (class 2606 OID 27415)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY modelos
@@ -7020,8 +7511,8 @@ ALTER TABLE ONLY modelos
 
 
 --
--- TOC entry 2629 (class 2606 OID 49202)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3571 (class 2606 OID 27420)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY estado_descriptivo
@@ -7029,8 +7520,8 @@ ALTER TABLE ONLY estado_descriptivo
 
 
 --
--- TOC entry 2652 (class 2606 OID 49207)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3594 (class 2606 OID 27425)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_productos
@@ -7038,8 +7529,8 @@ ALTER TABLE ONLY tipos_productos
 
 
 --
--- TOC entry 2648 (class 2606 OID 49212)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3590 (class 2606 OID 27430)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_catalogos
@@ -7047,8 +7538,8 @@ ALTER TABLE ONLY tipos_catalogos
 
 
 --
--- TOC entry 2653 (class 2606 OID 49217)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3595 (class 2606 OID 27435)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_tipo_consumo
@@ -7056,8 +7547,8 @@ ALTER TABLE ONLY tipos_tipo_consumo
 
 
 --
--- TOC entry 2654 (class 2606 OID 49222)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3596 (class 2606 OID 27440)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY ubicaciones
@@ -7065,8 +7556,8 @@ ALTER TABLE ONLY ubicaciones
 
 
 --
--- TOC entry 2635 (class 2606 OID 49227)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3577 (class 2606 OID 27445)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY manejo_presios
@@ -7074,8 +7565,8 @@ ALTER TABLE ONLY manejo_presios
 
 
 --
--- TOC entry 2624 (class 2606 OID 49232)
--- Name: estado_bodega_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3566 (class 2606 OID 27450)
+-- Name: estado_bodega_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY bodegas
@@ -7083,8 +7574,8 @@ ALTER TABLE ONLY bodegas
 
 
 --
--- TOC entry 2641 (class 2606 OID 49237)
--- Name: estado_descriptivo_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3583 (class 2606 OID 27455)
+-- Name: estado_descriptivo_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY productos
@@ -7092,8 +7583,8 @@ ALTER TABLE ONLY productos
 
 
 --
--- TOC entry 2650 (class 2606 OID 49242)
--- Name: estados; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3592 (class 2606 OID 27460)
+-- Name: estados; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_garantias
@@ -7101,8 +7592,8 @@ ALTER TABLE ONLY tipos_garantias
 
 
 --
--- TOC entry 2642 (class 2606 OID 49247)
--- Name: garantia_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3584 (class 2606 OID 27465)
+-- Name: garantia_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY productos
@@ -7110,8 +7601,8 @@ ALTER TABLE ONLY productos
 
 
 --
--- TOC entry 2625 (class 2606 OID 49252)
--- Name: giro_negocio_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3567 (class 2606 OID 27470)
+-- Name: giro_negocio_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY bodegas
@@ -7119,8 +7610,8 @@ ALTER TABLE ONLY bodegas
 
 
 --
--- TOC entry 2628 (class 2606 OID 49257)
--- Name: id_producto; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3570 (class 2606 OID 27475)
+-- Name: id_producto; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY descripcion_producto
@@ -7128,8 +7619,8 @@ ALTER TABLE ONLY descripcion_producto
 
 
 --
--- TOC entry 2636 (class 2606 OID 49262)
--- Name: id_producto; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3578 (class 2606 OID 27480)
+-- Name: id_producto; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY manejo_presios
@@ -7137,8 +7628,8 @@ ALTER TABLE ONLY manejo_presios
 
 
 --
--- TOC entry 2633 (class 2606 OID 49267)
--- Name: id_producto_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3575 (class 2606 OID 27485)
+-- Name: id_producto_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY imagenes_productos
@@ -7146,8 +7637,8 @@ ALTER TABLE ONLY imagenes_productos
 
 
 --
--- TOC entry 2647 (class 2606 OID 49272)
--- Name: impuesto_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3589 (class 2606 OID 27490)
+-- Name: impuesto_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY productos_impuestos
@@ -7155,8 +7646,8 @@ ALTER TABLE ONLY productos_impuestos
 
 
 --
--- TOC entry 2643 (class 2606 OID 49277)
--- Name: marca_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3585 (class 2606 OID 27495)
+-- Name: marca_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY productos
@@ -7164,8 +7655,8 @@ ALTER TABLE ONLY productos
 
 
 --
--- TOC entry 2644 (class 2606 OID 49282)
--- Name: modelo_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3586 (class 2606 OID 27500)
+-- Name: modelo_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY productos
@@ -7173,8 +7664,8 @@ ALTER TABLE ONLY productos
 
 
 --
--- TOC entry 2645 (class 2606 OID 49287)
--- Name: producto_tipo_consumo_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3587 (class 2606 OID 27505)
+-- Name: producto_tipo_consumo_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY productos
@@ -7182,8 +7673,8 @@ ALTER TABLE ONLY productos
 
 
 --
--- TOC entry 2626 (class 2606 OID 49292)
--- Name: tipo_catalogo_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3568 (class 2606 OID 27510)
+-- Name: tipo_catalogo_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY catalogos
@@ -7191,8 +7682,8 @@ ALTER TABLE ONLY catalogos
 
 
 --
--- TOC entry 2627 (class 2606 OID 49297)
--- Name: tipo_categoria_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3569 (class 2606 OID 27515)
+-- Name: tipo_categoria_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY categorias
@@ -7200,8 +7691,8 @@ ALTER TABLE ONLY categorias
 
 
 --
--- TOC entry 2631 (class 2606 OID 49302)
--- Name: tipo_garantia_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3573 (class 2606 OID 27520)
+-- Name: tipo_garantia_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY garantias
@@ -7209,8 +7700,8 @@ ALTER TABLE ONLY garantias
 
 
 --
--- TOC entry 2634 (class 2606 OID 49307)
--- Name: tipo_imagen_producto; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3576 (class 2606 OID 27525)
+-- Name: tipo_imagen_producto; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY imagenes_productos
@@ -7218,8 +7709,8 @@ ALTER TABLE ONLY imagenes_productos
 
 
 --
--- TOC entry 2646 (class 2606 OID 49312)
--- Name: ubicacion_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: -
+-- TOC entry 3588 (class 2606 OID 27530)
+-- Name: ubicacion_FK; Type: FK CONSTRAINT; Schema: inventario; Owner: postgres
 --
 
 ALTER TABLE ONLY productos
@@ -7229,8 +7720,8 @@ ALTER TABLE ONLY productos
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2662 (class 2606 OID 49317)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3604 (class 2606 OID 27535)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_documento_identificacion
@@ -7238,8 +7729,8 @@ ALTER TABLE ONLY tipo_documento_identificacion
 
 
 --
--- TOC entry 2655 (class 2606 OID 49322)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3597 (class 2606 OID 27540)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY operadoras_telefonicas
@@ -7247,8 +7738,8 @@ ALTER TABLE ONLY operadoras_telefonicas
 
 
 --
--- TOC entry 2657 (class 2606 OID 49327)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3599 (class 2606 OID 27545)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY personas_documentos_identificacion
@@ -7256,8 +7747,8 @@ ALTER TABLE ONLY personas_documentos_identificacion
 
 
 --
--- TOC entry 2656 (class 2606 OID 49332)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3598 (class 2606 OID 27550)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY personas_correo_electronico
@@ -7265,8 +7756,8 @@ ALTER TABLE ONLY personas_correo_electronico
 
 
 --
--- TOC entry 2660 (class 2606 OID 49337)
--- Name: id_persona_FK; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3602 (class 2606 OID 27555)
+-- Name: id_persona_FK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY telefonos_personas
@@ -7274,8 +7765,8 @@ ALTER TABLE ONLY telefonos_personas
 
 
 --
--- TOC entry 2658 (class 2606 OID 49342)
--- Name: persona_FK; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3600 (class 2606 OID 27560)
+-- Name: persona_FK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY personas_documentos_identificacion
@@ -7283,8 +7774,8 @@ ALTER TABLE ONLY personas_documentos_identificacion
 
 
 --
--- TOC entry 2661 (class 2606 OID 49347)
--- Name: telefonos_personas_operadora_telefocnica_FK; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3603 (class 2606 OID 27565)
+-- Name: telefonos_personas_operadora_telefocnica_FK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY telefonos_personas
@@ -7292,8 +7783,8 @@ ALTER TABLE ONLY telefonos_personas
 
 
 --
--- TOC entry 2659 (class 2606 OID 49352)
--- Name: tipo_documento_FK; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3601 (class 2606 OID 27570)
+-- Name: tipo_documento_FK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY personas_documentos_identificacion
@@ -7303,8 +7794,8 @@ ALTER TABLE ONLY personas_documentos_identificacion
 SET search_path = talento_humano, pg_catalog;
 
 --
--- TOC entry 2668 (class 2606 OID 49357)
--- Name: estado; Type: FK CONSTRAINT; Schema: talento_humano; Owner: -
+-- TOC entry 3610 (class 2606 OID 27575)
+-- Name: estado; Type: FK CONSTRAINT; Schema: talento_humano; Owner: postgres
 --
 
 ALTER TABLE ONLY tipos_contratos
@@ -7312,8 +7803,8 @@ ALTER TABLE ONLY tipos_contratos
 
 
 --
--- TOC entry 2664 (class 2606 OID 49362)
--- Name: estado_empleado_FK; Type: FK CONSTRAINT; Schema: talento_humano; Owner: -
+-- TOC entry 3606 (class 2606 OID 27580)
+-- Name: estado_empleado_FK; Type: FK CONSTRAINT; Schema: talento_humano; Owner: postgres
 --
 
 ALTER TABLE ONLY empleados
@@ -7321,8 +7812,8 @@ ALTER TABLE ONLY empleados
 
 
 --
--- TOC entry 2665 (class 2606 OID 49367)
--- Name: id_cargo_FK; Type: FK CONSTRAINT; Schema: talento_humano; Owner: -
+-- TOC entry 3607 (class 2606 OID 27585)
+-- Name: id_cargo_FK; Type: FK CONSTRAINT; Schema: talento_humano; Owner: postgres
 --
 
 ALTER TABLE ONLY empleados
@@ -7330,8 +7821,8 @@ ALTER TABLE ONLY empleados
 
 
 --
--- TOC entry 2666 (class 2606 OID 49372)
--- Name: id_persona_empleado_FK; Type: FK CONSTRAINT; Schema: talento_humano; Owner: -
+-- TOC entry 3608 (class 2606 OID 27590)
+-- Name: id_persona_empleado_FK; Type: FK CONSTRAINT; Schema: talento_humano; Owner: postgres
 --
 
 ALTER TABLE ONLY empleados
@@ -7339,8 +7830,8 @@ ALTER TABLE ONLY empleados
 
 
 --
--- TOC entry 2667 (class 2606 OID 49377)
--- Name: id_usuario_empleado_FK; Type: FK CONSTRAINT; Schema: talento_humano; Owner: -
+-- TOC entry 3609 (class 2606 OID 27595)
+-- Name: id_usuario_empleado_FK; Type: FK CONSTRAINT; Schema: talento_humano; Owner: postgres
 --
 
 ALTER TABLE ONLY empleados
@@ -7350,8 +7841,8 @@ ALTER TABLE ONLY empleados
 SET search_path = usuarios, pg_catalog;
 
 --
--- TOC entry 2669 (class 2606 OID 49382)
--- Name: estado_FK; Type: FK CONSTRAINT; Schema: usuarios; Owner: -
+-- TOC entry 3611 (class 2606 OID 27600)
+-- Name: estado_FK; Type: FK CONSTRAINT; Schema: usuarios; Owner: postgres
 --
 
 ALTER TABLE ONLY tipo_usuario
@@ -7361,8 +7852,8 @@ ALTER TABLE ONLY tipo_usuario
 SET search_path = ventas, pg_catalog;
 
 --
--- TOC entry 2675 (class 2606 OID 49387)
--- Name: factura_estado_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: -
+-- TOC entry 3617 (class 2606 OID 27605)
+-- Name: factura_estado_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY facturas
@@ -7370,8 +7861,8 @@ ALTER TABLE ONLY facturas
 
 
 --
--- TOC entry 2663 (class 2606 OID 49392)
--- Name: forma_pago_estado_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: -
+-- TOC entry 3605 (class 2606 OID 27610)
+-- Name: forma_pago_estado_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY formas_pago
@@ -7379,8 +7870,8 @@ ALTER TABLE ONLY formas_pago
 
 
 --
--- TOC entry 2670 (class 2606 OID 49397)
--- Name: id_caja_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: -
+-- TOC entry 3612 (class 2606 OID 27615)
+-- Name: id_caja_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY caja_usuario
@@ -7388,8 +7879,8 @@ ALTER TABLE ONLY caja_usuario
 
 
 --
--- TOC entry 2674 (class 2606 OID 49402)
--- Name: id_empleado; Type: FK CONSTRAINT; Schema: ventas; Owner: -
+-- TOC entry 3616 (class 2606 OID 27620)
+-- Name: id_empleado; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY empleado_factura
@@ -7397,8 +7888,8 @@ ALTER TABLE ONLY empleado_factura
 
 
 --
--- TOC entry 2671 (class 2606 OID 49407)
--- Name: id_empleado_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: -
+-- TOC entry 3613 (class 2606 OID 27625)
+-- Name: id_empleado_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY caja_usuario
@@ -7406,8 +7897,8 @@ ALTER TABLE ONLY caja_usuario
 
 
 --
--- TOC entry 2673 (class 2606 OID 49412)
--- Name: id_factura_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: -
+-- TOC entry 3615 (class 2606 OID 27630)
+-- Name: id_factura_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY clave_factura
@@ -7415,8 +7906,8 @@ ALTER TABLE ONLY clave_factura
 
 
 --
--- TOC entry 2672 (class 2606 OID 49417)
--- Name: id_usuario_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: -
+-- TOC entry 3614 (class 2606 OID 27635)
+-- Name: id_usuario_FK; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY caja_usuario
@@ -7424,15 +7915,27 @@ ALTER TABLE ONLY caja_usuario
 
 
 --
--- TOC entry 2676 (class 2606 OID 49422)
--- Name: producto_catalogo_catalogo; Type: FK CONSTRAINT; Schema: ventas; Owner: -
+-- TOC entry 3618 (class 2606 OID 27640)
+-- Name: producto_catalogo_catalogo; Type: FK CONSTRAINT; Schema: ventas; Owner: postgres
 --
 
 ALTER TABLE ONLY producto_descuento
     ADD CONSTRAINT producto_catalogo_catalogo FOREIGN KEY (id_catalogo) REFERENCES inventario.catalogos(id);
 
 
--- Completed on 2017-10-24 09:57:30
+--
+-- TOC entry 3949 (class 0 OID 0)
+-- Dependencies: 15
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2017-10-26 16:13:15 -05
 
 --
 -- PostgreSQL database dump complete
