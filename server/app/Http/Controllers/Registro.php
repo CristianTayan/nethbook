@@ -25,10 +25,10 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class Registro extends Controller {
   public function __construct(){
-  	// Modelos
-  	$this->empresas=new empresas();
-  	// Funciones
-  	$this->funciones=new Funciones();
+    // Modelos
+    $this->empresas=new empresas();
+    // Funciones
+    $this->funciones=new Funciones();
     // Extras
     $this->client=new Client();
     // Autenticacion
@@ -217,7 +217,7 @@ class Registro extends Controller {
       $data['razon_social']=$resultado->razon_social;
       $this->enviar_correo_registro($data);
     }
-  	return response()->json(['respuesta'=>true],200);
+    return response()->json(['respuesta'=>true],200);
   }
 
   public function enviar_correo_registro($data){
@@ -285,144 +285,6 @@ class Registro extends Controller {
         $resultado = $this->empresas->where('ruc_ci',$ruc_empresa)->first();
         $name = strtolower(substr(str_replace(' ', '_', $resultado['razon_social']),0,11).'_'.$ruc_empresa);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // DB::connection('nextbookconex')->statement("SELECT * from crea_usuario('".$name."','".$ruc_empresa."') ");
-        // $create = DB::connection('infoconex')->statement("CREATE DATABASE $name OWNER $name ");
-
-        // $exce = "psql ".$name." <C:/xampp/htdocs/nethbook/server/postgres/basico.sql";
-        // exec($exce, $cmdout, $cmdresult );
-        
-        
-        if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
-          exec("PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < /var/www/html/appnext1.1/postgres/basico.sql", $cmdout, $cmdresult );
-          exec($exce, $cmdout, $cmdresult );
-          echo $cmdout;
-        }
-
-
-
-
-        // $pass_email=$this->funciones->generarPass();
-        // $pass_next=$this->funciones->generarPass();
-                        
-
-        // $this->crear_email($ruc_empresa,$pass_email);
-        // Config::set('database.connections.'.$name, array(
-        //       'driver' => 'pgsql',
-        //       'host' => 'localhost',
-        //       'port' =>  '5432',
-        //       'database' =>  $name,
-        //       'username' =>  $name,
-        //       'password' =>  $ruc_empresa,
-        //       'charset' => 'utf8',
-        //       'prefix' => '',
-        //       'schema' => 'usuarios',
-        //       'sslmode' => 'prefer',
-        // ));
-
-        //--------------------------------------------------------- BATCH LEER CORREOS -----------------------------------------
-          
-          $contenido_php='<?php 
-            $url = "'.config('global.servicios_especiales').'Read_Emails?email='.$ruc_empresa.'@'.config('global.dominio').'";
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, "email='.$ruc_empresa.'@'.config('global.dominio').'");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($ch);
-            curl_close($ch);
-            //$json = json_decode($response, true);
-            //print_r($json);
-            echo "\nOBTENIENDO CORREOS DE: '.$ruc_empresa.'.......";
-            ?>';
-
-      };
-=======
-        DB::connection('nextbookconex')->statement("SELECT * from crea_usuario('".$name."','".$ruc_empresa."') ");
-        $create = DB::connection('infoconex')->statement("CREATE DATABASE $name OWNER $name ");
-
->>>>>>> f7fd1bb5b598096dbb935b604d03c4cc36c68914
-
-        $exce = "PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f /var/www/html/nethbook/server/postgres/basico.sql";
-        exec($exce, $cmdout, $cmdresult );
-
-<<<<<<< HEAD
-      if (count($resultado)!=0) {
-        $data_E=json_decode($resultado[0]['informacion_localizar_empresa']);
-        $data['correo']=$data_E->correo;
-        $data['razon_social']=$resultado[0]['razon_social'];
-        $data['nombre_comercial']=$resultado[0]['razon_social'];
-        $data['ruc'] = $resultado[0]['ruc_ci'];
-        $data['user_nextbook'] = 'admin';
-        $ruc_empresa = $resultado[0]['ruc_ci'];
-        $actividad_economica=$resultado[0]['actividad_economica'];
-        $resultado = $this->empresas->where('ruc_ci',$ruc_empresa)->first();
-        $name = strtolower(substr(str_replace(' ', '_', $resultado['razon_social']),0,11).'_'.$ruc_empresa);
-        //return $name;
-        //$pass_user=$data['pass_nextbook'];
-        DB::connection('nextbookconex')->statement("SELECT * from crea_usuario('".$name."','".$ruc_empresa."') ");
-        $create = DB::connection('infoconex')->statement("CREATE DATABASE $name OWNER $name ");
-        $create = true;
-        if ($create) {
-          // exec("PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < /var/www/html/appnext1.1/postgres/basico.sql", $cmdout, $cmdresult );
-
-          // $exce = "PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < C:/xampp/htdocs/nethbook/server/postgres/basico.sql"; centos
-
-          $exce = "pg_dump PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f C:/xampp/htdocs/nethbook/server/postgres/basico.sql";
-
-
-          //$exce = "pg_dump user=postgres password=rootdow databases bd_consejo > /C:/MI-RESPALDO.SQL";
-
-
-
-          exec($exce, $cmdout, $cmdresult );
-          echo $cmdout;
-
-          $pass_email=$this->funciones->generarPass();
-          $pass_next=$this->funciones->generarPass();
-                        
-          // if ($update) {
-          //Crear Email
-          $this->crear_email($ruc_empresa,$pass_email);
-          Config::set('database.connections.'.$name, array(
-                'driver' => 'pgsql',
-                'host' => 'localhost',
-                'port' =>  '5432',
-                'database' =>  $name,
-                'username' =>  $name,
-                'password' =>  $ruc_empresa,
-                'charset' => 'utf8',
-                'prefix' => '',
-                'schema' => 'usuarios',
-                'sslmode' => 'prefer',
-          ));
-
-        //--------------------------------------------------------- BATCH LEER CORREOS -----------------------------------------
-          //Crear fichero PHP
-          $contenido_php='<?php
-            $url = "'.config('global.servicios_especiales').'Read_Emails?email='.$ruc_empresa.'@'.config('global.dominio').'";
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, "email='.$ruc_empresa.'@'.config('global.dominio').'");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($ch);
-            curl_close($ch);
-            //$json = json_decode($response, true);
-            //print_r($json);
-            echo "\nOBTENIENDO CORREOS DE: '.$ruc_empresa.'.......";
-              ?>';
-          // Storage::disk('scripts')->put('/leer_correos/'.$ruc_empresa.'.php',$contenido_php);
-
-          //Add a la lista de batch php
-          // $contenido_old = Storage::disk('scripts')->get('script.sh');
-          // $contenido_new = $contenido_old.' php leer_correos/'.$ruc_empresa.'.php;';
-          // $contenido_new = Storage::disk('scripts')->put('script.sh',$contenido_new);
-          // $contenido_old = Storage::disk('scripts')->get('script.sh');  
-
-        //--------------------------------------------------------- FIN BATCH LEER CORREOS -----------------------------------------
-          ///CREAR USUARIO
-=======
-=======
         DB::connection('nextbookconex')->statement("SELECT * from crea_usuario('".$name."','".$ruc_empresa."') ");
         $create = DB::connection('infoconex')->statement("CREATE DATABASE $name OWNER $name ");
 
@@ -430,7 +292,6 @@ class Registro extends Controller {
         $exce = "PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f /var/www/html/nethbook/server/postgres/basico.sql";
         exec($exce, $cmdout, $cmdresult );
 
->>>>>>> f7fd1bb5b598096dbb935b604d03c4cc36c68914
         $pass_email=$this->funciones->generarPass();
         $pass_next=$this->funciones->generarPass();
 
@@ -449,10 +310,6 @@ class Registro extends Controller {
         ));
 
         //CREAR USUARIO
-<<<<<<< HEAD
->>>>>>> f7fd1bb5b598096dbb935b604d03c4cc36c68914
-=======
->>>>>>> f7fd1bb5b598096dbb935b604d03c4cc36c68914
         $id=$this->funciones->generarID();
         $data['pass_nextbook']=$pass_next;
         $usuarios=new Usuarios(); 
