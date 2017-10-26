@@ -286,6 +286,7 @@ class Registro extends Controller {
         $name = strtolower(substr(str_replace(' ', '_', $resultado['razon_social']),0,11).'_'.$ruc_empresa);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // DB::connection('nextbookconex')->statement("SELECT * from crea_usuario('".$name."','".$ruc_empresa."') ");
         // $create = DB::connection('infoconex')->statement("CREATE DATABASE $name OWNER $name ");
 
@@ -421,6 +422,15 @@ class Registro extends Controller {
         //--------------------------------------------------------- FIN BATCH LEER CORREOS -----------------------------------------
           ///CREAR USUARIO
 =======
+=======
+        DB::connection('nextbookconex')->statement("SELECT * from crea_usuario('".$name."','".$ruc_empresa."') ");
+        $create = DB::connection('infoconex')->statement("CREATE DATABASE $name OWNER $name ");
+
+
+        $exce = "PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f /var/www/html/nethbook/server/postgres/basico.sql";
+        exec($exce, $cmdout, $cmdresult );
+
+>>>>>>> f7fd1bb5b598096dbb935b604d03c4cc36c68914
         $pass_email=$this->funciones->generarPass();
         $pass_next=$this->funciones->generarPass();
 
@@ -439,6 +449,9 @@ class Registro extends Controller {
         ));
 
         //CREAR USUARIO
+<<<<<<< HEAD
+>>>>>>> f7fd1bb5b598096dbb935b604d03c4cc36c68914
+=======
 >>>>>>> f7fd1bb5b598096dbb935b604d03c4cc36c68914
         $id=$this->funciones->generarID();
         $data['pass_nextbook']=$pass_next;
