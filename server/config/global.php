@@ -34,7 +34,7 @@ return [
 	'pathLogoDefault'=>"/storage/default/logo-default.jpg",
 	'pathPortadaCatalogoDefault'=>"/storage/default/catportada-default.jpg",
 	'pathContraportadaDefault'=>"/storage/default/contraportada-default.jpg",
-	'dominio' => $_SERVER['SERVER_NAME'],
+	'dominio' => 'nethbook.com',
   'dominioActivarCuentaCorreo' => $_SERVER['SERVER_NAME'] . 'nethbook/app/'
 	// 'appnext' => 'https://servicios.nextbook.ec'
 

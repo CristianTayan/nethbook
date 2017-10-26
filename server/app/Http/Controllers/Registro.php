@@ -285,90 +285,31 @@ class Registro extends Controller {
         $resultado = $this->empresas->where('ruc_ci',$ruc_empresa)->first();
         $name = strtolower(substr(str_replace(' ', '_', $resultado['razon_social']),0,11).'_'.$ruc_empresa);
 
-        // DB::connection('nextbookconex')->statement("SELECT * from crea_usuario('".$name."','".$ruc_empresa."') ");
-        // $create = DB::connection('infoconex')->statement("CREATE DATABASE $name OWNER $name ");
-
-        $exce = "pg_dump PGPASSWORD = rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f C:/xampp/htdocs/nethbook/server/postgres/basico.sql";
-        exec($exce, $cmdout, $cmdresult );
-          // echo $cmdout;
-
-        return response($cmdout);
-      };
-
-
-      if (count($resultado)!=0) {
-        $data_E=json_decode($resultado[0]['informacion_localizar_empresa']);
-        $data['correo']=$data_E->correo;
-        $data['razon_social']=$resultado[0]['razon_social'];
-        $data['nombre_comercial']=$resultado[0]['razon_social'];
-        $data['ruc'] = $resultado[0]['ruc_ci'];
-        $data['user_nextbook'] = 'admin';
-        $ruc_empresa = $resultado[0]['ruc_ci'];
-        $actividad_economica=$resultado[0]['actividad_economica'];
-        $resultado = $this->empresas->where('ruc_ci',$ruc_empresa)->first();
-        $name = strtolower(substr(str_replace(' ', '_', $resultado['razon_social']),0,11).'_'.$ruc_empresa);
-        //return $name;
-        //$pass_user=$data['pass_nextbook'];
         DB::connection('nextbookconex')->statement("SELECT * from crea_usuario('".$name."','".$ruc_empresa."') ");
         $create = DB::connection('infoconex')->statement("CREATE DATABASE $name OWNER $name ");
-        $create = true;
-        if ($create) {
-          // exec("PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < /var/www/html/appnext1.1/postgres/basico.sql", $cmdout, $cmdresult );
-
-          // $exce = "PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost < C:/xampp/htdocs/nethbook/server/postgres/basico.sql"; centos
-
-          $exce = "pg_dump PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f C:/xampp/htdocs/nethbook/server/postgres/basico.sql";
 
 
-          //$exce = "pg_dump user=postgres password=rootdow databases bd_consejo > /C:/MI-RESPALDO.SQL";
+        $exce = "PGPASSWORD=rootdow psql -U postgres -d ".$name." -p 5432 -h localhost -f /var/www/html/nethbook/server/postgres/basico.sql";
+        exec($exce, $cmdout, $cmdresult );
 
+        $pass_email=$this->funciones->generarPass();
+        $pass_next=$this->funciones->generarPass();
 
+        $this->crear_email($ruc_empresa,$pass_email);
+        Config::set('database.connections.'.$name, array(
+              'driver' => 'pgsql',
+              'host' => 'localhost',
+              'port' =>  '5432',
+              'database' =>  $name,
+              'username' =>  $name,
+              'password' =>  $ruc_empresa,
+              'charset' => 'utf8',
+              'prefix' => '',
+              'schema' => 'usuarios',
+              'sslmode' => 'prefer',
+        ));
 
-          exec($exce, $cmdout, $cmdresult );
-          echo $cmdout;
-          $pass_email=$this->funciones->generarPass();
-          $pass_next=$this->funciones->generarPass();
-                        
-          // if ($update) {
-          //Crear Email
-          $this->crear_email($ruc_empresa,$pass_email);
-          Config::set('database.connections.'.$name, array(
-                'driver' => 'pgsql',
-                'host' => 'localhost',
-                'port' =>  '5432',
-                'database' =>  $name,
-                'username' =>  $name,
-                'password' =>  $ruc_empresa,
-                'charset' => 'utf8',
-                'prefix' => '',
-                'schema' => 'usuarios',
-                'sslmode' => 'prefer',
-          ));
-
-        //--------------------------------------------------------- BATCH LEER CORREOS -----------------------------------------
-          //Crear fichero PHP
-          $contenido_php='<?php
-            $url = "'.config('global.servicios_especiales').'Read_Emails?email='.$ruc_empresa.'@'.config('global.dominio').'";
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, "email='.$ruc_empresa.'@'.config('global.dominio').'");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($ch);
-            curl_close($ch);
-            //$json = json_decode($response, true);
-            //print_r($json);
-            echo "\nOBTENIENDO CORREOS DE: '.$ruc_empresa.'.......";
-              ?>';
-          // Storage::disk('scripts')->put('/leer_correos/'.$ruc_empresa.'.php',$contenido_php);
-
-          //Add a la lista de batch php
-          // $contenido_old = Storage::disk('scripts')->get('script.sh');
-          // $contenido_new = $contenido_old.' php leer_correos/'.$ruc_empresa.'.php;';
-          // $contenido_new = Storage::disk('scripts')->put('script.sh',$contenido_new);
-          // $contenido_old = Storage::disk('scripts')->get('script.sh');  
-
-        //--------------------------------------------------------- FIN BATCH LEER CORREOS -----------------------------------------
-          ///CREAR USUARIO
+        //CREAR USUARIO
         $id=$this->funciones->generarID();
         $data['pass_nextbook']=$pass_next;
         $usuarios=new Usuarios(); 
@@ -384,110 +325,92 @@ class Registro extends Controller {
         //ID DE USUARIO
         $id_usuario=$usuarios->id;
 
-        /*$datos=$this->consultar_SRI($ruc_empresa);
-        $sucursales=$datos['establecimientos']['sucursal'];
-        */
-        //Registrar Empresa
-        $id_empresa_registrada=DB::connection($name)->table('administracion.empresas')->insertGetId([
-           'razon_social'=>$data['razon_social'],
-           'actividad_economica'=>$actividad_economica,
-           'ruc_ci'=>$ruc_empresa,
-           'nombre_comercial'=>$data['nombre_comercial'],
-           'id_estado'=>'A',
-           'tipo_empresa'=>0
-          ]);
-        //GENERAR VISTAS 
+        //REGISTRAR EMPRESA
+        $id_empresa_registrada = DB::connection($name)->table('administracion.empresas')->insertGetId([
+         'razon_social'=>$data['razon_social'],
+         'actividad_economica'=>$actividad_economica,
+         'ruc_ci'=>$ruc_empresa,
+         'nombre_comercial'=>$data['nombre_comercial'],
+         'id_estado'=>'A',
+         'tipo_empresa'=>0
+        ]);
 
-        app(Vistas::class)->Add_Vistas(config('vistas.lista'),$name);
+        //GENERAR VISTAS 
+        // app(Vistas::class)->Add_Vistas(config('vistas.lista'),$name); // EN proceso de revision
 
         //GENERAR PRIVILEGIOS
-        app(Vistas::class)->Gen_Privilegios_Admin($name);
+        // app(Vistas::class)->Gen_Privilegios_Admin($name); // EN proceso de revision
 
-
-        //GET Sucursales SRI
+        //GET SUCURSALES SRI
         $datos_Empresa_consultada= DB::connection('nextbookconex')->table('informacion.empresas_consultadas')->where('ruc', '=', $ruc_empresa)->first();
         $sucursales= DB::connection('nextbookconex')->table('informacion.sucursales')->where('id_empresa_consultada', '=', $datos_Empresa_consultada->id)->get();
-        //return response()->json(['respuesta' => json_decode($sucursales[0]->responsable)], 200);
         $responsable=json_decode($sucursales[0]->responsable);
         $localizacion_sucursal=json_decode($sucursales[0]->localizacion_sucursal);
         $nombre_localidad=trim($localizacion_sucursal[1]);
         $calle=str_replace(' ', '', $nombre_localidad[2]);
 
-
         $localizacion=DB::connection('nextbookconex')->select("SELECT id FROM public.view_localidades WHERE nombre= '".$nombre_localidad."'");
-        //return response()->json(['respuesta' => $localizacion], 200);
         $datos_repesentante=explode(' ', $responsable->representante_legal);
-          //Registrar Persona
-          DB::connection($name)->table('public.personas')->insert(
-          [
+        //Registrar Persona
+        DB::connection($name)->table('public.personas')->insert([
           'primer_nombre'=>$datos_repesentante[2],
-           'segundo_nombre'=>$datos_repesentante[3],
-           'primer_apellido'=>$datos_repesentante[0],
-           'segundo_apellido'=>$datos_repesentante[1],
-           'id_localidad'=>$localizacion[0]->id,
-           'calle'=>$calle,
-           'transversal'=>null,
-           'numero'=>null
-          ]);
-          $id_persona=DB::connection($name)->table('public.personas')->select('id')->where('primer_nombre',$datos_repesentante[2])->first();
-          // Guardar Documento
-          $actual_date=Carbon::now()->setTimezone('America/Guayaquil')->toDateTimeString();
-          DB::connection($name)->table('public.personas_documentos_identificacion')->insert(
-          [
+          'segundo_nombre'=>$datos_repesentante[3],
+          'primer_apellido'=>$datos_repesentante[0],
+          'segundo_apellido'=>$datos_repesentante[1],
+          'id_localidad'=>$localizacion[0]->id,
+          'calle'=>$calle,
+          'transversal'=>null,
+          'numero'=>null
+        ]);
+        
+        $id_persona=DB::connection($name)->table('public.personas')->select('id')->where('primer_nombre',$datos_repesentante[2])->first();
+        // Guardar Documento
+        $actual_date=Carbon::now()->setTimezone('America/Guayaquil')->toDateTimeString();
+        DB::connection($name)->table('public.personas_documentos_identificacion')->insert([
           'id_persona'=>$id_persona->id,
            'id_tipo_documento'=>1,
            'numero_identificacion'=>$responsable->cedula,
            'estado'=>'A',
            'fecha'=>$actual_date
-          ]);
-          //Guardar Correo
-          $actual_date=Carbon::now()->setTimezone('America/Guayaquil')->toDateTimeString();
-          DB::connection($name)->table('public.personas_correo_electronico')->insert(
-          [
+        ]);
+        //Guardar Correo
+        $actual_date=Carbon::now()->setTimezone('America/Guayaquil')->toDateTimeString();
+        DB::connection($name)->table('public.personas_correo_electronico')->insert([
           'id_persona'=>$id_persona->id,
            'correo_electronico'=>$data_E->correo,
            'estado'=>'A',
            'fecha'=>$actual_date
-          ]);
-          //Guardar Telefono
-          $array_telefono=['telefono'=>$data_E->telefono,'telefono1'=>$data_E->telefono1,'celular'=>$data_E->celular,'celular2'=>$data_E->celular2];
-          //Guardar Empleado
-          DB::connection($name)->table('talento_humano.empleados')->insert(
-          [
+        ]);
+        //Guardar Telefono
+        $array_telefono=['telefono'=>$data_E->telefono,'telefono1'=>$data_E->telefono1,'celular'=>$data_E->celular,'celular2'=>$data_E->celular2];
+        //Guardar Empleado
+        DB::connection($name)->table('talento_humano.empleados')->insert([
           'id_persona'=>$id_persona->id,
           'id_usuario'=>$id_usuario,
           'id_cargo'=>1,
           'estado'=>'A'
-          ]);
+        ]);
 
-          foreach ($array_telefono as $key => $value) {
-            $actual_date=Carbon::now()->setTimezone('America/Guayaquil')->toDateTimeString();
+        foreach ($array_telefono as $key => $value) {
+          $actual_date=Carbon::now()->setTimezone('America/Guayaquil')->toDateTimeString();
 
-            if ($value==!null) {
-              DB::connection($name)->table('public.telefonos_personas')->insert(
-              [
-              'id_persona'=>$id_persona->id,
-               'numero'=>$value,
-               'estado'=>'A',
-               'fecha'=>$actual_date,
-               'id_operadora_telefonica'=>1
-              ]);
-            }
-
-            
-          }
+          if ($value==!null) {
+            DB::connection($name)->table('public.telefonos_personas')->insert([
+            'id_persona'=>$id_persona->id,
+             'numero'=>$value,
+             'estado'=>'A',
+             'fecha'=>$actual_date,
+             'id_operadora_telefonica'=>1
+            ]);
+          }            
+        }
 
         //Registrar Sucursales
-        //$id_persona=DB::connection($name)->table('public.personas')->select('id')->where('ci_documento',$responsable['cedula'])->first();
         foreach ($sucursales as $key => $value) {
           $localizacion_array=json_decode($value->localizacion_sucursal);
           $localizacion=DB::connection('nextbookconex')->select("SELECT id FROM public.view_localidades WHERE nombre= '".str_replace(' ', '', $localizacion_array[1])."'");
           
-          //if (count($localizacion)==0) {
-            $localizacion='00';
-          /*}else{
-            $localizacion=$localizacion[0]->id;
-          }*/
+          $localizacion='00';
           $localizacion_sucursal=["direccion"=>$localizacion_array[0].'/'.$localizacion_array[1].'/'.$localizacion_array[2]];
           $datos_empresariales=['telefono'=>$request->telefono,'telefono1'=>$request->telefono1,'correo'=>$request->correo,'celular'=>$request->celular];
           DB::connection($name)->table('administracion.sucursales')->insert([
@@ -500,69 +423,67 @@ class Registro extends Controller {
           ]);
         }
 
-          $update=DB::connection('usuarioconex')->table('usuarios')
-            ->where('id', $ruc_empresa)
-                                  ->update(array('id_estado' => 'A','clave_clave'=>bcrypt($ruc_empresa),'mail'=>$ruc_empresa.'@'.config('global.dominio'),'clave_mail'=>$pass_email));
-          $update=$this->empresas->where('ruc_ci',$ruc_empresa)->update(['id_estado' => 'A','correo_institucional'=>$ruc_empresa.'@'.config('global.dominio'),'clave_correo_institucional'=>$pass_email]); 
-          $this->enviar_correo_credenciales($data);
-          return response()->json(["respuesta"=>true]);
+        $update=DB::connection('usuarioconex')->table('usuarios')
+          ->where('id', $ruc_empresa)
+            ->update(array('id_estado' => 'A','clave_clave'=>bcrypt($ruc_empresa),'mail'=>$ruc_empresa.'@'.config('global.dominio'),'clave_mail'=>$pass_email));
+        $update=$this->empresas
+          ->where('ruc_ci',$ruc_empresa)
+            ->update(['id_estado' => 'A','correo_institucional'=>$ruc_empresa.'@'.config('global.dominio'),'clave_correo_institucional'=>$pass_email]); 
 
+        $this->enviar_correo_credenciales($data);
+        return response()->json(["respuesta"=>true]);
       }
-    }
-    else return response()->json(["respuesta"=>false]);      
-  }
+  }  
 
   private function crear_email($user,$email_pass) {
-      $ip           = config('global.dominio'); 
-      $account      = "oyefm"; 
-      $passwd       = "FRf74G7oW,$0yTQ"; 
-      $port         = 2083; 
-      $email_domain = config('global.dominio'); 
-      $email_quota  = 50; 
-      $xmlapi       = new xmlapi($ip);
-      $xmlapi->set_port($port); 
-      $xmlapi->password_auth($account, $passwd); 
-      // $email_pass = "356497";
-      $result        = "";
-      if (!empty($user)){
-          while (true) {
+    $ip           = 'oyefm.com'; 
+    $account      = "oyefm"; 
+    $passwd       = "FRf74G7oW,$0yTQ"; 
+    $port         = 2083; 
+    $email_domain = config('global.dominio'); 
+    $email_quota  = 50; 
+    $xmlapi       = new xmlapi($ip);
+    $xmlapi->set_port($port); 
+    $xmlapi->password_auth($account, $passwd); 
+    $result        = "";
+    if (!empty($user)){
+      while (true) {
 
-              $call   = array(
-                  'domain' => $email_domain,
-                  'email' => $user,
-                  'password' => $email_pass,
-                  'quota' => $email_quota
-              );
+        $call   = array(
+            'domain' => $email_domain,
+            'email' => $user,
+            'password' => $email_pass,
+            'quota' => $email_quota
+        );
 
-              $call_f = array(
-                  'domain' => $email_domain,
-                  'email' => $user,
-                  'fwdopt' => "fwd",
-                  'fwdemail' => ""
-              );
-              $xmlapi->set_debug(0); 
-              
-              $result         = $xmlapi->api2_query($account, "Email", "addpop", $call);
-              $result_forward = $xmlapi->api2_query($account, "Email", "addforward", $call_f); 
+        $call_f = array(
+            'domain' => $email_domain,
+            'email' => $user,
+            'fwdopt' => "fwd",
+            'fwdemail' => ""
+        );
+        $xmlapi->set_debug(0); 
+        
+        $result         = $xmlapi->api2_query($account, "Email", "addpop", $call);
+        $result_forward = $xmlapi->api2_query($account, "Email", "addforward", $call_f); 
 
-              
-              if ($result->data->result == 1) {
-                  $result = $user.$email_domain;
-                  if ($result_forward->data->result == 1) {
-                      $result = $user . $email_domain . ' forward to ' . $dest_email;
-                  }
-              } else {
-                  $result = $result->data->reason;
-                  break;
-              }
-              break;
-          }
-          }
-      return $result;
+        
+        if ($result->data->result == 1) {
+            $result = $user.$email_domain;
+            if ($result_forward->data->result == 1) {
+                $result = $user . $email_domain . ' forward to ' . $dest_email;
+            }
+        } else {
+            $result = $result->data->reason;
+            break;
+        }
+        break;
+      }
+    }
+    return $result;
   }
 
   public function Get_Provincias(Request $request){
-
     $resultado=DB::connection('localidadesconex')->select("SELECT nombre,id,codigo_telefonico FROM view_localidades WHERE id_padre='00' ORDER BY nombre ASC");
     return response()->json(["respuesta" => $resultado], 200);
   }
