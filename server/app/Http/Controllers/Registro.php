@@ -322,6 +322,7 @@ class Registro extends Controller {
         $usuarios->id_tipo_usuario=1;
         $usuarios->fecha_creacion=Carbon::now()->toDateString();
         $usuarios->save();
+        
         //ID DE USUARIO
         $id_usuario=$usuarios->id;
 
@@ -362,7 +363,7 @@ class Registro extends Controller {
           'transversal'=>null,
           'numero'=>null
         ]);
-        
+
         $id_persona=DB::connection($name)->table('public.personas')->select('id')->where('primer_nombre',$datos_repesentante[2])->first();
         // Guardar Documento
         $actual_date=Carbon::now()->setTimezone('America/Guayaquil')->toDateTimeString();
