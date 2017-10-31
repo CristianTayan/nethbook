@@ -1,0 +1,47 @@
+.carddemoBasicUsage .card-media {
+    background-color: #999999;
+}
+
+.contenedor {
+    height: 100%;
+    max-width: 1950px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.banner2 {
+    display: none;
+}
+
+.sessionres2 {
+    display: none;
+}
+
+.user2 {
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .banner2 {
+        display: block;
+    }
+    .banner1 {
+        display: none;
+    }
+    .sessionres2 {
+        display: block;
+    }
+    .sessionres1 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 775px) {
+    .user2 {
+        display: block;
+    }
+    .user1 {
+        display: none;
+    }
+}
