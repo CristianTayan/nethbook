@@ -16,10 +16,10 @@ app.controller('app_Ctrl', function($scope, $mdToast, $translate, menuService, c
     $scope.menu = $scope.menu[0].children;
 
     for (var i = 0; i < $scope.menu.length; i++) {
-        if ($scope.menu[i].nombre=="APP") {
-            $scope.menu = $scope.menu[i].children;
-            break;
-        }
+      if ($scope.menu[i].nombre=="APP") {
+        $scope.menu = $scope.menu[i].children;
+        break;
+      }
     }
 
     //tipos de menus

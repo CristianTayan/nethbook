@@ -3,7 +3,7 @@
 $array_vistas=[
       // Padre Principal
       ['label'=>'NETHBOOK',
-        'nick_path'=>'Nb',
+        'nick_path'=>'nb',
         'selected'=>false,
         'nick_url'=>'nb',
         'personalizacion'=>['icon'=>'dashboard'],

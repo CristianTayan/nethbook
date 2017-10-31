@@ -71,63 +71,22 @@ app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mai
     };
 
     $scope.modal_footer = function() {
-        $scope.alert = '';
-        $mdBottomSheet.show({
-          templateUrl: 'views/dashboard/modal-footer.html',
-          controller: 'GridBottomSheetCtrl',
-          // clickOutsideToClose: false
-        }).then(function(clickedItem) {
-          $mdToast.show(
-                $mdToast.simple()
-                  .textContent(clickedItem['name'] + ' clicked!')
-                  .position('top right')
-                  .hideDelay(1500)
-              );
-        }).catch(function(error) {
-          // User clicked outside or hit escape
-        });
-      };
-    
-    
-
-    // LISTA NOSTOP MUSICA
-    mainService.gettop10().get().$promise.then(function(data) {
-        $scope.songs = data.respuesta;
-    });
-
-    $scope.radio = [
-            {
-                id: 'one',
-                title: 'Rain',
-                artista: 'Drake',
-                url: 'http://186.4.167.5:8000/stream.aac'
-            },
-            {
-                id: 'two',
-                title: 'OYEFM',
-                artist: 'Esmeraldas',
-                url: '186.4.167.5:8001/stream.aac'
-            },
-            {
-                id: 'three',
-                title: 'OYEF-FM',
-                artist: 'Akon',
-                url: '186.4.167.5:8002/stream.aac'
-            },
-            {
-                id: 'four',
-                title: 'Angry cow sound?',
-                artist: 'A Cow',
-                url: 'http://www.freshly-ground.com/data/audio/binaural/Mak.mp3'
-            },
-            {
-                id: 'five',
-                title: 'Things that open, close and roll',
-                artist: 'Someone',
-                url: 'http://www.freshly-ground.com/data/audio/binaural/Things%20that%20open,%20close%20and%20roll.mp3'
-            }
-        ];
-
+      $scope.alert = '';
+      $mdBottomSheet.show({
+        templateUrl: 'views/dashboard/modal-footer.html',
+        controller: 'GridBottomSheetCtrl',
+        // clickOutsideToClose: false
+      }).then(function(clickedItem) {
+        $mdToast.show(
+              $mdToast.simple()
+                .textContent(clickedItem['name'] + ' clicked!')
+                .position('top right')
+                .hideDelay(1500)
+            );
+      }).catch(function(error) {
+        // User clicked outside or hit escape
+      });
+    };
 
 
     $scope.IsVisible = true;

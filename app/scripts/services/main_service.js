@@ -149,17 +149,6 @@ var app = angular.module('nextbook20App');
             });
         };
 
-        this.gettop10 = function() {
-            return $resource(urlService.server().topmusical()+'gettop10', {} , {
-                get: {
-                    method: 'GET', isArray: false,
-                    params: {
-                        // token: $localStorage.token
-                    }
-                }
-            });
-        };
-
         this.Verificar_Pass = function() {
             return $resource(urlService.server().appnext()+'Verificar_Pass', {} , {
                 get: {

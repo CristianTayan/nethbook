@@ -103,7 +103,7 @@ var app = angular.module('nextbook20App');
               controller  : 'notificacionCtrl',
               templateUrl : 'views/notificaciones/guardar.html'
             });
-          $location.path('/App');
+          $location.path('/Nb');
         }
       });
     }

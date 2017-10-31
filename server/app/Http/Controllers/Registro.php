@@ -297,16 +297,16 @@ class Registro extends Controller {
 
         $this->crear_email($ruc_empresa,$pass_email);
         Config::set('database.connections.'.$name, array(
-              'driver' => 'pgsql',
-              'host' => 'localhost',
-              'port' =>  '5432',
-              'database' =>  $name,
-              'username' =>  $name,
-              'password' =>  $ruc_empresa,
-              'charset' => 'utf8',
-              'prefix' => '',
-              'schema' => 'usuarios',
-              'sslmode' => 'prefer',
+          'driver' => 'pgsql',
+          'host' => 'localhost',
+          'port' =>  '5432',
+          'database' =>  $name,
+          'username' =>  $name,
+          'password' =>  $ruc_empresa,
+          'charset' => 'utf8',
+          'prefix' => '',
+          'schema' => 'usuarios',
+          'sslmode' => 'prefer',
         ));
 
         //CREAR USUARIO
@@ -337,10 +337,10 @@ class Registro extends Controller {
         ]);
 
         //GENERAR VISTAS 
-        // app(Vistas::class)->Add_Vistas(config('vistas.lista'),$name); // EN proceso de revision
+        app(Vistas::class)->Add_Vistas(config('vistas.lista'),$name);
 
         //GENERAR PRIVILEGIOS
-        // app(Vistas::class)->Gen_Privilegios_Admin($name); // EN proceso de revision
+        app(Vistas::class)->Gen_Privilegios_Admin($name);
 
         //GET SUCURSALES SRI
         $datos_Empresa_consultada= DB::connection('nextbookconex')->table('informacion.empresas_consultadas')->where('ruc', '=', $ruc_empresa)->first();

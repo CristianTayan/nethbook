@@ -6,3 +6,5 @@
 /bower_components
 .vs/
 .vs/slnx.sqlite
+package-lock.json
+npm-debug.log
