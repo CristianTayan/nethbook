@@ -1,169 +1,171 @@
-<md-toolbar>
-    <div class="md-toolbar-tools md-toolbar-registro">
-      <div class="banner2" flex="90%">
-        <h1>Netbook</h1>
+<div layout="column" flex>
+  <md-toolbar>
+      <div class="md-toolbar-tools md-toolbar-registro">
+        <div class="banner2" flex="90%">
+          <h1>Netbook</h1>
+        </div>
+        <div class="banner" flex="90%">
+          <h1>Netbook, Red de Negocios</h1>
+        </div>
+        <div  layout-align="end center">
+          <md-button class="md-accent md-raised" aria-label="Learn More" ng-href="#/Registro">
+              Iniciar Sesion
+          </md-button>
+        </div>
       </div>
-      <div class="banner" flex="90%">
-        <h1>Netbook, Red de Negocios</h1>
-      </div>
-      <div  layout-align="end center">
-        <md-button class="md-accent md-raised" aria-label="Learn More" ng-href="#/Registro">
-            Iniciar Sesion
-        </md-button>
-      </div>
-    </div>
-</md-toolbar>
+  </md-toolbar>
 
-<md-content flex layout="row">
-    <md-content flex style="background: #EEEEEE!important;">
-        <!-- <div layout="row" layout-align="center center"> -->
-            <div ng-controller="main_Ctrl as main_Ctrl">
-                <div layout="column" layout-align="center center">
-                    <img ng-show="img" ng-src="images/main/publi1.png">
-                    <div class="mjd">
-                        <form name="formsearch">
-                            <div layout="row" layout-sm="column">
-                              <div>
-                                  <md-icon class="md-accent">widgets</md-icon>
+  <md-content flex layout="row">
+      <md-content flex style="background: #EEEEEE!important;">
+          <!-- <div layout="row" layout-align="center center"> -->
+              <div ng-controller="main_Ctrl as main_Ctrl">
+                  <div layout="column" layout-align="center center">
+                      <img ng-show="img" ng-src="images/main/publi1.png">
+                      <div class="mjd">
+                          <form name="formsearch">
+                              <div layout="row" layout-sm="column">
+                                <div>
+                                    <md-icon class="md-accent">widgets</md-icon>
+                                </div>
+                                <md-input-container class="md-icon-float md-block" >                                    
+                                    <div flex="50%">
+                                       <label>Buscar por servicios, negocios, empresas...</label>
+                                    </div>                                 
+                                    <div flex="50%">
+                                       <input type="text" id="sc" ng-model="data_search" ng-keyup="buscando()" md-no-asterisk autocomplete="off"  md-autofocus="true" required>
+                                    </div>                               
+                                </md-input-container>
+                                 <div>
+                                    <md-button class="md-fab md-mini" type="submit" ng-disabled="formsearch.$invalid">
+                                        <md-icon class="material-icons">search</md-icon>
+                                    </md-button>
+                                </div>
                               </div>
-                              <md-input-container class="md-icon-float md-block" >                                    
-                                  <div flex="50%">
-                                     <label>Buscar por servicios, negocios, empresas...</label>
-                                  </div>                                 
-                                  <div flex="50%">
-                                     <input type="text" id="sc" ng-model="data_search" ng-keyup="buscando()" md-no-asterisk autocomplete="off"  md-autofocus="true" required>
-                                  </div>                               
-                              </md-input-container>
-                               <div>
-                                  <md-button class="md-fab md-mini" type="submit" ng-disabled="formsearch.$invalid">
-                                      <md-icon class="material-icons">search</md-icon>
-                                  </md-button>
+                          </form>
+                      </div>
+                  </div>
+                  <div layout="column" layout-align="center center">
+                  <md-content style=" background: #EEEEEE;" flex="80">
+                      <md-list>
+                          <md-list-item class="md-3-line" ng-repeat="item in elementos | limitTo: 4" ng-click="selectedItemChange(item)">
+                              <md-icon class="md-avatar-icon">business</md-icon>
+                              <div class="md-list-item-text" layout="column">                              
+                                  <h4>{{item.empresa}}</h4>
                               </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div layout="column" layout-align="center center">
-                <md-content style=" background: #EEEEEE;" flex="80">
-                    <md-list>
-                        <md-list-item class="md-3-line" ng-repeat="item in elementos | limitTo: 4" ng-click="selectedItemChange(item)">
-                            <md-icon class="md-avatar-icon">business</md-icon>
-                            <div class="md-list-item-text" layout="column">                              
-                                <h4>{{item.empresa}}</h4>
-                            </div>
-                        </md-list-item>
-                    </md-list>
-                </md-content>
-                </div>
-            </div>
-        <!-- </div> -->
-    </md-content>
-</md-content>
+                          </md-list-item>
+                      </md-list>
+                  </md-content>
+                  </div>
+              </div>
+          <!-- </div> -->
+      </md-content>
+  </md-content>
 
-<style type="text/css">
-    .banner2 {
-      display: none;
-    }
-     @media screen and (max-width: 800px) {
-       .banner2 {
-        display: block;
-       }
-       .banner {
+  <style type="text/css">
+      .banner2 {
         display: none;
-       }
-    }
-    md-list-item{
+      }
+       @media screen and (max-width: 800px) {
+         .banner2 {
+          display: block;
+         }
+         .banner {
+          display: none;
+         }
+      }
+      md-list-item{
+          background: #FFF;
+          border-left: 10px solid #757575!important;
+          margin-bottom: 4px;
+      }
+      .mjd {
         background: #FFF;
-        border-left: 10px solid #757575!important;
+        padding-top: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 11px;
+        width: 500px;
+        flex: auto;
+      }
+      md-input-container {
+        display: inline-block;
+        position: relative;
+        padding: 0px;
+        margin: 0px 0;
+        vertical-align: middle;
+        flex: auto;
+      }
+      .ca-menu li {
+        /*width: 500px;*/
+        background: green:;
+        height: 40px;
+        overflow: hidden;
+        display: block;
+        background: #fff;
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         margin-bottom: 4px;
-    }
-    .mjd {
-      background: #FFF;
-      padding-top: 30px;
-      padding-left: 10px;
-      padding-right: 10px;
-      border-radius: 11px;
-      width: 500px;
-      flex: auto;
-    }
-    md-input-container {
-      display: inline-block;
-      position: relative;
-      padding: 0px;
-      margin: 0px 0;
-      vertical-align: middle;
-      flex: auto;
-    }
-    .ca-menu li {
-      /*width: 500px;*/
-      background: green:;
-      height: 40px;
-      overflow: hidden;
-      display: block;
-      background: #fff;
-      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-      margin-bottom: 4px;
-      border-left: 10px solid #757575;
-      transition: all 300ms ease-in-out;
-    }
-    .ca-menu li:last-child {
-      margin-bottom: 0px;
-    }
-    .ca-menu li a {
-      text-align: left;
-      display: block;
-      width: 100%;
-      height: 100%;
-      color: #333;
-      position: relative;
-    }
-    .ca-icon {
-      font-family: 'WebSymbolsRegular', cursive;
-      font-size: 20px;
-      text-shadow: 0px 0px 1px #333;
-      line-height: 70px;
-      position: absolute;
-      width: 70px;
-      left: 0px;
-      text-align: center;
-      transition: all 300ms linear;
-    }
-    .ca-menu {
-      padding: 0;
-      margin: 20px auto;
-      /*width: 500px;*/
-    }
-    .ca-content {
-      position: absolute;
-      left: 10px;
-      /*width: 370px;*/
-      height: 60px;
-      top: 9px;
-    }
-    .ca-main {
-      font-size: 15px;
-      transition: all 300ms linear;
-    }
-    .ca-sub {
-      font-size: 14px;
-      color: #666;
-      transition: all 300ms linear;
-    }
-    .ca-menu li:hover {
-      border-color: #FF4081;
-      background: #333333;
-    }
-    .ca-menu li:hover .ca-icon {
-      color: #FF4081;
-      text-shadow: 0px 0px 1px #FF4081;
-      font-size: 50px;
-    }
-    .ca-menu li:hover .ca-main {
-      color: #FF4081;
-      font-size: 12px;
-    }
-    .ca-menu li:hover .ca-sub {
-      color: #fff;
-      font-size: 16px;
-    }
-</style>
+        border-left: 10px solid #757575;
+        transition: all 300ms ease-in-out;
+      }
+      .ca-menu li:last-child {
+        margin-bottom: 0px;
+      }
+      .ca-menu li a {
+        text-align: left;
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: #333;
+        position: relative;
+      }
+      .ca-icon {
+        font-family: 'WebSymbolsRegular', cursive;
+        font-size: 20px;
+        text-shadow: 0px 0px 1px #333;
+        line-height: 70px;
+        position: absolute;
+        width: 70px;
+        left: 0px;
+        text-align: center;
+        transition: all 300ms linear;
+      }
+      .ca-menu {
+        padding: 0;
+        margin: 20px auto;
+        /*width: 500px;*/
+      }
+      .ca-content {
+        position: absolute;
+        left: 10px;
+        /*width: 370px;*/
+        height: 60px;
+        top: 9px;
+      }
+      .ca-main {
+        font-size: 15px;
+        transition: all 300ms linear;
+      }
+      .ca-sub {
+        font-size: 14px;
+        color: #666;
+        transition: all 300ms linear;
+      }
+      .ca-menu li:hover {
+        border-color: #FF4081;
+        background: #333333;
+      }
+      .ca-menu li:hover .ca-icon {
+        color: #FF4081;
+        text-shadow: 0px 0px 1px #FF4081;
+        font-size: 50px;
+      }
+      .ca-menu li:hover .ca-main {
+        color: #FF4081;
+        font-size: 12px;
+      }
+      .ca-menu li:hover .ca-sub {
+        color: #fff;
+        font-size: 16px;
+      }
+  </style>
+</div>
