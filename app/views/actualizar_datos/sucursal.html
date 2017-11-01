@@ -1,121 +1,93 @@
-<div layout="column" flex>
-  <md-toolbar layout="row" layout-align="center center">
-      <div flex-gt-sm="90" flex-gt-md="80">
-          <div class="md-toolbar-tools md-toolbar-registro">
-              <img src="images/logo/logo.fw.png" alt="Logo"> Nextbook, Red de Negocios
-              <span flex></span>
-              <lx-dropdown lx-position="right">
-                  <lx-dropdown-toggle>
-                      <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
-                  </lx-dropdown-toggle>
-                  <lx-dropdown-menu>
-                      <ul>
-                          <li>
-                              <a href="#/Salir" class="dropdown-link">
-                                  <i class="mdi"><md-icon>exit_to_app</md-icon></i>
-                                  <span>Cerrar Sesión</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </lx-dropdown-menu>
-              </lx-dropdown>
-          </div>
-      </div>
-  </md-toolbar>
-  <md-toolbar layout="column">
-      <h4 class="text-center">
-      <md-button  ng-href="#/Seleccionar_Sucursal" aria-label="description"><md-icon>arrow_back</md-icon>Atras</md-button>{{infoempresa.razon_social}}</h4>
-  </md-toolbar>
-  <md-content flex layout="row">
-      <md-content flex>
-          <div layout="row" layout-align="center center">
-              <xmd-wizard active-step="currentStep" on-change="stepChanged()" on-save="wizardSaved()" flex flex-gt-sm="90" flex-gt-md="60">
-                  <xmd-step label="Empecemos" xmd-required="true" flex>
-                      <br>
-                      <div layout="row">
-                          <md-input-container flex>
-                              <label>Nombre Comercial del establecimiento</label>
-                              <input type="text" ng-model="data.nom_sucursal" uppercase ng-disabled="!data.cb1" required>
-                          </md-input-container>
-                          <md-switch ng-model="data.cb1" aria-label="Switch 1" flex="40">
-                              Cambiar Nombre
-                          </md-switch>
-                      </div>
-                      <h5 class="text-center">A que se dedica el establecimiento {{data.nom_sucursal | lowercase}}..?</h5>
-                      <md-radio-group ng-model="Tipo"  required>
-                          <div ng-repeat='item in tipo_bienes_servicios' layout-align="start center">
-                              <div flex layout='row' layout-align="start center">
-                                  <div flex style="max-width:200px; position: relative; text-align: right; padding-right: 10px; top:-6px">
-                                      {{item.nombre}}
-                                  </div>
-                                  <md-radio-button ng-value="item.id" ng-click="selected_Tipo(item)">
-                                      <img src="images/tipo_sucursal/general.jpg">
-                                      <md-tooltip md-direction="right">
-                                          {{item.descripcion | uppercase}}
-                                      </md-tooltip>
-                                  </md-radio-button>
-                              </div>
-                          </div>
-                      </md-radio-group>
-                  </xmd-step>
-                  <xmd-step label="un poco mas y terminamos" xmd-required="true">
-                      <div layout-padding layout-wrap layout="row">
-                          <div flex="60">
-                              <md-input-container class="md-icon-float md-icon-left md-block" flex-gt-xs>
-                                  <md-icon class="md-primary">store_mall_directory</md-icon>
-                                  <lx-select ng-model="ModelTipo_Tipo_Empresa.selectedTipo" lx-allow-clear="true" lx-choices="tipo_empresas" lx-display-filter="true" lx-fixed-label="true" lx-label="Actividad econónomica" required>
-                                      <lx-select-selected>
-                                          <strong>{{ $selected.nombre}}</strong> {{ ' - '+$selected.descripcion }}
-                                      </lx-select-selected>
-                                      <lx-select-choices>
-                                          <strong>{{ $choice.nombre}}</strong> {{ ' - '+$choice.descripcion }}
-                                      </lx-select-choices>
-                                  </lx-select>
-                              </md-input-container>
-                              <br>
-                              <md-input-container class="md-icon-float md-block" flex-gt-xs>
-                                  <md-icon class="md-primary">airplay</md-icon>
-                                  <label>Hablanos un poco de lo que realizasas en este establecimiento</label>
-                                  <textarea name="bio" ng-model="form.descripcion" required md-maxlength="150"></textarea>
-                                  <div ng-messages="userForm.bio.$error" ng-show="userForm.bio.$dirty">
-                                      <div ng-message="required">This is required!</div>
-                                      <div ng-message="md-maxlength">That's too long!</div>
-                                  </div>
-                              </md-input-container>
-                          </div>
-                          <div layout-padding flex="40">
-                              <img src="images/tipo_sucursal/general.jpg">
-                          </div>
-                      </div>
-                  </xmd-step>
-                  <xmd-step label="listo" flex>
-                      <h3 class="text-center">Verifica si la siguiente información es correcta</h3>
-                      <br>
-                      <div layout="row">
-                          <md-input-container flex>
-                              <label>Nombre Comercial del establecimiento</label>
-                              <input type="text" ng-model="data.nom_sucursal" readonly>
-                          </md-input-container>
-                      </div>
-                      <div layout="row">
-                          <md-input-container flex>
-                              <label>Giro del Negocio</label>
-                              <input type="text" value="{{Tipo_completo.nombre+' - '+Tipo_completo.descripcion}}" readonly>
-                          </md-input-container>
-                          <md-input-container flex>
-                              <label>Actividad Economica</label>
-                              <input type="text" value="{{ModelTipo_Tipo_Empresa.selectedTipo.nombre +' - '+ModelTipo_Tipo_Empresa.selectedTipo.descripcion}}" readonly>
-                          </md-input-container>
-                      </div>
-                      <div layout="row">
-                          <md-input-container flex>
-                              <label>Hablanos un poco de lo que realizasas en este establecimiento</label>
-                              <textarea name="descripcion" ng-model="form.descripcion" required md-maxlength="150" readonly></textarea>
-                          </md-input-container>
-                      </div>
-                  </xmd-step>
-              </xmd-wizard>
-          </div>
-      </md-content>
-  </md-content>
-</div>
+<md-toolbar layout="row" layout-align="center center">
+    <div flex-gt-sm="90" flex-gt-md="80">
+        <div class="md-toolbar-tools md-toolbar-registro">
+            <img src="images/logo/logo.fw.png" alt="Logo"> Nextbook, Red de Negocios
+            <span flex></span>
+            <lx-dropdown lx-position="right">
+                <lx-dropdown-toggle>
+                    <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
+                </lx-dropdown-toggle>
+                <lx-dropdown-menu>
+                    <ul>
+                        <li>
+                            <a href="#/Salir" class="dropdown-link">
+                                <i class="mdi"><md-icon>exit_to_app</md-icon></i>
+                                <span>Cerrar Sesión</span>
+                            </a>
+                        </li>
+                    </ul>
+                </lx-dropdown-menu>
+            </lx-dropdown>
+        </div>
+    </div>
+</md-toolbar>
+<md-toolbar layout="column">
+    <h4 class="text-center">
+    <md-button  ng-href="#/Seleccionar_Sucursal" aria-label="description"><md-icon>arrow_back</md-icon>Atras</md-button>{{infoempresa.razon_social}}</h4>
+</md-toolbar>
+<md-content flex layout="row">
+    <md-content flex>
+        <div layout="row" layout-align="center center">
+
+
+            <xmd-wizard active-step="currentStep" on-change="stepChanged()" on-save="wizardSaved()"  flex flex-gt-sm="50" >
+                
+                <xmd-step label="Empecemos" xmd-required="true" flex="50">  
+                    <br>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Nombre Comercial del establecimiento</label>
+                            <input type="text" ng-model="data.nom_sucursal" uppercase ng-disabled="!data.cb1" required>
+                        </md-input-container>
+                        <md-switch ng-model="data.cb1" aria-label="Switch 1" flex="40">
+                            Cambiar Nombre****
+                        </md-switch>
+                    </div>
+                    <h5 class="text-center">A que se dedica el establecimiento {{data.nom_sucursal | lowercase}}..?</h5>
+                    <md-radio-group ng-model="Tipo"  required>
+                        <div ng-repeat='item in tipo_bienes_servicios' layout-align="start center">
+                            <div flex layout='row' layout-align="start center">
+                                <div flex style="max-width:200px; position: relative; text-align: right; padding-right: 10px; top:-6px">
+                                    {{item.nombre}}
+                                </div>
+                                <md-radio-button ng-value="item.id" ng-click="selected_Tipo(item)">
+                                    <img src="images/tipo_sucursal/general.jpg">
+                                    <md-tooltip md-direction="right">
+                                        {{item.descripcion | uppercase}}
+                                    </md-tooltip>
+                                </md-radio-button>
+                            </div>
+                        </div>
+                    </md-radio-group>
+                </xmd-step> 
+
+                <xmd-step label="listo" flex="50">
+                    <h3 class="text-center">Verifica si la siguiente información es correcta</h3>
+                    <br>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Nombre Comercial del establecimiento</label>
+                            <input type="text" ng-model="data.nom_sucursal" readonly>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Giro del Negocio</label>
+                            <input type="text" value="{{Tipo_completo.nombre+' - '+Tipo_completo.descripcion}}" readonly>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Actividad Economica</label>
+                            <input type="text" value="{{ModelTipo_Tipo_Empresa.selectedTipo.nombre +' - '+ModelTipo_Tipo_Empresa.selectedTipo.descripcion}}" readonly>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Hablanos un poco de lo que realizasas en este establecimiento</label>
+                            <textarea name="descripcion" ng-model="form.descripcion" required md-maxlength="150" readonly></textarea>
+                        </md-input-container>
+                    </div>
+                </xmd-step>
+            </xmd-wizard>
+        </div>
+    </md-content>
+</md-content>
