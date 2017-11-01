@@ -80,16 +80,19 @@
                                         <div ng-message="format">Formato invalido</div>
                                     </div>
                                 </mdp-date-picker> -->
+
                             </div>
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block" flex-gt-sm>
                                     <label>Ingrese su nueva contraseña</label>
                                     <md-icon class="md-accent">streetview</md-icon>
-                                    <input type="password" id="password" name="password" ng-model="data.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required />
+                                    <input type="password" id="password" name="password" ng-minlength="6" ng-maxlength="20"  ng-model="data.password" required ng-keyup ="ValidarClave()" />
+                                    
                                     <div ng-messages="form_pass.password.$error">
-                                        <div ng-message="required" class="my-message">Ingrese una contraseña es requerido</div>
-                                        <div ng-message="minlength" class="my-message">as contraseñas deben tener entre 8 y 20 caracteres.</div>
-                                        <div ng-message="pattern" class="my-message">Debe contener una minuscula &amp;letra mayúscula y un carácter especial (un número o un símbolo.)</div>
+                                    <div class="bar" ></div>
+                                        <div ng-message="required" class="my-message"><h6>Ingrese una contraseña es requerido</h6></div>
+                                        <div ng-message="minlength" class="my-message"><h6>Las contraseñas deben tener entre 6 y 20 caracteres.</h6></div>
+                                        <div ng-message="pattern" class="my-message"><h6>Debe contener una minuscula &amp;letra mayúscula y un carácter especial (un número o un símbolo.)</h6></div>
                                     </div>
                                 </md-input-container>
                             </div>            
@@ -99,8 +102,8 @@
                                         <md-icon class="md-accent">layers</md-icon>
                                         <input type="password" id="password_c" name="password_c" ng-model="formData.password_c" valid-password-c="data.password" required />
                                         <div ng-messages="form_pass.password_c.$error">
-                                            <div ng-message="noMatch">Las contraseñas no coinciden</div>
-                                            <div ng-message="required">Campo es requerido</div>
+                                            <div ng-message="noMatch"><h6>Las contraseñas no coinciden</h6></div>
+                                            <div ng-message="required"><h6>Campo es requerido</h6></div>
                                         </div>
                                 </md-input-container>
                             </div>
