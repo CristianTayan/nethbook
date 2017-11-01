@@ -9,22 +9,26 @@
         </div>
     </md-toolbar>
     <md-list>
-        <md-subheader class="md-no-sticky">Clickable Items with Secondary Controls</md-subheader>
         <md-list-item ng-href="#/nb/Estructura_Empresa">
-            <md-icon>business</md-icon>
-            <p>Estructura Empresa</p>
+            <md-icon>insert_drive_file</md-icon>
+            <p>Repositorio de Facturas</p>
         </md-list-item>
         <md-list-item ng-click="fullscreen()">
-            <md-icon>date_range</md-icon>
-            <p>Calendario</p>
+            <md-icon>account_circle</md-icon>
+            <p>Perfil personal</p>
         </md-list-item>
+        <md-list-item ng-href="#/nb/Perfil_Empresa">
+            <md-icon>business</md-icon>
+            <p>Perfil empresa</p>
+        </md-list-item>
+
     </md-list>    
 </md-sidenav>
 <md-content flex layout-padding style="background: #EEEEEE">
     <md-tabs md-center-tabs md-dynamic-height flex style="background: #FFF">
       <md-tab id="tab1">
         <md-tab-label>Mensaje</md-tab-label>
-        <md-tab-body>
+        <!-- <md-tab-body>
             <md-card flex ng-class="{sm: $mdMedia('sm'), md: $mdMedia('md'), lg: $mdMedia('lg')}">
                 <form name="postForm">
                     <md-card-header class="row">
@@ -69,7 +73,7 @@
                     </md-card-content>
                 </form>
             </md-card>
-        </md-tab-body>
+        </md-tab-body> -->
       </md-tab>
       <md-tab id="tab2">
         <md-tab-label>Evento</md-tab-label>
