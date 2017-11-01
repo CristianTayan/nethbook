@@ -8,17 +8,48 @@
  * Controller of the nextbook20App
  */
 var app = angular.module('nextbook20App');
+
   app.controller('actualizar_datos_Ctrl', function ($scope, $mdDialog, $location, mainService) {
     var fecha = moment(new Date()); // Fecha Actual
     $scope.inicio = fecha.subtract(100, 'years').format("YYYY-MM-DD");// resta 100 años a la fecha
     var fecha = moment(new Date()); // Fecha Actual
     $scope.fin = fecha.subtract(18, 'years').format("YYYY-MM-DD");  // resta 18 años a la fecha
 
+
+    $scope.ValidarClave = function(){
+      
+       var passVar = $scope.data.password;
+       var alto = new RegExp("^(?=.{9,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+       var medio = new RegExp("^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");        
+       var bajo = new RegExp("(?=.{6,}).*", "g");
+
+          if(bajo.test(passVar) === false){
+              $('.bar').removeClass('medium');
+              $('.bar').removeClass('strong');
+              $('.bar').addClass('weak');
+            }
+          else if(alto.test(passVar) === true){
+              $('.bar').addClass('strong');
+              $('.bar').removeClass('medium');
+              $('.bar').removeClass('weak');
+            }
+          else if(medio.test(passVar) === true){
+              $('.bar').removeClass('weak');
+              $('.bar').removeClass('strong');
+              $('.bar').addClass('medium');
+            }
+          else {
+              $('.bar').removeClass('medium');
+              $('.bar').addClass('weak');
+            }
+    }
+
     $scope.cambiar_datos_password = function(){
     	mainService.Update_Password().get({pass:$scope.data.password}).$promise.then(function(data){
-        if (data.respuesta == true) {
+        if (data.respuesta === true) {
           $location.path('/Seleccionar_Sucursal');
-        }else{
+        }
+        if (data.respuesta !== true){
           $mdDialog.show(
               $mdDialog.alert()
               .parent(angular.element(document.querySelector('#popupContainer')))
