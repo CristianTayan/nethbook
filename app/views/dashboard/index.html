@@ -1,51 +1,47 @@
-<md-toolbar layout="row"  md-theme="teal" md-theme-watch="true">
-    <div style="max-width:250px;" flex></div>
-    <div flex>
-        <div class="md-toolbar-tools toolbar-center">
+<md-sidenav 
+  style="max-width: 60px;" 
+  layout="column" class="md-sidenav-left" 
+  md-component-id="left" 
+  md-is-locked-open="$mdMedia('gt-md')">
+  <md-toolbar class="md-hue-2" layout="row">
+    <div class="md-toolbar-tools toolbar-center" style="padding: 0 9px;">
+      <a href="#/nb/App" class="btn btn--l btn--white btn--icon" lx-ripple>
+        <i class="mdi mdi-apps"></i>
+      </a>
+    </div>
+  </md-toolbar>
+  <md-list class="menu-dashboard">
+    <md-list-item ng-href="#/nb/App/Finanzas/Ventas/Facturacion">
+      <md-icon>business</md-icon>
+    </md-list-item>    
+    <md-list-item ng-href="#/nb/App/Finanzas/Contable/Repositorio_Facturas">
+      <md-icon>date_range</md-icon>
+    </md-list-item>
+  </md-list>    
+</md-sidenav>
+<div layout="column" class="relative" layout-fill role="main">
+  <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
+    <ng-md-icon icon="add"></ng-md-icon>
+  </md-button>
+  <md-toolbar>
+    <div class="md-toolbar-tools toolbar-center">
             <md-button class="md-icon-button" aria-label="Settings" ng-click="modal_footer()">
               <md-icon>menu</md-icon>
             </md-button>
             <a href="#/nb">
                 <img src="images/logo/logo.fw.png" alt="Logo">
             </a>
-            <div ng-controller="main_Ctrl as main_Ctrl">
-              <form ng-submit="$event.preventDefault()" flex="100">
-                  <md-autocomplete
-                        class="main-input-search"
-                        ng-disabled="isDisabled" 
-                        md-no-cache="Cache"
-                        md-selected-item="selectedItem" 
-                        md-search-text-change="main_Ctrl.searchTextChange(searchText)" 
-                        md-search-text="searchText" 
-                        md-selected-item-change="main_Ctrl.selectedItemChange_ini(item)" 
-                        md-items="item in items" 
-                        md-item-text="item.nombre_comercial" 
-                        md-min-length="0" 
-                        placeholder="Negocios, servicios, empresas" 
-                        md-menu-class="autocomplete-custom-template">
-                        <md-item-template>
-                            <span class="item-title">
-                                <img ng-src="{{item.img.perfil}}" class="avatar-busqueda">
-                                <span class="search-text"> {{item.nombre_comercial}} </span>
-                            </span>
-                        </md-item-template>
-                        <md-not-found>
-                           No hay servicios, negocios con ese valor.
-                        </md-not-found>
-                  </md-autocomplete>
-              </form>    
-            </div>
             <span flex></span>
             <a href="#/nb/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
                 <md-icon>home</md-icon>
             </a>
             <a href="#/nb/App/Administracion/Perfil_Personal">
-                <span class="mdl-chip">
-                    <span class="mdl-chip__text">{{datos_personales.primer_nombre}}</span>
-                </span>
+              <span class="mdl-chip">
+                  <span class="mdl-chip__text">{{datos_personales.primer_nombre}}</span>
+              </span>
             </a>
             <a href="#/nb/App" class="btn btn--l btn--white btn--icon" lx-ripple>
-                <i class="mdi mdi-apps"></i>
+              <i class="mdi mdi-apps"></i>
             </a>
             <lx-dropdown lx-position="right">
                 <lx-dropdown-toggle>
@@ -97,8 +93,9 @@
                 </a>
             </span>
         </div>
-    </div>
-    <div style="max-width:250px;" flex></div>
-</md-toolbar>
+  </md-toolbar>
+  <md-content flex md-scroll-y>
+    <div layout="row" flex app-view-segment="1" class="view-next"></div>
+    </md-content>
+</div>
 
-<div layout="row" flex app-view-segment="1" class="view-next"></div>

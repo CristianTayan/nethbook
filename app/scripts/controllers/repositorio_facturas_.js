@@ -103,14 +103,16 @@
 	        repositorioFacturas.Estado_Factura().add(data).$promise.then(function(data) {
 			    if (data.numeroComprobantes==0) {
 			        $mdDialog.show( {
-			            controller: informativo_Ctrl, templateUrl: 'views/app/repositorio_facturas/subir_facturas/modal_informativo.html', 
+			            controller: informativo_Ctrl, 
+			            templateUrl: 'views/app/finanzas/contable/repositorio_facturas/subir_facturas/modal_informativo.html', 
 			            parent: angular.element(document.body), 
 			            clickOutsideToClose: false,
 			        });
 			    }
 			    else {
 			        $mdDialog.show( {
-			            controller: modal_Ctrl, templateUrl: 'views/app/repositorio_facturas/subir_facturas/modal.html', 
+			            controller: modal_Ctrl, 
+			            templateUrl: 'views/app/finanzas/contable/repositorio_facturas/subir_facturas/modal.html', 
 			            parent: angular.element(document.body), 
 			            clickOutsideToClose: false, 
 			            locals: { obj: data, tipo_consumo: $scope.tipo_consumos }
