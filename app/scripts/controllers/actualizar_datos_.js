@@ -15,33 +15,48 @@ var app = angular.module('nextbook20App');
     var fecha = moment(new Date()); // Fecha Actual
     $scope.fin = fecha.subtract(18, 'years').format("YYYY-MM-DD");  // resta 18 años a la fecha
 
+    $scope.user = {
+      password: {
+       required: true,
+       minlength: 6,
+       maxlength: 20
+      }
+    }
 
     $scope.ValidarClave = function(){
       
-       var passVar = $scope.data.password;
+       var passVar = $scope.password;
        var alto = new RegExp("^(?=.{9,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
        var medio = new RegExp("^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");        
        var bajo = new RegExp("(?=.{6,}).*", "g");
 
-          if(bajo.test(passVar) === false){
+          if (bajo.test(passVar) === false){
               $('.bar').removeClass('medium');
               $('.bar').removeClass('strong');
               $('.bar').addClass('weak');
+              $scope.mensaje= "Nivel Bajo";
+
             }
-          else if(alto.test(passVar) === true){
+          else if (alto.test(passVar) === true){
               $('.bar').addClass('strong');
+              $scope.mensaje= "Nivel Alto";
               $('.bar').removeClass('medium');
               $('.bar').removeClass('weak');
+              
             }
-          else if(medio.test(passVar) === true){
+          else if (medio.test(passVar) === true){
               $('.bar').removeClass('weak');
               $('.bar').removeClass('strong');
               $('.bar').addClass('medium');
+              $scope.mensaje= "Nivel Medio";
             }
           else {
+              $('.bar').removeClass('strong');
               $('.bar').removeClass('medium');
               $('.bar').addClass('weak');
+              $scope.mensaje= "Nivel Bajo";
             }
+
     }
 
     $scope.cambiar_datos_password = function(){
