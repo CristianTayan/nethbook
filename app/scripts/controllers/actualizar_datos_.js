@@ -16,8 +16,8 @@ var app = angular.module('nextbook20App');
     $scope.fin = fecha.subtract(18, 'years').format("YYYY-MM-DD");  // resta 18 años a la fecha
 
 
-    $scope.ValidarClave = function(){
-      
+    $scope.ValidarClave = function(event){
+      console.log('test 0===>', event);
        var passVar = $scope.data.password;
        var alto = new RegExp("^(?=.{9,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
        var medio = new RegExp("^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");        

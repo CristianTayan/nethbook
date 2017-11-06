@@ -338,10 +338,10 @@ class Registro extends Controller {
         ]);
 
         //GENERAR VISTAS 
-        // app(Vistas::class)->Add_Vistas(config('vistas.lista'),$name); // EN proceso de revision
+        app(Vistas::class)->Add_Vistas(config('vistas.lista'),$name); // EN proceso de revision
 
         //GENERAR PRIVILEGIOS
-        // app(Vistas::class)->Gen_Privilegios_Admin($name); // EN proceso de revision
+        app(Vistas::class)->Gen_Privilegios_Admin($name); // EN proceso de revision
 
         //GET SUCURSALES SRI
         $datos_Empresa_consultada= DB::connection('nextbookconex')->table('informacion.empresas_consultadas')->where('ruc', '=', $ruc_empresa)->first();
@@ -440,7 +440,7 @@ class Registro extends Controller {
   private function crear_email($user,$email_pass) {
     $ip           = 'oyefm.com'; 
     $account      = "oyefm"; 
-    $passwd       = "FRf74G7oW,$0yTQ"; 
+    $passwd       = '6[jY"7oIb56pMcH'; 
     $port         = 2083; 
     $email_domain = config('global.dominio'); 
     $email_quota  = 50; 
