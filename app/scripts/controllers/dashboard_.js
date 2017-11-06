@@ -20,13 +20,21 @@ app.controller('GridBottomSheetCtrl', function($scope, $mdBottomSheet) {
       ];
 
       $scope.listItemClick = function($index) {
-        var clickedItem = $scope.items[$index];
-            $mdBottomSheet.hide(clickedItem);
+        let clickedItem = $scope.items[$index];
+        $mdBottomSheet.hide(clickedItem);
       };
     })
 
-app.controller('dashboard_Ctrl', function($scope, $mdSidenav, $localStorage, mainService, $http, $translate, $routeSegment, menuService, $mdBottomSheet) {
-        
+app.controller('dashboard_Ctrl', function($scope, $rootScope, $mdSidenav, $localStorage, mainService, $http, $translate, $routeSegment, menuService, $mdBottomSheet) {
+    $scope.sidenavState = true;
+    
+    $scope.changeSidenavState = () => {
+      $scope.sidenavState =! $scope.sidenavState;
+    }
+    $scope.getStateSidenav = function() {
+      return $rootScope.sidenavState;
+    };
+
     $scope.fullscreen=function() {
         // console.log('test');
         var elem=document;

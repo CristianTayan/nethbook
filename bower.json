@@ -41,7 +41,8 @@
     "lf-ng-md-file-input": "^1.5.1",
     "angular-file-upload": "^2.5.0",
     "ng-inputSearch": "ng-InputSearch#*",
-    "angular-img-cropper": "^1.1.0"
+    "angular-img-cropper": "^1.1.0",
+    "animate.css": "^3.5.2"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
