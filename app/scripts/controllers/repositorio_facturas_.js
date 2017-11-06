@@ -8,13 +8,10 @@
  * Controller of the nextbook20App
  */
 	var app = angular.module('nextbook20App')
-    app.controller('RepositorioFacturasCtrl', function($scope,menuService,$localStorage) {
-        console.log('test');
-        // $scope.theme = 'teal';
-	      // $scope.changeTheme = function() {
-	        $scope.theme = $scope.theme === 'indigo' ? 'lime' : 'indigo'; 
-	      // };
-	      $scope.menu = $localStorage.submenu;
+    app.controller('RepositorioFacturasCtrl', function($scope, menuService, $localStorage, $rootScope) {
+    	
+      $scope.theme = $scope.theme === 'indigo' ? 'lime' : 'indigo'; 
+      $scope.menu = $localStorage.submenu;
 
     });
 

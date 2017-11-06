@@ -10,12 +10,20 @@
       </a>
     </div>
   </md-toolbar>
+
+  
   <md-list class="menu-dashboard">
+    <md-list-item ng-click="changeSidenavState()">
+      <md-icon class="md-accent">menu</md-icon>
+    </md-list-item> 
     <md-list-item ng-href="#/nb/App/Finanzas/Ventas/Facturacion">
       <md-icon>business</md-icon>
     </md-list-item>    
     <md-list-item ng-href="#/nb/App/Finanzas/Contable/Repositorio_Facturas">
       <md-icon>date_range</md-icon>
+    </md-list-item>
+    <md-list-item ng-href="#/nb/App/Finanzas/Contable/Repositorio_Facturas">
+      <md-icon>settings</md-icon>
     </md-list-item>
   </md-list>    
 </md-sidenav>
@@ -25,74 +33,74 @@
   </md-button>
   <md-toolbar>
     <div class="md-toolbar-tools toolbar-center">
-            <md-button class="md-icon-button" aria-label="Settings" ng-click="modal_footer()">
-              <md-icon>menu</md-icon>
-            </md-button>
-            <a href="#/nb">
-                <img src="images/logo/logo.fw.png" alt="Logo">
+        <md-button class="md-icon-button" aria-label="Settings" ng-click="modal_footer()">
+          <md-icon>menu</md-icon>
+        </md-button>
+        <a href="#/nb">
+            <img src="images/logo/logo.fw.png" alt="Logo">
+        </a>
+        <span flex></span>
+        <a href="#/nb/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
+            <md-icon>home</md-icon>
+        </a>
+        <a href="#/nb/App/Administracion/Perfil_Personal">
+          <span class="mdl-chip">
+              <span class="mdl-chip__text">{{datos_personales.primer_nombre}}</span>
+          </span>
+        </a>
+        <a href="#/nb/App" class="btn btn--l btn--white btn--icon" lx-ripple>
+          <i class="mdi mdi-apps"></i>
+        </a>
+        <lx-dropdown lx-position="right">
+            <lx-dropdown-toggle>
+                <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
+            </lx-dropdown-toggle>
+            <lx-dropdown-menu>
+                <ul>
+                    <li>
+                        <a href="#/Perfil_Personal" class="dropdown-link">
+                            <i class="mdi material-icons">shopping_cart</i>
+                            <span>Planes</span>
+                        </a>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li>
+                        <a class="dropdown-link" href="#/nb/App/Administracion/Terminos">
+                            <i class="mdi material-icons">security</i>
+                            <span>Terminos y Condiciones</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-link">
+                            <i class="mdi"><md-icon>live_help</md-icon></i>
+                            <span>¡ Preguntas !</span>
+                        </a>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li>
+                        <a href="#/nb/App/Administracion/Datos_Personal" class="dropdown-link">
+                            <span>Configuración</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/Salir" class="dropdown-link">
+                            <span>Salir</span>
+                        </a>
+                    </li>
+                </ul>
+            </lx-dropdown-menu>
+        </lx-dropdown>
+        <span class="mdl-chip mdl-chip--contact">
+            <a href="#/Seleccionar_Sucursal">
+                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white mdl-chip_hover_contact" style="font-size: 12px">       
+                    {{info_sucursal.codigo_sri}}
+                </span>
             </a>
-            <span flex></span>
-            <a href="#/nb/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
-                <md-icon>home</md-icon>
+            <a href="#/nb/App/Administracion/Perfil_Sucursal">
+                <span class="mdl-chip__text mdl-chip_hover_text">{{nom_perfil | limitTo: 20}}</span>
             </a>
-            <a href="#/nb/App/Administracion/Perfil_Personal">
-              <span class="mdl-chip">
-                  <span class="mdl-chip__text">{{datos_personales.primer_nombre}}</span>
-              </span>
-            </a>
-            <a href="#/nb/App" class="btn btn--l btn--white btn--icon" lx-ripple>
-              <i class="mdi mdi-apps"></i>
-            </a>
-            <lx-dropdown lx-position="right">
-                <lx-dropdown-toggle>
-                    <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
-                </lx-dropdown-toggle>
-                <lx-dropdown-menu>
-                    <ul>
-                        <li>
-                            <a href="#/Perfil_Personal" class="dropdown-link">
-                                <i class="mdi material-icons">shopping_cart</i>
-                                <span>Planes</span>
-                            </a>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li>
-                            <a class="dropdown-link" href="#/nb/App/Administracion/Terminos">
-                                <i class="mdi material-icons">security</i>
-                                <span>Terminos y Condiciones</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-link">
-                                <i class="mdi"><md-icon>live_help</md-icon></i>
-                                <span>¡ Preguntas !</span>
-                            </a>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li>
-                            <a href="#/nb/App/Administracion/Datos_Personal" class="dropdown-link">
-                                <span>Configuración</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#/Salir" class="dropdown-link">
-                                <span>Salir</span>
-                            </a>
-                        </li>
-                    </ul>
-                </lx-dropdown-menu>
-            </lx-dropdown>
-            <span class="mdl-chip mdl-chip--contact">
-                <a href="#/Seleccionar_Sucursal">
-                    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white mdl-chip_hover_contact" style="font-size: 12px">       
-                        {{info_sucursal.codigo_sri}}
-                    </span>
-                </a>
-                <a href="#/nb/App/Administracion/Perfil_Sucursal">
-                    <span class="mdl-chip__text mdl-chip_hover_text">{{nom_perfil | limitTo: 20}}</span>
-                </a>
-            </span>
-        </div>
+        </span>
+    </div>
   </md-toolbar>
   <md-content flex md-scroll-y>
     <div layout="row" flex app-view-segment="1" class="view-next"></div>

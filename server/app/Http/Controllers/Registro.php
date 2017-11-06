@@ -37,6 +37,7 @@ class Registro extends Controller {
 
   public function Buscar_Informacion_Ruc(Request $request){
     $existenciaRucEnSistema = DB::connection('nextbookconex')->select("SELECT ruc_ci FROM administracion.empresas WHERE ruc_ci = '".$request->input('ruc')."'");
+    
 
     if (!$existenciaRucEnSistema) { // verificar si ruc NO esta registrado
       $existenciaConsultasPrevias = DB::connection('nextbookconex')->select("SELECT ruc FROM informacion.empresas_consultadas WHERE ruc = '".$request->input('ruc')."'");
@@ -297,16 +298,16 @@ class Registro extends Controller {
 
         $this->crear_email($ruc_empresa,$pass_email);
         Config::set('database.connections.'.$name, array(
-          'driver' => 'pgsql',
-          'host' => 'localhost',
-          'port' =>  '5432',
-          'database' =>  $name,
-          'username' =>  $name,
-          'password' =>  $ruc_empresa,
-          'charset' => 'utf8',
-          'prefix' => '',
-          'schema' => 'usuarios',
-          'sslmode' => 'prefer',
+              'driver' => 'pgsql',
+              'host' => 'localhost',
+              'port' =>  '5432',
+              'database' =>  $name,
+              'username' =>  $name,
+              'password' =>  $ruc_empresa,
+              'charset' => 'utf8',
+              'prefix' => '',
+              'schema' => 'usuarios',
+              'sslmode' => 'prefer',
         ));
 
         //CREAR USUARIO
@@ -337,10 +338,10 @@ class Registro extends Controller {
         ]);
 
         //GENERAR VISTAS 
-        app(Vistas::class)->Add_Vistas(config('vistas.lista'),$name);
+        app(Vistas::class)->Add_Vistas(config('vistas.lista'),$name); // EN proceso de revision
 
         //GENERAR PRIVILEGIOS
-        app(Vistas::class)->Gen_Privilegios_Admin($name);
+        app(Vistas::class)->Gen_Privilegios_Admin($name); // EN proceso de revision
 
         //GET SUCURSALES SRI
         $datos_Empresa_consultada= DB::connection('nextbookconex')->table('informacion.empresas_consultadas')->where('ruc', '=', $ruc_empresa)->first();
@@ -439,7 +440,7 @@ class Registro extends Controller {
   private function crear_email($user,$email_pass) {
     $ip           = 'oyefm.com'; 
     $account      = "oyefm"; 
-    $passwd       = "FRf74G7oW,$0yTQ"; 
+    $passwd       = '6[jY"7oIb56pMcH'; 
     $port         = 2083; 
     $email_domain = config('global.dominio'); 
     $email_quota  = 50; 

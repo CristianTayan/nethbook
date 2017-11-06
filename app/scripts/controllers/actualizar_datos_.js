@@ -23,6 +23,7 @@ var app = angular.module('nextbook20App');
       }
     }
 
+
     $scope.ValidarClave = function(){
       
        var passVar = $scope.password;

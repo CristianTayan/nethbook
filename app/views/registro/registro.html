@@ -1,31 +1,31 @@
 <div layout="column" flex>
   <div class="banner1">
-      <md-toolbar layout="row" layout-align="center center">
-          <div flex-gt-sm="90" flex-gt-md="80">
-              <div class="md-toolbar-tools md-toolbar-registro">
-                  <md-button ng-href="#/" class="md-icon-button">
-                      <md-icon>reply_all</md-icon>
+    <md-toolbar layout="row" layout-align="center center">
+      <div flex-gt-sm="90" flex-gt-md="80">
+        <div class="md-toolbar-tools md-toolbar-registro">
+          <md-button ng-href="#/" class="md-icon-button">
+              <md-icon>reply_all</md-icon>
+          </md-button>
+          <h1>Nethbook, Red de Negocios</h1>
+          <span flex></span>
+          <form name="formlogin" layout="row" ng-submit="ingresar()">
+              <div>
+                  <input id="email" name="email" type="text" ng-model="email" class="inp" numbers-only maxlength="10" placeholder="Número de ruc">
+                  <label class="suffix">001@nextbook.ec</label>
+                  <md-button class="md-raised md-accent" type="submit">
+                      Entrar
                   </md-button>
-                  <h1>Nethbook, Red de Negocios</h1>
-                  <span flex></span>
-                  <form name="formlogin" layout="row" ng-submit="ingresar()">
-                      <div>
-                          <input id="email" name="email" type="text" ng-model="email" class="inp" numbers-only maxlength="10" placeholder="Número de ruc">
-                          <label class="suffix">001@nextbook.ec</label>
-                          <md-button class="md-raised md-accent" type="submit">
-                              Entrar
-                          </md-button>
-                      </div>
-                  </form>
               </div>
-              <md-tabs class="md-primary" md-selected="data.selectedIndex" md-center-tabs="true" md-selected="2">
-                  <md-tab id="tab1" aria-controls="tab1-content">
-                      <md-icon>dns</md-icon>
-                      Registre su Empresas
-                  </md-tab>
-              </md-tabs>
-          </div>
-      </md-toolbar>
+          </form>
+        </div>
+        <md-tabs class="md-primary" md-selected="data.selectedIndex" md-center-tabs="true" md-selected="2">
+            <md-tab id="tab1" aria-controls="tab1-content">
+                <md-icon>dns</md-icon>
+                Registre su Empresas
+            </md-tab>
+        </md-tabs>
+      </div>
+    </md-toolbar>
   </div>
   <div class="banner2">
     <md-toolbar layout="row" layout-align="center center">
@@ -142,7 +142,6 @@
                                     </div>
                                 </md-card>
                             </div>
-
                         </div>
                         <div flex="40">
                             <form name="formsearchruc" ng-submit="buscar_ruc()">
