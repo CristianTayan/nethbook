@@ -10,27 +10,37 @@
       </a>
     </div>
   </md-toolbar>
-
   
   <md-list class="menu-dashboard">
     <md-list-item ng-click="changeSidenavState()">
       <md-icon class="md-accent">menu</md-icon>
     </md-list-item> 
-    <md-list-item ng-href="#/nb/App/Finanzas/Ventas/Facturacion">
-      <md-icon>business</md-icon>
-    </md-list-item>    
-    <md-list-item ng-href="#/nb/App/Finanzas/Contable/Repositorio_Facturas">
-      <md-icon>date_range</md-icon>
-    </md-list-item>
-    <md-list-item ng-href="#/nb/App/Finanzas/Contable/Repositorio_Facturas">
-      <md-icon>settings</md-icon>
-    </md-list-item>
+    
+    <div style="margin-top: 520px;"></div>
+    <md-button ng-href="#/nb/App/Finanzas/Ventas/Facturacion" class="md-fab md-fab-bottom md-primary md-mini"  >
+    <md-icon>business</md-icon>
+      <md-tooltip md-direction="right">
+       Facturación
+      </md-tooltip>
+    </md-button>
+    <md-button ng-href="#/nb/App/Finanzas/Contable/Repositorio_Facturas" class="md-fab md-fab-bottom md-primary md-mini" >
+    <md-icon>date_range</md-icon>
+      <md-tooltip md-direction="right">
+       Repositorio Facturas
+      </md-tooltip>
+    </md-button>
+    <md-button ng-href="#/nb/App/Finanzas/Contable/Repositorio_Facturas" class="md-fab md-fab-bottom md-primary md-mini" >
+    <md-icon>settings</md-icon>
+      <md-tooltip md-direction="right">
+       Repositorio Facturas
+      </md-tooltip>
+    </md-button>
   </md-list>    
 </md-sidenav>
-<div layout="column" class="relative" layout-fill role="main">
-  <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
+<div layout="column" class="relative" layout-fill role="main"   ng-style="'font-size':'50%'">
+  <!-- <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
     <ng-md-icon icon="add"></ng-md-icon>
-  </md-button>
+  </md-button> -->
   <md-toolbar>
     <div class="md-toolbar-tools toolbar-center">
         <md-button class="md-icon-button" aria-label="Settings" ng-click="modal_footer()">
