@@ -14,7 +14,9 @@ angular.module('nextbook20App')
       'AngularJS',
       'Karma'
     ];
+
      $scope.datos2 = $localStorage.datosE;
      $scope.data_usuario = $localStorage.datosPersona;
+     $scope.data_sucursal = $localStorage.sucursal;
      
   });

@@ -1,185 +1,110 @@
-<md-sidenav style="max-width:250px;" class="md-sidenav-left" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" >    
-    <md-list>
-        <md-list-item ng-href="#/nb/App/Administracion/Estructura_Empresa">
-            <md-icon>insert_drive_file</md-icon>
-            <p>Repositorio de Facturas</p>
-        </md-list-item>
-        <md-list-item ng-href="#/nb/App/Administracion/Perfil_Personal" >
-            <md-icon>account_circle</md-icon>
-            <p>Perfil personal</p>
-        </md-list-item>
-        <md-list-item ng-href="#/nb/App/Administracion/Perfil_Sucursal">
-            <md-icon>business</md-icon>
-            <p>Perfil empresa</p>
-        </md-list-item>
-
-    </md-list>    
+<md-sidenav 
+  style="max-width:250px;" 
+  class="md-sidenav-left" 
+  layout="column" 
+  md-component-id="left" 
+  md-is-locked-open="$mdMedia('gt-md')" >  
 </md-sidenav>
-<md-content flex layout-padding style="background: #EEEEEE">
+<md-content flex layout-padding style="background: #FFF">
     <md-tabs md-center-tabs md-dynamic-height flex style="background: #FFF">
-      <md-tab id="tab1">
-        <md-tab-label>Mensaje</md-tab-label>
-        <!-- <md-tab-body>
-            <md-card flex ng-class="{sm: $mdMedia('sm'), md: $mdMedia('md'), lg: $mdMedia('lg')}">
-                <form name="postForm">
-                    <md-card-header class="row">
-                        <md-card-avatar>
-                            <img class="md-user-avatar" src="https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png" />
-                        </md-card-avatar>
-                        <md-card-header-text>
-                            <md-input-container class="md-block" md-no-float>
-                              <textarea autofocus placeholder="Message"></textarea>
-                            </md-input-container>
-                        </md-card-header-text>
-                    </md-card-header>
-                    <md-card-header class="row">
-                        <md-card-avatar class="mr12">
-                            <img class="md-user-avatar" src="https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png" />
-                        </md-card-avatar>
-                        <md-card-header-text>
-                            <md-input-container class="md-block">
-                                <label>Post something</label>
-                                <textarea ng-model="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
-                            </md-input-container>
-                        </md-card-header-text>
-                    </md-card-header>
-                    <md-card-content class="p0" flex>
-                        <md-card-actions layout="row" layout-align="start center">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                <md-button class="btn btn-default btn-file">
-                                    <label for="fileToUpload">
-                                        <i class="mdi mdi-cloud-upload mr10"></i>
-                                    </label><span class="fileinput-new">Upload</span><span class="fileinput-exists">Change</span>
-                                    <input type="file" file="" data-ng-model="file" name="...">
-                                </md-button>
-                                <span class="fileinput-filename"></span>
-                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
-                            </div>
-                            <md-card-icon-actions class="pull-right" layout-align="end center">
-                                <button class="md-raised md-primary md-button md-ink-ripple pull-right" aria-label="toggle" type="button" data-ng-click="createPost()"><span class="ng-scope"><i class="mdi mdi-message-text mr10"></i>Post</span>
-                                    <div class="md-ripple-container"></div>
-                                </button>
-                            </md-card-icon-actions>
-                        </md-card-actions>
-                    </md-card-content>
-                </form>
-            </md-card>
-        </md-tab-body> -->
-      </md-tab>
-      <md-tab id="tab2">
-        <md-tab-label>Evento</md-tab-label>
-        <md-tab-body>
-          View for Item #2 <br/>
-          data.selectedIndex = 1;
-        </md-tab-body>
-      </md-tab>
-      <md-tab id="tab3">
-        <md-tab-label>Anuncios</md-tab-label>
-        <md-tab-body>
-          View for Item #3 <br/>
-          data.selectedIndex = 2;
-        </md-tab-body>
-      </md-tab>
-      </md-tab>
+      
     </md-tabs>
     <div layout="row">
-<md-content class="md-sidenav-usuary " md-component-id="usuary" md-is-locked-open="$mdMedia('gt-md')" flex="20" style="background: #EEEEEE;padding-top: 8px;  padding-left: 10px; max-width: 50%">
-    <div layout="row" style="height: 40%;">
-       <div class="card card--big">
-            <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image">
+    <md-content class="md-sidenav-usuary " md-component-id="usuary"  flex="20" style="background: #FFF;padding-top: 8px;  padding-left: 10px; max-width: 50%">
+        <div layout="row" style="height: 40%;">
+           <div class="card card--big">
+                <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image">
+                </div>
+                 <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="90%">
+                <md-card-content>
+                <h2 class="card__title">
+                    {{localStorage.nombre_comercial}}
+                    <span class="card__subtitle">
+                        By Mattia Astorino
+                    </span>
+                </h2>
             </div>
-             <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="90%">
-            <md-card-content>
-            <h2 class="card__title">
-                {{localStorage.nombre_comercial}}
-                <span class="card__subtitle">
-                    By Mattia Astorino
-                </span>
-            </h2>
+        </div>
+        <div style="position: absolute; z-index: 9;">   
+        </div>
+            <div layout="row">
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__title">
+                        <h4 class="mdl-card__title-text">
+                            <a ng-href="#/nb/App/Administracion/Perfil_Sucursal">
+                                Sucursal {{data_sucursal.codigo_sri}}
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <B>{{datos2.tipo_contribuyente}}</B>
+                        <br />
+                        {{datos2.razon_social}}
+                        <br />
+                        {{datos2.actividad_economica | lowercase}}
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        {{data_sucursal.giro_negocio.descripcion}}
+                    </div>
+                     <div class="mdl-card__supporting-text">
+                        {{data_sucursal.localizacion_sucursal.direccion}}
+                    </div>               
+                </div>
+            </div>
+    </md-content>
+<md-content 
+  class="md-sidenav-left" 
+  md-component-id="left"  
+  flex="20" 
+  style="background: #FFF; padding-top: 8px;  padding-left: 10px; max-width: 50%">
+  <div layout="row" style="height: 40%;">
+    <div class="card card--big">
+      <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image">
+      </div>
+       <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="90%">
+      <md-card-content>
+      <h2 class="card__title">
+          {{localStorage.nombre_comercial}}
+          <span class="card__subtitle">
+              By Mattia Astorino
+          </span>
+      </h2>
+    </div>
+  </div>
+  <div style="position: absolute; z-index: 9;"></div>
+  <div layout="row">
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+          <h4 class="mdl-card__title-text">
+            <a ng-href="#/nb/App/Administracion/Perfil_Personal">
+                Datos Personales
+            </a>
+          </h4>
+        </div>
+        <div class="mdl-card__supporting-text">
+          <B>
+              Nombres:  <br />
+          </B>
+              {{data_usuario.primer_nombre}} {{data_usuario.primer_apellido}}<br />
+          <B>
+              Nick:  <br />
+          </B>
+              {{data_usuario.nick}}<br />
+          <B>
+              Ciudad: <br />
+          </B>
+            {{data_usuario.id_localidad.nombre}}
         </div>
     </div>
-    <div style="position: absolute; z-index: 9;">   
-    </div>
-        <div layout="row">
-            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__supporting-text">
-                    {{datos2.razon_social}}
-                    <br />
-                    {{datos2.tipo_contribuyente}}
-                </div>
-                <div class="mdl-card__title">
-                    <h4 class="mdl-card__title-text">
-                        Actividad Economica
-                    </h4>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    {{datos2.actividad_economica | lowercase}}
-                </div>
-                <div class="mdl-card__menu">
-                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                        <i class="material-icons" >
-                            share
-                        </i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-</md-content>
-<md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="20" style="background: #EEEEEE;padding-top: 8px;  padding-left: 10px; max-width: 50%">
-    <div layout="row" style="height: 40%;">
-       <div class="card card--big">
-            <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image">
-            </div>
-             <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="90%">
-            <md-card-content>
-            <h2 class="card__title">
-                {{localStorage.nombre_comercial}}
-                <span class="card__subtitle">
-                    By Mattia Astorino
-                </span>
-            </h2>
-        </div>
-    </div>
-        <div style="position: absolute; z-index: 9;">
-        </div>
-
-        <div layout="row">
-            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title">
-                    <h4 class="mdl-card__title-text">Datos Personales</h4>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    <B>
-                        Nombres:  <br />
-                    </B>
-                        {{data_usuario.primer_nombre}} {{data_usuario.primer_apellido}}<br />
-                    <B>
-                        Nick:  <br />
-                    </B>
-                        {{data_usuario.nick}}<br />
-                    <B>
-                        Ciudad: <br />
-                    </B>
-                        {{data_usuario.id_localidad.nombre}}
-
-                </div>
-                <div class="mdl-card__menu" >
-                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                        <i class="material-icons">share</i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        </div>
+  </div>
 </md-content>
 
     </div>
 </md-content>
-<md-content flex="25" layout-padding style="background: #EEEEEE">
-    <div layout="row" style="background: #FFF">
-        log puglicidad
-    </div>
+<md-content flex="25" layout-padding style="background: #FFF">
+  <div layout="row" style="background: #FFF">
+      <!-- log publicidad -->
+  </div>
 </md-content>
 
 <style type="text/css">
