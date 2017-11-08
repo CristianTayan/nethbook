@@ -9,7 +9,7 @@
  */
 	var app = angular.module('nextbook20App')
     app.controller('RepositorioFacturasCtrl', function($scope,menuService,$localStorage) {
-        console.log('test');
+        //console.log('test');
         // $scope.theme = 'teal';
 	      // $scope.changeTheme = function() {
 	        $scope.theme = $scope.theme === 'indigo' ? 'lime' : 'indigo'; 
@@ -92,15 +92,21 @@
 	    }
 
 	    $scope.showContent = function($fileContent) {
+
 	    	var clave_acceso = repositorioFacturas.Extraer_Clave_Acceso($fileContent);
+
 	    	revision_factura(clave_acceso);
+
 	    };
 	    $scope.buscar_clave_acceso = function() {
 	        revision_factura($scope.data);
 	    }
 
 	    function revision_factura(data) {
+
 	        repositorioFacturas.Estado_Factura().add(data).$promise.then(function(data) {
+	    	console.log(data.numeroComprobantes);
+	        	
 			    if (data.numeroComprobantes==0) {
 			        $mdDialog.show( {
 			            controller: informativo_Ctrl, 
