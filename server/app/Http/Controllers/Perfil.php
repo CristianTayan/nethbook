@@ -43,7 +43,8 @@ class Perfil extends Controller
     $img_dir_full="storage/".$this->name_bdd.'/Perfil/'.$filename;
     
 
-    DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','A')->where('tipo_imagen',2)->update(['estado'=>'P']);
+    DB::connection($this->name_bdd)->
+        table('administracion.imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','A')->where('tipo_imagen',2)->update(['estado'=>'P']);
     $save=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->insert([
         'sucursal'=>$request->sucursal,
         'direccion_imagen_empresa'=>$img_dir_full,
@@ -58,15 +59,23 @@ class Perfil extends Controller
 
     }
     private function base64_to_img($base64,$width,$tipo_img,$name_bdd){
-        $id_img=$this->funciones->generarID();
-        $img = Image::make($base64);
-        $img->encode('jpg',0);
-        $img->resize($width, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $img->save(storage_path().'/'.$name_bdd.'/'.$tipo_img.'/'.$id_img);
-        
-        return $id_img;
+      $id_img=$this->funciones->generarID();
+      $img = Image::make($base64);
+      $img->encode('jpg',0);
+      $img->resize($width, null, function ($constraint) {
+          $constraint->aspectRatio();
+      });
+
+      $directorio = storage_path().'/'.$name_bdd;
+      if (!file_exists($directorio)) {
+        mkdir(storage_path().'/'.$name_bdd, 0777, true);
+        mkdir(storage_path().'/'.$name_bdd.'/Perfil/', 0777, true);
+        mkdir(storage_path().'/'.$name_bdd.'/Portadas/', 0777, true);
+      }
+
+      $img->save(storage_path().'/'.$name_bdd.'/'.$tipo_img.'/'.$id_img);
+      
+      return $id_img;
     }
 
     public function Set_Img_Perfil(Request $request){

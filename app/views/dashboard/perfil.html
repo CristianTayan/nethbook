@@ -40,7 +40,7 @@
             <!-- app-view-segment="3" -->
             <md-card flex>
                 <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'Portada')">
-                    <div ng-style="{'background-image': 'url(' + imgPortada + ')','background-position': 'center','background-size': '100%'}" class="card__image"></div>
+                    <div ng-style="{'background-image': 'url(' + imgPortada + ')','background-position': 'center'}" class="card__image"></div>
                     <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
                 </div>
                 <div style="position: absolute;">
@@ -51,7 +51,7 @@
                         <md-icon>mode_edit</md-icon>
                     </md-button>
                 </div>
-                <md-tabs>
+                <!-- <md-tabs>
                     <md-tab id="b-tab1" aria-controls="b-tab1-content" style="float:right!important;">
                         Historia
                     </md-tab>
@@ -70,7 +70,7 @@
                     <md-tab id="b-tab6" aria-controls="b-tab5-content" style="float:right!important;">
                         Agenda
                     </md-tab>
-                </md-tabs>
+                </md-tabs> -->
             </md-card>
             <md-content layout-padding layout-wrap style="background: #EEEEEE" app-view-segment="4"></md-content>
         </md-content>

@@ -3,7 +3,7 @@ angular.module('nextbook20App')
   .service('urlService', function () {
     this.server=function() {
       let dominio = window.location.origin;
-      if ('http://localhost:9000' === dominio) {
+      if ('http://localhost' === dominio) {
         dominio = 'http://localhost';
       }
       return {
@@ -24,17 +24,12 @@ angular.module('nextbook20App')
             return "http://186.4.167.12/api-admin-oyefm/public/index.php/";
           },search_empresas: function() {
             // return "http://186.4.167.12/mod_radio/";
-            return dominio + ':3000/empresas/';
+            return dominio + '/empresas/';
           }
           ,dir: function() {
             // return "http://186.4.167.12/mod_radio/";
-            return "http://localhost:8000/";
+            return "http://localhost/nethbook/server/";
           }
       }
     };
   });
-
-
-
-
-//http://localhost:8000/index.php/Get_Provincias

@@ -8,3 +8,4 @@
 .vs/slnx.sqlite
 package-lock.json
 npm-debug.log
+server/storage

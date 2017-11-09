@@ -14,29 +14,28 @@ use Storage;
 use File;
 use DB;
 use Image;
-class Portada extends Controller
-{
+class Portada extends Controller {
 
-    public function __construct(Request $request){
-         try{
-        // Funciones
-        $this->funciones=new Funciones();
-        //Autenticacion
-        $key=config('jwt.secret');
-        $decoded = JWT::decode($request->token, $key, array('HS256'));
-        $this->user=$decoded;
-        $this->name_bdd=$this->user->nbdb;
-        //------------------------------------ Paths -------------------------------
-        $this->pathImg  = config('global.pathimgPortadas');
-        $this->pathLocal  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
+  public function __construct(Request $request){
+    try{
+      // Funciones
+      $this->funciones=new Funciones();
+      //Autenticacion
+      $key=config('jwt.secret');
+      $decoded = JWT::decode($request->token, $key, array('HS256'));
+      $this->user=$decoded;
+      $this->name_bdd=$this->user->nbdb;
+      //------------------------------------ Paths -------------------------------
+      $this->pathImg  = config('global.pathimgPortadas');
+      $this->pathLocal  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
 
-        }catch (\Firebase\JWT\ExpiredException $e) {
-            return response()->json(['respuesta' => $e->getMessage()],401);
-            die();
-        }
+    }catch (\Firebase\JWT\ExpiredException $e) {
+      return response()->json(['respuesta' => $e->getMessage()],401);
+      die();
     }
+  }
 
-    public function Add_Img_Portada(Request $request){
+  public function Add_Img_Portada(Request $request){
     
     $crop = $request->img['crop'];
     $full = $request->img['full'];
@@ -48,31 +47,44 @@ class Portada extends Controller
     $img_dir_full="storage/".$this->name_bdd.'/Portadas/'.$filename;
     
 
-    DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','A')->where('tipo_imagen',1)->update(['estado'=>'P']);
+    DB::connection($this->name_bdd)->
+      table('administracion.imagen_empresa')->
+      where('sucursal',$request->sucursal)->where('estado','A')->
+      where('tipo_imagen',1)->
+      update(['estado'=>'P']);
+    
     $save=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->insert([
-        'sucursal'=>$request->sucursal,
-        'direccion_imagen_empresa'=>$img_dir_full,
-        'direccion_imagen_recorte'=>$img_dir_crop,
-        'estado'=>'A',
-        'tipo_imagen'=>1
-                 ]);
+      'sucursal'=>$request->sucursal,
+      'direccion_imagen_empresa'=>$img_dir_full,
+      'direccion_imagen_recorte'=>$img_dir_crop,
+      'estado'=>'A',
+      'tipo_imagen'=>1
+    ]);
 
     if ($save) {
-        return response()->json(["respuesta"=>true,"img"=>$img_dir_crop]);
+      return response()->json(["respuesta"=>true,"img"=>$img_dir_crop]);
     }else return response()->json(["respuesta"=>false,"img"=>'']);
 
-    }
+  }
 
     private function base64_to_img($base64,$width,$tipo_img,$name_bdd){
-        $id_img=$this->funciones->generarID();
-        $img = Image::make($base64);
-        $img->encode('jpg',0);
-        $img->resize($width, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $img->save(storage_path().'/'.$name_bdd.'/'.$tipo_img.'/'.$id_img);
-        
-        return $id_img;
+      $id_img=$this->funciones->generarID();
+      $img = Image::make($base64);
+      $img->encode('jpg',0);
+      $img->resize($width, null, function ($constraint) {
+          $constraint->aspectRatio();
+      });
+
+      $directorio = storage_path().'/'.$name_bdd;
+      if (!file_exists($directorio)) {
+        mkdir(storage_path().'/'.$name_bdd, 0777, true);
+        mkdir(storage_path().'/'.$name_bdd.'/Perfil/', 0777, true);
+        mkdir(storage_path().'/'.$name_bdd.'/Portadas/', 0777, true);
+      }
+
+      $img->save(storage_path().'/'.$name_bdd.'/'.$tipo_img.'/'.$id_img);
+      
+      return $id_img;
     }
     public function Set_Img_Portada(Request $request){
         DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','=','A')->where('tipo_imagen',1)->update(['estado'=>'P']);
