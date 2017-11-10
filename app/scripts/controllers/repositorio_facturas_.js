@@ -92,7 +92,9 @@
 	    }
 
 	    $scope.showContent = function($fileContent) {
+	    	console.log('ingresa a al funcion showContent');
 	    	var clave_acceso = repositorioFacturas.Extraer_Clave_Acceso($fileContent);
+	    	console.log('clave_acceso' + clave_acceso);
 	    	revision_factura(clave_acceso);
 	    };
 	    $scope.buscar_clave_acceso = function() {
@@ -136,10 +138,10 @@
 	        var obj = x2js.xml_str2json(obj.autorizaciones.autorizacion.comprobante);
 	        $scope.infofactura = obj.factura;
 	        $scope.tipo_consumo = tipo_consumo;
-	        $scope.types = IO_BARCODE_TYPES
-	        $scope.code = $scope.infofactura.infoTributaria.claveAcceso
+	        $scope.types = IO_BARCODE_TYPES;
+	        $scope.code = $scope.infofactura.infoTributaria.claveAcceso;
 	        $scope.pagos = $scope.infofactura.infoFactura.pagos;
-	        $scope.type = 'CODE128B'
+	        $scope.type = 'CODE128B';
 
 
 	        $scope.options = {

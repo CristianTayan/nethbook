@@ -114,7 +114,7 @@ angular.module('nextbook20App')
             });
         };
 
-    	this.Get_Gastos = function() {
+      this.Get_Gastos = function() {
             return $resource(urlService.server().appnext()+'Get_Gastos', {} , {
                 get: {
                     method: 'POST', isArray: false,
@@ -123,7 +123,7 @@ angular.module('nextbook20App')
                     }
                 }
             });
-    	};
+      };
 
         // -------------------------------------------INICIO FACTURAS------------------------------------------
         this.Get_Totales_Facturas = function() {

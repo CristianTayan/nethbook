@@ -29,7 +29,7 @@ Route::group(['middleware' => 'cors'], function(){
    
 
 	Route::post('Buscar_Empresas','busquedaEmpresas@Buscar_Empresas');
-	// --------------------- Datos de Perfil Empresa----------------------------------
+	 // --------------------- Datos de Perfil Empresa----------------------------------
     Route::post('Get_Perfil_Empresas', 'busquedaEmpresas@Get_Perfil_Empresas');
     // --------------------- Buscar Empresa----------------------------------
     Route::post('Buscar_Informacion_Ruc', 'Registro@Buscar_Informacion_Ruc');
@@ -45,8 +45,7 @@ Route::group(['middleware' => 'cors'], function(){
     // Accesso Colaboradores
     Route::post('Acceso_Colaborador', 'login@Acceso_Colaborador');
     Route::post('Get_Data_By_Ruc', 'login@Get_Data_By_Ruc');
-    Route::group(['middleware' => ['auth.nextbook']], function ()
-    {
+    Route::group(['middleware' => ['auth.nextbook']], function () {
         // ////////////////////////////////////////////////// IMAGENES DE PERFIL //////////////
         // --------------------------------------- AÑADIR IMAGEN DE PERFIL -----------
         Route::post('Add_Img_Perfil', 'Perfil@Add_Img_Perfil');
@@ -256,7 +255,6 @@ Route::group(['middleware' => 'cors'], function(){
         Route::post('Existencia_Persona','Clientes@Existencia_Persona');
         //Sessiones
         Route::post('Refresh_Token','Sesiones@Refresh_Token');
-
     });
 });
 
