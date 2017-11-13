@@ -1,182 +1,145 @@
 'use strict';
+var app = angular.module('nextbook20App')
+app.controller('RepositorioFacturasCtrl', function($scope,menuService,$localStorage) {
+    console.log('test');
+    $scope.theme = $scope.theme === 'indigo' ? 'lime' : 'indigo'; 
+    $scope.menu = $localStorage.submenu;
+});
+app.controller('repfac_inicio_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
+	// -----------------------------------INFORMACION GASTOS--------------------------------
+	repositorioFacturas.Get_Totales_Facturas().get({codigo_sri:$localStorage.sucursal.codigo_sri}).$promise.then(function(data) {
+		$scope.myChartObject = {};
+		var data = data.respuesta;
+		var rows = [];	    	
+		for (var i = 0; i < data.length; i++) {
+			var valor = repositorioFacturas.money(data[i].total);
+			var sub_arrow = [{v:data[i].nombre},{v:valor}];
+			rows.push({c:sub_arrow});
+		}
+		var rows = rows;	    	
+	  $scope.myChartObject.type = "PieChart";	    
+	  $scope.onions = [
+	      {v: "Onions"},
+	      {v: 3}
+	  ];
+	  $scope.myChartObject.data = {"cols": [
+	      {id: "t", label: "Compras", type: "string"},
+	      {id: "s", label: "Gastos", type: "number"}
+	  ], rows: rows};
+	  $scope.myChartObject.options = {
+	      'title': 'GASTOS GENERADOS'
+	  };
+	});
+	// Change LANGUAGE
+		  $scope.changeLanguage = function (key) {
+			    $translate.use(key);
+			};
+});
+// -----------------------------------SUBIR FACTURA--------------------------------
+app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES) {
+	$scope.query_tipo_gastos = {
+	    filter: '',
+	    num_registros: 100,
+	    pagina_actual: 1,
+	    limit: '100',
+	    page_num: 1
+	};
+	// -----------------------------------Leer tipos de Gastos---------------------------------
+  repositorioFacturas.Get_Gastos().get($scope.query_tipo_gastos).$promise.then(function(data) {
+      $localStorage.tipo_consumos = data.respuesta.data;
+      $scope.tipo_consumos = data.respuesta.data;
+  });
+	var buscar_comprobante = function(xml_sin_empresa) {
+    var campos_vector = _.keys(xml_sin_empresa);
+    for (var i = 0; i < campos_vector.length; i++) {
+        if (campos_vector[i] == 'comprobante') {
+            return true;
+            break;
+        }
+    }
+    return false;
+  }
+  $scope.showContent = function($fileContent) {
+  	var clave_acceso = repositorioFacturas.Extraer_Clave_Acceso($fileContent);
+  	console.log('claveAcceso : ' + clave_acceso);
+  	revision_factura(clave_acceso);
+  };
+  $scope.buscar_clave_acceso = function() {
+      revision_factura($scope.data);
+  }
+  function revision_factura(data) {
+		repositorioFacturas.Estado_Factura().add(data).$promise.then(function(data) {
+			if (data.numeroComprobantes==0) {
+				$mdDialog.show( {
+				controller: informativo_Ctrl, 
+				templateUrl: 'views/app/finanzas/contable/repositorio_facturas/subir_facturas/modal_informativo.html', 
+				parent: angular.element(document.body), 
+				clickOutsideToClose: false,
+				});
+			}
+			else {
+			$mdDialog.show( {
+				controller: modal_Ctrl, 
+				templateUrl: 'views/app/finanzas/contable/repositorio_facturas/subir_facturas/modal.html', 
+				parent: angular.element(document.body), 
+				clickOutsideToClose: false, 
+				locals: { obj: data, tipo_consumo: $scope.tipo_consumos }
+				});
+			}
+		});
+  };
+	var  informativo_Ctrl = function($scope, $mdDialog) {
+		$scope.cancel = function(){
+			$mdDialog.cancel();	
+		}            
+	};
+function modal_Ctrl($scope, $mdDialog, obj, tipo_consumo, IO_BARCODE_TYPES) {
+ $scope.factura_cabecera = obj.autorizaciones.autorizacion;
+	repositorioFacturas.Get_Tipo_Documentos().get().$promise.then(function(data) {
+    $scope.tipo_consumos = data.respuesta.data;
+  });
+  var x2js = new X2JS();
+  var obj = x2js.xml_str2json(obj.autorizaciones.autorizacion.comprobante);
+  $scope.infofactura = obj.factura;
+  $scope.tipo_consumo = tipo_consumo;
+  $scope.types = IO_BARCODE_TYPES;
+  $scope.code = $scope.infofactura.infoTributaria.claveAcceso;
+  $scope.pagos = $scope.infofactura.infoFactura.pagos;
+  $scope.type = 'CODE128B';
 
-/**
- * @ngdoc function
- * @name nextbook20App.controller:RepositorioFacturasCtrl
- * @description
- * # RepositorioFacturasCtrl
- * Controller of the nextbook20App
- */
-	var app = angular.module('nextbook20App')
-    app.controller('RepositorioFacturasCtrl', function($scope,menuService,$localStorage) {
-        console.log('test');
-        // $scope.theme = 'teal';
-	      // $scope.changeTheme = function() {
-	        $scope.theme = $scope.theme === 'indigo' ? 'lime' : 'indigo'; 
-	      // };
-	      $scope.menu = $localStorage.submenu;
-
-    });
-
-    // app.controller('repositorio_facturas_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
-
-    //     // ------------------------------------inicio generacion vista menu personalizacion------------------------------------
-	   //      var data = menuService.Get_Vistas_Loged_User();
-	   //      $scope.menu = data.respuesta[0].children[0].children[5];
-	   //  // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
-
-    // });
-
-    app.controller('repfac_inicio_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, $filter, menuService) {
-    	
-    	// -----------------------------------INFORMACION GASTOS--------------------------------
-    	
-	    repositorioFacturas.Get_Totales_Facturas().get({codigo_sri:$localStorage.sucursal.codigo_sri}).$promise.then(function(data) {
-	    	$scope.myChartObject = {};
-	    	var data = data.respuesta;
-	    	var rows = [];	    	
-	    	for (var i = 0; i < data.length; i++) {
-	    		var valor = repositorioFacturas.money(data[i].total);
-	    		var sub_arrow = [{v:data[i].nombre},{v:valor}];
-	    		rows.push({c:sub_arrow});
-	    	}
-	    	var rows = rows;	    	
-		    $scope.myChartObject.type = "PieChart";	    
-		    $scope.onions = [
-		        {v: "Onions"},
-		        {v: 3}
-		    ];
-		    $scope.myChartObject.data = {"cols": [
-		        {id: "t", label: "Compras", type: "string"},
-		        {id: "s", label: "Gastos", type: "number"}
-		    ], rows: rows};
-		    $scope.myChartObject.options = {
-		        'title': 'GASTOS GENERADOS'
-		    };
+  $scope.options = {
+      width: 1,
+      height: 40,
+      displayValue: true,
+      font: 'monospace',
+      textAlign: 'center',
+      fontSize: 21.5,
+      // backgroundColor: '#3F51B5',
+      lineColor: '#6D6D6D'
+  }
+	for (var i = 0; i < $scope.tipo_consumo.length; i++) {
+	    $scope.tipo_consumo[i].total = 0;
+	    $scope.tipo_consumo[i].selected = false;
+	}
+	var vec = [];
+	if (!obj.factura.detalles.detalle.length) {
+	    vec[0] = obj.factura.detalles.detalle;
+	    $scope.detalle = vec;
+	} else {
+	    $scope.detalle = obj.factura.detalles.detalle;
+	}
+	var array_gastos = [];
+	for (var i = 0; i < $scope.tipo_consumo.length; i++) {
+	    array_gastos.push({
+	        id: $scope.tipo_consumo[i].id,
+	        nombre: $scope.tipo_consumo[i].nombre,
+	        selected: false
 	    });
-
-	    // Change LANGUAGE
-	    $scope.changeLanguage = function (key) {
-		    $translate.use(key);
-		};
-    });
-    
-    app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES) {
-
-	    $scope.query_tipo_gastos = {
-	        filter: '',
-	        num_registros: 100,
-	        pagina_actual: 1,
-	        limit: '100',
-	        page_num: 1
-	    };
-
-	    // -----------------------------------Leer tipos de Gastos---------------------------------
-	    repositorioFacturas.Get_Gastos().get($scope.query_tipo_gastos).$promise.then(function(data) {
-	        $localStorage.tipo_consumos = data.respuesta.data;
-	        $scope.tipo_consumos = data.respuesta.data;
-	    });
-
-
-
-
-	    var buscar_comprobante = function(xml_sin_empresa) {
-	        var campos_vector = _.keys(xml_sin_empresa);
-	        for (var i = 0; i < campos_vector.length; i++) {
-	            if (campos_vector[i] == 'comprobante') {
-	                return true;
-	                break;
-	            }
-	        }
-	        return false;
-	    }
-
-	    $scope.showContent = function($fileContent) {
-	    	var clave_acceso = repositorioFacturas.Extraer_Clave_Acceso($fileContent);
-	    	revision_factura(clave_acceso);
-	    };
-	    $scope.buscar_clave_acceso = function() {
-	        revision_factura($scope.data);
-	    }
-
-	    function revision_factura(data) {
-	        repositorioFacturas.Estado_Factura().add(data).$promise.then(function(data) {
-			    if (data.numeroComprobantes==0) {
-			        $mdDialog.show( {
-			            controller: informativo_Ctrl, 
-			            templateUrl: 'views/app/finanzas/contable/repositorio_facturas/subir_facturas/modal_informativo.html', 
-			            parent: angular.element(document.body), 
-			            clickOutsideToClose: false,
-			        });
-			    }
-			    else {
-			        $mdDialog.show( {
-			            controller: modal_Ctrl, 
-			            templateUrl: 'views/app/finanzas/contable/repositorio_facturas/subir_facturas/modal.html', 
-			            parent: angular.element(document.body), 
-			            clickOutsideToClose: false, 
-			            locals: { obj: data, tipo_consumo: $scope.tipo_consumos }
-			        });
-			    }
-			});
-	    };
-
-	    var  informativo_Ctrl = function($scope, $mdDialog) {
-	    	$scope.cancel = function(){
-	    		$mdDialog.cancel();	
-	    	}            
-        };
-
-	    function modal_Ctrl($scope, $mdDialog, obj, tipo_consumo, IO_BARCODE_TYPES) {
-	    	$scope.factura_cabecera = obj.autorizaciones.autorizacion;
-			repositorioFacturas.Get_Tipo_Documentos().get().$promise.then(function(data) {
-		        $scope.tipo_consumos = data.respuesta.data;
-		    });
-	        var x2js = new X2JS();
-	        var obj = x2js.xml_str2json(obj.autorizaciones.autorizacion.comprobante);
-	        $scope.infofactura = obj.factura;
-	        $scope.tipo_consumo = tipo_consumo;
-	        $scope.types = IO_BARCODE_TYPES
-	        $scope.code = $scope.infofactura.infoTributaria.claveAcceso
-	        $scope.pagos = $scope.infofactura.infoFactura.pagos;
-	        $scope.type = 'CODE128B'
-
-
-	        $scope.options = {
-	            width: 1,
-	            height: 40,
-	            displayValue: true,
-	            font: 'monospace',
-	            textAlign: 'center',
-	            fontSize: 21.5,
-	            // backgroundColor: '#3F51B5',
-	            lineColor: '#6D6D6D'
-	        }
-
-	         for (var i = 0; i < $scope.tipo_consumo.length; i++) {
-			        $scope.tipo_consumo[i].total = 0;
-			        $scope.tipo_consumo[i].selected = false;
-			    }
-			    var vec = [];
-			    if (!obj.factura.detalles.detalle.length) {
-			        vec[0] = obj.factura.detalles.detalle;
-			        $scope.detalle = vec;
-			    } else {
-			        $scope.detalle = obj.factura.detalles.detalle;
-			    }
-			    var array_gastos = [];
-			    for (var i = 0; i < $scope.tipo_consumo.length; i++) {
-			        array_gastos.push({
-			            id: $scope.tipo_consumo[i].id,
-			            nombre: $scope.tipo_consumo[i].nombre,
-			            selected: false
-			        });
-			    }
-
-			    for (var i = 0; i < $scope.detalle.length; i++) {
-			        $scope.detalle[i].gasto = array_gastos;
-			    }
-	        //-------------------------------------------------------- Sumar y Asignar cada producto a un tipo de gasto -------------------------
+	}
+	for (var i = 0; i < $scope.detalle.length; i++) {
+	    $scope.detalle[i].gasto = array_gastos;
+	}
+//-------------------------------------------------------- Sumar y Asignar cada producto a un tipo de gasto -------------------------
 	        $scope.valores_sumados = [];
 			    $scope.valores_restados = [];
 			    $scope.valid_form=true;
