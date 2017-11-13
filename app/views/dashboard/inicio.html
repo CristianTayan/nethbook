@@ -5,8 +5,10 @@
   md-component-id="left" 
   md-is-locked-open="$mdMedia('gt-md')" >  
 </md-sidenav>
-<div class="responsive1" align="center center">
+<div class="responsive1">
    <md-content flex layout-padding style="background: #FFF">
+    <md-tabs md-center-tabs md-dynamic-height flex style="background: #FFF">      
+    </md-tabs>
     <div flex="100" layout="column">
       <md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch="">
          <md-toolbar>
@@ -36,7 +38,7 @@
           </md-card-title-text>
           <md-card-title-text>
             <div class="md-media-md card-media" flex="70">              
-            <img ng-src="http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png" class="md-card-image" width="500">
+            <img ng-src="http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png" class="md-card-image" flex>
             </div>
           </md-card-title-text>
         </md-card-title>
@@ -70,7 +72,7 @@
           </md-card-title-text>
            <md-card-title-text>
             <div class="md-media-md card-media" flex="70">              
-            <img ng-src="https://www.agesic.gub.uy/innovaportal/file/2023/1/pdp.jpg" class="md-card-image" width="500">
+            <img ng-src="https://www.agesic.gub.uy/innovaportal/file/2023/1/pdp.jpg" class="md-card-image" flex>
             </div>
           </md-card-title-text>
         </md-card-title>
