@@ -1,15 +1,19 @@
-<!-- app-view-segment="2" -->
 <md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="25" style="background: #EEEEEE">
-    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Configuración Perfil Personal</md-subheader>
-    <md-list-item  ng-href="#/nb/Config/Personal">
+    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Configuración Personal</md-subheader>
+    <md-list-item  ng-href="#/nb/App/Config/PerfilPersonal">
         <md-icon>settings_aplication</md-icon>
-        <p>Información General</p>
+        <p>Información Personal</p>
     </md-list-item>
     <md-divider></md-divider>
-    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Información Empresa</md-subheader>
-    <md-list-item  ng-href="#/nb/Config/Empresa">
+    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Informacion Empresa</md-subheader>
+    <md-list-item  ng-href="#/nb/App/Config/PerfilEmpresa">
         <md-icon>business_center</md-icon>
-        <p>Configuración General</p>
+        <p>Configuración Empresa</p>
+    </md-list-item>
+    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Información Sucursal</md-subheader>
+    <md-list-item  ng-href="#/nb/App/Config/PerfilSucursal">
+        <md-icon>business_center</md-icon>
+        <p>Configuración Sucursal</p>
     </md-list-item>
     <md-list-item ng-click="navigateTo('data usage', $event)">
         <md-icon>markunread_mailbox</md-icon>
@@ -35,6 +39,4 @@
         <md-icon class="md-secondary"  aria-label="Chat">security</md-icon>
     </md-list-item>
 </md-content>
-<md-content flex layout-padding app-view-segment="3">
-hola
-</md-content>
+<md-content flex layout-padding app-view-segment="3"></md-content>

@@ -309,12 +309,15 @@ var app = angular.module('nextbook20App', [
           .when('/nb/App/Giro_Negocio','nb.app.giro_negocio')
           // Modulo de Administracion
           .when('/nb/App/Administracion','nb.app.administracion')
-              .when('/nb/App/Administracion/Perfil_Personal','nb.app.administracion.perfil_personal')
-              .when('/nb/App/Administracion/Perfil_Sucursal','nb.app.administracion.perfil_sucursal')
-              .when('/nb/App/Administracion/Usuario','nb.app.administracion.usuario')
-              .when('/nb/App/Administracion/Datos_Personal','nb.app.administracion.personal')
-              .when('/nb/App/Administracion/Terminos','nb.app.administracion.terminos')
-              .when('/nb/App/Administracion/Tipo_Usuario','nb.app.administracion.tipo_usuario')
+            .when('/nb/App/Administracion/Usuario','nb.app.administracion.usuario')
+            .when('/nb/App/Administracion/Terminos','nb.app.administracion.terminos')
+            .when('/nb/App/Administracion/Tipo_Usuario','nb.app.administracion.tipo_usuario')
+   
+          .when('/nb/App/Config','nb.app.configuracion')
+          .when('/nb/App/Config/PerfilPersonal','nb.app.configuracion.perfilPersonal')
+          .when('/nb/App/Config/PerfilSucursal','nb.app.configuracion.perfilSucursal')
+          .when('/nb/App/Config/PerfilEmpresa','nb.app.configuracion.perfilEmpresa')
+
       // -------------------------------------------------------------- Segmentos 
       .segment('nb', {
           templateUrl: 'views/dashboard/index.html',
@@ -337,35 +340,57 @@ var app = angular.module('nextbook20App', [
                         templateUrl: 'views/app/inicio.html',
                         // controller: 'repositorio_facturas_Ctrl'
                 })
+
+                .segment('configuracion', {
+                  templateUrl: 'views/dashboard/configuracion/index.html',
+                })
+
+                  .within()
+                    .segment('perfilEmpresa', {
+                      templateUrl: 'views/dashboard/configuracionPerfilEmpresa.html',
+                      default: true,
+                      controller: 'configuracionPerfilEmpresaCtrl'
+                    })
+
+                    .segment('perfilSucursal', {
+                      templateUrl: 'views/dashboard/configuracion/sucursal/index.html',
+                      controller: 'configuracionPerfilSucursalCtrl'
+                    })
+
+                    .segment('perfilPersonal', {
+                      templateUrl: 'views/dashboard/configuracion/personal/index.html',
+                      controller: 'configuracionPerfilPersonalCtrl'
+                    })
+                  .up()
+
+
                 // Modulo de Administracion
                 .segment('administracion', {
-                        templateUrl: 'views/dashboard/administracion/index.html',
-                        // controller: 'administracion_Ctrl'
+                  templateUrl: 'views/dashboard/administracion/index.html',
+                  // controller: 'administracion_Ctrl'
                 })
                     .within()
                         .segment('perfil_personal', {
-                                templateUrl: 'views/dashboard/perfil_personal.html',
-                                // controller: 'perfil_personal_Ctrl'
+                          templateUrl: 'views/dashboard/perfil_personal.html',
+                          // controller: 'perfil_personal_Ctrl'
                         })
                         .segment('perfil_sucursal', {
-                                templateUrl: 'views/dashboard/perfil.html',
-                                controller: 'perfil_Ctrl'
+                          templateUrl: 'views/dashboard/perfilSucursal.html',
+                          controller: 'perfilSucursalCtrl'
                         })
-                        .segment('personal', {
-                                templateUrl: 'views/dashboard/configuracion/personal/index.html',
-                                controller: 'informacion_generalCtrl'
-                        })
+
                         .segment('terminos', {
-                                templateUrl: 'views/dashboard/configuracion/terminos/index.html'
+                          templateUrl: 'views/dashboard/configuracion/terminos/index.html'
                         })
                         .segment('tipo_usuario', {
-                                templateUrl: 'views/app/colaboradores/tipo_usuario/index.html',
-                                controller: 'col_tipo_usuario_Ctrl'
+                          templateUrl: 'views/app/colaboradores/tipo_usuario/index.html',
+                          controller: 'col_tipo_usuario_Ctrl'
                         })
                         .segment('usuario', {
-                                templateUrl: 'views/app/colaboradores/usuario/index.html',
-                                controller: 'col_usuario_Ctrl'
-                        })
+                          templateUrl: 'views/app/colaboradores/usuario/index.html',
+                          controller: 'col_usuario_Ctrl'
+                        })                       
+
                     .up()
                 // Modulo de Finanzas
                 .segment('finanzas', {
@@ -623,530 +648,5 @@ var app = angular.module('nextbook20App', [
             .up()
           .up();
 
-      //     .when('/Dash',    'dashboard')
-      //     // .when('/Inicio',    'dashboard.inicio')
-      //     // .when('/Perfil',    'dashboard.perfil')
-      //     // configuracion setting
-      //     .when('/nb',    'dashboard.nb')
-
-
-
-
-      //     .when('/nb/Inicio',    'dashboard.nb.inicio')
-      //     .when('/nb/Perfil',    'dashboard.nb.perfil')
-
-      //     .when('/nb/Personal',    'dashboard.nb.personal')
-      //     .when('/nb/Personal/Inicio',    'dashboard.nb.personal.inicio')
-
-      //     // ---------------------------------------configuracion de procesos---------------------------------------
-      //     .when('/nb/Config',    'dashboard.nb.config')
-      //     .when('/nb/Config/Personal',    'dashboard.nb.config.personal')
-      //     .when('/nb/Config/Terminos',    'dashboard.nb.config.terminos')
-      //     // general
-      //     .when('/nb/Config/Empresa',    'dashboard.nb.config.empresa')
-      //     .when('/App',    'dashboard.app')
-      //     .when('/App/Inicio',    'dashboard.app.inicio')
-      //     // --------------------------------------GESTION REPOSITORIO FACTURAS------------------------------------
-      //     .when('/App/Repositorio_Facturas',    'dashboard.app.repositorio_facturas')
-      //         .when('/App/Repositorio_Facturas/Inicio_Facturas',    'dashboard.app.repositorio_facturas.inicio_facturas')
-      //         .when('/App/Repositorio_Facturas/Mis_Facturas',    'dashboard.app.repositorio_facturas.mis_facturas')
-      //         .when('/App/Repositorio_Facturas/Subir_Facturas',    'dashboard.app.repositorio_facturas.subir_facturas')
-      //         .when('/App/Repositorio_Facturas/Facturas_Correo',    'dashboard.app.repositorio_facturas.facturas_correo')
-      //         .when('/App/Repositorio_Facturas/Facturas_Rechazadas',    'dashboard.app.repositorio_facturas.facturas_rechazadas')
-              
-      //     // ----------------------------------------GESTION COLABORADORES----------------------------------------
-      //     .when('/App/Colaboradores',    'dashboard.app.colaboradores')
-      //         .when('/App/Colaboradores/Usuario',    'dashboard.app.colaboradores.usuario')
-      //         .when('/App/Colaboradores/Tipo_Usuario',    'dashboard.app.colaboradores.tipo_usuario')
-      //     // ------------------------------------------FACTURACION------------------------------------------------
-      //     .when('/App/Facturacion',    'dashboard.app.facturacion')
-      //     .when('/App/Facturacion/Mis_Facturas_Venta',    'dashboard.app.facturacion.mis_facturas_venta')
-      //     .when('/App/Facturacion/Nueva_Factura_Venta',    'dashboard.app.facturacion.nueva_factura_venta')
-      //     .when('/App/Facturacion/Cajas',    'dashboard.app.facturacion.cajas')
-      //     .when('/App/Facturacion/Clientes',    'dashboard.app.facturacion.cientes')
-      //     // ------------------------------------------INVENTARIO BIENES------------------------------------------
-      //     .when('/App/Inventario',    'dashboard.app.inventario')
-      //         .when('/App/Inventario/',    'dashboard.app.inventario.menu')
-      //         .when('/App/Inventario/Categorias',    'dashboard.app.inventario.categoria')
-      //             .when('/App/Inventario/Categorias/Productos',    'dashboard.app.inventario.cat_productos')
-      //             .when('/App/Inventario/Categorias/Bienes',    'dashboard.app.inventario.cat_bienes')
-      //         .when('/App/Inventario/Marcas',    'dashboard.app.inventario.marcas')
-      //         .when('/App/Inventario/Modelos',    'dashboard.app.inventario.modelos')
-      //         .when('/App/Inventario/Productos',    'dashboard.app.inventario.productos')
-      //         .when('/App/Inventario/Ubicacion',    'dashboard.app.inventario.ubicacion')
-      //         .when('/App/Inventario/Garantia',    'dashboard.app.inventario.garantia')
-      //         .when('/App/Inventario/Estado_Descriptivo',    'dashboard.app.inventario.estado_descriptivo')
-      //         // Parametrizacion Tipos
-      //         .when('/App/Inventario/Tipo_Categoria',    'dashboard.app.inventario.tipo_categoria')
-      //         .when('/App/Inventario/Tipo_Garantia',    'dashboard.app.inventario.tipo_garantias')
-      //         .when('/App/Inventario/Tipo_Consumo',    'dashboard.app.inventario.tipo_consumo')
-      //         .when('/App/Inventario/Tipo_Productos',    'dashboard.app.inventario.tipo_productos')
-      //         .when('/App/Inventario/Tipo_Catalogo',    'dashboard.app.inventario.tipo_catalogo')
-      //         .when('/App/Inventario/Bodegas',    'dashboard.app.inventario.bodegas')
-      //         .when('/App/Inventario/Bienes',    'dashboard.app.inventario.bienes')
-      //     // ------------------------------------------INVENTARIO SERVICIOS-----------------------------------------
-      //       .when('/App/Inv_Servicios',    'dashboard.app.inv_servicios')
-      //       .when('/App/Inv_Servicios/Menu',    'dashboard.app.inv_servicios.menu')
-      //       .when('/App/Inv_Servicios/Categorias',    'dashboard.app.inv_servicios.categorias')
-      //       .when('/App/Inv_Servicios/Tipo_Categorias',    'dashboard.app.inv_servicios.tipo_categorias')
-      //       .when('/App/Inv_Servicios/Garantia',    'dashboard.app.inv_servicios.garantia')
-      //       .when('/App/Inv_Servicios/Tipo_Garantia',    'dashboard.app.inv_servicios.tipo_garantia')
-      //       .when('/App/Inv_Servicios/Ubicacion',    'dashboard.app.inv_servicios.ubicacion')
-      //       .when('/App/Inv_Servicios/Modelos',    'dashboard.app.inv_servicios.modelo')
-      //       .when('/App/Inv_Servicios/Tipo_Consumo',    'dashboard.app.inv_servicios.tipo_consumo')
-      //       .when('/App/Inv_Servicios/Estado_Descriptivo',    'dashboard.app.inv_servicios.estado_descriptivo')
-      //       .when('/App/Inv_Servicios/Servicios',    'dashboard.app.inv_servicios.servicios')
-
-            
-      //     // ------------------------------------------INVENTARIO PRODUCTOS-----------------------------------------
-      //       .when('/App/Inv_Productos',    'dashboard.app.inv_productos')
-      //       .when('/App/Inv_Productos/',    'dashboard.app.inv_productos.menu')
-      //       .when('/App/Inv_Productos/Categorias',    'dashboard.app.inv_productos.categorias')
-      //       .when('/App/Inv_Productos/Tipo_Categoria',    'dashboard.app.inv_productos.tipo_categorias')
-      //       .when('/App/Inv_Productos/Garantia',    'dashboard.app.inv_productos.garantia')
-      //       .when('/App/Inv_Productos/Tipo_Garantia',    'dashboard.app.inv_productos.tipo_garantia')
-      //       .when('/App/Inv_Productos/Ubicacion',    'dashboard.app.inv_productos.ubicacion')
-      //       .when('/App/Inv_Productos/Modelos',    'dashboard.app.inv_productos.modelo')
-      //       .when('/App/Inv_Productos/Tipo_Consumo',    'dashboard.app.inv_productos.tipo_consumo')
-      //       .when('/App/Inv_Productos/Estado_Descriptivo',    'dashboard.app.inv_productos.estado_descriptivo')
-      //       .when('/App/Inv_Productos/Productos',    'dashboard.app.inv_productos.productos')
-      //       .when('/App/Inv_Productos/Bodegas',    'dashboard.app.inv_productos.bodegas')
-      //       .when('/App/Inv_Productos/Marcas',    'dashboard.app.inv_productos.marcas')
-      //     // ------------------------------------------INVENTARIO BIENES--------------------------------------------
-      //       .when('/App/Inv_Bienes',    'dashboard.app.inv_bienes')
-      //       .when('/App/Inv_Bienes/',    'dashboard.app.inv_bienes.menu')
-      //       .when('/App/Inv_Bienes/Categorias',    'dashboard.app.inv_bienes.categorias')
-      //       .when('/App/Inv_Bienes/Tipo_Categorias',    'dashboard.app.inv_bienes.tipo_categorias')
-      //       .when('/App/Inv_Bienes/Garantia',    'dashboard.app.inv_bienes.garantia')
-      //       .when('/App/Inv_Bienes/Tipo_Garantia',    'dashboard.app.inv_bienes.tipo_garantia')
-      //       .when('/App/Inv_Bienes/Ubicacion',    'dashboard.app.inv_bienes.ubicacion')
-      //       .when('/App/Inv_Bienes/Modelos',    'dashboard.app.inv_bienes.modelo')
-      //       .when('/App/Inv_Bienes/Tipo_Consumo',    'dashboard.app.inv_bienes.tipo_consumo')
-      //       .when('/App/Inv_Bienes/Estado_Descriptivo',    'dashboard.app.inv_bienes.estado_descriptivo')
-      //       .when('/App/Inv_Bienes/Bienes',    'dashboard.app.inv_bienes.bienes')
-      //       .when('/App/Inv_Bienes/Marcas',    'dashboard.app.inv_bienes.marcas')
-      //       .when('/App/Inv_Bienes/Tipo_Categoria',    'dashboard.app.inv_bienes.tipo_categorias')
-
-      //     // -------------------------------------------PARAMETROS GENERALES----------------------------------------
-      //     .when('/App/Parametrizacion',    'dashboard.app.parametrizacion')
-      //     .when('/App/Parametrizacion/Inicio',    'dashboard.app.parametrizacion.menu')
-      //     .when('/App/Parametrizacion/Impuestos',    'dashboard.app.parametrizacion.impuestos')
-
-      //     .segment('dashboard', {
-      //         templateUrl: 'views/dashboard/index.html',
-      //         controller: 'dashboard_Ctrl'
-      //     })
-      //         .within()
-      //             .segment('nb', {
-      //                 templateUrl: 'views/dashboard/general.html',
-      //                 // controller: 'inicio_Ctrl',
-      //             })
-      //                 .within()
-      //                     .segment('inicio', {
-      //                         templateUrl: 'views/dashboard/inicio.html',
-      //                         controller: 'inicio_Ctrl',
-      //                         default: true
-      //                     })
-      //                     .segment('perfil', {
-      //                         templateUrl: 'views/dashboard/perfil.html',
-      //                         controller: 'perfil_Ctrl'
-      //                     })
-      //                     .segment('personal', {
-      //                         templateUrl: 'views/dashboard/perfil_personal.html',
-      //                         controller: 'perfil_personal_Ctrl'
-      //                     })
-      //                         .within()
-      //                             .segment('inicio', {
-      //                                 default: true,
-      //                                 templateUrl: 'views/dashboard/perfil_personal/inicio.html',
-      //                                 // controller: 'informacion_generalCtrl'
-      //                             })
-      //                         .up()
-
-      //                     .segment('config', {
-      //                         templateUrl: 'views/dashboard/configuracion/index.html',
-      //                         // controller: 'configuracionCtrl'
-      //                     })
-      //                         .within()
-      //                             .segment('personal', {
-      //                                 default: true,
-      //                                 templateUrl: 'views/dashboard/configuracion/personal/index.html',
-      //                                 controller: 'informacion_generalCtrl'
-      //                             })
-      //                             .segment('empresa', {
-      //                                 templateUrl: 'views/dashboard/configuracion/establecimiento/index.html',
-      //                                 controller: 'informacion_general_empresaCtrl'
-      //                             })
-      //                             .segment('sucursal', {
-      //                                 templateUrl: 'views/dashboard/configuracion/perfil/index.html',
-      //                                 // controller: 'informacion_generalCtrl'
-      //                             })
-      //                             .segment('terminos', {
-      //                                 templateUrl: 'views/dashboard/configuracion/terminos/index.html',
-      //                             })
-      //                         .up()
-      //                 .up()                    
-      //             .segment('app', {
-      //                 templateUrl: 'views/app/index.html',
-      //                 controller: 'app_Ctrl'
-      //             })
-      //                 .within()
-      //                     // ------------------------------------INICIO APP----------------------------------------------
-      //                         .segment('inicio', {
-      //                             default: true,
-      //                             templateUrl: 'views/app/inicio.html',
-      //                             // controller: 'repositorio_facturas_Ctrl'
-      //                         })
-      //                     // ------------------------------------REPOSITORIO FACTURAS------------------------------------
-      //                         .segment('repositorio_facturas', {
-      //                             templateUrl: 'views/app/repositorio_facturas/index.html',
-      //                             controller: 'RepositorioFacturasCtrl'
-      //                         })
-      //                         .within()
-      //                             .segment('inicio_facturas', {
-      //                                 default: true,
-      //                                 templateUrl: 'views/app/repositorio_facturas/inicio_facturas/index.html',
-      //                                 controller: 'repfac_inicio_Ctrl'
-      //                             })
-      //                             .segment('mis_facturas', {
-      //                                 templateUrl: 'views/app/repositorio_facturas/mis_facturas/index.html',
-      //                                 controller: 'mis_facturas_Ctrl'
-      //                             })
-      //                             .segment('subir_facturas', {
-      //                                 templateUrl: 'views/app/repositorio_facturas/subir_facturas/index.html',
-      //                                 controller: 'subir_factura_electronica_Ctrl'
-      //                             })
-      //                             .segment('facturas_correo', {
-      //                                 templateUrl: 'views/app/repositorio_facturas/facturas_correo/index.html',
-      //                                 controller: 'leer_correo_facturas_electronica_Ctrl'
-      //                             })   
-      //                             .segment('facturas_rechazadas', {
-      //                                 templateUrl: 'views/app/repositorio_facturas/facturas_rechazadas/index.html',
-      //                                 controller: 'rechazadas_facturas_electronica_Ctrl'
-      //                             })   
-      //                         .up()
-      //                     // ------------------------------------COLABORADORES-------------------------------------------
-      //                         .segment('colaboradores', {
-      //                             templateUrl: 'views/app/colaboradores/index.html',
-      //                             controller: 'colaboradores_Ctrl'
-      //                         })
-      //                            .within()
-      //                                 .segment('usuario', {
-      //                                     default: true,
-      //                                     templateUrl: 'views/app/colaboradores/usuario/index.html',
-      //                                     controller: 'col_usuario_Ctrl'
-      //                                 })
-      //                                 .segment('tipo_usuario', {
-      //                                     templateUrl: 'views/app/colaboradores/tipo_usuario/index.html',
-      //                                     controller: 'col_tipo_usuario_Ctrl'
-      //                                 })
-      //                             .up()
-      //                     // ------------------------------------PARAMETRIZACION GENERAL---------------------------------
-      //                         .segment('parametrizacion', {
-      //                             templateUrl: 'views/app/parametrizacion/index.html',
-      //                             controller: 'ParametrizacionCtrl'
-      //                         })
-      //                             .within()
-      //                                 .segment('menu', {
-      //                                     default: true,
-      //                                     templateUrl: 'views/app/parametrizacion/menu.html',
-      //                                 })
-      //                                 .segment('impuestos', {
-      //                                     templateUrl: 'views/app/parametrizacion/impuestos/index.html',
-      //                                     controller: 'param_impuestos_Ctrl'
-      //                                 })
-      //                             .up()
-      //                     // --------------------------------------INVENTARIO SERVICIOS----------------------------------
-      //                         .segment('inv_servicios', {
-      //                           templateUrl: 'views/app/inv_servicios/index.html',
-      //                           controller: 'inv_serviciosCtrl'
-      //                         })
-      //                             .within()
-      //                                 .segment('menu', {
-      //                                     default: true,
-      //                                     templateUrl: 'views/app/inv_servicios/menu.html',
-      //                                     controller: 'inv_servicios_menuCtrl'
-      //                                 })
-      //                                 .segment('categorias', {
-      //                                     templateUrl: 'views/app/inv_servicios/categorias/index.html',
-      //                                     controller: 'inv_servicios_categoriasCtrl'
-      //                                 })
-      //                                 .segment('tipo_categorias', {
-      //                                     templateUrl: 'views/app/inv_servicios/tipo_categorias/index.html',
-      //                                     controller: 'inv_servicios_tipo_categoriasCtrl'
-      //                                 })
-      //                                 .segment('garantia', {
-      //                                     templateUrl: 'views/app/inv_servicios/garantia/index.html',
-      //                                     controller: 'inv_servicios_garantiaCtrl'
-      //                                 })
-      //                                 .segment('ubicacion', {
-      //                                     templateUrl: 'views/app/inv_servicios/ubicacion/index.html',
-      //                                     controller: 'inv_servicios_ubicacionCtrl'
-      //                                 })
-      //                                 .segment('modelo', {
-      //                                     templateUrl: 'views/app/inv_servicios/modelos/index.html',
-      //                                     controller: 'inv_servicios_modeloCtrl'
-      //                                 })
-      //                                 .segment('tipo_consumo', {
-      //                                     templateUrl: 'views/app/inv_servicios/tipo_consumo/index.html',
-      //                                     controller: 'inv_servicios_tipo_consumoCtrl'
-      //                                 })
-      //                                 .segment('estado_descriptivo', {
-      //                                     templateUrl: 'views/app/inv_servicios/estado_descriptivo/index.html',
-      //                                     controller: 'inv_servicios_estado_descriptivoCtrl'
-      //                                 })
-      //                                 .segment('tipo_garantia', {
-      //                                     templateUrl: 'views/app/inv_servicios/tipo_garantia/index.html',
-      //                                     controller: 'inv_servicios_tipo_garantiaCtrl'
-      //                                 })
-      //                                 .segment('servicios', {
-      //                                     templateUrl: 'views/app/inv_servicios/servicios/index.html',
-      //                                     controller: 'inv_servicios_serviciosCtrl'
-      //                                 })
-      //                             .up()
-      //                     // --------------------------------------INVENTARIO PRODUCTOS----------------------------------
-      //                         .segment('inv_productos', {
-      //                           templateUrl: 'views/app/inv_productos/index.html',
-      //                           controller: 'inv_productosCtrl'
-      //                         })
-      //                             .within()
-      //                                 .segment('menu', {
-      //                                     default: true,
-      //                                     templateUrl: 'views/app/inv_productos/menu.html',
-      //                                     controller: 'inv_productos_menuCtrl'
-      //                                 })
-      //                                 .segment('categorias', {
-      //                                     templateUrl: 'views/app/inv_productos/categorias/index.html',
-      //                                     controller: 'inv_productos_categoriasCtrl'
-      //                                 })
-      //                                 .segment('tipo_categorias', {
-      //                                     templateUrl: 'views/app/inv_productos/tipo_categoria/index.html',
-      //                                     controller: 'inv_productos_tipo_categoriasCtrl'
-      //                                 })
-      //                                 .segment('garantia', {
-      //                                     templateUrl: 'views/app/inv_productos/garantia/index.html',
-      //                                     controller: 'inv_productos_garantiaCtrl'
-      //                                 })
-      //                                 .segment('ubicacion', {
-      //                                     templateUrl: 'views/app/inv_productos/ubicacion/index.html',
-      //                                     controller: 'inv_productos_ubicacionCtrl'
-      //                                 })
-      //                                 .segment('modelo', {
-      //                                     templateUrl: 'views/app/inv_productos/modelos/index.html',
-      //                                     controller: 'inv_productos_modeloCtrl'
-      //                                 })
-      //                                 .segment('tipo_consumo', {
-      //                                     templateUrl: 'views/app/inv_productos/tipo_consumo/index.html',
-      //                                     controller: 'inv_productos_tipo_consumoCtrl'
-      //                                 })
-      //                                 .segment('estado_descriptivo', {
-      //                                     templateUrl: 'views/app/inv_productos/estado_descriptivo/index.html',
-      //                                     controller: 'inv_productos_estado_descriptivoCtrl'
-      //                                 })
-      //                                 .segment('tipo_garantia', {
-      //                                     templateUrl: 'views/app/inv_productos/tipo_garantia/index.html',
-      //                                     controller: 'inv_productos_tipo_garantiaCtrl'
-      //                                 })
-      //                                 .segment('productos', {
-      //                                     templateUrl: 'views/app/inv_productos/productos/index.html',
-      //                                     controller: 'inv_productos_productosCtrl'
-      //                                 })
-      //                                 .segment('bodegas', {
-      //                                     templateUrl: 'views/app/inv_productos/bodega/index.html',
-      //                                     controller: 'inv_productos_bodegasCtrl'
-      //                                 })
-      //                                 .segment('marcas', {
-      //                                     templateUrl: 'views/app/inv_productos/marcas/index.html',
-      //                                     controller: 'inv_productos_marcasCtrl'
-      //                                 })
-      //                             .up()
-      //                     // --------------------------------------INVENTARIO BIENES----------------------------------
-      //                         .segment('inv_bienes', {
-      //                           templateUrl: 'views/app/inv_bienes/index.html',
-      //                           controller: 'inv_bienesCtrl'
-      //                         })
-      //                             .within()
-      //                                 .segment('menu', {
-      //                                     default: true,
-      //                                     templateUrl: 'views/app/inv_bienes/menu.html',
-      //                                     controller: 'inv_bienes_menuCtrl'
-      //                                 })
-      //                                 .segment('categorias', {
-      //                                     templateUrl: 'views/app/inv_bienes/categorias/index.html',
-      //                                     controller: 'inv_bienes_categoriasCtrl'
-      //                                 })
-      //                                 .segment('tipo_categorias', {
-      //                                     templateUrl: 'views/app/inv_bienes/tipo_categorias/index.html',
-      //                                     controller: 'inv_bienes_tipo_categoriasCtrl'
-      //                                 })
-      //                                 .segment('garantia', {
-      //                                     templateUrl: 'views/app/inv_bienes/garantia/index.html',
-      //                                     controller: 'inv_bienes_garantiaCtrl'
-      //                                 })
-      //                                 .segment('ubicacion', {
-      //                                     templateUrl: 'views/app/inv_bienes/ubicacion/index.html',
-      //                                     controller: 'inv_bienes_ubicacionCtrl'
-      //                                 })
-      //                                 .segment('modelo', {
-      //                                     templateUrl: 'views/app/inv_bienes/modelos/index.html',
-      //                                     controller: 'inv_bienes_modeloCtrl'
-      //                                 })
-      //                                 .segment('tipo_consumo', {
-      //                                     templateUrl: 'views/app/inv_bienes/tipo_consumo/index.html',
-      //                                     controller: 'inv_bienes_tipo_consumoCtrl'
-      //                                 })
-      //                                 .segment('estado_descriptivo', {
-      //                                     templateUrl: 'views/app/inv_bienes/estado_descriptivo/index.html',
-      //                                     controller: 'inv_bienes_estado_descriptivoCtrl'
-      //                                 })
-      //                                 .segment('tipo_garantia', {
-      //                                     templateUrl: 'views/app/inv_bienes/tipo_garantia/index.html',
-      //                                     controller: 'inv_bienes_tipo_garantiaCtrl'
-      //                                 })
-      //                                 .segment('bienes', {
-      //                                     templateUrl: 'views/app/inv_bienes/bienes/index.html',
-      //                                     controller: 'inv_bienes_bienesCtrl'
-      //                                 })
-      //                                 .segment('marcas', {
-      //                                     templateUrl: 'views/app/inv_bienes/marcas/index.html',
-      //                                     controller: 'inv_bienes_marcasCtrl'
-      //                                 })
-      //                             .up()
-      //                     // --------------------------------------INVENTARIO--------------------------------------
-                              
-      //                         .segment('inventario', {
-      //                             templateUrl: 'views/app/inventario/index.html',
-      //                             controller: 'inventario_Ctrl'
-      //                         })
-      //                             .within()
-      //                                 .segment('menu', {
-      //                                     default: true,
-      //                                     templateUrl: 'views/app/inventario/menu.html',
-      //                                     controller: 'inv_menu_Ctrl'
-      //                                 })
-      //                                 .segment('categoria', {
-      //                                     templateUrl: 'views/app/inventario/categoria/productos/index.html',
-      //                                     controller: 'inv_categoria_productos_Ctrl'
-      //                                 })
-      //                                 .segment('cat_productos', {
-      //                                     default:true,
-      //                                     templateUrl: 'views/app/inventario/categoria/productos/index.html',
-      //                                     controller: 'inv_categoria_productos_Ctrl'
-      //                                 })
-      //                                 .segment('cat_bienes', {
-      //                                     templateUrl: 'views/app/inventario/categoria/bienes/index.html',
-      //                                     controller: 'inv_categoria_bienes_Ctrl'
-      //                                 })
-      //                                 .segment('marcas', {
-      //                                     templateUrl: 'views/app/inventario/marcas/index.html',
-      //                                     controller: 'inv_marcas_Ctrl'
-      //                                 })
-      //                                 .segment('modelos', {
-      //                                     templateUrl: 'views/app/inventario/modelos/index.html',
-      //                                     controller: 'inv_modelos_Ctrl'
-      //                                 })
-      //                                 .segment('productos', {
-      //                                     templateUrl: 'views/app/inventario/productos/index.html',
-      //                                     controller: 'inv_productos_Ctrl'
-      //                                 })
-      //                                 .segment('ubicacion', {
-      //                                     templateUrl: 'views/app/inventario/ubicacion/index.html',
-      //                                     controller: 'inv_ubicacion_Ctrl'
-      //                                 })
-      //                                 .segment('garantia', {
-      //                                     templateUrl: 'views/app/inventario/garantia/index.html',
-      //                                     controller: 'inv_garantia_Ctrl'
-      //                                 })
-      //                                 .segment('estado_descriptivo', {
-      //                                     templateUrl: 'views/app/inventario/estado_descriptivo/index.html',
-      //                                     controller: 'inv_garantia_Ctrl'
-      //                                 })
-      //                                 // Tipos 
-      //                                 .segment('tipo_categoria', {
-      //                                     templateUrl: 'views/app/inventario/tipo_categoria/index.html',
-      //                                     controller: 'inv_tipo_categoria_Ctrl'
-      //                                 })
-      //                                 .segment('tipo_garantia', {
-      //                                     templateUrl: 'views/app/inventario/tipo_garantia/index.html',
-      //                                     controller: 'inv_tipo_garantia_Ctrl'
-      //                                 })
-      //                                 .segment('tipo_consumo', {
-      //                                     templateUrl: 'views/app/inventario/tipo_consumo/index.html',
-      //                                     controller: 'inv_tipo_consumo_Ctrl'
-      //                                 })
-      //                                 .segment('tipo_productos', {
-      //                                     templateUrl: 'views/app/inventario/tipo_productos/index.html',
-      //                                     controller: 'inv_tipo_productos_Ctrl'
-      //                                 })
-      //                                 .segment('tipo_catalogo', {
-      //                                     templateUrl: 'views/app/inventario/tipo_catalogo/index.html',
-      //                                     controller: 'inv_tipo_catalogo_Ctrl'
-      //                                 })
-      //                                 .segment('estado_descriptivo', {
-      //                                     templateUrl: 'views/app/inventario/estado_descriptivo/index.html',
-      //                                     controller: 'inv_estado_descriptivo_Ctrl'
-      //                                 })
-      //                                 .segment('bodegas', {
-      //                                     templateUrl: 'views/app/inventario/bodega/index.html',
-      //                                     controller: 'inv_bodegas_Ctrl'
-      //                                 })
-      //                                 .segment('bienes', {
-      //                                     templateUrl: 'views/app/inventario/bienes/index.html',
-      //                                     controller: 'inv_bienes_Ctrl'
-      //                                 })
-      //                             .up()
-
-      //                         // ----------------------------------------FACTURACION----------------------------------------
-      //                         .segment('facturacion', {
-      //                            templateUrl: 'views/app/facturacion/index.html',
-      //                             controller: 'facturacion_Ctrl'
-      //                             })
-      //                             .within()
-      //                                 .segment('cajas', {
-      //                                     templateUrl: 'views/app/facturacion/cajas/index.html',
-      //                                     controller: 'fac_cajas_Ctrl'
-      //                                 })
-      //                                 .segment('nueva_factura_venta', {
-      //                                     default: true,
-      //                                     templateUrl: 'views/app/facturacion/nueva_factura_venta/index.html',
-      //                                     controller: 'fac_nueva_factura_venta_Ctrl'
-      //                                 })
-          
-      //                                 .segment('mis_facturas_venta', {
-      //                                     templateUrl: 'views/app/facturacion/mis_facturas/index.html',
-      //                                     controller: 'fac_mis_facturas_venta_Ctrl'
-      //                                 })
-      //                                 .segment('cientes', {
-      //                                     templateUrl: 'views/app/facturacion/personas/index.html',
-      //                                     controller: 'fac_clientes_Ctrl'
-      //                                 })
-      //                             .up()
-      //                 .up()
-      //         .up();            
-      // // -------------------------------------------    buscador    ----------------------------------------------------
-      // $routeSegmentProvider
-      //     .when('/search/:id',    'search')
-      //         .when('/search/:id/Publicacion',    'search.publicacion')
-      //         .when('/search/:id/Info',    'search.info')
-      //         .when('/search/:id/Ubicacion',    'search.ubicacion')
-      //         .when('/search/:id/Similares',    'search.similares')
-      //         .when('/search/:id/Favoritos',    'search.favoritos')
-      //     .segment('search', {
-      //         templateUrl: 'views/main/search.html',
-      //         controller: 'search_Ctrl',
-      //         dependencies: ['id']
-      //     })
-      //         .within()                
-      //             .segment('publicacion', {                        
-      //                 templateUrl: 'views/perfil/publicacion.html'})                        
-      //             .segment('info', {
-      //                 'default': true,
-      //                 templateUrl: 'views/perfil/info.html'})
-      //             .segment('ubicacion', {
-      //                 templateUrl: 'views/perfil/ubicacion.html'})
-      //             .segment('similares', {
-      //                 templateUrl: 'views/perfil/similares.html'})
-      //             .segment('favoritos', {
-      //                 templateUrl: 'views/perfil/favoritos.html'})
-      //         .up();
+     
   });
