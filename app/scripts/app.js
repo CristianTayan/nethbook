@@ -347,8 +347,7 @@ var app = angular.module('nextbook20App', [
 
                   .within()
                     .segment('perfilEmpresa', {
-                      templateUrl: 'views/dashboard/configuracionPerfilEmpresa.html',
-                      default: true,
+                      templateUrl: 'views/dashboard/configuracionPerfilEmpresa.html',                      
                       controller: 'configuracionPerfilEmpresaCtrl'
                     })
 
@@ -359,6 +358,7 @@ var app = angular.module('nextbook20App', [
 
                     .segment('perfilPersonal', {
                       templateUrl: 'views/dashboard/configuracion/personal/index.html',
+                      default: true,
                       controller: 'configuracionPerfilPersonalCtrl'
                     })
                   .up()

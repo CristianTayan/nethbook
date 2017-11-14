@@ -1,12 +1,6 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name nextbook20App.controller:ConfiguracionCtrl
- * @description
- * # ConfiguracionCtrl
- * Controller of the nextbook20App
- */
+
 var app = angular.module('nextbook20App');
   	app.controller('configuracionCtrl', function ($scope, $mdExpansionPanelGroup, configuracionService, $routeSegment,  $mdDialog) {
   		// $scope.showBox = configuracionService.ico_sidemenu_2($routeSegment)
@@ -191,7 +185,4 @@ var app = angular.module('nextbook20App');
       selectedTipo: 2
     }
     // var self = this;
-
-
-
   });
