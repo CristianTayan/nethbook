@@ -4,7 +4,7 @@
 	<md-expansion-panel md-component-id="expansionPanelOne">
 	    <md-expansion-panel-collapsed>
 	        <div class="md-title" md-colors="{color: 'accent'}">Empresa</div>
-	        <div class="md-summary" md-colors="{color: 'indigo'}">{{info_empresa.razon_social}}</div>
+	        <div class="md-summary" md-colors="{color: 'indigo'}">{{info_sucursal.nombre }}</div>
 	        <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
 		        <md-icon class="md-accent">keyboard_arrow_down</md-icon>
 		    </md-button>
@@ -12,14 +12,14 @@
 	    <md-expansion-panel-expanded>
 	        <md-expansion-panel-header>
 	            <div class="md-title" md-colors="{color: 'indigo'}">Empresa</div>
-	            <div class="md-summary" md-colors="{color: 'indigo'}">{{info_empresa.razon_social}}</div>
+	            <div class="md-summary" md-colors="{color: 'indigo'}">{{info_sucursal.nombre }}</div>
 	        </md-expansion-panel-header>
 	        <md-expansion-panel-content>
                 <div layout="row">
                     <md-input-container class="md-icon-float md-block" flex>
                         <md-icon class="md-primary">business</md-icon>
                         <label>Actividad Económica</label>
-                        <input name="primer_nombre" ng-model="info_empresa.actividad_economica" type="text" readonly>
+                        <input name="primer_nombre" ng-model=" x.razon_social" type="text" readonly>
                     </md-input-container>
                     <div flex="5"></div>
                     <md-input-container class="md-icon-float md-block" flex="20">
