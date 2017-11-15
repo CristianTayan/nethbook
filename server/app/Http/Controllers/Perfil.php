@@ -128,28 +128,35 @@ class Perfil extends Controller
     // -----------< perfil Usuario >---------------------------------
     public function Add_Img_PerfilUsuario(Request $request){
     
-    $crop = $request->img['crop'];
-    $full = $request->img['full'];
-    // Guardar Recorte
-    $filename=$this->base64_to_img($crop,600,'PerfilUsuario',$this->name_bdd);
-    $img_dir_crop="storage/".$this->name_bdd.'/PerfilUsuario/'.$filename;
-    //Guardar imagen full
-    $filename=$this->base64_to_img($full,700,'PerfilUsuario',$this->name_bdd);
-    $img_dir_full="storage/".$this->name_bdd.'/PerfilUsuario/'.$filename;
+      $crop = $request->img['crop'];
+      $full = $request->img['full'];
+      // Guardar Recorte
+      $filename=$this->base64_to_img($crop,600,'PerfilUsuario',$this->name_bdd);
+      $img_dir_crop="storage/".$this->name_bdd.'/PerfilUsuario/'.$filename;
+      //Guardar imagen full
+      $filename=$this->base64_to_img($full,700,'PerfilUsuario',$this->name_bdd);
+      $img_dir_full="storage/".$this->name_bdd.'/PerfilUsuario/'.$filename;
 
-    DB::connection($this->name_bdd)->
-        table('administracion.imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','A')->where('tipo_imagen',5)->update(['estado'=>'P']);
-    $save=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->insert([
-        'sucursal'=>$request->sucursal,
-        'direccion_imagen_empresa'=>$img_dir_full,
-        'direccion_imagen_recorte'=>$img_dir_crop,
-        'estado'=>'A',
-        'tipo_imagen'=>5
-                 ]);
+      DB::connection($this->name_bdd)->
+        table('administracion.imagen_empresa')->
+        where('sucursal',$request->sucursal)->
+        where('estado','A')->
+        where('tipo_imagen',5)->
+        update(['estado'=>'P']);
 
-    if ($save) {
-        return response()->json(["respuesta"=>true,"img"=>$img_dir_crop]);
-    }else return response()->json(["respuesta"=>false,"img"=>'']);
+      $save=DB::connection($this->name_bdd)->
+        table('administracion.imagen_empresa')->
+        insert([
+          'sucursal'=>$request->sucursal,
+          'direccion_imagen_empresa'=>$img_dir_full,
+          'direccion_imagen_recorte'=>$img_dir_crop,
+          'estado'=>'A',
+          'tipo_imagen'=>5
+          ]);
+
+      if ($save) {
+          return response()->json(["respuesta"=>true,"img"=>$img_dir_crop]);
+      }else return response()->json(["respuesta"=>false,"img"=>'']);
 
     }
 
