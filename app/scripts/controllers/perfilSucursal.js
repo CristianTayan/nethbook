@@ -8,7 +8,7 @@
  * Controller of the nextbook20App
  */
 angular.module('nextbook20App')
-  .controller('perfil_Ctrl', function ($scope,$rootScope, $localStorage, $mdDialog, $timeout, urlService) {
+  .controller('perfilSucursalCtrl', function ($scope,$rootScope, $localStorage, $mdDialog, $timeout, urlService) {
     $rootScope.imgPortada=urlService.server().dir()+$localStorage.imgPortada;
     $rootScope.imgPerfil=urlService.server().dir()+$localStorage.imgPerfil;
     $scope.datos2 = $localStorage.datosE;
@@ -50,8 +50,8 @@ angular.module('nextbook20App')
 
     }
 
-//------------------------------------------------------------------------------- PORTADA
-//------------------------------------------------------------------------------- SUBIR IMAGEN DE PORTADA
+    //------------------------------------------------------------------------------- PORTADA
+    //------------------------------------------------------------------------------- SUBIR IMAGEN DE PORTADA
     $scope.show_upload_img_modal = function(ev,tipo_img){
       $mdDialog.show({
         controller: Dialog_subir_image_Controller,
