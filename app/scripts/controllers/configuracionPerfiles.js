@@ -1,6 +1,9 @@
 'use strict';
 
 var app = angular.module('nextbook20App')
+  app.controller('configuracionCtrl', function ($scope, $mdExpansionPanelGroup, configuracionService, $routeSegment,  $mdDialog) {
+    $scope.$routeSegment = $routeSegment;
+  });
   app.controller('configuracionPerfilSucursalCtrl', ($scope, $mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, colaboradores_Service) => {
     console.log('test controlador configuracion, configuracionPerfilSucursalCtrl');
   });
