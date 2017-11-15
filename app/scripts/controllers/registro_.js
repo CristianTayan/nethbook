@@ -151,18 +151,17 @@ var app = angular.module('nextbook20App')
 	            }
 	            if (x != false && x != 'false-sri') {
 	            	$scope.elemennotviewsession = false;
-                $scope.razon_social = x.razon_social;
-                $scope.nombre_comercial = x.nombre_comercial;
-                $scope.estado_contribuyente = x.estado_contribuyente;
-                $scope.clase_contribuyente = x.clase_contribuyente;
-                $scope.tipo_contribuyente = x.tipo_contribuyente;
-                $scope.obligado_llevar_contabilidad = x.obligado_llevar_contabilidad;
-                $scope.actividad_principal=x.actividad_economica;
-                $scope.rucdata = x;
-                $scope.elemennotviewimg=false;
-                $scope.elementview=true;
-                $scope.elemennotview=false;
-                
+	                $scope.razon_social = x.razon_social;
+	                $scope.nombre_comercial = x.nombre_comercial;
+	                $scope.estado_contribuyente = x.estado_contribuyente;
+	                $scope.clase_contribuyente = x.clase_contribuyente;
+	                $scope.tipo_contribuyente = x.tipo_contribuyente;
+	                $scope.obligado_llevar_contabilidad = x.obligado_llevar_contabilidad;
+	                $scope.actividad_principal=x.actividad_economica;
+	                $scope.rucdata = x;
+	                $scope.elementview=true;
+	                $scope.elemennotview=false;
+	                $scope.elemennotviewimg=false;
 	            }
 	        });
 	    }
@@ -174,13 +173,13 @@ var app = angular.module('nextbook20App')
   					$location.path('/Colaboradores/'+$scope.email+'001');
   				}else{
   					$mdDialog.show(
-	            $mdDialog.alert()
-	            .parent(angular.element(document.querySelector('#dialogContainer')))
-	            .clickOutsideToClose(true)
-	            .title('LO SENTIMOS :(')
-	            .textContent('NÚMERO DE RUC NO EXISTE')
-	            .ok('ENTENDIDO')
-	            .openFrom('#left')
+			            $mdDialog.alert()
+			            .parent(angular.element(document.querySelector('#dialogContainer')))
+			            .clickOutsideToClose(true)
+			            .title('LO SENTIMOS :(')
+			            .textContent('NÚMERO DE RUC NO EXISTE')
+			            .ok('ENTENDIDO')
+			            .openFrom('#left')
 			        );
   				}
   			});
@@ -200,12 +199,10 @@ var app = angular.module('nextbook20App')
 				        .ok('Entendido')
 				    );
 	                $scope.elemennotview = true;
-	                $scope.elementview = false;   
-	                $scope.elemennotviewimg=true;            
+	                $scope.elementview = false;               
 	                $scope.ruc = null;
 	                $scope.formdata = {ruc: ''}
 	               	$scope.rucdata = {telefono: '', telefono1:'', celular:'', provincia:'', correo:''};
-
 	            } else {
 	            	$mdDialog.show(
 				      $mdDialog.alert()

@@ -80,6 +80,8 @@ class Portada extends Controller {
         mkdir(storage_path().'/'.$name_bdd, 0777, true);
         mkdir(storage_path().'/'.$name_bdd.'/Perfil/', 0777, true);
         mkdir(storage_path().'/'.$name_bdd.'/Portadas/', 0777, true);
+        mkdir(storage_path().'/'.$name_bdd.'/PortadasUsuario/', 0777, true);
+        mkdir(storage_path().'/'.$name_bdd.'/PerfilUsuario/', 0777, true);
       }
 
       $img->save(storage_path().'/'.$name_bdd.'/'.$tipo_img.'/'.$id_img);

@@ -16,15 +16,19 @@ angular.module('nextbook20App')
           },appnextxml: function() {
             return dominio + '/server/';
           },mod_radio: function() {
+            // return "http://186.4.167.12/mod_radio/";
             return "http://192.168.0.109/mod_radio/";
 
           },topmusical: function() {
+            // return "http://186.4.167.12/mod_radio/";
             return "http://186.4.167.12/api-admin-oyefm/public/index.php/";
           },search_empresas: function() {
+            // return "http://186.4.167.12/mod_radio/";
             return dominio + '/empresas/';
           }
           ,dir: function() {
-            return dominio + '/nethbook/server/';
+            // return "http://186.4.167.12/mod_radio/";
+            return "http://localhost/nethbook/server/";
           }
       }
     };
