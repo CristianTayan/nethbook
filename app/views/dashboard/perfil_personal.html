@@ -1,70 +1,61 @@
 <div layout="column">
     <div layout="row">
-        <md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="25" style="background: #EEEEEE">
-            <!-- <md-toolbar>
-                <div class="md-toolbar-tools"></div>
-            </md-toolbar>
-            <div class="md-toolbar-tools">
-                <h3 class="md-display-4">{{data_usuario.primer_nombre}} {{data_usuario.primer_apellido}}</h3>
-            </div> -->
-            <md-card>
-                <md-card-header>
-                    <md-card-avatar>
-                        <md-icon class="md-avatar">menu</md-icon>
-                    </md-card-avatar>
-                    <md-card-header-text>
-                        <span class="md-title">Title</span>
-                        <span class="md-subhead">subhead</span>
-                    </md-card-header-text>
-                </md-card-header>
-            </md-card>
-            <div>
-                <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="100%">
-                <md-card-content>
-                    <h2 class="md-title">Sobre Mi</h2>
-                    <p>
-                        contenido en proceso
-                    </p>
-                </md-card-content>
+        <md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="20" style="background: #EEEEEE;padding-top: 8px;    padding-left: 10px;">
+          <div layout="row" style="height: 40%;">
+              <div class="demo-card-square mdl-card mdl-shadow--2dp" style="cursor: pointer;" ng-click="show_img($event,'PerfilUsuario')" ng-style="{'background-image': 'url(' + imgPerfilUsuario + ')','background-position': '0 0','background-size': 'contain'}">
+                  <div class="mdl-card__title mdl-card--expand" style="padding-bottom: 46px;">
+                      <h2 class="mdl-card__title-text">{{dataUsuario.primer_nombre}} {{dataUsuario.primer_apellido}}</h2>
+                  </div>
+              </div>
+              <div style="position: absolute; z-index: 9;">
+                  <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'PerfilUsuario')" aria-label="More">
+                      <md-icon>add_a_photo</md-icon>
+                  </md-button>
+                  <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'PerfilUsuario')" aria-label="More">
+                      <md-icon>mode_edit</md-icon>
+                  </md-button>
+              </div>
+          </div>
+          <div layout="row">
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+              <B>
+                Nick: <br />
+              </B>
+                {{dataUsuario.nick}}<br />
+              <B>
+                Ciudad: <br />
+              </B>
+                {{dataUsuario.id_localidad.nombre}} <br />
+              <B>
+                Direción Electronica: <br />
+              </B>
+                {{dataUsuario.correo_electronico}} <br />
+              <div class="mdl-card__menu">
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                    <i class="material-icons">share</i>
+                </button>
+              </div>
             </div>
+          </div>
         </md-content>
         <md-content flex style="background: #EEEEEE">
-            <!-- app-view-segment="3" -->
-            <md-card flex>
-                <div class="card card--big">
-                    <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image"></div>
-                    <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
-                </div>
-                <div style="position: absolute;">
-                    <md-button class="md-icon-button" aria-label="More">
-                        <md-icon ng-click="show_listaimg_modal('portada')">border_color</md-icon>
-                    </md-button>
-                    <md-button class="md-icon-button" aria-label="More">
-                        <md-icon ng-click="show_upload_img_modal('portada')">camera_alt</md-icon>
-                    </md-button>
-                </div>
-                <md-tabs>
-                    <md-tab id="b-tab1" aria-controls="b-tab1-content" style="float:right!important;">
-                        Historia
-                    </md-tab>
-                    <md-tab id="b-tab2" aria-controls="b-tab2-content" style="float:right!important;">
-                        <md-icon>location_on</md-icon>
-                    </md-tab>
-                    <md-tab id="b-tab3" aria-controls="b-tab3-content" style="float:right!important;">
-                        Similares
-                    </md-tab>
-                    <md-tab id="b-tab4" aria-controls="b-tab4-content" style="float:right!important;">
-                        Favoritos
-                    </md-tab>
-                    <md-tab id="b-tab5" aria-controls="b-tab5-content" style="float:right!important;">
-                        Grupos
-                    </md-tab>
-                    <md-tab id="b-tab6" aria-controls="b-tab5-content" style="float:right!important;">
-                        Agenda
-                    </md-tab>
-                </md-tabs>
-            </md-card>
-            <md-content layout-padding layout-wrap style="background: #EEEEEE" app-view-segment="4"></md-content>
+          <md-card flex>
+            <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'Portada')">
+                <div ng-style="{'background-image': 'url(' + imgPortada + ')','background-position': 'center'}" class="card__image"></div>
+                <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
+            </div>
+            <div style="position: absolute;">
+                <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Portada')" aria-label="More">
+                    <md-icon>add_a_photo</md-icon>
+                </md-button>
+                <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Portada')" aria-label="More">
+                    <md-icon>mode_edit</md-icon>
+                </md-button>
+            </div>
+          </md-card>
+        <md-content layout-padding layout-wrap style="background: #EEEEEE" app-view-segment="4"></md-content>
         </md-content>
     </div>
 </div>
+
+
