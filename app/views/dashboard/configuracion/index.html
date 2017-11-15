@@ -1,49 +1,24 @@
-<md-sidenav style="max-width:250px;" layout="column" md-component-id="right" md-is-locked-open="$mdMedia('gt-sm')"  flex>
-  <md-content layout="column">
-    <img src="images/paris.jpg">
-    <md-subheader class="md-no-sticky" >Configuración Personal</md-subheader>
-      <md-list-item  ng-href="#{{'nb.app.configuracion.perfilPersonal' | routeSegmentUrl}}">
-        <md-icon ng-class="{'md-accent': ('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith)}">
-          settings_aplication
-        </md-icon>
-        <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}">
-          Información Personal
-        </p>
-      </md-list-item>
-      <md-divider></md-divider>
-      <md-subheader class="md-no-sticky" >Informacion Empresa</md-subheader>
-      <md-list-item  ng-href="#{{'nb.app.configuracion.perfilEmpresa' | routeSegmentUrl}}">
-        <md-icon ng-class="{'md-accent': ('nb.app.configuracion.perfilEmpresa' | routeSegmentStartsWith)}">business_center</md-icon>
-        <p md-colors="('nb.app.configuracion.perfilEmpresa' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}">
-          Configuración Empresa
-        </p>
-      </md-list-item>
-      <md-subheader class="md-no-sticky" >Información Sucursal</md-subheader>
-      <md-list-item  ng-href="#{{'nb.app.configuracion.perfilSucursal' | routeSegmentUrl}}">
-        <md-icon ng-class="{'md-accent': ('nb.app.configuracion.perfilSucursal' | routeSegmentStartsWith)}">business_center</md-icon>
-        <p md-colors="('nb.app.configuracion.perfilSucursal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}">
-          Configuración Sucursal
-        </p>
-      </md-list-item>
-      <md-list-item ng-click="navigateTo('data usage', $event)">
-          <md-icon>markunread_mailbox</md-icon>
-          <p>Correos</p>
-      </md-list-item>
-      <md-list-item ng-click="navigateTo('data usage', $event)">
-          <md-icon>public</md-icon>
-          <p>Actualizar SRI</p>
-      </md-list-item>
-      <md-divider></md-divider>
-      <md-list-item  ng-href="#{{'nb.app.configuracion.terminos' | routeSegmentUrl}}">
-        <p md-colors="('nb.app.configuracion.terminos' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}">
-          Terminos Y Condiciones
-        </p>
-        <md-icon class="md-secondary" ng-class="{'md-accent': ('nb.app.configuracion.terminos' | routeSegmentStartsWith)}">
-          security
-        </md-icon>
-      </md-list-item>
-  </md-content>
-</md-sidenav>
+
+<md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="20" style="background: #EEEEEE">
+    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Configuración Personal</md-subheader>
+    <md-list-item  ng-href="#/nb/App/Config/PerfilPersonal">
+        <md-icon>settings_aplication</md-icon>
+        <p>Información Personal</p>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Informacion Empresa</md-subheader>
+    <md-list-item  ng-href="#/nb/App/Config/PerfilEmpresa">
+        <md-icon>business_center</md-icon>
+        <p>Configuración Empresa</p>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Información Sucursal</md-subheader>
+    <md-list-item  ng-href="#/nb/App/Config/PerfilSucursal">
+        <md-icon>business_center</md-icon>
+        <p>Configuración Sucursal</p>
+    </md-list-item>
+
+</md-content>
 <md-content flex class="md-padding" layout="column" >
   <div app-view-segment="3"></div>
 </md-content>
