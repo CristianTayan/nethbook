@@ -345,7 +345,7 @@ var app = angular.module('nextbook20App', [
                     .within()
                         .segment('perfil_personal', {
                                 templateUrl: 'views/dashboard/perfil_personal.html',
-                                controller: 'perfil_personal_Ctrl'
+                                // controller: 'perfil_personal_Ctrl'
                         })
                         .segment('perfil_sucursal', {
                                 templateUrl: 'views/dashboard/perfil.html',

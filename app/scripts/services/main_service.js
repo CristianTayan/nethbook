@@ -92,18 +92,6 @@ var app = angular.module('nextbook20App');
                 }
             });
         };
-        this.Get_Img_PerfilUsuario =function() {
-            return $resource(urlService.server().appnext()+'Get_Img_PerfilUsuario', {}
-            , {
-                get: {
-                    method: 'POST', isArray: false, 
-                    params: {
-                        token:$localStorage.token
-                    }
-                }
-            });
-
-        }
         this.Get_Img_Logo=function() {
             return $resource(urlService.server().appnext()+'Get_Img_Logo', {}
             , {

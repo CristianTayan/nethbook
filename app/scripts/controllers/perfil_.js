@@ -7,8 +7,8 @@
  * # PerfilCtrl
  * Controller of the nextbook20App
  */
-var app = angular.module('nextbook20App')
-  app.controller('perfil_Ctrl', function ($scope,$rootScope, $localStorage, $mdDialog, $timeout, urlService) {
+angular.module('nextbook20App')
+  .controller('perfil_Ctrl', function ($scope,$rootScope, $localStorage, $mdDialog, $timeout, urlService) {
     $rootScope.imgPortada=urlService.server().dir()+$localStorage.imgPortada;
     $rootScope.imgPerfil=urlService.server().dir()+$localStorage.imgPerfil;
     $scope.datos2 = $localStorage.datosE;
@@ -26,7 +26,7 @@ var app = angular.module('nextbook20App')
       });
     }
     // Controlador Mostrar 
-    function Dialog_show_image_Controller($scope, tipo, mainService, urlService){
+    function Dialog_show_image_Controller($scope, tipo,mainService,urlService){
       $scope.cargando=true;
       function ok_img(resul){
         $scope.cargando=false;

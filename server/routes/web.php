@@ -50,19 +50,14 @@ Route::group(['middleware' => 'cors'], function(){
         // ////////////////////////////////////////////////// IMAGENES DE PERFIL //////////////
         // --------------------------------------- AÑADIR IMAGEN DE PERFIL -----------
         Route::post('Add_Img_Perfil', 'Perfil@Add_Img_Perfil');
-        Route::post('Add_Img_PerfilUsuario', 'Perfil@Add_Img_PerfilUsuario');
         // --------------------------------------- SELECCIONAR IMAGEN DE PERFIL -----------
         Route::post('Set_Img_Perfil', 'Perfil@Set_Img_Perfil');
-        Route::post('Set_Img_PerfilUsuario', 'Perfil@Set_Img_PerfilUsuario');
         // --------------------------------------- CARGAR IMAGENES PERFIL -----------
         Route::post('Load_Imgs_Perfil', 'Perfil@Load_Imgs_Perfil');
-        Route::post('Load_Imgs_PerfilUsuario', 'Perfil@Load_Imgs_PerfilUsuario');
         // --------------------------------------- GET IMAGENES PERFIL -----------
         Route::post('Get_Img_Perfil', 'Perfil@Get_Img_Perfil');
-        Route::post('Get_Img_PerfilUsuario', 'Perfil@Get_Img_PerfilUsuario');
         // --------------------------------------- DELETE IMAGENES PERFIL -----------
         Route::post('Delete_Img_Perfil', 'Perfil@Delete_Img_Perfil');
-        Route::post('Delete_Img_PerfilUsuario', 'Perfil@Delete_Img_PerfilUsuario');
                                 // ////////////////////////////////////////////////// IMAGENES DE LOGO //////////////
         // --------------------------------------- AÑADIR IMAGEN DE LOGO -----------
         Route::post('Add_Img_Logo', 'Logo@Add_Img_Logo');

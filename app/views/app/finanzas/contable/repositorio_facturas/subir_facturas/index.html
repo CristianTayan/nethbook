@@ -1,130 +1,64 @@
 <style type="text/css">
-	body {
-  display: flex;
-}
-
-.file_input_div {
-  margin: auto;
-  width: 250px;
-  height: 40px;
-}
-
-.file_input {
-  float: left;
-}
-
-#file_input_text_div {
-  width: 200px;
-  margin-top: -8px;
-  margin-left: 5px;
-}
-
-.none {
-  display: none;
-}
+  .file-drop-zone {
+            border: 2px dashed #ddd;
+            padding: 30px;
+            text-align: center;
+            flex: 40%; 
+        }
 </style>
-<script type="text/javascript">
-	var fileInputTextDiv = document.getElementById('file_input_text_div');
-var fileInput = document.getElementById('file_input_file');
-var fileInputText = document.getElementById('file_input_text');
-
-fileInput.addEventListener('change', changeInputText);
-fileInput.addEventListener('change', changeState);
-
-function changeInputText() {
-  var str = fileInput.value;
-  var i;
-  if (str.lastIndexOf('\\')) {
-    i = str.lastIndexOf('\\') + 1;
-  } else if (str.lastIndexOf('/')) {
-    i = str.lastIndexOf('/') + 1;
-  }
-  fileInputText.value = str.slice(i, str.length);
-}
-
-function changeState() {
-  if (fileInputText.value.length != 0) {
-    if (!fileInputTextDiv.classList.contains("is-focused")) {
-      fileInputTextDiv.classList.add('is-focused');
-    }
-  } else {
-    if (fileInputTextDiv.classList.contains("is-focused")) {
-      fileInputTextDiv.classList.remove('is-focused');
-    }
-  }
-}
-</script>
-
- <md-content class="md-padding" flex-gt-md="100" layout-xs="column" layout="row">  <!-- ng-controller="SubirFacCtrl" -->
-    <div flex-xs flex-gt-xs="40" layout="column">
-    <h5>Subir Factura</h5>
-    	<form name="facturasForm" ng-submit="guardar_factura_electronica()" >			
-				<div layout-gt-sm="row">
-				  <div class="file_input_div">
-				    <div class="file_input">
-				      <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-				        <i class="material-icons">file_upload</i>
-				        <input id="file_input_file" class="none" type="file" />
-				      </label>
-				    </div>
-				    <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
-				      <input type="text" class="file_input_text mdl-textfield__input" ng-model="data.xml_file" on-read-file="showContent($fileContent)" accept="text/xml" aria-label="input-content" id="file_input_text" />
-				      <label class="mdl-textfield__label" for="file_input_text"></label>
-				    </div>
-				  </div>
-				</div>
-
-					<!-- <div layout-gt-sm="row">
-	        	<md-input-container class="md-icon-float md-block" flex-gt-sm>
-		        	<md-icon class="md-accent">code</md-icon>
-		        	Arastrar y Soltar Archivo
-		        	<br>
-		            <input type="file" ng-model="data.xml_file" on-read-file="showContent($fileContent)" accept="text/xml" aria-label="input-content"/>
-		        </md-input-container>
-	        </div> -->
-    		<!-- <div layout-gt-sm="row">
-	            <md-input-container class="md-icon-float md-block" flex-gt-sm>
-	                <md-icon class="md-primary">airplay</md-icon>
-	                <label>Ingrese clave de acceso del documento</label>
-	                <input type="text" required name="clave" ng-model="data.clave" md-maxlength="49" ng-maxlength="49" />
-	                <div ng-messages="facturasForm.clave.$error">
-	                    <div ng-message="required">Clave de acceso Requerido</div>
-	                </div>
-	            </md-input-container>
-	        </div> -->
-	        <!-- <div layout-gt-sm="row" class="center end">
-	            <md-button class="md-raised md-primary" type="submit" ng-disabled="facturasForm.$invalid">
-	            	<md-tooltip>Gardar Factura Electrónica</md-tooltip>
-	                Ver Factura <i class="fa fa-angle-double-right"></i>
-	            </md-button>
-	            <md-button class="md-raised md-accent" type="reset">
-	                Limpiar <i class="fa fa-trash-o"></i>
-	            </md-button>
-	        </div> -->
-    	</form>
-    	<br>
-    	<form name="formsearchruc" ng-submit="buscar_clave_acceso()">
-            <div layout="row" flex>
-                <md-input-container class="md-icon-float md-block" flex-gt-xs>
-                    <label>INGRESE CLAVE DE ACCESO</label>
-                    <md-icon class="md-accent">dns</md-icon>
-                    <input type="text" id="ruc" name="ruc" ng-model="data.clave" maxlength="49" ng-minlength="49" autocomplete="off" md-autofocus numbers-only required >
-                    <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
-                        <div ng-message="required" class="my-message">La clave de ecceso es requerido</div>
-                        <div ng-message="minlength" class="my-message">La clave de ecceso contiene minimo 49 digitos</div>
-                        <div ng-message="numbersOnly" class="my-message">Ingresar solo numeros</div>
+<md-content class="md-padding" flex-gt-md="100" layout-xs="column" layout="row">  <!-- ng-controller="SubirFacCtrl" -->
+   <div flex-xs flex-gt-xs="40" layout="column">
+       <form name="facturasForm" ng-submit="guardar_factura_electronica()" >
+       <h5>Subir Factura:</h5>
+           <div layout-gt-sm="row" class="file-drop-zone">
+                <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                    <md-icon class="md-accent md-48">backup</md-icon>
+                    <input type="file" ng-model="data.xml_file" on-read-file="showContent($fileContent)" accept="text/xml" aria-label="input-content"/>
+                    <br>
+                </md-input-container>
+            </div>
+           <div layout-gt-sm="row">
+                <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                    <md-icon class="md-primary">airplay</md-icon>
+                    <label>Ingrese clave de acceso del documento</label>
+                    <input type="text" required name="clave" ng-model="data.clave" md-maxlength="49" ng-maxlength="49" />
+                    <div ng-messages="facturasForm.clave.$error">
+                        <div ng-message="required">Clave de acceso Requerido</div>
                     </div>
                 </md-input-container>
-                <md-button class="md-fab md-mini md-btn-second" type="submit" ng-disabled="formsearchruc.$invalid">
-                    <md-icon class="material-icons">search</md-icon>
+            </div>
+            <div layout-gt-sm="row" class="center end">
+                <md-button class="md-raised md-primary" type="submit" ng-disabled="facturasForm.$invalid">
+                    <md-tooltip>Gardar Factura Electrónica</md-tooltip>
+                    Ver Factura <i class="fa fa-angle-double-right"></i>
+                </md-button>
+                <md-button class="md-raised md-accent" type="reset">
+                    Limpiar <i class="fa fa-trash-o"></i>
                 </md-button>
             </div>
-        </form>
-	</div>
+       </form>
+       <form name="formsearchruc" ng-submit="buscar_clave_acceso()">
+           <div layout="row" flex>
+               <md-input-container class="md-icon-float md-block" flex-gt-xs>
+                   <label>INGRESE CLAVE DE ACCESO</label>
+                   <md-icon class="md-accent">dns</md-icon>
+                   <input type="text" id="clave" name="clave" ng-model="data.clave" maxlength="49" ng-minlength="49" autocomplete="off" md-autofocus numbers-only required >
+                   <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
+                       <div ng-message="required" class="my-message">La clave de ecceso es requerido</div>
+                       <div ng-message="minlength" class="my-message">La clave de ecceso contiene minimo 49 digitos</div>
+                       <div ng-message="numbersOnly" class="my-message">Ingresar solo numeros</div>
+                   </div>
+               </md-input-container>
+               <md-button class="md-fab md-mini md-btn-second" type="submit" ng-disabled="formsearchruc.$invalid">
+                   <md-icon class="material-icons">search</md-icon>
+               </md-button>
+           </div>
+       </form>
+    </div>
 
-	<div flex-xs flex-gt-xs="20" layout="column">
-	</div>
-	<div flex-xs flex-gt-xs="40" layout="column">
-		<img width="100%" alt="150x150" src="images/repositorio_factura/factura.png" />
-	</div>    
+    <div flex-xs flex-gt-xs="20" layout="column">
+    </div>
+    <div flex-xs flex-gt-xs="40" layout="column">
+        <img width="100%" alt="150x150" src="images/repositorio_factura/factura.png" />
+    </div>    
 </md-content>
