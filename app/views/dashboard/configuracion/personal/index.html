@@ -1,70 +1,37 @@
+<div class="p+">
+    <div class="card">
+        <div flex-container="row">
+            <div class="card__img card__img--left" style="height: 165px">
+                <img src="http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png">
+            </div>
+            <div flex-item flex-container="column">
+                <div flex-item>
+                    <div class="p+">
+                        <strong class="fs-headline display-block">Configuración cuenta Personal</strong>
+                        <br>
+                     	  <strong> {{data_usuario.primer_nombre}} {{data_usuario.segundo_nombre}} {{data_usuario.primer_apellido}} {{data_usuario.segundo_apellido}}</strong>
+                    </div>
+                </div>
+                <div class="card__actions">
+                		<label>Inf Actualizada Hace {{data_usuario.correo_electronico.fecha}}</label>
+                		
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <md-card flex>
-<h4 class="text-center">Configuración general de la cuenta Personal</h4>
-
 <md-expansion-panel-group md-component-id="expansionPanelGroup">
-	<md-expansion-panel md-component-id="expansionPanelOne">
-	    <md-expansion-panel-collapsed>
-	        <div class="md-title" md-colors="{color: 'indigo'}">Nombres y Apellidos</div>
-	        <div class="md-summary">{{data_usuario.primer_nombre}} {{data_usuario.segundo_nombre}} {{data_usuario.primer_apellido}} {{data_usuario.segundo_apellido}}</div>
-	        <div class="">Editar</div>
-	    </md-expansion-panel-collapsed>
-	    <md-expansion-panel-expanded>
-	        <md-expansion-panel-header>
-	            <div class="md-title" md-colors="{color: 'indigo'}">Nombres y Apellidos</div>
-	            <div class="md-summary">{{data_usuario.primer_nombre}} {{data_usuario.segundo_nombre}} {{data_usuario.primer_apellido}} {{data_usuario.segundo_apellido}}</div>
-	        </md-expansion-panel-header>
-	        <md-expansion-panel-content>
-	            <form name="form_usuario" ng-submit="col_usuario_nuevo()" layout-padding>
-	                <div layout="row">
-	                    <md-input-container class="md-icon-float md-block" flex>
-	                        <md-icon class="md-primary">supervisor_account</md-icon>
-	                        <label>Primer Nombre</label>
-	                        <input name="primer_nombre" ng-model="data_usuario.primer_nombre" type="text" required>
-	                        <div ng-messages="form_usuario.primer_nombre.$error" ng-show="form_usuario.primer_nombre.$dirty">
-	                            <div ng-message="required">Campo Requerido</div>
-	                        </div>
-	                    </md-input-container>
-	                    <md-input-container class="md-icon-float md-block" flex>
-	                        <label>Segundo Nombre</label>
-	                        <input name="segundo_nombre" ng-model="data_usuario.segundo_nombre" type="text">
-	                        <div ng-messages="form_usuario.segundo_nombre.$error" ng-show="form_usuario.segundo_nombre.$dirty">
-	                            <div ng-message="required">Campo Requerido</div>
-	                        </div>
-	                    </md-input-container>
-	                    <md-input-container class="md-icon-float md-block" flex>
-	                        <label>Primer Apellido</label>
-	                        <input name="primer_apellido" ng-model="data_usuario.primer_apellido" type="text" required>
-	                        <div ng-messages="form_usuario.primer_apellido.$error" ng-show="form_usuario.primer_apellido.$dirty">
-	                            <div ng-message="required">Campo Requerido</div>
-	                        </div>
-	                    </md-input-container>
-	                    <md-input-container class="md-icon-float md-block" flex>
-	                        <label>Segundo Apellido</label>
-	                        <input name="segundo_apellido" ng-model="data_usuario.segundo_apellido" type="text">
-	                        <div ng-messages="form_usuario.segundo_apellido.$error" ng-show="form_usuario.segundo_apellido.$dirty">
-	                            <div ng-message="required">Campo Requerido</div>
-	                        </div>
-	                    </md-input-container>
-	                </div>
-	                <div layout="row">
-	                	<span flex></span>
-	                    <md-button class="md-raised md-primary" type="submit" ng-disabled="form_usuario.$invalid">Guardar</md-button>
-	                </div>
-	            </form>
-	        </md-expansion-panel-content>
-	        <md-expansion-panel-footer>
-	            <div flex></div>
-	            <md-button class="md-icon-button" aria-label="More" ng-click="$panel.collapse();">
-			        <md-icon>keyboard_arrow_up</md-icon>
-			    </md-button>
-	        </md-expansion-panel-footer>
-	    </md-expansion-panel-expanded>
-	</md-expansion-panel>
 	<md-expansion-panel md-component-id="expansionPanelTwo">
 	    <md-expansion-panel-collapsed>
 	        <div class="md-title" md-colors="{color: 'indigo'}">Correo Electrónico</div>
 	        <div class="md-summary">{{data_usuario.correo_electronico}}</div>
-	        <div class="">Editar</div>
+  							<md-button class="md-icon-button"  type="button">
+                <md-tooltip md-direction="top">
+                  Modificar
+                </md-tooltip>
+                <md-icon class="md-primary">mode_edit</md-icon>
+                </md-button>
 	    </md-expansion-panel-collapsed>
 	    <md-expansion-panel-expanded>
 	        <md-expansion-panel-header>
@@ -100,8 +67,13 @@
 	<md-expansion-panel md-component-id="expansionPanelTree">
 	    <md-expansion-panel-collapsed>
 	        <div class="md-title" md-colors="{color: 'indigo'}">Password / Contraseña</div>
-	        <div class="md-summary">Actualizada Hace 12 dias</div>
-	        <div class="">Editar</div>
+	        <div class="md-summary">Actualizada Hace 2 días</div>
+	        <md-button class="md-icon-button"  type="button">
+            <md-tooltip md-direction="top">
+              Modificar
+            </md-tooltip>
+            <md-icon class="md-primary">mode_edit</md-icon>
+          </md-button>
 	    </md-expansion-panel-collapsed>
 	    <md-expansion-panel-expanded>
 	        <md-expansion-panel-header>
@@ -151,7 +123,12 @@
 	    <md-expansion-panel-collapsed>
 	        <div class="md-title" md-colors="{color: 'indigo'}">Dirección Domicilio</div>
 	        <div class="md-summary">{{data_usuario.calle}}, {{data_usuario.transversal}}</div>
-	        <div class="">Editar</div>
+	        <md-button class="md-icon-button"  type="button">
+            <md-tooltip md-direction="top">
+              Modificar
+            </md-tooltip>
+            <md-icon class="md-primary">mode_edit</md-icon>
+          </md-button>
 	    </md-expansion-panel-collapsed>
 	    <md-expansion-panel-expanded>
 	        <md-expansion-panel-header>
@@ -216,3 +193,26 @@
 	</md-expansion-panel>
 </md-expansion-panel-group>
 </md-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

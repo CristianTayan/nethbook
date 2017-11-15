@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 // Extras
 use DB;
@@ -13,8 +11,6 @@ use Hash;
 use GuzzleHttp\Client;
 // Funciones
 use App\libs\Funciones;
-
-
 class Colaboradores extends Controller
 {
     public function __construct(Request $request){
@@ -31,10 +27,8 @@ class Colaboradores extends Controller
         }catch (\Firebase\JWT\ExpiredException $e) {
             return response()->json(['respuesta' => $e->getMessage()],401);
             die();
-        }
-        
+        }        
     }
-
     public function Existencia_Usuario_Cedula(Request $request)
     {
         $existencia=DB::connection($this->name_bdd)->table('public.personas_documentos_identificacion')->where('estado','A')->where('numero_identificacion',$request->numero_identificacion)->get();
@@ -43,7 +37,6 @@ class Colaboradores extends Controller
         }
         return response()->json(['respuesta' => false], 200);
     }
-
     public function Existencia_Usuario_Correo(Request $request)
     {
         $existencia=DB::connection($this->name_bdd)->table('public.personas_correo_electronico')->where('estado','A')->where('correo_electronico',$request->correo_electronico)->get();
@@ -52,7 +45,6 @@ class Colaboradores extends Controller
         }
         return response()->json(['respuesta' => false], 200);
     }
-
     public function Existencia_Usuario_Nick(Request $request)
     {
         $existencia=DB::connection($this->name_bdd)->table('usuarios.usuarios')->where('estado','A')->where('nick',$request->nick)->get();
@@ -61,11 +53,9 @@ class Colaboradores extends Controller
         }
         return response()->json(['respuesta' => false], 200);
     }
-
-    //---------------------------------- FIN VISTAS -----------
-    //---------------------------------- ARRAY VISTAS -----------
+    //---------------------------------- FIN VISTAS ------------
+    //---------------------------------- ARRAY VISTAS ----------
     //---------------------------------- FIN  VISTAS -----------
-
     public function Get_Vistas(Request $request)
     {
         $campos=['id',
@@ -77,12 +67,9 @@ class Colaboradores extends Controller
             'nivel_arbol',
             'estado'];
         $padres=DB::connection($this->name_bdd)->table('administracion.vistas')->select($campos)->where('estado','A')->where('id_padre',0)->get();
-
         $array=app(Vistas::class)->Get_Vistas($padres,$this->name_bdd);
-
        return response()->json(['respuesta' => true,"menu"=>$array], 200); 
     }
-
     public function Gen_Vistas_Admin(Request $request)
     {   
         //limpiar vistas
@@ -91,7 +78,6 @@ class Colaboradores extends Controller
         app(Vistas::class)->Add_Vistas(config('vistas.lista'),$this->name_bdd);
        return response()->json(['respuesta' => true], 200); 
     }
-
     public function Gen_Privilegios_Admin(Request $request)
     {  
        DB::connection($this->name_bdd)->table('administracion.usuarios_privilegios')->delete();
@@ -107,7 +93,6 @@ class Colaboradores extends Controller
        }
        return response()->json(['respuesta' => true], 200); 
     }
-
     public function Existencia_Colaborador(Request $request)
     {  
         $data=DB::connection($this->name_bdd)->table('public.personas_documentos_identificacion')->select('id_persona','numero_identificacion')->where('numero_identificacion',$request->numero_documento)->first();
@@ -134,15 +119,14 @@ class Colaboradores extends Controller
                             'primer_apellido'=>$array_name[0],
                             'primer_nombre'=>$array_name[2],
                             'segundo_apellido'=>$array_name[1],
-                            'segundo_nombre'=>$array_name[3]
+                            'segundo_nombre'=>$array_name[3],
+
                         ];
             return response()->json(['respuesta' => true,'data'=>$data_persona], 200);
             }
-            return response()->json(['respuesta' => false,'data'=>''], 200);
-            
+            return response()->json(['respuesta' => false,'data'=>''], 200);            
         }
         return response()->json(['respuesta' => false], 200);
-
     }
     public function Add_Col_Usuario(Request $request)
     {
@@ -169,7 +153,7 @@ class Colaboradores extends Controller
 
     $id_persona=DB::connection($this->name_bdd)->table('public.personas')->insertGetId(
     [
-    'primer_nombre'=>$request->primer_nombre,
+     'primer_nombre'=>$request->primer_nombre,
      'segundo_nombre'=>$request->segundo_nombre,
      'primer_apellido'=>$request->primer_apellido,
      'segundo_apellido'=>$request->segundo_apellido,
@@ -224,9 +208,7 @@ class Colaboradores extends Controller
     $this->enviar_correo_credenciales($data);
 
     return response()->json(['respuesta' => true], 200);
-    }
-
-    
+    }    
 
     public function enviar_correo_credenciales($data){
         $correo_enviar=$data['correo'];
@@ -244,9 +226,9 @@ class Colaboradores extends Controller
         $limit = $request->limit;
         if ($request->has('filter')&&$request->filter!='') {
             $data=DB::connection($this->name_bdd)->table('usuarios.usuarios')->select('id','nick','id_tipo_usuario')->where('estado','A')
-                                                    ->where('label','LIKE','%'.$request->input('filter').'%')
-                                                    //->orwhere('descripcion','LIKE','%'.$request->input('filter').'%')
-                                                    ->orderBy('label','ASC')->get();
+                ->where('label','LIKE','%'.$request->input('filter').'%')
+                //->orwhere('descripcion','LIKE','%'.$request->input('filter').'%')
+                ->orderBy('label','ASC')->get();
         }else{
             $data=DB::connection($this->name_bdd)->table('usuarios.usuarios')->select('id','nick','id_tipo_usuario')->where('id_estado','A')->orderBy('nick','ASC')->get();
         }

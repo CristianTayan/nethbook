@@ -1,4 +1,4 @@
-<md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="25" style="background: #EEEEEE">
+<md-content class="md-sidenav-left " md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex="20" style="background: #EEEEEE">
     <md-subheader class="md-no-sticky" style="background: #EEEEEE">Configuración Personal</md-subheader>
     <md-list-item  ng-href="#/nb/App/Config/PerfilPersonal">
         <md-icon>settings_aplication</md-icon>
@@ -10,33 +10,11 @@
         <md-icon>business_center</md-icon>
         <p>Configuración Empresa</p>
     </md-list-item>
+    <md-divider></md-divider>
     <md-subheader class="md-no-sticky" style="background: #EEEEEE">Información Sucursal</md-subheader>
     <md-list-item  ng-href="#/nb/App/Config/PerfilSucursal">
         <md-icon>business_center</md-icon>
         <p>Configuración Sucursal</p>
-    </md-list-item>
-    <md-list-item ng-click="navigateTo('data usage', $event)">
-        <md-icon>markunread_mailbox</md-icon>
-        <p>Correos</p>
-    </md-list-item>
-    <md-list-item ng-click="navigateTo('data usage', $event)">
-        <md-icon>public</md-icon>
-        <p>Actualizar SRI</p>
-    </md-list-item>
-    <md-divider></md-divider>
-    <md-subheader class="md-no-sticky" style="background: #EEEEEE">Configuración Establecimiento / Sucursal</md-subheader>
-    <md-list-item ng-click="navigateTo('data usage', $event)">
-        <md-icon md-colors="{color:'blue'}">settings_aplication</md-icon>
-        <p>Información General</p>
-    </md-list-item>
-    <md-list-item ng-click="navigateTo(setting.extraScreen, $event)" ng-repeat="setting in settings">
-        <p> {{ setting.name }} </p>
-        <md-switch class="md-secondary" ng-model="setting.enabled"></md-switch>
-    </md-list-item>
-    <md-divider></md-divider>
-    <md-list-item  ng-href="#/nb/Config/Terminos">
-        <p>Terminos Y Condiciones</p>
-        <md-icon class="md-secondary"  aria-label="Chat">security</md-icon>
     </md-list-item>
 </md-content>
 <md-content flex layout-padding app-view-segment="3"></md-content>
