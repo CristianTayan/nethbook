@@ -3,7 +3,7 @@ angular.module('nextbook20App')
   .service('urlService', function () {
     this.server=function() {
       let dominio = window.location.origin;
-      if ('http://localhost' === dominio) {
+      if ('http://localhost:9000' === dominio) {
         dominio = 'http://localhost';
       }
       return {

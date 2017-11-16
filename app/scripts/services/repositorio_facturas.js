@@ -124,8 +124,8 @@
         var campos_vector = _.keys(xml_sin_empresa);
         for (var i = 0; i < campos_vector.length; i++) {
             if (campos_vector[i] == 'comprobante') {
-                return true;
-                break;
+              return true;
+              break;
             }
         }
         return false;
@@ -141,8 +141,18 @@
           var xml_sin_empresa = xml_final[nombre_empresa[0]];
           var xml_final;
           var resultado = this.buscar_comprobante(xml_sin_empresa);
+
           if (resultado) { // Verdadero
+            
+            if (xml_sin_empresa.comprobante.constructor === String) {
               xml_final = xml_sin_empresa.comprobante;
+            }
+
+            if (xml_sin_empresa.comprobante.constructor === Object) {
+              xml_final = xml_sin_empresa.comprobante.__cdata
+            }
+            
+
           } else {
               var campos_vector = _.keys(xml_sin_empresa);
               for (var i = 0; i < campos_vector.length; i++) {
@@ -168,6 +178,7 @@
                                                   for (var l = 0; l < cat_nivel3.length; l++) {
                                                       var cat_cua = cat_nivel4[l];
                                                       var entrada4 = entrada3[cat_cua];
+
                                                       if (typeof entrada4 == "object") {
                                                           if (!this.buscar_comprobante(entrada4)) {
                                                               var nivel5 = entrada4;
@@ -202,7 +213,6 @@
                   }
               }
           }
-
           
           if (typeof xml_final == "object") {
               data = [{
@@ -217,9 +227,12 @@
                   var m = m.replace("]]>", "");
                   var xml_filter = x2js.xml_str2json(m);
               }
-              data = [{
-                  clave: xml_filter.factura.infoTributaria.claveAcceso
-              }];
+              if (xml_filter.factura) {
+                data = [{clave: xml_filter.factura.infoTributaria.claveAcceso}];
+              }
+              if (xml_filter.notaCredito) {
+                data = [{clave: xml_filter.notaCredito.infoTributaria.claveAcceso}];
+              }
           }
           // revision_factura(data[0]);
       }

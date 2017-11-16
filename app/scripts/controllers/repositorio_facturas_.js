@@ -34,8 +34,8 @@ app.controller('repfac_inicio_Ctrl', function($mdDialog, $scope, repositorioFact
 			    $translate.use(key);
 			};
 });
-// -----------------------------------SUBIR FACTURA--------------------------------
 app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES) {
+  // -----------------------------------SUBIR FACTURA--------------------------------
 
   $scope.query_tipo_gastos = {
     filter: '',
@@ -95,6 +95,8 @@ app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, rep
   };
 
   function modal_Ctrl($scope, $mdDialog, obj, tipo_consumo, IO_BARCODE_TYPES) {
+    console.log('test ===>', obj.autorizaciones.autorizacion.comprobante);
+
   	$scope.factura_cabecera = obj.autorizaciones.autorizacion;
 
 		repositorioFacturas.Get_Tipo_Documentos().get().$promise.then(function(data) {
@@ -103,6 +105,8 @@ app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, rep
 
     var x2js = new X2JS();
     var obj = x2js.xml_str2json(obj.autorizaciones.autorizacion.comprobante);
+
+    
     $scope.infofactura = obj.factura;
     $scope.tipo_consumo = tipo_consumo;
     $scope.types = IO_BARCODE_TYPES
@@ -288,55 +292,55 @@ app.controller('subir_factura_electronica_Ctrl', function($mdDialog, $scope, rep
 });
 app.controller('leer_correo_facturas_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES, $rootScope, urlService) {
 
-    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
-	    $scope.selected = [];
-	    var bookmark;
-	    $scope.selected = [];
-	    $scope.query = {
-	        filter: '',
-	        num_registros: 10,
-	        pagina_actual: 1,
-	        limit: '10',
-	        page_num: 1
-	    };
+  // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
+  $scope.selected = [];
+  var bookmark;
+  $scope.selected = [];
+  $scope.query = {
+      filter: '',
+      num_registros: 10,
+      pagina_actual: 1,
+      limit: '10',
+      page_num: 1
+  };
 
-	    function success(desserts) {
-	        $scope.total = desserts.respuesta.total;
-	        $scope.productos = desserts.respuesta.data;
-	    }
+  function success(desserts) {
+    $scope.total = desserts.respuesta.total;
+    $scope.productos = desserts.respuesta.data;
+  }
 
-	    $scope.data_repfac_correo_get = function() {
-	        repositorioFacturas.Leer_Facturas_Correo().get($scope.query, success).$promise;
-	    }
-	    $rootScope.$on("actualizar_tabla_correo_factura", function() {
-	        $scope.data_repfac_correo_get();
-	    });
+  $scope.data_repfac_correo_get = function() {
+   repositorioFacturas.Leer_Facturas_Correo().get($scope.query, success).$promise;
+  }
+  $rootScope.$on("actualizar_tabla_correo_factura", function() {
+    $scope.data_repfac_correo_get();
+  });
 
-	    $rootScope.$on("actualizar_tabla_productos", function() {
-	        $scope.data_repfac_correo_get();
-	    });
+  $rootScope.$on("actualizar_tabla_productos", function() {
+    $scope.data_repfac_correo_get();
+  });
 
-	    $scope.removeFilter = function() {
-	        $scope.filter.show = false;
-	        $scope.query.filter = '';
-	        if ($scope.filter.form.$dirty) {
-	            $scope.filter.form.$setPristine();
-	        }
-	    };
+  $scope.removeFilter = function() {
+    $scope.filter.show = false;
+    $scope.query.filter = '';
+    if ($scope.filter.form.$dirty) {
+        $scope.filter.form.$setPristine();
+    }
+  };
 
-	    $scope.$watch('query.filter', function(newValue, oldValue) {
-	        if (!oldValue) {
-	            bookmark = $scope.query.page;
-	        }
-	        if (newValue !== oldValue) {
-	            $scope.query.page = 1;
-	        }
+  $scope.$watch('query.filter', function(newValue, oldValue) {
+      if (!oldValue) {
+          bookmark = $scope.query.page;
+      }
+      if (newValue !== oldValue) {
+          $scope.query.page = 1;
+      }
 
-	        if (!newValue) {
-	            $scope.query.page = bookmark;
-	        }
-	        $scope.data_repfac_correo_get();
-	    });
+      if (!newValue) {
+          $scope.query.page = bookmark;
+      }
+      $scope.data_repfac_correo_get();
+  });
 	// ------------------------------------------------------------PROCESANDO FACTURA------------------------------------------------------------
 	$scope.procesar = function(item_correo){
 		repositorioFacturas.Get_Xml_Factura_Correo().add(item_correo).$promise.then(function(data) {
@@ -583,73 +587,73 @@ app.controller('leer_correo_facturas_electronica_Ctrl', function($mdDialog, $sco
 
 app.controller('rechazadas_facturas_electronica_Ctrl', function($mdDialog, $scope, repositorioFacturas, $timeout, $localStorage, IO_BARCODE_TYPES, $rootScope) {
 	repositorioFacturas.Get_Gastos().get().$promise.then(function(data) {
-        $scope.tipo_consumos = data.respuesta.data;
-    });
-    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
-    $scope.selected = [];
+      $scope.tipo_consumos = data.respuesta.data;
+  });
+  // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
+  $scope.selected = [];
 	var bookmark;
 	$scope.selected = [];
 	$scope.query = {
-	    filter: '',
-	    num_registros: 10,
-	    pagina_actual: 1,
-	    limit: '10',
-	    page_num: 1
+    filter: '',
+    num_registros: 10,
+    pagina_actual: 1,
+    limit: '10',
+    page_num: 1
 	};
 
 	function success(desserts) {
-	    $scope.total = desserts.respuesta.total;
-	    $scope.productos = desserts.respuesta.data;
+    $scope.total = desserts.respuesta.total;
+    $scope.productos = desserts.respuesta.data;
 	}
 
 	$scope.data_fac_rechazadas_get = function() {
-	    repositorioFacturas.Get_Facturas_Rechazadas().get($scope.query, success).$promise;
+    repositorioFacturas.Get_Facturas_Rechazadas().get($scope.query, success).$promise;
 	}
 
 	$rootScope.$on("tabla_facturas_rechazadas", function() {
-	    $scope.data_fac_rechazadas_get();
+    $scope.data_fac_rechazadas_get();
 	});
 
 	$scope.removeFilter = function() {
-	    $scope.filter.show = false;
-	    $scope.query.filter = '';
-	    if ($scope.filter.form.$dirty) {
-	        $scope.filter.form.$setPristine();
-	    }
+    $scope.filter.show = false;
+    $scope.query.filter = '';
+    if ($scope.filter.form.$dirty) {
+        $scope.filter.form.$setPristine();
+    }
 	};
 
 	$scope.$watch('query.filter', function(newValue, oldValue) {
-	    if (!oldValue) {
-	        bookmark = $scope.query.page;
-	    }
-	    if (newValue !== oldValue) {
-	        $scope.query.page = 1;
-	    }
+    if (!oldValue) {
+        bookmark = $scope.query.page;
+    }
+    if (newValue !== oldValue) {
+        $scope.query.page = 1;
+    }
 
-	    if (!newValue) {
-	        $scope.query.page = bookmark;
-	    }
-	    $scope.data_fac_rechazadas_get();
+    if (!newValue) {
+        $scope.query.page = bookmark;
+    }
+    $scope.data_fac_rechazadas_get();
 	});
 
 	$scope.procesar = function(item_correo) {
-	    $mdDialog.show({
-	        controller: modal_view_mensaje_Ctrl,
-	        templateUrl: 'views/app/finanzas/contable/repositorio_facturas/facturas_rechazadas/modal_view_mensaje.html',
-	        parent: angular.element(document.body),
-	        clickOutsideToClose: false,
-	        locals: {
-	            obj: item_correo,
-	        }
-	    });
+    $mdDialog.show({
+      controller: modal_view_mensaje_Ctrl,
+      templateUrl: 'views/app/finanzas/contable/repositorio_facturas/facturas_rechazadas/modal_view_mensaje.html',
+      parent: angular.element(document.body),
+      clickOutsideToClose: false,
+      locals: {
+          obj: item_correo,
+      }
+    });
 	}
 
 	function modal_view_mensaje_Ctrl($scope, $mdDialog, obj) {
-	    console.log(obj);
-	    $scope.correo = obj;
-	    $scope.cancel = function() {
-	        $mdDialog.cancel();
-	    };
+    console.log(obj);
+    $scope.correo = obj;
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
 	};	    	
 });
 
@@ -657,14 +661,14 @@ app.controller('mis_facturas_Ctrl', function($mdDialog, $scope, repositorioFactu
 
 	$scope.ver_clave_acceso = function(data){
 		$mdDialog.show({
-	        controller: ver_clave_acceso_Ctrl,
-	        templateUrl: 'views/app/finanzas/contable/repositorio_facturas/mis_facturas/modal_copy.html',
-	        parent: angular.element(document.body),
-	        clickOutsideToClose: true,
-	        locals: {
-	            obj: data
-	        }
-	    });
+      controller: ver_clave_acceso_Ctrl,
+      templateUrl: 'views/app/finanzas/contable/repositorio_facturas/mis_facturas/modal_copy.html',
+      parent: angular.element(document.body),
+      clickOutsideToClose: true,
+      locals: {
+          obj: data
+      }
+    });
 	}
 
 	function ver_clave_acceso_Ctrl($scope, obj){
@@ -678,96 +682,91 @@ app.controller('mis_facturas_Ctrl', function($mdDialog, $scope, repositorioFactu
 	}
 	//---------------------------------------------------------LLENADO TIPO DOCUMENTOS-----------------------------------------------------------
 	repositorioFacturas.Get_Tipo_Documentos().get().$promise.then(function(data) {
-        $scope.tipo_consumos = data.respuesta;
-    });
+    $scope.tipo_consumos = data.respuesta;
+  });
 
 
-	console.log($localStorage.sucursal.codigo_sri);
-    $scope.rep_fac_tipo_doc_filtro = function(data){
-    	$scope.query = {
-		    filter: '',
-		    num_registros: 10,
-		    pagina_actual: 1,
-		    limit: '10',
-		    page_num: 1,
-		    codigo_sucursal: $localStorage.sucursal.codigo_sri,
-		    id_tipo_documento:data.id
-		};
-		$scope.data_mis_facturas_get()
-    }
-
-    // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
-    $scope.selected = [];
-	var bookmark;
-	$scope.selected = [];
-
-	$scope.query = {
+  $scope.rep_fac_tipo_doc_filtro = function(data){
+    $scope.query = {
 	    filter: '',
 	    num_registros: 10,
 	    pagina_actual: 1,
 	    limit: '10',
 	    page_num: 1,
 	    codigo_sucursal: $localStorage.sucursal.codigo_sri,
-	    id_tipo_documento:'01'
+	    id_tipo_documento:data.id
+		};
+		$scope.data_mis_facturas_get()
+  }
+
+  // ---------------------------------------------------------PROCESO LLENAR TABLA------------------------------------------------------------- 
+  $scope.selected = [];
+	var bookmark;
+	$scope.selected = [];
+
+	$scope.query = {
+    filter: '',
+    num_registros: 10,
+    pagina_actual: 1,
+    limit: '10',
+    page_num: 1,
+    codigo_sucursal: $localStorage.sucursal.codigo_sri,
+    id_tipo_documento:'01'
 	};
 
 	function success(desserts) {
-	    $scope.total = desserts.respuesta.total;
-	    $scope.mis_facturas = desserts.respuesta.data;
+    $scope.total = desserts.respuesta.total;
+    $scope.mis_facturas = desserts.respuesta.data;
 	}
 
 	$scope.data_mis_facturas_get = function() {
-	    repositorioFacturas.Get_Mis_Facturas().get($scope.query, success).$promise;
+    repositorioFacturas.Get_Mis_Facturas().get($scope.query, success).$promise;
 	}
 
 	$rootScope.$on("tabla_mis_facturas", function() {
-	    $scope.data_mis_facturas_get();
+    $scope.data_mis_facturas_get();
 	});
 	//Totales
 	repositorioFacturas.Get_Totales_Facturas().get().$promise.then(function(data) {
-        $scope.totales = data.respuesta;
-    });
+    $scope.totales = data.respuesta;
+  });
 
 	$scope.removeFilter = function() {
-	    $scope.filter.show = false;
-	    $scope.query.filter = '';
-	    if ($scope.filter.form.$dirty) {
-	        $scope.filter.form.$setPristine();
-	    }
+    $scope.filter.show = false;
+    $scope.query.filter = '';
+    if ($scope.filter.form.$dirty) {
+      $scope.filter.form.$setPristine();
+    }
 	};
 
 	$scope.$watch('query.filter', function(newValue, oldValue) {
-	    if (!oldValue) {
-	        bookmark = $scope.query.page;
-	    }
-	    if (newValue !== oldValue) {
-	        $scope.query.page = 1;
-	    }
+    if (!oldValue) {
+      bookmark = $scope.query.page;
+    }
+    if (newValue !== oldValue) {
+      $scope.query.page = 1;
+    }
 
-	    if (!newValue) {
-	        $scope.query.page = bookmark;
-	    }
-	    $scope.data_mis_facturas_get();
+    if (!newValue) {
+      $scope.query.page = bookmark;
+    }
+    $scope.data_mis_facturas_get();
 	});
 
-	$scope.ver_factura = function(factura) {
-	    
-	    repositorioFacturas.Generar_PDF().get({factura:factura}).$promise.then(function(data) {
-        	if (data.respuesta==true) {
-        		var url = data.url;
-  				// $window.open(url, "_blank");
-  				$window.open(url, 'C-Sharpcorner', 'width=800,height=700');
-        	}
-    	});
-	    
+	$scope.ver_factura = function(factura) {	    
+    repositorioFacturas.Generar_PDF().get({factura:factura}).$promise.then(function(data) {
+      	if (data.respuesta==true) {
+      		var url = data.url;
+				  $window.open(url, 'C-Sharpcorner', 'width=800,height=700');
+      	}
+  	});	    
 	}
 
 	function modal_view_mensaje_Ctrl($scope, $mdDialog, obj) {
-	    console.log(obj);
-	    $scope.correo = obj;
-	    $scope.cancel = function() {
-	        $mdDialog.cancel();
-	    };
+    $scope.correo = obj;
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
 	};	    	
 });
 

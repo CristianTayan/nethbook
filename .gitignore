@@ -8,4 +8,7 @@
 .vs/slnx.sqlite
 package-lock.json
 npm-debug.log
-server/storage
+/server/storage
+/server/composer.lock
+/servicios/app/libs/cookie.txt
+/servicios/composer.lock
