@@ -8,7 +8,7 @@
  * Controller of the nextbook20App
  */
 angular.module('nextbook20App')
-	.controller('seleccionar_sucursal_Ctrl', function ($scope, $location, $localStorage, establecimientosService, mainService, PerfilUsuarioService) {
+	.controller('seleccionar_sucursal_Ctrl', function ($scope, $location, $localStorage, establecimientosService,mainService) {
 		establecimientosService.Get_Establecimientos().get().$promise.then(function(data){
       $scope.data_establecimiento = data.respuesta.data;
       if ($scope.data_establecimiento.length == 1) {
@@ -24,21 +24,11 @@ angular.module('nextbook20App')
         },function(error){
         	$localStorage.imgPerfil="images/users/avatar-001.jpg";
         });
-        mainService.Get_Img_PerfilUsuario().get({sucursal:index.id}).$promise.then(function(data) {
-          $localStorage.imgPerfilUsuario = data.img;                   
-        },function(error){
-          $localStorage.imgPerfilUsuario="images/users/avatar-001.jpg";
-        });
         //--------------------cargar imagen Portada-----------
         mainService.Get_Img_Portada().get({sucursal:index.id}).$promise.then(function(data) {
         	$localStorage.imgPortada = data.img;
         },function(error){
         	$localStorage.imgPortada="images/samples/w1.jpg";
-        });
-        mainService.Get_Img_PortadaUsuario().get({sucursal:index.id}).$promise.then(function(data) {
-          $localStorage.imgPortadaUsuario = data.img;
-        },function(error){
-          $localStorage.imgPortadaUsuario="images/samples/w1.jpg";
         });
         // -------------------------	 fin
         //--------------------cargar imagen Logo-----------

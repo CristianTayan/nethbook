@@ -1,16 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or  method. Build something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,7 +17,7 @@ Route::group(['middleware' => 'cors'], function(){
    
 
 	Route::post('Buscar_Empresas','busquedaEmpresas@Buscar_Empresas');
-	// --------------------- Datos de Perfil Empresa----------------------------------
+	 // --------------------- Datos de Perfil Empresa----------------------------------
     Route::post('Get_Perfil_Empresas', 'busquedaEmpresas@Get_Perfil_Empresas');
     // --------------------- Buscar Empresa----------------------------------
     Route::post('Buscar_Informacion_Ruc', 'Registro@Buscar_Informacion_Ruc');
@@ -45,24 +33,18 @@ Route::group(['middleware' => 'cors'], function(){
     // Accesso Colaboradores
     Route::post('Acceso_Colaborador', 'login@Acceso_Colaborador');
     Route::post('Get_Data_By_Ruc', 'login@Get_Data_By_Ruc');
-    Route::group(['middleware' => ['auth.nextbook']], function ()
-    {
+    Route::group(['middleware' => ['auth.nextbook']], function () {
         // ////////////////////////////////////////////////// IMAGENES DE PERFIL //////////////
         // --------------------------------------- AÑADIR IMAGEN DE PERFIL -----------
         Route::post('Add_Img_Perfil', 'Perfil@Add_Img_Perfil');
-        Route::post('Add_Img_PerfilUsuario', 'Perfil@Add_Img_PerfilUsuario');
         // --------------------------------------- SELECCIONAR IMAGEN DE PERFIL -----------
         Route::post('Set_Img_Perfil', 'Perfil@Set_Img_Perfil');
-        Route::post('Set_Img_PerfilUsuario', 'Perfil@Set_Img_PerfilUsuario');
         // --------------------------------------- CARGAR IMAGENES PERFIL -----------
         Route::post('Load_Imgs_Perfil', 'Perfil@Load_Imgs_Perfil');
-        Route::post('Load_Imgs_PerfilUsuario', 'Perfil@Load_Imgs_PerfilUsuario');
         // --------------------------------------- GET IMAGENES PERFIL -----------
         Route::post('Get_Img_Perfil', 'Perfil@Get_Img_Perfil');
-        Route::post('Get_Img_PerfilUsuario', 'Perfil@Get_Img_PerfilUsuario');
         // --------------------------------------- DELETE IMAGENES PERFIL -----------
         Route::post('Delete_Img_Perfil', 'Perfil@Delete_Img_Perfil');
-        Route::post('Delete_Img_PerfilUsuario', 'Perfil@Delete_Img_PerfilUsuario');
                                 // ////////////////////////////////////////////////// IMAGENES DE LOGO //////////////
         // --------------------------------------- AÑADIR IMAGEN DE LOGO -----------
         Route::post('Add_Img_Logo', 'Logo@Add_Img_Logo');
@@ -77,19 +59,14 @@ Route::group(['middleware' => 'cors'], function(){
         // ////////////////////////////////////////////////// IMAGENES DE PORTADA //////////////
         // --------------------------------------- AÑADIR IMAGEN DE PORTADA -----------
         Route::post('Add_Img_Portada', 'Portada@add_img_portada');
-        Route::post('Add_Img_PortadaUsuario', 'Portada@add_img_portadaUsuario');
         // --------------------------------------- SELECCIONAR IMAGEN DE PORTADA -----------
         Route::post('Set_Img_Portada', 'Portada@Set_Img_Portada');
-        Route::post('Set_Img_PortadaUsuario', 'Portada@Set_Img_PortadaUsuario');
         // --------------------------------------- CARGAR IMAGENES PORTADA -----------
         Route::post('Load_Imgs_Portada', 'Portada@Load_Imgs_Portada');
-        Route::post('Load_Imgs_PortadaUsuario', 'Portada@Load_Imgs_PortadaUsuario');
         // --------------------------------------- GET IMAGENES PORTADA -----------
         Route::post('Get_Img_Portada', 'Portada@Get_Img_Portada');
-        Route::post('Get_Img_PortadaUsuario', 'Portada@Get_Img_PortadaUsuario');
-        // --------------------------------------- DELETE IMAGENES PORTADA -----------
+        // --------------------------------------- DELETE IMAGENES PERFIL -----------
         Route::post('Delete_Img_Portada', 'Portada@Delete_Img_Portada');
-        Route::post('Delete_Img_PortadaUsuario', 'Portada@Delete_Img_PortadaUsuario');
         // GET DATOS EMPRESA
         Route::post('Get_Datos_Empresa', 'Administracion_Empresa@Get_Datos_Empresa');
         //ESTABLECIMIENTOS
@@ -266,7 +243,6 @@ Route::group(['middleware' => 'cors'], function(){
         Route::post('Existencia_Persona','Clientes@Existencia_Persona');
         //Sessiones
         Route::post('Refresh_Token','Sesiones@Refresh_Token');
-
     });
 });
 

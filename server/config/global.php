@@ -37,12 +37,12 @@ return [
     'pathimgCatalogoPortadas'=>'portadas/',
     'pathimgCatalogoContraportadas'=>'contraportadas/',
     // default --------------------
-    'pathPerfilDefault'=>"/storage/default/avatar-default",
-    'pathAvartarEmpresasDefault'=>"/storage/default/db.png",
-    'pathPortadaDefault'=>"/storage/default/portada-default.jpg",
-    'pathLogoDefault'=>"/storage/default/logo-default.jpg",
-    'pathPortadaCatalogoDefault'=>"/storage/default/catportada-default.jpg",
-    'pathContraportadaDefault'=>"/storage/default/contraportada-default.jpg",
+    'pathPerfilDefault'=>"storage/default/avatar-default",
+    'pathAvartarEmpresasDefault'=>"storage/default/db.png",
+    'pathPortadaDefault'=>"storage/default/portada-default.jpg",
+    'pathLogoDefault'=>"storage/default/logo-default.jpg",
+    'pathPortadaCatalogoDefault'=>"storage/default/catportada-default.jpg",
+    'pathContraportadaDefault'=>"storage/default/contraportada-default.jpg",
     'dominio' => 'nethbook.com',
 //LOCAL
 'dominioActivarCuentaCorreo' => 'http://localhost/nethbook/app/#/'
