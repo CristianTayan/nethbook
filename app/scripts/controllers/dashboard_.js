@@ -187,17 +187,22 @@ app.controller('login_services_Ctrl', function($scope, $localStorage, mainServic
                     $localStorage.imgPerfil = "images/users/avatar-001.jpg";
                 });
                 //---------------------cargar imagen perfil usuario--------
-                 mainService.Get_Img_PerfilUsuario().get().$promise.then(function(data) {
-                    $localStorage.imgPerfilUsuario = data.img;
-                }, function(error) {
-                    $localStorage.imgPerfil = "images/users/avatar-001.jpg";
-                });
+                //  mainService.Get_Img_PerfilUsuario().get().$promise.then(function(data) {
+                //     $localStorage.imgPerfilUsuario = data.img;
+                // }, function(error) {
+                //     $localStorage.imgPerfilUsuario = "images/users/avatar-001.jpg";
+                // });
                 //--------------------cargar imagen Portada-----------
                 mainService.Get_Img_Portada().get().$promise.then(function(data) {
                     $localStorage.imgPortada = data.img;
                 }, function(error) {
                     $localStorage.imgPortada = "images/samples/w1.jpg";
                 });
+                // mainService.Get_Img_PortadaUsuario().get().$promise.then(function(data) {
+                //     $localStorage.imgPortadaUsuario = data.img;
+                // }, function(error) {
+                //     $localStorage.imgPortadaUsuario = "images/samples/w1.jpg";
+                // });
                 // ---------- fin
                 //--------------------cargar imagen Logo-----------
                 mainService.Get_Img_Logo().get().$promise.then(function(data) {
