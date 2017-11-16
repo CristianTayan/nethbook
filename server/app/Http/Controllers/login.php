@@ -80,6 +80,7 @@ class login extends Controller
         return response()->json(["respuesta"=>$checkpass]);
         //return response()->json(["respuesta"=>$name_bdd]);           
     }
+
     public function Acceso_Colaborador(Request $request){
         //return response()->json(["respuesta"=>$request->all()]);
         $acceso=$request->acceso;
@@ -89,12 +90,9 @@ class login extends Controller
         if (count($datos)==0) {
             return response()->json(["respuesta"=>false]);
         }
-
         $name_bdd = $datos[0]['nick'];
-
         $name_bdd=strtolower($datos[0]['nick']);
         $pass_bdd=$datos[0]['id'];
-
         Config::set('database.connections.'.$name_bdd, array(
                 'driver' => 'pgsql',
                 'host' => 'localhost',
@@ -115,7 +113,6 @@ class login extends Controller
             return response()->json(["respuesta"=>false]);
         }
         $checkpass=Hash::check($acceso['clave'], $datos->clave_clave);
-
         if ($checkpass) {
          $datos = $usuarios->select('id','nick')->where('nick',$user)->where('id_estado','A')->first();
          $extra=['nbdb'=>$name_bdd,'pnb'=>$pass_bdd,'ruc'=>$acceso['ruc']];
@@ -134,15 +131,14 @@ class login extends Controller
         $empleado=DB::connection($name_bdd)->table('talento_humano.empleados')->select('id_persona')->where('id_usuario',$datos->id)->first();
         $usuario=DB::connection($name_bdd)->table('usuarios.usuarios')->select('nick')->where('id',$datos->id)->first();
         $persona=DB::connection($name_bdd)->table('public.personas')->where('id',$empleado->id_persona)->first();
-
         $correo=DB::connection($name_bdd)->table('public.personas_correo_electronico')->where('id_persona',$persona->id)->first();
-
         $ciudad=DB::connection('localidadesconex')->select("SELECT nombre,id,codigo_telefonico FROM view_localidades WHERE id='".$persona->id_localidad."' and nombre!='ECUADOR' ORDER BY nombre ASC");
         $data_nick=explode('@', $usuario->nick);
         $persona->nick=$data_nick[0];
         $persona->id_user=$request->id;
         $persona->id_localidad=$ciudad[0];
         $persona->correo_electronico=$correo->correo_electronico;
+        // $persona->fecha_creacion=$usuario->fecha_creacion;
         $persona->fecha=$correo->fecha;
         $persona->id_correo=$correo->id;
         //Hora fin
@@ -152,8 +148,7 @@ class login extends Controller
          //$usuarios->where('nick',$user)->update(["token"=>$token]);
          return response()->json(['respuesta'=>true,'token'=>$token,'datosE'=>$datosE,'datosPersona'=>$persona,'hora_fin'=>$hora_fin]);
         }
-        return response()->json(["respuesta"=>$checkpass]);
-           
+        return response()->json(["respuesta"=>$checkpass]);           
     }
 
     public function Get_Data_By_Ruc(Request $request){
