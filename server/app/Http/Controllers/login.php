@@ -17,15 +17,15 @@ use Mail;
 use DB;
 use Config;
 use Hash;
-
 class login extends Controller
 {
     public function __construct(){
     	// Modelos
-    	  $this->usuarios=new Usuarios();
+        $this->usuarios=new Usuarios();
         $this->ingresos_usuarios=new ingresos_usuarios();
         $this->empresas=new empresas();
     }
+
     public function Acceso(Request $request){
         $acceso=json_decode($request->acceso);
         // $credentials = ['nick' => $request->nick, 'password' => $request->clave_clave];
@@ -110,15 +110,7 @@ class login extends Controller
         $usuarios=new Usuarios(); 
         $usuarios->changeConnection($name_bdd);
         $user=$acceso['nick'].'@'.config('global.dominio');
-        /*$json['ip_cliente']=$request->input('ip_cliente');
-        $json['macadress']=$request->input('macadress');
-        $this->ingresos_usuarios->usuario=$request->input('acceso');
-        $this->ingresos_usuarios->ip_acceso=json_encode($json);
-        $this->ingresos_usuarios->informacion_servidor=$request->input('info_servidor');
-        $this->ingresos_usuarios->fecha=Carbon::now()->toDateString();
-        $this->ingresos_usuarios->save();*/
         $datos=DB::connection($name_bdd)->table('usuarios.usuarios')->select('clave_clave')->where('nick',$user)->where('id_estado','A')->first();
-        //return response()->json(["respuesta"=>$datos]);
         if (count($datos)==0) {
             return response()->json(["respuesta"=>false]);
         }
@@ -142,13 +134,16 @@ class login extends Controller
         $empleado=DB::connection($name_bdd)->table('talento_humano.empleados')->select('id_persona')->where('id_usuario',$datos->id)->first();
         $usuario=DB::connection($name_bdd)->table('usuarios.usuarios')->select('nick')->where('id',$datos->id)->first();
         $persona=DB::connection($name_bdd)->table('public.personas')->where('id',$empleado->id_persona)->first();
+
         $correo=DB::connection($name_bdd)->table('public.personas_correo_electronico')->where('id_persona',$persona->id)->first();
+
         $ciudad=DB::connection('localidadesconex')->select("SELECT nombre,id,codigo_telefonico FROM view_localidades WHERE id='".$persona->id_localidad."' and nombre!='ECUADOR' ORDER BY nombre ASC");
         $data_nick=explode('@', $usuario->nick);
         $persona->nick=$data_nick[0];
         $persona->id_user=$request->id;
         $persona->id_localidad=$ciudad[0];
         $persona->correo_electronico=$correo->correo_electronico;
+        $persona->fecha=$correo->fecha;
         $persona->id_correo=$correo->id;
         //Hora fin
         $hora= Carbon::now(new \DateTimeZone('America/Guayaquil'));

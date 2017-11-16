@@ -2,7 +2,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::group(['middleware' => 'cors'], function(){
     Route::post('Save_Datos_Ruc','Registro@Save_Datos_Ruc');
     //----------------------------------------------------------------Pruebas
@@ -10,12 +9,9 @@ Route::group(['middleware' => 'cors'], function(){
     //Route::get('buscar_empresas','pruebas@buscar_empresas');
     //Route::get('edit_script','pruebas@edit_script');
     Route::post('generar_xml_fac','pruebas@generar_xml_fac');
-
     /*Route::get('factura_pdf', function () {
     return view('factura_prueba');
     });*/
-   
-
 	Route::post('Buscar_Empresas','busquedaEmpresas@Buscar_Empresas');
 	 // --------------------- Datos de Perfil Empresa----------------------------------
     Route::post('Get_Perfil_Empresas', 'busquedaEmpresas@Get_Perfil_Empresas');
@@ -33,6 +29,9 @@ Route::group(['middleware' => 'cors'], function(){
     // Accesso Colaboradores
     Route::post('Acceso_Colaborador', 'login@Acceso_Colaborador');
     Route::post('Get_Data_By_Ruc', 'login@Get_Data_By_Ruc');
+    //DATA CONFIGURACION PERSNAL
+    Route::post('/infPersonal', 'infPersonal@index');
+
     Route::group(['middleware' => ['auth.nextbook']], function () {
         // ////////////////////////////////////////////////// IMAGENES DE PERFIL //////////////
         // --------------------------------------- AÑADIR IMAGEN DE PERFIL -----------

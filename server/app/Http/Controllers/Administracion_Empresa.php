@@ -37,13 +37,12 @@ class Administracion_Empresa extends Controller
     }
   }
   public function Get_Datos_Empresa(Request $request)
-
   {
     $resultado = DB::connection($this->name_bdd)->table('usuarios')->where('id', '=', $this->user->sub)->first();
     return response()->json(["respuesta" => $resultado->estado_clave], 200);
   }
-  public function Get_Establecimientos(Request $request)
 
+  public function Get_Establecimientos(Request $request)
   {
     $currentPage = $request->pagina_actual;
     $limit = $request->limit;
@@ -62,14 +61,14 @@ class Administracion_Empresa extends Controller
     $data = $this->funciones->paginarDatos($data, $currentPage, $limit);
     return response()->json(['respuesta' => $data], 200);
   }
-  public function Get_Tipo_Bienes_Servicios(Request $request)
 
+  public function Get_Tipo_Bienes_Servicios(Request $request)
   {
     $resultado = DB::connection($this->name_bdd)->table('administracion.tipo_bienes_servicios')->select('id', 'nombre', 'descripcion')->where('id', '!=', 0)->get();
     return response()->json(["respuesta" => $resultado], 200);
   }
-  public function Update_Password(Request $request)
 
+  public function Update_Password(Request $request)
   {
     $resultado = DB::connection($this->name_bdd)->statement("SELECT * FROM actualiza_clave('" . $this->user->sub . "','" . bcrypt($request->pass) . "')");
     if ($resultado)
@@ -78,6 +77,7 @@ class Administracion_Empresa extends Controller
     }
     else return response()->json(["respuesta" => false], 200);
   }
+  
   public function Update_Informacion_Empresa(Request $request)
   {
     DB::connection($this->name_bdd)->table('public.personas')->where('id', $request->id)->update(['primer_nombre' => $request->primer_nombre, 'segundo_nombre' => $request->segundo_nombre, 'primer_apellido' => $request->primer_apellido, 'segundo_apellido' => $request->segundo_apellido, 'id_localidad' => $request->id_localidad, 'calle' => $request->calle, 'transversal' => $request->transversal, 'numero' => $request->numero]);

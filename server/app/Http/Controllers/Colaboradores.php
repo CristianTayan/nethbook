@@ -98,12 +98,17 @@ class Colaboradores extends Controller
         $data=DB::connection($this->name_bdd)->table('public.personas_documentos_identificacion')->select('id_persona','numero_identificacion')->where('numero_identificacion',$request->numero_documento)->first();
         if (count($data)>0) {
             $data_persona=DB::connection($this->name_bdd)->table('public.personas')->where('id',$data->id_persona)->first();
+
+            
             $data_persona->numero_documento=$data->numero_identificacion;
             //Data correo
             $data_correo=DB::connection($this->name_bdd)->table('public.personas_correo_electronico')->select('correo_electronico')->where('id_persona',$data->id_persona)->first();
             if (count($data_correo)>0) {
                 $data_persona->correo_electronico=$data_correo->correo_electronico;
             }
+
+echo $data_persona;
+
             return response()->json(['respuesta' => true,'data'=>$data_persona], 200);
         }else{
             $res = $this->client->request('GET', config('global.appserviciosnext').'/public/index.php/getDatos', ['json' => ['tipodocumento' => 'CEDULA', 'nrodocumento' => $request->numero_documento ]]);
