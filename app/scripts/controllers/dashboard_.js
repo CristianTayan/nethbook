@@ -198,12 +198,6 @@ app.controller('login_services_Ctrl', function($scope, $localStorage, mainServic
                 }, function(error) {
                     $localStorage.imgPortada = "images/samples/w1.jpg";
                 });
-                  //--------------------cargar imagen Portada-----------
-                mainService.Get_Img_PortadaUsuario().get().$promise.then(function(data) {
-                    $localStorage.imgPortadaUsuario = data.img;
-                }, function(error) {
-                    $localStorage.imgPortada = "images/samples/w1.jpg";
-                });
                 // ---------- fin
                 //--------------------cargar imagen Logo-----------
                 mainService.Get_Img_Logo().get().$promise.then(function(data) {

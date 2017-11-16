@@ -40,15 +40,15 @@
         </md-content>
         <md-content flex style="background: #EEEEEE">
           <md-card flex>
-             <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'PortadaUsuario')">
-                    <div ng-style="{'background-image': 'url(' + imgPortadaUsuario + ')','background-position': 'center'}" class="card__image"></div>
-                    <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
-                </div>
+            <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'Portada')">
+                <div ng-style="{'background-image': 'url(' + imgPortada + ')','background-position': 'center'}" class="card__image"></div>
+                <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
+            </div>
             <div style="position: absolute;">
-                <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'PortadaUsuario')" aria-label="More">
+                <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Portada')" aria-label="More">
                     <md-icon>add_a_photo</md-icon>
                 </md-button>
-                <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'PortadaUsuario')" aria-label="More">
+                <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Portada')" aria-label="More">
                     <md-icon>mode_edit</md-icon>
                 </md-button>
             </div>

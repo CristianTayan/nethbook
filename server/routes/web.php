@@ -77,19 +77,14 @@ Route::group(['middleware' => 'cors'], function(){
         // ////////////////////////////////////////////////// IMAGENES DE PORTADA //////////////
         // --------------------------------------- AÑADIR IMAGEN DE PORTADA -----------
         Route::post('Add_Img_Portada', 'Portada@add_img_portada');
-        Route::post('Add_Img_PortadaUsuario', 'Portada@add_img_portadaUsuario');
         // --------------------------------------- SELECCIONAR IMAGEN DE PORTADA -----------
         Route::post('Set_Img_Portada', 'Portada@Set_Img_Portada');
-        Route::post('Set_Img_PortadaUsuario', 'Portada@Set_Img_PortadaUsuario');
         // --------------------------------------- CARGAR IMAGENES PORTADA -----------
         Route::post('Load_Imgs_Portada', 'Portada@Load_Imgs_Portada');
-        Route::post('Load_Imgs_PortadaUsuario', 'Portada@Load_Imgs_PortadaUsuario');
         // --------------------------------------- GET IMAGENES PORTADA -----------
         Route::post('Get_Img_Portada', 'Portada@Get_Img_Portada');
-        Route::post('Get_Img_PortadaUsuario', 'Portada@Get_Img_PortadaUsuario');
-        // --------------------------------------- DELETE IMAGENES PORTADA -----------
+        // --------------------------------------- DELETE IMAGENES PERFIL -----------
         Route::post('Delete_Img_Portada', 'Portada@Delete_Img_Portada');
-        Route::post('Delete_Img_PortadaUsuario', 'Portada@Delete_Img_PortadaUsuario');
         // GET DATOS EMPRESA
         Route::post('Get_Datos_Empresa', 'Administracion_Empresa@Get_Datos_Empresa');
         //ESTABLECIMIENTOS
