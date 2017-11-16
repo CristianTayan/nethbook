@@ -29,6 +29,7 @@ class Colaboradores extends Controller
             die();
         }        
     }
+
     public function Existencia_Usuario_Cedula(Request $request)
     {
         $existencia=DB::connection($this->name_bdd)->table('public.personas_documentos_identificacion')->where('estado','A')->where('numero_identificacion',$request->numero_identificacion)->get();
@@ -37,6 +38,7 @@ class Colaboradores extends Controller
         }
         return response()->json(['respuesta' => false], 200);
     }
+
     public function Existencia_Usuario_Correo(Request $request)
     {
         $existencia=DB::connection($this->name_bdd)->table('public.personas_correo_electronico')->where('estado','A')->where('correo_electronico',$request->correo_electronico)->get();
@@ -45,6 +47,7 @@ class Colaboradores extends Controller
         }
         return response()->json(['respuesta' => false], 200);
     }
+
     public function Existencia_Usuario_Nick(Request $request)
     {
         $existencia=DB::connection($this->name_bdd)->table('usuarios.usuarios')->where('estado','A')->where('nick',$request->nick)->get();
@@ -53,9 +56,7 @@ class Colaboradores extends Controller
         }
         return response()->json(['respuesta' => false], 200);
     }
-    //---------------------------------- FIN VISTAS ------------
-    //---------------------------------- ARRAY VISTAS ----------
-    //---------------------------------- FIN  VISTAS -----------
+    //---------------------------------- FIN VISTAS  ARRAY -----------------------------------------------
     public function Get_Vistas(Request $request)
     {
         $campos=['id',
@@ -70,6 +71,7 @@ class Colaboradores extends Controller
         $array=app(Vistas::class)->Get_Vistas($padres,$this->name_bdd);
        return response()->json(['respuesta' => true,"menu"=>$array], 200); 
     }
+
     public function Gen_Vistas_Admin(Request $request)
     {   
         //limpiar vistas
@@ -78,10 +80,10 @@ class Colaboradores extends Controller
         app(Vistas::class)->Add_Vistas(config('vistas.lista'),$this->name_bdd);
        return response()->json(['respuesta' => true], 200); 
     }
+
     public function Gen_Privilegios_Admin(Request $request)
     {  
-       DB::connection($this->name_bdd)->table('administracion.usuarios_privilegios')->delete();
-        
+       DB::connection($this->name_bdd)->table('administracion.usuarios_privilegios')->delete();        
        $array=DB::connection($this->name_bdd)->table('administracion.vistas')->get();
        foreach ($array as $key => $value) {
             DB::connection($this->name_bdd)->table('administracion.usuarios_privilegios')->insert([
@@ -93,22 +95,19 @@ class Colaboradores extends Controller
        }
        return response()->json(['respuesta' => true], 200); 
     }
+
     public function Existencia_Colaborador(Request $request)
     {  
         $data=DB::connection($this->name_bdd)->table('public.personas_documentos_identificacion')->select('id_persona','numero_identificacion')->where('numero_identificacion',$request->numero_documento)->first();
         if (count($data)>0) {
             $data_persona=DB::connection($this->name_bdd)->table('public.personas')->where('id',$data->id_persona)->first();
 
-            
             $data_persona->numero_documento=$data->numero_identificacion;
             //Data correo
             $data_correo=DB::connection($this->name_bdd)->table('public.personas_correo_electronico')->select('correo_electronico')->where('id_persona',$data->id_persona)->first();
             if (count($data_correo)>0) {
                 $data_persona->correo_electronico=$data_correo->correo_electronico;
             }
-
-echo $data_persona;
-
             return response()->json(['respuesta' => true,'data'=>$data_persona], 200);
         }else{
             $res = $this->client->request('GET', config('global.appserviciosnext').'/public/index.php/getDatos', ['json' => ['tipodocumento' => 'CEDULA', 'nrodocumento' => $request->numero_documento ]]);
@@ -125,7 +124,6 @@ echo $data_persona;
                             'primer_nombre'=>$array_name[2],
                             'segundo_apellido'=>$array_name[1],
                             'segundo_nombre'=>$array_name[3],
-
                         ];
             return response()->json(['respuesta' => true,'data'=>$data_persona], 200);
             }
@@ -133,6 +131,7 @@ echo $data_persona;
         }
         return response()->json(['respuesta' => false], 200);
     }
+    
     public function Add_Col_Usuario(Request $request)
     {
     // Verificar si ya existe la persona
