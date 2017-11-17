@@ -1,19 +1,24 @@
 'use strict';
 
 var app = angular.module('nextbook20App')
+
   app.controller('configuracionCtrl', function ($scope, $mdExpansionPanelGroup, configuracionService, $routeSegment,  $mdDialog) {
     $scope.$routeSegment = $routeSegment;
   });
+
   app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, mainService) {
     console.log('test controlador configuracion, configuracionPerfilSucursalCtrl', $localStorage.datosE);
     $scope.datosEmpresa=$localStorage.datosE;
     $scope.datosSucursal=$localStorage.sucursal;
     $scope.datosPersonal=$localStorage.datosPersona;
+
   });
 
   app.controller('configuracionPerfilPersonalCtrl', function ($scope, $mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, colaboradores_Service) {
     // --------------------------------------abrir primer panel por defecto--------------------------------------
     $scope.data_usuario = $localStorage.datosPersona;
+
+    console.log($localStorage.datosPersona);
     //----------------SELECT CIUDADES---------------//
     function success_ciudades(desserts) {
       var cm = $scope;

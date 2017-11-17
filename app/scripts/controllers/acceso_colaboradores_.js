@@ -1,12 +1,4 @@
 'use strict';
-
-/**
- * @ngdoc function
- * @name nextbook20App.controller:RegistroCtrl
- * @description
- * # RegistroCtrl
- * Controller of the nextbook20App
- */
 var app = angular.module('nextbook20App')
   	app.controller('acceso_colaboradores_Ctrl', function ($scope, $rootScope,$location, $routeParams,$mdDialog, mainService, colaboradores_Service,consumirService, $localStorage, menuService) {
   		function success_data_ruc(data){

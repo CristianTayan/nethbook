@@ -365,7 +365,8 @@ var app = angular.module('nextbook20App', [
                   })
                   .segment('sucursal', {
                     templateUrl: 'views/dashboard/perfilSucursal.html',
-                    controller: 'perfilSucursalCtrl'
+                    // controller: 'perfilSucursalCtrl'
+                    controller: 'configuracionPerfilSucursalCtrl'
                   })
 
                   .segment('tipo_usuario', {
