@@ -12,8 +12,9 @@ Route::group(['middleware' => 'cors'], function(){
     /*Route::get('factura_pdf', function () {
     return view('factura_prueba');
     });*/
-	Route::post('Buscar_Empresas','busquedaEmpresas@Buscar_Empresas');
-	 // --------------------- Datos de Perfil Empresa----------------------------------
+   
+    Route::post('Buscar_Empresas','busquedaEmpresas@Buscar_Empresas');
+     // --------------------- Datos de Perfil Empresa----------------------------------
     Route::post('Get_Perfil_Empresas', 'busquedaEmpresas@Get_Perfil_Empresas');
     // --------------------- Buscar Empresa----------------------------------
     Route::post('Buscar_Informacion_Ruc', 'Registro@Buscar_Informacion_Ruc');
@@ -29,9 +30,6 @@ Route::group(['middleware' => 'cors'], function(){
     // Accesso Colaboradores
     Route::post('Acceso_Colaborador', 'login@Acceso_Colaborador');
     Route::post('Get_Data_By_Ruc', 'login@Get_Data_By_Ruc');
-    //DATA CONFIGURACION PERSNAL
-    Route::post('/infPersonal', 'infPersonal@index');
-
     Route::group(['middleware' => ['auth.nextbook']], function () {
         // ////////////////////////////////////////////////// IMAGENES DE PERFIL //////////////
         // --------------------------------------- AÑADIR IMAGEN DE PERFIL -----------
@@ -73,7 +71,6 @@ Route::group(['middleware' => 'cors'], function(){
         Route::post('Update_Giro_Actividad', 'Sucursales@Update_Giro_Actividad');
         //UPDATE PASSWORD
         Route::post('Update_Password', 'Administracion_Empresa@Update_Password');
-
         // Categorias
         Route::post('Add_Categoria_Padre','categorias@Add_Categoria_Padre');
         Route::post('Add_Categoria_Hijo','categorias@Add_Categoria_Hijo');
@@ -198,7 +195,6 @@ Route::group(['middleware' => 'cors'], function(){
         Route::post('Get_Xml_Factura_Correo', 'Repositorio_Facturas@Get_Xml_Factura_Correo');
         //FACTURAS RECHAZADAS
         Route::post('Get_Facturas_Rechazadas', 'Repositorio_Facturas@Get_Facturas_Rechazadas');
-
         // Tipos de Gasto
         Route::post('Existencia_Gasto','Gastos@Existencia_Gasto');
         Route::post('Add_Gasto','Gastos@Add_Gasto');
@@ -244,4 +240,3 @@ Route::group(['middleware' => 'cors'], function(){
         Route::post('Refresh_Token','Sesiones@Refresh_Token');
     });
 });
-

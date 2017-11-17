@@ -1166,7 +1166,7 @@
         },
         {
             "name": "mtdowling/cron-expression",
-            "version": "v1.2.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mtdowling/cron-expression.git",
@@ -1326,16 +1326,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.1.2",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "08131e7ff29de6bb9f12275c7d35df71f25f4d89"
+                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/08131e7ff29de6bb9f12275c7d35df71f25f4d89",
-                "reference": "08131e7ff29de6bb9f12275c7d35df71f25f4d89",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a1e8e1a30e1352f118feff1a8481066ddc2f234a",
+                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a",
                 "shasum": ""
             },
             "require": {
@@ -1373,7 +1373,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-11-04T11:48:34+00:00"
+            "time": "2017-09-02T17:10:46+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1590,6 +1590,7 @@
         },
         {
             "name": "psy/psysh",
+<<<<<<< HEAD
             "version": "v0.8.15",
             "source": {
                 "type": "git",
@@ -1600,6 +1601,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/bobthecow/psysh/zipball/b1d289c2cb03a2f8249912c53e96ced38f879926",
                 "reference": "b1d289c2cb03a2f8249912c53e96ced38f879926",
+=======
+            "version": "v0.8.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobthecow/psysh.git",
+                "reference": "cdb5593c3684bab74e10fcfffe4a0c8d1c39695d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/cdb5593c3684bab74e10fcfffe4a0c8d1c39695d",
+                "reference": "cdb5593c3684bab74e10fcfffe4a0c8d1c39695d",
+>>>>>>> nb-46-4-a
                 "shasum": ""
             },
             "require": {
@@ -1659,7 +1672,11 @@
                 "interactive",
                 "shell"
             ],
+<<<<<<< HEAD
             "time": "2017-11-16T14:29:51+00:00"
+=======
+            "time": "2017-10-19T06:13:20+00:00"
+>>>>>>> nb-46-4-a
         },
         {
             "name": "ramsey/uuid",

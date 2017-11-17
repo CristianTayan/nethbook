@@ -57,21 +57,17 @@
                           <div layout="column"  flex>
                               <div class="p+" ng-repeat="items in data_establecimiento | filter: sucursalSearch">
                                   <div class="card">
-                                  <md-toolbar layout="row">
-                                    <div class="md-toolbar-tools">
-                                        <strong class="fs-headline display-block">{{items.nombre}} <md-icon>business</md-icon></strong>
-                                    </div>
-                                  </md-toolbar>
-                                      <div class="p+"> 
-                                          <h5  style="color: #00796B">Codigo: {{items.codigo_sri}}</h5>                              
+                                      <div class="p+">                                
+                                          <strong class="fs-headline display-block">{{items.nombre}}</strong>
+                                          <span class="fs-subhead tc-black-2 display-block">Codigo: {{items.codigo_sri}}</span>
                                           <div class="paragraph fs-body-1 mt+">
-                                              <p><md-icon class="md-primary">room</md-icon>
+                                              <p>
                                                   Calle: {{escapeRegExp(items.localizacion_sucursal.direccion)}}
                                               </p>
                                           </div>
                                       </div>                     
                                       <div class="card__actions">
-                                        <md-button md-no-ink class="md-primary" layout-align="center center" ng-click="Select_Sucursal(items)">Seleccionar <md-icon>navigate_next</md-icon></md-button>                                          
+                                          <lx-button lx-color="orange" lx-type="flat" ng-click="Select_Sucursal(items)">Seleccionar</lx-button>
                                       </div>
                                   </div>
                               </div>

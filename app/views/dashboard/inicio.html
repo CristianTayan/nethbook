@@ -5,23 +5,37 @@
   md-component-id="left" 
   md-is-locked-open="$mdMedia('gt-md')" >  
 </md-sidenav>
-<div class="responsive1">
-   <md-content flex layout-padding style="background: #FFF">
-    <md-tabs md-center-tabs md-dynamic-height flex style="background: #FFF">      
+<md-content flex layout-padding style="background: #FFF">
+    <md-tabs md-center-tabs md-dynamic-height flex style="background: #FFF">
+      
     </md-tabs>
-    <div flex="100" layout="column">
-      <md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch="">
-         <md-toolbar>
-          <div class="md-toolbar-tools">
-            <h6>
-              <a ng-href="#/nb/App/Administracion/Perfil_Sucursal">
-                  SUCURSAL {{data_sucursal.codigo_sri}}
-              </a>
-            </h6>    
-          </div>
-        </md-toolbar>
-        <md-card-title>
-          <md-card-title-text>
+    <div layout="row">
+    <md-content class="md-sidenav-usuary " md-component-id="usuary"  flex="20" style="background: #FFF;padding-top: 8px;  padding-left: 10px; max-width: 50%">
+        <div layout="row" style="height: 40%;">
+           <div class="card card--big">
+                <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image">
+                </div>
+                 <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="90%">
+                <md-card-content>
+                <h2 class="card__title">
+                    {{localStorage.nombre_comercial}}
+                    <span class="card__subtitle">
+                        By Mattia Astorino
+                    </span>
+                </h2>
+            </div>
+        </div>
+        <div style="position: absolute; z-index: 9;">   
+        </div>
+            <div layout="row">
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__title">
+                        <h4 class="mdl-card__title-text">
+                            <a ng-href="#/nb/App/Administracion/Perfil_Sucursal">
+                                Sucursal {{data_sucursal.codigo_sri}}
+                            </a>
+                        </h4>
+                    </div>
                     <div class="mdl-card__supporting-text">
                         <B>{{datos2.tipo_contribuyente}}</B>
                         <br />
@@ -34,137 +48,69 @@
                     </div>
                      <div class="mdl-card__supporting-text">
                         {{data_sucursal.localizacion_sucursal.direccion}}
-                    </div> 
-          </md-card-title-text>
-          <md-card-title-text>
-            <div class="md-media-md card-media" flex="70">              
-            <img ng-src="http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png" class="md-card-image" flex>
-            </div>
-          </md-card-title-text>
-        </md-card-title>
-      </md-card>
-      <md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch="">
-         <md-toolbar>
-          <div class="md-toolbar-tools">
-            <h6>
-              <a ng-href="#/nb/App/Administracion/Perfil_Personal">
-                  DATOS PERSONALES
-              </a>
-            </h6>  
-          </div>
-        </md-toolbar>
-        <md-card-title>
-          <md-card-title-text>
-          <div class="mdl-card__supporting-text">
-            <B>
-                Nombres:  <br/>
-            </B>
-                {{data_usuario.primer_nombre}} {{data_usuario.primer_apellido}}<br/><br/>
-            <B>
-                Nick:  <br/>
-            </B>
-                {{data_usuario.nick}}<br/><br/>
-            <B>
-                Ciudad: <br/>
-            </B>
-              {{data_usuario.id_localidad.nombre}}
-          </div>
-          </md-card-title-text>
-           <md-card-title-text>
-            <div class="md-media-md card-media" flex="70">              
-            <img ng-src="https://www.agesic.gub.uy/innovaportal/file/2023/1/pdp.jpg" class="md-card-image" flex>
-            </div>
-          </md-card-title-text>
-        </md-card-title>
-      </md-card>
-    </div>
-  </md-content>
-</div>
- <div class="responsive2">
-   <md-content flex="100" layout-padding style="background: #FFF">
-      <div flex layout="column">      
-        <mat-card class="example-card">
-         <md-toolbar>
-                <div class="md-toolbar-tools">
-                  <h6>
-                    <a ng-href="#/nb/App/Administracion/Perfil_Personal">
-                        DATOS PERSONALES
-                    </a>
-                  </h6>  
+                    </div>               
                 </div>
-          </md-toolbar>
-        <img mat-card-image src="http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png" >
-        <mat-card-content>
-          <div class="mdl-card__supporting-text">
-              <B>{{datos2.tipo_contribuyente}}</B>
-              <br />
-              {{datos2.razon_social}}
-              <br />
-              {{datos2.actividad_economica | lowercase}}
-          </div>
-          <div class="mdl-card__supporting-text">
-              {{data_sucursal.giro_negocio.descripcion}}
-          </div>
-           <div class="mdl-card__supporting-text">
-              {{data_sucursal.localizacion_sucursal.direccion}}
-          </div> 
-        </mat-card-content>
-        </mat-card>
-      </div>
-  </md-content>
-  <md-content flex="100" layout-padding style="background: #FFF">
-      <div flex layout="column">      
-        <mat-card class="example-card">
-         <md-toolbar>
-            <div class="md-toolbar-tools">
-              <h6>
-              <a ng-href="#/nb/App/Administracion/Perfil_Personal">
-                  DATOS PERSONALES
-              </a>
-            </h6> 
             </div>
-          </md-toolbar>
-        <img mat-card-image src="https://www.agesic.gub.uy/innovaportal/file/2023/1/pdp.jpg" >
-        <mat-card-content>
-         <div class="mdl-card__supporting-text">
-            <B>
-                Nombres:  <br/>
-            </B>
-                {{data_usuario.primer_nombre}} {{data_usuario.primer_apellido}}<br/><br/>
-            <B>
-                Nick:  <br/>
-            </B>
-                {{data_usuario.nick}}<br/><br/>
-            <B>
-                Ciudad: <br/>
-            </B>
-              {{data_usuario.id_localidad.nombre}}
-          </div>
-        </mat-card-content>
-        </mat-card>
+    </md-content>
+<md-content 
+  class="md-sidenav-left" 
+  md-component-id="left"  
+  flex="20" 
+  style="background: #FFF; padding-top: 8px;  padding-left: 10px; max-width: 50%">
+  <div layout="row" style="height: 40%;">
+    <div class="card card--big">
+      <div style="background-image: url(http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png)" class="card__image">
       </div>
-  </md-content>
-</div>
+       <img alt="Sandeep Gravatar image" src="http://emprendenauta.com/wp-content/uploads/sites/6/2015/04/perfil-emprendedor.jpg" width="90%">
+      <md-card-content>
+      <h2 class="card__title">
+          {{localStorage.nombre_comercial}}
+          <span class="card__subtitle">
+              By Mattia Astorino
+          </span>
+      </h2>
+    </div>
+  </div>
+  <div style="position: absolute; z-index: 9;"></div>
+  <div layout="row">
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+          <h4 class="mdl-card__title-text">
+            <a ng-href="#/nb/App/Administracion/Perfil_Personal">
+                Datos Personales
+            </a>
+          </h4>
+        </div>
+        <div class="mdl-card__supporting-text">
+          <B>
+              Nombres:  <br />
+          </B>
+              {{data_usuario.primer_nombre}} {{data_usuario.primer_apellido}}<br />
+          <B>
+              Nick:  <br />
+          </B>
+              {{data_usuario.nick}}<br />
+          <B>
+              Ciudad: <br />
+          </B>
+            {{data_usuario.id_localidad.nombre}}
+        </div>
+    </div>
+  </div>
+</md-content>
+
+    </div>
+</md-content>
 <md-content flex="25" layout-padding style="background: #FFF">
   <div layout="row" style="background: #FFF">
       <!-- log publicidad -->
   </div>
 </md-content>
+
 <style type="text/css">
     textarea {
       max-height: 150px;
       overflow: auto;
       background: red
     }
-  .responsive2 {
-          display: none;
-         }
-       @media screen and (max-width: 800px) {
-         .responsive2 {
-          display: block;
-         }
-         .responsive1 {
-          display: none;
-         }
-      }
 </style>
