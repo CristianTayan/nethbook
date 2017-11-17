@@ -15,7 +15,7 @@ angular.module('nextbook20App')
 	            add: {
 	                method: 'POST', isArray: false,
 	                params: {
-	                    token: $localStorage.token
+	                    token: $localStorage.token 
 	                }
 	            }
 	        });
