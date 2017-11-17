@@ -90,9 +90,9 @@
                                     
                                     <div ng-messages="form_pass.password.$error">
                                     <div class="bar" ></div>
-                                        <div ng-message="required" class="my-message"><h6>Ingrese una contraseña es requerido</h6></div>
-                                        <div ng-message="minlength" class="my-message"><h6>Las contraseñas deben tener entre 6 y 20 caracteres.</h6></div>
-                                        <div ng-message="pattern" class="my-message"><h6>Debe contener una minuscula &amp;letra mayúscula y un carácter especial (un número o un símbolo.)</h6></div>
+                                        <div ng-message="required" class="my-message">Ingrese una contraseña es requerido</div>
+                                        <div ng-message="minlength" class="my-message">Las contraseñas deben tener entre 6 y 20 caracteres.</div>
+                                        <div ng-message="pattern" class="my-message">Debe contener una minuscula &amp;letra mayúscula y un carácter especial (un número o un símbolo.)</div>
                                     </div>
                                 </md-input-container>
                             </div>            
@@ -102,8 +102,8 @@
                                         <md-icon class="md-accent">layers</md-icon>
                                         <input type="password" id="password_c" name="password_c" ng-model="formData.password_c" valid-password-c="data.password" required />
                                         <div ng-messages="form_pass.password_c.$error">
-                                            <div ng-message="noMatch"><h6>Las contraseñas no coinciden</h6></div>
-                                            <div ng-message="required"><h6>Campo es requerido</h6></div>
+                                            <div ng-message="noMatch">Las contraseñas no coinciden</div>
+                                            <div ng-message="required">Campo es requerido</div>
                                         </div>
                                 </md-input-container>
                             </div>
