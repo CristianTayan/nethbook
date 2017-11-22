@@ -49,9 +49,7 @@
                   <div class="bar" ></div>
                   <div style = "color:blue" >{{mensaje}}</div>
                     <div ng-message="required" class="my-message">
-                      <h6>
                         Ingrese una contraseña es requerido
-                      </h6>
                       </div>
                       <span ng-show="form_pass.password.$error.minlength">
                           Una contraseña segura debe contener minimo 6 caracteres, minusculas, mayúsculas, números y un caracter especial
@@ -70,11 +68,8 @@
                   <div ng-messages="form_pass.password_c.$error">
                       <div ng-message="noMatch">
                           Las contraseñas no coinciden
-                      </div>
                   <div ng-message="required">
-                    <h6>
                       Campo es requerido
-                    </h6>
                   </div>
                   </div>
                 </md-input-container>

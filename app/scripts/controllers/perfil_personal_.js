@@ -9,7 +9,8 @@
  */
 var app = angular.module('nextbook20App');
   	app.controller('perfil_personal_Ctrl', function ($scope, $rootScope, $localStorage, colaboradores_Service, $mdDialog, $timeout, urlService) {
-    	$rootScope.imgPortadaUsuario=urlService.server().dir()+$localStorage.imgPortadaUsuario;
+    	console.log('test', $localStorage);
+      $rootScope.imgPortadaUsuario=urlService.server().dir()+$localStorage.imgPortadaUsuario;
     	$rootScope.imgPerfilUsuario=urlService.server().dir()+$localStorage.imgPerfilUsuario;
     	$scope.dataUsuario = $localStorage.datosPersona;
 	    $scope.data_sucursal = $localStorage.sucursal;
