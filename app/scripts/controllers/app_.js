@@ -10,8 +10,6 @@
 var app = angular.module('nextbook20App');
 
 app.controller('app_Ctrl', function($scope, $rootScope, menuService, configuracionService, $routeSegment,$localStorage) {
-    console.log('test controlador app');
-    console.log('test $rootScope', $rootScope);
 
     $scope.lockLeft = true;
     // ------------------------------------inicio generacion vista menu personalizacion------------------------------------

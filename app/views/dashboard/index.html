@@ -1,3 +1,4 @@
+
 <md-sidenav 
   style="max-width: 60px;" 
   layout="column" class="md-sidenav-left" 
@@ -16,7 +17,7 @@
       <md-icon class="md-accent">menu</md-icon>
     </md-list-item> 
     
-    <div style="margin-top: 520px;"></div>
+    <div  style="margin-top: 660px;"></div>
     <md-button ng-href="#/nb/App/Finanzas/Ventas/Facturacion" class="md-fab md-fab-bottom md-primary md-mini"  >
     <md-icon>business</md-icon>
       <md-tooltip md-direction="right">
@@ -40,9 +41,6 @@
 <div layout="column" class="relative" layout-fill role="main">
   <md-toolbar>
     <div class="md-toolbar-tools toolbar-center">
-      <md-button class="md-icon-button" aria-label="Settings" ng-click="modal_footer()">
-        <md-icon>menu</md-icon>
-      </md-button>
       <a href="#/nb">
           <img src="images/logo/logo.fw.png" alt="Logo">
       </a>
@@ -50,7 +48,7 @@
       <a href="#/nb/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
           <md-icon>home</md-icon>
       </a>
-      <a href="#/nb/App/Administracion/Perfil_Personal">
+      <a href="#/nb/App/Administracion/Personal">
         <span class="mdl-chip">
             <span class="mdl-chip__text">{{datos_personales.primer_nombre}}</span>
         </span>
@@ -72,7 +70,7 @@
                   </li>
                   <li class="dropdown-divider"></li>
                   <li>
-                      <a class="dropdown-link" href="#/nb/App/Administracion/Terminos">
+                      <a class="dropdown-link" href="#/nb/App/Config/Terminos">
                           <i class="mdi material-icons">security</i>
                           <span>Terminos y Condiciones</span>
                       </a>
@@ -85,7 +83,7 @@
                   </li>
                   <li class="dropdown-divider"></li>
                   <li>
-                      <a href="#/nb/App/Administracion/Datos_Personal" class="dropdown-link">
+                      <a href="#/nb/App/Config" class="dropdown-link">
                           <span>Configuración</span>
                       </a>
                   </li>
@@ -103,7 +101,7 @@
                   {{info_sucursal.codigo_sri}}
               </span>
           </a>
-          <a href="#/nb/App/Administracion/Perfil_Sucursal">
+          <a href="#/nb/App/Administracion/Sucursal">
               <span class="mdl-chip__text mdl-chip_hover_text">{{nom_perfil | limitTo: 20}}</span>
           </a>
       </span>
@@ -113,4 +111,3 @@
     <div layout="row" flex app-view-segment="1" class="view-next"></div>
   </md-content>
 </div>
-
