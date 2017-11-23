@@ -376,12 +376,11 @@ var app = angular.module('nextbook20App', [
                     templateUrl: 'views/app/colaboradores/usuario/index.html',
                     controller: 'col_usuario_Ctrl'
                   })                       
-
                 .up()
               // Modulo de Finanzas
               .segment('finanzas', {
-                      templateUrl: 'views/app/finanzas/index.html',
-                      // controller: 'administracion_Ctrl'
+                templateUrl: 'views/app/finanzas/index.html',
+                // controller: 'administracion_Ctrl'
               })
                   .within()
                       //Modulo Contable
