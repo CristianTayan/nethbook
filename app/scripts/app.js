@@ -34,7 +34,8 @@ var app = angular.module('nextbook20App', [
                                             'ng.inputSearch',
                                             'lfNgMdFileInput',
                                             'lfNgMdFileInput',
-                                            'angular-img-cropper'
+                                            'angular-img-cropper',
+                                            'leaflet-directive'
                                         ]);
   // themes configuration
   app.config(function($mdThemingProvider) {
@@ -365,8 +366,8 @@ var app = angular.module('nextbook20App', [
                   })
                   .segment('sucursal', {
                     templateUrl: 'views/dashboard/perfilSucursal.html',
-                    // controller: 'perfilSucursalCtrl'
-                    controller: 'configuracionPerfilSucursalCtrl'
+                    controller: 'perfilSucursalCtrl'
+                   // controller: 'configuracionPerfilSucursalCtrl'
                   })
 
                   .segment('tipo_usuario', {

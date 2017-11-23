@@ -37,7 +37,6 @@
             </div>
         </md-content>
         <md-content flex style="background: #EEEEEE">
-            <!-- app-view-segment="3" -->
             <md-card flex>
                 <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'Portada')">
                     <div ng-style="{'background-image': 'url(' + imgPortada + ')','background-position': 'center'}" class="card__image"></div>
@@ -52,112 +51,52 @@
                     </md-button>
                 </div>
 
-<div layout="row">
-  <md-card flex="50">
-    <md-card-header>
-        <md-card-avatar>
-          <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
-        </md-card-avatar>
-        <md-card-header-text>
-          <span class="md-title">Dirección</span>
-          <span class="md-subhead"></span>
-        </md-card-header-text>
-      </md-card-header>     
-      <md-card-content>
-        {{dataE.calle}}, {{dataE.interseccion}}, # {{dataE.numero}}<br>Provincia: {{dataE.provincia}}<br>Canton: {{dataE.canton}}<br> Parroquia: {{dataE.parroquia}}
-      </md-card-content>
-  </md-card>
-  <md-card flex="50">
-    <md-card-header>
-        <md-card-avatar>
-          <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
-        </md-card-avatar>
-        <md-card-header-text>
-          <span class="md-title">Actividad Economica</span>
-        </md-card-header-text>
-      </md-card-header>
-      <md-card-title>
-        <md-card-title-text>
-          <span class="md-subhead">{{dataE.actividad_economica}}</span>
-        </md-card-title-text>
-        <md-card-title-media>
-        </md-card-title-media>
-      </md-card-title>
-  </md-card>
-</div> 
+                <div layout="row">
+                    <md-card flex="50">
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title">Dirección</span>
+                                <span class="md-subhead"></span>
+                            </md-card-header-text>
+                        </md-card-header>
+                        <md-card-content>
+                            {{datos2.calle}}, {{datos2.interseccion}}, # {{datos2.numero}}
+                            <br>Provincia: {{datos2.provincia}}
+                            <br>Canton: {{datos2.canton}}
+                            <br> Parroquia: {{datos2.parroquia}}
+                        </md-card-content>
+                    </md-card>
+                    <md-card flex="50">
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title">Actividad Economica</span>
+                            </md-card-header-text>
+                        </md-card-header>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-subhead">{{datos2.actividad_economica}}</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                            </md-card-title-media>
+                        </md-card-title>
+                    </md-card>
+                </div>
+
+                <md-card>
+                    <div ng-controller="MarkersAngularTemplateController">
+                             <leaflet lf-center="london" markers="data.markers" height="480px" width="100%"></leaflet>
+                    </div>
 
 
-
-
-                
-<md-card>
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m20!1m8!1m3!1d7979.48705055064!2d-78.12548962548053!3d0.35083121603744094!3m2!1i1024!2i768!4f13.1!4m9!3e6!4m3!3m2!1d0.3541571!2d-78.1196102!4m3!3m2!1d0.348664!2d-78.1230435!5e0!3m2!1ses!2sec!4v1476803299625" 
-    width="100%" 
-    height="450" 
-    frameborder="0" 
-    style="border:0" 
-    allowfullscreen>
-  </iframe>
-</md-card>
+                </md-card>
             </md-card>
             <md-content layout-padding layout-wrap style="background: #EEEEEE" app-view-segment="4"></md-content>
         </md-content>
     </div>
 </div>
-
-
-
-
-
-
-<!-- 
-<div layout="row">
-  <md-card flex="50">
-    <md-card-header>
-        <md-card-avatar>
-          <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
-        </md-card-avatar>
-        <md-card-header-text>
-          <span class="md-title">Ruc</span>
-          <span class="md-subhead">{{data.ruc}}</span>
-        </md-card-header-text>
-      </md-card-header>
-  </md-card>
-  <md-card flex="50">
-    <md-card-header>
-        <md-card-avatar>
-          <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
-        </md-card-avatar>
-        <md-card-header-text>
-          <span class="md-title">Nombre Fantacia</span>
-          <span class="md-subhead">{{data.nombre_fantasia_comercial}}</span>
-        </md-card-header-text>
-      </md-card-header>
-  </md-card>
-</div>
-<div layout="row">
-  <md-card flex="50">
-    <md-card-header>
-        <md-card-avatar>
-          <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
-        </md-card-avatar>
-        <md-card-header-text>
-          <span class="md-title">Tipo Contribuyente</span>
-          <span class="md-subhead">{{data.tipo_contribuyente}}</span>
-        </md-card-header-text>
-      </md-card-header>
-  </md-card>
-  <md-card flex="50">
-    <md-card-header>
-        <md-card-avatar>
-          <md-icon class="md-avatar-icon">center_focus_strong</md-icon>
-        </md-card-avatar>
-        <md-card-header-text>
-          <span class="md-title">Estado Contribuyente</span>
-          <span class="md-subhead">{{data.estado_contribuyente}}</span>
-        </md-card-header-text>
-      </md-card-header>
-  </md-card>
-</div>
--->

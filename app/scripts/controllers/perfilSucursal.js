@@ -12,8 +12,6 @@ angular.module('nextbook20App')
     $rootScope.imgPortada=urlService.server().dir()+$localStorage.imgPortada;
     $rootScope.imgPerfil=urlService.server().dir()+$localStorage.imgPerfil;
     $scope.datos2 = $localStorage.datosE;
-    // Show imagen de perfil,portada
-
     $scope.show_img = function(ev,tipo_img){
       $mdDialog.show({
         controller: Dialog_show_image_Controller,
@@ -269,8 +267,50 @@ angular.module('nextbook20App')
           };
 
         }
+
+
+
+
+
     }
 
          });
 
            
+         app.controller('MarkersAngularTemplateController', [ '$scope', function($scope) {
+            angular.extend($scope, {
+                london: {
+                    lat: 0.3491570668861781,
+                    lng: -78.12551742303162,
+                    zoom: 17
+                },
+                data: {markers: {}}
+            });
+
+            $scope.addMarkers = function() {
+                $scope.data.markers = {};
+                angular.extend($scope.data, { angularInterpolatedMessage : "Angular interpolated message!"});
+                angular.extend($scope.data, {
+                    markers: {
+                        m1: {
+                            lat: 0.3491570668861781,
+                            lng: -78.12551742303162,
+                            compileMessage: false,
+                            message: "Laguna Mall Comercial Hidrobo",
+                        }
+                    }
+                });
+            };
+
+            $scope.removeMarkers = function() {
+                $scope.data.markers = {};
+            }
+
+            $scope.addMarkers();
+        } ]);
+        app.controller('ViewController', ['$scope', function($scope) {
+            $scope.user = {}
+            $scope.greet = function(user) {
+              alert('hello ' + user.name)
+            }
+        } ]);
