@@ -1,19 +1,102 @@
 'use strict';
 
 var app = angular.module('nextbook20App')
-  app.controller('configuracionCtrl', function ($scope, $mdExpansionPanelGroup, configuracionService, $routeSegment,  $mdDialog) {
+
+  app.controller('configuracionCtrl', function ($scope, $mdToast,$mdExpansionPanelGroup, configuracionService, $routeSegment,  $mdDialog) {
     $scope.$routeSegment = $routeSegment;
   });
-  app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, mainService) {
-    console.log('test controlador configuracion, configuracionPerfilSucursalCtrl', $localStorage.datosE);
+
+  app.controller('configuracionPerfilSucursalCtrl', function ($scope, $mdToast, $location, mainService, $localStorage, establecimientosService) {
+    //console.log('test controlador configuracion, configuracionPerfilSucursalCtrl', $localStorage.datosE);
     $scope.datosEmpresa=$localStorage.datosE;
     $scope.datosSucursal=$localStorage.sucursal;
     $scope.datosPersonal=$localStorage.datosPersona;
+    $scope.data = {nom_sucursal: $scope.datosSucursal.nombre};
+    $scope.form = {descripcion:''};
+
+    var cm=$scope;
+    cm.ModelTipo_Tipo_Empresa={
+      selectedTipo:undefined
+    }
+    var self = this;
+    //-------------------------------------------------------------- GET TIPOS BIENES SERVICIOS ------------------------------------
+      function success_tipo_bienes_servicios(result){
+        $scope.tipo_bienes_servicios=result.respuesta;
+      }
+      $scope.get_data_tipos_bienes_Servicios=function(){
+        mainService.Get_Tipo_Bienes_Servicios().get({},success_tipo_bienes_servicios).$promise.then(function(){},function(error){
+          //$scope.get_data_tipos_bienes_Servicios();
+        });
+      }
+      $scope.get_data_tipos_bienes_Servicios();
+    //-------------------------------------------------------------- GET TIPOS DE EMPRESAS ------------------------------------------
+      function success_tipo_empresas(result){
+        $scope.tipo_empresas=result.respuesta;
+      }
+      $scope.get_data_tipos_empresas=function(id){
+        mainService.Get_Tipo_Actividad_Economica().get({id_bienes_servicios:id},success_tipo_empresas).$promise.then(function(){},function(error){
+        $scope.get_data_tipos_empresas();
+        });
+      }
+     // ------------------------------------------------------------- PROCESOS GENERALES ---------------------------------------------
+
+     $scope.expresion = function() {
+      var select = $scope.ModelTipo_Tipo_Empresa.selectedTipo;
+      console.log(select);
+    }
+
+    $scope.Actividad = 1;
+    $scope.selected_Tipo = function(val) {
+      // console.log(val);
+      $scope.Tipo = val.Tipo;
+      $scope.Tipo_completo = val;
+      $scope.get_data_tipos_empresas(val.id);
+    };
+
+    $scope.selected_actividad = function(val) {
+      $scope.Actividad=val.Actividad;
+    };
+
+    $scope.editData = {
+      test1: 'test input'
+    };
+
+    $scope.stepChanged = function(){
+      // console.log('step changed');
+    };
+
+    $scope.wizardSaved = function(){   
+
+      $scope.x = {
+                  'tipo_bienes_servicios': $scope.Tipo_completo,
+                  'ModelTipo_Tipo_Empresa': cm.ModelTipo_Tipo_Empresa.selectedTipo,
+                  'sucursal': $scope.datosSucursal.id,
+                  'descripcion': $scope.form.descripcion
+                };
+        var datos = $scope.x;
+        console.log(datos);
+
+      establecimientosService.Update_Giro_Actividad().send($scope.x).$promise.then(function(data){
+        if (data.respuesta) {
+          $localStorage.sucursal.giro_negocio=$scope.Tipo_completo.id;
+          $mdToast.show({
+              hideDelay   : 5000,
+              position    : 'bottom right',
+              controller  : 'notificacionCtrl',
+              templateUrl : 'views/notificaciones/guardar.html'
+            });
+          $location.path('/nb');
+        }
+      });
+    }
+
   });
 
   app.controller('configuracionPerfilPersonalCtrl', function ($scope, $mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, colaboradores_Service) {
     // --------------------------------------abrir primer panel por defecto--------------------------------------
     $scope.data_usuario = $localStorage.datosPersona;
+
+    console.log($localStorage.datosPersona);
     //----------------SELECT CIUDADES---------------//
     function success_ciudades(desserts) {
       var cm = $scope;
