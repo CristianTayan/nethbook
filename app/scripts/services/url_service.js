@@ -28,7 +28,7 @@ angular.module('nextbook20App')
           }
           ,dir: function() {
             // return "http://186.4.167.12/mod_radio/";
-            return "http://localhost/nethbook/server/";
+            return dominio + '/nethbook/server/';
           }
       }
     };
