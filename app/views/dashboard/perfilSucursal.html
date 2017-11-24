@@ -37,6 +37,21 @@
             </div>
         </md-content>
         <md-content flex style="background: #EEEEEE">
+            <!-- app-view-segment="3" -->
+            <md-card flex>
+                <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'Portada')">
+                    <div ng-style="{'background-image': 'url(' + imgPortada + ')','background-position': 'center'}" class="card__image"></div>
+                    <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
+                </div>
+                <div style="position: absolute;">
+                    <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Portada')" aria-label="More">
+                        <md-icon>add_a_photo</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Portada')" aria-label="More">
+                        <md-icon>mode_edit</md-icon>
+                    </md-button>
+                </div>
+              
                 <div class="p+">
                     <div class="card">
                         <div class="p+">
@@ -52,8 +67,14 @@
                 </div>
                 <md-card flex="100">
                       <leaflet lf-center="london" markers="data.markers" height="400px" width="100%"></leaflet>
-                </md-card>     
+                </md-card>  
+            </md-card>
             <md-content layout-padding layout-wrap style="background: #EEEEEE" app-view-segment="4"></md-content>
         </md-content>
     </div>
 </div>
+
+
+
+
+
