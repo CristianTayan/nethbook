@@ -147,13 +147,13 @@
                             <form name="formsearchruc" ng-submit="buscar_ruc()">
                                 <div layout="row" flex>
                                     <md-input-container class="md-icon-float md-block" flex-gt-xs>
-                                        <label>Ingrese numero de ruc</label>
+                                        <label>{{cambioTexto}}</label>
                                         <md-icon class="md-accent">dns</md-icon>
-                                        <input type="text" id="ruc" name="ruc" ng-model="formdata.ruc" maxlength="13" ng-minlength="13" autocomplete="off" required>
+                                        <input type="text" id="ruc" name="ruc" ng-model="formdata.ruc" maxlength="13"  autocomplete="off" required ng-keypress="validar()" ng-focus="cambio()" ng-blur="cambio2()">
                                         <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
                                             <div ng-message="numbers" class="my-message">Número de ruc es requerido</div>
                                             <div ng-message="required" class="my-message">Número de ruc es requerido</div>
-                                            <div ng-message="minlength" class="my-message">Ruc invalido, minimo 13 digitos</div>
+                                            
                                             <div ng-message="pattern" class="my-message">Ingrese solo numeros</div>
                                             <div ng-message="numbersOnly" class="my-message">fdsfdasdf solo numeros</div>
                                         </div>
