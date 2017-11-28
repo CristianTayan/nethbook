@@ -14,8 +14,10 @@ var app = angular.module('nextbook20App')
 			$scope.cambioTexto = "Ingrese numero de Ruc";
 			$scope.validar = function(){
   			var dis = "";
-			  dis = $scope.formdata.ruc;			 
-				if (dis.length == 10) {
+			  dis = $scope.formdata.ruc;	
+			  var dis2 = 0;
+			  dis2 = dis.length;	 
+				if (dis2 == 10) {
 					$scope.formdata.ruc = dis + "001";
 				}				
 			}
