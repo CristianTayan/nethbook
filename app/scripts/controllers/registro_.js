@@ -11,25 +11,6 @@ var app = angular.module('nextbook20App')
 
 
   	app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService, $localStorage, colaboradores_Service, menuService) {
-			$scope.cambioTexto = "Ingrese numero de Ruc";
-			$scope.validar = function(){
-  			var dis = "";
-			  dis = $scope.formdata.ruc;	
-			  var dis2 = 0;
-			  dis2 = dis.length;	 
-				if (dis2 == 10) {
-					$scope.formdata.ruc = dis + "001";
-				}				
-			}
-
-			$scope.cambio = function(){
-			$scope.cambioTexto = "Buscando su Empresa";
-			}
-
-			$scope.cambio2 = function(){
-			$scope.cambioTexto = "Ingrese numero de Ruc";
-			}
-
   		$scope.update_phone = function() {
 		    var tel = $scope.rucdata.telefono;
 		    var tel1 = $scope.rucdata.telefono1;

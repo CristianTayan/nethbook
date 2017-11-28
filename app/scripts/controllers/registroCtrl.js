@@ -1,10 +1,30 @@
 'use strict';
 var app = angular.module('nextbook20App')
   app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService, $localStorage, colaboradores_Service, menuService) {
-		$scope.mostrarInputRegistro = function() {
+		$scope.cambioTexto = "Registrar mi Empresa";
+   $scope.validar = function(){
+      var dis = "";
+      dis = $scope.formdata.ruc;  
+      var dis2 = 1;
+      dis2 = dis2 + dis.length;   
+      if (dis2 == 11) {
+        $scope.formdata.ruc = dis + "001";
+      }       
+    }
+
+    $scope.cambio = function(){
+    $scope.cambioTexto = "Ingrese su numero de Ruc";
+    }
+
+    $scope.cambio2 = function(){
+    $scope.cambioTexto = "Registrar mi Empresa";
+    }
+
+    $scope.mostrarInputRegistro = function() {
       $scope.viewFormSearchRuc = true;
       angular.element('input[name=ruc]').focus();
     }
+
     $scope.update_phone = function() {
 	    var tel = $scope.rucdata.telefono;
 	    var tel1 = $scope.rucdata.telefono1;
