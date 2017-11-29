@@ -40,7 +40,7 @@ angular.module('nextbook20App')
           $localStorage.imgPortada="images/samples/x2.jpg";
         });
 
-      (index.giro_negocio.id==0)?$location.path('/nb/App/Administracion/Sucursal'):$location.path('/nb')
+      (index.giro_negocio.id==0)?$location.path('/nb/App/Administracion/Sucursal'):$location.path('/nb/App/Administracion/Sucursal')
     }
     $scope.escapeRegExp = function(str) {
     return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
