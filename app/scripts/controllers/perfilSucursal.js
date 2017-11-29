@@ -1,51 +1,44 @@
 'use strict';
 angular.module('nextbook20App')
-  .controller('perfilSucursalCtrl', function($scope, $rootScope, $localStorage, $mdDialog, $timeout, urlService) {
+  .controller('perfilSucursalCtrl', function($scope, $rootScope, $localStorage, $mdDialog, $timeout, urlService, $window)  {
     $rootScope.imgPortada = urlService.server().dir() + $localStorage.imgPortada;
     $rootScope.imgPerfil = urlService.server().dir() + $localStorage.imgPerfil;
     $scope.datos2 = $localStorage.datosE;
+    $scope.sucursal = $localStorage.sucursal.localizacion_sucursal.direccion;
     // ------------------------------------INICIO MAPA--------------------------------------------//
-      angular.extend($scope, {
+      var geocoder = new google.maps.Geocoder();             
+      var address = $scope.sucursal;
+        if(address!='')
+        {
+          geocoder.geocode({ 'address': address}, function(results, status)  
+          {
+            if (status == 'OK')
+            {
+             $localStorage.lat = results[0].geometry.location.lat(); 
+             $localStorage.log = results[0].geometry.location.lng();
+             console.log(results[0].geometry.location.lat() + " pri "+results[0].geometry.location.lng());
+            }
+          }); 
+       }
+    //----------------------------------
+     angular.extend($scope, {
           london: {
-              lat: 0.3491570668861781,
-              lng: -78.12551742303162,
-              zoom: 17
+            lat:  $localStorage.lat,
+            lng:  $localStorage.log,
+            zoom: 16
           },
-          data: {
-              markers: {}
-          }
-      });
-
-      $scope.addMarkers = function() {
-        $scope.data.markers = {};
-        angular.extend($scope.data, {
-            angularInterpolatedMessage: "Angular interpolated message!"
-        });
-        angular.extend($scope.data, {
-          markers: {            
-            m1: {
-              lat: 0.3491570668861781,
-              lng: -78.12551742303162,
-              focus: true,
-              message: "" + $localStorage.datosE.razon_social,
-              icon: {
-                iconUrl: '../bower_components/leaflet/dist/images/marker-icon.png',
-                shadowUrl: '../bower_components/leaflet/dist/images/marker-icon.png',
-                iconSize:     [38, 95],
-                shadowSize:   [50, 64],
-                iconAnchor:   [22, 94],
-                shadowAnchor: [4, 62]
-              }
+          markers: {
+          m1: {
+            lat:  $localStorage.lat,
+            lng:  $localStorage.log,
+            focus: true,
+            message: "" + $localStorage.datosE.razon_social,
+            icon: {
+              iconUrl: '../bower_components/leaflet/dist/images/marker-icon.png',
             }
           }
+          }
         });
-      };
-
-      $scope.removeMarkers = function() {
-        $scope.data.markers = {};
-      }
-
-      $scope.addMarkers();
     //-----------------------------------FIN MAPA------------------------------------------------//
     $scope.show_img = function(ev, tipo_img) {
       $mdDialog.show({
