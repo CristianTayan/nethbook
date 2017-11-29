@@ -14,37 +14,42 @@ use App\libs\Funciones_fac;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class Sesiones extends Controller
-{
-    public function __construct(Request $request)
-
-    {
-
-     try{
-          // Funciones
-          $this->funciones = new Funciones();
-          $this->Funciones_fac = new Funciones_fac();
-          // Autenticacion
-          $key = config('jwt.secret');
-          $decoded = JWT::decode($request->token, $key, array(
-            'HS256'
-          ));
-          $this->user = $decoded;
-          $this->name_bdd = $this->user->nbdb;
-        }catch (\Firebase\JWT\ExpiredException $e) {
-            return response()->json(['respuesta' => $e->getMessage()],401);
-            die();
-        }
-
+class Sesiones extends Controller {
+  public function __construct(Request $request) {
+    try{
+      if ($request->token) {
+        $this->funciones = new Funciones();
+        $this->Funciones_fac = new Funciones_fac();
+        $key = config('jwt.secret');
+        $credentials = JWT::decode($request->token, $key, array('HS256'));
+        $this->user = $credentials;
+        $this->name_bdd = $this->user->nbdb;
+      }
+      
+      if (!$request->token) {
+        return response()->json(["respuesta" => true ,'new_token' => 'rokenNoAsignado']);
+      }
+      
+    }catch (\Firebase\JWT\ExpiredException $e) {
+      return response()->json(['respuesta' => $e->getMessage()], 401);
+      die();
     }
-    public function Refresh_Token(Request $request)
-    {	
-    	$token = JWTAuth::refresh($request->token);
-    	//Hora fin
-        $hora= Carbon::now(new \DateTimeZone('America/Guayaquil'));
-        $hora_fin=$hora->addMinutes(config('jwt.ttl'));
-        $hora_fin=$hora_fin->toDateTimeString();
+  }
+  public function Refresh_Token(Request $request) {	
+  	$token = JWTAuth::refresh($request->token);
+    $hora= Carbon::now(new \DateTimeZone('America/Guayaquil'));
+    $hora_fin=$hora->addMinutes(config('jwt.ttl'));
+    $hora_fin=$hora_fin->toDateTimeString();
+  	return response()->json(["respuesta" => true ,'new_token' => $token, 'hora_fin' => $hora_fin]);
+  }
 
-    	return response()->json(["respuesta" =>true,'new_token'=>$token,'hora_fin'=>$hora_fin]);
+  public function closeSession(Request $request) {
+    if ($request->token) {
+      JWTAuth::invalidate($request->token);
+      return response()->json(["respuesta" => true, 'info' => 'tokenfinalizado']);
     }
+    if (!$request->token) {
+      return response()->json(["respuesta" => true, 'info' => 'tokenNoExiste']);
+    }
+  }
 }

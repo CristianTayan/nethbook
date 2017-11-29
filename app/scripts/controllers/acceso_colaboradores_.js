@@ -24,6 +24,7 @@ var app = angular.module('nextbook20App')
 			            .openFrom('#left')
 			        );
 	            } if (data.respuesta == true) {
+                $rootScope.sessionStatus = true;
 		            $localStorage.token = data.token;
 		            $localStorage.datosE = data.datosE;
 		            $localStorage.datosPersona = data.datosPersona;
