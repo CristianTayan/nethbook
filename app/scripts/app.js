@@ -54,24 +54,27 @@ var app = angular.module('nextbook20App', [
     $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
     $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
   });
-
-
-  app.filter('split', function() {
-    return function(input, splitChar, splitIndex) {
-      return input.split(splitChar)[splitIndex];
-    }
-  });
   
-  app.run(['$rootScope', '$location',function($rootScope, $location) {
+  app.run(function($rootScope, $location, colaboradores_Service, $routeSegment) {
     $rootScope.$on('$routeChangeStart', function(event, $routeSegment) {
       console.log('test', $routeSegment);
+      if ($rootScope.sessionStatus === true) {
+        console.log('testentraste' );
+        if ($routeSegment.$$route.segment == 'registro') {
+          $location.path('/nb')
+        }
+      }
+      if (!$rootScope.sessionStatus == null) {
+        console.log('testentrastennn' );
+        $location.path('/Registro')
+      }
       var path=$location.path();
       var res = path.split('/');
-      $rootScope.view_segment=res.length-2;
+      $rootScope.view_segment = res.length-2;
     });
 
     $rootScope.sidenavState = true;
-  }]);
+  });
     
   app.controller('mouseCtrl',($rootScope,$scope,$localStorage,$location, mainService,colaboradores_Service)=>{
     

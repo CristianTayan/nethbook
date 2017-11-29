@@ -249,5 +249,6 @@ Route::group(['middleware' => 'cors'], function(){
         Route::post('Existencia_Persona','Clientes@Existencia_Persona');
         //Sessiones
         Route::post('Refresh_Token','Sesiones@Refresh_Token');
+        Route::post('CloseSession','Sesiones@closeSession');
     });
 });
