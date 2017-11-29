@@ -135,7 +135,10 @@ app.controller('dashboard_Ctrl', function($scope, $rootScope, $mdSidenav, $local
       return matches;
     };
 
-
+    $scope.restaurarMapa = function() {
+        localStorage.removeItem('lat');
+        localStorage.removeItem('log');
+    };
 
     $scope.toggleSidenav = function(menuId) {
         $mdSidenav(menuId).toggle();

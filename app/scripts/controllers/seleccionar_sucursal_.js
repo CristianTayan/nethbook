@@ -1,12 +1,4 @@
 'use strict';
-
-/**
- * @ngdoc function
- * @name nextbook20App.controller:SeleccionarSucursalCtrl
- * @description
- * # SeleccionarSucursalCtrl
- * Controller of the nextbook20App
- */
 angular.module('nextbook20App')
   .controller('seleccionar_sucursal_Ctrl', function ($scope, $location, $localStorage, establecimientosService,mainService) {
     establecimientosService.Get_Establecimientos().get().$promise.then(function(data){
@@ -48,7 +40,7 @@ angular.module('nextbook20App')
           $localStorage.imgPortada="images/samples/x2.jpg";
         });
 
-      (index.giro_negocio.id==0)?$location.path('/nb'):$location.path('/nb')
+      (index.giro_negocio.id==0)?$location.path('/nb/App/Administracion/Sucursal'):$location.path('/nb')
     }
     $scope.escapeRegExp = function(str) {
     return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");

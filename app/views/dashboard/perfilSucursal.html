@@ -55,18 +55,18 @@
                 <div class="p+">
                     <div class="card">
                         <div class="p+">
-                            <strong class="fs-headline display-block">Actividad Economica</strong>
+                            <p class="fs-headline display-block">Actividad Economica</p>
                             <span class="fs-subheading-1 tc-black-2 display-block">{{datos2.actividad_economica}}</span>
                             <div class="paragraph fs-body-1 mt+">
                                 <p>
-                                    Dirección:
+                                    Dirección: {{sucursal}}
                                 </p>
                             </div>
                         </div>        
                     </div>
                 </div>
                 <md-card flex="100">
-                      <leaflet lf-center="london" markers="data.markers" height="400px" width="100%"></leaflet>
+                      <leaflet lf-center="london" markers="markers" height="350px" width="100%"></leaflet>
                 </md-card>  
             </md-card>
             <md-content layout-padding layout-wrap style="background: #EEEEEE" app-view-segment="4"></md-content>
