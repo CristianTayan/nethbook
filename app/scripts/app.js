@@ -49,13 +49,25 @@ var app = angular.module('nextbook20App', [
       .warnPalette('blue');
     $mdThemingProvider.theme('docs-dark', 'default').dark();
     $mdThemingProvider.alwaysWatchTheme(true);
+    $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
+    $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
+    $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
+    $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+  });
+
+
+  app.filter('split', function() {
+    return function(input, splitChar, splitIndex) {
+      return input.split(splitChar)[splitIndex];
+    }
   });
   
   app.run(['$rootScope', '$location',function($rootScope, $location) {
-    $rootScope.$on('$routeChangeStart', function(event) {
-        var path=$location.path();
-        var res = path.split('/');
-        $rootScope.view_segment=res.length-2;
+    $rootScope.$on('$routeChangeStart', function(event, $routeSegment) {
+      console.log('test', $routeSegment);
+      var path=$location.path();
+      var res = path.split('/');
+      $rootScope.view_segment=res.length-2;
     });
 
     $rootScope.sidenavState = true;
@@ -63,53 +75,51 @@ var app = angular.module('nextbook20App', [
     
   app.controller('mouseCtrl',($rootScope,$scope,$localStorage,$location, mainService,colaboradores_Service)=>{
     
-    $scope.primera_vez=()=>{
-          if ($localStorage.hsesion) {
-            $scope.t=mainService.Tiempo_espera_sesion();
-            $scope.s=$localStorage.hsesion.hora_fin;
-            if ($localStorage.hsesion.u1) {
-                $scope.u1=$localStorage.hsesion.u1;
-            }else{
-                $scope.u1=parseInt(mainService.Get_Hora_in_Time());
-                $localStorage.hsesion.u1=$scope.u1;
-            }
-            $scope.d1=$scope.s-$scope.u1;
+    $scope.primera_vez = ()=> {
+      if ($localStorage.hsesion) {
+        $scope.t=mainService.Tiempo_espera_sesion();
+        $scope.s=$localStorage.hsesion.hora_fin;
+        if ($localStorage.hsesion.u1) {
+          $scope.u1=$localStorage.hsesion.u1;
+        }else{
+          $scope.u1=parseInt(mainService.Get_Hora_in_Time());
+          $localStorage.hsesion.u1=$scope.u1;
         }
+        $scope.d1=$scope.s-$scope.u1;
+      }
     }
     $rootScope.$on("start_session", function() {
-            $scope.primera_vez();
-        });
+      $scope.primera_vez();
+    });
     $scope.primera_vez();
     $scope.verify_Session=function(){
       if ($localStorage.hsesion&&($location.path()!='/Registro'||$location.path()!='/')) {
           var a,u,d,f;
           u=parseInt(mainService.Get_Hora_in_Time());
           d=$scope.s-u;
-            a=d+$scope.t;
-              f=a-$scope.d1;
-              // console.log(f);
-              // si mueve el mouse antes de los 30 segundos, renovar token
-              if (f>0&&f<30) {
-                  $localStorage.hsesion.estado_token=0;
-                  // console.log('update token');
-                  if ($localStorage.hsesion.estado_token==0) {
-                      colaboradores_Service.Refresh_Token().send({}).$promise.then((data)=>{
-                          if (data.respuesta) {
-                              delete $localStorage.hsesion;
-                              $localStorage.token=data.new_token;
-                              $localStorage.hsesion={hora_fin:new Date(data.hora_fin).getTime() / 1000,estado_token:1};
-                              $scope.primera_vez();
-                          }
-                      });
-                  }
-              }
-              // si mueve el mouse al llegar al 0, terminar sesion;
-              if (f==0||f<0||f>$scope.t) {
-                  var storage = $localStorage.cook_session_init;
-                      $localStorage.$reset();
-                      $localStorage.cook_session_init = storage;
-                      $location.path('/Registro');
-              }
+          a=d+$scope.t;
+          f=a-$scope.d1;
+          // si mueve el mouse antes de los 30 segundos, renovar token
+          if (f>0&&f<30) {
+            $localStorage.hsesion.estado_token=0;
+            if ($localStorage.hsesion.estado_token==0) {
+              colaboradores_Service.Refresh_Token().send({}).$promise.then((data)=>{
+                if (data.respuesta) {
+                  delete $localStorage.hsesion;
+                  $localStorage.token=data.new_token;
+                  $localStorage.hsesion={hora_fin:new Date(data.hora_fin).getTime() / 1000,estado_token:1};
+                  $scope.primera_vez();
+                }
+              });
+            }
+          }
+          // si mueve el mouse al llegar al 0, terminar sesion;
+          if (f==0||f<0||f>$scope.t) {
+            var storage = $localStorage.cook_session_init;
+            $localStorage.$reset();
+            $localStorage.cook_session_init = storage;
+            $location.path('/Registro');
+          }
       }          
     }
   });
@@ -136,11 +146,8 @@ var app = angular.module('nextbook20App', [
   // --------------------------------------------vistas generadas rutas ------------------------------------------------
   app.config(function ($routeSegmentProvider, $routeProvider,$locationProvider) {
     $locationProvider.hashPrefix('');
-    // Configuring provider options    
     $routeSegmentProvider.options.autoLoadTemplates = true;            
             
-    // Also, we can add new item in a deep separately. This is useful when working with
-    // routes in every module individually
     // -------------------------------------------    Entrada principal    -------------------------------------------   
     
     $routeSegmentProvider    
@@ -153,7 +160,7 @@ var app = angular.module('nextbook20App', [
       .when('/',    'main')        
       .segment('main', {
           templateUrl: 'views/main/main.html',
-          controller: 'main_Ctrl'
+          controller: 'mainCtrl'
       });
     // Acceso, Registro, Personas, Para Ti
     $routeSegmentProvider
@@ -635,5 +642,5 @@ var app = angular.module('nextbook20App', [
           .up()
         .up();
 
-     
+    $routeProvider.otherwise({redirectTo: '/nb'}); 
   });

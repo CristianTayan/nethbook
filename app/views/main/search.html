@@ -1,42 +1,42 @@
 <md-toolbar layout="row" layout-align="center center">
-    <div flex-gt-sm="90" flex-gt-md="90">
-        <div class="md-toolbar-tools md-toolbar-registro">
-            <md-button ng-href="#/" class=" md-icon-button">
-                <md-icon class="md-accent">arrow_back</md-icon>
-            </md-button>
-            <div ng-controller="main_Ctrl as main_Ctrl">
-              <form ng-submit="$event.preventDefault()" flex="100">
-                  <md-autocomplete
-                        class="main-input-search"
-                        ng-disabled="isDisabled" 
-                        md-no-cache="Cache" 
-                        md-selected-item="selectedItem" 
-                        md-search-text-change="main_Ctrl.searchTextChange(searchText)" 
-                        md-search-text="searchText" 
-                        md-selected-item-change="main_Ctrl.selectedItemChange(item)" 
-                        md-items="item in items" 
-                        md-item-text="item.nombre_comercial" 
-                        md-min-length="0" 
-                        placeholder="Negocios, servicios, empresas" 
-                        md-menu-class="autocomplete-custom-template">
-                        <md-item-template>
-                            <span class="item-title">
-                                <img ng-src="{{item.img.perfil}}" class="avatar-busqueda">
-                                <span class="search-text"> {{item.nombre_comercial}} </span>
-                            </span>
-                        </md-item-template>
-                        <md-not-found>
-                           No hay servicios, negocios con ese valor.
-                        </md-not-found>
-                  </md-autocomplete>
-              </form>    
-            </div>
-            <span flex></span>
-            <md-button class="md-raised md-accent" ng-href="#/Registro">
-                Iniciar Sesión
-            </md-button>
-        </div>
+  <div flex-gt-sm="90" flex-gt-md="90">
+    <div class="md-toolbar-tools md-toolbar-registro">
+      <md-button ng-href="#/" class=" md-icon-button">
+          <md-icon class="md-accent">arrow_back</md-icon>
+      </md-button>
+      <div ng-controller="mainCtrl as main_Ctrl">
+        <form ng-submit="$event.preventDefault()" flex="100">
+          <md-autocomplete
+            class="main-input-search"
+            ng-disabled="isDisabled" 
+            md-no-cache="Cache" 
+            md-selected-item="selectedItem" 
+            md-search-text-change="main_Ctrl.searchTextChange(searchText)" 
+            md-search-text="searchText" 
+            md-selected-item-change="main_Ctrl.selectedItemChange(item)" 
+            md-items="item in items" 
+            md-item-text="item.nombre_comercial" 
+            md-min-length="0" 
+            placeholder="Negocios, servicios, empresas" 
+            md-menu-class="autocomplete-custom-template">
+            <md-item-template>
+                <span class="item-title">
+                    <img ng-src="{{item.img.perfil}}" class="avatar-busqueda">
+                    <span class="search-text"> {{item.nombre_comercial}} </span>
+                </span>
+            </md-item-template>
+            <md-not-found>
+               No hay servicios, negocios con ese valor.
+            </md-not-found>
+          </md-autocomplete>
+        </form>    
+      </div>
+      <span flex></span>
+      <md-button class="md-raised md-accent" ng-href="#/Registro">
+          Iniciar Sesión
+      </md-button>
     </div>
+  </div>
 </md-toolbar>
 <md-content flex layout="row" style="background: #EEEEEE">
     <md-content flex style="background: #EEEEEE">

@@ -1,98 +1,79 @@
 <div layout="column" flex>
   <md-toolbar layout="row" layout-align="center center">
-      <div style="font-size: 80%" flex-gt-sm="90" flex-gt-md="80">
-          <div class="md-toolbar-tools md-toolbar-registro">
-              <img src="images/logo/logo.fw.png" alt="Logo">
-              <div class="banner1" >
-                  <h1>Netbook, Red de Negocios</h1>
-              </div>                      
-              <div class="banner2">
-                  <h1>Netbook</h1>
-              </div> 
-                  <span flex></span>
-              <lx-dropdown lx-position="right">
-                  <lx-dropdown-toggle>
-                      <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
-                  </lx-dropdown-toggle>
-                  <lx-dropdown-menu>
-                      <ul>
-                          <li>
-                              <a href="#/Salir" class="dropdown-link">
-                                  <i class="mdi"><md-icon>exit_to_app</md-icon></i>
-                                  <span>Cerrar Sesión</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </lx-dropdown-menu>
-              </lx-dropdown>
-          </div>
+    <div style="font-size: 80%" flex-gt-sm="90" flex-gt-md="80">
+      <div class="md-toolbar-tools md-toolbar-registro">
+        <img src="images/logo/logo.fw.png" alt="Logo">
+        <div class="banner1" >
+            <h1>Netbook, Red de Negocios</h1>
+        </div>                      
+        <div class="banner2">
+            <h1>Netbook</h1>
+        </div> 
+            <span flex></span>
+        <lx-dropdown lx-position="right">
+            <lx-dropdown-toggle>
+                <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
+            </lx-dropdown-toggle>
+            <lx-dropdown-menu>
+                <ul>
+                    <li>
+                        <a href="#/Salir" class="dropdown-link">
+                            <i class="mdi"><md-icon>exit_to_app</md-icon></i>
+                            <span>Cerrar Sesión</span>
+                        </a>
+                    </li>
+                </ul>
+            </lx-dropdown-menu>
+        </lx-dropdown>
       </div>
+    </div>
   </md-toolbar>
-  <br>
-  <div layout="row" >
-      <div flex-gt-sm="60" flex="90" style=" margin: 0px auto;" >
-          <div  layout="row" layout-align="center center">
-              <div style="width: 100%;">
-                  <div class="card">
-                      <md-toolbar layout="row">
-                              <div class="md-toolbar-tools">
-                                  <span flex></span>Seleccionar Sucursal / Establecimiento
-                              </div>
-                      </md-toolbar>
-                      <div flex-container="row" class="md-primary">
-                          <div layout="column"  flex>
-                              <div class="p+">
-                                  <md-card >
-                                      <md-card-content class="md-accent">
-                                          <md-input-container md-no-float class="md-block">
-                                            <md-icon>search</md-icon>
-                                            <input ng-model="sucursalSearch" name="dc" placeholder="Buscar por: codigo establecimiento, dirección" class="md-accent">
-                                          </md-input-container>
-                                      </md-card-content>
-                                  </md-card>
-                              </div>
-                          </div>
-                      </div>
-                      <div  flex-container="row">                
-                          <div layout="column"  flex>
-                              <div class="p+" ng-repeat="items in data_establecimiento | filter: sucursalSearch">
-                                  <div class="card">
-                                  <md-toolbar layout="row">
-                                    <div class="md-toolbar-tools">
-                                        <strong class="fs-headline display-block">{{items.nombre}} <md-icon>business</md-icon></strong>
-                                    </div>
-                                  </md-toolbar>
-                                      <div class="p+"> 
-                                          <h5  style="color: #00796B">Codigo: {{items.codigo_sri}}</h5>                              
-                                          <div class="paragraph fs-body-1 mt+">
-                                              <p><md-icon class="md-primary">room</md-icon>
-                                                  Calle: {{escapeRegExp(items.localizacion_sucursal.direccion)}}
-                                              </p>
-                                          </div>
-                                      </div>                     
-                                      <div class="card__actions">
-                                        <md-button md-no-ink class="md-primary" layout-align="center center" ng-click="Select_Sucursal(items)">Seleccionar <md-icon>navigate_next</md-icon></md-button>                                          
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+  <md-content layout-padding layout-wrap>
+    <div flex-gt-sm="60" flex="90" style=" margin: 0px auto;" >
+      <div layout="column"  flex>
+        <div class="p+">
+          <md-card>
+            <md-card-content class="md-accent">
+              <md-input-container md-no-float class="md-block">
+                <md-icon>search</md-icon>
+                <input ng-model="sucursalSearch" name="dc" placeholder="Buscar por: codigo establecimiento, dirección" class="md-accent">
+              </md-input-container>
+            </md-card-content>
+          </md-card>
+        </div>
       </div>
-  </div>
-  <style>
-  .banner2 {
-          display: none;
-         }
-       @media screen and (max-width: 430px) {
-         .banner2 {
-          display: block;
-         }
-         .banner1 {
-          display: none;
-         }
-      }
-  </style>
+      <div layout="column">
+        <md-card flex ng-repeat="items in data_establecimiento | filter: sucursalSearch">
+          <md-toolbar layout="row">
+            <div class="md-toolbar-tools">
+              <strong class="fs-headline display-block">Nombre comercial: {{items.nombre}} <md-icon>business</md-icon></strong>
+            </div>
+          </md-toolbar>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">
+                <md-icon class="md-primary ">pages</md-icon>
+                Codigo establecimiento: {{items.codigo_sri}}
+              </span>
+              <p>
+                <md-icon class="md-primary ">location_city</md-icon>
+                {{items.localizacion_sucursal.direccion | split:'/':0}}, {{items.localizacion_sucursal.direccion | split:'/':1}}
+                <br/>              
+                <md-icon class="md-primary ">room</md-icon>
+                Dirección: {{items.localizacion_sucursal.direccion | split:'/':2}}                
+              </p>
+            </md-card-title-text>
+            <md-card-title-media>
+              <img src="images/image.png" class="md-media-sm card-media">
+            </md-card-title-media>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button md-no-ink class="md-raised md-accent" ng-click="Select_Sucursal(items)">
+              Seleccionar <md-icon>navigate_next</md-icon>
+            </md-button>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+  </md-content>
 </div
