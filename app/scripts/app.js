@@ -57,15 +57,12 @@ var app = angular.module('nextbook20App', [
   
   app.run(function($rootScope, $location, colaboradores_Service, $routeSegment) {
     $rootScope.$on('$routeChangeStart', function(event, $routeSegment) {
-      console.log('test', $routeSegment);
       if ($rootScope.sessionStatus === true) {
-        console.log('testentraste' );
         if ($routeSegment.$$route.segment == 'registro') {
           $location.path('/nb')
         }
       }
       if (!$rootScope.sessionStatus == null) {
-        console.log('testentrastennn' );
         $location.path('/Registro')
       }
       var path=$location.path();
@@ -312,6 +309,8 @@ var app = angular.module('nextbook20App', [
           .when('/nb/App/Administracion/Tipo_Usuario','nb.app.administracion.tipo_usuario')
           .when('/nb/App/Administracion/Personal','nb.app.administracion.personal')
           .when('/nb/App/Administracion/Sucursal','nb.app.administracion.sucursal')
+            .when('/nb/App/Administracion/PerfilSucursal/','nb.app.administracion.sucursal.info')
+            .when('/nb/App/Administracion/PerfilSucursal/ubicacion','nb.app.administracion.sucursal.ubicacion')
         // modulo configuracion
         .when('/nb/App/Config','nb.app.configuracion')
           .when('/nb/App/Config/PerfilPersonal','nb.app.configuracion.perfilPersonal')
@@ -377,8 +376,13 @@ var app = angular.module('nextbook20App', [
                   .segment('sucursal', {
                     templateUrl: 'views/dashboard/perfilSucursal.html',
                     controller: 'perfilSucursalCtrl'
-
                   })
+                  .within()
+                    .segment('info', {
+                      default: true,
+                      templateUrl: 'views/dashboard/administracion/sucursal/info.html'
+                    })
+                  .up()
 
                   .segment('tipo_usuario', {
                     templateUrl: 'views/app/colaboradores/tipo_usuario/index.html',

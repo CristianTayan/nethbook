@@ -27,7 +27,7 @@ app.controller('GridBottomSheetCtrl', function($scope, $mdBottomSheet) {
 
 app.controller('dashboard_Ctrl', function($scope, $rootScope, $mdSidenav, $localStorage, mainService, $http, $translate, $routeSegment, menuService, $mdBottomSheet) {
     $scope.sidenavState = true;
-    
+    console.log('test', $localStorage);
     $scope.changeSidenavState = () => {
       $scope.sidenavState =! $scope.sidenavState;
     }

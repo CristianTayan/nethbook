@@ -97,7 +97,7 @@
       </lx-dropdown>
       <span class="mdl-chip mdl-chip--contact">
           <a href="#/Seleccionar_Sucursal"  ng-click="restaurarMapa()">
-              <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white mdl-chip_hover_contact" style="font-size: 12px">       
+            <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white mdl-chip_hover_contact" style="font-size: 12px">
                   {{info_sucursal.codigo_sri}}
               </span>
           </a>
@@ -107,7 +107,5 @@
       </span>
     </div>
   </md-toolbar>
-  <md-content flex md-scroll-y>
-    <div layout="row" flex app-view-segment="1" class="view-next"></div>
-  </md-content>
+  <md-content flex md-scroll-y app-view-segment="1"> </md-content>
 </div>
