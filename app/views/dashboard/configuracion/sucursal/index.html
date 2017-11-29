@@ -1,83 +1,9 @@
-
-<h4 class="text-center">Configuración General Sucursal</h4>  
-
-<md-expansion-panel-group  md-component-id="expansionPanelGroup">
-  <md-expansion-panel md-component-id="expansionPanelOne">
+<h4 class="text-center"><i class="material-icons">settings</i> Configuración de la sucursal</h4>  
+<md-expansion-panel-group  md-component-id="expansionPanelGroup" style=" width: 80%">
+  <md-expansion-panel md-component-id="expansionPanelTwo" >
       <md-expansion-panel-collapsed>
-          <div class="md-title" md-colors="{color: 'accent'}">Empresa</div>
-          <div class="md-summary" md-colors="{color: 'indigo'}">{{info_sucursal.nombre }}</div>
-          <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
-            <md-icon class="md-accent">keyboard_arrow_down</md-icon>
-        </md-button>
-      </md-expansion-panel-collapsed>
-      <md-expansion-panel-expanded>
-          <md-expansion-panel-header>
-              <div class="md-title" md-colors="{color: 'indigo'}">Empresa</div>
-              <div class="md-summary" md-colors="{color: 'indigo'}">{{info_sucursal.nombre }}</div>
-          </md-expansion-panel-header>
-          <md-expansion-panel-content>
-                <div layout="row">
-                    <md-input-container class="md-icon-float md-block" flex>
-                        <md-icon class="md-primary">business</md-icon>
-                        <label>Actividad Económica</label>
-                        <input ng-model="datosEmpresa.actividad_economica" type="text" readonly>
-                    </md-input-container>
-                    <div flex="5"></div>
-                    <md-input-container class="md-icon-float md-block" flex="20">
-                    <md-icon class="md-primary">notifications_active</md-icon>
-                        <label>Estado Contribuyente</label>
-                        <input ng-model="datosEmpresa.estado_contribuyente" type="text" readonly>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container class="md-icon-float md-block" flex>
-                    <md-icon class="md-primary">fingerprint</md-icon>
-                        <label>Nombre Comercial</label>
-                        <input ng-model="info_sucursal.nombre " type="text" readonly>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container class="md-icon-float md-block" flex>
-                    <md-icon class="md-primary">dns</md-icon>
-                        <label>Razón Social</label>
-                        <input ng-model="datosEmpresa.razon_social" type="text" readonly>
-                    </md-input-container>
-                    <div flex="5"></div>
-                    <md-input-container class="md-icon-float md-block" flex>
-                      <md-icon class="md-primary">extension</md-icon>
-                        <label>Ruc</label>
-                        <input ng-model="datosEmpresa.ruc_ci" type="text" readonly>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container class="md-icon-float md-block" flex>
-                        <label>Obligado Lleva Contabilidad</label>
-                        <input ng-model="datosEmpresa.obligado_lleva_contabilida" type="text" readonly>
-                    </md-input-container>
-                    <div flex="5"></div>
-                    <md-input-container class="md-icon-float md-block" flex>
-                        <label>Tipo Contribuyente</label>
-                        <input ng-model="datosEmpresa.tipo_contribuyente" type="text" readonly>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                  <div class=" md-block" flex>
-                        <label>Fecha Creación</label><br>
-                        <label md-colors="{color: 'accent'}">{{datosEmpresa.fecha_creacion | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</label>
-                    </div>
-                    <div flex="5"></div>
-                    <div class=" md-block" flex>
-                        <label>Fecha Inicio Actividades:</label><br>
-                        <label md-colors="{color: 'accent'}">{{datosEmpresa.fecha_inicio_actividades | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</label>
-                    </div>
-                </div>
-          </md-expansion-panel-content>
-      </md-expansion-panel-expanded>
-  </md-expansion-panel>
-  <md-expansion-panel md-component-id="expansionPanelTwo">
-      <md-expansion-panel-collapsed>
-          <div class="md-title" md-colors="{color: 'accent'}">Establecimiento / Sucursal</div>
-          <div class="md-summary"  md-colors="{color: 'indigo'}">{{info_sucursal.nombre }}</div>
+          <div class="md-title" >Establecimiento / Sucursal</div>
+          <div class="md-summary"  >{{datosSucursal.nombre }} - {{datosSucursal.codigo_sri}}</div>
           <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
             <md-icon class="md-accent">keyboard_arrow_down</md-icon>
         </md-button>
@@ -85,82 +11,84 @@
       <md-expansion-panel-expanded>
           <md-expansion-panel-header>
               <div class="md-title">Establecimiento / Sucursal</div>
-              <div class="md-summary" md-colors="{color: 'indigo'}">{{datosEmpresa.nombre}}</div>
+              <div class="md-summary"></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
               <div layout="row">
                     <md-input-container class="md-icon-float md-block" flex>
                         <md-icon class="md-primary">airplay</md-icon>
                         <label>Nombre Comercial del establecimiento</label>
-                        <input type="text" ng-model="info_sucursal.nombre" uppercase ng-disabled="!data.cb1" required>
+                        <input type="text" ng-model="datosSucursal.nombre" uppercase ng-disabled="!data.cb1" required>
                     </md-input-container>
                     <div flex="5"></div>
                   <md-input-container class="md-icon-float md-block" flex>
                         <md-icon class="md-primary">airplay</md-icon>
-                        <label>Hablanos un poco de lo que realizasas en este establecimiento</label>
+                        <label>Hablanos un poco de lo que realizas en este establecimiento</label>
                         <textarea name="bio" ng-model="form.descripcion" required md-maxlength="150"></textarea>
-                        <div ng-messages="userForm.bio.$error" ng-show="userForm.bio.$dirty">
-                            <div ng-message="required">This is required!</div>
-                            <div ng-message="md-maxlength">That's too long!</div>
-                        </div>
+                       
                     </md-input-container>
                 </div>
-                <div layout="row" layout-align="end center">
-                    <md-button class="md-primary" ng-click="actividadEstablecimiento()">GUARDAR</md-button>
+                 <div layout="row" layout-align="center center">
+                    <md-button  md-no-ink class="md-raised md-primary" ng-click="descripcion()"  >
+                      Guardar
+                    </md-button>
+                    <md-button class="md-raised" ng-click="$panel.collapse();" >Cancelar</md-button>
                 </div>
           </md-expansion-panel-content>
-          <md-expansion-panel-footer>
-              <div flex></div>
-              <md-button class="md-icon-button" aria-label="More" ng-click="$panel.collapse();">
-              <md-icon>keyboard_arrow_up</md-icon>
-          </md-button>
-          </md-expansion-panel-footer>
       </md-expansion-panel-expanded>
   </md-expansion-panel>
 
-  <md-expansion-panel md-component-id="expansionPanelTree">
+  <md-expansion-panel md-component-id="expansionPanelTree" >
       <md-expansion-panel-collapsed>
-          <div class="md-title" md-colors="{color: 'accent'}">Correo</div>
-          <div class="md-summary"  md-colors="{color: 'indigo'}">{{datosPersonal.correo_electronico}}</div>
+          <div class="md-title" >Correo</div>
+          <div class="md-summary">{{datosPersonal.correo_electronico}}, {{statuss}}</div>
           <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
             <md-icon class="md-accent">keyboard_arrow_down</md-icon>
         </md-button>
       </md-expansion-panel-collapsed>
-      <md-expansion-panel-expanded>
+      <md-expansion-panel-expanded >
           <md-expansion-panel-header>
-              <div class="md-title">Correo</div>
-              <div class="md-summary" md-colors="{color: 'indigo'}">{{datosPersonal.correo_electronico}}</div>
+              <div class="md-title">¿Desea cambiar correo?</div>
+              <div class="md-summary"></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
               <div layout="row">
-              <div flex="5"></div>
-                    <md-input-container flex-gt-xs flex="25" class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                        <md-icon class="md-primary">email</md-icon>
-                        <label>Correo</label>
-                        <input type="text" ng-model="datosPersonal.correo_electronico" readonly required>
-                        <md-icon class="md-primary">airplay</md-icon>
+                <md-input-container class="md-block" flex>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block" flex="10">
+                  <strong class="md-primary">Correo principal</strong>
+                </md-input-container>
+                <md-input-container>
+                    <div>
+                      {{datosPersonal.correo_electronico}}
+                      
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block" flex>
                     </md-input-container>
-                    
-                  <md-input-container class="md-icon-float md-block" flex>
-                    <!-- <div layout="row" layout-align="end center">
-                      <md-button class="md-primary">GUARDAR</md-button>
-                    </div> -->
-                    </md-input-container>
+                </div>
+                <b layout="row" layout-align="center center" class="md-padding">
+                  {{status}}
+                 </b>
+                <div layout="row" layout-align="center center">
+                    <md-button  md-no-ink class="md-primary" ng-click="showPrompt($event)"  >
+                      ¿Agregar otra dirección de correo electrónico?
+                    </md-button>
+                </div>
+                <div layout="row" layout-align="center center">
+                    <md-button  md-no-ink class="md-raised md-primary" ng-click="$panel.collapse()"  >
+                      Guardar
+                    </md-button>
+                    <md-button class="md-raised" ng-click="$panel.collapse();" >Cancelar</md-button>
                 </div>
                 
           </md-expansion-panel-content>
-          <md-expansion-panel-footer>
-              <div flex></div>
-              <md-button class="md-icon-button" aria-label="More" ng-click="$panel.collapse();">
-              <md-icon>keyboard_arrow_up</md-icon>
-          </md-button>
-          </md-expansion-panel-footer>
       </md-expansion-panel-expanded>
   </md-expansion-panel>
-    <md-expansion-panel md-component-id="expansionPanelFour">
+    <md-expansion-panel md-component-id="expansionPanelFour" >
         <md-expansion-panel-collapsed>
-            <div class="md-title" md-colors="{color: 'accent'}">Giro de Negocio</div>
-            <div class="md-summary" md-colors="{color: 'indigo'}">{{datosSucursal.giro_negocio.nombre}} - {{datosSucursal.giro_negocio.descripcion}}</div>
+            <div class="md-title" >Giro de Negocio</div>
+            <div class="md-summary" >{{datosSucursal.giro_negocio.nombre}} - {{datosSucursal.giro_negocio.descripcion}}</div>
             <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
                 <md-icon class="md-accent">keyboard_arrow_down</md-icon>
             </md-button>
@@ -168,10 +96,10 @@
 
         <md-expansion-panel-expanded>
             <md-expansion-panel-header>
-                <div class="md-title" md-colors="{color: 'accent'}">Giro de Negocio</div>
-                <div class="md-summary" md-colors="{color: 'indigo'}">{{datosSucursal.giro_negocio.nombre}} - {{datosSucursal.giro_negocio.descripcion}}</div>
+                <div class="md-title" >Giro de Negocio</div>
+                <div class="md-summary" ></div>
             </md-expansion-panel-header>
-            <md-expansion-panel-content layout="row">                
+            <md-expansion-panel-content layout="row">               
                 <md-radio-group ng-model="Tipo"  required flex>
                     <div ng-repeat='item in tipo_bienes_servicios' layout-align="start center">
                         <div flex layout='row' layout-align="start center">
@@ -197,67 +125,55 @@
                         </lx-select-choices>
                     </lx-select>
                 </md-input-container>
-                <div layout="row" layout-align="end center">
-                    <md-button class="md-primary" ng-click="expresion()">GUARDAR</md-button>
-                </div>
             </md-expansion-panel-content>
-            <md-expansion-panel-footer>
-                <div flex></div>
-                <md-button class="md-icon-button" aria-label="More" ng-click="$panel.collapse();">
-                    <md-icon>keyboard_arrow_up</md-icon>
-                </md-button>
-            </md-expansion-panel-footer>
+           <div layout="row" layout-align="center center">
+                    <md-button  md-no-ink class="md-raised md-primary" ng-click="expresion(); $panel.collapse();"  >
+                      Guardar
+                    </md-button>
+                    <md-button class="md-raised" ng-click="$panel.collapse();" >Cancelar</md-button>
+                </div>
         </md-expansion-panel-expanded>
     </md-expansion-panel>
-
    <md-expansion-panel md-component-id="expansionPanelFive">
       <md-expansion-panel-collapsed>
-          <div class="md-title" md-colors="{color: 'accent'}">Contactos</div>
-          <div class="md-summary"  md-colors="{color: 'indigo'}"></div>
+          <div class="md-title" >Contactos</div>
+          <div class="md-summary" >{{num}}</div>
           <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
             <md-icon class="md-accent">keyboard_arrow_down</md-icon>
         </md-button>
       </md-expansion-panel-collapsed>
       <md-expansion-panel-expanded>
           <md-expansion-panel-header>
-              <div class="md-title">Contactos</div>
-              <div class="md-summary" md-colors="{color: 'indigo'}"></div>
+              <div class="md-title">¿Agregar otro celular/teléfono?</div>
+              <div class="md-summary" ></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
-              <div layout="row">
-                    <div flex="5"></div>
-                    <md-input-container flex-gt-xs flex="25" class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                        <md-icon class="md-accent">settings_cell</md-icon>
-                        <label>Celular Adicional</label>
-                        <input name="fono" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
-                        <md-icon class="md-accent">airplay</md-icon>
-                        <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
-                            <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
-                            <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
-                            <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
-                        </div>
+          <div layout="row" layout-align="center center">
+                   <md-input-container flex-gt-xs flex="20" class="md-icon-float md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                   <b layout="row" layout-align="center center" class="md-padding">
+                    {{numm}}
+                   </b>    
                     </md-input-container>
-                    <md-input-container md-icon-float md-block>
-                    </md-input-container>
-                </div>
-                <div layout="row" layout-align="end center">
-                    <md-button class="md-primary" ng-click="addNumero">GUARDAR</md-button>
+              </div>  
+              <div layout="row" layout-align="center center">
+                <md-button  md-no-ink class="md-primary" ng-click="; showPrompt2($event);"  >
+                      ¿DESEA AGREGAR OTRO NUMERO TELEFONICO?
+                    </md-button>   
+              </div>         
+                 <div layout="row" layout-align="center center">
+                    <md-button  md-no-ink class="md-raised md-primary" ng-click="$panel.collapse();"  >
+                      Guardar
+                    </md-button>
+                    <md-button class="md-raised" ng-click="$panel.collapse();" >Cancelar</md-button>
                 </div>
                 
           </md-expansion-panel-content>
-          <md-expansion-panel-footer>
-              <div flex></div>
-              <md-button class="md-icon-button" aria-label="More" ng-click="$panel.collapse();">
-              <md-icon>keyboard_arrow_up</md-icon>
-          </md-button>
-          </md-expansion-panel-footer>
       </md-expansion-panel-expanded>
   </md-expansion-panel> 
-      <md-expansion-panel md-component-id="expansionPanelSix">
+      <md-expansion-panel md-component-id="expansionPanelSix" >
       <md-expansion-panel-collapsed>
-          <div class="md-title" md-colors="{color: 'accent'}">Dirección</div>
-          <div class="md-summary"  md-colors="{color: 'indigo'}">{{datosSucursal.localizacion_sucursal.direccion }}</div>
+          <div class="md-title" >Dirección</div>
+          <div class="md-summary" >{{datosSucursal.localizacion_sucursal.direccion }}</div>
           <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
             <md-icon class="md-accent">keyboard_arrow_down</md-icon>
         </md-button>
@@ -265,7 +181,7 @@
       <md-expansion-panel-expanded>
           <md-expansion-panel-header>
               <div class="md-title">Dirección</div>
-              <div class="md-summary" md-colors="{color: 'indigo'}">{{datosSucursal.localizacion_sucursal.direccion }}</div>
+              <div class="md-summary"></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
               <div layout="row">
@@ -279,14 +195,6 @@
                     </md-input-container>
                 </div>                
           </md-expansion-panel-content>
-          <md-expansion-panel-footer>
-              <div flex></div>
-              <md-button class="md-icon-button" aria-label="More" ng-click="$panel.collapse();">
-              <md-icon>keyboard_arrow_up</md-icon>
-          </md-button>
-          </md-expansion-panel-footer>
       </md-expansion-panel-expanded>
   </md-expansion-panel> 
-
-
 </md-expansion-panel-group>

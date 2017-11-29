@@ -42,7 +42,15 @@ var app = angular.module('nextbook20App')
 
     $scope.expresion = function() {
      var select = $scope.ModelTipo_Tipo_Empresa.selectedTipo;
+
      console.log(select);
+    }
+    $scope.descripcion = function(){
+      var establecimiento=$scope.datosSucursal.nombre;
+      var descripcion= $scope.form.descripcion;
+
+      console.log (JSON.stringify(descripcion));
+      console.log(json);
     }
 
     $scope.Actividad = 1;
@@ -90,7 +98,52 @@ var app = angular.module('nextbook20App')
      });
     }
 
-  });
+    $scope.stuff = [ 
+      {id:1, name:'Telefono', obj:{}},
+      {id:2, name:'Celular', obj:{}},
+    ];
+    $scope.sel = $scope.stuff[1];
+
+    $scope.showPrompt2 = function(ev) {
+    var numero = $mdDialog.prompt()
+      .title('¿Desea ingresar otro numero telefónico?')
+      .placeholder("Telefono o celular")
+      .placeholder('09XXXXXXXX')
+      .ariaLabel('Numero')
+      .targetEvent(ev)
+      .required(true)
+      .ok('Agregar')
+      .cancel('Cancelar');
+
+    $mdDialog.show(numero).then(function(result) {
+      $scope.numm= 'Añadio el numero: '+result;
+      $scope.num=  result ;
+    }, function() {
+      $scope.num = '';
+    });
+  }
+    //------------------------Agregar correo-----------------------------------
+     $scope.showPrompt = function(ev) {
+    var confirm = $mdDialog.prompt()
+      .title('¿Desea ingresar otro correo?')
+      .placeholder('example@example.com')
+      .ariaLabel('Correo')
+      .targetEvent(ev)
+      .required(true)
+      .ok('Agregar')
+      .cancel('Cancelar');
+
+    $mdDialog.show(confirm).then(function(result) {
+      $scope.statuss=result;
+      $scope.status = 'Correo secundario: ' + result ;
+    }, function() {
+      $scope.status = '';
+    });
+  }
+ });
+
+
+
 
   app.controller('configuracionPerfilPersonalCtrl', function ($scope, $mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, colaboradores_Service) {
     // --------------------------------------abrir primer panel por defecto--------------------------------------
@@ -146,6 +199,7 @@ var app = angular.module('nextbook20App')
 
   app.controller('configuracionPerfilEmpresaCtrl', function ($scope, $mdExpansionPanel, $localStorage, mainService) {
     //-------------------------------------------------------------- GET TIPOS BIENES SERVICIOS ------------------------------------
+     $scope.datosEmpresa=$localStorage.datosE;
       function success_tipo_bienes_servicios(result){
         $scope.tipo_bienes_servicios=result.respuesta;
       }   

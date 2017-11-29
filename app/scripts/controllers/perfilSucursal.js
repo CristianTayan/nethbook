@@ -4,12 +4,13 @@ angular.module('nextbook20App')
     $rootScope.imgPortada = urlService.server().dir() + $localStorage.imgPortada;
     $rootScope.imgPerfil = urlService.server().dir() + $localStorage.imgPerfil;
     $scope.datos2 = $localStorage.datosE;
+    $scope.datosSucursal=$localStorage.sucursal;
     // ------------------------------------INICIO MAPA--------------------------------------------//
       angular.extend($scope, {
           london: {
               lat: 0.3491570668861781,
               lng: -78.12551742303162,
-              zoom: 17
+              zoom: 18
           },
           data: {
               markers: {}
