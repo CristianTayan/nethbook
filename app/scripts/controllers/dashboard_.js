@@ -27,7 +27,7 @@ app.controller('GridBottomSheetCtrl', function($scope, $mdBottomSheet) {
 
 app.controller('dashboard_Ctrl', function($scope, $rootScope, $mdSidenav, $localStorage, mainService, $http, $translate, $routeSegment, menuService, $mdBottomSheet) {
     $scope.sidenavState = true;
-    
+    console.log('test', $localStorage);
     $scope.changeSidenavState = () => {
       $scope.sidenavState =! $scope.sidenavState;
     }
@@ -227,10 +227,15 @@ app.controller('login_services_Ctrl', function($scope, $localStorage, mainServic
     }
 });
 
-app.controller('cerrar_session_Ctrl', function($scope, $localStorage, $location, mainService) {
+app.controller('cerrar_session_Ctrl', function($scope, $rootScope, $localStorage, $location, mainService, colaboradores_Service) {
+
+  colaboradores_Service.closeSession().send({}).$promise.then((data) => {
+    $rootScope.sessionStatus = false;
     var storage = $localStorage.cook_session_init;
     $localStorage.$reset();
     $localStorage.cook_session_init = storage;
     $location.path('/Registro');
-
+  }).catch((error)=>{
+    console.log('test', error);
+  });
 });

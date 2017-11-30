@@ -11,7 +11,7 @@ var app = angular.module('nextbook20App')
 	    // LOGUEO INGRESO
   		$scope.ingresar_colaborador = function() {
   		//inicializa varibles del mapa
-			 $localStorage.lat = 0.3422316189213578; 
+       $localStorage.lat = 0.3422316189213578; 
        $localStorage.log = -78.12643224518979;
       //proceso de acceso
 			$scope.data_ingreso_colaborador.ruc=$routeParams.ruc;
@@ -28,6 +28,7 @@ var app = angular.module('nextbook20App')
 			            .openFrom('#left')
 			        );
 	            } if (data.respuesta == true) {
+                $rootScope.sessionStatus = true;
 		            $localStorage.token = data.token;
 		            $localStorage.datosE = data.datosE;
 		            $localStorage.datosPersona = data.datosPersona;

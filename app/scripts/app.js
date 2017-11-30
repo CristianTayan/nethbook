@@ -54,24 +54,16 @@ var app = angular.module('nextbook20App', [
     $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
     $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
   });
-
-
-  app.filter('split', function() {
-    return function(input, splitChar, splitIndex) {
-      return input.split(splitChar)[splitIndex];
-    }
-  });
   
-  app.run(['$rootScope', '$location',function($rootScope, $location) {
+  app.run(function($rootScope, $location) {
     $rootScope.$on('$routeChangeStart', function(event, $routeSegment) {
-      console.log('test', $routeSegment);
       var path=$location.path();
       var res = path.split('/');
-      $rootScope.view_segment=res.length-2;
+      $rootScope.view_segment = res.length-2;
     });
 
     $rootScope.sidenavState = true;
-  }]);
+  });
     
   app.controller('mouseCtrl',($rootScope,$scope,$localStorage,$location, mainService,colaboradores_Service)=>{
     
@@ -87,13 +79,13 @@ var app = angular.module('nextbook20App', [
         }
         $scope.d1=$scope.s-$scope.u1;
       }
-    }
+    };
     $rootScope.$on("start_session", function() {
       $scope.primera_vez();
     });
     $scope.primera_vez();
     $scope.verify_Session=function(){
-      if ($localStorage.hsesion&&($location.path()!='/Registro'||$location.path()!='/')) {
+      if ($localStorage.hsesion&&($location.path() !== '/Registro' || $location.path() !== '/')) {
           var a,u,d,f;
           u=parseInt(mainService.Get_Hora_in_Time());
           d=$scope.s-u;
@@ -101,8 +93,8 @@ var app = angular.module('nextbook20App', [
           f=a-$scope.d1;
           // si mueve el mouse antes de los 30 segundos, renovar token
           if (f>0&&f<30) {
-            $localStorage.hsesion.estado_token=0;
-            if ($localStorage.hsesion.estado_token==0) {
+            $localStorage.hsesion.estado_token = 0;
+            if ($localStorage.hsesion.estado_token === 0) {
               colaboradores_Service.Refresh_Token().send({}).$promise.then((data)=>{
                 if (data.respuesta) {
                   delete $localStorage.hsesion;
@@ -114,14 +106,14 @@ var app = angular.module('nextbook20App', [
             }
           }
           // si mueve el mouse al llegar al 0, terminar sesion;
-          if (f==0||f<0||f>$scope.t) {
+          if (f === 0 || f < 0 || f > $scope.t) {
             var storage = $localStorage.cook_session_init;
             $localStorage.$reset();
             $localStorage.cook_session_init = storage;
             $location.path('/Registro');
           }
       }          
-    }
+    };
   });
 
   // -----------------------------------------------SEGMENTACION QUERY UI-----------------------------------------------
@@ -235,7 +227,8 @@ var app = angular.module('nextbook20App', [
             templateUrl: 'views/perfil/similares.html'})
         .segment('favoritos', {
             templateUrl: 'views/perfil/favoritos.html'})
-      .up()
+      .up();
+
     $routeSegmentProvider
 
     .when('/nb',    'nb')
@@ -309,6 +302,8 @@ var app = angular.module('nextbook20App', [
           .when('/nb/App/Administracion/Tipo_Usuario','nb.app.administracion.tipo_usuario')
           .when('/nb/App/Administracion/Personal','nb.app.administracion.personal')
           .when('/nb/App/Administracion/Sucursal','nb.app.administracion.sucursal')
+            .when('/nb/App/Administracion/PerfilSucursal/','nb.app.administracion.sucursal.info')
+            .when('/nb/App/Administracion/PerfilSucursal/ubicacion','nb.app.administracion.sucursal.ubicacion')
         // modulo configuracion
         .when('/nb/App/Config','nb.app.configuracion')
           .when('/nb/App/Config/PerfilPersonal','nb.app.configuracion.perfilPersonal')
@@ -374,8 +369,13 @@ var app = angular.module('nextbook20App', [
                   .segment('sucursal', {
                     templateUrl: 'views/dashboard/perfilSucursal.html',
                     controller: 'perfilSucursalCtrl'
-
                   })
+                  .within()
+                    .segment('info', {
+                      default: true,
+                      templateUrl: 'views/dashboard/administracion/sucursal/info.html'
+                    })
+                  .up()
 
                   .segment('tipo_usuario', {
                     templateUrl: 'views/app/colaboradores/tipo_usuario/index.html',
