@@ -98,13 +98,13 @@ class Portada extends Controller {
 
     public function Load_Imgs_Portada(Request $request){
 
-        $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
-        ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
-        ->where('sucursal',$request->sucursal)
-        ->where('estado','P')
-        ->where('tipo_imagen',1)
-        ->orderBy('fecha','DESC')->get();
-        $total=count($resultado);
+        // $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
+        // ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
+        // ->where('sucursal',$request->sucursal)
+        // ->where('estado','P')
+        // ->where('tipo_imagen',1)
+        // ->orderBy('fecha','DESC')->get();
+        // $total=count($resultado);
 
         $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
         ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
@@ -145,7 +145,7 @@ class Portada extends Controller {
       $res = DB::connection($this->name_bdd)->
         table('administracion.imagen_empresa')->
         select('direccion_imagen_recorte','direccion_imagen_empresa')->
-        where('sucursal',$request->sucursal)->
+        // where('sucursal',$request->sucursal)->
         where('estado','=','A')->
         where('tipo_imagen',4)->first();
       if (count($res)>0) {
@@ -171,12 +171,12 @@ class Portada extends Controller {
       $img_dir_crop="storage/".$this->name_bdd.'/PortadasUsuario/'.$filename;
       //Guardar imagen full
       $filename=$this->base64_to_img($full,800,'PortadasUsuario',$this->name_bdd);
-      $img_dir_full="storage/".$this->name_bdd.'/PortadasUsuario/'.$filename;
-      
+      $img_dir_full="storage/".$this->name_bdd.'/PortadasUsuario/'.$filename;      
 
       DB::connection($this->name_bdd)->
         table('administracion.imagen_empresa')->
-        where('sucursal',$request->sucursal)->where('estado','A')->
+        where('sucursal',$request->sucursal)->
+        where('estado','A')->
         where('tipo_imagen',4)->
         update(['estado'=>'P']);
       
@@ -193,10 +193,11 @@ class Portada extends Controller {
       }else return response()->json(["respuesta"=>false,"img"=>'']);
 
     }
+
     public function Set_Img_PortadaUsuario(Request $request){
       DB::connection($this->name_bdd)->
         table('administracion.imagen_empresa')->
-        where('sucursal',$request->sucursal)->
+        // where('sucursal',$request->sucursal)->
         where('estado','=','A')->
         where('tipo_imagen',4)->
         update(['estado'=>'P']);
@@ -212,18 +213,18 @@ class Portada extends Controller {
 
     public function Load_Imgs_PortadaUsuario(Request $request){
 
-      $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
-      ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
-      ->where('sucursal',$request->sucursal)
-      ->where('estado','P')
-      ->where('tipo_imagen',4)
-      ->orderBy('fecha','DESC')->get();
-      $total=count($resultado);
+      // $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
+      // ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
+      // // ->where('sucursal',$request->sucursal)
+      // ->where('estado','P')
+      // ->where('tipo_imagen',4)
+      // ->orderBy('fecha','DESC')->get();
+      // $total=count($resultado);
 
       $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
       ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
-      ->where('sucursal',$request->sucursal)
-      ->where('estado','P')
+      // ->where('sucursal',$request->sucursal)
+       ->where('estado','P')
       ->where('tipo_imagen',4)
       ->orderBy('fecha','DESC')
       ->limit(500)

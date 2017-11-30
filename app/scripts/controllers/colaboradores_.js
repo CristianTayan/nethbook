@@ -101,10 +101,9 @@ var app = angular.module('nextbook20App')
 	                    				$scope.selectModelCiudad.selectedCiudades=ciudades[i];
 	                    				break;
 	                    			}
-	                    		}
+	                    		}  
 	                    }
                     }
-
                 }
 	            $scope.buscar_persona=function(){
 	                if ($scope.data_usuario&&$scope.data_usuario.numero_documento) {
