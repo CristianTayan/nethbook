@@ -16,7 +16,6 @@ var app = angular.module('nextbook20App');
 	    $scope.data_sucursal = $localStorage.sucursal;
 	    
     	
-
 	$scope.show_img = function(ev,tipo_img){
 	      $mdDialog.show({
 	        controller: Dialog_show_image_Controller,
@@ -218,12 +217,12 @@ var app = angular.module('nextbook20App');
       $scope.cancel = function() {
         $mdDialog.cancel();
       };
-
+//-----------------------------------------------------------------------------
        $scope.set_img = function(img){
         perfilUsuarioService.Set_Img_PerfilUsuario().send({img:img.id}).$promise.then((resul)=>{
           if (resul.respuesta==true) {
-            $rootScope.imgPerfil=img.direccion_imagen_empresa_dir;
-            $localStorage.imgPerfil=img.direccion_imagen_recorte;
+            $rootScope.imgPerfilUsuario=img.direccion_imagen_empresa_dir;
+            $localStorage.imgPerfilUsuario=img.direccion_imagen_recorte;
             $mdDialog.hide();
           }
         });

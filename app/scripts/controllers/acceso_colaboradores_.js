@@ -10,6 +10,10 @@ var app = angular.module('nextbook20App')
   		$scope.color = listcolor[random];
 	    // LOGUEO INGRESO
   		$scope.ingresar_colaborador = function() {
+  		//inicializa varibles del mapa
+			 $localStorage.lat = 0.3422316189213578; 
+       $localStorage.log = -78.12643224518979;
+      //proceso de acceso
 			$scope.data_ingreso_colaborador.ruc=$routeParams.ruc;
 			var obj = $scope.data_ingreso_colaborador;
 	        colaboradores_Service.Ingresar_Colaborador().acceso({acceso:obj,info_servidor:'', ip_cliente:'192.168.0.1', macadress:'00:00:00:00:00'}).$promise.then(function(data) {
