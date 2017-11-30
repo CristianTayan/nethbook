@@ -104,7 +104,9 @@ class Perfil extends Controller
 
 
     public function Get_Img_Perfil(Request $request){
-    $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->select('direccion_imagen_recorte','direccion_imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','A')->where('tipo_imagen',2)->first();
+    $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->select('direccion_imagen_recorte','direccion_imagen_empresa')->
+    where('sucursal',$request->sucursal)->
+    where('estado','A')->where('tipo_imagen',2)->first();
     if (count($resultado)>0) {
     $data=explode('/', $resultado->direccion_imagen_recorte);
     $img=$data[count($data)-1];
@@ -154,7 +156,10 @@ class Perfil extends Controller
     }
 
     public function Set_Img_PerfilUsuario(Request $request){
-        DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','A')->where('tipo_imagen',5)->update(['estado'=>'P']);
+        DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->
+        // where('sucursal',$request->sucursal)->
+        where('estado','A')->where('tipo_imagen',5)->
+        update(['estado'=>'P']);
         $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->where('id',$request->img)->update(['estado'=>'A']);
         if ($resultado) {
             return response()->json(["respuesta"=>true]);
@@ -162,10 +167,9 @@ class Perfil extends Controller
     }
 
     public function Load_Imgs_PerfilUsuario(Request $request){
-
         $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
         ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
-        ->where('sucursal',$request->sucursal)
+        // ->where('sucursal',$request->sucursal)
         ->where('estado','P')
         ->where('tipo_imagen',5)
         ->orderBy('fecha','DESC')
@@ -176,7 +180,9 @@ class Perfil extends Controller
 
 
     public function Get_Img_PerfilUsuario(Request $request){
-    $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->select('direccion_imagen_recorte','direccion_imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','A')->where('tipo_imagen',5)->first();
+    $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->select('direccion_imagen_recorte','direccion_imagen_empresa')->
+    // where('sucursal',$request->sucursal)->
+    where('estado','A')->where('tipo_imagen',5)->first();
     if (count($resultado)>0) {
     $data=explode('/', $resultado->direccion_imagen_recorte);
     $img=$data[count($data)-1];
