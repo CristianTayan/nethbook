@@ -1,7 +1,4 @@
-<head>
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+
 <strong><h4><i class="material-icons">settings</i> Configuración de la sucursal</h4></strong>  
 <md-expansion-panel-group  md-component-id="expansionPanelGroup" style=" width: 80%">
   <md-expansion-panel md-component-id="expansionPanelTwo" >
@@ -152,26 +149,35 @@
               <div class="md-summary" ></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
+          <md-toolbar>
+            <h6 class="md-padding">Contactos</h6>
+          </md-toolbar>
                   <div class="panel panel-default">
                      <div class="panel-body">
-                       <table class="table">
-                         <thead>
-                           <tr>
-                             <th>Tipo</th>
-                             <th>Numero</th>
-                             <th></th>
+                       <table md-table md-row-select >
+                         <thead md-head class="md-primary">
+                           <tr md-row >
+                             <th md-column md-order-by="nameToLower" style="text-align: center" >Tipo</th>
+                             <th md-column md-order-by="nameToLower" style="text-align: center">Numero</th>
+                             <th md-column md-order-by="nameToLower" style="text-align: center"></th>
                            </tr>
                          </thead>
                          <tbody>
-                           <tr ng-repeat="item in lista">
-                             <td editable-td row="{{$index}}" field="tipo">
-                               {{item.tipo}}
+                           <tr style="text-align: center; border-bottom: dashed 1px blue;" ng-repeat="item in lista">
+                             <td md-cell editable-td row="{{$index}}" field="tipo">
+                              <md-select ng-model="item.tipo" >
+                                    <md-option ng-model="item.tipo" >Teléfono</md-option>
+                                    <md-option ng-model="item.tipo">Celular</md-option>                                    
+                                </md-select>
+                               
                              </td>
                              <td editable-td row="{{$index}}" field="numero">
                                {{item.numero}}
                              </td>
                              <td>
-                               <span class="glyphicon glyphicon-trash" style="cursor: pointer;" ng-click='eliminar($index)' />
+                              <md-button class="md-icon-button md-warn" style="cursor: pointer;" ng-click='eliminar($index)'><i class="material-icons">delete</i> <md-tooltip md-direction="top"> Eliminar Contacto
+                              </md-tooltip> </md-button>
+                               <!-- <span  style="cursor: pointer;" ng-click='eliminar($index)' /> -->
                              </td>
                            </tr>
                          </tbody>

@@ -33,6 +33,18 @@ angular.module('nextbook20App')
             }
         });
     };
+
+    this.UpdateAddSucursal=function() {
+    return $resource(urlService.server().appnext()+'UpdateAddSucursal', {}
+    , {
+        send: {
+            method: 'POST', isArray: false,
+            params: {
+                token: $localStorage.token,
+            }
+        }
+    });
+    };
     //-------------------------------------------------------------- PORTADA --------------------------------------------------------------
     //-------------------------------------------------------------- Añadir imagen de portada
      this.Add_Img_Portada=function() {
