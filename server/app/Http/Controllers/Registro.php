@@ -179,6 +179,7 @@ class Registro extends Controller {
     return response()->json(["respuesta" =>false,"error"=>'registro-existente'], 200); // verificar si ruc esta registrado
   }
 
+
   public function Save_Datos_Ruc(Request $request){
     $resultado = $this->empresas->select('id','razon_social','informacion_localizar_empresa')->where('id_estado','P')->where('ruc_ci',$request->input('ruc'))->first();
 

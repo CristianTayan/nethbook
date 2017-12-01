@@ -1,4 +1,8 @@
-<h4 class="text-center"><i class="material-icons">settings</i> Configuración de la sucursal</h4>  
+<head>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<strong><h4><i class="material-icons">settings</i> Configuración de la sucursal</h4></strong>  
 <md-expansion-panel-group  md-component-id="expansionPanelGroup" style=" width: 80%">
   <md-expansion-panel md-component-id="expansionPanelTwo" >
       <md-expansion-panel-collapsed>
@@ -148,24 +152,46 @@
               <div class="md-summary" ></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
-          <div layout="row" layout-align="center center">
-                   <md-input-container flex-gt-xs flex="20" class="md-icon-float md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                   <b layout="row" layout-align="center center" class="md-padding">
-                    {{numm}}
-                   </b>    
-                    </md-input-container>
-              </div>  
-              <div layout="row" layout-align="center center">
-                <md-button  md-no-ink class="md-primary" ng-click="; showPrompt2($event);"  >
-                      ¿DESEA AGREGAR OTRO NUMERO TELEFONICO?
-                    </md-button>   
-              </div>         
-                 <div layout="row" layout-align="center center">
-                    <md-button  md-no-ink class="md-raised md-primary" ng-click="$panel.collapse();"  >
-                      Guardar
-                    </md-button>
-                    <md-button class="md-raised" ng-click="$panel.collapse();" >Cancelar</md-button>
-                </div>
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                       <table class="table">
+                         <thead>
+                           <tr>
+                             <th>Tipo</th>
+                             <th>Numero</th>
+                             <th></th>
+                           </tr>
+                         </thead>
+                         <tbody>
+                           <tr ng-repeat="item in lista">
+                             <td editable-td row="{{$index}}" field="tipo">
+                               {{item.tipo}}
+                             </td>
+                             <td editable-td row="{{$index}}" field="numero">
+                               {{item.numero}}
+                             </td>
+                             <td>
+                               <span class="glyphicon glyphicon-trash" style="cursor: pointer;" ng-click='eliminar($index)' />
+                             </td>
+                           </tr>
+                         </tbody>
+                       </table>
+                       <div layout="row" layout-align="center center">
+                          <md-button class=" md-raised md-primary" ng-click='agregar()'><md-tooltip>
+                                 ¿Agregar Contacto?
+                               </md-tooltip>
+                                 nuevo <span class="glyphicon glyphicon-plus"></span>
+                               </md-button>
+                               <md-button class="md-raised" ng-click='recuperarValores()'>Guardar Contacto</md-button>
+                       </div>
+                       <br>
+                       <br>
+                       <div id='JSON' />
+                     </div>
+                   </div>
+                 </div>
+          </div>      
+                 
                 
           </md-expansion-panel-content>
       </md-expansion-panel-expanded>
@@ -198,3 +224,9 @@
       </md-expansion-panel-expanded>
   </md-expansion-panel> 
 </md-expansion-panel-group>
+<style type="text/css">
+  .table > tbody > tr:hover {
+  background-color: #F2F2F2;
+  cursor: pointer;
+}
+</style>
