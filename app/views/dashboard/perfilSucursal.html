@@ -1,10 +1,8 @@
 <div layout="column">
   <div layout="row">
     <md-content class="md-sidenav-left " 
-      md-component-id="left" 
-      md-is-locked-open="$mdMedia('gt-md')" 
-      flex="20" 
-      style="background: green;">
+      md-component-id="left"
+      style="width: 250px;">
       <div layout="row" style="height: 40%;">
           <div class="demo-card-square mdl-card mdl-shadow--2dp" style="cursor: pointer;" ng-click="show_img($event,'Perfil')" ng-style="{'background-image': 'url(' + imgPerfil + ')','background-position': '0 0','background-size': 'contain'}">
               <div class="mdl-card__title mdl-card--expand" style="padding-bottom: 46px;">
@@ -45,27 +43,6 @@
           <div ng-style="{'background-image': 'url(' + imgPortada + ')','background-position': 'center'}" class="card__image"></div>
           <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
         </div>
-        <md-tabs md-dynamic-height md-border-bottom>
-          <md-tab label="Info">
-            <md-content class="md-padding">
-              <div class="p+">
-                <div class="card">
-                  <div class="p+">
-                    <p class="fs-headline display-block">Actividad Economica</p>
-                    <span class="fs-subheading-1 tc-black-2 display-block">{{datos2.actividad_economica}}</span>
-                    <div class="paragraph fs-body-1 mt+">
-                      <p> Dirección: {{sucursal}}</p>
-                    </div>
-                  </div>        
-                </div>
-              </div>
-            </md-content>
-          </md-tab>
-          <md-tab label="Ubicacion">
-            <leaflet lf-center="london" markers="markers" height="350px" width="100%"></leaflet>
-          </md-tab>
-        </md-tabs>
-        <!-- <div app-view-segment="4"  flex-gt-sm="90" flex-gt-md="80">hola</div> -->
         <div style="position: absolute;">
           <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Portada')" aria-label="More">
               <md-icon>add_a_photo</md-icon>
@@ -74,6 +51,15 @@
               <md-icon>mode_edit</md-icon>
           </md-button>
         </div>
+        <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
+          <md-tab id="tab1" aria-controls="tab1-content" md-on-select="tabSelect('info')">
+            Info
+          </md-tab>
+          <md-tab id="tab2" aria-controls="tab2-content" md-on-select="tabSelect('ubicacion')">
+            Favorite
+          </md-tab>
+        </md-tabs>
+        <md-content flex md-scroll-y app-view-segment="4"> </md-content>
       </md-card>
     </md-content>
   </div>

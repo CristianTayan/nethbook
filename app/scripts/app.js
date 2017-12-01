@@ -302,8 +302,8 @@ var app = angular.module('nextbook20App', [
           .when('/nb/App/Administracion/Tipo_Usuario','nb.app.administracion.tipo_usuario')
           .when('/nb/App/Administracion/Personal','nb.app.administracion.personal')
           .when('/nb/App/Administracion/Sucursal','nb.app.administracion.sucursal')
-            .when('/nb/App/Administracion/PerfilSucursal/','nb.app.administracion.sucursal.info')
-            .when('/nb/App/Administracion/PerfilSucursal/ubicacion','nb.app.administracion.sucursal.ubicacion')
+            .when('/nb/App/Administracion/Sucursal/info','nb.app.administracion.sucursal.info')
+            .when('/nb/App/Administracion/Sucursal/ubicacion','nb.app.administracion.sucursal.mapa')
         // modulo configuracion
         .when('/nb/App/Config','nb.app.configuracion')
           .when('/nb/App/Config/PerfilPersonal','nb.app.configuracion.perfilPersonal')
@@ -373,7 +373,12 @@ var app = angular.module('nextbook20App', [
                   .within()
                     .segment('info', {
                       default: true,
-                      templateUrl: 'views/dashboard/administracion/sucursal/info.html'
+                      templateUrl: 'views/dashboard/administracion/sucursal/info.html',
+                      controller: 'infoSucursalCtrl'
+                    })
+                    .segment('mapa', {
+                      templateUrl: 'views/dashboard/administracion/sucursal/mapa.html',
+                      controller: 'mapaSucursalCtrl'
                     })
                   .up()
 
