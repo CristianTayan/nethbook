@@ -28,11 +28,28 @@ class Sucursales extends Controller
         }
     }
 
+      public function UpdateAddSucursal(Request $request) {
+      // $x = "1";
+      // $valor = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
+      // $data_sucursal = DB::connection('comercial_h_1090084247001') -> table('administracion.sucursales')-> where('id',$x) -> first();
+      $data_sucursal=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->sucursal)->first();
+      if ($data_sucursal) { 
+        // $data=DB::connection('comercial_h_1090084247001')->table('administracion.sucursales')->where('id',$x)->update
+        $data=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->sucursal)->update
+        ([
+            'datos_adiconales' => json_encode(['definicion_personal'=>$datos_adiconales])
+        ]);
+        echo('datos guardados');
+      }
+      if (!$data_sucursal) {
+         echo("Sucursal No Encontrada");
+      }
+    }
+
     public function Update_Giro_Actividad(Request $request)
     {
 	            
 $data_sucursal=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->sucursal)->first();
-
 if ($data_sucursal->giro_negocio==0) {
 
     $tipobien=DB::connection($this->name_bdd)->table('administracion.tipo_bienes_servicios')->select('id')->where('id',$request->input('tipo_bienes_servicios')['id'])->first();
@@ -46,22 +63,19 @@ if ($data_sucursal->giro_negocio==0) {
             'estado' => 'A'
         ]
         );
-    }else $last_id_tipobien=$tipobien->id;
-    
+    }else $last_id_tipobien=$tipobien->id;    
     $actividad_economica=DB::connection($this->name_bdd)->table('administracion.actividad_economica')->select('id')->where('id',$request->input('ModelTipo_Tipo_Empresa')['id'])->first();
     //si no existe la actividad economica
     if (count($actividad_economica)==0) {
         $last_id_actividad_economica=DB::connection($this->name_bdd)->table('administracion.actividad_economica')
         ->insertGetId(
-        [   'id'=>$request->input('ModelTipo_Tipo_Empresa')['id'],
-            'nombre' => $request->input('ModelTipo_Tipo_Empresa')['nombre'] ,
-            'descripcion' => $request->input('ModelTipo_Tipo_Empresa')['descripcion'] ,
-            'id_tipo_bienes_servicios'=>$last_id_tipobien,
-            'estado' => 'A'
+      [   'id'=>$request->input('ModelTipo_Tipo_Empresa')['id'],
+          'nombre' => $request->input('ModelTipo_Tipo_Empresa')['nombre'] ,
+          'descripcion' => $request->input('ModelTipo_Tipo_Empresa')['descripcion'] ,
+          'id_tipo_bienes_servicios'=>$last_id_tipobien,
+          'estado' => 'A'
         ]);
-    }else $last_id_actividad_economica=$actividad_economica->id;
-    
-
+    }else $last_id_actividad_economica=$actividad_economica->id;   
     //Guardar en NBPRE de Empresa
     $definicion_personal=$request->descripcion;
     $data=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->sucursal)
@@ -73,7 +87,6 @@ if ($data_sucursal->giro_negocio==0) {
         ]);
     //Guardar en Nextbook
     $empresa_nthbk=DB::connection('nextbookconex')->table('administracion.empresas')->select('id')->where('ruc_ci',$this->user->ruc)->first();
-
     DB::connection('nextbookconex')->table('administracion.sucursales')
     ->insert(
         [

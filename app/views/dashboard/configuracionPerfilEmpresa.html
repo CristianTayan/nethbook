@@ -1,1 +1,73 @@
-<h1>perfil empresa</h1>
+<h4 class="text-center"><i class="material-icons">settings</i> Configuración de la Empresa</h4>  
+<md-expansion-panel md-component-id="expansionPanelOne">
+      <md-expansion-panel-collapsed>
+          <div class="md-title">Empresa</div>
+          <div class="md-summary">{{info_sucursal.nombre }}</div>
+          <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
+            <md-icon class="md-accent">keyboard_arrow_down</md-icon>
+        </md-button>
+      </md-expansion-panel-collapsed>
+      <md-expansion-panel-expanded>
+          <md-expansion-panel-header>
+              <div class="md-title" >Empresa</div>
+              <div class="md-summary" >{{info_sucursal.nombre }}</div>
+          </md-expansion-panel-header>
+          <md-expansion-panel-content>
+                <div layout="row">
+                    <md-input-container class="md-icon-float md-block" flex>
+                        <md-icon class="md-primary">business</md-icon>
+                        <label>Actividad Económica</label>
+                        <input ng-model="datosEmpresa.actividad_economica" type="text" readonly>
+                    </md-input-container>
+                    <div flex="5"></div>
+                    <md-input-container class="md-icon-float md-block" flex="20">
+                    <md-icon class="md-primary">notifications_active</md-icon>
+                        <label>Estado Contribuyente</label>
+                        <input ng-model="datosEmpresa.estado_contribuyente" type="text" readonly>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                  <md-input-container class="md-icon-float md-block" flex>
+                    <md-icon class="md-primary">fingerprint</md-icon>
+                        <label>Nombre Comercial</label>
+                        <input ng-model="info_sucursal.nombre " type="text" readonly>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                  <md-input-container class="md-icon-float md-block" flex>
+                    <md-icon class="md-primary">dns</md-icon>
+                        <label>Razón Social</label>
+                        <input ng-model="datosEmpresa.razon_social" type="text" readonly>
+                    </md-input-container>
+                    <div flex="5"></div>
+                    <md-input-container class="md-icon-float md-block" flex>
+                      <md-icon class="md-primary">extension</md-icon>
+                        <label>Ruc</label>
+                        <input ng-model="datosEmpresa.ruc_ci" type="text" readonly>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                  <md-input-container class="md-icon-float md-block" flex>
+                        <label>Obligado Lleva Contabilidad</label>
+                        <input ng-model="datosEmpresa.obligado_lleva_contabilida" type="text" readonly>
+                    </md-input-container>
+                    <div flex="5"></div>
+                    <md-input-container class="md-icon-float md-block" flex>
+                        <label>Tipo Contribuyente</label>
+                        <input ng-model="datosEmpresa.tipo_contribuyente" type="text" readonly>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                  <div class=" md-block" flex>
+                        <label>Fecha Creación</label><br>
+                        <label md-colors="{color: 'accent'}">{{datosEmpresa.fecha_creacion | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</label>
+                    </div>
+                    <div flex="5"></div>
+                    <div class=" md-block" flex>
+                        <label>Fecha Inicio Actividades:</label><br>
+                        <label md-colors="{color: 'accent'}">{{datosEmpresa.fecha_inicio_actividades | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</label>
+                    </div>
+                </div>
+          </md-expansion-panel-content>
+      </md-expansion-panel-expanded>
+  </md-expansion-panel>
