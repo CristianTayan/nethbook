@@ -10,23 +10,22 @@ var app = angular.module('nextbook20App')
 
     $scope.lista = [{}];
 
-     $scope.eliminar = function(row) {
-       if (confirm("¿Seguro que desea eliminar?")) {
-         $scope.lista.splice(row, 1);
-       }
-     };
+    $scope.eliminar = function(row) {
+      if (confirm("¿Seguro que desea eliminar?")) {
+        $scope.lista.splice(row, 1);
+      }
+    };
 
-     $scope.agregar = function() {
-       $scope.lista.push({
-         tipo: '',
-         numero: ''
-       })
-     };
-     $scope.recuperarValores = function() {
-       console.log($scope.lista);
-       $("#JSON").text(JSON.stringify($scope.lista));
-      };
+    $scope.agregar = function() {
+      $scope.lista.push({
+        tipo: '',
+        numero: ''
+      });
+    };
 
+    $scope.recuperarValores = function() {
+      $("#JSON").text(JSON.stringify($scope.lista));
+    };
 
     $scope.datosEmpresa=$localStorage.datosE;
     $scope.datosSucursal=$localStorage.sucursal;
@@ -124,53 +123,25 @@ var app = angular.module('nextbook20App')
     }
 
     $scope.showPrompt2 = function(ev) {
-    var numero = $mdDialog.prompt()
-      .title('¿Desea ingresar otro numero telefónico?')
-      .placeholder("Telefono o celular")
-      .placeholder('09XXXXXXXX')
-      .ariaLabel('Numero')
-      .targetEvent(ev)
-      .required(true)
-      .ok('Agregar')
-      .cancel('Cancelar');
+      var numero = $mdDialog.prompt()
+        .title('¿Desea ingresar otro numero telefónico?')
+        .placeholder("Telefono o celular")
+        .placeholder('09XXXXXXXX')
+        .ariaLabel('Numero')
+        .targetEvent(ev)
+        .required(true)
+        .ok('Agregar')
+        .cancel('Cancelar');
 
-    $mdDialog.show(numero).then(function(result) {
-      $scope.numm= 'Añadio el numero: '+result;
-      $scope.num=  result ;
-    }, function() {
-      $scope.num = '';
-    });
-  }
-});
+      $mdDialog.show(numero).then(function(result) {
+        $scope.numm= 'Añadio el numero: '+result;
+        $scope.num=  result ;
+      }, function() {
+        $scope.num = '';
+      });
+    }
 
-app.directive('editableTd', [function() {
- return {
-   restrict: 'A',
-   link: function(scope, element, attrs) {
-     element.css("cursor", "pointer");
-     element.attr('contenteditable', 'true');
-     if (attrs.type=="number") {
-       element.keypress(function(event) {
-         if(attrs.type=="number" && event.keyCode < 48 || event.keyCode > 57)
-           return false;
-       });
-     }
-     
-     element.bind('blur keyup change', function() {
-       scope.lista[attrs.row][attrs.field] = element.text();
-       scope.$digest();
-     });
-
-     element.bind('click', function() {
-       document.execCommand('selectAll', false, null)
-     });
-   }
- };
-}]);
-
-
-    //------------------------Agregar correo-----------------------------------
-     $scope.showPrompt = function(ev) {
+  $scope.showPrompt = function(ev) {
     var confirm = $mdDialog.prompt()
       .title('¿Desea ingresar otro correo?')
       .placeholder('example@example.com')
@@ -187,10 +158,32 @@ app.directive('editableTd', [function() {
       $scope.status = '';
     });
   }
+});
 
+  app.directive('editableTd', [function() {
+   return {
+     restrict: 'A',
+     link: function(scope, element, attrs) {
+       element.css("cursor", "pointer");
+       element.attr('contenteditable', 'true');
+       if (attrs.type=="number") {
+         element.keypress(function(event) {
+           if(attrs.type=="number" && event.keyCode < 48 || event.keyCode > 57)
+             return false;
+         });
+       }
+       
+       element.bind('blur keyup change', function() {
+         scope.lista[attrs.row][attrs.field] = element.text();
+         scope.$digest();
+       });
 
-
-
+       element.bind('click', function() {
+         document.execCommand('selectAll', false, null)
+       });
+     }
+   };
+  }]);
 
   app.controller('configuracionPerfilPersonalCtrl', function ($scope, $mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, colaboradores_Service) {
     // --------------------------------------abrir primer panel por defecto--------------------------------------
