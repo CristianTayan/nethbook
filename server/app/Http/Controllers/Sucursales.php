@@ -29,15 +29,16 @@ class Sucursales extends Controller
     }
 
       public function UpdateAddSucursal(Request $request) {
-      // $x = "1";
-      // $valor = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
-      // $data_sucursal = DB::connection('comercial_h_1090084247001') -> table('administracion.sucursales')-> where('id',$x) -> first();
-      $data_sucursal=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->sucursal)->first();
+        // return response($request->valores);
+      // echo $request;
+     // $data_sucursal = DB::connection('comercial_h_1090084247001') -> table('administracion.sucursales')-> where('id',$x) -> first();
+      $data_sucursal=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->idSucursal)->first();
       if ($data_sucursal) { 
         // $data=DB::connection('comercial_h_1090084247001')->table('administracion.sucursales')->where('id',$x)->update
-        $data=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->sucursal)->update
-        ([
-            'datos_adiconales' => json_encode(['definicion_personal'=>$datos_adiconales])
+        $data=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->idSucursal)
+    ->update(
+        [
+            'datos_adiconales' => json_encode(['datos_adiconales'=>$request->valores])
         ]);
         echo('datos guardados');
       }

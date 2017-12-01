@@ -6,29 +6,45 @@ var app = angular.module('nextbook20App')
     $scope.$routeSegment = $routeSegment;
   });
 
-  app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, mainService) {
+  app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, mainService, establecimientosService) {
+    $scope.datosSucursal=$localStorage.sucursal;
+    $scope.lista = [
+    ];
 
-    $scope.lista = [{}];
+     $scope.eliminar = function(row) {
+       if (confirm("¿Seguro que desea eliminar?")) {
+         $scope.lista.splice(row, 1);
+       }
+     };
 
-    $scope.eliminar = function(row) {
-      if (confirm("¿Seguro que desea eliminar?")) {
-        $scope.lista.splice(row, 1);
-      }
+     $scope.agregar = function() {
+      var id=$localStorage.sucursal.id
+       $scope.lista.push({
+         tipo: '',
+         numero: '',
+       })
+     };
+       $scope.recuperarValores = function() {
+        var id=$localStorage.sucursal.id;
+        console.log(id);
+       $scope.json = angular.toJson($scope.lista);
+       console.log($scope.json);
+       establecimientosService.UpdateAddSucursal().send({valores: $scope.json,idSucursal: id}).$promise.then(function(data){
+         if (data.respuesta) {
+           $mdToast.show({
+               hideDelay   : 5000,
+               position    : 'bottom right',
+               controller  : 'notificacionCtrl',
+               templateUrl : 'views/notificaciones/guardar.html'
+             });
+           $location.path('/nb');
+         }
+       });
     };
 
-    $scope.agregar = function() {
-      $scope.lista.push({
-        tipo: '',
-        numero: ''
-      });
-    };
-
-    $scope.recuperarValores = function() {
-      $("#JSON").text(JSON.stringify($scope.lista));
-    };
 
     $scope.datosEmpresa=$localStorage.datosE;
-    $scope.datosSucursal=$localStorage.sucursal;
+
     $scope.datosPersonal=$localStorage.datosPersona;
     $scope.data = {nom_sucursal: $scope.datosSucursal.nombre};
     $scope.form = {descripcion:''};
@@ -123,25 +139,26 @@ var app = angular.module('nextbook20App')
     }
 
     $scope.showPrompt2 = function(ev) {
-      var numero = $mdDialog.prompt()
-        .title('¿Desea ingresar otro numero telefónico?')
-        .placeholder("Telefono o celular")
-        .placeholder('09XXXXXXXX')
-        .ariaLabel('Numero')
-        .targetEvent(ev)
-        .required(true)
-        .ok('Agregar')
-        .cancel('Cancelar');
+    var numero = $mdDialog.prompt()
+      .title('¿Desea ingresar otro numero telefónico?')
+      .placeholder("Telefono o celular")
+      .placeholder('09XXXXXXXX')
+      .ariaLabel('Numero')
+      .targetEvent(ev)
+      .required(true)
+      .ok('Agregar')
+      .cancel('Cancelar');
 
-      $mdDialog.show(numero).then(function(result) {
-        $scope.numm= 'Añadio el numero: '+result;
-        $scope.num=  result ;
-      }, function() {
-        $scope.num = '';
-      });
-    }
+    $mdDialog.show(numero).then(function(result) {
+      $scope.numm= 'Añadio el numero: '+result;
+      $scope.num=  result ;
+    }, function() {
+      $scope.num = '';
+    });
+  }
 
-  $scope.showPrompt = function(ev) {
+    //------------------------Agregar correo-----------------------------------
+     $scope.showPrompt = function(ev) {
     var confirm = $mdDialog.prompt()
       .title('¿Desea ingresar otro correo?')
       .placeholder('example@example.com')
@@ -158,32 +175,39 @@ var app = angular.module('nextbook20App')
       $scope.status = '';
     });
   }
+
 });
 
-  app.directive('editableTd', [function() {
-   return {
-     restrict: 'A',
-     link: function(scope, element, attrs) {
-       element.css("cursor", "pointer");
-       element.attr('contenteditable', 'true');
-       if (attrs.type=="number") {
-         element.keypress(function(event) {
-           if(attrs.type=="number" && event.keyCode < 48 || event.keyCode > 57)
-             return false;
-         });
-       }
-       
-       element.bind('blur keyup change', function() {
-         scope.lista[attrs.row][attrs.field] = element.text();
-         scope.$digest();
-       });
-
-       element.bind('click', function() {
-         document.execCommand('selectAll', false, null)
+app.directive('editableTd', [function() {
+ return {
+   restrict: 'A',
+   link: function(scope, element, attrs) {
+     element.css("cursor", "pointer");
+     element.attr('contenteditable', 'true');
+     if (attrs.type=="number") {
+       element.keypress(function(event) {
+         if(attrs.type=="number" && event.keyCode < 48 || event.keyCode > 57)
+           return false;
        });
      }
-   };
-  }]);
+     
+     element.bind('blur keyup change', function() {
+       scope.lista[attrs.row][attrs.field] = element.text();
+       // scope.$digest();
+     });
+
+     element.bind('click', function() {
+       document.execCommand('selectAll', false, null)
+     });
+   }
+ };
+}]);
+
+
+
+
+
+
 
   app.controller('configuracionPerfilPersonalCtrl', function ($scope, $mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, colaboradores_Service) {
     // --------------------------------------abrir primer panel por defecto--------------------------------------
