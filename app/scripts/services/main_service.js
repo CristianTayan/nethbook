@@ -56,6 +56,15 @@ var app = angular.module('nextbook20App');
             });
         };
 
+        this.recuperaClave = function() {
+            return $resource(urlService.server().appnext() + 'restaurarContrasenia', {}, {
+            get:    {
+                        method: 'POST', isArray: false,
+                        
+                    }
+            });
+        };
+
         // -----------------------------------------------------    BUSCAR INFORMACION RUC   -----------------------------------------------------------
         this.guardar_datos_ruc = function($data) {
             return $resource(urlService.server().appnext()+'Save_Datos_Ruc', {}, {

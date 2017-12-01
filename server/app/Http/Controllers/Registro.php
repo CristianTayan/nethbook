@@ -34,7 +34,13 @@ class Registro extends Controller {
     // Autenticacion
     // $this->user = JWTAuth::parseToken()->authenticate();
   }
-
+  // public function prueba(Request $request)
+  //     {
+  //         $existenciaRucEnSistema = DB::connection('nextbookconex')->select("SELECT nick FROM administracion.empresas WHERE ruc_ci = '1090084247001'");
+  //         // return response()->json(["respuesta"=>$existenciaRucEnSistema]);
+  //         return response()->json(["respuesta" =>$existenciaRucEnSistema], 200);
+  //         // @return $existenciaRucEnSistema;
+  //     } 
   public function Buscar_Informacion_Ruc(Request $request){
     $existenciaRucEnSistema = DB::connection('nextbookconex')->select("SELECT ruc_ci FROM administracion.empresas WHERE ruc_ci = '".$request->input('ruc')."'");
     
