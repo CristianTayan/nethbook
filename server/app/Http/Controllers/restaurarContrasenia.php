@@ -45,19 +45,22 @@ class restaurarContrasenia extends Controller
                 'schema' => 'usuarios',
                 'sslmode' => 'prefer',
             ));
-            // consulta usuario hacer tebla de referencia con Persona->Usuario o poner campo correo en tabla usuario// id usuario quemado hacer una consulta jhoim y subir la rama 
-            $idUsuario = '201711291145355a1ee42fe1ceb';
-            $campos = ['correo_electronico'];
-            $userDataEmail = DB::connection($name_bdd)->table('public.personas_correo_electronico')->select($campos)->where('id_persona',3)->first();
-            $userData = DB::connection($name_bdd)->table('public.personas')->select('primer_nombre')->where('id',3)->first();
-            $res = DB::connection($name_bdd)->statement("SELECT * FROM actualiza_clave ('".$idUsuario."' , '".bcrypt($pass)."')");
-            $data['correo'] = $userDataEmail->correo_electronico;
-            $data['nombre_comercial'] = $userData->primer_nombre;
-            $data['ruc'] = $request->ruc;
-            $data['user_nextbook'] = 'alex';
-            $data['pass_nextbook'] = $pass;
-            $this->enviar_correo($data);
-            return response()->json(["respuesta" => true], 200);
+            // consulta usuario hacer tebla de referencia con Persona->Usuario o poner campo correo en tabla usuario// id usuario quemado hacer una consulta jhoim y subir la rama
+
+            // $idUsuario = '201711291145355a1ee42fe1ceb';
+            $idUsuario = DB::connection($name_bdd)->table('usuarios.usuarios')->select('id')->where('nick',$request->nick."@nethbook.com")->first();
+
+            // $campos = ['correo_electronico'];
+            // $userDataEmail = DB::connection($name_bdd)->table('public.personas_correo_electronico')->select($campos)->where('id_persona',3)->first();
+            // $userData = DB::connection($name_bdd)->table('public.personas')->select('primer_nombre')->where('id',3)->first();
+            // $res = DB::connection($name_bdd)->statement("SELECT * FROM actualiza_clave ('".$idUsuario."' , '".bcrypt($pass)."')");
+            // $data['correo'] = $userDataEmail->correo_electronico;
+            // $data['nombre_comercial'] = $userData->primer_nombre;
+            // $data['ruc'] = $request->ruc;
+            // $data['user_nextbook'] = 'alex';
+            // $data['pass_nextbook'] = $pass;
+            // $this->enviar_correo($data);
+            return response()->json(["respuesta" => $idUsuario->id], 200);
         }
         if (!$existenciaRucEnSistema) {
             return response()->json(["respuesta" => false], 200);
