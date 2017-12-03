@@ -138,7 +138,7 @@
    <md-expansion-panel md-component-id="expansionPanelFive">
       <md-expansion-panel-collapsed>
           <div class="md-title" >Contactos</div>
-          <div class="md-summary" >{{num}}</div>
+          <div class="md-summary" ></div>
           <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
             <md-icon class="md-accent">keyboard_arrow_down</md-icon>
         </md-button>
@@ -150,53 +150,69 @@
           </md-expansion-panel-header>
           <md-expansion-panel-content>
           <md-toolbar>
-            <h6 class="md-padding">Contactos</h6>
+            <h6 style="margin-left: 10px">Lista de contactos</h6>
           </md-toolbar>
-                  <div class="panel panel-default">
-                     <div class="panel-body">
-                       <table md-table md-row-select >
-                         <thead md-head class="md-primary">
-                           <tr md-row >
-                             <th md-column md-order-by="nameToLower" style="text-align: center" >Tipo</th>
-                             <th md-column md-order-by="nameToLower" style="text-align: center">Numero</th>
-                             <th md-column md-order-by="nameToLower" style="text-align: center"></th>
-                           </tr>
-                         </thead>
-                         <tbody>
-                           <tr style="text-align: center; border-bottom: dashed 1px blue;" ng-repeat="item in lista">
-                             <td md-cell editable-td row="{{$index}}" field="tipo">
-                              <md-select ng-model="item.tipo" >
-                                    <md-option ng-model="item.tipo" >Teléfono</md-option>
-                                    <md-option ng-model="item.tipo">Celular</md-option>                                    
-                                </md-select>
-                               
-                             </td>
-                             <td editable-td row="{{$index}}" field="numero">
-                               {{item.numero}}
-                             </td>
-                             <td>
-                              <md-button class="md-icon-button md-warn" style="cursor: pointer;" ng-click='eliminar($index)'><i class="material-icons">delete</i> <md-tooltip md-direction="top"> Eliminar Contacto
-                              </md-tooltip> </md-button>
-                               <!-- <span  style="cursor: pointer;" ng-click='eliminar($index)' /> -->
-                             </td>
-                           </tr>
-                         </tbody>
-                       </table>
-                       <div layout="row" layout-align="center center">
-                          <md-button class=" md-raised md-primary" ng-click='agregar()'><md-tooltip>
-                                 ¿Agregar Contacto?
-                               </md-tooltip>
-                                 nuevo <span class="glyphicon glyphicon-plus"></span>
-                               </md-button>
-                               <md-button class="md-raised" ng-click='recuperarValores()'>Guardar Contacto</md-button>
-                       </div>
-                       <br>
-                       <br>
-                       <div id='JSON' />
-                     </div>
-                   </div>
-                 </div>
-          </div>      
+
+          <div>
+            <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                  <div layout="row" layout-align="center center">
+                <div class="panel panel-default">
+                      <div class="panel-body">
+                        <form ng-submit="addNew(listas)">
+                            <div  layout="row">
+                            <md-input-container class="md-icon-float md-block" flex="35">
+                            <md-icon class="md-primary">airplay</md-icon>
+                            <label>Tipo</label>
+                              <md-select class="form-control" ng-model="listas.tipo" required>
+                                <md-option ng-repeat="tipo in tipos" value="{{tipo}}">{{tipo}}</md-option>
+                              </md-select>
+                            </md-input-container>  
+                            <span flex="10"></span>
+                            <md-input-container class="md-icon-float md-block" flex="35">
+                                <md-icon class="md-primary">phone</md-icon>
+                                <label>Numero</label>
+                                <input type="text" class="form-control" ng-model="listas.numero" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
+                            </md-input-container>   
+                            
+                                <md-button type="submit"  class="md-fab md-mini"> <md-tooltip md-direction="right">Agregar</md-tooltip> <md-icon>add</md-icon></md-button>   
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-hide="!listas.length">
+            <div class="col-md-12">
+                <table md-table md-row-select>
+                    <thead md-head>
+                        <tr md-row>
+                            <th md-column md-order-by="nameToLower"></th>
+                            <th md-column md-order-by="nameToLower">Tipo de Contacto</th>
+                            <th md-column md-order-by="nameToLower">Número</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="lista in listas">
+                            <td>
+                                <md-checkbox  ng-model="lista.selected"/></md-checkbox></td>
+                            <td>{{lista.tipo}}</td>
+                            <td>{{lista.numero}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div layout="row" layout-align="center center">
+                    <md-button class="md md-raised md-warn" ng-click="remove()" value="Remove"><md-icon>delete</md-icon>Eliminar contacto</md-button>
+                    <md-button class="md-raised md-primary" ng-click='recuperarValores()'><md-icon>save</md-icon>Guardar Cambios</md-button> 
+                </div>
+                
+            </div>
+        </div>
+    </div>
+          </div>   
                  
                 
           </md-expansion-panel-content>
@@ -230,9 +246,4 @@
       </md-expansion-panel-expanded>
   </md-expansion-panel> 
 </md-expansion-panel-group>
-<style type="text/css">
-  .table > tbody > tr:hover {
-  background-color: #F2F2F2;
-  cursor: pointer;
-}
-</style>
+

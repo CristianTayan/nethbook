@@ -7,27 +7,48 @@ var app = angular.module('nextbook20App')
   });
 
   app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, mainService, establecimientosService) {
-    $scope.datosSucursal=$localStorage.sucursal;
-    $scope.lista = [
-    ];
+    $scope.tipos = [
+          "Teléfono",
+          "Celular",
+          "Hogar",
+      ];
 
-     $scope.eliminar = function(row) {
-       if (confirm("¿Seguro que desea eliminar?")) {
-         $scope.lista.splice(row, 1);
-       }
-     };
+    $scope.listas = [];
+    
+        $scope.addNew = function(listas){
+            $scope.listas.push({ 
+                'tipo': listas.tipo, 
+                'numero': listas.numero,
+            });
+            $scope.PD = {};
+        };
+    
+        $scope.remove = function(){
+            var newDataList=[];
+            $scope.selectedAll = false;
+            angular.forEach($scope.listas, function(selected){
+                if(!selected.selected){
+                    newDataList.push(selected);
+                }
+            }); 
+            $scope.listas = newDataList;
+        };
+    
+        $scope.checkAll = function () {
+            if (!$scope.selectedAll) {
+                $scope.selectedAll = true;
+            } else {
+                $scope.selectedAll = false;
+            }
+            angular.forEach($scope.listas, function (listas) {
+                listas.selected = $scope.selectedAll;
+            });
+        }; 
 
-     $scope.agregar = function() {
-      var id=$localStorage.sucursal.id
-       $scope.lista.push({
-         tipo: '',
-         numero: '',
-       })
-     };
        $scope.recuperarValores = function() {
         var id=$localStorage.sucursal.id;
         console.log(id);
-       $scope.json = angular.toJson($scope.lista);
+       $scope.json = angular.toJson($scope.listas);
        console.log($scope.json);
        establecimientosService.UpdateAddSucursal().send({valores: $scope.json,idSucursal: id}).$promise.then(function(data){
          if (data.respuesta) {
@@ -44,7 +65,7 @@ var app = angular.module('nextbook20App')
 
 
     $scope.datosEmpresa=$localStorage.datosE;
-
+    $scope.datosSucursal=$localStorage.sucursal;
     $scope.datosPersonal=$localStorage.datosPersona;
     $scope.data = {nom_sucursal: $scope.datosSucursal.nombre};
     $scope.form = {descripcion:''};
