@@ -6,6 +6,7 @@
 @import url("md-tabs.css");
 @import url("registro.css");
 @import url("dashboard-menu.css");
+@import url("scroll.css");
 @import url("colores.css");
 
 
@@ -446,26 +447,6 @@ md-autocomplete input:not(.md-input) {
     width: 160px;
     height: 160px;
     border-radius: 100px;
-}
-
-
-/*--------------------------------------------SCROLL GENERAL--------------------------------------------*/
-
-::-webkit-scrollbar {
-    width: 5px;
-    /* for vertical scrollbars */
-    height: 12px;
-    /* for horizontal scrollbars */
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(0, 20, 0, 0.1);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #3E50B4;
-    border-radius: 10px;
 }
 
 

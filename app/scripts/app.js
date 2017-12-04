@@ -318,9 +318,9 @@ var app = angular.module('nextbook20App', [
       })
         .within()
           .segment('inicio', {
-              templateUrl: 'views/dashboard/inicio.html',
-              controller: 'inicio_Ctrl',
-              default: true
+            templateUrl: 'views/dashboard/inicio.html',
+            controller: 'inicio_Ctrl',
+            default: true
           })
             // Segmento Aplicaciones/Modulos
         .segment('app', {
