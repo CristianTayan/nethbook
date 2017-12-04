@@ -8,6 +8,7 @@ var app = angular.module('nextbook20App')
   		var listcolor = ['#F34235','#E81D62','#3E50B4', '#2095F2','#4BAE4F', '#8AC249'];
   		var random = Math.floor(Math.random()*(5 - 0 + 1)) + 0;
   		$scope.color = listcolor[random];
+  		var contadorIngreso = 0;
 	    // LOGUEO INGRESO
   		$scope.ingresar_colaborador = function() {
   		//inicializa varibles del mapa
@@ -17,7 +18,7 @@ var app = angular.module('nextbook20App')
 			$scope.data_ingreso_colaborador.ruc=$routeParams.ruc;
 			var obj = $scope.data_ingreso_colaborador;
 	        colaboradores_Service.Ingresar_Colaborador().acceso({acceso:obj,info_servidor:'', ip_cliente:'192.168.0.1', macadress:'00:00:00:00:00'}).$promise.then(function(data) {
-	        	if (data.respuesta == false) {
+	        	if (data.respuesta === false && contadorIngreso <= 3) {
 	            	$mdDialog.show(
 			            $mdDialog.alert()
 			            .parent(angular.element(document.querySelector('#dialogContainer')))
@@ -27,8 +28,61 @@ var app = angular.module('nextbook20App')
 			            .ok('Entendido')
 			            .openFrom('#left')
 			        );
+	            contadorIngreso++;
 	            } if (data.respuesta == true) {
                 $rootScope.sessionStatus = true;
+	            }
+						if (data.respuesta === false && contadorIngreso > 3) {	
+								var obje1 = {'ruc' : null , 'nick': null, 'correo': null, 'ci' : null};
+		        			var confirm = $mdDialog.prompt()
+							      .title('¿Recuperar Clave/password de acceso?')
+							      .textContent('Ingrese su Nick o Correo electronico')
+							      .placeholder('Nick ó E-mail')				
+							      // .initialValue('Nick ó ejemplo@nethbook.com')							    
+							      .required(true)
+							      .ok('RECUPERAR')
+							      .cancel('CANCELAR');
+							    	$mdDialog.show(confirm).then(function(result) {
+							    	if (result.indexOf("@") > 0) 
+							    	{
+							    		obje1.correo = result;
+							    		obje1.nick = -1;
+						    			obje1.ruc = $routeParams.ruc;				    			            			
+							    	}
+							    	if (result.indexOf("@") < 0) {
+							    		obje1.nick = result;
+							    		obje1.correo = -1;
+							    		obje1.ruc = $routeParams.ruc;
+							    	}
+							    	mainService.recuperaClave().get(obje1).$promise.then(function(data){
+						        	if (data.respuesta) {
+							    		$mdDialog.show(
+								         $mdDialog.alert()
+							            .parent(angular.element(document.querySelector('#dialogContainer')))
+							            .clickOutsideToClose(true)
+							            .title('Envio de Credenciales')
+							            .textContent('Revice el Correo Electronico Propietario de su Cueunta')
+							            .ok('Entendido')
+							            .openFrom('#left')
+								        );				        		
+						        	}
+						        	if (!data.respuesta) {
+						        		$mdDialog.show(
+								         $mdDialog.alert()
+							            .parent(angular.element(document.querySelector('#dialogContainer')))
+							            .clickOutsideToClose(true)
+							            .title('Envio de Credenciales')
+							            .textContent('Las Credenciales ingresadas no son Validas')
+							            .ok('Entendido')
+							            .openFrom('#left')
+								        );
+						        	}
+						        });					    	
+							    }, function() {								    	
+									    $location.path('/Registro');
+							    });				            
+		        		}
+	             if (data.respuesta == true) {
 		            $localStorage.token = data.token;
 		            $localStorage.datosE = data.datosE;
 		            $localStorage.datosPersona = data.datosPersona;

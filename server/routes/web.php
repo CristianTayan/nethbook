@@ -24,6 +24,8 @@ Route::group(['middleware' => 'cors'], function(){
     Route::post('Get_Ciudades', 'Registro@Get_Ciudades'); 
     // --------------------- ACTIVAR CUENTA  ----------------------------------
     Route::post('Activar_Cuenta', 'Registro@Activar_Cuenta');
+        /////------------------------RESTAURA CONTRASEÑA
+    Route::post('restaurarContrasenia','restaurarContrasenia@recuperaClave');
     // Ingreso
     Route::post('Acceso','login@Acceso');
     Route::get('Salir','login@Salir');
@@ -248,6 +250,7 @@ Route::group(['middleware' => 'cors'], function(){
         Route::post('Add_Persona','Clientes@Add_Persona');
         Route::post('Add_Empresa','Clientes@Add_Empresa');
         Route::post('Existencia_Persona','Clientes@Existencia_Persona');
+
         //Sessiones
         Route::post('Refresh_Token','Sesiones@Refresh_Token');
         Route::post('CloseSession','Sesiones@closeSession');
