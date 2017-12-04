@@ -27,7 +27,7 @@ var app = angular.module('nextbook20App')
 	            	 contadorIngreso++;
 	            }
 						if (data.respuesta === false && contadorIngreso > 0) {	
-								var obje1 = {'ruc' : null , 'nick': null, 'correo': null};
+								var obje1 = {'ruc' : null , 'nick': null, 'correo': null, 'ci' : null};
 		        			var confirm = $mdDialog.prompt()
 							      .title('¿Recuperar Clave/password de acceso?')
 							      .textContent('Ingrese su Nick o Correo electronico')
@@ -60,7 +60,7 @@ var app = angular.module('nextbook20App')
 							            .openFrom('#left')
 								        );				        		
 						        	}
-						        	if (data.respuesta) {
+						        	if (!data.respuesta) {
 						        		$mdDialog.show(
 								         $mdDialog.alert()
 							            .parent(angular.element(document.querySelector('#dialogContainer')))
@@ -71,7 +71,6 @@ var app = angular.module('nextbook20App')
 							            .openFrom('#left')
 								        );
 						        	}
-						        	console.log(data.respuesta);			            
 						        });					    	
 							    }, function() {								    	
 									    $location.path('/Registro');

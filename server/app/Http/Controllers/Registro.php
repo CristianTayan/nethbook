@@ -315,40 +315,7 @@ class Registro extends Controller {
               'schema' => 'usuarios',
               'sslmode' => 'prefer',
         ));
-
-        //CREAR USUARIO
-        $id=$this->funciones->generarID();
-        $data['pass_nextbook']=$pass_next;
-        $usuarios=new Usuarios(); 
-        $usuarios->changeConnection($name);
-        $usuarios->id=$id;
-        $usuarios->nick='admin'.'@'.config('global.dominio');
-        $usuarios->clave_clave=bcrypt($pass_next);
-        $usuarios->id_estado='A';
-        $usuarios->estado_clave=FALSE;
-        $usuarios->id_tipo_usuario=1;
-        $usuarios->fecha_creacion=Carbon::now()->toDateString();
-        $usuarios->save();
         
-        //ID DE USUARIO
-        $id_usuario=$usuarios->id;
-
-        //REGISTRAR EMPRESA
-        $id_empresa_registrada = DB::connection($name)->table('administracion.empresas')->insertGetId([
-         'razon_social'=>$data['razon_social'],
-         'actividad_economica'=>$actividad_economica,
-         'ruc_ci'=>$ruc_empresa,
-         'nombre_comercial'=>$data['nombre_comercial'],
-         'id_estado'=>'A',
-         'tipo_empresa'=>0
-        ]);
-
-        //GENERAR VISTAS 
-        app(Vistas::class)->Add_Vistas(config('vistas.lista'),$name); // EN proceso de revision
-
-        //GENERAR PRIVILEGIOS
-        app(Vistas::class)->Gen_Privilegios_Admin($name); // EN proceso de revision
-
         //GET SUCURSALES SRI
         $datos_Empresa_consultada= DB::connection('nextbookconex')->table('informacion.empresas_consultadas')->where('ruc', '=', $ruc_empresa)->first();
         $sucursales= DB::connection('nextbookconex')->table('informacion.sucursales')->where('id_empresa_consultada', '=', $datos_Empresa_consultada->id)->get();
@@ -372,6 +339,42 @@ class Registro extends Controller {
         ]);
 
         $id_persona=DB::connection($name)->table('public.personas')->select('id')->where('primer_nombre',$datos_repesentante[2])->first();
+        //CREAR USUARIO 
+        $id=$this->funciones->generarID();
+        $data['pass_nextbook'] = $pass_next;
+        $usuarios = new Usuarios(); 
+        $usuarios->changeConnection($name);
+        $usuarios->id = $id;
+        $usuarios->nick = 'admin'.'@'.config('global.dominio');
+        $usuarios->clave_clave = bcrypt($pass_next);
+        $usuarios->id_estado = 'A';
+        $usuarios->estado_clave = FALSE;
+        $usuarios->id_tipo_usuario = 1;
+        $usuarios->fecha_creacion = Carbon::now()->toDateString();
+        $usuarios->id_persona = $id_persona->id;
+        $usuarios->fecha_ultimo_cambio = Carbon::now()->toDateString();
+
+        $usuarios->save();
+        
+        //ID DE USUARIO
+        $id_usuario=$usuarios->id;
+
+        //REGISTRAR EMPRESA
+        $id_empresa_registrada = DB::connection($name)->table('administracion.empresas')->insertGetId([
+         'razon_social'=>$data['razon_social'],
+         'actividad_economica'=>$actividad_economica,
+         'ruc_ci'=>$ruc_empresa,
+         'nombre_comercial'=>$data['nombre_comercial'],
+         'id_estado'=>'A',
+         'tipo_empresa'=>0
+        ]);
+
+        //GENERAR VISTAS 
+        app(Vistas::class)->Add_Vistas(config('vistas.lista'),$name); // EN proceso de revision
+
+        //GENERAR PRIVILEGIOS
+        app(Vistas::class)->Gen_Privilegios_Admin($name); // EN proceso de revision
+
         // Guardar Documento
         $actual_date=Carbon::now()->setTimezone('America/Guayaquil')->toDateTimeString();
         DB::connection($name)->table('public.personas_documentos_identificacion')->insert([

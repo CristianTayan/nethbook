@@ -14,15 +14,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: Taller_mecanico; Type: SCHEMA; Schema: -; Owner: postgres
---
-
-CREATE SCHEMA "Taller_mecanico";
-
-
-ALTER SCHEMA "Taller_mecanico" OWNER TO postgres;
-
---
 -- Name: administracion; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -73,6 +64,15 @@ CREATE SCHEMA talento_humano;
 
 
 ALTER SCHEMA talento_humano OWNER TO postgres;
+
+--
+-- Name: taller_mecanico; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA taller_mecanico;
+
+
+ALTER SCHEMA taller_mecanico OWNER TO postgres;
 
 --
 -- Name: usuarios; Type: SCHEMA; Schema: -; Owner: postgres
@@ -352,47 +352,11 @@ $$;
 
 ALTER FUNCTION usuarios.actualiza_clave(iden character varying, contra character varying) OWNER TO postgres;
 
-SET search_path = "Taller_mecanico", pg_catalog;
+SET search_path = administracion, pg_catalog;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
-
---
--- Name: Aseguradora; Type: TABLE; Schema: Taller_mecanico; Owner: postgres
---
-
-CREATE TABLE "Aseguradora" (
-    id integer NOT NULL,
-    contacto json,
-    id_empresa integer NOT NULL
-);
-
-
-ALTER TABLE "Aseguradora" OWNER TO postgres;
-
---
--- Name: Aseguradora_id_seq; Type: SEQUENCE; Schema: Taller_mecanico; Owner: postgres
---
-
-CREATE SEQUENCE "Aseguradora_id_seq"
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE "Aseguradora_id_seq" OWNER TO postgres;
-
---
--- Name: Aseguradora_id_seq; Type: SEQUENCE OWNED BY; Schema: Taller_mecanico; Owner: postgres
---
-
-ALTER SEQUENCE "Aseguradora_id_seq" OWNED BY "Aseguradora".id;
-
-
-SET search_path = administracion, pg_catalog;
 
 --
 -- Name: actividad_economica; Type: TABLE; Schema: administracion; Owner: postgres
@@ -3165,6 +3129,42 @@ ALTER TABLE tipos_contratos_id_seq OWNER TO postgres;
 ALTER SEQUENCE tipos_contratos_id_seq OWNED BY tipos_contratos.id;
 
 
+SET search_path = taller_mecanico, pg_catalog;
+
+--
+-- Name: Aseguradora; Type: TABLE; Schema: taller_mecanico; Owner: postgres
+--
+
+CREATE TABLE "Aseguradora" (
+    id integer NOT NULL,
+    contacto json,
+    id_empresa integer NOT NULL
+);
+
+
+ALTER TABLE "Aseguradora" OWNER TO postgres;
+
+--
+-- Name: Aseguradora_id_seq; Type: SEQUENCE; Schema: taller_mecanico; Owner: postgres
+--
+
+CREATE SEQUENCE "Aseguradora_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Aseguradora_id_seq" OWNER TO postgres;
+
+--
+-- Name: Aseguradora_id_seq; Type: SEQUENCE OWNED BY; Schema: taller_mecanico; Owner: postgres
+--
+
+ALTER SEQUENCE "Aseguradora_id_seq" OWNED BY "Aseguradora".id;
+
+
 SET search_path = usuarios, pg_catalog;
 
 --
@@ -3214,7 +3214,10 @@ CREATE TABLE usuarios (
     id_estado character varying(5),
     fecha_creacion timestamp with time zone,
     estado_clave boolean DEFAULT true NOT NULL,
-    id_tipo_usuario integer NOT NULL
+    id_tipo_usuario integer NOT NULL,
+    id_persona integer,
+    fecha_actualiza timestamp without time zone DEFAULT now() NOT NULL,
+    fecha_ultimo_cambio timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -3246,6 +3249,27 @@ COMMENT ON COLUMN usuarios.id_estado IS 'estado del usuario';
 --
 
 COMMENT ON COLUMN usuarios.fecha_creacion IS 'fecha en la que fue creado el usuario';
+
+
+--
+-- Name: COLUMN usuarios.id_persona; Type: COMMENT; Schema: usuarios; Owner: postgres
+--
+
+COMMENT ON COLUMN usuarios.id_persona IS 'Relaciona usuarios con persona';
+
+
+--
+-- Name: COLUMN usuarios.fecha_actualiza; Type: COMMENT; Schema: usuarios; Owner: postgres
+--
+
+COMMENT ON COLUMN usuarios.fecha_actualiza IS 'se define para marcar la fecha de peticon de claves por el usuario';
+
+
+--
+-- Name: COLUMN usuarios.fecha_ultimo_cambio; Type: COMMENT; Schema: usuarios; Owner: postgres
+--
+
+COMMENT ON COLUMN usuarios.fecha_ultimo_cambio IS 'se establese para cambios o esperas de nuevos interacciones';
 
 
 SET search_path = ventas, pg_catalog;
@@ -3531,15 +3555,6 @@ ALTER TABLE producto_descuento_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE producto_descuento_id_seq OWNED BY producto_descuento.id;
-
-
-SET search_path = "Taller_mecanico", pg_catalog;
-
---
--- Name: id; Type: DEFAULT; Schema: Taller_mecanico; Owner: postgres
---
-
-ALTER TABLE ONLY "Aseguradora" ALTER COLUMN id SET DEFAULT nextval('"Aseguradora_id_seq"'::regclass);
 
 
 SET search_path = administracion, pg_catalog;
@@ -3967,6 +3982,15 @@ ALTER TABLE ONLY jornadas_de_trabajo ALTER COLUMN id SET DEFAULT nextval('jornad
 ALTER TABLE ONLY tipos_contratos ALTER COLUMN id SET DEFAULT nextval('tipos_contratos_id_seq'::regclass);
 
 
+SET search_path = taller_mecanico, pg_catalog;
+
+--
+-- Name: id; Type: DEFAULT; Schema: taller_mecanico; Owner: postgres
+--
+
+ALTER TABLE ONLY "Aseguradora" ALTER COLUMN id SET DEFAULT nextval('"Aseguradora_id_seq"'::regclass);
+
+
 SET search_path = usuarios, pg_catalog;
 
 --
@@ -4025,23 +4049,6 @@ ALTER TABLE ONLY formas_pago_facturas ALTER COLUMN id SET DEFAULT nextval('forma
 --
 
 ALTER TABLE ONLY producto_descuento ALTER COLUMN id SET DEFAULT nextval('producto_descuento_id_seq'::regclass);
-
-
-SET search_path = "Taller_mecanico", pg_catalog;
-
---
--- Data for Name: Aseguradora; Type: TABLE DATA; Schema: Taller_mecanico; Owner: postgres
---
-
-COPY "Aseguradora" (id, contacto, id_empresa) FROM stdin;
-\.
-
-
---
--- Name: Aseguradora_id_seq; Type: SEQUENCE SET; Schema: Taller_mecanico; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Aseguradora_id_seq"', 1, false);
 
 
 SET search_path = administracion, pg_catalog;
@@ -4235,6 +4242,7 @@ COPY auditoria (id, tabla_afectada, operacion, variable_anterior, variable_nueva
 6	empleados                                    	I	\N	(6,1,A,"2017-06-05 12:46:35.094297-05","usuario prueba 1",)	2017-06-05 12:46:35.094297	postgres                                     
 7	empleados                                    	U	(6,1,A,"2017-06-05 12:46:35.094297-05","usuario prueba 1",)	(1,1,A,"2017-06-05 12:46:35.094297-05","usuario prueba 1",)	2017-06-05 12:46:52.813799	postgres                                     
 8	tipo_accion_vista                            	I	\N	(1,t,t,t,A,"2017-10-31 10:46:42.308461")	2017-10-31 10:46:42.308461	postgres                                     
+9	estados                                      	I	\N	(KPC,"Pendiente Cambio","La clave esta pendiente de ser Cambida",2017-12-02)	2017-12-02 13:32:27.570609	postgres                                     
 \.
 
 
@@ -4242,7 +4250,7 @@ COPY auditoria (id, tabla_afectada, operacion, variable_anterior, variable_nueva
 -- Name: auditoria_id_seq; Type: SEQUENCE SET; Schema: auditoria; Owner: postgres
 --
 
-SELECT pg_catalog.setval('auditoria_id_seq', 8, true);
+SELECT pg_catalog.setval('auditoria_id_seq', 9, true);
 
 
 --
@@ -4503,8 +4511,6 @@ SELECT pg_catalog.setval('repositorio_facturas_rechazadas_id_factura_r_seq', 6, 
 --
 
 COPY rol_pagos_empleados (id, id_empleado, mes_pago) FROM stdin;
-3	1	6
-4	1	6
 \.
 
 
@@ -4927,6 +4933,7 @@ FR	Rechasada	Factura rechasada	2017-04-24
 FCC	Credito	Factura en credito de la factura	2017-04-24
 FCV	Vencida	Factura credito vencido	2017-04-24
 FCP	Cancelado	Factura cancelada o pagada en su totalidad	2017-04-24
+KPC	Pendiente Cambio	La clave esta pendiente de ser Cambida	2017-12-02
 \.
 
 
@@ -5052,7 +5059,6 @@ SELECT pg_catalog.setval('cargos_id_seq', 1, false);
 --
 
 COPY empleados (id, id_persona, estado, fecha, id_usuario, id_cargo) FROM stdin;
-1	1	A	2017-06-05 12:46:35.094297-05	usuario prueba 1	\N
 \.
 
 
@@ -5060,7 +5066,7 @@ COPY empleados (id, id_persona, estado, fecha, id_usuario, id_cargo) FROM stdin;
 -- Name: empleados_id_seq; Type: SEQUENCE SET; Schema: talento_humano; Owner: postgres
 --
 
-SELECT pg_catalog.setval('empleados_id_seq', 6, true);
+SELECT pg_catalog.setval('empleados_id_seq', 1, true);
 
 
 --
@@ -5100,6 +5106,23 @@ COPY tipos_contratos (id, nombre, descripcion, estado, fecha) FROM stdin;
 SELECT pg_catalog.setval('tipos_contratos_id_seq', 8, true);
 
 
+SET search_path = taller_mecanico, pg_catalog;
+
+--
+-- Data for Name: Aseguradora; Type: TABLE DATA; Schema: taller_mecanico; Owner: postgres
+--
+
+COPY "Aseguradora" (id, contacto, id_empresa) FROM stdin;
+\.
+
+
+--
+-- Name: Aseguradora_id_seq; Type: SEQUENCE SET; Schema: taller_mecanico; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Aseguradora_id_seq"', 1, false);
+
+
 SET search_path = usuarios, pg_catalog;
 
 --
@@ -5122,8 +5145,7 @@ SELECT pg_catalog.setval('tipo_usuario_id_seq', 1, true);
 -- Data for Name: usuarios; Type: TABLE DATA; Schema: usuarios; Owner: postgres
 --
 
-COPY usuarios (id, nick, clave_clave, id_estado, fecha_creacion, estado_clave, id_tipo_usuario) FROM stdin;
-usuario prueba 1	prueba	123455	A	\N	t	1
+COPY usuarios (id, nick, clave_clave, id_estado, fecha_creacion, estado_clave, id_tipo_usuario, id_persona, fecha_actualiza, fecha_ultimo_cambio) FROM stdin;
 \.
 
 
@@ -5258,16 +5280,6 @@ COPY producto_descuento (id, id_producto, id_catalogo, estado, fecha_fin_descuen
 --
 
 SELECT pg_catalog.setval('producto_descuento_id_seq', 1, false);
-
-
-SET search_path = "Taller_mecanico", pg_catalog;
-
---
--- Name: Aseguradora_PK; Type: CONSTRAINT; Schema: Taller_mecanico; Owner: postgres
---
-
-ALTER TABLE ONLY "Aseguradora"
-    ADD CONSTRAINT "Aseguradora_PK" PRIMARY KEY (id);
 
 
 SET search_path = administracion, pg_catalog;
@@ -5792,6 +5804,16 @@ ALTER TABLE ONLY jornadas_de_trabajo
 
 ALTER TABLE ONLY tipos_contratos
     ADD CONSTRAINT "tipo_contrato_PK" PRIMARY KEY (id);
+
+
+SET search_path = taller_mecanico, pg_catalog;
+
+--
+-- Name: Aseguradora_PK; Type: CONSTRAINT; Schema: taller_mecanico; Owner: postgres
+--
+
+ALTER TABLE ONLY "Aseguradora"
+    ADD CONSTRAINT "Aseguradora_PK" PRIMARY KEY (id);
 
 
 SET search_path = usuarios, pg_catalog;
@@ -6367,16 +6389,6 @@ CREATE TRIGGER formas_pago_tg_audit AFTER INSERT OR DELETE OR UPDATE ON formas_p
 --
 
 CREATE TRIGGER producto_descuento_tg_audit AFTER INSERT OR DELETE OR UPDATE ON producto_descuento FOR EACH ROW EXECUTE PROCEDURE public.fun_auditoria();
-
-
-SET search_path = "Taller_mecanico", pg_catalog;
-
---
--- Name: Empresa_aseguradora_FK; Type: FK CONSTRAINT; Schema: Taller_mecanico; Owner: postgres
---
-
-ALTER TABLE ONLY "Aseguradora"
-    ADD CONSTRAINT "Empresa_aseguradora_FK" FOREIGN KEY (id_empresa) REFERENCES administracion.empresas(id);
 
 
 SET search_path = administracion, pg_catalog;
@@ -7005,6 +7017,16 @@ ALTER TABLE ONLY empleados
     ADD CONSTRAINT "id_usuario_empleado_FK" FOREIGN KEY (id_usuario) REFERENCES usuarios.usuarios(id);
 
 
+SET search_path = taller_mecanico, pg_catalog;
+
+--
+-- Name: Empresa_aseguradora_FK; Type: FK CONSTRAINT; Schema: taller_mecanico; Owner: postgres
+--
+
+ALTER TABLE ONLY "Aseguradora"
+    ADD CONSTRAINT "Empresa_aseguradora_FK" FOREIGN KEY (id_empresa) REFERENCES administracion.empresas(id);
+
+
 SET search_path = usuarios, pg_catalog;
 
 --
@@ -7013,6 +7035,14 @@ SET search_path = usuarios, pg_catalog;
 
 ALTER TABLE ONLY tipo_usuario
     ADD CONSTRAINT "estado_FK" FOREIGN KEY (estado) REFERENCES public.estados(id);
+
+
+--
+-- Name: id_persona; Type: FK CONSTRAINT; Schema: usuarios; Owner: postgres
+--
+
+ALTER TABLE ONLY usuarios
+    ADD CONSTRAINT id_persona FOREIGN KEY (id_persona) REFERENCES public.personas(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 SET search_path = ventas, pg_catalog;
