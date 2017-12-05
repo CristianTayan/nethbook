@@ -35,12 +35,12 @@ var app = angular.module('nextbook20App');
               $('.bar').removeClass('medium');
               $('.bar').removeClass('strong');
               $('.bar').addClass('weak');
-              $scope.mensaje= "Nivel Bajo";
+              $scope.mensaje = "Nivel Bajo";
 
             }
           else if (alto.test(passVar) === true){
               $('.bar').addClass('strong');
-              $scope.mensaje= "Nivel Alto";
+              $scope.mensaje = "Nivel Alto";
               $('.bar').removeClass('medium');
               $('.bar').removeClass('weak');
               
@@ -49,13 +49,13 @@ var app = angular.module('nextbook20App');
               $('.bar').removeClass('weak');
               $('.bar').removeClass('strong');
               $('.bar').addClass('medium');
-              $scope.mensaje= "Nivel Medio";
+              $scope.mensaje = "Nivel Medio";
             }
           else {
               $('.bar').removeClass('strong');
               $('.bar').removeClass('medium');
               $('.bar').addClass('weak');
-              $scope.mensaje= "Nivel Bajo";
+              $scope.mensaje = "Nivel Bajo";
             }
 
     };
@@ -93,9 +93,9 @@ var app = angular.module('nextbook20App');
     var self = this;
     //-------------------------------------------------------------- GET TIPOS BIENES SERVICIOS ------------------------------------
       function success_tipo_bienes_servicios(result){
-        $scope.tipo_bienes_servicios=result.respuesta;
+        $scope.tipo_bienes_servicios = result.respuesta;
       }
-      $scope.get_data_tipos_bienes_Servicios=function(){
+      $scope.get_data_tipos_bienes_Servicios = function(){
         mainService.Get_Tipo_Bienes_Servicios().get({},success_tipo_bienes_servicios).$promise.then(function(){},function(error){
           //$scope.get_data_tipos_bienes_Servicios();
         });
@@ -103,9 +103,9 @@ var app = angular.module('nextbook20App');
       $scope.get_data_tipos_bienes_Servicios();
     //-------------------------------------------------------------- GET TIPOS DE EMPRESAS ------------------------------------------
       function success_tipo_empresas(result){
-        $scope.tipo_empresas=result.respuesta;
+        $scope.tipo_empresas = result.respuesta;
       }
-      $scope.get_data_tipos_empresas=function(id){
+      $scope.get_data_tipos_empresas = function(id){
         mainService.Get_Tipo_Actividad_Economica().get({id_bienes_servicios:id},success_tipo_empresas).$promise.then(function(){},function(error){
           //$scope.get_data_tipos_empresas();
         });
@@ -121,7 +121,7 @@ var app = angular.module('nextbook20App');
     };
 
     $scope.selected_actividad = function(val) {
-      $scope.Actividad=val.Actividad;
+      $scope.Actividad = val.Actividad;
     };
 
 
@@ -143,7 +143,7 @@ var app = angular.module('nextbook20App');
                 };
       establecimientosService.Update_Giro_Actividad().send($scope.x).$promise.then(function(data){
         if (data.respuesta) {
-          $localStorage.sucursal.giro_negocio=$scope.Tipo_completo.id;
+          $localStorage.sucursal.giro_negocio = $scope.Tipo_completo.id;
           $mdToast.show({
               hideDelay   : 5000,
               position    : 'bottom right',
