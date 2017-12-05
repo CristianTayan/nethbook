@@ -1,20 +1,20 @@
 <div layout="column">
-  <div layout="row">    
-    <md-sidenav style="max-width:250px;" layout="column" md-component-id="right" md-is-locked-open="$mdMedia('gt-sm')"  flex>
-      <md-card>
+  <div layout="row" layout-align="center">
+    <div layout="row" flex-gt-md="65">
+      <md-card class="menuWith" flex>
         <md-list flex class="md-primary">
           <md-list-item class="md-2-line">
             <md-icon ng-class="{'md-avatar-icon': phone.options.avatarIcon}">home</md-icon>
             <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-              <h3 class="md-title"> Sucursal </h3>
-              <span class="md-subhead">001 / 7</span>
+              <h3 class="md-title"> Empresa </h3>
+              <span class="md-subhead">id: 10211  </span>
             </div>
             <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
               <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
             </md-button>
           </md-list-item>
         </md-list>
-        <img src="images/kristy.png" class="md-card-image" alt="Washed Out">
+        <img src="images/kristy.png" class="md-card-image">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">Actividad</span>
@@ -26,32 +26,17 @@
           </md-card-title-text>
         </md-card-title>
       </md-card>
-    </md-sidenav>
-    
-    <md-content flex>
-      <md-card flex>
-        <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'Portada')">
-          <div ng-style="{'background-image': 'url(' + imgPortada + ')','background-position': 'center'}" class="card__image"></div>
-          <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
-        </div>
-        <div style="position: absolute;">
-          <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Portada')" aria-label="More">
-              <md-icon>add_a_photo</md-icon>
-          </md-button>
-          <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Portada')" aria-label="More">
-              <md-icon>mode_edit</md-icon>
-          </md-button>
-        </div>
-        <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
-          <md-tab id="tab1" aria-controls="tab1-content" md-on-select="tabSelect('info')">
-            Info
-          </md-tab>
-          <md-tab id="tab2" aria-controls="tab2-content" md-on-select="tabSelect('ubicacion')">
-            Ubicacion
-          </md-tab>
-        </md-tabs>
-        <md-content flex md-scroll-y app-view-segment="4"> </md-content>
-      </md-card>
-    </md-content>
+      <md-content flex>
+        <md-card>
+          <img src="{{url(localStorage.imgPortada)}}" class="md-card-image" alt="Washed Out">
+          <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
+            <md-tab id="tab1" aria-controls="tab1-content" md-on-select="tabSelect('info')">
+              Info
+            </md-tab>
+          </md-tabs>
+          <md-content flex md-scroll-y app-view-segment="4"> </md-content>
+        </md-card>
+      </md-content>
+    </div>
   </div>
 </div>

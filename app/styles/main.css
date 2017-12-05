@@ -17,8 +17,10 @@ html {
     font-family: "Roboto";
 }
 .md-title{
-    color: #FF4081!important;
-
+  color: #FF4081!important;
+}
+.menuWith {
+  max-width:250px;
 }
 
 /*----------------------------------------inicio sub menu----------------------------------------*/
