@@ -29,23 +29,28 @@ class Sucursales extends Controller
     }
 
       public function UpdateAddSucursal(Request $request) {
-        // return response($request->valores);
-      // echo $request;
-     // $data_sucursal = DB::connection('comercial_h_1090084247001') -> table('administracion.sucursales')-> where('id',$x) -> first();
       $data_sucursal=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->idSucursal)->first();
       if ($data_sucursal) { 
-        // $data=DB::connection('comercial_h_1090084247001')->table('administracion.sucursales')->where('id',$x)->update
         $data=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->idSucursal)
     ->update(
         [
-            'datos_adiconales' => json_encode(['datos_adiconales'=>$request->valores])
+            'datos_adiconales' => json_encode($request->valores)
         ]);
-        echo('datos guardados');
+
       }
       if (!$data_sucursal) {
          echo("Sucursal No Encontrada");
       }
     }
+
+
+    public function getDatosAdicionales(Request $request)
+ {
+   // $x = 1;
+     $data_sucursal=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->idSucursal)->first();
+    $datosAdicionales = $data_sucursal->datos_adiconales;
+   return response()->json(['respuesta' => json_decode($datosAdicionales)], 200);
+ }
 
     public function Update_Giro_Actividad(Request $request)
     {
