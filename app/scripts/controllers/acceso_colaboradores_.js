@@ -33,7 +33,7 @@ var app = angular.module('nextbook20App');
                 $rootScope.sessionStatus = true;
 	            }
 						if (data.respuesta === false && contadorIngreso > 3) {	
-								var obje1 = {'ruc' : null , 'nick': null, 'correo': null, 'ci' : null};
+								var obje1 = {'ruc' : null , 'nick': null, 'correo': null};
 		        			var confirm = $mdDialog.prompt()
 							      .title('¿Recuperar Clave/password de acceso?')
 							      .textContent('Ingrese su Nick o Correo electronico')
@@ -104,14 +104,16 @@ var app = angular.module('nextbook20App');
 				        $localStorage.menu = data.respuesta;
 				    });
 
+		        let obj = [];
+
 		            if (!$localStorage.cook_session_init) {
-		            	var obj  =	[{
-					    		'id_empresa': $localStorage.datosE.id,
-					    		'ruc_empresa': $routeParams.ruc,
-					    		'razon_social': $localStorage.datosE.razon_social,
-					    		'datos_usuario': $localStorage.datosPersona.primer_nombre+' '+$localStorage.datosPersona.primer_apellido,
-					    		'nick': $scope.data_ingreso_colaborador.nick
-							}];
+		            	obj  =	[{
+						    		'id_empresa': $localStorage.datosE.id,
+						    		'ruc_empresa': $routeParams.ruc,
+						    		'razon_social': $localStorage.datosE.razon_social,
+						    		'datos_usuario': $localStorage.datosPersona.primer_nombre+' '+$localStorage.datosPersona.primer_apellido,
+						    		'nick': $scope.data_ingreso_colaborador.nick
+									}];
 		            	$localStorage.cook_session_init = obj;
 		            }else{
 		            	obj  =	{
