@@ -183,4 +183,12 @@ var app = angular.module('nextbook20App');
     this.Tiempo_espera_sesion = function() {
         return 28800;
     };
+    this.recuperaClave = function() {
+      return $resource(urlService.server().appnext() + 'restaurarContrasenia', {}, {
+      get: {
+            method: 'POST', isArray: false,
+            
+        }
+      });
+    };
   });
