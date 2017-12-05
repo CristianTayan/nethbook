@@ -6,26 +6,26 @@ var app = angular.module('nextbook20App')
     $scope.$routeSegment = $routeSegment;
   });
 
-  app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel,configuracionService, $routeSegment,  $mdDialog, $localStorage, mainService, establecimientosService) {
+  app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel, $routeSegment,  $mdDialog, $localStorage, mainService, establecimientosService) {
     $scope.tipos = [
         "Teléfono",
         "Celular",
         "Hogar",
     ];
-    $scope.listas = [];
-     
-     establecimientosService.getDatosAdicionales().get().$promise.then(function(datos){
-      console.log(datos.respuesta);
-        $scope.listas = datos.respuesta;
+    
 
-      });
+     establecimientosService.getDatosAdicionales().get({idSucursal: $localStorage.sucursal.id}).$promise.then(function(datos){
+        $scope.listas = datos.respuesta;
+     $scope.listas=[];
+        });
+        
         $scope.addNew = function(listas){
             $scope.listas.push({ 
                 'tipo': listas.tipo, 
                 'numero': listas.numero,
-            });
-            $scope.PD = {};
+            }); 
         };
+        
         $scope.remove = function(){
             var newDataList=[];
             $scope.selectedAll = false;
@@ -49,11 +49,7 @@ var app = angular.module('nextbook20App')
 
        $scope.recuperarValores = function() {
         var id=$localStorage.sucursal.id;
-        console.log(id);
-       $scope.json = angular.toJson($scope.listas);
-
-       console.log($scope.listas);
-       establecimientosService.UpdateAddSucursal().send({valores: $scope.listas,idSucursal: id}).$promise.then(function(data){
+       establecimientosService.UpdateAddSucursal().send({valores: $scope.listas,idSucursal: $localStorage.sucursal.id}).$promise.then(function(data){
          if (data.respuesta) {
            $mdToast.show({
                hideDelay   : 5000,
@@ -65,6 +61,7 @@ var app = angular.module('nextbook20App')
          }
        });
     };
+
 
 
     $scope.datosEmpresa=$localStorage.datosE;

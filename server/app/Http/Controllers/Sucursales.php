@@ -42,10 +42,12 @@ class Sucursales extends Controller
          echo("Sucursal No Encontrada");
       }
     }
+
+
     public function getDatosAdicionales(Request $request)
  {
-   $x = 1;
-     $data_sucursal = DB::connection($this->name_bdd) -> table('administracion.sucursales')-> where('id',$x) -> first();
+   // $x = 1;
+     $data_sucursal=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->idSucursal)->first();
     $datosAdicionales = $data_sucursal->datos_adiconales;
    return response()->json(['respuesta' => json_decode($datosAdicionales)], 200);
  }

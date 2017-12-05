@@ -82,6 +82,7 @@ Route::group(['middleware' => 'cors'], function(){
         Route::post('Update_Giro_Actividad', 'Sucursales@Update_Giro_Actividad');
         Route::post('UpdateAddSucursal', 'Sucursales@UpdateAddSucursal');
         Route::post('getDatosAdicionales', 'Sucursales@getDatosAdicionales');
+        Route::post('getIdDatosAdicionales', 'Sucursales@getIdDatosAdicionales');
         //UPDATE PASSWORD
         Route::post('Update_Password', 'Administracion_Empresa@Update_Password');
         // Categorias

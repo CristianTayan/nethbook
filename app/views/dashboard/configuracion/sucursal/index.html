@@ -146,13 +146,11 @@
               <div class="md-summary" ></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
-          
-          
  
           <div layout="row" layout-align="center center">
             <div class="panel panel-default">
                 <div class="panel-body">
-                  <form name="form" ng-submit="addNew(listas)">
+                  <form name="form" >
                       <div  layout="row">
                       <md-input-container class="md-icon-float md-block" flex="35">
                         <md-icon class="md-primary">airplay</md-icon>
@@ -187,7 +185,7 @@
                           <div ng-message="numbersOnly">fdsfdasdf solo numeros</div>
                         </div>
                       </md-input-container>   
-                      <md-button type="submit" ng-disabled="form.$invalid" class="md-fab md-mini" ><md-icon>add</md-icon></md-button>   
+                      <md-button ng-click="addNew(listas)" ng-disabled="form.$invalid" class="md-fab md-mini" ><md-icon>add</md-icon></md-button>   
                       </div>
                   </form>
               </div>
@@ -195,7 +193,7 @@
           </div>
         
         <div class="row" >
-            <div class="col-md-12">
+            <div >
                 <table md-table md-row-select>
                     <thead md-head>
                         <tr md-row>
