@@ -12,13 +12,14 @@ var app = angular.module('nextbook20App')
         "Celular",
         "Hogar",
     ];
-    
-
-     establecimientosService.getDatosAdicionales().get({idSucursal: $localStorage.sucursal.id}).$promise.then(function(datos){
-        $scope.listas = datos.respuesta;
-     $scope.listas=[];
-        });
-        
+    $scope.listas=[];
+    establecimientosService.getDatosAdicionales().get({idSucursal: $localStorage.sucursal.id}).$promise.then(function(datos){
+       $scope.listas = datos.respuesta;
+       if(datos.respuesta == null)
+       {
+         $scope.listas=[];
+       }
+       }); 
         $scope.addNew = function(listas){
             $scope.listas.push({ 
                 'tipo': listas.tipo, 
@@ -46,7 +47,6 @@ var app = angular.module('nextbook20App')
                 listas.selected = $scope.selectedAll;
             });
         }; 
-
        $scope.recuperarValores = function() {
         var id=$localStorage.sucursal.id;
        establecimientosService.UpdateAddSucursal().send({valores: $scope.listas,idSucursal: $localStorage.sucursal.id}).$promise.then(function(data){
@@ -61,9 +61,6 @@ var app = angular.module('nextbook20App')
          }
        });
     };
-
-
-
     $scope.datosEmpresa=$localStorage.datosE;
     $scope.datosSucursal=$localStorage.sucursal;
     $scope.datosPersonal=$localStorage.datosPersona;
