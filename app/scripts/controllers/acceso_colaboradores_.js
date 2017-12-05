@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('nextbook20App')
+var app = angular.module('nextbook20App');
   	app.controller('acceso_colaboradores_Ctrl', function ($scope, $rootScope,$location, $routeParams,$mdDialog, mainService, colaboradores_Service,consumirService, $localStorage, menuService) {
   		function success_data_ruc(data){
   			$scope.datosE=data.respuesta;
@@ -15,7 +15,7 @@ var app = angular.module('nextbook20App')
        $localStorage.lat = 0.3422316189213578; 
        $localStorage.log = -78.12643224518979;
       //proceso de acceso
-			$scope.data_ingreso_colaborador.ruc=$routeParams.ruc;
+			$scope.data_ingreso_colaborador.ruc = $routeParams.ruc;
 			var obj = $scope.data_ingreso_colaborador;
 	        colaboradores_Service.Ingresar_Colaborador().acceso({acceso:obj,info_servidor:'', ip_cliente:'192.168.0.1', macadress:'00:00:00:00:00'}).$promise.then(function(data) {
 	        	if (data.respuesta === false && contadorIngreso <= 3) {
@@ -29,7 +29,7 @@ var app = angular.module('nextbook20App')
 			            .openFrom('#left')
 			        );
 	            contadorIngreso++;
-	            } if (data.respuesta == true) {
+	            } if (data.respuesta === true) {
                 $rootScope.sessionStatus = true;
 	            }
 						if (data.respuesta === false && contadorIngreso > 3) {	
@@ -37,9 +37,8 @@ var app = angular.module('nextbook20App')
 		        			var confirm = $mdDialog.prompt()
 							      .title('¿Recuperar Clave/password de acceso?')
 							      .textContent('Ingrese su Nick o Correo electronico')
-							      .placeholder('Nick ó E-mail')				
-							      // .initialValue('Nick ó ejemplo@nethbook.com')							    
-							      .required(true)
+							      .placeholder('Nick ó E-mail') 
+							      .required(true) 
 							      .ok('RECUPERAR')
 							      .cancel('CANCELAR');
 							    	$mdDialog.show(confirm).then(function(result) {
@@ -82,12 +81,12 @@ var app = angular.module('nextbook20App')
 									    $location.path('/Registro');
 							    });				            
 		        		}
-	             if (data.respuesta == true) {
+	             if (data.respuesta === true) {
 		            $localStorage.token = data.token;
 		            $localStorage.datosE = data.datosE;
 		            $localStorage.datosPersona = data.datosPersona;
 		            //datos para control de session
-		            $localStorage.hsesion={hora_fin:new Date(data.hora_fin).getTime() / 1000,estado_token:1};			     
+		            $localStorage.hsesion = {hora_fin:new Date(data.hora_fin).getTime() / 1000,estado_token:1};			     
 	                //fin
 		            // ----------------------------- fin -----------------------------------
 		            //---------------------- verificar si existe datos de persona-----------
@@ -112,7 +111,7 @@ var app = angular.module('nextbook20App')
 					    		'razon_social': $localStorage.datosE.razon_social,
 					    		'datos_usuario': $localStorage.datosPersona.primer_nombre+' '+$localStorage.datosPersona.primer_apellido,
 					    		'nick': $scope.data_ingreso_colaborador.nick
-							}]
+							}];
 		            	$localStorage.cook_session_init = obj;
 		            }else{
 		            	obj  =	{
@@ -121,7 +120,7 @@ var app = angular.module('nextbook20App')
 						    		'razon_social': $localStorage.datosE.razon_social,
 						    		'datos_usuario': $localStorage.datosPersona.primer_nombre+' '+$localStorage.datosPersona.primer_apellido,
 						    		'nick': $scope.data_ingreso_colaborador.nick
-								}
+								};
 		            	var acumulador = $localStorage.cook_session_init;				            		
 		            		var resultado = buscar_existencia(acumulador, obj);
 		            		if (!resultado) {
@@ -131,11 +130,13 @@ var app = angular.module('nextbook20App')
 		            }
 		        }
 	        });
-	    }
+	    };
 	    function buscar_existencia(acumulador, obj){
     		for (var i = 0; i < acumulador.length; i++) {
-    			if ( acumulador[i].ruc_empresa == obj.ruc_empresa && acumulador[i].nick == obj.nick) 
-    				return true;
+    			if ( acumulador[i].ruc_empresa === obj.ruc_empresa && acumulador[i].nick === obj.nick)
+	    			{
+	    				return true;
+	    			}
     		}
     	}
   	});

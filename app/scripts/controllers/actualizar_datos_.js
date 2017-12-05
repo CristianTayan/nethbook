@@ -12,7 +12,7 @@ var app = angular.module('nextbook20App');
   app.controller('actualizar_datos_Ctrl', function ($scope, $mdDialog, $location, mainService) {
     var fecha = moment(new Date()); // Fecha Actual
     $scope.inicio = fecha.subtract(100, 'years').format("YYYY-MM-DD");// resta 100 años a la fecha
-    var fecha = moment(new Date()); // Fecha Actual
+    fecha = moment(new Date()); // Fecha Actual
     $scope.fin = fecha.subtract(18, 'years').format("YYYY-MM-DD");  // resta 18 años a la fecha
 
     $scope.user = {
@@ -21,7 +21,7 @@ var app = angular.module('nextbook20App');
        minlength: 6,
        maxlength: 20
       }
-    }
+    };
 
 
     $scope.ValidarClave = function(){
@@ -58,7 +58,7 @@ var app = angular.module('nextbook20App');
               $scope.mensaje= "Nivel Bajo";
             }
 
-    }
+    };
 
     $scope.cambiar_datos_password = function(){
     	mainService.Update_Password().get({pass:$scope.password}).$promise.then(function(data){
@@ -78,7 +78,7 @@ var app = angular.module('nextbook20App');
           );
         }
 	    });
-    }
+    };
   });
 
   app.controller('actualizar_datos_sucursal_Ctrl', function ($scope, $mdToast, $location, mainService, $localStorage,establecimientosService) {
@@ -89,7 +89,7 @@ var app = angular.module('nextbook20App');
     var cm=$scope;
     cm.ModelTipo_Tipo_Empresa={
       selectedTipo:undefined
-    }
+    };
     var self = this;
     //-------------------------------------------------------------- GET TIPOS BIENES SERVICIOS ------------------------------------
       function success_tipo_bienes_servicios(result){
@@ -99,7 +99,7 @@ var app = angular.module('nextbook20App');
         mainService.Get_Tipo_Bienes_Servicios().get({},success_tipo_bienes_servicios).$promise.then(function(){},function(error){
           //$scope.get_data_tipos_bienes_Servicios();
         });
-      }
+      };
       $scope.get_data_tipos_bienes_Servicios();
     //-------------------------------------------------------------- GET TIPOS DE EMPRESAS ------------------------------------------
       function success_tipo_empresas(result){
@@ -109,7 +109,7 @@ var app = angular.module('nextbook20App');
         mainService.Get_Tipo_Actividad_Economica().get({id_bienes_servicios:id},success_tipo_empresas).$promise.then(function(){},function(error){
           //$scope.get_data_tipos_empresas();
         });
-      }
+      };
      // ------------------------------------------------------------- PROCESOS GENERALES ---------------------------------------------
 
     $scope.Actividad = 1;
@@ -153,7 +153,7 @@ var app = angular.module('nextbook20App');
           $location.path('/nb');
         }
       });
-    }
+    };
 
   });
 
