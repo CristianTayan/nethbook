@@ -6,15 +6,19 @@ var app = angular.module('nextbook20App')
     $scope.$routeSegment = $routeSegment;
   });
 
-  app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, mainService, establecimientosService) {
+  app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel,configuracionService, $routeSegment,  $mdDialog, $localStorage, mainService, establecimientosService) {
     $scope.tipos = [
-          "Teléfono",
-          "Celular",
-          "Hogar",
-      ];
-
+        "Teléfono",
+        "Celular",
+        "Hogar",
+    ];
     $scope.listas = [];
-    
+     
+     establecimientosService.getDatosAdicionales().get().$promise.then(function(datos){
+      console.log(datos.respuesta);
+        $scope.listas = datos.respuesta;
+
+      });
         $scope.addNew = function(listas){
             $scope.listas.push({ 
                 'tipo': listas.tipo, 
@@ -22,7 +26,6 @@ var app = angular.module('nextbook20App')
             });
             $scope.PD = {};
         };
-    
         $scope.remove = function(){
             var newDataList=[];
             $scope.selectedAll = false;
@@ -33,7 +36,6 @@ var app = angular.module('nextbook20App')
             }); 
             $scope.listas = newDataList;
         };
-    
         $scope.checkAll = function () {
             if (!$scope.selectedAll) {
                 $scope.selectedAll = true;
@@ -49,8 +51,9 @@ var app = angular.module('nextbook20App')
         var id=$localStorage.sucursal.id;
         console.log(id);
        $scope.json = angular.toJson($scope.listas);
-       console.log($scope.json);
-       establecimientosService.UpdateAddSucursal().send({valores: $scope.json,idSucursal: id}).$promise.then(function(data){
+
+       console.log($scope.listas);
+       establecimientosService.UpdateAddSucursal().send({valores: $scope.listas,idSucursal: id}).$promise.then(function(data){
          if (data.respuesta) {
            $mdToast.show({
                hideDelay   : 5000,
@@ -99,24 +102,16 @@ var app = angular.module('nextbook20App')
     $scope.expresion = function() {
      var select = $scope.ModelTipo_Tipo_Empresa.selectedTipo;
      $scope.json = angular.toJson(select);
-      console.log($scope.json)
-
-     // console.log(select);
     }
     
     $scope.descripcion = function(){
       var establecimiento=$scope.datosSucursal.nombre;
       var descripcion= $scope.form.descripcion;
        $scope.json = angular.toJson(descripcion);
-      console.log($scope.json)
-
-      // console.log (JSON.stringify(descripcion));
-      // console.log(json);
     }
 
     $scope.Actividad = 1;
     $scope.selected_Tipo = function(val) {
-     // console.log(val);
      $scope.Tipo = val.Tipo;
      $scope.Tipo_completo = val;
      $scope.get_data_tipos_empresas(val.id);
@@ -131,7 +126,6 @@ var app = angular.module('nextbook20App')
     };
 
     $scope.stepChanged = function(){
-     // console.log('step changed');
     };
 
     $scope.wizardSaved = function(){   
@@ -159,25 +153,6 @@ var app = angular.module('nextbook20App')
      });
     }
 
-    $scope.showPrompt2 = function(ev) {
-    var numero = $mdDialog.prompt()
-      .title('¿Desea ingresar otro numero telefónico?')
-      .placeholder("Telefono o celular")
-      .placeholder('09XXXXXXXX')
-      .ariaLabel('Numero')
-      .targetEvent(ev)
-      .required(true)
-      .ok('Agregar')
-      .cancel('Cancelar');
-
-    $mdDialog.show(numero).then(function(result) {
-      $scope.numm= 'Añadio el numero: '+result;
-      $scope.num=  result ;
-    }, function() {
-      $scope.num = '';
-    });
-  }
-
     //------------------------Agregar correo-----------------------------------
      $scope.showPrompt = function(ev) {
     var confirm = $mdDialog.prompt()
@@ -198,36 +173,6 @@ var app = angular.module('nextbook20App')
   }
 
 });
-
-app.directive('editableTd', [function() {
- return {
-   restrict: 'A',
-   link: function(scope, element, attrs) {
-     element.css("cursor", "pointer");
-     element.attr('contenteditable', 'true');
-     if (attrs.type=="number") {
-       element.keypress(function(event) {
-         if(attrs.type=="number" && event.keyCode < 48 || event.keyCode > 57)
-           return false;
-       });
-     }
-     
-     element.bind('blur keyup change', function() {
-       scope.lista[attrs.row][attrs.field] = element.text();
-       // scope.$digest();
-     });
-
-     element.bind('click', function() {
-       document.execCommand('selectAll', false, null)
-     });
-   }
- };
-}]);
-
-
-
-
-
 
 
   app.controller('configuracionPerfilPersonalCtrl', function ($scope, $mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, colaboradores_Service) {
