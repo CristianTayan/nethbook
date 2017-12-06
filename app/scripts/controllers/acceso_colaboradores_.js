@@ -27,7 +27,7 @@ var app = angular.module('nextbook20App')
 	            	 contadorIngreso++;
 	            }
 						if (data.respuesta === false && contadorIngreso > 0) {	
-								var obje1 = {'ruc' : null , 'nick': null, 'correo': null, 'ci' : null};
+								var obje1 = {'ruc' : null , 'nick': null, 'correo': null};
 		        			var confirm = $mdDialog.prompt()
 							      .title('¿Recuperar Clave/password de acceso?')
 							      .textContent('Ingrese su Nick o Correo electronico')
@@ -40,12 +40,12 @@ var app = angular.module('nextbook20App')
 							    	if (result.indexOf("@") > 0) 
 							    	{
 							    		obje1.correo = result;
-							    		obje1.nick = -1;
+							    		obje1.nick = 1;
 						    			obje1.ruc = $routeParams.ruc;				    			            			
 							    	}
 							    	if (result.indexOf("@") < 0) {
 							    		obje1.nick = result;
-							    		obje1.correo = -1;
+							    		obje1.correo = 1;
 							    		obje1.ruc = $routeParams.ruc;
 							    	}
 							    	mainService.recuperaClave().get(obje1).$promise.then(function(data){
