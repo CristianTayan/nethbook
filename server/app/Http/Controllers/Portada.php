@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 //------------------------------------ Autenticacion --------------------
 use \Firebase\JWT\JWT;
@@ -97,14 +95,14 @@ class Portada extends Controller {
     }
 
     public function Load_Imgs_Portada(Request $request){
-
-        // $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
-        // ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
-        // ->where('sucursal',$request->sucursal)
-        // ->where('estado','P')
-        // ->where('tipo_imagen',1)
-        // ->orderBy('fecha','DESC')->get();
-        // $total=count($resultado);
+        $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
+        ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
+        ->where('sucursal',$request->sucursal)
+        ->where('estado','P')
+        ->where('tipo_imagen',1)
+        ->orderBy('fecha','DESC')
+        ->get();
+        $total=count($resultado);
 
         $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
         ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
@@ -114,7 +112,6 @@ class Portada extends Controller {
         ->orderBy('fecha','DESC')
         ->limit(500)
         ->get();
-
         return response()->json(["imgs"=>$resultado,'total'=>$total]);
     }
 
@@ -139,17 +136,17 @@ class Portada extends Controller {
             return response()->json(['respuesta'=>true]); 
         }    
     }
-    // --------------------------___________________-----PORTADA USUARIO---------___________________-----------------------------//
-    
+    //USUARIO    
     public function Get_Img_PortadaUsuario(Request $request){
       $res = DB::connection($this->name_bdd)->
         table('administracion.imagen_empresa')->
         select('direccion_imagen_recorte','direccion_imagen_empresa')->
-        // where('sucursal',$request->sucursal)->
+        //where('sucursal',$request->sucursal)->
         where('estado','=','A')->
-        where('tipo_imagen',4)->first();
+        where('tipo_imagen',4)->
+        orderBy('fecha','DESC')->
+        first();
       if (count($res)>0) {
-
         $data=explode('/', $res->direccion_imagen_recorte);
         $img=$data[count($data)-1];
         $path=storage_path().'/'.$this->name_bdd.'/PortadasUsuario/'.$img;
@@ -213,13 +210,14 @@ class Portada extends Controller {
 
     public function Load_Imgs_PortadaUsuario(Request $request){
 
-      // $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
-      // ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
-      // // ->where('sucursal',$request->sucursal)
-      // ->where('estado','P')
-      // ->where('tipo_imagen',4)
-      // ->orderBy('fecha','DESC')->get();
-      // $total=count($resultado);
+      $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
+      ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
+      // ->where('sucursal',$request->sucursal)
+      ->where('estado','P')
+      ->where('tipo_imagen',4)
+      ->orderBy('fecha','DESC')
+      ->get();
+      $total=count($resultado);
 
       $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
       ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')

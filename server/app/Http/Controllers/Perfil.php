@@ -1,13 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-///------------------------------------ Autenticacion --------------------
 use \Firebase\JWT\JWT;
-//------------------------------------ Funciones --------------------
 use App\libs\Funciones;
-//---------------------------- Extras 
 use Storage;
 use File;
 use DB;

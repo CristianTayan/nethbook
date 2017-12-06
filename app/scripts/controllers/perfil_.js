@@ -1,19 +1,10 @@
 'use strict';
-
-/**
- * @ngdoc function
- * @name nextbook20App.controller:PerfilCtrl
- * @description
- * # PerfilCtrl
- * Controller of the nextbook20App
- */
 var app = angular.module('nextbook20App')
   app.controller('perfil_Ctrl', function ($scope,$rootScope, $localStorage, $mdDialog, $timeout, urlService) {
     $rootScope.imgPortada=urlService.server().dir()+$localStorage.imgPortada;
     $rootScope.imgPerfil=urlService.server().dir()+$localStorage.imgPerfil;
-    $scope.datos2 = $localStorage.datosE;
+    $scope.datos2 = $localStorage.datosE; 
     // Show imagen de perfil,portada
-
     $scope.show_img = function(ev,tipo_img){
       $mdDialog.show({
         controller: Dialog_show_image_Controller,
@@ -21,37 +12,30 @@ var app = angular.module('nextbook20App')
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:false,
-        fullscreen: $scope.customFullscreen, // Only for -xs, -sm breakpoints.
+        fullscreen: $scope.customFullscreen,
         locals:{tipo:tipo_img}
       });
-    }
+    };
     // Controlador Mostrar 
     function Dialog_show_image_Controller($scope, tipo, mainService, urlService){
       $scope.cargando=true;
-      function ok_img(resul){
-        $scope.cargando=false;
-        $scope.img=urlService.server().dir()+resul.img_full;
-      }
+    function ok_img(resul){
+      $scope.cargando=false;
+      $scope.img=urlService.server().dir()+resul.img_full;
+    };
       switch(tipo){
-          case 'Perfil':
-            //--------------------cargar imagen perfil-----------
-                mainService.Get_Img_Perfil().get({sucursal:$localStorage.sucursal.id},ok_img).$promise;
-          break;
-          case 'Portada':
-            //--------------------cargar imagen Portada-----------
-                mainService.Get_Img_Portada().get({sucursal:$localStorage.sucursal.id},ok_img).$promise;
-                // -------------------------   fin
-          break;
-        }
-      // // -------------------------------elementos acciones show_listaimg_modal-------------------------------
+        case 'Perfil':
+          mainService.Get_Img_Perfil().get({sucursal:$localStorage.sucursal.id},ok_img).$promise;
+        break;
+        case 'Portada':
+          mainService.Get_Img_Portada().get({sucursal:$localStorage.sucursal.id},ok_img).$promise;
+        break;
+      }
       $scope.cancel = function() {
         $mdDialog.cancel();
       };
-
-    }
-
-//------------------------------------------------------------------------------- PORTADA
-//------------------------------------------------------------------------------- SUBIR IMAGEN DE PORTADA
+    };
+  // ------------------------------------------ PORTADA SUBIR IMAGEN DE PORTADA ------------------------------------------
     $scope.show_upload_img_modal = function(ev,tipo_img){
       $mdDialog.show({
         controller: Dialog_subir_image_Controller,
@@ -59,55 +43,49 @@ var app = angular.module('nextbook20App')
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:false,
-        fullscreen: $scope.customFullscreen, // Only for -xs, -sm breakpoints.
+        fullscreen: $scope.customFullscreen,
         locals:{tipo_img:tipo_img}
       });
-    }
-
+    };
 
     function Dialog_subir_image_Controller($scope, $timeout, urlService, $localStorage,establecimientosService,tipo_img){
-      
-      
-       switch(tipo_img){
-          case 'Portada':
-            $scope.crop_size={width:1000,height:300};
-          break;
-          case 'Perfil':
-            $scope.crop_size={width:500,height:250};
-          break;
-        }
-
-      // // -------------------------------elementos acciones show_lista img_modal-------------------------------
+      switch(tipo_img){
+        case 'Portada':
+          $scope.crop_size={width:1000,height:300};
+        break;
+        case 'Perfil':
+          $scope.crop_size={width:250,height:250};
+        break;
+      };
+    // -------------------------------elementos acciones show_lista img_modal-------------------------------
       $scope.cancel = function() {
         $mdDialog.cancel();
       };
 
-       $scope.Upload = function(){
+      $scope.Upload = function(){
         switch(tipo_img){
           case 'Portada':
             establecimientosService.Add_Img_Portada().send({img:$scope.cropper,sucursal:$localStorage.sucursal.id}).$promise.then((resul)=>{
-            if (resul.respuesta==true) {
-              $rootScope.imgPortada=urlService.server().dir()+resul.img;
-              $localStorage.imgPortada=resul.img;
-              $mdDialog.hide();
-            }
+              if (resul.respuesta==true) {
+                $rootScope.imgPortada=urlService.server().dir()+resul.img;
+                $localStorage.imgPortada=resul.img;
+                $mdDialog.hide();
+              }
             });
           break;
           case 'Perfil':
           establecimientosService.Add_Img_Perfil().send({img:$scope.cropper,sucursal:$localStorage.sucursal.id}).$promise.then((resul)=>{
-            if (resul.respuesta==true) {
-              $rootScope.imgPerfil=urlService.server().dir()+resul.img;
-              $localStorage.imgPerfil=resul.img;
-              $mdDialog.hide();
-            }
+              if (resul.respuesta==true) {
+                $rootScope.imgPerfil=urlService.server().dir()+resul.img;
+                $localStorage.imgPerfil=resul.img;
+                $mdDialog.hide();
+              }
             });
           break;
-        }
-
         };
-
-    }
-    //------------------------------------------------------------------------------- SELECIONAR PORTADA
+      };
+    };
+    // SELECIONAR PORTADA
     $scope.show_lista_img_modal = function(ev,tipo_img){
       var controller;
       switch(tipo_img){
@@ -118,7 +96,6 @@ var app = angular.module('nextbook20App')
             controller=Dialog_lista_image_Perfil_Controller;
           break;
         }
-
       $mdDialog.show({
         controller: controller,
         templateUrl: 'views/dashboard/perfil_sucursal/select_img.html',
@@ -126,80 +103,75 @@ var app = angular.module('nextbook20App')
         targetEvent: ev,
         multiple:true,
         clickOutsideToClose:false,
-        fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        fullscreen: $scope.customFullscreen 
       });
-    }
+    };
     // Controlador portada
-
     function Dialog_lista_image_Portada_Controller($scope,$rootScope, $timeout, urlService, $localStorage,establecimientosService){
       $scope.cargando=true;
-      // // -------------------------------Get portadas-------------------------------
-      function ok_load_portadas(result){
-        $scope.cargando=false;
-        $scope.imgs=result.imgs;
-        for (var i = 0; i < $scope.imgs.length; i++) {
-            $scope.imgs[i].direccion_imagen_empresa_dir=urlService.server().dir()+$scope.imgs[i].direccion_imagen_recorte;
-            $scope.imgs[i].colspan= 4;
-            $scope.imgs[i].rowspan= 2;
-        }
+    // Get portadas
+    function ok_load_portadas(result){
+      $scope.cargando=false;
+      $scope.imgs=result.imgs;
+      for (var i = 0; i < $scope.imgs.length; i++) {
+          $scope.imgs[i].direccion_imagen_empresa_dir=urlService.server().dir()+$scope.imgs[i].direccion_imagen_recorte;
+          $scope.imgs[i].colspan= 4;
+          $scope.imgs[i].rowspan= 2;
       }
-      $scope.load_img_portadas=function(){
-        establecimientosService.Load_Imgs_Portada().get({},ok_load_portadas).$promise;
-      }
-      $scope.load_img_portadas();
+    };
 
-      $rootScope.$on("actualizar_portadas", function() {
-                $scope.load_img_portadas();
+    $scope.load_img_portadas=function(){
+      establecimientosService.Load_Imgs_Portada().get({},ok_load_portadas).$promise;
+    }
+    
+    $scope.load_img_portadas();
+
+    $rootScope.$on("actualizar_portadas", function() {
+              $scope.load_img_portadas();
+    });
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.set_img = function(img){
+      establecimientosService.Set_Img_Portada().send({img:img.id}).$promise.then((resul)=>{
+        if (resul.respuesta==true) {
+          console.log(img.direccion_imagen_recorte);
+          $rootScope.imgPortada=img.direccion_imagen_empresa_dir;
+          $localStorage.imgPortada=img.direccion_imagen_recorte;
+          $mdDialog.hide();
+        }
       });
+    };
+
+    $scope.show_delete_modal = function(ev,img){ 
+      $mdDialog.show({
+        controller: Delete_Controller,
+        templateUrl: 'views/dashboard/perfil_sucursal/delete_img.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        multiple:true,
+        clickOutsideToClose:false,
+        locals:{img:img}
+      });
+    };
+
+    function Delete_Controller($scope,img,$rootScope){
+      $scope.eliminar_img = function(){
+        establecimientosService.Delete_Img_Portada().send({img:img.id}).$promise.then((resul)=>{
+          if (resul.respuesta==true) {
+            $rootScope.$emit("actualizar_portadas", {});
+            $mdDialog.hide();
+          }
+        });
+      };
 
       $scope.cancel = function() {
         $mdDialog.cancel();
       };
-
-       $scope.set_img = function(img){
-        establecimientosService.Set_Img_Portada().send({img:img.id}).$promise.then((resul)=>{
-          if (resul.respuesta==true) {
-            console.log(img.direccion_imagen_recorte);
-            $rootScope.imgPortada=img.direccion_imagen_empresa_dir;
-            $localStorage.imgPortada=img.direccion_imagen_recorte;
-            $mdDialog.hide();
-          }
-        });
-
-        };
-
-        $scope.show_delete_modal = function(ev,img){
-          
-          $mdDialog.show({
-            controller: Delete_Controller,
-            templateUrl: 'views/dashboard/perfil_sucursal/delete_img.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            multiple:true,
-            clickOutsideToClose:false,
-            locals:{img:img}
-          });
-
-        };
-
-        function Delete_Controller($scope,img,$rootScope){
-
-          $scope.eliminar_img = function(){
-            establecimientosService.Delete_Img_Portada().send({img:img.id}).$promise.then((resul)=>{
-              if (resul.respuesta==true) {
-                $rootScope.$emit("actualizar_portadas", {});
-                $mdDialog.hide();
-              }
-            });
-
-          };
-
-          $scope.cancel = function() {
-            $mdDialog.cancel();
-          };
-
-        }
     }
+  }
     // Controlador Grid de Imagenes Perfil
 
     function Dialog_lista_image_Perfil_Controller($scope,$rootScope, $timeout, urlService, $localStorage,establecimientosService){
@@ -239,7 +211,6 @@ var app = angular.module('nextbook20App')
         };
 
         $scope.show_delete_modal = function(ev,img){
-          
           $mdDialog.show({
             controller: Delete_Controller,
             templateUrl: 'views/dashboard/perfil_sucursal/delete_img.html',

@@ -338,7 +338,8 @@ var app = angular.module('nextbook20App', [
               })
                 .within()
                   .segment('inicio', {
-                    templateUrl: 'views/dashboard/configuracion/inicio/index.html',                      
+                    templateUrl: 'views/dashboard/configuracion/inicio/index.html',  
+                    controller: 'perfil_Ctrl',                    
                     default: true
                   })
                   .segment('perfilEmpresa', {
