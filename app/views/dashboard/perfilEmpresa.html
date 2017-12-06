@@ -1,0 +1,57 @@
+<div layout="column">
+  <div layout="row" layout-align="center">
+    <div layout="row" flex-gt-md="65">
+      <md-sidenav 
+        class="md-sidenav-left menuWith"
+        layout="column" 
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-md')">
+        <div>
+          <md-card>            
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">
+                  <md-icon>home</md-icon>
+                  <span class="md-title"> Empresa </span>
+                </span>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="row" layout-align="space-between">
+              <div class="md-media-xl card-media">
+                <img src="images/kristy.png">
+              </div>             
+            </md-card-content>
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Actividad</span>
+                <span class="md-subhead">
+                  <div layout="row">{{datos2.actividad_economica | lowercase}}
+                    {{datos2.razon_social}}, {{datos2.tipo_contribuyente}}
+                  </div>
+                </span>
+              </md-card-title-text>
+            </md-card-title>
+          </md-card>
+        </div>          
+      </md-sidenav>
+      <md-content flex>
+        <md-card>
+          <img src="{{url(localStorage.imgPortada)}}" class="md-card-image" alt="Washed Out">
+        </md-tabs>
+          <md-tabs md-stretch-tabs class="md-primary">
+            <md-tab id="tab1" aria-controls="tab1-content" md-on-select="tabSelect('info')" >
+              Info {{selectView}}
+            </md-tab>
+            <md-tab id="tab2" aria-controls="tab2-content" md-on-select="tabSelect('sucursales')">
+              Sucursales
+            </md-tab>
+            <md-tab id="tab3" aria-controls="tab2-content" md-on-select="tabSelect('corporativo')">
+              Corporativo
+            </md-tab>
+          </md-tabs>
+          <md-content flex md-scroll-y app-view-segment="2"> </md-content>
+        </md-card>
+      </md-content>
+    </div>
+  </div>
+</div>

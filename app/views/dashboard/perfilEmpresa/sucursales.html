@@ -1,0 +1,23 @@
+<md-card flex ng-repeat="items in establecimiento">
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-title">
+        {{items.nombre}} <md-icon>business</md-icon>
+      </span>
+      <span class="md-headline">
+        <md-icon class="md-primary ">pages</md-icon>
+        Codigo establecimiento: {{items.codigo_sri}}
+      </span>
+      <p>
+        <md-icon class="md-primary ">location_city</md-icon>
+        {{items.localizacion_sucursal.direccion | split:'/':0}}, {{items.localizacion_sucursal.direccion | split:'/':1}}
+        <br/>              
+        <md-icon class="md-primary ">room</md-icon>
+        Dirección: {{items.localizacion_sucursal.direccion | split:'/':2}}                
+      </p>
+    </md-card-title-text>
+    <md-card-title-media>
+      <img src="images/image.png" class="md-media-sm card-media">
+    </md-card-title-media>
+  </md-card-title>
+</md-card>

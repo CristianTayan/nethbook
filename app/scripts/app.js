@@ -232,7 +232,25 @@ var app = angular.module('nextbook20App', [
     $routeSegmentProvider
 
     .when('/nb',    'nb')
-    .when('/nb/Inicio',    'nb.inicio')
+    
+    // -----------------Inicio rutas empresa-----------------//
+    .when('/nb/empresa',    'nb.empresa')
+    .when('/nb/empresa/inicio',    'nb.empresa.inicio')
+    .when('/nb/empresa/sucursales',    'nb.empresa.sucursales')
+    .when('/nb/empresa/corporativo',    'nb.empresa.corporativo')
+    // -----------------Fin rutas empresa-----------------//
+
+    // -----------------Inicio rutas personal-----------------//
+    .when('/nb/personal','nb.personal')
+    // -----------------Fin rutas personal-----------------//
+    
+    // -----------------Inicio rutas sucursal-----------------//
+    .when('/nb/sucursal','nb.sucursal')
+    .when('/nb/sucursal/info','nb.sucursal.info')
+    .when('/nb/sucursal/ubicacion','nb.sucursal.mapa')
+
+
+
     // Segmento Aplicaciones/Modulos
     .when('/nb/App',    'nb.app.inicio')
         // Modulo de Gerencia
@@ -300,10 +318,6 @@ var app = angular.module('nextbook20App', [
         .when('/nb/App/Administracion','nb.app.administracion')
           .when('/nb/App/Administracion/Usuario','nb.app.administracion.usuario')
           .when('/nb/App/Administracion/Tipo_Usuario','nb.app.administracion.tipo_usuario')
-          .when('/nb/App/Administracion/Personal','nb.app.administracion.personal')
-          .when('/nb/App/Administracion/Sucursal','nb.app.administracion.sucursal')
-            .when('/nb/App/Administracion/Sucursal/info','nb.app.administracion.sucursal.info')
-            .when('/nb/App/Administracion/Sucursal/ubicacion','nb.app.administracion.sucursal.mapa')
         // modulo configuracion
         .when('/nb/App/Config','nb.app.configuracion')
           .when('/nb/App/Config/PerfilPersonal','nb.app.configuracion.perfilPersonal')
@@ -317,12 +331,44 @@ var app = angular.module('nextbook20App', [
         controller: 'dashboard_Ctrl'
       })
         .within()
-          .segment('inicio', {
-            templateUrl: 'views/dashboard/inicio.html',
-            controller: 'inicio_Ctrl',
-            default: true
+          .segment('empresa', {
+            templateUrl: 'views/dashboard/perfilEmpresa.html',
+            controller: 'empresaCtrl',
           })
-            // Segmento Aplicaciones/Modulos
+            .within()
+              .segment('inicio', {
+                templateUrl: 'views/dashboard/perfilEmpresa/inicio.html',
+                controller: 'empresaInicioCtrl',
+                default: true
+              })
+              .segment('sucursales', {
+                templateUrl: 'views/dashboard/perfilEmpresa/sucursales.html',
+                controller: 'empresaSucursalesCtrl',
+              })
+              .segment('corporativo', {
+                templateUrl: 'views/dashboard/perfilEmpresa/corporativo.html',
+                controller: 'empresaCorporativoCtrl',
+              })
+            .up()
+          .segment('personal', {
+            templateUrl: 'views/dashboard/perfil_personal.html',
+            controller: 'perfil_personal_Ctrl'
+          })
+          .segment('sucursal', {
+            templateUrl: 'views/dashboard/perfilSucursal.html',
+            controller: 'perfilSucursalCtrl'
+          })
+          .within()
+            .segment('info', {
+              default: true,
+              templateUrl: 'views/dashboard/administracion/sucursal/info.html',
+              controller: 'infoSucursalCtrl'
+            })
+            .segment('mapa', {
+              templateUrl: 'views/dashboard/administracion/sucursal/mapa.html',
+              controller: 'mapaSucursalCtrl'
+            })
+          .up()
         .segment('app', {
           templateUrl: 'views/app/index.html',
           controller: 'app_Ctrl'
@@ -362,26 +408,6 @@ var app = angular.module('nextbook20App', [
                 controller: 'administracionCtrl'
               })
                 .within()
-                  .segment('personal', {
-                    templateUrl: 'views/dashboard/perfil_personal.html',
-                    controller: 'perfil_personal_Ctrl'
-                  })
-                  .segment('sucursal', {
-                    templateUrl: 'views/dashboard/perfilSucursal.html',
-                    controller: 'perfilSucursalCtrl'
-                  })
-                  .within()
-                    .segment('info', {
-                      default: true,
-                      templateUrl: 'views/dashboard/administracion/sucursal/info.html',
-                      controller: 'infoSucursalCtrl'
-                    })
-                    .segment('mapa', {
-                      templateUrl: 'views/dashboard/administracion/sucursal/mapa.html',
-                      controller: 'mapaSucursalCtrl'
-                    })
-                  .up()
-
                   .segment('tipo_usuario', {
                     templateUrl: 'views/app/colaboradores/tipo_usuario/index.html',
                     controller: 'col_tipo_usuario_Ctrl'
@@ -647,5 +673,5 @@ var app = angular.module('nextbook20App', [
           .up()
         .up();
 
-    $routeProvider.otherwise({redirectTo: '/nb'}); 
+    $routeProvider.otherwise({redirectTo: '/nb/empresa/'}); 
   });
