@@ -7,8 +7,44 @@ var app = angular.module('nextbook20App')
   });
 
   app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel, $routeSegment,  $mdDialog, $localStorage, mainService, establecimientosService) {
+    
+    $scope.tipoCorreos= [
+        "Empresarial",
+        "Personal",
+        "Otros",
+    ];
+    $scope.listaCorreos=[];
+
+    $scope.addNewCorreo = function(listaCorreos){
+            $scope.listaCorreos.push({ 
+                'tipoCorreo': listaCorreos.tipoCorreo, 
+                'mail': listaCorreos.mail,
+            }); 
+            console.log($scope.listaCorreos);
+        };
+    $scope.removeCorreo=function(){
+      var newDataList=[];
+      $scope.selectedAll=false;
+      angular.forEach($scope.listas, function(selected){
+        if(!selected.selected){
+          newDataList.push(selected);
+        }
+      });
+      $scope.listaCorreos = newDataList;
+    }
+    $scope.checkAll = function () {
+            if (!$scope.selectedAll) {
+                $scope.selectedAll = true;
+            } else {
+                $scope.selectedAll = false;
+            }
+            angular.forEach($scope.listaCorreos, function (listaCorreos) {
+                listaCorreos.selected = $scope.selectedAll;
+            });
+        };
+
     $scope.tipos = [
-        "Teléfono",
+        "Telefono",
         "Celular",
         "Hogar",
     ];
@@ -49,7 +85,8 @@ var app = angular.module('nextbook20App')
         }; 
        $scope.recuperarValores = function() {
         var id=$localStorage.sucursal.id;
-       establecimientosService.UpdateAddSucursal().send({valores: $scope.listas,idSucursal: $localStorage.sucursal.id}).$promise.then(function(data){
+       establecimientosService.UpdateAddSucursal().send({valores: $scope.listas, valoresCorreo: $scope.listaCorreos, idSucursal: $localStorage.sucursal.id}).$promise.then(function(data){
+         console.log(establecimientosService.UpdateAddSucursal());
          if (data.respuesta) {
            $mdToast.show({
                hideDelay   : 5000,
@@ -94,8 +131,9 @@ var app = angular.module('nextbook20App')
     // ------------------------------------------------------------- PROCESOS GENERALES ---------------------------------------------
 
     $scope.expresion = function() {
-     var select = $scope.ModelTipo_Tipo_Empresa.selectedTipo;
+     var select = $scope.item.id;
      $scope.json = angular.toJson(select);
+     console.log($scope.json);
     }
     
     $scope.descripcion = function(){
@@ -122,30 +160,30 @@ var app = angular.module('nextbook20App')
     $scope.stepChanged = function(){
     };
 
-    $scope.wizardSaved = function(){   
+    // $scope.wizardSaved = function(){   
 
-     $scope.x = {
-                 'tipo_bienes_servicios': $scope.Tipo_completo,
-                 'ModelTipo_Tipo_Empresa': cm.ModelTipo_Tipo_Empresa.selectedTipo,
-                 'sucursal': $scope.datosSucursal.id,
-                 'descripcion': $scope.form.descripcion
-               };
-       var datos = $scope.x;
-       console.log(datos);
+    //  $scope.x = {
+    //              'tipo_bienes_servicios': $scope.Tipo_completo,
+    //              'ModelTipo_Tipo_Empresa': cm.ModelTipo_Tipo_Empresa.selectedTipo,
+    //              'sucursal': $scope.datosSucursal.id,
+    //              'descripcion': $scope.form.descripcion
+    //            };
+    //    var datos = $scope.x;
+    //    console.log(datos);
 
-     establecimientosService.Update_Giro_Actividad().send($scope.x).$promise.then(function(data){
-       if (data.respuesta) {
-         $localStorage.sucursal.giro_negocio=$scope.Tipo_completo.id;
-         $mdToast.show({
-             hideDelay   : 5000,
-             position    : 'bottom right',
-             controller  : 'notificacionCtrl',
-             templateUrl : 'views/notificaciones/guardar.html'
-           });
-         $location.path('/nb');
-       }
-     });
-    }
+    //  establecimientosService.Update_Giro_Actividad().send($scope.x).$promise.then(function(data){
+    //    if (data.respuesta) {
+    //      $localStorage.sucursal.giro_negocio=$scope.Tipo_completo.id;
+    //      $mdToast.show({
+    //          hideDelay   : 5000,
+    //          position    : 'bottom right',
+    //          controller  : 'notificacionCtrl',
+    //          templateUrl : 'views/notificaciones/guardar.html'
+    //        });
+    //      $location.path('/nb');
+    //    }
+    //  });
+    // }
 
     //------------------------Agregar correo-----------------------------------
      $scope.showPrompt = function(ev) {
@@ -171,6 +209,40 @@ var app = angular.module('nextbook20App')
 
   app.controller('configuracionPerfilPersonalCtrl', function ($scope, $mdExpansionPanel, configuracionService, $routeSegment,  $mdDialog, $localStorage, colaboradores_Service) {
     // --------------------------------------abrir primer panel por defecto--------------------------------------
+    $scope.tipoCorreos= [
+        "Institucional",
+        "Personal",
+        "Otros",
+    ];
+    $scope.listaCorreos=[];
+
+    $scope.addNewCorreo = function(listaCorreos){
+            $scope.listaCorreos.push({ 
+                'tipoCorreo': listaCorreos.tipoCorreo, 
+                'mail': listaCorreos.mail,
+            }); 
+            console.log($scope.listaCorreos);
+        };
+    $scope.removeCorreo=function(){
+      var newDataList=[];
+      $scope.selectedAll=false;
+      angular.forEach($scope.listas, function(selected){
+        if(!selected.selected){
+          newDataList.push(selected);
+        }
+      });
+      $scope.listaCorreos = newDataList;
+    }
+    $scope.checkAll = function () {
+            if (!$scope.selectedAll) {
+                $scope.selectedAll = true;
+            } else {
+                $scope.selectedAll = false;
+            }
+            angular.forEach($scope.listaCorreos, function (listaCorreos) {
+                listaCorreos.selected = $scope.selectedAll;
+            });
+        };
     $scope.data_usuario = $localStorage.datosPersona;
 
     //----------------SELECT CIUDADES---------------//

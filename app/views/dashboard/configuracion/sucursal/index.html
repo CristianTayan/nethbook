@@ -1,4 +1,36 @@
-<strong><h4><i class="material-icons">settings</i> Configuración de la sucursal</h4></strong>  
+<strong><h4 class="md-primary"><md-icon ng-class="md-warn">settings</md-icon> Configuración de la sucursal</h4></strong>
+<div class="p+">
+
+        <div flex-container="row">
+            <div class="card__img card__img--left" style="height: 200px">
+                <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/sa41f0a4d8f6a5f42/image/ia825a48f18753f2e/version/1414448314/image.jpg">
+            </div>
+            <div flex-item flex-container="column">
+                <div flex-item>
+                    <div class="p+">
+                    <md-content layout="column">
+                    <md-subheader class="md-no-sticky" md-colors="('nb.app.configuracion.perfilSucursal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}">{{datosSucursal.nombre}} - {{datosSucursal.codigo_sri}}</md-subheader>
+                      <md-list-item>
+                      <md-icon>contact_phone</md-icon>
+                      <p ng-repeat="lista in listas" md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}">{{lista.tipo}} : {{lista.numero}}</p>
+                      </md-list-item> 
+                      <md-list-item>
+                      <md-icon>location_on</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}">{{datosSucursal.localizacion_sucursal.direccion}}</p>
+                      </md-list-item> 
+                      <md-list-item>
+                      <md-icon>mail</md-icon>
+                      <p ng-repeat="listaCorreo in listaCorreos" md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}">{{listaCorreo.tipoCorreo}} : {{listaCorreo.mail}}</p>
+                      </md-list-item>
+                    </md-content>
+                    </div>
+                </div>
+                <div class="card__actions">
+                    <label>Ultima actualización:  {{data_usuario.fecha}}</label>           
+                </div>
+            </div>
+        </div>
+</div>  
 <md-expansion-panel-group  md-component-id="expansionPanelGroup" style=" width: 80%">
   <md-expansion-panel md-component-id="expansionPanelTwo" >
       <md-expansion-panel-collapsed>
@@ -39,48 +71,77 @@
   </md-expansion-panel>
   <md-expansion-panel md-component-id="expansionPanelTree" >
       <md-expansion-panel-collapsed>
-          <div class="md-title" >Correo</div>
-          <div class="md-summary">{{datosPersonal.correo_electronico}}, {{statuss}}</div>
+          <div class="md-title" >Configuración correo electrónico</div>
+          <div class="md-summary"></div>
           <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
             <md-icon class="md-accent">keyboard_arrow_down</md-icon>
         </md-button>
       </md-expansion-panel-collapsed>
       <md-expansion-panel-expanded >
           <md-expansion-panel-header>
-              <div class="md-title">¿Desea cambiar correo?</div>
+              <div class="md-title">¿Desea <strong>agregar/eliminar</strong> correo?</div>
               <div class="md-summary"></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
-              <div layout="row">
-                <md-input-container class="md-block" flex>
-                </md-input-container>
-                <md-input-container class="md-icon-float md-block" flex="10">
-                  <strong class="md-primary">Correo principal</strong>
-                </md-input-container>
-                <md-input-container>
-                    <div>
-                      {{datosPersonal.correo_electronico}}
-                      
-                    </div>
-                </md-input-container>
-                <md-input-container class="md-icon-float md-block" flex>
-                    </md-input-container>
+            <div layout="row" layout-align="center center">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                    <form name="formCorreo" >
+                        <div  layout="row">
+                        <md-input-container  flex="30">
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <label>Tipo</label>
+                          <md-select name="tipoCorreo" ng-model="listaCorreos.tipoCorreo" required>
+                            <md-option ng-repeat="tipoCorreo in tipoCorreos" value="{{tipoCorreo}}">{{tipoCorreo}}</md-option>
+                          </md-select>
+                          <div ng-messages="formCorreo.tipoCorreo.$error">
+                            <div ng-message="required">
+                              Se requiere seleccionar un tipo de correo electrónico
+                            </div>                                
+                          </div>
+                        </md-input-container>  
+                        <span flex="10"></span>
+                        <md-input-container class="md-icon-float md-block" flex="45">
+                          <md-icon class="md-accent">mail_outline</md-icon>
+                            <label>Email</label>
+                            <input name="mail" ng-model="listaCorreos.mail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
+                            <div ng-messages="formCorreo.mail.$error" ng-show="formCorreo.mail.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="pattern" class="my-message">correo invalido</div>
+                            </div>
+                        </md-input-container>   
+                        <md-button ng-click="addNewCorreo(listaCorreos)" ng-disabled="formCorreo.$invalid" class="md-fab md-mini" ><md-icon>add</md-icon></md-button>   
+                        </div>
+                    </form>
                 </div>
-                <b layout="row" layout-align="center center" class="md-padding">
-                  {{status}}
-                 </b>
+              </div>
+            </div>
+            <div class="row" >
+            <div >
+                <table md-table md-row-select ng-model="listaCorreos">
+                    <thead md-head>
+                        <tr md-row>
+                            <th md-column md-order-by="nameToLower"></th>
+                            <th md-column md-order-by="nameToLower">Tipo de Correo</th>
+                            <th md-column md-order-by="nameToLower">Dirección</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="listaCorreo in listaCorreos">
+                            <td>
+                                <md-checkbox  ng-model="listaCorreo.selected" aria-label="checkCorreo"/></md-checkbox></td>
+                            <td>{{listaCorreo.tipoCorreo}}</td>
+                            <td>{{listaCorreo.mail}}</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div layout="row" layout-align="center center">
-                    <md-button  md-no-ink class="md-primary" ng-click="showPrompt($event)"  >
-                      ¿Agregar otra dirección de correo electrónico?
-                    </md-button>
-                </div>
-                <div layout="row" layout-align="center center">
-                    <md-button  md-no-ink class="md-raised md-primary" ng-click="$panel.collapse()"  >
-                      Guardar
-                    </md-button>
-                    <md-button class="md-raised" ng-click="$panel.collapse();" >Cancelar</md-button>
+                    <md-button class="md md-raised md-warn" ng-click="removeCorreo()" value="Remove"><md-icon>delete</md-icon>Eliminar correo</md-button>
+                    <md-button class="md-raised md-primary" ng-click='recuperarValores()'><md-icon>save</md-icon>Guardar Cambios</md-button> 
                 </div>
                 
+            </div>
+        </div>              
           </md-expansion-panel-content>
       </md-expansion-panel-expanded>
   </md-expansion-panel>
@@ -194,7 +255,7 @@
         
         <div class="row" >
             <div >
-                <table md-table md-row-select>
+                <table md-table md-row-select ng-model="listas">
                     <thead md-head>
                         <tr md-row>
                             <th md-column md-order-by="nameToLower"></th>
@@ -217,39 +278,8 @@
                 </div>
                 
             </div>
-        </div>
-    </div>
-          </div>   
-                 
-                
+        </div>   
           </md-expansion-panel-content>
       </md-expansion-panel-expanded>
-  </md-expansion-panel> 
-      <md-expansion-panel md-component-id="expansionPanelSix" >
-      <md-expansion-panel-collapsed>
-          <div class="md-title" >Dirección</div>
-          <div class="md-summary" >{{datosSucursal.localizacion_sucursal.direccion }}</div>
-          <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
-            <md-icon class="md-accent">keyboard_arrow_down</md-icon>
-        </md-button>
-      </md-expansion-panel-collapsed>
-      <md-expansion-panel-expanded>
-          <md-expansion-panel-header>
-              <div class="md-title">Dirección</div>
-              <div class="md-summary"></div>
-          </md-expansion-panel-header>
-          <md-expansion-panel-content>
-              <div layout="row">
-                    <md-input-container class="md-icon-float md-block" flex>
-                        <md-icon class="md-primary">location_on</md-icon>
-                        <label>Direccion</label>
-                        <input type="text" ng-model="datosSucursal.localizacion_sucursal.direccion " uppercase readonly required>
-                    </md-input-container>
-                    <div flex="5"></div>
-                  <md-input-container class="md-icon-float md-block" flex>                        
-                    </md-input-container>
-                </div>                
-          </md-expansion-panel-content>
-      </md-expansion-panel-expanded>
-  </md-expansion-panel> 
+  </md-expansion-panel>  
 </md-expansion-panel-group>
