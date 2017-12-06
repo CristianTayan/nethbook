@@ -46,47 +46,19 @@ class restaurarContrasenia extends Controller
           'sslmode' => 'prefer',
         ));
         if ($existenciaRucEnSistema) {
-          if ($request->correo === '1' && $request->nick !== null) {
+          if ($request->correo === 1 && $request->nick !== null) {
             $camposUsuario = ['id','id_persona', 'estado_clave','fecha_actualiza'];
             $idUsuario = DB::connection($name_bdd)->table('usuarios.usuarios')->select($camposUsuario)->where('nick',$request->nick.'@'.config('global.dominio'))->first();
-            if ($idUsuario) {
-              $campos = [ 'correo_electronico'];
-              $userDataEmail = DB::connection($name_bdd)->table('public.personas_correo_electronico')->select($campos)->where('id_persona',$idUsuario->id_persona)->first();
-              $campos = [ 'primer_nombre', 'primer_apellido'];
-              $dataPersona = DB::connection($name_bdd)->table('public.personas')->select($campos)->where('id',$idUsuario->id_persona)->first();
-              if ($userDataEmail) {
-return response()->json(["respuesta" => 'datos mail'], 200);
-                $res = DB::connection($name_bdd)->statement("SELECT * FROM actualiza_clave ('".$idUsuario->id."', '".bcrypt($pass)."')");
-                if ($res) {
-                   $estado = DB::connection($name_bdd)->table('usuarios.usuarios')->where('id', $idUsuario->id)->update(['estado_clave' => false]);
-                  if ($estado) {
-                    $respuesta = true;
-                    $data['correo'] = $userDataEmail->correo_electronico;
-                    $data['nombre_comercial'] = $dataPersona->primer_nombre.' '. $dataPersona->primer_apellido;
-                    $data['ruc'] = $request->ruc;
-                    $data['user_nextbook'] = $request->nick;
-                    $data['pass_nextbook'] = $pass;
-                    $this->enviar_correo($data);
-                    return response()->json(["respuesta" => $respuesta], 200);
-                  }
-                }
-              }
-            }
-          }      
-          if ($request->nick === '1' && $request->correo !== null) {
-            $campos = ['id_persona','correo_electronico'];
-            $userDataEmail = DB::connection($name_bdd)->table('public.personas_correo_electronico')->select($campos)->where('correo_electronico',$request->correo)->first();
-            if ($userDataEmail) {
-              $campos = ['id', 'nick', 'estado_clave','fecha_actualiza'];
-              $idUsuario = DB::connection($name_bdd)->table('usuarios.usuarios')->select($campos)->where('id_persona',$userDataEmail->id_persona)->first();
-              $campos = [ 'primer_nombre', 'primer_apellido'];
-              $dataPersona = DB::connection($name_bdd)->table('public.personas')->select($campos)->where('id',$userDataEmail->id_persona)->first();
+            if ($idUsuario->estado_clave === true) {
               if ($idUsuario) {
-return response()->json(["respuesta" => 'usuario'], 200);
-                if ($idUsuario->estado_clave === true) {
+                $campos = [ 'correo_electronico'];
+                $userDataEmail = DB::connection($name_bdd)->table('public.personas_correo_electronico')->select($campos)->where('id_persona',$idUsuario->id_persona)->first();
+                $campos = [ 'primer_nombre', 'primer_apellido'];
+                $dataPersona = DB::connection($name_bdd)->table('public.personas')->select($campos)->where('id',$idUsuario->id_persona)->first();
+                if ($userDataEmail) {
                   $res = DB::connection($name_bdd)->statement("SELECT * FROM actualiza_clave ('".$idUsuario->id."', '".bcrypt($pass)."')");
                   if ($res) {
-                     $estado = DB::connection($name_bdd)->table('usuarios.usuarios')->where('id', $idUsuario->id)->update(['estado_clave' => false,'fecha_actualiza' => Carbon::now()->toDateTimeString()]);
+                     $estado = DB::connection($name_bdd)->table('usuarios.usuarios')->where('id', $idUsuario->id)->update(['estado_clave' => false]);
                     if ($estado) {
                       $respuesta = true;
                       $data['correo'] = $userDataEmail->correo_electronico;
@@ -99,19 +71,80 @@ return response()->json(["respuesta" => 'usuario'], 200);
                     }
                   }
                 }
+              }
+            }
+           if ($idUsuario->estado_clave === false) {
+              $fechaActual = Carbon::parse(Carbon::now()->toDateTimeString());
+              $fechaUsuario = Carbon::parse($idUsuario->fecha_actualiza);
+              $diferencia = $fechaActual->diff($fechaUsuario);
+              if ((int) $diferencia->h < 2 && (int) $diferencia->d === 0) {
+                $respuesta = "Hace Menos de 2 Horas a Solicitado un Cambio de Clave, Por Favor Revice su Correo electronico";
+              }
+              if ((int) $diferencia->h > 2 || (int)$diferencia->d > 0) {
+            // return response()->json(["respuesta" => $diferencia], 200);
+                if ($idUsuario) {
+                  $campos = [ 'correo_electronico'];
+                  $userDataEmail = DB::connection($name_bdd)->table('public.personas_correo_electronico')->select($campos)->where('id_persona',$idUsuario->id_persona)->first();
+                  $campos = [ 'primer_nombre', 'primer_apellido'];
+                  $dataPersona = DB::connection($name_bdd)->table('public.personas')->select($campos)->where('id',$idUsuario->id_persona)->first();
+                  if ($userDataEmail) {
+                    $res = DB::connection($name_bdd)->statement("SELECT * FROM actualiza_clave ('".$idUsuario->id."', '".bcrypt($pass)."')");
+                    if ($res) {
+                       $estado = DB::connection($name_bdd)->table('usuarios.usuarios')->where('id', $idUsuario->id)->update(['estado_clave' => false]);
+                      if ($estado) {
+                        $respuesta = true;
+                        $data['correo'] = $userDataEmail->correo_electronico;
+                        $data['nombre_comercial'] = $dataPersona->primer_nombre.' '. $dataPersona->primer_apellido;
+                        $data['ruc'] = $request->ruc;
+                        $data['user_nextbook'] = $request->nick;
+                        $data['pass_nextbook'] = $pass;
+                        $this->enviar_correo($data);
+                        return response()->json(["respuesta" => $respuesta], 200);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }      
+          if ($request->nick === 1 && $request->correo !== null) {
+            $campos = ['id_persona','correo_electronico'];
+            $userDataEmail = DB::connection($name_bdd)->table('public.personas_correo_electronico')->select($campos)->where('correo_electronico',$request->correo)->first();
+            if ($userDataEmail) {
+              $campos = ['id', 'nick', 'estado_clave','fecha_actualiza'];
+              $idUsuario = DB::connection($name_bdd)->table('usuarios.usuarios')->select($campos)->where('id_persona',$userDataEmail->id_persona)->first();
+              $campos = [ 'primer_nombre', 'primer_apellido'];
+              $dataPersona = DB::connection($name_bdd)->table('public.personas')->select($campos)->where('id',$userDataEmail->id_persona)->first();
+              if ($idUsuario) {
+                if ($idUsuario->estado_clave === true) {
+                  $res = DB::connection($name_bdd)->statement("SELECT * FROM actualiza_clave ('".$idUsuario->id."', '".bcrypt($pass)."')");
+                  if ($res) {
+                     $estado = DB::connection($name_bdd)->table('usuarios.usuarios')->where('id', $idUsuario->id)->update(['estado_clave' => false,'fecha_actualiza' => Carbon::now()->toDateTimeString()]);
+                    if ($estado) {
+                      $respuesta = true;
+                      $data['correo'] = $userDataEmail->correo_electronico;
+                      $data['nombre_comercial'] = $dataPersona->primer_nombre.' '. $dataPersona->primer_apellido;
+                      $data['ruc'] = $request->ruc;
+                      $data['user_nextbook'] = $idUsuario->nick;
+                      $data['pass_nextbook'] = $pass;
+                      $this->enviar_correo($data);
+                      return response()->json(["respuesta" => $respuesta], 200);
+                    }
+                  }
+                }
                 if ($idUsuario->estado_clave === false) {
                   $fechaActual = Carbon::parse(Carbon::now()->toDateTimeString());
                   $fechaUsuario = Carbon::parse($idUsuario->fecha_actualiza);
                   $diferencia = $fechaActual->diff($fechaUsuario);
-                  if ($diferencia->h < 2 && $diferencia->d === 0) {
-                    $respuesta = "hace menos de 2 horas a solicitado un cambio de clave, Revice su Correo electronico ";
+                  if ((int) $diferencia->h < 2 && (int) $diferencia->d === 0) {
+                    $respuesta = "Hace Menos de 2 Horas a Solicitado un Cambio de Clave, Por Favor Revice su Correo electronico";
                   }
-                  if ($diferencia->h > 2 || $diferencia->d < 0) {
+                  if ((int) $diferencia->h > 2 || (int)$diferencia->d > 0) {
                     $res = DB::connection($name_bdd)->statement("SELECT * FROM actualiza_clave ('".$idUsuario->id."', '".bcrypt($pass)."')");
                     if ($res) {
                        $estado = DB::connection($name_bdd)->table('usuarios.usuarios')->where('id', $idUsuario->id)->update(['fecha_actualiza' => Carbon::now()->toDateTimeString()]);
                       if ($estado) {
-                        $respuesta = true;
+                        $respuesta = "Un Nuevo Codigo de Acceso a Sido Enviado a Su Correo";
                         $data['correo'] = $userDataEmail->correo_electronico;
                         $data['nombre_comercial'] = $dataPersona->primer_nombre.' '. $dataPersona->primer_apellido;
                         $data['ruc'] = $request->ruc;

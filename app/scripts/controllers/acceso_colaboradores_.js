@@ -49,7 +49,8 @@ var app = angular.module('nextbook20App')
 							    		obje1.ruc = $routeParams.ruc;
 							    	}
 							    	mainService.recuperaClave().get(obje1).$promise.then(function(data){
-						        	if (data.respuesta) {
+							    		var textorespuesta = data.respuesta;
+						        	if (data.respuesta === true) {
 							    		$mdDialog.show(
 								         $mdDialog.alert()
 							            .parent(angular.element(document.querySelector('#dialogContainer')))
@@ -59,14 +60,23 @@ var app = angular.module('nextbook20App')
 							            .ok('Entendido')
 							            .openFrom('#left')
 								        );				        		
-						        	}
-						        	if (!data.respuesta) {
+						        	}else if (data.respuesta === false) {
 						        		$mdDialog.show(
 								         $mdDialog.alert()
 							            .parent(angular.element(document.querySelector('#dialogContainer')))
 							            .clickOutsideToClose(true)
 							            .title('Envio de Credenciales')
 							            .textContent('Las Credenciales ingresadas no son Validas')
+							            .ok('Entendido')
+							            .openFrom('#left')
+								        );
+						        	}else if (data.respuesta !== false && data.respuesta !== true) {
+						        		$mdDialog.show(
+								         $mdDialog.alert()
+							            .parent(angular.element(document.querySelector('#dialogContainer')))
+							            .clickOutsideToClose(true)
+							            .title('Envio de Credenciales')
+							            .textContent(textorespuesta)
 							            .ok('Entendido')
 							            .openFrom('#left')
 								        );
