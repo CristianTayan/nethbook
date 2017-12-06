@@ -166,7 +166,7 @@ class restaurarContrasenia extends Controller
     public function enviar_correo($data){
       $correo_enviar = $data['correo'];
       $razon_social = $data['nombre_comercial'];
-      Mail::send('credenciales_ingreso', $data, function($message) use ($correo_enviar,$razon_social)
+      Mail::send('credenciales_password', $data, function($message) use ($correo_enviar,$razon_social)
         {
           $message->from("sistemas@nethbook.com",'Nethbook');
           $message->to($correo_enviar,$razon_social)->subject('Recuperación de contraseña');
