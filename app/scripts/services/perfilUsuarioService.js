@@ -1,12 +1,4 @@
 'use strict';
-
-/**
- * @ngdoc service
- * @name nextbook20App.perfilUsuarioService
- * @description
- * # perfilUsuarioService
- * Service in the nextbook20App.
- */
 angular.module('nextbook20App')
   .service('perfilUsuarioService', function ($resource, urlService, $localStorage) {
 

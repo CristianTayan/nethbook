@@ -18,10 +18,17 @@ var app = angular.module('nextbook20App')
       },function(error){
         $localStorage.imgPerfil="images/users/avatar-001.jpg";
       });
-       mainService.Get_Img_PerfilUsuario().get({sucursal:index.id}).$promise.then(function(data) {
+       
+      mainService.Get_Img_PerfilUsuario().get({sucursal:index.id}).$promise.then(function(data) {
         $localStorage.imgPerfilUsuario = data.img;                   
       },function(error){
         $localStorage.imgPerfilUsuario="images/users/avatar-001.jpg";
+      });
+      
+      mainService.Get_Img_PerfilEmpresa().get({sucursal:index.id}).$promise.then(function(data) {
+        $localStorage.imgPerfilEmpresa = data.img;                   
+      },function(error){
+        $localStorage.imgPerfilEmpresa="images/users/avatar-001.jpg";
       });
       //--------------------cargar imagen Portada-----------
       mainService.Get_Img_Portada().get({sucursal:index.id}).$promise.then(function(data) {
@@ -29,10 +36,17 @@ var app = angular.module('nextbook20App')
       },function(error){
         $localStorage.imgPortada="images/samples/w1.jpg";
       });
-        mainService.Get_Img_PortadaUsuario().get({sucursal:index.id}).$promise.then(function(data) {
+      
+      mainService.Get_Img_PortadaUsuario().get({sucursal:index.id}).$promise.then(function(data) {
         $localStorage.imgPortadaUsuario = data.img;
       },function(error){
         $localStorage.imgPortadaUsuario="images/samples/w1.jpg";
+      });
+      
+      mainService.Get_Img_PortadaEmpresa().get({sucursal:index.id}).$promise.then(function(data) {
+        $localStorage.imgPortadaEmpresa = data.img;
+      },function(error){
+        $localStorage.imgPortadaEmpresa="images/samples/w1.jpg";
       });
       // --------------------cargar imagen Logo-----------
       mainService.Get_Img_Logo().get({sucursal:index.id}).$promise.then(function(data) {
@@ -40,6 +54,6 @@ var app = angular.module('nextbook20App')
       },function(error){
         $localStorage.imgPortada="images/samples/x2.jpg";
       });
-      (index.giro_negocio.id==0)?$location.path('/nb/App/Administracion/Sucursal'):$location.path('/nb/App/Administracion/Sucursal')
+      (index.giro_negocio.id==0)?$location.path('/nb/App/Administracion/Sucursal'):$location.path('/nb')
     }
   });

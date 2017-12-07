@@ -1,0 +1,29 @@
+<md-dialog aria-label="Cargar Imagen ">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Cargar Imagen</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <input type="file" img-cropper-fileread image="cropper.full" accept="image/*" />
+        <div> 
+             <canvas ng-show="cropper.full!=undefinied" crop-width="crop_size.width" crop-height="crop_size.height" width="600" height="300" id="canvas" image-cropper image="cropper.full" cropped-image="cropper.crop"  keep-aspect="true" touch-radius="30" crop-area-bounds="bounds" cors="no"></canvas>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button ng-click="cancel()">
+       Cancelar
+      </md-button>
+      <md-button ng-click="Upload()" ng-disabled="cropper.full==undefinied">
+        Guardar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

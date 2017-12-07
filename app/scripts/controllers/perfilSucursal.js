@@ -6,9 +6,6 @@ var app = angular.module('nextbook20App');
       $location.url('/nb/App/Administracion/Sucursal/' + value);
     }
 
-
-
-
       $rootScope.imgPortada = urlService.server().dir() + $localStorage.imgPortada;
       $rootScope.imgPerfil = urlService.server().dir() + $localStorage.imgPerfil;
       $scope.show_img = function(ev, tipo_img) {

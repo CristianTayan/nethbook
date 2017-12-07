@@ -61,7 +61,6 @@ class Perfil extends Controller
       $img->resize($width, null, function ($constraint) {
           $constraint->aspectRatio();
       });
-
       $directorio = storage_path().'/'.$name_bdd;
       if (!file_exists($directorio)) {
         mkdir(storage_path().'/'.$name_bdd, 0777, true);
@@ -69,10 +68,10 @@ class Perfil extends Controller
         mkdir(storage_path().'/'.$name_bdd.'/Portadas/', 0777, true);
         mkdir(storage_path().'/'.$name_bdd.'/PortadasUsuario/', 0777, true);
         mkdir(storage_path().'/'.$name_bdd.'/PerfilUsuario/', 0777, true);
+        mkdir(storage_path().'/'.$name_bdd.'/PortadasEmpresa/', 0777, true);
+        mkdir(storage_path().'/'.$name_bdd.'/PerfilEmpresa/', 0777, true);
       }
-
-      $img->save(storage_path().'/'.$name_bdd.'/'.$tipo_img.'/'.$id_img);
-      
+      $img->save(storage_path().'/'.$name_bdd.'/'.$tipo_img.'/'.$id_img);      
       return $id_img;
     }
 
@@ -197,5 +196,88 @@ class Perfil extends Controller
             return response()->json(['respuesta'=>true]); 
         }
     }
+  //PERFIL EMPRESA
+    public function add_Img_PerfilEmpresa(Request $request){
+      $crop = $request->img['crop'];
+      $full = $request->img['full'];
+      $filename=$this->base64_to_img($crop,600,'PerfilEmpresa',$this->name_bdd);
+      $img_dir_crop="storage/".$this->name_bdd.'/PerfilEmpresa/'.$filename;
+      $filename=$this->base64_to_img($full,700,'PerfilEmpresa',$this->name_bdd);
+      $img_dir_full="storage/".$this->name_bdd.'/PerfilEmpresa/'.$filename;
+      DB::connection($this->name_bdd)->
+        table('administracion.imagen_empresa')->
+        where('sucursal',$request->sucursal)->
+        where('estado','A')->
+        where('tipo_imagen',3)->
+        update(['estado'=>'P']);
+      $save=DB::connection($this->name_bdd)->
+        table('administracion.imagen_empresa')->
+        insert([
+          'sucursal'=>$request->sucursal,
+          'direccion_imagen_empresa'=>$img_dir_full,
+          'direccion_imagen_recorte'=>$img_dir_crop,
+          'estado'=>'A',
+          'tipo_imagen'=>3
+        ]);
+      if ($save) {
+        return response()->json(["respuesta"=>true,"img"=>$img_dir_crop]);
+      }else 
+        return response()->json(["respuesta"=>false,"img"=>'']);
+    }
 
+    public function Set_Img_PerfilEmpresa(Request $request){
+      DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->
+      // where('sucursal',$request->sucursal)->
+      where('estado','A')->
+      where('tipo_imagen',3)->
+      update(['estado'=>'P']);
+      $resultado=DB::connection($this->name_bdd)->
+      table('administracion.imagen_empresa')->
+      where('id',$request->img)->
+      update(['estado'=>'A']);
+      if ($resultado) {
+        return response()->json(["respuesta"=>true]);
+      }else 
+        return response()->json(["respuesta"=>false]);
+    }
+
+    public function Load_Imgs_PerfilEmpresa(Request $request){
+      $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->
+      select('direccion_imagen_empresa','id','direccion_imagen_recorte')->
+      //where('sucursal',$request->sucursal)->
+      where('estado','P')->
+      where('tipo_imagen',3)->
+      orderBy('fecha','DESC')->
+      limit(500)->
+      get();
+      return response()->json(["imgs"=>$resultado]);
+    }
+
+    public function Get_Img_PerfilEmpresa(Request $request){
+      $resultado=DB::connection($this->name_bdd)->
+      table('administracion.imagen_empresa')->
+      select('direccion_imagen_recorte','direccion_imagen_empresa')->
+      // where('sucursal',$request->sucursal)->
+      where('estado','A')->
+      where('tipo_imagen',3)->
+      first();
+      if (count($resultado)>0) {
+        $data=explode('/', $resultado->direccion_imagen_recorte);
+        $img=$data[count($data)-1];
+        $path=storage_path().'/'.$this->name_bdd.'/PerfilEmpresa/'.$img;
+        if (File::exists($path)) {
+            return response()->json(['existe'=>true,"img"=>$resultado->direccion_imagen_recorte,'img_full'=>$resultado->direccion_imagen_empresa]);
+        }else{
+            return response()->json(['existe'=>false,"img"=>config('global.pathPerfilDefault')]);
+        }
+      }
+      return response()->json(['existe'=>false,"img"=>config('global.pathPerfilDefault')]);
+    }
+
+    public function Delete_Img_PerfilEmpresa(Request $request){
+      $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->where('id',$request->img)->update(['estado'=>'I']);
+      if ($resultado) {
+        return response()->json(['respuesta'=>true]); 
+      }
+    }
 }
