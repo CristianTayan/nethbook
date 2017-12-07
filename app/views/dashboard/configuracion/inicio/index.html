@@ -1,37 +1,123 @@
 <div layout="row">
-  <md-card flex>
-   <img src="images/paris.jpg" class="md-card-image" alt="image caption">
-   <md-card-content>
-     <h4>Configuración Personal</h4>
-     <p> Perfil Personal</p>
-   </md-card-content>
-   <md-card-actions layout="row" layout-align="end center">
-     <md-button ng-disabled="true">Opcion</md-button>
-     <md-button class="md-raised md-accent" ng-href="#/nb/App/Config/PerfilPersonal">Entrar</md-button>
-   </md-card-actions>
-  </md-card>
+  <div ng-controller="perfil_personal_Ctrl">
+    <md-card flex>
+      <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'PortadaUsuario')">
+          <div ng-style="{'background-image': 'url(' + imgPortadaUsuario + ')',' height': '200'}" class="card__image"></div>
+      </div>
+      <div style="position: absolute;">
+          <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'PortadaUsuario')" aria-label="More">
+              <md-icon>add_a_photo</md-icon>
+          </md-button>
+          <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'PortadaUsuario')" aria-label="More">
+              <md-icon>mode_edit</md-icon>
+          </md-button>
+      </div>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Configuración Personal</span>
+            <span class="md-subhead">Perfil Personal</span>
+            <md-button ng-disabled="true">Opcion</md-button>
+            <md-button class="md-raised md-accent" ng-href="#/nb/App/Config/PerfilPersonal">Entrar</md-button>
+          </md-card-title-text>
+          <md-card-title-media>              
+            <div layout="row" style="width: 175px; height: 175px;">
+                <div class="demo-card-square mdl-card mdl-shadow--2dp" style="cursor: pointer;" ng-click="show_img($event,'PerfilUsuario')" ng-style="{'background-image': 'url(' + imgPerfilUsuario + ')','background-size': 'cover','background-repeat': 'no-repeat'}">
+                </div>
+                <div style="position: absolute; z-index: 9;">
+                    <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'PerfilUsuario')" aria-label="More">
+                        <md-icon>add_a_photo</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'PerfilUsuario')" aria-label="More">
+                        <md-icon>mode_edit</md-icon>
+                    </md-button>
+                </div>
+            </div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+         <span class="md-subhead">Foto Perfil</span>
+        </md-card-actions>
+    </md-card>
+  </div>
 
   <md-card flex>
-   <img src="images/paris.jpg" class="md-card-image" alt="image caption">
-   <md-card-content>
-     <h4>Configuración Sucursal</h4>
-     <p>Perfil Sucursal/Establecimiento</p>
-   </md-card-content>
-   <md-card-actions layout="row" layout-align="end center">
-     <md-button ng-disabled="true">Opcion</md-button>
-     <md-button class="md-raised md-accent" ng-href="#/nb/App/Config/PerfilPersonal">Entrar</md-button>
-   </md-card-actions>
+    <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'Portada')">
+      <div ng-style="{'background-image': 'url(' + imgPortada + ')',' height': '200'}" class="card__image"></div>
+    </div>
+    <div style="position: absolute;">
+      <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Portada')" aria-label="More">
+          <md-icon>add_a_photo</md-icon>
+      </md-button>
+      <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Portada')" aria-label="More">
+          <md-icon>mode_edit</md-icon>
+      </md-button>
+    </div>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Configuración Sucursal</span>
+          <span class="md-subhead">Perfil Sucursal/Establecimiento</span>
+          <md-button ng-disabled="true">Opcion</md-button>
+          <md-button class="md-raised md-accent" ng-href="#/nb/App/Config/PerfilPersonal">Entrar</md-button>
+        </md-card-title-text>
+        <md-card-title-media>
+        <div layout="row" style="width: 175px; height: 175px;">
+          <div class="demo-card-square mdl-card mdl-shadow--2dp" style="cursor: pointer;" ng-click="show_img($event,'Perfil')" ng-style="{'background-image': 'url(' + imgPerfil + ')','background-size': 'cover','background-repeat': 'no-repeat'}">
+          </div>
+          <div style="position: absolute; z-index: 9;">
+              <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Perfil')" aria-label="More">
+                  <md-icon>add_a_photo</md-icon>
+              </md-button>
+              <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Perfil')" aria-label="More">
+                  <md-icon>mode_edit</md-icon>
+              </md-button>
+          </div>
+      </div>
+        </md-card-title-media>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <span class="md-subhead">Foto Perfil</span>
+      </md-card-actions>
   </md-card>
 
-  <md-card flex>
-   <img src="images/paris.jpg" class="md-card-image" alt="image caption">
-   <md-card-content>
-     <h4>Condiguración Empresa</h4>
-     <p> Perfil Empresa</p>
-   </md-card-content>
-   <md-card-actions layout="row" layout-align="end center">
-     <md-button ng-disabled="true">Opcion</md-button>
-     <md-button class="md-raised md-accent" ng-href="#/nb/App/Config/PerfilPersonal">Entrar</md-button>
-   </md-card-actions>
-  </md-card>
+  <div ng-controller="perfilEmpresaCtrl">
+    <md-card flex>
+      <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'PortadaEmpresa')">
+        <div ng-style="{'background-image': 'url(' + imgPortadaEmpresa + ')',' height': '200'}" class="card__image"></div>
+      </div>
+      <div style="position: absolute;">
+        <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'PortadaEmpresa')" aria-label="More">
+            <md-icon>add_a_photo</md-icon>
+        </md-button>
+        <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'PortadaEmpresa')" aria-label="More">
+            <md-icon>mode_edit</md-icon>
+        </md-button>
+      </div>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Configuración Empresa</span>
+            <span class="md-subhead">Perfil Empresa</span>
+            <md-button ng-disabled="true">Opcion</md-button>
+            <md-button class="md-raised md-accent" ng-href="#/nb/App/Config/PerfilPersonal">Entrar</md-button>
+          </md-card-title-text>
+          <md-card-title-media>
+          <div layout="row" style="width: 175px; height: 175px;">
+            <div class="demo-card-square mdl-card mdl-shadow--2dp" style="cursor: pointer;" ng-click="show_img($event,'PerfilEmpresa')" ng-style="{'background-image': 'url(' + imgPerfilEmpresa + ')','background-size': 'cover','background-repeat': 'no-repeat'}">
+            </div>
+            <div style="position: absolute; z-index: 9;">
+                <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'PerfilEmpresa')" aria-label="More">
+                    <md-icon>add_a_photo</md-icon>
+                </md-button>
+                <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'PerfilEmpresa')" aria-label="More">
+                    <md-icon>mode_edit</md-icon>
+                </md-button>
+            </div>
+        </div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <span class="md-subhead">Foto Perfil</span>
+        </md-card-actions>
+    </md-card>
+  </div>
+
 </div>

@@ -1,13 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-//-------------------------------------- Funciones --------------
 use App\libs\Funciones;
-//---------------------------- Extras 
 use Storage;
 use File;
 

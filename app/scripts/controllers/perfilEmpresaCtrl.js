@@ -1,16 +1,16 @@
 'use strict';
 var app = angular.module('nextbook20App');
-app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorage, colaboradores_Service, $mdDialog, $timeout, urlService, mainService) {
-   
-  $rootScope.imgPortadaUsuario = urlService.server().dir() + $localStorage.imgPortadaUsuario;
-  $rootScope.imgPerfilUsuario = urlService.server().dir() + $localStorage.imgPerfilUsuario;
-  $scope.dataUsuario = $localStorage.datosPersona;
+app.controller('perfilEmpresaCtrl', function($scope, $rootScope, $localStorage, colaboradores_Service, $mdDialog, $timeout, urlService, mainService) {
+                                                                                                                                           
+  $rootScope.imgPortadaEmpresa = urlService.server().dir() + $localStorage.imgPortadaEmpresa;
+  $rootScope.imgPerfilEmpresa = urlService.server().dir() + $localStorage.imgPerfilEmpresa;
+  $scope.dataEmpresa = $localStorage.datosPersona;
   $scope.data_sucursal = $localStorage.sucursal;
 
   $scope.show_img = function(ev, tipo_img) {
     $mdDialog.show({
       controller: Dialog_show_image_Controller,
-      templateUrl: 'views/dashboard/perfil_personal/show_img.html',
+      templateUrl: 'views/dashboard/perfil_empresa/show_img.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: false,
@@ -27,14 +27,16 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
       $scope.cargando = false;
       $scope.img = urlService.server().dir() + resul.img_full;
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////OJO
     switch (tipo) {
-      case 'PerfilUsuario':
-          mainService.Get_Img_PerfilUsuario().get({
+      case 'PerfilEmpresa':
+          mainService.Get_Img_PerfilEmpresa().get({
             sucursal: $localStorage.sucursal.id
           }, ok_img).$promise;
           break;
-      case 'PortadaUsuario':
-          mainService.Get_Img_PortadaUsuario().get({
+      case 'PortadaEmpresa':
+          mainService.Get_Img_PortadaEmpresa().get({
             sucursal: $localStorage.sucursal.id
           }, ok_img).$promise;
           break;
@@ -47,7 +49,7 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
   $scope.show_upload_img_modal = function(ev, tipo_img) {
     $mdDialog.show({
       controller: Dialog_subir_image_Controller,
-      templateUrl: 'views/dashboard/perfil_personal/subir_img.html',
+      templateUrl: 'views/dashboard/perfil_empresa/subir_img.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: false,
@@ -58,15 +60,15 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
     });
   };
 
-  function Dialog_subir_image_Controller($scope, $timeout, urlService, $localStorage, perfilUsuarioService, tipo_img) {
+  function Dialog_subir_image_Controller($scope, $timeout, urlService, $localStorage, perfilEmpresaService, tipo_img) {
     switch (tipo_img) {
-      case 'PortadaUsuario':
+      case 'PortadaEmpresa':
           $scope.crop_size = {
               width: 1000,
               height: 300
           };
           break;
-      case 'PerfilUsuario':
+      case 'PerfilEmpresa':
           $scope.crop_size = {
               width: 250,
               height: 250
@@ -78,27 +80,28 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
     };
 
     $scope.Upload = function() {
+      ////////////////////////////////////////////////////////////////////////////////////////////ojo
       switch (tipo_img) {
-        case 'PortadaUsuario':
-            perfilUsuarioService.Add_Img_PortadaUsuario().send({
+        case 'PortadaEmpresa':
+            perfilEmpresaService.Add_Img_PortadaEmpresa().send({
               img: $scope.cropper,
               sucursal: $localStorage.sucursal.id
             }).$promise.then((resul) => {
               if (resul.respuesta == true) {
-                $rootScope.imgPortadaUsuario = urlService.server().dir() + resul.img;
-                $localStorage.imgPortadaUsuario = resul.img;
+                $rootScope.imgPortadaEmpresa = urlService.server().dir() + resul.img;
+                $localStorage.imgPortadaEmpresa = resul.img;
                 $mdDialog.hide();
               }
             });
             break;
-        case 'PerfilUsuario':
-            perfilUsuarioService.Add_Img_PerfilUsuario().send({
+        case 'PerfilEmpresa':
+            perfilEmpresaService.Add_Img_PerfilEmpresa().send({
                 img: $scope.cropper,
                 sucursal: $localStorage.sucursal.id
             }).$promise.then((resul) => {
               if (resul.respuesta == true) {
-                $rootScope.imgPerfilUsuario = urlService.server().dir() + resul.img;
-                $localStorage.imgPerfilUsuario = resul.img;
+                $rootScope.imgPerfilEmpresa = urlService.server().dir() + resul.img;
+                $localStorage.imgPerfilEmpresa = resul.img;
                 $mdDialog.hide();
               }
             });
@@ -106,20 +109,20 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
       }
     };
   };
-    // SELECIONAR PORTADA USUARIO
+    // SELECIONAR PORTADA Empresa
   $scope.show_lista_img_modal = function(ev, tipo_img) {
     var controller;
     switch (tipo_img) {
-      case 'PortadaUsuario':
+      case 'PortadaEmpresa':
         controller = Dialog_lista_image_Portada_Controller;
         break;
-      case 'PerfilUsuario':
+      case 'PerfilEmpresa':
         controller = Dialog_lista_image_Perfil_Controller;
         break;
     }
     $mdDialog.show({
         controller: controller,
-        templateUrl: 'views/dashboard/perfil_personal/select_img.html',
+        templateUrl: 'views/dashboard/perfil_empresa/select_img.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         multiple: true,
@@ -128,7 +131,7 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
     });
   };
     // CONTROLADOR PORTADA
-  function Dialog_lista_image_Portada_Controller($scope, $rootScope, $timeout, urlService, $localStorage, perfilUsuarioService) {
+  function Dialog_lista_image_Portada_Controller($scope, $rootScope, $timeout, urlService, $localStorage, perfilEmpresaService) {
     $scope.cargando = true;
     // GET PORTADA
     function ok_load_portadas(result) {
@@ -142,7 +145,7 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
     };
 
     $scope.load_img_portadas = function() {
-        perfilUsuarioService.Load_Imgs_PortadaUsuario().get({}, ok_load_portadas).$promise;
+        perfilEmpresaService.Load_Imgs_PortadaEmpresa().get({}, ok_load_portadas).$promise;
     };
 
     $scope.load_img_portadas();
@@ -155,12 +158,12 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
     };
 
     $scope.set_img = function(img) {
-      perfilUsuarioService.Set_Img_PortadaUsuario().send({
+      perfilEmpresaService.Set_Img_PortadaEmpresa().send({
         img: img.id
       }).$promise.then((resul) => {
         if (resul.respuesta == true) {
-            $rootScope.imgPortadaUsuario = img.direccion_imagen_empresa_dir;
-            $localStorage.imgPortadaUsuario = img.direccion_imagen_recorte;
+            $rootScope.imgPortadaEmpresa = img.direccion_imagen_empresa_dir;
+            $localStorage.imgPortadaEmpresa = img.direccion_imagen_recorte;
             $mdDialog.hide();
         }
       });
@@ -169,7 +172,7 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
     $scope.show_delete_modal = function(ev, img) {
       $mdDialog.show({
         controller: Delete_Controller,
-        templateUrl: 'views/dashboard/perfil_personal/delete_img.html',
+        templateUrl: 'views/dashboard/perfil_empresa/delete_img.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         multiple: true,
@@ -182,7 +185,7 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
 
     function Delete_Controller($scope, img, $rootScope) {
       $scope.eliminar_img = function() {
-        perfilUsuarioService.Delete_Img_PortadaUsuario().send({
+        perfilEmpresaService.Delete_Img_PortadaEmpresa().send({
           img: img.id
         }).$promise.then((resul) => {
           if (resul.respuesta == true) {
@@ -198,7 +201,7 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
     };
   };
 
-  function Dialog_lista_image_Perfil_Controller($scope, $rootScope, $timeout, urlService, $localStorage, perfilUsuarioService) {
+  function Dialog_lista_image_Perfil_Controller($scope, $rootScope, $timeout, urlService, $localStorage, perfilEmpresaService) {
     $scope.cargando = true;
     //GET IMAGEN PERFIL
     function ok_load_imgs_perfil(result) {
@@ -212,11 +215,11 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
     };
 
     $scope.load_imgs_perfil = function() {
-        perfilUsuarioService.Load_Imgs_PerfilUsuario().get({}, ok_load_imgs_perfil).$promise;
+        perfilEmpresaService.Load_Imgs_PerfilEmpresa().get({}, ok_load_imgs_perfil).$promise;
     };
 
     $scope.load_imgs_perfil();
-    $rootScope.$on("actualizar_imgs_perfilUsuario", function() {
+    $rootScope.$on("actualizar_imgs_perfilEmpresa", function() {
       $scope.load_imgs_perfil();
     });
 
@@ -225,12 +228,12 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
     };
 
     $scope.set_img = function(img) {
-      perfilUsuarioService.Set_Img_PerfilUsuario().send({
+      perfilEmpresaService.Set_Img_PerfilEmpresa().send({
         img: img.id
       }).$promise.then((resul) => {
         if (resul.respuesta == true) {
-            $rootScope.imgPerfilUsuario = img.direccion_imagen_empresa_dir;
-            $localStorage.imgPerfilUsuario = img.direccion_imagen_recorte;
+            $rootScope.imgPerfilEmpresa = img.direccion_imagen_empresa_dir;
+            $localStorage.imgPerfilEmpresa = img.direccion_imagen_recorte;
             $mdDialog.hide();
         }
       });
@@ -239,7 +242,7 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
     $scope.show_delete_modal = function(ev, img) {
       $mdDialog.show({
         controller: Delete_Controller,
-        templateUrl: 'views/dashboard/perfil_personal/delete_img.html',
+        templateUrl: 'views/dashboard/perfil_empresa/delete_img.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         multiple: true,
@@ -252,11 +255,11 @@ app.controller('perfil_personal_Ctrl', function($scope, $rootScope, $localStorag
 
     function Delete_Controller($scope, img, $rootScope) {
       $scope.eliminar_img = function() {
-        perfilUsuarioService.Delete_Img_PerfilUsuario().send({
+        perfilEmpresaService.Delete_Img_PerfilEmpresa().send({
           img: img.id
         }).$promise.then((resul) => {
           if (resul.respuesta == true) {
-              $rootScope.$emit("actualizar_imgs_perfilUsuario", {});
+              $rootScope.$emit("actualizar_imgs_perfilEmpresa", {});
               $mdDialog.hide();
           }
         });

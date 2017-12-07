@@ -71,8 +71,7 @@ var app = angular.module('nextbook20App');
         }
       });
     };
-
-    // -----------------------------------------------------    Requerir Imagenes generales perfil   ------------------------------------------------
+    // IMAGENES DE PERFIL 
     this.Get_Img_Perfil=function() {
       return $resource(urlService.server().appnext()+'Get_Img_Perfil', {}, {
         get: {
@@ -81,6 +80,7 @@ var app = angular.module('nextbook20App');
         }
       });
     };
+
     this.Get_Img_PerfilUsuario =function() {
       return $resource(urlService.server().appnext()+'Get_Img_PerfilUsuario', {}, {
         get: {
@@ -88,15 +88,17 @@ var app = angular.module('nextbook20App');
           params: { token:$localStorage.token }
         }
       });
-    }
-    this.Get_Img_Logo=function() {
-      return $resource(urlService.server().appnext()+'Get_Img_Logo', {}, {
-          get: {
-            method: 'POST', isArray: false, 
-            params: { token: $localStorage.token }
-          }
+    };
+
+    this.Get_Img_PerfilEmpresa =function() {
+      return $resource(urlService.server().appnext()+'Get_Img_PerfilEmpresa', {}, {
+        get: {
+          method: 'POST', isArray: false, 
+          params: { token:$localStorage.token }
+        }
       });
     };
+    // IMAGENES DE PORTADA
     this.Get_Img_Portada=function() {
       return $resource(urlService.server().appnext()+'Get_Img_Portada', {}, {
         get: {
@@ -105,6 +107,7 @@ var app = angular.module('nextbook20App');
         }
       });
     };
+
     this.Get_Img_PortadaUsuario=function() {
       return $resource(urlService.server().appnext()+'Get_Img_PortadaUsuario', {}, {
         get: {
@@ -113,6 +116,25 @@ var app = angular.module('nextbook20App');
         }
       });
     };
+
+    this.Get_Img_PortadaEmpresa=function() {
+      return $resource(urlService.server().appnext()+'Get_Img_PortadaEmpresa', {}, {
+        get: {
+          method: 'POST', isArray: false, 
+          params: { token: $localStorage.token }
+        }
+      });
+    };
+    // IMAGENES DE LOGO 
+    this.Get_Img_Logo=function() {
+      return $resource(urlService.server().appnext()+'Get_Img_Logo', {}, {
+          get: {
+            method: 'POST', isArray: false, 
+            params: { token: $localStorage.token }
+          }
+      });
+    };
+
     this.Get_Datos_Empresa=function() {
       return $resource(urlService.server().appnext()+'Get_Datos_Empresa', {}, {
         get: {
