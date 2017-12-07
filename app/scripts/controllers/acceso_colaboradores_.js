@@ -14,7 +14,7 @@ var app = angular.module('nextbook20App')
       $scope.data_ingreso_colaborador.ruc=$routeParams.ruc;
       var obj = $scope.data_ingreso_colaborador;
           colaboradores_Service.Ingresar_Colaborador().acceso({acceso:obj,info_servidor:'', ip_cliente:'192.168.0.1', macadress:'00:00:00:00:00'}).$promise.then(function(data) {
-            if (data.respuesta === false && contadorIngreso <= 0) {
+            if (data.respuesta === false && contadorIngreso <= 3) {
                 $mdDialog.show(
                   $mdDialog.alert()
                   .parent(angular.element(document.querySelector('#dialogContainer')))
@@ -26,7 +26,7 @@ var app = angular.module('nextbook20App')
               );
                  contadorIngreso++;
               }
-            if (data.respuesta === false && contadorIngreso > 0) {  
+            if (data.respuesta === false && contadorIngreso > 3) {  
                 var obje1 = {'ruc' : null , 'nick': null, 'correo': null};
                   var confirm = $mdDialog.prompt()
                     .title('¿Recuperar Clave/password de acceso?')
@@ -36,13 +36,13 @@ var app = angular.module('nextbook20App')
                     .ok('RECUPERAR')
                     .cancel('CANCELAR');
                     $mdDialog.show(confirm).then(function(result) {
-                    if (result.indexOf("@") > 3) 
+                    if (result.indexOf("@") > 0) 
                     {
                       obje1.correo = result;
                       obje1.nick = 1;
                       obje1.ruc = $routeParams.ruc;                                   
                     }
-                    if (result.indexOf("@") < 3) {
+                    if (result.indexOf("@") < 0) {
                       obje1.nick = result;
                       obje1.correo = 1;
                       obje1.ruc = $routeParams.ruc;
