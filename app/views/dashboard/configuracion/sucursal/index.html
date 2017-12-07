@@ -1,4 +1,3 @@
-
 <strong><h4><i class="material-icons">settings</i> Configuración de la sucursal</h4></strong>  
 <md-expansion-panel-group  md-component-id="expansionPanelGroup" style=" width: 80%">
   <md-expansion-panel md-component-id="expansionPanelTwo" >
@@ -38,7 +37,6 @@
           </md-expansion-panel-content>
       </md-expansion-panel-expanded>
   </md-expansion-panel>
-
   <md-expansion-panel md-component-id="expansionPanelTree" >
       <md-expansion-panel-collapsed>
           <div class="md-title" >Correo</div>
@@ -94,7 +92,6 @@
                 <md-icon class="md-accent">keyboard_arrow_down</md-icon>
             </md-button>
         </md-expansion-panel-collapsed>
-
         <md-expansion-panel-expanded>
             <md-expansion-panel-header>
                 <div class="md-title" >Giro de Negocio</div>
@@ -149,44 +146,54 @@
               <div class="md-summary" ></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
-          <md-toolbar>
-            <h6 style="margin-left: 10px">Lista de contactos</h6>
-          </md-toolbar>
-
-          <div>
-            <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                  <div layout="row" layout-align="center center">
-                <div class="panel panel-default">
-                      <div class="panel-body">
-                        <form ng-submit="addNew(listas)">
-                            <div  layout="row">
-                            <md-input-container class="md-icon-float md-block" flex="35">
-                            <md-icon class="md-primary">airplay</md-icon>
-                            <label>Tipo</label>
-                              <md-select class="form-control" ng-model="listas.tipo" required>
-                                <md-option ng-repeat="tipo in tipos" value="{{tipo}}">{{tipo}}</md-option>
-                              </md-select>
-                            </md-input-container>  
-                            <span flex="10"></span>
-                            <md-input-container class="md-icon-float md-block" flex="35">
-                                <md-icon class="md-primary">phone</md-icon>
-                                <label>Numero</label>
-                                <input type="text" class="form-control" ng-model="listas.numero" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
-                            </md-input-container>   
-                            
-                                <md-button type="submit"  class="md-fab md-mini"> <md-tooltip md-direction="right">Agregar</md-tooltip> <md-icon>add</md-icon></md-button>   
-                            </div>
-                        </form>
-                    </div>
-                  </div>
-                </div>
+ 
+          <div layout="row" layout-align="center center">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                  <form name="form" >
+                      <div  layout="row">
+                      <md-input-container class="md-icon-float md-block" flex="35">
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Tipo</label>
+                        <md-select name="tipo" ng-model="listas.tipo" required>
+                          <md-option ng-repeat="tipo in tipos" value="{{tipo}}">{{tipo}}</md-option>
+                        </md-select>
+                        <div ng-messages="form.tipo.$error">
+                          <div ng-message="required">
+                            Requiere seleccionar un tipo de contacto
+                          </div>                                
+                        </div>
+                      </md-input-container>  
+                      <span flex="10"></span>
+                      <md-input-container class="md-icon-float md-block" flex="35">
+                        <md-icon class="md-primary">phone</md-icon>
+                        <label>Numero</label>
+                        <input name="fono" ng-model="listas.numero" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" numbersOnly required>
+                        <div ng-messages="form.fono.$error" ng-show="form.fono.$dirty">
+                          <div ng-message="required">
+                            Es obligatorio ingresar un numero
+                          </div>
+                          <div ng-message="md-minlength">
+                            Minimo 10 numeros
+                          </div>
+                          <div ng-message="md-maxlength">
+                            Maximo 10 numeros
+                          </div>
+                          <div ng-message="pattern">
+                          Ingrese solo numeros
+                          </div>
+                          <div ng-message="numbersOnly">fdsfdasdf solo numeros</div>
+                        </div>
+                      </md-input-container>   
+                      <md-button ng-click="addNew(listas)" ng-disabled="form.$invalid" class="md-fab md-mini" ><md-icon>add</md-icon></md-button>   
+                      </div>
+                  </form>
+              </div>
             </div>
-        </div>
-
-        <div class="row" ng-hide="!listas.length">
-            <div class="col-md-12">
+          </div>
+        
+        <div class="row" >
+            <div >
                 <table md-table md-row-select>
                     <thead md-head>
                         <tr md-row>
@@ -198,7 +205,7 @@
                     <tbody>
                         <tr ng-repeat="lista in listas">
                             <td>
-                                <md-checkbox  ng-model="lista.selected"/></md-checkbox></td>
+                                <md-checkbox  ng-model="lista.selected" aria-label="check"/></md-checkbox></td>
                             <td>{{lista.tipo}}</td>
                             <td>{{lista.numero}}</td>
                         </tr>
@@ -246,4 +253,3 @@
       </md-expansion-panel-expanded>
   </md-expansion-panel> 
 </md-expansion-panel-group>
-
