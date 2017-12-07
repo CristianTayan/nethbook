@@ -36,7 +36,26 @@ class Sucursales extends Controller
         [
             'datos_adiconales' => json_encode($request->valores)
         ]);
+        return response()->json(['respuesta' => true], 200);
+      }
+      if (!$data_sucursal) {
+         echo("Sucursal No Encontrada");
+      }
+    }
 
+    public function updateGiroNegocio(Request $request) {
+        // $x = 1;
+      $data_sucursal=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->idSucursal)->first();
+        // $data_sucursal=DB::connection('comercial_h_1090084247001')->table('administracion.sucursales')->where('id',$x)->first();
+      if ($data_sucursal) { 
+        $data=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->idSucursal)
+        // $data=DB::connection('comercial_h_1090084247001')->table('administracion.sucursales')->where('id',$x)
+    ->update(
+        [
+            'giro_negocio'=>$request->id
+
+        ]);
+        return response()->json(['respuesta' => true], 200);
       }
       if (!$data_sucursal) {
          echo("Sucursal No Encontrada");
@@ -50,6 +69,13 @@ class Sucursales extends Controller
      $data_sucursal=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->idSucursal)->first();
     $datosAdicionales = $data_sucursal->datos_adiconales;
    return response()->json(['respuesta' => json_decode($datosAdicionales)], 200);
+ }
+   public function getGiroNegocio(Request $request)
+ {
+   // $x = 1;
+     $data_sucursal=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->idSucursal)->first();
+    $giroNegocio = $data_sucursal->giro_negocio;
+   return response()->json(['respuesta' => json_decode($giroNegocio)], 200);
  }
 
     public function Update_Giro_Actividad(Request $request)

@@ -36,6 +36,37 @@ class Administracion_Empresa extends Controller
       die();
     }
   }
+  public function addDatosEmpresariales(Request $request)
+    {
+        // Revisar AddBodegas DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')->insert([
+        DB::connection('comercial_h_1090084247001')->table('administracion.informacion_empresa_tbl')->insert([
+          'id_empresa'=>$request->input('id_empresa'),
+          'mision_empresa'=>$request->input('mision_empresa'),
+          'vision_empresa'=>$request->input('vision_empresa'),
+          'slogan_empresa'=>$request->input('slogan_empresa'),
+          'valores_empresa'=>$request->input('valores_empresa'), 
+          'estado'=>'A',
+          'fecha_creacion' => Carbon::now()->toDateString()]),
+          'fecha_ultimo_cambio' => Carbon::now()->toDateString()]);
+        return response()->json(['respuesta' => true], 200);
+    }
+
+  public function apdateDatosEmpresariales(Request $request) {
+    $x=1;
+      // $data_sucursal=DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')->where('id',$request->idSucursal)->first();
+    $data_empresa=DB::connection('comercial_h_1090084247001')->table('administracion.informacion_empresa_tbl')->where('id',$x)->first();
+      if ($data_empresa) { 
+        $data=DB::connection('comercial_h_1090084247001')->table('administracion.informacion_empresa_tbl')->where('id',$x)
+    ->update(
+        [
+            'mision_empresa' => json_encode($request->valores)
+        ]);
+        return response()->json(['respuesta' => true], 200);
+      }
+      if (!$data_sucursal) {
+         echo("Sucursal No Encontrada");
+      }
+    }
   public function Get_Datos_Empresa(Request $request)
   {
     $resultado = DB::connection($this->name_bdd)->table('usuarios')->where('id', '=', $this->user->sub)->first();

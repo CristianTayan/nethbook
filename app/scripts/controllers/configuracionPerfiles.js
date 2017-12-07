@@ -6,8 +6,8 @@ var app = angular.module('nextbook20App')
     $scope.$routeSegment = $routeSegment;
   });
 
-  app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel, $routeSegment,  $mdDialog, $localStorage, mainService, establecimientosService) {
-    
+  app.controller('configuracionPerfilSucursalCtrl', function ($rootScope, urlService ,$scope,$mdExpansionPanel, $routeSegment, $mdDialog, $localStorage, mainService, establecimientosService) {
+    $rootScope.imgPerfil = urlService.server().dir() + $localStorage.imgPerfil;
     $scope.tipoCorreos= [
         "Empresarial",
         "Personal",
@@ -85,17 +85,19 @@ var app = angular.module('nextbook20App')
         }; 
        $scope.recuperarValores = function() {
         var id=$localStorage.sucursal.id;
-       establecimientosService.UpdateAddSucursal().send({valores: $scope.listas, valoresCorreo: $scope.listaCorreos, idSucursal: $localStorage.sucursal.id}).$promise.then(function(data){
-         console.log(establecimientosService.UpdateAddSucursal());
-         if (data.respuesta) {
-           $mdToast.show({
-               hideDelay   : 5000,
-               position    : 'bottom right',
-               controller  : 'notificacionCtrl',
-               templateUrl : 'views/notificaciones/guardar.html'
-             });
-           $location.path('/nb');
-         }
+       establecimientosService.UpdateAddSucursal().send({valores: $scope.listas, idSucursal: $localStorage.sucursal.id}).$promise.then(function(data){
+         if (data.respuesta == true) {
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('EN HORA BUENA :)')
+                .textContent('Su configuración se a realizado con exito.')
+                .ariaLabel('Respuesta Registro')
+                .ok('Entendido')
+                .targetEvent()
+            );
+        }
        });
     };
     $scope.datosEmpresa=$localStorage.datosE;
@@ -120,34 +122,64 @@ var app = angular.module('nextbook20App')
      }
      $scope.get_data_tipos_bienes_Servicios();
     //-------------------------------------------------------------- GET TIPOS DE EMPRESAS ------------------------------------------
+    establecimientosService.getGiroNegocio().get({idSucursal: $localStorage.sucursal.id}).$promise.then(function(datos){
+       var id = datos.respuesta;
+       $scope.Tipo = id;
+       });
      function success_tipo_empresas(result){
        $scope.tipo_empresas=result.respuesta;
      }
      $scope.get_data_tipos_empresas=function(id){
+      console.log(id);
        mainService.Get_Tipo_Actividad_Economica().get({id_bienes_servicios:id},success_tipo_empresas).$promise.then(function(){},function(error){
        $scope.get_data_tipos_empresas();
        });
      }
     // ------------------------------------------------------------- PROCESOS GENERALES ---------------------------------------------
-
-    $scope.expresion = function() {
-     var select = $scope.item.id;
-     $scope.json = angular.toJson(select);
-     console.log($scope.json);
-    }
-    
     $scope.descripcion = function(){
       var establecimiento=$scope.datosSucursal.nombre;
       var descripcion= $scope.form.descripcion;
        $scope.json = angular.toJson(descripcion);
     }
 
+
     $scope.Actividad = 1;
     $scope.selected_Tipo = function(val) {
      $scope.Tipo = val.Tipo;
      $scope.Tipo_completo = val;
      $scope.get_data_tipos_empresas(val.id);
+     $scope.idBienesServicios = val.id
     };
+
+    $scope.guardarIdGiroNegocio=function(){
+      var id=$scope.idBienesServicios;
+      establecimientosService.updateGiroNegocio().send({id: id, idSucursal: $localStorage.sucursal.id}).$promise.then(function(data){
+          if (data.respuesta == true) {
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('EN HORA BUENA :)')
+                .textContent('Su configuración se a realizado con exito.')
+                .ariaLabel('Respuesta Registro')
+                .ok('Entendido')
+                .cancel('Cancelar')
+                .targetEvent()
+            );
+        }
+       });
+    };
+
+    $scope.showSimpleToast = function() {
+    var pinTo = $scope.getToastPosition();
+
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Registro Correcto!')
+        .position('bottom right')
+        .hideDelay(3000)
+    );
+  };
 
     $scope.selected_actividad = function(val) {
      $scope.Actividad=val.Actividad;
@@ -184,25 +216,6 @@ var app = angular.module('nextbook20App')
     //    }
     //  });
     // }
-
-    //------------------------Agregar correo-----------------------------------
-     $scope.showPrompt = function(ev) {
-    var confirm = $mdDialog.prompt()
-      .title('¿Desea ingresar otro correo?')
-      .placeholder('example@example.com')
-      .ariaLabel('Correo')
-      .targetEvent(ev)
-      .required(true)
-      .ok('Agregar')
-      .cancel('Cancelar');
-
-    $mdDialog.show(confirm).then(function(result) {
-      $scope.statuss=result;
-      $scope.status = 'Correo secundario: ' + result ;
-    }, function() {
-      $scope.status = '';
-    });
-  }
 
 });
 

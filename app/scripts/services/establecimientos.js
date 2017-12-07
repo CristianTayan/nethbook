@@ -46,6 +46,18 @@ angular.module('nextbook20App')
     });
     };
     
+    this.updateGiroNegocio=function() {
+    return $resource(urlService.server().appnext()+'updateGiroNegocio', {}
+    , {
+        send: {
+            method: 'POST', isArray: false,
+            params: {
+                token: $localStorage.token,
+            }
+        }
+    });
+    };
+    
     this.getDatosAdicionales=function() {
     return $resource(urlService.server().appnext()+'getDatosAdicionales', {}
     , {
@@ -57,7 +69,18 @@ angular.module('nextbook20App')
         }
     });
     };
-
+    
+    this.getGiroNegocio=function() {
+    return $resource(urlService.server().appnext()+'getGiroNegocio', {}
+    , {
+        get: {
+            method: 'POST', isArray: false,
+            params: {
+                token: $localStorage.token,
+            }
+        }
+    });
+    };
     this.getDatosAdicionales=function() {
     return $resource(urlService.server().appnext()+'getDatosAdicionales', {}
     , {

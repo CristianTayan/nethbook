@@ -77,12 +77,15 @@ Route::group(['middleware' => 'cors'], function(){
 
         // GET DATOS EMPRESA
         Route::post('Get_Datos_Empresa', 'Administracion_Empresa@Get_Datos_Empresa');
+        Route::post('addDatosEmpresariales', 'Administracion_Empresa@addDatosEmpresariales');
+
         //ESTABLECIMIENTOS
         Route::post('Get_Establecimientos', 'Administracion_Empresa@Get_Establecimientos');
         Route::post('Update_Giro_Actividad', 'Sucursales@Update_Giro_Actividad');
         Route::post('UpdateAddSucursal', 'Sucursales@UpdateAddSucursal');
         Route::post('getDatosAdicionales', 'Sucursales@getDatosAdicionales');
-        Route::post('getIdDatosAdicionales', 'Sucursales@getIdDatosAdicionales');
+        Route::post('updateGiroNegocio', 'Sucursales@updateGiroNegocio');
+        Route::post('getGiroNegocio', 'Sucursales@getGiroNegocio');
         //UPDATE PASSWORD
         Route::post('Update_Password', 'Administracion_Empresa@Update_Password');
         // Categorias

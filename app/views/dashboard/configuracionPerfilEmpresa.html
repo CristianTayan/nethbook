@@ -1,73 +1,111 @@
-<h4 class="text-center"><i class="material-icons">settings</i> Configuración de la Empresa</h4>  
-<md-expansion-panel md-component-id="expansionPanelOne">
+<div class="p+">
+
+        <div flex-container="row">
+            <div class="card__img card__img--left" style="height: 200px">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv-OFqCvBKSIZKX_sIX5554hVL85GjynrsmniszlRDR924efL1">
+            </div>
+            <div flex-item flex-container="column">
+                <div flex-item>
+                    <div class="p+">
+                    <md-content layout="column">
+                    <md-subheader class="md-no-sticky" md-colors="('nb.app.configuracion.perfilSucursal' | routeSegmentStartsWith) ? {color:'blue'} : {color:'accent'}">{{info_sucursal.nombre }}</md-subheader>
+                      <md-list-item>
+                      <md-icon>business</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Actividad económica:</strong> {{datosEmpresa.actividad_economica}}</p>
+                      </md-list-item> 
+                      <md-list-item>
+                      <md-icon>notifications_active</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Estado contribuyente:</strong> {{datosEmpresa.estado_contribuyente}}</p>
+                      </md-list-item>
+                      <md-list-item>
+                      <md-icon>dns</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Razon Social:</strong> {{datosEmpresa.razon_social}}</p>
+                      </md-list-item>
+                      <md-list-item>
+                      <md-icon>book</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>RUC:</strong> {{datosEmpresa.ruc_ci}}</p>
+                      </md-list-item>
+                      <md-list-item>
+                      <md-icon>reorder</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Obligado a llevar contabilidad:</strong> {{datosEmpresa.obligado_lleva_contabilida}}</p>
+                      </md-list-item>
+                      <md-list-item>
+                      <md-icon>code</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Tipo contribuyente:</strong> {{datosEmpresa.tipo_contribuyente}}</p>
+                      </md-list-item>
+                      
+                      <md-list-item>
+                      <md-icon>date_range</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Fecha creación:</strong> {{datosEmpresa.fecha_creacion | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</p>
+                      </md-list-item>
+                      <md-list-item>
+                      <md-icon>update</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Fecha inicio actividades:</strong> {{datosEmpresa.fecha_inicio_actividades | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</p>
+                      </md-list-item>
+                    </md-content>
+                    </div>
+                </div>
+                <div class="card__actions">
+                    <label>Inf Actualizada el :  {{data_usuario.fecha}}</label>           
+                </div>
+            </div>
+        </div>
+</div> 
+<md-expansion-panel-group  md-component-id="expansionPanelGroup" style=" width: 80%">
+  <md-expansion-panel md-component-id="expansionPanelTwo" >
       <md-expansion-panel-collapsed>
-          <div class="md-title">Empresa</div>
-          <div class="md-summary">{{info_sucursal.nombre }}</div>
+          <div class="md-title" >Configuraciones de la empresa</div>
+          <div class="md-summary"  ></div>
           <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
-            <md-icon class="md-accent">keyboard_arrow_down</md-icon>
+            <md-icon class="md-accent">settings</md-icon>
         </md-button>
       </md-expansion-panel-collapsed>
       <md-expansion-panel-expanded>
           <md-expansion-panel-header>
-              <div class="md-title" >Empresa</div>
-              <div class="md-summary" >{{info_sucursal.nombre }}</div>
+              <div class="md-title">Configuraciones de la empresa</div>
+              <div class="md-summary"></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
-                <div layout="row">
-                    <md-input-container class="md-icon-float md-block" flex>
-                        <md-icon class="md-primary">business</md-icon>
-                        <label>Actividad Económica</label>
-                        <input ng-model="datosEmpresa.actividad_economica" type="text" readonly>
-                    </md-input-container>
-                    <div flex="5"></div>
-                    <md-input-container class="md-icon-float md-block" flex="20">
-                    <md-icon class="md-primary">notifications_active</md-icon>
-                        <label>Estado Contribuyente</label>
-                        <input ng-model="datosEmpresa.estado_contribuyente" type="text" readonly>
-                    </md-input-container>
+              <div layout="row">
+                  <div flex="5"></div>
+                  <md-input-container class="md-icon-float md-block" flex=90>
+                      <md-icon class="md-primary">airplay</md-icon>
+                      <label>Misión de la empresa</label>
+                      <textarea name="bio" ng-model="datosEmpresa.mision" required md-maxlength="2000"></textarea>
+                  </md-input-container>
+
                 </div>
                 <div layout="row">
-                  <md-input-container class="md-icon-float md-block" flex>
-                    <md-icon class="md-primary">fingerprint</md-icon>
-                        <label>Nombre Comercial</label>
-                        <input ng-model="info_sucursal.nombre " type="text" readonly>
-                    </md-input-container>
+                  <div flex="5"></div>
+                  <md-input-container class="md-icon-float md-block" flex=90>
+                    <md-icon class="md-primary">airplay</md-icon>
+                    <label>Visión de la empresa</label>
+                    <textarea name="bio" ng-model="datosEmpresa.vision" required md-maxlength="2000"></textarea>
+                   
+                  </md-input-container>
+                    
                 </div>
                 <div layout="row">
-                  <md-input-container class="md-icon-float md-block" flex>
-                    <md-icon class="md-primary">dns</md-icon>
-                        <label>Razón Social</label>
-                        <input ng-model="datosEmpresa.razon_social" type="text" readonly>
+                <div flex="5"></div>
+                  <md-input-container class="md-icon-float md-block" flex=40>
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Slogan</label>
+                        <textarea name="bio" ng-model="datosEmpresa.slogan" required md-maxlength="1500"></textarea>
                     </md-input-container>
-                    <div flex="5"></div>
-                    <md-input-container class="md-icon-float md-block" flex>
-                      <md-icon class="md-primary">extension</md-icon>
-                        <label>Ruc</label>
-                        <input ng-model="datosEmpresa.ruc_ci" type="text" readonly>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container class="md-icon-float md-block" flex>
-                        <label>Obligado Lleva Contabilidad</label>
-                        <input ng-model="datosEmpresa.obligado_lleva_contabilida" type="text" readonly>
-                    </md-input-container>
-                    <div flex="5"></div>
-                    <md-input-container class="md-icon-float md-block" flex>
-                        <label>Tipo Contribuyente</label>
-                        <input ng-model="datosEmpresa.tipo_contribuyente" type="text" readonly>
+                    <span flex=10></span>
+                    <md-input-container class="md-icon-float md-block" flex=40>
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Valores</label>
+                        <input type="text" ng-model="datosEmpresa.valores" uppercase  required>
                     </md-input-container>
                 </div>
-                <div layout="row">
-                  <div class=" md-block" flex>
-                        <label>Fecha Creación</label><br>
-                        <label md-colors="{color: 'accent'}">{{datosEmpresa.fecha_creacion | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</label>
-                    </div>
-                    <div flex="5"></div>
-                    <div class=" md-block" flex>
-                        <label>Fecha Inicio Actividades:</label><br>
-                        <label md-colors="{color: 'accent'}">{{datosEmpresa.fecha_inicio_actividades | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</label>
-                    </div>
+                 <div layout="row" layout-align="center center">
+                    <md-button  md-no-ink class="md-raised md-primary" ng-click="descripcion()"  >
+                      Guardar
+                    </md-button>
+                    <md-button class="md-raised" ng-click="$panel.collapse();" >Cancelar</md-button>
                 </div>
           </md-expansion-panel-content>
       </md-expansion-panel-expanded>
-  </md-expansion-panel>
+  </md-expansion-panel> 
+</md-expansion-panel-group>
