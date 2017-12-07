@@ -49,8 +49,8 @@ class restaurarContrasenia extends Controller
           if ($request->correo === 1 && $request->nick !== null) {
             $camposUsuario = ['id','id_persona', 'estado_clave','fecha_actualiza'];
             $idUsuario = DB::connection($name_bdd)->table('usuarios.usuarios')->select($camposUsuario)->where('nick',$request->nick.'@'.config('global.dominio'))->first();
-            if ($idUsuario->estado_clave === true) {
-              if ($idUsuario) {
+            if ($idUsuario) {
+              if ($idUsuario->estado_clave === true) {
                 $campos = [ 'correo_electronico'];
                 $userDataEmail = DB::connection($name_bdd)->table('public.personas_correo_electronico')->select($campos)->where('id_persona',$idUsuario->id_persona)->first();
                 $campos = [ 'primer_nombre', 'primer_apellido'];
@@ -72,34 +72,33 @@ class restaurarContrasenia extends Controller
                   }
                 }
               }
-            }
-           if ($idUsuario->estado_clave === false) {
-              $fechaActual = Carbon::parse(Carbon::now()->toDateTimeString());
-              $fechaUsuario = Carbon::parse($idUsuario->fecha_actualiza);
-              $diferencia = $fechaActual->diff($fechaUsuario);
-              if ((int) $diferencia->h < 2 && (int) $diferencia->d === 0) {
-                $respuesta = "Hace Menos de 2 Horas a Solicitado un Cambio de Clave, Por Favor Revice su Correo electronico";
-              }
-              if ((int) $diferencia->h > 2 || (int)$diferencia->d > 0) {
-            // return response()->json(["respuesta" => $diferencia], 200);
-                if ($idUsuario) {
-                  $campos = [ 'correo_electronico'];
-                  $userDataEmail = DB::connection($name_bdd)->table('public.personas_correo_electronico')->select($campos)->where('id_persona',$idUsuario->id_persona)->first();
-                  $campos = [ 'primer_nombre', 'primer_apellido'];
-                  $dataPersona = DB::connection($name_bdd)->table('public.personas')->select($campos)->where('id',$idUsuario->id_persona)->first();
-                  if ($userDataEmail) {
-                    $res = DB::connection($name_bdd)->statement("SELECT * FROM actualiza_clave ('".$idUsuario->id."', '".bcrypt($pass)."')");
-                    if ($res) {
-                       $estado = DB::connection($name_bdd)->table('usuarios.usuarios')->where('id', $idUsuario->id)->update(['estado_clave' => false]);
-                      if ($estado) {
-                        $respuesta = true;
-                        $data['correo'] = $userDataEmail->correo_electronico;
-                        $data['nombre_comercial'] = $dataPersona->primer_nombre.' '. $dataPersona->primer_apellido;
-                        $data['ruc'] = $request->ruc;
-                        $data['user_nextbook'] = $request->nick;
-                        $data['pass_nextbook'] = $pass;
-                        $this->enviar_correo($data);
-                        return response()->json(["respuesta" => $respuesta], 200);
+             if ($idUsuario->estado_clave === false) {
+                $fechaActual = Carbon::parse(Carbon::now()->toDateTimeString());
+                $fechaUsuario = Carbon::parse($idUsuario->fecha_actualiza);
+                $diferencia = $fechaActual->diff($fechaUsuario);
+                if ((int) $diferencia->h < 2 && (int) $diferencia->d === 0) {
+                  $respuesta = "Hace Menos de 2 Horas a Solicitado un Cambio de Clave, Por Favor Revice su Correo electronico";
+                }
+                if ((int) $diferencia->h > 2 || (int)$diferencia->d > 0) {
+                  if ($idUsuario) {
+                    $campos = [ 'correo_electronico'];
+                    $userDataEmail = DB::connection($name_bdd)->table('public.personas_correo_electronico')->select($campos)->where('id_persona',$idUsuario->id_persona)->first();
+                    $campos = [ 'primer_nombre', 'primer_apellido'];
+                    $dataPersona = DB::connection($name_bdd)->table('public.personas')->select($campos)->where('id',$idUsuario->id_persona)->first();
+                    if ($userDataEmail) {
+                      $res = DB::connection($name_bdd)->statement("SELECT * FROM actualiza_clave ('".$idUsuario->id."', '".bcrypt($pass)."')");
+                      if ($res) {
+                         $estado = DB::connection($name_bdd)->table('usuarios.usuarios')->where('id', $idUsuario->id)->update(['estado_clave' => false]);
+                        if ($estado) {
+                          $respuesta = true;
+                          $data['correo'] = $userDataEmail->correo_electronico;
+                          $data['nombre_comercial'] = $dataPersona->primer_nombre.' '. $dataPersona->primer_apellido;
+                          $data['ruc'] = $request->ruc;
+                          $data['user_nextbook'] = $request->nick;
+                          $data['pass_nextbook'] = $pass;
+                          $this->enviar_correo($data);
+                          return response()->json(["respuesta" => $respuesta], 200);
+                        }
                       }
                     }
                   }
@@ -148,7 +147,7 @@ class restaurarContrasenia extends Controller
                         $data['correo'] = $userDataEmail->correo_electronico;
                         $data['nombre_comercial'] = $dataPersona->primer_nombre.' '. $dataPersona->primer_apellido;
                         $data['ruc'] = $request->ruc;
-                        $data['user_nextbook'] = $request->nick;
+                        $data['user_nextbook'] = $idUsuario->nick;
                         $data['pass_nextbook'] = $pass;
                         $this->enviar_correo($data);
                         return response()->json(["respuesta" => $respuesta], 200);

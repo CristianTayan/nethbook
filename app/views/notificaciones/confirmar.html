@@ -1,0 +1,23 @@
+<md-dialog aria-label="Aviso de configuración" >
+  <form  ng-submit="enviar_datos()">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>¿Recuperar Clave/password de acceso?</h2>
+      </div>
+    </md-toolbar>
+    <div ng-controller="acceso_colaboradores_Ctrl">
+        <h4 align="center">{{variable}}</h4> <br />
+        hola aqui tu mensaje
+    </div>
+    <md-dialog-actions layout="row">
+      <md-button href="http://www.nethbook.com/nethbook/app/#/Registro" target="_blank" md-autofocus>
+        Otro usuario
+      </md-button>
+      <span flex></span>
+      <md-button class="md-fab md-mini" aria-label="Eat cake" ng-click="closeToast()">
+       <md-tooltip md-direction="top">Cerra Notificación</md-tooltip>
+        <md-icon>close</md-icon>
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
