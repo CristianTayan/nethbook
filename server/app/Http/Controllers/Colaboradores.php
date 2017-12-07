@@ -110,7 +110,7 @@ class Colaboradores extends Controller
             }
             return response()->json(['respuesta' => true,'data'=>$data_persona], 200);
         }else{
-            $res = $this->client->request('GET', config('global.appserviciosnext').'/public/index.php/getDatos', ['json' => ['tipodocumento' => 'CEDULA', 'nrodocumento' => $request->numero_documento ]]);
+            $res = $this->client->request('GET', config('global.appserviciosnext').'getDatos', ['json' => ['tipodocumento' => 'CEDULA', 'nrodocumento' => $request->numero_documento ]]);
             $respuesta = json_decode($res->getBody()->getContents() , true);
             if ($respuesta['datosPersona']['valid']==true) {
             $datosPersona=$respuesta['datosPersona'];

@@ -45,6 +45,45 @@ angular.module('nextbook20App')
         }
     });
     };
+    
+    this.getDatosAdicionales=function() {
+    return $resource(urlService.server().appnext()+'getDatosAdicionales', {}
+    , {
+        get: {
+            method: 'POST', isArray: false,
+            params: {
+                token: $localStorage.token,
+            }
+        }
+    });
+    };
+
+    this.getDatosAdicionales=function() {
+    return $resource(urlService.server().appnext()+'getDatosAdicionales', {}
+    , {
+        get: {
+            method: 'POST', isArray: false,
+            params: {
+                token: $localStorage.token,
+            }
+        }
+    });
+    };
+    
+
+    this.getIdDatosAdicionales=function() {
+    return $resource(urlService.server().appnext()+'getIdDatosAdicionales', {}
+    , {
+        send: {
+            method: 'POST', isArray: false,
+            params: {
+                token: $localStorage.token,
+            }
+        }
+    });
+    };
+
+
     //-------------------------------------------------------------- PORTADA --------------------------------------------------------------
     //-------------------------------------------------------------- Añadir imagen de portada
      this.Add_Img_Portada=function() {
