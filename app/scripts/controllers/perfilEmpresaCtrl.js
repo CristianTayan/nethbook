@@ -2,7 +2,6 @@
 
 var app = angular.module('nextbook20App')
   app.controller('empresaCtrl', function ($scope, $localStorage, urlService, $location, $routeSegment) {    
-    console.log('test prime');
     $scope.tabSelect = (value) => {
       $location.url('/nb/empresa/' + value);
     }

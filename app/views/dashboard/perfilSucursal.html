@@ -1,70 +1,53 @@
 <div layout="column">
-  <div layout="row">    
-    <md-content class="md-sidenav-left " md-component-id="left" style="width: 250px;">
-      <div layout="row" style="height: 30%;">
-          <div class="demo-card-square mdl-card mdl-shadow--2dp" style="cursor: pointer;" ng-click="show_img($event,'Perfil')" ng-style="{'background-image': 'url(' + imgPerfil + ')','background-position': '0 0','background-size': 'contain'}">
-              <div class="mdl-card__title mdl-card--expand" style="padding-bottom: 46px;">
-                  <h2 class="mdl-card__title-text">Mi Empresa</h2>
-              </div>
-          </div>
-          <div style="position: absolute; z-index: 9;">
-              <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Perfil')" aria-label="More">
-                  <md-icon>add_a_photo</md-icon>
-              </md-button>
-              <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Perfil')" aria-label="More">
-                  <md-icon>mode_edit</md-icon>
-              </md-button>
-          </div>
-      </div>
-      <div layout="row">
-        <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-          <div class="mdl-card__supporting-text">
-              {{datos2.razon_social}}, {{datos2.tipo_contribuyente}}
-          </div>
-          <div class="mdl-card__title">
-              <h4 class="mdl-card__title-text">Actividad Economica</h4>
-          </div>
-          <div class="mdl-card__supporting-text">
-              {{datos2.actividad_economica | lowercase}}
-          </div>
-          <div class="mdl-card__menu">
-              <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                  <i class="material-icons">share</i>
-              </button>
-          </div>
-        </div>
-      </div>
-    </md-content>
-    
-    <md-content flex>
-      <md-card flex>
-        <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'Portada')">
-          <div ng-style="{'background-image': 'url(' + imgPortada + ')','background-position': 'center'}" class="card__image"></div>
-          <h2 class="card__title">{{localStorage.nombre_comercial}}<span class="card__subtitle">By Mattia Astorino</span></h2>
-        </div>
-        <div style="position: absolute;">
-          <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Portada')" aria-label="More">
-              <md-icon>add_a_photo</md-icon>
-          </md-button>
-          <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Portada')" aria-label="More">
-              <md-icon>mode_edit</md-icon>
-          </md-button>
-        </div>
-        <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
-          <md-tab id="tab1" aria-controls="tab1-content" md-on-select="tabSelect('info')">
-            Info
-          </md-tab>
-          <md-tab id="tab2" aria-controls="tab2-content" md-on-select="tabSelect('ubicacion')">
-            Ubicacion
-          </md-tab>
-        </md-tabs>
-        <md-content flex md-scroll-y app-view-segment="4"> </md-content>
-      </md-card>
-    </md-content>
+  <div layout="row" layout-align="center">
+    <div layout="row" flex-gt-md="65">
+      <md-sidenav 
+        class="md-sidenav-left menuWith"
+        layout="column" 
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-md')">
+        <div>
+          <md-card>            
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">
+                  <md-icon>home</md-icon>
+                  <span class="md-title"> Empresa </span>
+                </span>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="row" layout-align="space-between">
+              <div class="md-media-xl card-media">
+                <img ng-src="{{imgPerfil}}" alt="Sucursal Img Perfil">
+              </div>             
+            </md-card-content>
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Actividad</span>
+                <span class="md-subhead">
+                  <div layout="row">{{datos2.actividad_economica | lowercase}}
+                    {{datos2.razon_social}}, {{datos2.tipo_contribuyente}}
+                  </div>
+                </span>
+              </md-card-title-text>
+            </md-card-title>
+          </md-card>
+        </div>          
+      </md-sidenav>
+      <md-content flex>
+        <md-card>
+          <img src="{{imgPortada}}" class="md-card-image" alt="Sucursal Img Portada">
+          <md-tabs md-stretch-tabs class="md-primary">
+            <md-tab id="tab1" aria-controls="tab1-content" md-on-select="tabSelect('info')">
+              Info
+            </md-tab>
+            <md-tab id="tab2" aria-controls="tab2-content" md-on-select="tabSelect('ubicacion')">
+              Ubicacion
+            </md-tab>
+          </md-tabs>
+          <md-content flex md-scroll-y app-view-segment="2"> </md-content>
+        </md-card>
+      </md-content>
+    </div>
   </div>
 </div>
-
-
-
-
-
