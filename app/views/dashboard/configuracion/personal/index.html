@@ -1,35 +1,46 @@
 <div class="p+">
-    <div class="card">
+
         <div flex-container="row">
-            <div class="card__img card__img--left" style="height: 165px">
-                <img src="http://4.bp.blogspot.com/-rf5TPOMiIVQ/VZJ6U22eecI/AAAAAAAAAfA/E1QP30963M0/s1600/Foto-construir-una-gran-empresa-6.png">
+            <div class="card__img card__img--left" style="height: 200px">
+                <img src="http://www.phpbb-es.com/foro/images/avatars/generator/23563_1506681659.png">
             </div>
             <div flex-item flex-container="column">
                 <div flex-item>
                     <div class="p+">
-                        <strong class="fs-headline display-block">Configuración cuenta Personal</strong>
-                        <br>
-                     	  <strong> {{data_usuario.primer_nombre}} {{data_usuario.segundo_nombre}} {{data_usuario.primer_apellido}} {{data_usuario.segundo_apellido}}</strong>
+                    <md-content layout="column">
+                    <md-subheader class="md-no-sticky" md-colors="('nb.app.configuracion.perfilSucursal' | routeSegmentStartsWith) ? {color:'blue'} : {color:'accent'}">{{data_usuario.primer_nombre}} {{data_usuario.segundo_nombre}} {{data_usuario.primer_apellido}} {{data_usuario.segundo_apellido}}</md-subheader>
+                      <md-list-item>
+                      <md-icon>perm_identity</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'blue'} : {color:'accent'}">{{data_usuario.nick}}</p>
+                      </md-list-item> 
+                      <md-list-item>
+                      <md-icon>mail</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'blue'} : {color:'accent'}">{{data_usuario.correo_electronico}}</p>
+                      </md-list-item>
+                      <md-list-item>
+                      <md-icon>home</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'blue'} : {color:'accent'}">{{data_usuario.calle}} - {{data_usuario.transversal}}</p>
+                      </md-list-item>
+                    </md-content>
                     </div>
                 </div>
                 <div class="card__actions">
-                		<label>Inf Actualizada el :  {{data_usuario.fecha}}</label>       		
+                    <label>Inf Actualizada el :  {{data_usuario.fecha}}</label>           
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<md-card flex>
+</div> 
+
 <md-expansion-panel-group md-component-id="expansionPanelGroup">
 	<md-expansion-panel md-component-id="expansionPanelTwo">
 	    <md-expansion-panel-collapsed>
-	        <div class="md-title" md-colors="{color: 'indigo'}">Correo Electrónico</div>
+	        <div class="md-title">Correo Electrónico</div>
 	        <div class="md-summary">{{data_usuario.correo_electronico}}</div>
   							<md-button class="md-icon-button"  type="button">
                 <md-tooltip md-direction="top">
                   Modificar
                 </md-tooltip>
-                <md-icon class="md-primary">mode_edit</md-icon>
+                <md-icon class="md-accent">keyboard_arrow_down</md-icon>
                 </md-button>
 	    </md-expansion-panel-collapsed>
 	    <md-expansion-panel-expanded>
@@ -37,7 +48,69 @@
 	            <div class="md-title">Correo Electrónico</div>
 	            <div class="md-summary">{{data_usuario.correo_electronico}}</div>
 	        </md-expansion-panel-header>
+
 	        <md-expansion-panel-content>
+            <div layout="row" layout-align="center center">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                    <form name="formCorreo" >
+                        <div  layout="row">
+                        <md-input-container  flex="30">
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <label>Tipo</label>
+                          <md-select name="tipoCorreo" ng-model="listaCorreos.tipoCorreo" required>
+                            <md-option ng-repeat="tipoCorreo in tipoCorreos" value="{{tipoCorreo}}">{{tipoCorreo}}</md-option>
+                          </md-select>
+                          <div ng-messages="formCorreo.tipoCorreo.$error">
+                            <div ng-message="required">
+                              Se requiere seleccionar un tipo de correo electrónico
+                            </div>                                
+                          </div>
+                        </md-input-container>  
+                        <span flex="10"></span>
+                        <md-input-container class="md-icon-float md-block" flex="45">
+                          <md-icon class="md-accent">mail_outline</md-icon>
+                            <label>Email</label>
+                            <input name="mail" ng-model="listaCorreos.mail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" correoelectronico-validator required>
+                            <div ng-messages="formCorreo.mail.$error" ng-show="formCorreo.mail.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="pattern" class="my-message">correo invalido</div>
+                            </div>
+                        </md-input-container>   
+                        <md-button ng-click="addNewCorreo(listaCorreos)" ng-disabled="formCorreo.$invalid" class="md-fab md-mini" ><md-icon>add</md-icon></md-button>   
+                        </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+            <div class="row" >
+            <div >
+                <table md-table md-row-select ng-model="listaCorreos">
+                    <thead md-head>
+                        <tr md-row>
+                            <th md-column md-order-by="nameToLower"></th>
+                            <th md-column md-order-by="nameToLower">Tipo de Correo</th>
+                            <th md-column md-order-by="nameToLower">Dirección</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="listaCorreo in listaCorreos">
+                            <td>
+                                <md-checkbox  ng-model="listaCorreo.selected" aria-label="checkCorreo"/></md-checkbox></td>
+                            <td><center>{{listaCorreo.tipoCorreo}}</center></td>
+                            <td><center>{{listaCorreo.mail}}</center></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div layout="row" layout-align="center center">
+                    <md-button class="md md-raised md-warn" ng-click="removeCorreo()" value="Remove"><md-icon>delete</md-icon>Eliminar correo</md-button>
+                    <md-button class="md-raised md-primary" ng-click='recuperarValores()'><md-icon>save</md-icon>Guardar Cambios</md-button> 
+                </div>
+                
+            </div>
+        </div>              
+          </md-expansion-panel-content>
+	        <!-- <md-expansion-panel-content>
 	            <form name="form_usuario" ng-submit="col_usuario_nuevo()" layout-padding>
                     <md-input-container class="md-icon-float md-block" layout="row">
                         <md-icon class="md-primary">email</md-icon>
@@ -54,7 +127,7 @@
 	                    <md-button class="md-raised md-primary" type="submit" ng-disabled="form_usuario.$invalid">Guardar</md-button>
 	                </div>
 	            </form>
-	        </md-expansion-panel-content>
+	        </md-expansion-panel-content> -->
 	        <md-expansion-panel-footer>
 	            <div flex></div>
 	            <md-button class="md-icon-button" aria-label="More" ng-click="$panel.collapse();">
@@ -65,13 +138,13 @@
 	</md-expansion-panel>
 	<md-expansion-panel md-component-id="expansionPanelTree">
 	    <md-expansion-panel-collapsed>
-	        <div class="md-title" md-colors="{color: 'indigo'}">Password / Contraseña</div>
+	        <div class="md-title">Password / Contraseña</div>
 	        <div class="md-summary">Actualizada Hace 2 días</div>
 	        <md-button class="md-icon-button"  type="button">
             <md-tooltip md-direction="top">
               Modificar
             </md-tooltip>
-            <md-icon class="md-primary">mode_edit</md-icon>
+            <md-icon class="md-accent">keyboard_arrow_down</md-icon>
           </md-button>
 	    </md-expansion-panel-collapsed>
 	    <md-expansion-panel-expanded>
@@ -80,8 +153,9 @@
 	            <div class="md-summary">Actualizada Hace 12 dias</div>
 	        </md-expansion-panel-header>
 	        <md-expansion-panel-content>
+	        <center>
 	            <form name="form_password" ng-submit="cambiar_datos_password()">
-                    <div layout-gt-sm="row">
+                    <div layout_aling="center center" layout-gt-sm="row" flex="25">
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Ingrese su nueva contraseña</label>
                             <md-icon class="md-accent">streetview</md-icon>
@@ -94,7 +168,7 @@
                             </div>
                         </md-input-container>
                     </div>            
-                    <div layout-gt-sm="row">
+                    <div layout_aling="center center" layout-gt-sm="row" flex="25">
                         <md-input-container class="md-block" flex-gt-sm>
                                 <label>Repita nueva contraseña</label>
                                 <md-icon class="md-accent">layers</md-icon>
@@ -102,13 +176,15 @@
                                 <div ng-messages="form_password.password_c.$error">
                                     <div ng-message="required">Campo es requerido</div>
                                 </div>
+                    </div>
+                    <div layout_aling="center center" layout-gt-sm="row" flex="25">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                        <md-button class="md-raised md-primary" type="submit" ng-disabled="form_password.$invalid">Guardar</md-button>
                         </md-input-container>
                     </div>
-                    <div layout="row">
-                    	<span flex></span>
-                        <md-button class="md-raised md-primary" type="submit" ng-disabled="form_password.$invalid">Guardar</md-button>
-                    </div>
                 </form>
+                </center>
 	        </md-expansion-panel-content>
 	        <md-expansion-panel-footer>
 	            <div flex></div>
@@ -120,13 +196,13 @@
 	</md-expansion-panel>
 	<md-expansion-panel md-component-id="expansionPanelFor">
 	    <md-expansion-panel-collapsed>
-	        <div class="md-title" md-colors="{color: 'indigo'}">Dirección Domicilio</div>
+	        <div class="md-title">Dirección Domicilio</div>
 	        <div class="md-summary">{{data_usuario.calle}}, {{data_usuario.transversal}}</div>
 	        <md-button class="md-icon-button"  type="button">
             <md-tooltip md-direction="top">
               Modificar
             </md-tooltip>
-            <md-icon class="md-primary">mode_edit</md-icon>
+            <md-icon class="md-accent">keyboard_arrow_down</md-icon>
           </md-button>
 	    </md-expansion-panel-collapsed>
 	    <md-expansion-panel-expanded>
@@ -191,7 +267,6 @@
 	    </md-expansion-panel-expanded>
 	</md-expansion-panel>
 </md-expansion-panel-group>
-</md-card>
 
 
 
