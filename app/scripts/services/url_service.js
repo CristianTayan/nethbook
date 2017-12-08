@@ -17,7 +17,7 @@ angular.module('nextbook20App') .service('urlService', function () {
             }, topmusical: function() {
                 return "http://186.4.167.12/api-admin-oyefm/public/index.php/";
             }, search_empresas: function() {
-                return dominio + '/empresas/';
+                return 'http://nethbook.com:3000/empresas/';
             }, dir: function() {
                 return dominio + '/nethbook/server';
             }
