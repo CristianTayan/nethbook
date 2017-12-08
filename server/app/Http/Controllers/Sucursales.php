@@ -28,6 +28,85 @@ class Sucursales extends Controller
         }
     }
 
+    public function addSucursalActividadEconomica(Request $request){
+      $dataActividadEconomica=DB::connection($this->name_bdd)->table('administracion.sucursal_actividad_economica_tbl')->where('id_sucursal',$request->idSucursal)->where('id_actividad_economica',$request->idActividadEconomica)->first();
+      if ($dataActividadEconomica === null) {
+        $data = DB::connection($this->name_bdd)->table('administracion.sucursal_actividad_economica_tbl')
+          ->insert(
+          [
+           'id_sucursal' => $request->idSucursal,
+           'id_actividad_economica' => $request->idActividadEconomica,
+           'estado' => 'A' 
+          ]
+          );
+          return response()->json(['respuesta' => $data], 200);
+      }
+          return response()->json(['respuesta' => false], 200);
+
+    }
+    public function getSucursalActividadEconomica(Request $request){
+      $datos = ['nombre','descripcion'];
+
+      $resTipoBien=DB::connection($this->name_bdd)
+        ->select("
+        SELECT  actividad_economica.nombre, actividad_economica.descripcion
+        FROM administracion.sucursal_actividad_economica_tbl, administracion.actividad_economica
+        WHERE sucursal_actividad_economica_tbl.id_actividad_economica = actividad_economica.id AND
+              sucursal_actividad_economica_tbl.id_sucursal = ".$request->idSucursal);
+      return response()->json(['respuesta' => $resTipoBien], 200);
+
+    }
+
+     public function addInformacionSucursal(Request $request) {
+    $data_sucursal=DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')->where('id_sucursal',$request->idSucursal)->first();
+      if ($data_sucursal === null) { 
+      $data=DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')
+        ->insert(
+          [
+              'id_empresa'=>1,
+              'id_tipo_empresa'=>1,
+              'id_sucursal'=>$request->idSucursal,
+              'mision'=>$request->mision,
+              'vision'=>$request->vision,
+              'slogan'=>$request->slogan,
+              'telefonos'=>json_encode($request->telefonos),
+              'correos'=>json_encode($request->correos),
+              'valores_institucionales'=>json_encode($request->valores),
+              'estado'=>'A'
+              
+          ]);
+            return response()->json(['respuesta' => $data], 200);
+      }
+      if ($data_sucursal){
+      $data=DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')->where('id_sucursal',$request->idSucursal)
+        ->update(
+          [
+              'mision'=>$request->mision,
+              'vision'=>$request->vision,
+              'slogan'=>$request->slogan,
+              'telefonos'=>json_encode($request->telefonos),
+              'correos'=>json_encode($request->correos),
+              'valores_institucionales'=>json_encode($request->valores),
+              'fecha_ultimo_cambio' => Carbon::now()->toDateTimeString()
+              
+          ]);
+            return response()->json(['respuesta' => true], 200);
+    }
+    return response()->json(['respuesta' => false], 200);
+  }
+  public function getDatosAdicionalesSucursal(Request $request)
+ {
+    $data_empresa=DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')->where('id_sucursal',$request->idSucursal)->first();
+    $datos_empresa = array('mision' => $data_empresa->mision, 'vision' => $data_empresa->vision,'slogan' => $data_empresa->slogan);
+    $valores = $data_empresa->valores_institucionales;
+    $correos= $data_empresa->correos;
+    $telefonos = $data_empresa->telefonos;
+    $telef = json_decode($telefonos);
+    $correo = json_decode($correos);
+    return response()->json(['datos' => $datos_empresa,'valores' => $valores,'correos'=>$correo, 'telefonos'=>$telef], 200);
+ }
+  
+
       public function UpdateAddSucursal(Request $request) {
       $data_sucursal=DB::connection($this->name_bdd)->table('administracion.sucursales')->where('id',$request->idSucursal)->first();
       if ($data_sucursal) { 

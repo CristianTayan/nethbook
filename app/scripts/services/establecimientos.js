@@ -57,6 +57,17 @@ angular.module('nextbook20App')
         }
     });
     };
+    this.UpdateAddDatosCorreo=function() {
+    return $resource(urlService.server().appnext()+'UpdateAddDatosCorreo', {}
+    , {
+        send: {
+            method: 'POST', isArray: false,
+            params: {
+                token: $localStorage.token,
+            }
+        }
+    });
+    };
     
     this.getDatosAdicionales=function() {
     return $resource(urlService.server().appnext()+'getDatosAdicionales', {}
@@ -81,8 +92,8 @@ angular.module('nextbook20App')
         }
     });
     };
-    this.getDatosAdicionales=function() {
-    return $resource(urlService.server().appnext()+'getDatosAdicionales', {}
+    this.getDatosAdicionalesSucursal=function() {
+    return $resource(urlService.server().appnext()+'getDatosAdicionalesSucursal', {}
     , {
         get: {
             method: 'POST', isArray: false,
@@ -92,6 +103,16 @@ angular.module('nextbook20App')
         }
     });
     };
+    
+    this.addInformacionSucursal=function() {
+      return $resource(urlService.server().appnext()+'addInformacionSucursal', {}, {
+        get: {
+          method: 'POST', isArray: false, 
+          params: { token: $localStorage.token }
+        }
+      });
+    };
+
     
 
     this.getIdDatosAdicionales=function() {

@@ -20,7 +20,6 @@ var app = angular.module('nextbook20App')
                 'tipoCorreo': listaCorreos.tipoCorreo, 
                 'mail': listaCorreos.mail,
             }); 
-            console.log($scope.listaCorreos);
         };
     $scope.removeCorreo=function(){
       var newDataList=[];
@@ -42,19 +41,45 @@ var app = angular.module('nextbook20App')
                 listaCorreos.selected = $scope.selectedAll;
             });
         };
+        $scope.getDatosSucursal=function(){
+      var mision=$scope.datosEmpresa.mision;
+      var vision=$scope.datosEmpresa.vision;
+      var valores=$scope.datosEmpresa.valores;
+      var slogan=$scope.datosEmpresa.slogan
+
+  establecimientosService.addInformacionSucursal().get({mision: $scope.datosEmpresa.mision, vision:$scope.datosEmpresa.vision, slogan:$scope.datosEmpresa.slogan, valores: $scope.datosEmpresa.valores, telefonos:$scope.listas, correos:$scope.listaCorreos,idSucursal: $localStorage.sucursal.id}).$promise.then(function(data){
+     if (data.respuesta == true) {
+        $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title('EN HORA BUENA :)')
+            .textContent('Su configuración se a realizado con exito.')
+            .ariaLabel('Respuesta Registro')
+            .ok('Entendido')
+            .targetEvent()
+        );
+    }
+   });
+}
 
     $scope.tipos = [
         "Telefono",
         "Celular",
         "Hogar",
     ];
+
     $scope.listas=[];
-    establecimientosService.getDatosAdicionales().get({idSucursal: $localStorage.sucursal.id}).$promise.then(function(datos){
-       $scope.listas = datos.respuesta;
-       if(datos.respuesta == null)
+    $scope.listaCorreos=[];
+      establecimientosService.getDatosAdicionalesSucursal().get({idSucursal: $localStorage.sucursal.id}).$promise.then(function(data){
+       console.log(data);
+       $scope.listas = data.telefonos;
+       $scope.listaCorreos=data.correos;
+       if(data.telefonos == null)
        {
          $scope.listas=[];
        }
+
        }); 
         $scope.addNew = function(listas){
             $scope.listas.push({ 
@@ -130,7 +155,6 @@ var app = angular.module('nextbook20App')
        $scope.tipo_empresas=result.respuesta;
      }
      $scope.get_data_tipos_empresas=function(id){
-      console.log(id);
        mainService.Get_Tipo_Actividad_Economica().get({id_bienes_servicios:id},success_tipo_empresas).$promise.then(function(){},function(error){
        $scope.get_data_tipos_empresas();
        });
@@ -306,7 +330,9 @@ var app = angular.module('nextbook20App')
   };
 });
 
-  app.controller('configuracionPerfilEmpresaCtrl', function ($scope, $mdExpansionPanel, $localStorage, mainService) {
+  app.controller('configuracionPerfilEmpresaCtrl', function ($mdDialog, $scope, $mdExpansionPanel, $localStorage, mainService) {
+
+
     //-------------------------------------------------------------- GET TIPOS BIENES SERVICIOS ------------------------------------
      $scope.datosEmpresa=$localStorage.datosE;
       function success_tipo_bienes_servicios(result){
@@ -351,5 +377,105 @@ var app = angular.module('nextbook20App')
     cm.ModelTipo_Tipo_Empresa = {
       selectedTipo: 2
     }
-    // var self = this;
+    $scope.listas=[];
+    $scope.listaCorreos=[];
+      mainService.getDatosAdicionalesEmpresa().get().$promise.then(function(data){
+       console.log(data.telefonos);
+       $scope.listas = data.telefonos;
+       $scope.listaCorreos=data.correos;
+       if(data.telefonos == null)
+       {
+         $scope.listas=[];
+       }
+
+       }); 
+
+    $scope.getDatosEmpresa=function(){
+      var mision=$scope.datosEmpresa.mision;
+      var vision=$scope.datosEmpresa.vision;
+      var valores=$scope.datosEmpresa.valores;
+      var slogan=$scope.datosEmpresa.slogan
+
+  mainService.addInformacionEmpresas().get({mision: $scope.datosEmpresa.mision, vision:$scope.datosEmpresa.vision, slogan:$scope.datosEmpresa.slogan, valores: $scope.datosEmpresa.valores, telefonos:$scope.listas, correos:$scope.listaCorreos,idSucursal: $localStorage.sucursal.id}).$promise.then(function(data){
+    console.log(data);
+     if (data.respuesta == true) {
+        $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title('EN HORA BUENA :)')
+            .textContent('Su configuración se a realizado con exito.')
+            .ariaLabel('Respuesta Registro')
+            .ok('Entendido')
+            .targetEvent()
+        );
+    }
+   });
+}
+
+    $scope.tipoCorreos= [
+        "Empresarial",
+        "Personal",
+        "Otros",
+    ];
+    $scope.listaCorreos=[];
+
+    $scope.addNewCorreo = function(listaCorreos){
+            $scope.listaCorreos.push({ 
+                'tipoCorreo': listaCorreos.tipoCorreo, 
+                'mail': listaCorreos.mail,
+            }); 
+        };
+    $scope.removeCorreo=function(){
+      var newDataList=[];
+      $scope.selectedAll=false;
+      angular.forEach($scope.listas, function(selected){
+        if(!selected.selected){
+          newDataList.push(selected);
+        }
+      });
+      $scope.listaCorreos = newDataList;
+    }
+    $scope.checkAll = function () {
+            if (!$scope.selectedAll) {
+                $scope.selectedAll = true;
+            } else {
+                $scope.selectedAll = false;
+            }
+            angular.forEach($scope.listaCorreos, function (listaCorreos) {
+                listaCorreos.selected = $scope.selectedAll;
+            });
+        };
+        $scope.tipos = [
+        "Empresa",
+        "Celular"
+    ];
+        $scope.listas=[];
+        $scope.addNew = function(listas){
+            $scope.listas.push({ 
+                'tipo': listas.tipo, 
+                'numero': listas.numero,
+            }); 
+        };
+        
+        $scope.remove = function(){
+            var newDataList=[];
+            $scope.selectedAll = false;
+            angular.forEach($scope.listas, function(selected){
+                if(!selected.selected){
+                    newDataList.push(selected);
+                }
+            }); 
+            $scope.listas = newDataList;
+        };
+        $scope.checkAll = function () {
+            if (!$scope.selectedAll) {
+                $scope.selectedAll = true;
+            } else {
+                $scope.selectedAll = false;
+            }
+            angular.forEach($scope.listas, function (listas) {
+                listas.selected = $scope.selectedAll;
+            });
+        }; 
   });

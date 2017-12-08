@@ -39,7 +39,7 @@
           <div class="md-title" >Establecimiento / Sucursal</div>
           <div class="md-summary"  >{{datosSucursal.nombre }} - {{datosSucursal.codigo_sri}}</div>
           <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
-            <md-icon class="md-accent">keyboard_arrow_down</md-icon>
+            <md-icon class="md-accent">settings</md-icon>
         </md-button>
       </md-expansion-panel-collapsed>
       <md-expansion-panel-expanded>
@@ -71,88 +71,13 @@
           </md-expansion-panel-content>
       </md-expansion-panel-expanded>
   </md-expansion-panel>
-  <md-expansion-panel md-component-id="expansionPanelTree" >
-      <md-expansion-panel-collapsed>
-          <div class="md-title" >Configuración correo electrónico</div>
-          <div class="md-summary"></div>
-          <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
-            <md-icon class="md-accent">keyboard_arrow_down</md-icon>
-        </md-button>
-      </md-expansion-panel-collapsed>
-      <md-expansion-panel-expanded >
-          <md-expansion-panel-header>
-              <div class="md-title">¿Desea <strong>agregar/eliminar</strong> correo?</div>
-              <div class="md-summary"></div>
-          </md-expansion-panel-header>
-          <md-expansion-panel-content>
-            <div layout="row" layout-align="center center">
-              <div class="panel panel-default">
-                  <div class="panel-body">
-                    <form name="formCorreo" >
-                        <div  layout="row">
-                        <md-input-container  flex="30">
-                          <md-icon class="md-primary">airplay</md-icon>
-                          <label>Tipo</label>
-                          <md-select name="tipoCorreo" ng-model="listaCorreos.tipoCorreo" required>
-                            <md-option ng-repeat="tipoCorreo in tipoCorreos" value="{{tipoCorreo}}">{{tipoCorreo}}</md-option>
-                          </md-select>
-                          <div ng-messages="formCorreo.tipoCorreo.$error">
-                            <div ng-message="required">
-                              Se requiere seleccionar un tipo de correo electrónico
-                            </div>                                
-                          </div>
-                        </md-input-container>  
-                        <span flex="10"></span>
-                        <md-input-container class="md-icon-float md-block" flex="45">
-                          <md-icon class="md-accent">mail_outline</md-icon>
-                            <label>Email</label>
-                            <input name="mail" ng-model="listaCorreos.mail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
-                            <div ng-messages="formCorreo.mail.$error" ng-show="formCorreo.mail.$dirty">
-                                <div ng-message="required">Campo Requerido</div>
-                                <div ng-message="pattern" class="my-message">correo invalido</div>
-                            </div>
-                        </md-input-container>   
-                        <md-button ng-click="addNewCorreo(listaCorreos)" ng-disabled="formCorreo.$invalid" class="md-fab md-mini" ><md-icon>add</md-icon></md-button>   
-                        </div>
-                    </form>
-                </div>
-              </div>
-            </div>
-            <div class="row" >
-            <div >
-                <table md-table md-row-select ng-model="listaCorreos">
-                    <thead md-head>
-                        <tr  md-row>
-                            <th md-column md-order-by="nameToLower"></th>
-                            <th md-column md-order-by="nameToLower">Tipo de Correo</th>
-                            <th md-column md-order-by="nameToLower">Dirección</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr md-row ng-repeat="listaCorreo in listaCorreos">
-                            <td md-cell>
-                                <md-checkbox  ng-model="listaCorreo.selected" aria-label="checkCorreo"/></md-checkbox></td>
-                            <td md-cell>{{listaCorreo.tipoCorreo}}</td>
-                            <td md-cell>{{listaCorreo.mail}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div layout="row" layout-align="center center">
-                    <md-button class="md md-raised md-warn" ng-click="removeCorreo()" value="Remove"><md-icon>delete</md-icon>Eliminar correo</md-button>
-                    <md-button class="md-raised md-primary" ng-click='recuperarValores()'><md-icon>save</md-icon>Guardar Cambios</md-button> 
-                </div>
-                
-            </div>
-        </div>              
-          </md-expansion-panel-content>
-      </md-expansion-panel-expanded>
-  </md-expansion-panel>
+
     <md-expansion-panel md-component-id="expansionPanelFour" >
         <md-expansion-panel-collapsed>
             <div class="md-title" >Giro de Negocio</div>
             <div class="md-summary" >{{datosSucursal.giro_negocio.nombre}} - {{datosSucursal.giro_negocio.descripcion}}</div>
             <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
-                <md-icon class="md-accent">keyboard_arrow_down</md-icon>
+                <md-icon class="md-accent">settings</md-icon>
             </md-button>
         </md-expansion-panel-collapsed>
         <md-expansion-panel-expanded>
@@ -207,23 +132,67 @@
                     <md-button class="md-raised" ng-click="$panel.collapse();" >Cancelar</md-button>
                 </div>
         </md-expansion-panel-expanded>
-    </md-expansion-panel>
-   <md-expansion-panel md-component-id="expansionPanelFive">
+    </md-expansion-panel> 
+</md-expansion-panel-group>
+<md-expansion-panel-group  md-component-id="expansionPanelGroup" style=" width: 80%">
+  <md-expansion-panel md-component-id="expansionPanelTwo" >
       <md-expansion-panel-collapsed>
-          <div class="md-title" >Contactos</div>
-          <div class="md-summary" ></div>
+          <div class="md-title" >Configuraciones de la empresa</div>
+          <div class="md-summary"  ></div>
           <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
-            <md-icon class="md-accent">keyboard_arrow_down</md-icon>
+            <md-icon class="md-accent">settings</md-icon>
         </md-button>
       </md-expansion-panel-collapsed>
       <md-expansion-panel-expanded>
           <md-expansion-panel-header>
-              <div class="md-title">¿Agregar otro celular/teléfono?</div>
-              <div class="md-summary" ></div>
+              <div class="md-title">Configuraciones de la empresa</div>
+              <div class="md-summary"></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
- 
-          <div layout="row" layout-align="center center">
+              <div layout="row">
+                  <div flex="5"></div>
+                  <md-input-container class="md-icon-float md-block" flex=90>
+                      <md-icon class="md-primary">airplay</md-icon>
+                      <label>Misión de la empresa</label>
+                      <textarea name="bio" ng-model="datosEmpresa.mision" required md-maxlength="2000"></textarea>
+                  </md-input-container>
+
+                </div>
+                <div layout="row">
+                  <div flex="5"></div>
+                  <md-input-container class="md-icon-float md-block" flex=90>
+                    <md-icon class="md-primary">airplay</md-icon>
+                    <label>Visión de la empresa</label>
+                    <textarea name="bio" ng-model="datosEmpresa.vision" required md-maxlength="2000"></textarea>
+                   
+                  </md-input-container>
+                    
+                </div>
+                <div layout="row">
+                <div flex="5"></div>
+                  <md-input-container class="md-icon-float md-block" flex=40>
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Slogan</label>
+                        <textarea name="bio" ng-model="datosEmpresa.slogan" required md-maxlength="1500"></textarea>
+                    </md-input-container>
+                    <span flex=10></span>
+                    <md-input-container class="md-icon-float md-block" flex=40>
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Valores</label>
+                        <input type="text" ng-model="datosEmpresa.valores" uppercase  required>
+                    </md-input-container>
+                </div>
+
+                <md-toolbar>
+                  
+                </md-toolbar>
+
+            <div layout="row">
+            <span flex=5></span>
+            <div layout="column">
+            <div flex>
+              
+            <div layout="row" layout-align="center center">
             <div class="panel panel-default">
                 <div class="panel-body">
                   <form name="form" >
@@ -289,11 +258,86 @@
                 </table>
                 <div layout="row" layout-align="center center">
                     <md-button class="md md-raised md-warn" ng-click="remove()" value="Remove"><md-icon>delete</md-icon>Eliminar contacto</md-button>
-                    <md-button class="md-raised md-primary" ng-click='recuperarValores()'><md-icon>save</md-icon>Guardar Cambios</md-button> 
                 </div>
-        </div>  
-        </center> 
+                </div>
+                 </div>
+
+                </div>
+                <span flex=10></span>
+                <div flex>
+                  <div layout="column">
+                <div layout="row" layout-align="center center">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                    <form name="formCorreo" >
+                        <div  layout="row">
+                        <md-input-container  flex="30">
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <label>Tipo</label>
+                          <md-select name="tipoCorreo" ng-model="listaCorreos.tipoCorreo" required>
+                            <md-option ng-repeat="tipoCorreo in tipoCorreos" value="{{tipoCorreo}}">{{tipoCorreo}}</md-option>
+                          </md-select>
+                          <div ng-messages="formCorreo.tipoCorreo.$error">
+                            <div ng-message="required">
+                              Se requiere seleccionar un tipo de correo electrónico
+                            </div>                                
+                          </div>
+                        </md-input-container>  
+                        <span flex="10"></span>
+                        <md-input-container class="md-icon-float md-block" flex="45">
+                          <md-icon class="md-accent">mail_outline</md-icon>
+                            <label>Email</label>
+                            <input name="mail" ng-model="listaCorreos.mail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
+                            <div ng-messages="formCorreo.mail.$error" ng-show="formCorreo.mail.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="pattern" class="my-message">correo invalido</div>
+                            </div>
+                        </md-input-container>   
+                        <md-button ng-click="addNewCorreo(listaCorreos)" ng-disabled="formCorreo.$invalid" class="md-fab md-mini" ><md-icon>add</md-icon></md-button>   
+                        </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+            <div class="row" >
+            <div >
+                <table md-table md-row-select ng-model="listaCorreos">
+                    <thead md-head>
+                        <tr  md-row>
+                            <th md-column md-order-by="nameToLower"></th>
+                            <th md-column md-order-by="nameToLower">Tipo de Correo</th>
+                            <th md-column md-order-by="nameToLower">Dirección</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr md-row ng-repeat="listaCorreo in listaCorreos">
+                            <td md-cell>
+                            <md-checkbox  ng-model="listaCorreo.selected" aria-label="checkCorreo"/></md-checkbox></td>
+                            <td md-cell>{{listaCorreo.tipoCorreo}}</td>
+                            <td md-cell>{{listaCorreo.mail}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div layout="row" >
+                    <md-button class="md-fab md-mini md-accent" ng-click="removeCorreo()" value="Remove"><md-icon>delete</md-icon></md-button>
+                </div>
+                
+                </div>
+               </div>                             
+                </div>
+
+                </div>
+                  <span flex=5></span>
+                </div>
+                
+
+                 <div layout="row" layout-align="center center">
+                    <md-button  md-no-ink class="md-raised md-primary" ng-click="getDatosSucursal()"  >
+                      Guardar
+                    </md-button>
+                    <md-button class="md-raised" ng-click="$panel.collapse();" >Cancelar</md-button>
+                </div>
           </md-expansion-panel-content>
       </md-expansion-panel-expanded>
-  </md-expansion-panel>  
+  </md-expansion-panel> 
 </md-expansion-panel-group>

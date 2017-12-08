@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 //Extras
 use DB;
 use \Firebase\JWT\JWT;
+use Carbon\Carbon;
 use Config;
 use GuzzleHttp\Client;
 // Funciones
@@ -36,37 +37,58 @@ class Administracion_Empresa extends Controller
       die();
     }
   }
-  public function addDatosEmpresariales(Request $request)
-    {
-        // Revisar AddBodegas DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')->insert([
-        DB::connection('comercial_h_1090084247001')->table('administracion.informacion_empresa_tbl')->insert([
-          'id_empresa'=>$request->input('id_empresa'),
-          'mision_empresa'=>$request->input('mision_empresa'),
-          'vision_empresa'=>$request->input('vision_empresa'),
-          'slogan_empresa'=>$request->input('slogan_empresa'),
-          'valores_empresa'=>$request->input('valores_empresa'), 
-          'estado'=>'A',
-          'fecha_creacion' => Carbon::now()->toDateString()]),
-          'fecha_ultimo_cambio' => Carbon::now()->toDateString()]);
-        return response()->json(['respuesta' => true], 200);
-    }
+   public function getDatosAdicionalesEmpresa(Request $request)
+ {
+    $x = 0;
+    $data_empresa=DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')->where('id_sucursal',$x)->first();
+    $datos_empresa = array('mision' => $data_empresa->mision, 'vision' => $data_empresa->vision,'slogan' => $data_empresa->slogan);
+    $valores = $data_empresa->valores_institucionales;
+    $correos= $data_empresa->correos;
+    $telefonos = $data_empresa->telefonos;
+    $telef = json_decode($telefonos);
+    $correo = json_decode($correos);
+    return response()->json(['datos' => $datos_empresa,'valores' => $valores,'correos'=>$correo, 'telefonos'=>$telef], 200);
+ }
 
-  public function apdateDatosEmpresariales(Request $request) {
-    $x=1;
-      // $data_sucursal=DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')->where('id',$request->idSucursal)->first();
-    $data_empresa=DB::connection('comercial_h_1090084247001')->table('administracion.informacion_empresa_tbl')->where('id',$x)->first();
-      if ($data_empresa) { 
-        $data=DB::connection('comercial_h_1090084247001')->table('administracion.informacion_empresa_tbl')->where('id',$x)
-    ->update(
-        [
-            'mision_empresa' => json_encode($request->valores)
-        ]);
-        return response()->json(['respuesta' => true], 200);
+  public function addInformacionEmpresas(Request $request) {
+    $x=0;
+    $data_sucursal=DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')->where('id_sucursal',$x)->first();
+      if ($data_sucursal === null) { 
+      $data=DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')
+        ->insert(
+          [
+              'id_empresa'=>1,
+              'id_tipo_empresa'=>0,
+              'id_sucursal'=>0,
+              'mision'=>$request->mision,
+              'vision'=>$request->vision,
+              'slogan'=>$request->slogan,
+              'telefonos'=>json_encode($request->telefonos),
+              'correos'=>json_encode($request->correos),
+              'valores_institucionales'=>json_encode($request->valores),
+              'estado'=>'A'
+              
+          ]);
+            return response()->json(['respuesta' => $data], 200);
       }
-      if (!$data_sucursal) {
-         echo("Sucursal No Encontrada");
-      }
+      if ($data_sucursal){
+      $data=DB::connection($this->name_bdd)->table('administracion.informacion_empresa_tbl')->where('id_sucursal',$x)
+        ->update(
+          [
+              'mision'=>$request->mision,
+              'vision'=>$request->vision,
+              'slogan'=>$request->slogan,
+              'telefonos'=>json_encode($request->telefonos),
+              'correos'=>json_encode($request->correos),
+              'valores_institucionales'=>json_encode($request->valores),
+              'fecha_ultimo_cambio' => Carbon::now()->toDateTimeString()
+              
+          ]);
+            return response()->json(['respuesta' => true], 200);
     }
+    return response()->json(['respuesta' => false], 200);
+  }
+  
   public function Get_Datos_Empresa(Request $request)
   {
     $resultado = DB::connection($this->name_bdd)->table('usuarios')->where('id', '=', $this->user->sub)->first();

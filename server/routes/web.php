@@ -78,6 +78,9 @@ Route::group(['middleware' => 'cors'], function(){
         // GET DATOS EMPRESA
         Route::post('Get_Datos_Empresa', 'Administracion_Empresa@Get_Datos_Empresa');
         Route::post('addDatosEmpresariales', 'Administracion_Empresa@addDatosEmpresariales');
+        Route::post('addInformacionEmpresas', 'Administracion_Empresa@addInformacionEmpresas');
+        Route::post('getDatosAdicionalesEmpresa', 'Administracion_Empresa@getDatosAdicionalesEmpresa');
+
 
         //ESTABLECIMIENTOS
         Route::post('Get_Establecimientos', 'Administracion_Empresa@Get_Establecimientos');
@@ -86,6 +89,15 @@ Route::group(['middleware' => 'cors'], function(){
         Route::post('getDatosAdicionales', 'Sucursales@getDatosAdicionales');
         Route::post('updateGiroNegocio', 'Sucursales@updateGiroNegocio');
         Route::post('getGiroNegocio', 'Sucursales@getGiroNegocio');
+        Route::post('addInformacionSucursal', 'Sucursales@addInformacionSucursal');
+        Route::post('getDatosAdicionalesSucursal', 'Sucursales@getDatosAdicionalesSucursal');
+        Route::post('addSucursalActividadEconomica', 'Sucursales@addSucursalActividadEconomica');
+        Route::post('getSucursalActividadEconomica', 'Sucursales@getSucursalActividadEconomica');
+        
+
+        
+
+
         //UPDATE PASSWORD
         Route::post('Update_Password', 'Administracion_Empresa@Update_Password');
         // Categorias

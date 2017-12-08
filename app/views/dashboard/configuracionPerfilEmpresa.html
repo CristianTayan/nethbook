@@ -99,8 +99,143 @@
                         <input type="text" ng-model="datosEmpresa.valores" uppercase  required>
                     </md-input-container>
                 </div>
+
+                <div layout="column">
+
+                <div> <label>Contactos:</label></div>
+                  <div layout="row" layout-align="center center">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                  <form name="form" >
+                      <div  layout="row">
+                      <md-input-container class="md-icon-float md-block" flex="35">
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Tipo</label>
+                        <md-select name="tipo" ng-model="listas.tipo" required>
+                          <md-option ng-repeat="tipo in tipos" value="{{tipo}}">{{tipo}}</md-option>
+                        </md-select>
+                        <div ng-messages="form.tipo.$error">
+                          <div ng-message="required">
+                            Requiere seleccionar un tipo de contacto
+                          </div>                                
+                        </div>
+                      </md-input-container>  
+                      <span flex="10"></span>
+                      <md-input-container class="md-icon-float md-block" flex="35">
+                        <md-icon class="md-primary">phone</md-icon>
+                        <label>Numero</label>
+                        <input name="fono" ng-model="listas.numero" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" numbersOnly required>
+                        <div ng-messages="form.fono.$error" ng-show="form.fono.$dirty">
+                          <div ng-message="required">
+                            Es obligatorio ingresar un numero
+                          </div>
+                          <div ng-message="md-minlength">
+                            Minimo 10 numeros
+                          </div>
+                          <div ng-message="md-maxlength">
+                            Maximo 10 numeros
+                          </div>
+                          <div ng-message="pattern">
+                          Ingrese solo numeros
+                          </div>
+                          <div ng-message="numbersOnly">fdsfdasdf solo numeros</div>
+                        </div>
+                      </md-input-container>   
+                      <md-button ng-click="addNew(listas)" ng-disabled="form.$invalid" class="md-fab md-mini" ><md-icon>add</md-icon></md-button>   
+                      </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+        <center>
+        <div class="row" >
+
+                <table md-table md-row-select ng-model="listas">
+                    <thead md-head>
+                        <tr md-row>
+                            <th md-column md-order-by="nameToLower"></th>
+                            <th md-column md-order-by="nameToLower">Tipo de Contacto</th>
+                            <th md-column md-order-by="nameToLower">Número</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr md-row ng-repeat="lista in listas">
+                            <td md-cell>
+                            <md-checkbox  ng-model="lista.selected" aria-label="check"/></md-checkbox></td>
+                            <td md-cell>{{lista.tipo}}</td>
+                            <td md-cell>{{lista.numero}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div layout="row" layout-align="center center">
+                    <md-button class="md md-raised md-warn" ng-click="remove()" value="Remove"><md-icon>delete</md-icon>Eliminar contacto</md-button>
+                </div>
+        </div>
+             
+                </div>
+                <div layout="column">
+                <div layout="row" layout-align="center center">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                    <form name="formCorreo" >
+                        <div  layout="row">
+                        <md-input-container  flex="30">
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <label>Tipo</label>
+                          <md-select name="tipoCorreo" ng-model="listaCorreos.tipoCorreo" required>
+                            <md-option ng-repeat="tipoCorreo in tipoCorreos" value="{{tipoCorreo}}">{{tipoCorreo}}</md-option>
+                          </md-select>
+                          <div ng-messages="formCorreo.tipoCorreo.$error">
+                            <div ng-message="required">
+                              Se requiere seleccionar un tipo de correo electrónico
+                            </div>                                
+                          </div>
+                        </md-input-container>  
+                        <span flex="10"></span>
+                        <md-input-container class="md-icon-float md-block" flex="45">
+                          <md-icon class="md-accent">mail_outline</md-icon>
+                            <label>Email</label>
+                            <input name="mail" ng-model="listaCorreos.mail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
+                            <div ng-messages="formCorreo.mail.$error" ng-show="formCorreo.mail.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="pattern" class="my-message">correo invalido</div>
+                            </div>
+                        </md-input-container>   
+                        <md-button ng-click="addNewCorreo(listaCorreos)" ng-disabled="formCorreo.$invalid" class="md-fab md-mini" ><md-icon>add</md-icon></md-button>   
+                        </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+            <div class="row" >
+            <div >
+                <table md-table md-row-select ng-model="listaCorreos">
+                    <thead md-head>
+                        <tr  md-row>
+                            <th md-column md-order-by="nameToLower"></th>
+                            <th md-column md-order-by="nameToLower">Tipo de Correo</th>
+                            <th md-column md-order-by="nameToLower">Dirección</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr md-row ng-repeat="listaCorreo in listaCorreos">
+                            <td md-cell>
+                                <md-checkbox  ng-model="listaCorreo.selected" aria-label="checkCorreo"/></md-checkbox></td>
+                            <td md-cell>{{listaCorreo.tipoCorreo}}</td>
+                            <td md-cell>{{listaCorreo.mail}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div layout="row" layout-align="center center">
+                    <md-button class="md md-raised md-warn" ng-click="removeCorreo()" value="Remove"><md-icon>delete</md-icon>Eliminar correo</md-button> 
+                </div>
+                
+            </div>
+        </div>                             
+                </div>
+
                  <div layout="row" layout-align="center center">
-                    <md-button  md-no-ink class="md-raised md-primary" ng-click="descripcion()"  >
+                    <md-button  md-no-ink class="md-raised md-primary" ng-click="getDatosEmpresa()"  >
                       Guardar
                     </md-button>
                     <md-button class="md-raised" ng-click="$panel.collapse();" >Cancelar</md-button>
