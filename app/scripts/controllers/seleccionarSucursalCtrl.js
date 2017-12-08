@@ -54,6 +54,6 @@ var app = angular.module('nextbook20App')
       },function(error){
         $localStorage.imgPortada="images/samples/x2.jpg";
       });
-      (index.giro_negocio.id==0)?$location.path('/nb/App/Administracion/Sucursal'):$location.path('/nb')
+      (index.giro_negocio.id==0)?$location.path('/nb/sucursal/info'):$location.path('/nb')
     }
   });

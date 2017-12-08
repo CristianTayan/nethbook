@@ -1,10 +1,6 @@
 'use strict';
 
-var app = angular.module('nextbook20App')
-
-  app.controller('configuracionCtrl', function ($scope, $mdExpansionPanelGroup, configuracionService, $routeSegment,  $mdDialog) {
-    $scope.$routeSegment = $routeSegment;
-  });
+var app = angular.module('nextbook20App');
 
   app.controller('configuracionPerfilSucursalCtrl', function ($scope,$mdExpansionPanel, $routeSegment,  $mdDialog, $localStorage, mainService, establecimientosService) {
     $scope.tipos = [

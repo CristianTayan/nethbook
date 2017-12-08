@@ -39,7 +39,11 @@ class Perfil extends Controller
     
 
     DB::connection($this->name_bdd)->
-        table('administracion.imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','A')->where('tipo_imagen',2)->update(['estado'=>'P']);
+      table('administracion.imagen_empresa')->
+      where('sucursal',$request->sucursal)->
+      where('estado','A')->
+      where('tipo_imagen',2)->
+      update(['estado'=>'P']);
     $save=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->insert([
         'sucursal'=>$request->sucursal,
         'direccion_imagen_empresa'=>$img_dir_full,
@@ -54,6 +58,15 @@ class Perfil extends Controller
 
     }
 
+    public function verificarExistenciaDirectorio($name_bdd, $tipo_img){
+      if (!file_exists(storage_path().'/'.$name_bdd))
+        mkdir(storage_path().'/'.$name_bdd, 0777, true);
+      if (file_exists(storage_path().'/'.$name_bdd)) {
+        if (!file_exists(storage_path().'/'.$name_bdd.'/'.$tipo_img))
+          mkdir(storage_path().'/'.$name_bdd.'/'.$tipo_img, 0777, true);
+      }
+    }
+
     private function base64_to_img($base64,$width,$tipo_img,$name_bdd){
       $id_img=$this->funciones->generarID();
       $img = Image::make($base64);
@@ -61,16 +74,7 @@ class Perfil extends Controller
       $img->resize($width, null, function ($constraint) {
           $constraint->aspectRatio();
       });
-      $directorio = storage_path().'/'.$name_bdd;
-      if (!file_exists($directorio)) {
-        mkdir(storage_path().'/'.$name_bdd, 0777, true);
-        mkdir(storage_path().'/'.$name_bdd.'/Perfil/', 0777, true);
-        mkdir(storage_path().'/'.$name_bdd.'/Portadas/', 0777, true);
-        mkdir(storage_path().'/'.$name_bdd.'/PortadasUsuario/', 0777, true);
-        mkdir(storage_path().'/'.$name_bdd.'/PerfilUsuario/', 0777, true);
-        mkdir(storage_path().'/'.$name_bdd.'/PortadasEmpresa/', 0777, true);
-        mkdir(storage_path().'/'.$name_bdd.'/PerfilEmpresa/', 0777, true);
-      }
+      $this->verificarExistenciaDirectorio($name_bdd, $tipo_img);
       $img->save(storage_path().'/'.$name_bdd.'/'.$tipo_img.'/'.$id_img);      
       return $id_img;
     }
@@ -208,7 +212,7 @@ class Perfil extends Controller
         table('administracion.imagen_empresa')->
         where('sucursal',$request->sucursal)->
         where('estado','A')->
-        where('tipo_imagen',3)->
+        where('tipo_imagen',8)->
         update(['estado'=>'P']);
       $save=DB::connection($this->name_bdd)->
         table('administracion.imagen_empresa')->
@@ -217,7 +221,7 @@ class Perfil extends Controller
           'direccion_imagen_empresa'=>$img_dir_full,
           'direccion_imagen_recorte'=>$img_dir_crop,
           'estado'=>'A',
-          'tipo_imagen'=>3
+          'tipo_imagen' => 8
         ]);
       if ($save) {
         return response()->json(["respuesta"=>true,"img"=>$img_dir_crop]);
@@ -229,7 +233,7 @@ class Perfil extends Controller
       DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->
       // where('sucursal',$request->sucursal)->
       where('estado','A')->
-      where('tipo_imagen',3)->
+      where('tipo_imagen',8)->
       update(['estado'=>'P']);
       $resultado=DB::connection($this->name_bdd)->
       table('administracion.imagen_empresa')->
@@ -246,7 +250,7 @@ class Perfil extends Controller
       select('direccion_imagen_empresa','id','direccion_imagen_recorte')->
       //where('sucursal',$request->sucursal)->
       where('estado','P')->
-      where('tipo_imagen',3)->
+      where('tipo_imagen',8)->
       orderBy('fecha','DESC')->
       limit(500)->
       get();
@@ -259,7 +263,8 @@ class Perfil extends Controller
       select('direccion_imagen_recorte','direccion_imagen_empresa')->
       // where('sucursal',$request->sucursal)->
       where('estado','A')->
-      where('tipo_imagen',3)->
+      where('tipo_imagen',8)->
+      orderBy('fecha', 'ASC')->
       first();
       if (count($resultado)>0) {
         $data=explode('/', $resultado->direccion_imagen_recorte);

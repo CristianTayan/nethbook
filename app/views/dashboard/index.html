@@ -1,110 +1,106 @@
-
 <md-sidenav 
-  style="max-width: 60px;" 
-  layout="column" class="md-sidenav-left" 
-  md-component-id="left" 
+  layout="column" 
+  class="md-sidenav-left menuPrincipalWith" 
+  md-component-id="left"
   md-is-locked-open="$mdMedia('gt-md')">
-  <md-toolbar class="md-hue-2" layout="row">
+  <md-toolbar class="md-hue-2" layout="row" >
     <div class="md-toolbar-tools toolbar-center" style="padding: 0 9px;">
       <a href="#/nb/App" class="btn btn--l btn--white btn--icon" lx-ripple>
         <i class="mdi mdi-apps"></i>
       </a>
     </div>
   </md-toolbar>
-  
   <md-list class="menu-dashboard">
     <md-list-item ng-click="changeSidenavState()">
       <md-icon class="md-accent">menu</md-icon>
-    </md-list-item> 
-    
-    <div  style="margin-top: 660px;"></div>
-    <md-button ng-href="#/nb/App/Finanzas/Ventas/Facturacion" class="md-fab md-fab-bottom md-primary md-mini"  >
+    </md-list-item>
+  </md-list>
+  <div flex></div>
+  <md-button ng-href="#/nb/App/Finanzas/Ventas/Facturacion" class="md-fab md-fab-bottom md-primary md-mini"  >
     <md-icon>business</md-icon>
-      <md-tooltip md-direction="right">
-       Facturación
-      </md-tooltip>
-    </md-button>
-    <md-button ng-href="#/nb/App/Finanzas/Contable/Repositorio_Facturas" class="md-fab md-fab-bottom md-primary md-mini" >
+    <md-tooltip md-direction="right">
+     Facturación
+    </md-tooltip>
+  </md-button>
+  <md-button ng-href="#/nb/App/Finanzas/Contable/Repositorio_Facturas" class="md-fab md-fab-bottom md-primary md-mini" >
     <md-icon>date_range</md-icon>
-      <md-tooltip md-direction="right">
-       Repositorio Facturas
-      </md-tooltip>
-    </md-button>
-    <md-button ng-href="#/nb/App/Finanzas/Contable/Repositorio_Facturas" class="md-fab md-fab-bottom md-primary md-mini" >
+    <md-tooltip md-direction="right">
+     Repositorio Facturas
+    </md-tooltip>
+  </md-button>
+  <md-button ng-href="#/nb/App/Config" class="md-fab md-fab-bottom md-primary md-mini" >
     <md-icon>settings</md-icon>
-      <md-tooltip md-direction="right">
-       Repositorio Facturas
-      </md-tooltip>
-    </md-button>
-  </md-list>    
+    <md-tooltip md-direction="right">
+     Configuracion
+    </md-tooltip>
+  </md-button>
 </md-sidenav>
 <div layout="column" class="relative" layout-fill role="main">
   <md-toolbar layout="row" layout-align="center">
-    <!-- <div layout="row" layout-align="center" >hola</div> -->
     <div class="md-toolbar-tools" flex-gt-md="65">
-      <a href="#/nb">
-          <img src="images/logo/logo.fw.png" alt="Logo">
+      <a href="#/nb/empresa">
+        <img src="images/logo/logo.fw.png" alt="Logo">
       </a>
       <span flex></span>
-      <a href="#/nb/Inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
-          <md-icon>home</md-icon>
+      <a href="#/nb/empresa/inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
+        <md-icon>home</md-icon>
       </a>
-      <a href="#/nb/App/Administracion/Personal">
+      <a href="#/nb/personal">
         <span class="mdl-chip">
-            <span class="mdl-chip__text">{{datos_personales.primer_nombre}}</span>
+          <span class="mdl-chip__text">{{datos_personales.primer_nombre}}</span>
         </span>
       </a>
       <a href="#/nb/App" class="btn btn--l btn--white btn--icon" lx-ripple>
         <i class="mdi mdi-apps"></i>
       </a>
       <lx-dropdown lx-position="right">
-          <lx-dropdown-toggle>
-              <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
-          </lx-dropdown-toggle>
-          <lx-dropdown-menu>
-              <ul>
-                  <li>
-                      <a href="#/Perfil_Personal" class="dropdown-link">
-                          <i class="mdi material-icons">shopping_cart</i>
-                          <span>Planes</span>
-                      </a>
-                  </li>
-                  <li class="dropdown-divider"></li>
-                  <li>
-                      <a class="dropdown-link" href="#/nb/App/Config/Terminos">
-                          <i class="mdi material-icons">security</i>
-                          <span>Terminos y Condiciones</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a class="dropdown-link">
-                          <i class="mdi"><md-icon>live_help</md-icon></i>
-                          <span>¡ Preguntas !</span>
-                      </a>
-                  </li>
-                  <li class="dropdown-divider"></li>
-                  <li>
-                      <a href="#/nb/App/Config" class="dropdown-link">
-                          <span>Configuración</span>
-                      </a>
-                  </li>
-                  <li>
-                      <a href="#/Salir" class="dropdown-link">
-                          <span>Salir</span>
-                      </a>
-                  </li>
-              </ul>
-          </lx-dropdown-menu>
+        <lx-dropdown-toggle>
+          <lx-button lx-size="l" lx-color="white" lx-type="icon"><i class="mdi mdi-dots-vertical"></i></lx-button>
+        </lx-dropdown-toggle>
+        <lx-dropdown-menu>
+          <ul>
+              <li>
+                  <a href="#/Perfil_Personal" class="dropdown-link">
+                      <i class="mdi material-icons">shopping_cart</i>
+                      <span>Planes</span>
+                  </a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li>
+                  <a class="dropdown-link" href="#/nb/App/Config/Terminos">
+                      <i class="mdi material-icons">security</i>
+                      <span>Terminos y Condiciones</span>
+                  </a>
+              </li>
+              <li>
+                  <a class="dropdown-link">
+                      <i class="mdi"><md-icon>live_help</md-icon></i>
+                      <span>¡ Preguntas !</span>
+                  </a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li>
+                  <a href="#/nb/App/Config" class="dropdown-link">
+                      <span>Configuración</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="#/Salir" class="dropdown-link">
+                      <span>Salir</span>
+                  </a>
+              </li>
+          </ul>
+        </lx-dropdown-menu>
       </lx-dropdown>
       <span class="mdl-chip mdl-chip--contact">
-          <a href="#/Seleccionar_Sucursal"  ng-click="restaurarMapa()">
-            <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white mdl-chip_hover_contact" style="font-size: 12px">
-                  {{info_sucursal.codigo_sri}}
-              </span>
-          </a>
-          <a href="#/nb/App/Administracion/Sucursal">
-              <span class="mdl-chip__text mdl-chip_hover_text">{{nom_perfil | limitTo: 20}}</span>
-          </a>
+        <a href="#/Seleccionar_Sucursal"  ng-click="restaurarMapa()">
+          <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white mdl-chip_hover_contact" style="font-size: 12px">
+            {{info_sucursal.codigo_sri}}
+          </span>
+        </a>
+        <a href="#/nb/sucursal">
+          <span class="mdl-chip__text mdl-chip_hover_text">{{nom_perfil | limitTo: 20}}</span>
+        </a>
       </span>
     </div>
   </md-toolbar>

@@ -1,5 +1,5 @@
 <div layout="row">
-  <div ng-controller="perfil_personal_Ctrl">
+  <div ng-controller="configuracionPersonalCtrl">
     <md-card flex>
       <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'PortadaUsuario')">
           <div ng-style="{'background-image': 'url(' + imgPortadaUsuario + ')',' height': '200'}" class="card__image"></div>
@@ -39,47 +39,49 @@
         </md-card-actions>
     </md-card>
   </div>
-
-  <md-card flex>
-    <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'Portada')">
-      <div ng-style="{'background-image': 'url(' + imgPortada + ')',' height': '200'}" class="card__image"></div>
-    </div>
-    <div style="position: absolute;">
-      <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Portada')" aria-label="More">
-          <md-icon>add_a_photo</md-icon>
-      </md-button>
-      <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Portada')" aria-label="More">
-          <md-icon>mode_edit</md-icon>
-      </md-button>
-    </div>
-      <md-card-title>
-        <md-card-title-text>
-          <span class="md-headline">Configuración Sucursal</span>
-          <span class="md-subhead">Perfil Sucursal/Establecimiento</span>
-          <md-button ng-disabled="true">Opcion</md-button>
-          <md-button class="md-raised md-accent" ng-href="#/nb/App/Config/PerfilPersonal">Entrar</md-button>
-        </md-card-title-text>
-        <md-card-title-media>
-        <div layout="row" style="width: 175px; height: 175px;">
-          <div class="demo-card-square mdl-card mdl-shadow--2dp" style="cursor: pointer;" ng-click="show_img($event,'Perfil')" ng-style="{'background-image': 'url(' + imgPerfil + ')','background-size': 'cover','background-repeat': 'no-repeat'}">
-          </div>
-          <div style="position: absolute; z-index: 9;">
-              <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Perfil')" aria-label="More">
-                  <md-icon>add_a_photo</md-icon>
-              </md-button>
-              <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Perfil')" aria-label="More">
-                  <md-icon>mode_edit</md-icon>
-              </md-button>
-          </div>
+  
+  <div ng-controller="configuracionSucursalCtrl">
+    <md-card flex>
+      <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'Portada')">
+        <div ng-style="{'background-image': 'url(' + imgPortada + ')',' height': '200'}" class="card__image"></div>
       </div>
-        </md-card-title-media>
-      </md-card-title>
-      <md-card-actions layout="row" layout-align="end center">
-        <span class="md-subhead">Foto Perfil</span>
-      </md-card-actions>
-  </md-card>
+      <div style="position: absolute;">
+        <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Portada')" aria-label="More">
+            <md-icon>add_a_photo</md-icon>
+        </md-button>
+        <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Portada')" aria-label="More">
+            <md-icon>mode_edit</md-icon>
+        </md-button>
+      </div>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Configuración Sucursal</span>
+            <span class="md-subhead">Perfil Sucursal/Establecimiento</span>
+            <md-button ng-disabled="true">Opcion</md-button>
+            <md-button class="md-raised md-accent" ng-href="#/nb/App/Config/PerfilPersonal">Entrar</md-button>
+          </md-card-title-text>
+          <md-card-title-media>
+          <div layout="row" style="width: 175px; height: 175px;">
+            <div class="demo-card-square mdl-card mdl-shadow--2dp" style="cursor: pointer;" ng-click="show_img($event,'Perfil')" ng-style="{'background-image': 'url(' + imgPerfil + ')','background-size': 'cover','background-repeat': 'no-repeat'}">
+            </div>
+            <div style="position: absolute; z-index: 9;">
+                <md-button class="md-icon-button md-accent" ng-click="show_upload_img_modal($event,'Perfil')" aria-label="More">
+                    <md-icon>add_a_photo</md-icon>
+                </md-button>
+                <md-button class="md-icon-button md-accent" ng-click="show_lista_img_modal($event,'Perfil')" aria-label="More">
+                    <md-icon>mode_edit</md-icon>
+                </md-button>
+            </div>
+        </div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <span class="md-subhead">Foto Perfil</span>
+        </md-card-actions>
+    </md-card>
+  </div>
 
-  <div ng-controller="perfilEmpresaCtrl">
+  <div ng-controller="configuracionEmpresaCtrl">
     <md-card flex>
       <div class="card card--big" style="cursor: pointer;" ng-click="show_img($event,'PortadaEmpresa')">
         <div ng-style="{'background-image': 'url(' + imgPortadaEmpresa + ')',' height': '200'}" class="card__image"></div>
@@ -119,5 +121,4 @@
         </md-card-actions>
     </md-card>
   </div>
-
 </div>

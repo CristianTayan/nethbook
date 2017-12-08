@@ -23,6 +23,10 @@ html {
   max-width:250px;
 }
 
+.menuPrincipalWith {
+  max-width: 66px;
+}
+
 /*----------------------------------------inicio sub menu----------------------------------------*/
 nav ul{overflow:auto;list-style-type:none}nav ul li{float:left;margin-right:0;border-right:1px solid #aaa;padding:0 20px}nav ul li:last-child{border-right:none}nav ul li a{text-decoration:none;color:#ccc;font:12px/1 Helvetica,Verdana,sans-serif;text-transform:uppercase;-webkit-transition:all 0.5s ease;-moz-transition:all 0.5s ease;-o-transition:all 0.5s ease;-ms-transition:all 0.5s ease;transition:all 0.5s ease}nav ul li a:hover{color:#666}nav ul li.active a{cursor:move}nav ul li.active a{font-weight:700;color:#777}
 /*------------------------------------------fin sub menu-----------------------------------------*/

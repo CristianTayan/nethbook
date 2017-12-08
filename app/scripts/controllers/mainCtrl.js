@@ -39,7 +39,7 @@ app.controller('mainCtrl', function ($scope, $location, mainService, $http , $md
   }
   $scope.selectedItemChange = (item) => {
     if (item) {
-      const res = item.empresa.split(',');
+      const res = item.Empresa.split('/,/');
       $location.path('/search/' + res[0]);
     }
   }

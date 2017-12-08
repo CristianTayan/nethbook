@@ -546,10 +546,14 @@ ALTER SEQUENCE imagen_empresa_id_seq OWNED BY imagen_empresa.id;
 CREATE TABLE informacion_empresa_tbl (
     id integer NOT NULL,
     id_empresa integer NOT NULL,
-    mision_empresa character varying(2000) NOT NULL,
-    vision_empresa character varying(2000) NOT NULL,
-    slogan_empresa character varying(1500),
-    valores_ins_empresa json,
+    id_tipo_empresa integer NOT NULL,
+    id_sucursal integer NOT NULL,
+    mision text,
+    vision text,
+    slogan character varying(2500),
+    valores_institucionales json,
+    telefonos json,
+    correos json,
     estado character varying(5) NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_ultimo_cambio timestamp without time zone DEFAULT now() NOT NULL
@@ -580,26 +584,41 @@ ALTER SEQUENCE informacion_empresa_tbl_id_seq OWNED BY informacion_empresa_tbl.i
 
 
 --
--- Name: sucursales; Type: TABLE; Schema: administracion; Owner: postgres
+-- Name: sucursal_actividad_economica_tbl; Type: TABLE; Schema: administracion; Owner: postgres
 --
 
-CREATE TABLE sucursales (
+CREATE TABLE sucursal_actividad_economica_tbl (
     id integer NOT NULL,
-    nombre character varying(250) NOT NULL,
-    responsable integer NOT NULL,
-    datos_empresariales json NOT NULL,
-    localizacion_sucursal json NOT NULL,
-    datos_adiconales json,
-    codigo_sri character varying(3) NOT NULL,
-    giro_negocio integer DEFAULT 0 NOT NULL,
-    actividad_economica integer DEFAULT 0 NOT NULL,
-    id_empresa integer,
+    id_sucursal integer NOT NULL,
+    id_actividad_economica integer NOT NULL,
+    estado character varying(5) NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
-    fecha_ultima_mod timestamp without time zone DEFAULT now() NOT NULL
+    fecha_ultimo_cambio timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
-ALTER TABLE sucursales OWNER TO postgres;
+ALTER TABLE sucursal_actividad_economica_tbl OWNER TO postgres;
+
+--
+-- Name: sucursal_actividad_economica_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
+--
+
+CREATE SEQUENCE sucursal_actividad_economica_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sucursal_actividad_economica_id_seq OWNER TO postgres;
+
+--
+-- Name: sucursal_actividad_economica_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
+--
+
+ALTER SEQUENCE sucursal_actividad_economica_id_seq OWNED BY sucursal_actividad_economica_tbl.id;
+
 
 --
 -- Name: sucursales_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
@@ -616,25 +635,26 @@ CREATE SEQUENCE sucursales_id_seq
 ALTER TABLE sucursales_id_seq OWNER TO postgres;
 
 --
--- Name: sucursales_id_seq1; Type: SEQUENCE; Schema: administracion; Owner: postgres
+-- Name: sucursales; Type: TABLE; Schema: administracion; Owner: postgres
 --
 
-CREATE SEQUENCE sucursales_id_seq1
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+CREATE TABLE sucursales (
+    id integer DEFAULT nextval('sucursales_id_seq'::regclass) NOT NULL,
+    nombre character varying(250) NOT NULL,
+    responsable integer NOT NULL,
+    datos_empresariales json NOT NULL,
+    localizacion_sucursal json NOT NULL,
+    datos_adiconales json,
+    codigo_sri character varying(3) NOT NULL,
+    giro_negocio integer DEFAULT 0 NOT NULL,
+    actividad_economica integer DEFAULT 0 NOT NULL,
+    id_empresa integer,
+    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
+    fecha_ultima_mod timestamp without time zone DEFAULT now() NOT NULL
+);
 
 
-ALTER TABLE sucursales_id_seq1 OWNER TO postgres;
-
---
--- Name: sucursales_id_seq1; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
---
-
-ALTER SEQUENCE sucursales_id_seq1 OWNED BY sucursales.id;
-
+ALTER TABLE sucursales OWNER TO postgres;
 
 --
 -- Name: tipo_accion_vista; Type: TABLE; Schema: administracion; Owner: postgres
@@ -761,10 +781,10 @@ CREATE TABLE tipos_imagenes_empresas (
 ALTER TABLE tipos_imagenes_empresas OWNER TO postgres;
 
 --
--- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
+-- Name: tipos_imagenes_empresas_id_seq; Type: SEQUENCE; Schema: administracion; Owner: postgres
 --
 
-CREATE SEQUENCE tipos_imagenes_productos_id_seq
+CREATE SEQUENCE tipos_imagenes_empresas_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -772,13 +792,13 @@ CREATE SEQUENCE tipos_imagenes_productos_id_seq
     CACHE 1;
 
 
-ALTER TABLE tipos_imagenes_productos_id_seq OWNER TO postgres;
+ALTER TABLE tipos_imagenes_empresas_id_seq OWNER TO postgres;
 
 --
--- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
+-- Name: tipos_imagenes_empresas_id_seq; Type: SEQUENCE OWNED BY; Schema: administracion; Owner: postgres
 --
 
-ALTER SEQUENCE tipos_imagenes_productos_id_seq OWNED BY tipos_imagenes_empresas.id;
+ALTER SEQUENCE tipos_imagenes_empresas_id_seq OWNED BY tipos_imagenes_empresas.id;
 
 
 --
@@ -3633,7 +3653,7 @@ ALTER TABLE ONLY informacion_empresa_tbl ALTER COLUMN id SET DEFAULT nextval('in
 -- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
 --
 
-ALTER TABLE ONLY sucursales ALTER COLUMN id SET DEFAULT nextval('sucursales_id_seq1'::regclass);
+ALTER TABLE ONLY sucursal_actividad_economica_tbl ALTER COLUMN id SET DEFAULT nextval('sucursal_actividad_economica_id_seq'::regclass);
 
 
 --
@@ -3661,7 +3681,7 @@ ALTER TABLE ONLY tipo_empresa ALTER COLUMN id SET DEFAULT nextval('tipo_empresa_
 -- Name: id; Type: DEFAULT; Schema: administracion; Owner: postgres
 --
 
-ALTER TABLE ONLY tipos_imagenes_empresas ALTER COLUMN id SET DEFAULT nextval('tipos_imagenes_productos_id_seq'::regclass);
+ALTER TABLE ONLY tipos_imagenes_empresas ALTER COLUMN id SET DEFAULT nextval('tipos_imagenes_empresas_id_seq'::regclass);
 
 
 --
@@ -4159,7 +4179,7 @@ SELECT pg_catalog.setval('imagen_empresa_id_seq', 1, false);
 -- Data for Name: informacion_empresa_tbl; Type: TABLE DATA; Schema: administracion; Owner: postgres
 --
 
-COPY informacion_empresa_tbl (id, id_empresa, mision_empresa, vision_empresa, slogan_empresa, valores_ins_empresa, estado, fecha_creacion, fecha_ultimo_cambio) FROM stdin;
+COPY informacion_empresa_tbl (id, id_empresa, id_tipo_empresa, id_sucursal, mision, vision, slogan, valores_institucionales, telefonos, correos, estado, fecha_creacion, fecha_ultimo_cambio) FROM stdin;
 \.
 
 
@@ -4168,6 +4188,21 @@ COPY informacion_empresa_tbl (id, id_empresa, mision_empresa, vision_empresa, sl
 --
 
 SELECT pg_catalog.setval('informacion_empresa_tbl_id_seq', 1, false);
+
+
+--
+-- Name: sucursal_actividad_economica_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
+--
+
+SELECT pg_catalog.setval('sucursal_actividad_economica_id_seq', 1, false);
+
+
+--
+-- Data for Name: sucursal_actividad_economica_tbl; Type: TABLE DATA; Schema: administracion; Owner: postgres
+--
+
+COPY sucursal_actividad_economica_tbl (id, id_sucursal, id_actividad_economica, estado, fecha_creacion, fecha_ultimo_cambio) FROM stdin;
+\.
 
 
 --
@@ -4183,13 +4218,6 @@ COPY sucursales (id, nombre, responsable, datos_empresariales, localizacion_sucu
 --
 
 SELECT pg_catalog.setval('sucursales_id_seq', 1, false);
-
-
---
--- Name: sucursales_id_seq1; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
---
-
-SELECT pg_catalog.setval('sucursales_id_seq1', 1, false);
 
 
 --
@@ -4224,7 +4252,7 @@ COPY tipo_bienes_servicios (id, nombre, descripcion, fecha, estado, id_prestacio
 -- Name: tipo_bienes_servicios_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
-SELECT pg_catalog.setval('tipo_bienes_servicios_id_seq', 7, true);
+SELECT pg_catalog.setval('tipo_bienes_servicios_id_seq', 5, true);
 
 
 --
@@ -4232,8 +4260,10 @@ SELECT pg_catalog.setval('tipo_bienes_servicios_id_seq', 7, true);
 --
 
 COPY tipo_empresa (id, nombre, descripcion, estado, fecha) FROM stdin;
-0	Propia                                            	la empresa propietaria de la BDD	A	2017-04-17 15:05:22.37072
-1	Cliente                                           	empresa cliente	A	2017-04-17 15:05:41.539454
+2	Sucursal                                          	Sucursal de la empresa	A	2017-04-17 15:05:41.539454
+3	Cleinte                                           	Empresas Clientes	A	2017-12-08 08:01:07.113793
+0	Propia                                            	Empresa Propietaria del Sistema	A	2017-04-17 15:05:22.37072
+4	Proveedor                                         	Empresa Proveedora	A	2017-12-08 08:02:51.864457
 \.
 
 
@@ -4241,7 +4271,7 @@ COPY tipo_empresa (id, nombre, descripcion, estado, fecha) FROM stdin;
 -- Name: tipo_empresa_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
-SELECT pg_catalog.setval('tipo_empresa_id_seq', 3, true);
+SELECT pg_catalog.setval('tipo_empresa_id_seq', 5, true);
 
 
 --
@@ -4256,14 +4286,17 @@ COPY tipos_imagenes_empresas (id, nombre, estado, fecha) FROM stdin;
 4	PORTADA USUARIO	A	2017-11-23 12:13:58.545446-05
 5	PERFIL USUARIO	A	2017-11-23 12:13:58.545446-05
 6	FRONTAL USUARIIO	A	2017-11-23 12:13:58.545446-05
+7	PORTADA EMPRESA	A	2017-12-08 08:25:17.911762-05
+8	PERFIL EMPRESA	A	2017-12-08 08:25:29.363599-05
+9	FRONTAL EMPRESA	A	2017-12-08 08:25:44.44426-05
 \.
 
 
 --
--- Name: tipos_imagenes_productos_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
+-- Name: tipos_imagenes_empresas_id_seq; Type: SEQUENCE SET; Schema: administracion; Owner: postgres
 --
 
-SELECT pg_catalog.setval('tipos_imagenes_productos_id_seq', 3, true);
+SELECT pg_catalog.setval('tipos_imagenes_empresas_id_seq', 9, true);
 
 
 --
@@ -4314,6 +4347,11 @@ COPY auditoria (id, tabla_afectada, operacion, variable_anterior, variable_nueva
 11	tipo_bienes_servicios                        	U	(7,Bienes,"El giro del negocio es la venta de Bienes","2017-12-06 10:13:31.853682",A,)	(1,Bienes,"El giro del negocio es la venta de Bienes","2017-12-06 10:13:31.853682",A,)	2017-12-06 10:14:56.254309	postgres                                     
 12	tipo_bienes_servicios                        	I	\N	(2,Servicios,"El giro del negocio es de bienes y servicios","2017-12-06 10:15:44.349654",A,)	2017-12-06 10:15:44.349654	postgres                                     
 13	tipo_bienes_servicios                        	I	\N	(3,"Bienes & Servicios","El giro del negocio es de bienes y servicios","2017-12-06 10:16:37.457946",A,)	2017-12-06 10:16:37.457946	postgres                                     
+14	tipo_empresa                                 	U	(1,"Cliente                                           ","empresa cliente",A,"2017-04-17 15:05:41.539454")	(2,"Sucursal                                          ","Sucursal de la empresa",A,"2017-04-17 15:05:41.539454")	2017-12-08 08:00:40.047096	postgres                                     
+15	tipo_empresa                                 	U	(0,"Propia                                            ","la empresa propietaria de la BDD",A,"2017-04-17 15:05:22.37072")	(0,"Propia                                            ","Empresa propietaria de la BDD",A,"2017-04-17 15:05:22.37072")	2017-12-08 08:00:46.102008	postgres                                     
+16	tipo_empresa                                 	I	\N	(3,"Cleinte                                           ","Empresas Clientes",A,"2017-12-08 08:01:07.113793")	2017-12-08 08:01:07.113793	postgres                                     
+17	tipo_empresa                                 	U	(0,"Propia                                            ","Empresa propietaria de la BDD",A,"2017-04-17 15:05:22.37072")	(0,"Propia                                            ","Empresa Propietaria del Sistema",A,"2017-04-17 15:05:22.37072")	2017-12-08 08:02:30.354737	postgres                                     
+18	tipo_empresa                                 	I	\N	(4,"Proveedor                                         ","Empresa Proveedora",A,"2017-12-08 08:02:51.864457")	2017-12-08 08:02:51.864457	postgres                                     
 \.
 
 
@@ -4321,7 +4359,7 @@ COPY auditoria (id, tabla_afectada, operacion, variable_anterior, variable_nueva
 -- Name: auditoria_id_seq; Type: SEQUENCE SET; Schema: auditoria; Owner: postgres
 --
 
-SELECT pg_catalog.setval('auditoria_id_seq', 13, true);
+SELECT pg_catalog.setval('auditoria_id_seq', 18, true);
 
 
 --
@@ -5396,11 +5434,27 @@ ALTER TABLE ONLY imagen_empresa
 
 
 --
--- Name: informacion_empresa_pk; Type: CONSTRAINT; Schema: administracion; Owner: postgres
+-- Name: info_empre_pk; Type: CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY informacion_empresa_tbl
-    ADD CONSTRAINT informacion_empresa_pk PRIMARY KEY (id);
+    ADD CONSTRAINT info_empre_pk PRIMARY KEY (id);
+
+
+--
+-- Name: sucursal_actividad_economica_pk; Type: CONSTRAINT; Schema: administracion; Owner: postgres
+--
+
+ALTER TABLE ONLY sucursal_actividad_economica_tbl
+    ADD CONSTRAINT sucursal_actividad_economica_pk PRIMARY KEY (id);
+
+
+--
+-- Name: sucursales_pk; Type: CONSTRAINT; Schema: administracion; Owner: postgres
+--
+
+ALTER TABLE ONLY sucursales
+    ADD CONSTRAINT sucursales_pk PRIMARY KEY (id);
 
 
 --
@@ -6537,19 +6591,51 @@ ALTER TABLE ONLY empresas
 
 
 --
--- Name: estado_info_empre_fk; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
+-- Name: estado_sucursal_actividad_economica_fk; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
+--
+
+ALTER TABLE ONLY sucursal_actividad_economica_tbl
+    ADD CONSTRAINT estado_sucursal_actividad_economica_fk FOREIGN KEY (estado) REFERENCES public.estados(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: id_actividad_economica_fk; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
+--
+
+ALTER TABLE ONLY sucursal_actividad_economica_tbl
+    ADD CONSTRAINT id_actividad_economica_fk FOREIGN KEY (id_actividad_economica) REFERENCES actividad_economica(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: id_empresa_fq; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY informacion_empresa_tbl
-    ADD CONSTRAINT estado_info_empre_fk FOREIGN KEY (estado) REFERENCES public.estados(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT id_empresa_fq FOREIGN KEY (id_empresa) REFERENCES imagen_empresa(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
--- Name: id_empresa; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
+-- Name: id_sucursal_fk; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
 --
 
 ALTER TABLE ONLY informacion_empresa_tbl
-    ADD CONSTRAINT id_empresa FOREIGN KEY (id_empresa) REFERENCES empresas(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT id_sucursal_fk FOREIGN KEY (id_sucursal) REFERENCES sucursales(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: id_sucursal_fk; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
+--
+
+ALTER TABLE ONLY sucursal_actividad_economica_tbl
+    ADD CONSTRAINT id_sucursal_fk FOREIGN KEY (id_sucursal) REFERENCES sucursales(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: id_tipo_empresa_fk; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
+--
+
+ALTER TABLE ONLY informacion_empresa_tbl
+    ADD CONSTRAINT id_tipo_empresa_fk FOREIGN KEY (id_tipo_empresa) REFERENCES tipo_empresa(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --

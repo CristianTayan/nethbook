@@ -18,7 +18,7 @@
             </md-card-title>
             <md-card-content layout="row" layout-align="space-between">
               <div class="md-media-xl card-media">
-                <img ng-src="{{imgPerfil}}" alt="Sucursal Img Perfil">
+                <img src="{{imgPerfil}}" alt="Empresa Img Perfil">
               </div>             
             </md-card-content>
             <md-card-title>
@@ -36,13 +36,16 @@
       </md-sidenav>
       <md-content flex>
         <md-card>
-          <img src="{{imgPortada}}" class="md-card-image" alt="Sucursal Img Portada">
+          <img src="{{imgPortada}}" class="md-card-image" alt="Empresa Img Pörtada">
           <md-tabs md-stretch-tabs class="md-primary">
-            <md-tab id="tab1" aria-controls="tab1-content" md-on-select="tabSelect('info')">
-              Info
+            <md-tab id="tab1" aria-controls="tab1-content" md-on-select="tabSelect('inicio')" >
+              Info {{selectView}}
             </md-tab>
-            <md-tab id="tab2" aria-controls="tab2-content" md-on-select="tabSelect('ubicacion')">
-              Ubicacion
+            <md-tab id="tab2" aria-controls="tab2-content" md-on-select="tabSelect('sucursales')">
+              Sucursales
+            </md-tab>
+            <md-tab id="tab3" aria-controls="tab2-content" md-on-select="tabSelect('corporativo')">
+              Corporativo
             </md-tab>
           </md-tabs>
           <md-content flex md-scroll-y app-view-segment="2"> </md-content>
