@@ -87,14 +87,22 @@ Route::group(['middleware' => 'cors'], function(){
     Route::post('Delete_Img_Portada', 'Portada@Delete_Img_Portada');
     Route::post('Delete_Img_PortadaUsuario', 'Portada@Delete_Img_PortadaUsuario');
     Route::post('Delete_Img_PortadaEmpresa', 'Portada@Delete_Img_PortadaEmpresa');
-///////////////////////////////////////// GET DATOS EMPRESA /////////////////////////////////////////
+    // GET DATOS EMPRESA 
     Route::post('Get_Datos_Empresa', 'Administracion_Empresa@Get_Datos_Empresa');
+    Route::post('addDatosEmpresariales', 'Administracion_Empresa@addDatosEmpresariales');
+    Route::post('addInformacionEmpresas', 'Administracion_Empresa@addInformacionEmpresas');
+    Route::post('getDatosAdicionalesEmpresa', 'Administracion_Empresa@getDatosAdicionalesEmpresa');
     //ESTABLECIMIENTOS
     Route::post('Get_Establecimientos', 'Administracion_Empresa@Get_Establecimientos');
     Route::post('Update_Giro_Actividad', 'Sucursales@Update_Giro_Actividad');
     Route::post('UpdateAddSucursal', 'Sucursales@UpdateAddSucursal');
     Route::post('getDatosAdicionales', 'Sucursales@getDatosAdicionales');
-    Route::post('getIdDatosAdicionales', 'Sucursales@getIdDatosAdicionales');
+    Route::post('updateGiroNegocio', 'Sucursales@updateGiroNegocio');
+    Route::post('getGiroNegocio', 'Sucursales@getGiroNegocio');
+    Route::post('addInformacionSucursal', 'Sucursales@addInformacionSucursal');
+    Route::post('getDatosAdicionalesSucursal', 'Sucursales@getDatosAdicionalesSucursal');
+    Route::post('addSucursalActividadEconomica', 'Sucursales@addSucursalActividadEconomica');
+    Route::post('getSucursalActividadEconomica', 'Sucursales@getSucursalActividadEconomica');
     //UPDATE PASSWORD
     Route::post('Update_Password', 'Administracion_Empresa@Update_Password');
     // Categorias
@@ -266,4 +274,5 @@ Route::group(['middleware' => 'cors'], function(){
     Route::post('Refresh_Token','Sesiones@Refresh_Token');
     Route::post('CloseSession','Sesiones@closeSession');
   });
+
 });

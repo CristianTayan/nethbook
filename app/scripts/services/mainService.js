@@ -151,12 +151,29 @@ var app = angular.module('nextbook20App');
     this.Tiempo_espera_sesion = function() {
         return 28800;
     };
+
     this.recuperaClave = function() {
       return $resource(urlService.server().appnext() + 'restaurarContrasenia', {}, {
-      get: {
-            method: 'POST', isArray: false,
-            
+      get: { method: 'POST', isArray: false }
+      });
+    };
+
+    this.addInformacionEmpresas=function() {
+      return $resource(urlService.server().appnext()+'addInformacionEmpresas', {}, {
+        get: {
+          method: 'POST', isArray: false, 
+          params: { token: $localStorage.token }
         }
       });
     };
+    
+    this.getDatosAdicionalesEmpresa=function() {
+      return $resource(urlService.server().appnext()+'getDatosAdicionalesEmpresa', {}, {
+        get: {
+          method: 'POST', isArray: false, 
+          params: { token: $localStorage.token }
+        }
+      });
+    }
+
   });

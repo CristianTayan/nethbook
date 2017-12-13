@@ -1,73 +1,246 @@
-<h4 class="text-center"><i class="material-icons">settings</i> Configuración de la Empresa</h4>  
-<md-expansion-panel md-component-id="expansionPanelOne">
+<div class="p+">
+
+        <div flex-container="row">
+            <div class="card__img card__img--left" style="height: 200px">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv-OFqCvBKSIZKX_sIX5554hVL85GjynrsmniszlRDR924efL1">
+            </div>
+            <div flex-item flex-container="column">
+                <div flex-item>
+                    <div class="p+">
+                    <md-content layout="column">
+                    <md-subheader class="md-no-sticky" md-colors="('nb.app.configuracion.perfilSucursal' | routeSegmentStartsWith) ? {color:'blue'} : {color:'accent'}">{{info_sucursal.nombre }}</md-subheader>
+                      <md-list-item>
+                      <md-icon>business</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Actividad económica:</strong> {{datosEmpresa.actividad_economica}}</p>
+                      </md-list-item> 
+                      <md-list-item>
+                      <md-icon>notifications_active</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Estado contribuyente:</strong> {{datosEmpresa.estado_contribuyente}}</p>
+                      </md-list-item>
+                      <md-list-item>
+                      <md-icon>dns</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Razon Social:</strong> {{datosEmpresa.razon_social}}</p>
+                      </md-list-item>
+                      <md-list-item>
+                      <md-icon>book</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>RUC:</strong> {{datosEmpresa.ruc_ci}}</p>
+                      </md-list-item>
+                      <md-list-item>
+                      <md-icon>reorder</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Obligado a llevar contabilidad:</strong> {{datosEmpresa.obligado_lleva_contabilida}}</p>
+                      </md-list-item>
+                      <md-list-item>
+                      <md-icon>code</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Tipo contribuyente:</strong> {{datosEmpresa.tipo_contribuyente}}</p>
+                      </md-list-item>
+                      
+                      <md-list-item>
+                      <md-icon>date_range</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Fecha creación:</strong> {{datosEmpresa.fecha_creacion | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</p>
+                      </md-list-item>
+                      <md-list-item>
+                      <md-icon>update</md-icon>
+                      <p md-colors="('nb.app.configuracion.perfilPersonal' | routeSegmentStartsWith) ? {color:'accent'} : {color:'blue'}"><strong>Fecha inicio actividades:</strong> {{datosEmpresa.fecha_inicio_actividades | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</p>
+                      </md-list-item>
+                    </md-content>
+                    </div>
+                </div>
+                <div class="card__actions">
+                    <label>Inf Actualizada el :  {{data_usuario.fecha}}</label>           
+                </div>
+            </div>
+        </div>
+</div> 
+<md-expansion-panel-group  md-component-id="expansionPanelGroup" style=" width: 80%">
+  <md-expansion-panel md-component-id="expansionPanelTwo" >
       <md-expansion-panel-collapsed>
-          <div class="md-title">Empresa</div>
-          <div class="md-summary">{{info_sucursal.nombre }}</div>
+          <div class="md-title" >Configuraciones de la empresa</div>
+          <div class="md-summary"  ></div>
           <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="$panel.Expanded();">
-            <md-icon class="md-accent">keyboard_arrow_down</md-icon>
+            <md-icon class="md-accent">settings</md-icon>
         </md-button>
       </md-expansion-panel-collapsed>
       <md-expansion-panel-expanded>
           <md-expansion-panel-header>
-              <div class="md-title" >Empresa</div>
-              <div class="md-summary" >{{info_sucursal.nombre }}</div>
+              <div class="md-title">Configuraciones de la empresa</div>
+              <div class="md-summary"></div>
           </md-expansion-panel-header>
           <md-expansion-panel-content>
-                <div layout="row">
-                    <md-input-container class="md-icon-float md-block" flex>
-                        <md-icon class="md-primary">business</md-icon>
-                        <label>Actividad Económica</label>
-                        <input ng-model="datosEmpresa.actividad_economica" type="text" readonly>
-                    </md-input-container>
-                    <div flex="5"></div>
-                    <md-input-container class="md-icon-float md-block" flex="20">
-                    <md-icon class="md-primary">notifications_active</md-icon>
-                        <label>Estado Contribuyente</label>
-                        <input ng-model="datosEmpresa.estado_contribuyente" type="text" readonly>
-                    </md-input-container>
+              <div layout="row">
+                  <div flex="5"></div>
+                  <md-input-container class="md-icon-float md-block" flex=90>
+                      <md-icon class="md-primary">airplay</md-icon>
+                      <label>Misión de la empresa</label>
+                      <textarea name="bio" ng-model="datosEmpresa.mision" required md-maxlength="2000"></textarea>
+                  </md-input-container>
+
                 </div>
                 <div layout="row">
-                  <md-input-container class="md-icon-float md-block" flex>
-                    <md-icon class="md-primary">fingerprint</md-icon>
-                        <label>Nombre Comercial</label>
-                        <input ng-model="info_sucursal.nombre " type="text" readonly>
-                    </md-input-container>
+                  <div flex="5"></div>
+                  <md-input-container class="md-icon-float md-block" flex=90>
+                    <md-icon class="md-primary">airplay</md-icon>
+                    <label>Visión de la empresa</label>
+                    <textarea name="bio" ng-model="datosEmpresa.vision" required md-maxlength="2000"></textarea>
+                   
+                  </md-input-container>
+                    
                 </div>
                 <div layout="row">
-                  <md-input-container class="md-icon-float md-block" flex>
-                    <md-icon class="md-primary">dns</md-icon>
-                        <label>Razón Social</label>
-                        <input ng-model="datosEmpresa.razon_social" type="text" readonly>
+                <div flex="5"></div>
+                  <md-input-container class="md-icon-float md-block" flex=40>
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Slogan</label>
+                        <textarea name="bio" ng-model="datosEmpresa.slogan" required md-maxlength="1500"></textarea>
                     </md-input-container>
-                    <div flex="5"></div>
-                    <md-input-container class="md-icon-float md-block" flex>
-                      <md-icon class="md-primary">extension</md-icon>
-                        <label>Ruc</label>
-                        <input ng-model="datosEmpresa.ruc_ci" type="text" readonly>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                  <md-input-container class="md-icon-float md-block" flex>
-                        <label>Obligado Lleva Contabilidad</label>
-                        <input ng-model="datosEmpresa.obligado_lleva_contabilida" type="text" readonly>
-                    </md-input-container>
-                    <div flex="5"></div>
-                    <md-input-container class="md-icon-float md-block" flex>
-                        <label>Tipo Contribuyente</label>
-                        <input ng-model="datosEmpresa.tipo_contribuyente" type="text" readonly>
+                    <span flex=10></span>
+                    <md-input-container class="md-icon-float md-block" flex=40>
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Valores</label>
+                        <input type="text" ng-model="datosEmpresa.valores" uppercase  required>
                     </md-input-container>
                 </div>
-                <div layout="row">
-                  <div class=" md-block" flex>
-                        <label>Fecha Creación</label><br>
-                        <label md-colors="{color: 'accent'}">{{datosEmpresa.fecha_creacion | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</label>
-                    </div>
-                    <div flex="5"></div>
-                    <div class=" md-block" flex>
-                        <label>Fecha Inicio Actividades:</label><br>
-                        <label md-colors="{color: 'accent'}">{{datosEmpresa.fecha_inicio_actividades | amDateFormat:'dddd, MMMM YYYY, h:mm:ss a' | uppercase}}</label>
-                    </div>
+
+                <div layout="column">
+
+                <div> <label>Contactos:</label></div>
+                  <div layout="row" layout-align="center center">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                  <form name="form" >
+                      <div  layout="row">
+                      <md-input-container class="md-icon-float md-block" flex="35">
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Tipo</label>
+                        <md-select name="tipo" ng-model="listas.tipo" required>
+                          <md-option ng-repeat="tipo in tipos" value="{{tipo}}">{{tipo}}</md-option>
+                        </md-select>
+                        <div ng-messages="form.tipo.$error">
+                          <div ng-message="required">
+                            Requiere seleccionar un tipo de contacto
+                          </div>                                
+                        </div>
+                      </md-input-container>  
+                      <span flex="10"></span>
+                      <md-input-container class="md-icon-float md-block" flex="35">
+                        <md-icon class="md-primary">phone</md-icon>
+                        <label>Numero</label>
+                        <input name="fono" ng-model="listas.numero" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" numbersOnly required>
+                        <div ng-messages="form.fono.$error" ng-show="form.fono.$dirty">
+                          <div ng-message="required">
+                            Es obligatorio ingresar un numero
+                          </div>
+                          <div ng-message="md-minlength">
+                            Minimo 10 numeros
+                          </div>
+                          <div ng-message="md-maxlength">
+                            Maximo 10 numeros
+                          </div>
+                          <div ng-message="pattern">
+                          Ingrese solo numeros
+                          </div>
+                          <div ng-message="numbersOnly">fdsfdasdf solo numeros</div>
+                        </div>
+                      </md-input-container>   
+                      <md-button ng-click="addNew(listas)" ng-disabled="form.$invalid" class="md-fab md-mini" ><md-icon>add</md-icon></md-button>   
+                      </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+        <center>
+        <div class="row" >
+
+                <table md-table md-row-select ng-model="listas">
+                    <thead md-head>
+                        <tr md-row>
+                            <th md-column md-order-by="nameToLower"></th>
+                            <th md-column md-order-by="nameToLower">Tipo de Contacto</th>
+                            <th md-column md-order-by="nameToLower">Número</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr md-row ng-repeat="lista in listas">
+                            <td md-cell>
+                            <md-checkbox  ng-model="lista.selected" aria-label="check"/></md-checkbox></td>
+                            <td md-cell>{{lista.tipo}}</td>
+                            <td md-cell>{{lista.numero}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div layout="row" layout-align="center center">
+                    <md-button class="md md-raised md-warn" ng-click="remove()" value="Remove"><md-icon>delete</md-icon>Eliminar contacto</md-button>
+                </div>
+        </div>
+             
+                </div>
+                <div layout="column">
+                <div layout="row" layout-align="center center">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                    <form name="formCorreo" >
+                        <div  layout="row">
+                        <md-input-container  flex="30">
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <label>Tipo</label>
+                          <md-select name="tipoCorreo" ng-model="listaCorreos.tipoCorreo" required>
+                            <md-option ng-repeat="tipoCorreo in tipoCorreos" value="{{tipoCorreo}}">{{tipoCorreo}}</md-option>
+                          </md-select>
+                          <div ng-messages="formCorreo.tipoCorreo.$error">
+                            <div ng-message="required">
+                              Se requiere seleccionar un tipo de correo electrónico
+                            </div>                                
+                          </div>
+                        </md-input-container>  
+                        <span flex="10"></span>
+                        <md-input-container class="md-icon-float md-block" flex="45">
+                          <md-icon class="md-accent">mail_outline</md-icon>
+                            <label>Email</label>
+                            <input name="mail" ng-model="listaCorreos.mail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
+                            <div ng-messages="formCorreo.mail.$error" ng-show="formCorreo.mail.$dirty">
+                                <div ng-message="required">Campo Requerido</div>
+                                <div ng-message="pattern" class="my-message">correo invalido</div>
+                            </div>
+                        </md-input-container>   
+                        <md-button ng-click="addNewCorreo(listaCorreos)" ng-disabled="formCorreo.$invalid" class="md-fab md-mini" ><md-icon>add</md-icon></md-button>   
+                        </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+            <div class="row" >
+            <div >
+                <table md-table md-row-select ng-model="listaCorreos">
+                    <thead md-head>
+                        <tr  md-row>
+                            <th md-column md-order-by="nameToLower"></th>
+                            <th md-column md-order-by="nameToLower">Tipo de Correo</th>
+                            <th md-column md-order-by="nameToLower">Dirección</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr md-row ng-repeat="listaCorreo in listaCorreos">
+                            <td md-cell>
+                                <md-checkbox  ng-model="listaCorreo.selected" aria-label="checkCorreo"/></md-checkbox></td>
+                            <td md-cell>{{listaCorreo.tipoCorreo}}</td>
+                            <td md-cell>{{listaCorreo.mail}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div layout="row" layout-align="center center">
+                    <md-button class="md md-raised md-warn" ng-click="removeCorreo()" value="Remove"><md-icon>delete</md-icon>Eliminar correo</md-button> 
+                </div>
+                
+            </div>
+        </div>                             
+                </div>
+
+                 <div layout="row" layout-align="center center">
+                    <md-button  md-no-ink class="md-raised md-primary" ng-click="getDatosEmpresa()"  >
+                      Guardar
+                    </md-button>
+                    <md-button class="md-raised" ng-click="$panel.collapse();" >Cancelar</md-button>
                 </div>
           </md-expansion-panel-content>
       </md-expansion-panel-expanded>
-  </md-expansion-panel>
+  </md-expansion-panel> 
+</md-expansion-panel-group>
