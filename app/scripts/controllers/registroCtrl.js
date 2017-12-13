@@ -1,6 +1,6 @@
 'use strict';
 var app = angular.module('nextbook20App')
-  app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, consumirService, $localStorage, colaboradores_Service, menuService) {
+  app.controller('registro_Ctrl', function ($scope, $location, $mdDialog, mainService, urlService, consumirService, $localStorage, colaboradores_Service, menuService) {
 		$scope.cambioTexto = "Registrar mi Empresa";
    $scope.validar = function(){
       var dis = "";
@@ -11,13 +11,16 @@ var app = angular.module('nextbook20App')
         $scope.formdata.ruc = dis + "001";
       }       
     }
+    $scope.urlFoto = (path) => {
+      return urlService.server().dir() + path;
+    }
 
     $scope.cambio = function(){
-    $scope.cambioTexto = "Ingrese su numero de Ruc";
+      $scope.cambioTexto = "Ingrese su numero de Ruc";
     }
 
     $scope.cambio2 = function(){
-    $scope.cambioTexto = "Registrar mi Empresa";
+      $scope.cambioTexto = "Registrar mi Empresa";
     }
 
     $scope.mostrarInputRegistro = function() {

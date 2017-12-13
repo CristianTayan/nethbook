@@ -73,6 +73,17 @@ angular.module('nextbook20App')
         });
     };
 
+    this.getImgPerfilAndPortadaUsuario = function() {
+      return $resource(urlService.server().appnext() + 'getImgPerfilAndPortadaUsuario', {}, {
+        get: {
+          method: 'POST', isArray: false,
+          params: { token: $localStorage.token }
+        }
+      });
+    };
+
+    
+
      //----------------------------------------------------------------- Set Imagen de Portada
     this.Set_Img_PortadaUsuario=function() {
         return $resource(urlService.server().appnext()+'Set_Img_PortadaUsuario', {}

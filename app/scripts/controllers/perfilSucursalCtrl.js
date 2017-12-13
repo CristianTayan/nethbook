@@ -1,15 +1,15 @@
 'use strict';
 
 var app = angular.module('nextbook20App');
-  app.controller('perfilSucursalCtrl', function($scope, $rootScope, $location, $localStorage, $mdDialog, $timeout, urlService, mainService) {
+  app.controller('perfilSucursalCtrl', function($scope, $rootScope, $location, $localStorage, $mdDialog, $timeout, urlService, perfilSucursalService) {
     $scope.tabSelect = (value) => {
       $location.url('/nb/sucursal/' + value);
     }
     
-    mainService.Get_Img_Perfil().get({sucursal:$localStorage.sucursal.id}).$promise.then((data)=>{
+    perfilSucursalService.Get_Img_Perfil().get({sucursal:$localStorage.sucursal.id}).$promise.then((data)=>{
       $scope.imgPerfil = urlService.server().dir() + data.img;
     });
-    mainService.Get_Img_Portada().get({sucursal:$localStorage.sucursal.id}).$promise.then((data)=>{
+    perfilSucursalService.Get_Img_Portada().get({sucursal:$localStorage.sucursal.id}).$promise.then((data)=>{
       $scope.imgPortada = urlService.server().dir() + data.img;
     });
 
@@ -27,7 +27,7 @@ var app = angular.module('nextbook20App');
       });
     };
     // Controlador Mostrar 
-    function Dialog_show_image_Controller($scope, tipo, mainService, urlService) {
+    function Dialog_show_image_Controller($scope, tipo, perfilSucursalService, urlService) {
         $scope.cargando = true;
 
         function ok_img(resul) {
@@ -37,13 +37,13 @@ var app = angular.module('nextbook20App');
         switch (tipo) {
             case 'Perfil':
                 //--------------------cargar imagen perfil-----------
-                mainService.Get_Img_Perfil().get({
+                perfilSucursalService.Get_Img_Perfil().get({
                     sucursal: $localStorage.sucursal.id
                 }, ok_img);
                 break;
             case 'Portada':
                 //--------------------cargar imagen Portada-----------
-                mainService.Get_Img_Portada().get({
+                perfilSucursalService.Get_Img_Portada().get({
                     sucursal: $localStorage.sucursal.id
                 }, ok_img);
                 // -------------------------   fin

@@ -165,15 +165,35 @@ class Perfil extends Controller
     }
 
     public function Load_Imgs_PerfilUsuario(Request $request){
-        $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
-        ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
-        // ->where('sucursal',$request->sucursal)
-        ->where('estado','P')
-        ->where('tipo_imagen',5)
-        ->orderBy('fecha','DESC')
-        ->limit(500)
-        ->get();
-        return response()->json(["imgs"=>$resultado]);
+      $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
+      ->select('direccion_imagen_empresa','id','direccion_imagen_recorte')
+      // ->where('sucursal',$request->sucursal)
+      ->where('estado','P')
+      ->where('tipo_imagen',5)
+      ->orderBy('fecha','DESC')
+      ->limit(500)
+      ->get();
+      return response()->json(["imgs"=>$resultado]);
+    }
+
+    public function getImgPerfilAndPortadaUsuario(Request $request){
+      $imgPerfilPersona = DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
+      ->select('direccion_imagen_recorte')
+      ->where('estado','A')
+      ->where('tipo_imagen', 5)
+      ->first();
+
+      $imgPortadaPersonal = DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
+      ->select('direccion_imagen_recorte')
+      ->where('estado','A')
+      ->where('tipo_imagen', 4)
+      ->first();
+
+      $resultado = array(
+        'imgPerfil' => $imgPerfilPersona->direccion_imagen_recorte,
+        'imgPortada' => $imgPortadaPersonal->direccion_imagen_recorte
+      );      
+      return response()->json($resultado);     
     }
 
 

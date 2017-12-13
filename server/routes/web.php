@@ -44,6 +44,8 @@ Route::group(['middleware' => 'cors'], function(){
     //  CARGAR IMAGENES PERFIL 
     Route::post('Load_Imgs_Perfil', 'Perfil@Load_Imgs_Perfil');
     Route::post('Load_Imgs_PerfilUsuario', 'Perfil@Load_Imgs_PerfilUsuario');
+    Route::post('getImgPerfilAndPortadaUsuario', 'Perfil@getImgPerfilAndPortadaUsuario');
+
     Route::post('Load_Imgs_PerfilEmpresa', 'Perfil@Load_Imgs_PerfilEmpresa');
     //  GET IMAGENES PERFIL 
     Route::post('Get_Img_Perfil', 'Perfil@Get_Img_Perfil');
