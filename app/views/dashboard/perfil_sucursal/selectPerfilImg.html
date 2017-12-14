@@ -18,7 +18,7 @@
             </div>
             <md-grid-list
                md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
-               md-row-height-gt-md="1:1" md-row-height="4:9"
+               md-row-height-gt-md="1:2" md-row-height="4:9"
                md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px"
                ng-show="!cargando">
                <md-grid-tile
@@ -30,7 +30,7 @@
                       <md-button class="md-icon-button md-accent" ng-click="show_delete_modal($event,img)" aria-label="More">
                           <md-icon>delete</md-icon>
                       </md-button>
-                      <md-button class="md-icon-button md-accent" ng-click="set_img(img)" aria-label="More">
+                      <md-button class="md-icon-button md-accent" ng-click="seleccionarImagen(img)" aria-label="More">
                           <md-icon>check</md-icon>
                       </md-button>
                 </md-grid-tile-footer>

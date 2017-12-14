@@ -94,7 +94,7 @@ class Portada extends Controller {
   public function Load_Imgs_Portada(Request $request){
     $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->
     select('direccion_imagen_empresa','id','direccion_imagen_recorte')->
-      where('sucursal',$sucursal)->
+      where('sucursal',$request->sucursal)->
       where('estado','P')->
       where('tipo_imagen',1)->
       orderBy('fecha','DESC')->
@@ -102,7 +102,7 @@ class Portada extends Controller {
     $total=count($resultado);
     $resultado=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->
     select('direccion_imagen_empresa','id','direccion_imagen_recorte')->
-      where('sucursal',$sucursal)->
+      where('sucursal',$request->sucursal)->
       where('estado','P')->
       where('tipo_imagen',1)->
       orderBy('fecha','DESC')->

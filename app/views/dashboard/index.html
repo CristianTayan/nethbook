@@ -42,9 +42,6 @@
         <img src="images/logo/logo.fw.png" alt="Logo">
       </a>
       <span flex></span>
-      <a href="#/nb/empresa/inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
-        <md-icon>home</md-icon>
-      </a>
       <a href="#/nb/personal">
         <span class="mdl-chip">
           <span class="mdl-chip__text">{{datos_personales.primer_nombre}}</span>
@@ -102,6 +99,9 @@
           <span class="mdl-chip__text mdl-chip_hover_text">{{nom_perfil | limitTo: 20}}</span>
         </a>
       </span>
+      <a href="#/nb/empresa/inicio" class="btn btn--l btn--white btn--icon" lx-ripple>
+        <md-icon>home</md-icon>
+      </a>
     </div>
   </md-toolbar>
   <md-content flex md-scroll-y app-view-segment="1"> </md-content>

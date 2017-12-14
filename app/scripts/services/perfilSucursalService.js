@@ -5,10 +5,106 @@ angular.module('nextbook20App')
     return $resource(urlService.server().appnext()+'Get_Img_Perfil', {}, {
       get: {
         method: 'POST', isArray: false, 
-        params: { token:$localStorage.token }
+        params: { token:$localStorage.token, sucursal:$localStorage.sucursal.id }
       }
     });
   };
+
+  this.Load_Imgs_Portada = function() {
+    return $resource(urlService.server().appnext()+'Load_Imgs_Portada', {}, {
+        get: {
+            method: 'POST', isArray: false,
+            params: {
+                token: $localStorage.token,
+                sucursal: $localStorage.sucursal.id
+            }
+        }
+    });
+  };
+
+  this.Add_Img_Portada=function() {
+    return $resource(urlService.server().appnext()+'Add_Img_Portada', {}, {
+        send: {
+            method: 'POST', isArray: false,
+            params: {
+              token: $localStorage.token,
+              sucursal: $localStorage.sucursal.id
+            }
+        }
+    });
+  };
+
+  this.Add_Img_Perfil=function() {
+      return $resource(urlService.server().appnext()+'Add_Img_Perfil', {}, {
+          send: {
+              method: 'POST', isArray: false,
+              params: {
+                token: $localStorage.token,
+                sucursal:$localStorage.sucursal.id
+              }
+          }
+      });
+  };
+
+  this.Load_Imgs_Perfil=function() {
+      return $resource(urlService.server().appnext()+'Load_Imgs_Perfil', {}, {
+          get: {
+              method: 'POST', isArray: false,
+              params: {
+                  token: $localStorage.token,
+                  sucursal:$localStorage.sucursal.id
+              }
+          }
+      });
+  };
+
+  this.Set_Img_Perfil=function() {
+      return $resource(urlService.server().appnext()+'Set_Img_Perfil', {}, {
+          send: {
+              method: 'POST', isArray: false,
+              params: {
+                  token: $localStorage.token,
+                  sucursal:$localStorage.sucursal.id
+              }
+          }
+      });
+  };
+
+  this.Delete_Img_Perfil=function() {
+      return $resource(urlService.server().appnext()+'Delete_Img_Perfil', {}, {
+          send: {
+              method: 'POST', isArray: false,
+              params: {
+                  token: $localStorage.token,
+                  sucursal:$localStorage.sucursal.id
+              }
+          }
+      });
+  };
+
+  this.Delete_Img_Portada=function() {
+      return $resource(urlService.server().appnext()+'Delete_Img_Portada', {}, {
+          send: {
+              method: 'POST', isArray: false,
+              params: {
+                  token: $localStorage.token,
+                  sucursal:$localStorage.sucursal.id
+              }
+          }
+      });
+  };
+
+  this.Set_Img_Portada=function() {
+      return $resource(urlService.server().appnext()+'Set_Img_Portada', {}, {
+          send: {
+              method: 'POST', isArray: false,
+              params: {
+                  token: $localStorage.token,
+                  sucursal:$localStorage.sucursal.id
+              }
+          }
+      });
+    };
 
   this.Get_Img_PerfilUsuario =function() {
     return $resource(urlService.server().appnext()+'Get_Img_PerfilUsuario', {}, {
@@ -32,7 +128,7 @@ angular.module('nextbook20App')
     return $resource(urlService.server().appnext()+'Get_Img_Portada', {}, {
       get: {
         method: 'POST', isArray: false, 
-        params: { token: $localStorage.token }
+        params: { token: $localStorage.token, sucursal:$localStorage.sucursal.id }
       }
     });
   };
@@ -65,11 +161,11 @@ angular.module('nextbook20App')
   };
 
   this.Get_Img_Logo=function() {
-      return $resource(urlService.server().appnext()+'Get_Img_Logo', {}, {
-          get: {
-            method: 'POST', isArray: false, 
-            params: { token: $localStorage.token}
-          }
-      });
-    };
+    return $resource(urlService.server().appnext()+'Get_Img_Logo', {}, {
+      get: {
+        method: 'POST', isArray: false, 
+        params: { token: $localStorage.token}
+      }
+    });
+  };
 });

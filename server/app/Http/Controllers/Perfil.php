@@ -137,14 +137,21 @@ class Perfil extends Controller {
       $img_dir_full="storage/".$this->name_bdd.'/PerfilUsuario/'.$filename;
 
       DB::connection($this->name_bdd)->
-          table('administracion.imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','A')->where('tipo_imagen',5)->update(['estado'=>'P']);
-      $save=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->insert([
-          'sucursal'=>$request->sucursal,
-          'direccion_imagen_empresa'=>$img_dir_full,
-          'direccion_imagen_recorte'=>$img_dir_crop,
-          'estado'=>'A',
-          'tipo_imagen'=>5
-                   ]);
+          table('administracion.imagen_empresa')->
+          where('sucursal',$request->sucursal)->
+          where('estado','A')->
+          where('tipo_imagen',5)->
+          update(['estado'=>'P']);
+
+      $save = DB::connection($this->name_bdd)->
+          table('administracion.imagen_empresa')->
+          insert([
+            'sucursal'=>$request->sucursal,
+            'direccion_imagen_empresa'=>$img_dir_full,
+            'direccion_imagen_recorte'=>$img_dir_crop,
+            'estado'=>'A',
+            'tipo_imagen'=>5
+          ]);
 
       if ($save) {
           return response()->json(["respuesta"=>true,"img"=>$img_dir_crop]);

@@ -38,7 +38,7 @@ var app = angular.module('nextbook20App', [
                                             'leaflet-directive'
                                         ]);
   // themes configuration
-  app.config(function($mdThemingProvider) {
+  app.config(function($mdThemingProvider, $provide) {
     $mdThemingProvider.theme('indigo')
       .primaryPalette('indigo')
       .accentPalette('pink');
@@ -53,9 +53,17 @@ var app = angular.module('nextbook20App', [
     $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
     $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
     $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+
+
+    $provide.decorator('$exceptionHandler', function($delegate, $injector){
+      return function(exception, cause){
+        if(exception === 'Possibly unhandled rejection: ignore') return;
+        $delegate(exception, cause);
+      }
+    });
   });
   
-  app.run(function($rootScope, $location) {
+  app.run(function($rootScope, $location, $mdDialog) {
     $rootScope.$on('$routeChangeStart', function(event, $routeSegment) {
       var path=$location.path();
       var res = path.split('/');
@@ -63,6 +71,12 @@ var app = angular.module('nextbook20App', [
     });
 
     $rootScope.sidenavState = true;
+
+
+    let original = $mdDialog.show;
+    $mdDialog.show = (...args) => {
+      return original(...args).catch(() => { throw 'ignore' });
+    }
   });
     
   app.controller('mouseCtrl',($rootScope,$scope,$localStorage,$location, mainService,colaboradores_Service)=>{
