@@ -5,12 +5,11 @@
     </a>
     <a class="mdl-chip mdl-chip--contact">
         <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">M</span>
-        <span class="mdl-chip__text">Modelo</span>
+        <span class="mdl-chip__text">Modelos</span>
     </a>
 </div>
 <br>
-<md-divider></md-divider>
-<br>
+<md-divider></md-divider><br>
 <md-content layout-wrap>
     <md-toolbar>
         <div class="md-toolbar-tools">
@@ -25,7 +24,7 @@
                 <tr md-row>
                     <th md-column md-order-by="nameToLower"><span>NOMBRE</span></th>
                     <th md-column md-numeric>DESCRIPCIÓN</th>
-                    <th md-column md-numeric>FECHA INICIO</th>
+                    <th md-column md-numeric>MODIFICAR/ELIMINAR</th>
                 </tr>
             </thead>
             <tbody md-body>
@@ -34,15 +33,11 @@
                     <td md-cell>{{dessert.descripcion}}</td>
                     <td md-cell>
                         <md-button class="md-icon-button" ng-click="inv_modelo_dialog_editar(dessert)" type="button">
-                            <md-tooltip md-direction="top">
-                                Modificar
-                            </md-tooltip>
+                            <md-tooltip md-direction="top">Modificar</md-tooltip>
                             <md-icon class="md-primary">mode_edit</md-icon>
                         </md-button>
                         <md-button class="md-icon-button" ng-click="inv_modelo_dialog_eliminar(dessert)" type="button">
-                            <md-tooltip md-direction="top">
-                                Eliminar
-                            </md-tooltip>
+                            <md-tooltip md-direction="top">Eliminar</md-tooltip>
                             <md-icon class="md-primary">delete</md-icon>
                         </md-button>
                     </td>
