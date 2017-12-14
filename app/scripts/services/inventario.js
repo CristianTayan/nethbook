@@ -163,6 +163,19 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	}
+
+	    	this.downloadFileProductos = function() {
+		        return $resource(urlService.server().appnext()+'downloadFileProductos', {}
+		        , {
+		            get: {
+		                method: 'POST', isArray: false,
+		                params: {
+		                    token: $localStorage.token,
+		                    id_categoria:3
+		                }
+		            }
+		        });
+	    	};
 	    // ---------------------------------------------------------------FIN CATEGORIA-----------------------------------------------------------------//
 
 	    // ---------------------------------------------------------------INICIO TIPO GARANTIA---------------------------------------------------------------//
@@ -781,5 +794,17 @@ angular.module('nextbook20App')
 		            }
 		        });
 	    	};
+	    	
+	    	this.subirProducto = function() {
+                return $resource(urlService.server().appnext()+'subirProducto', {} , {
+                    add: {
+                        method: 'POST', isArray: false,
+                        params: {
+                            token: $localStorage.token
+                        }
+                    }
+                });
+            };    
+
 
   	});

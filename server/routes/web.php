@@ -161,6 +161,8 @@ Route::group(['middleware' => 'cors'], function(){
     Route::post('Add_Producto','Productos@Add_Producto');
     Route::post('Get_Productos','Productos@Get_Productos');
     Route::post('Get_Bienes','Productos@Get_Bienes');
+    Route::post('subirProducto','Productos@subirProducto');
+    Route::post('/download/{file}','Productos@downloadFileProductos');
     // Tipo Producto
     Route::post('Existencia_Tipo_Producto','Tipos_Productos@Existencia_Tipo_Producto');
     Route::post('Add_Tipo_Producto','Tipos_Productos@Add_Tipo_Producto');

@@ -16,6 +16,7 @@
             <input name="nom_modelo" ng-model="query.filter" type="text" required placeholder="Buscar" class="toolbar_search">
             <span flex></span>
             <md-button class="md-accent md-raised" ng-click="inv_producto_dialog_nuevo($event)"><md-icon>add_circle</md-icon> Nuevo</md-button>
+            <md-button class="md-accent md-raised" ng-click="upload($event)"><md-icon>file_upload</md-icon> Subir archivo productos</md-button>
         </div>
     </md-toolbar>
     <md-table-container layout-padding>
