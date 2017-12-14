@@ -16,22 +16,23 @@
                 </span>
               </md-card-title-text>
             </md-card-title>
-            <md-card-content layout="row" layout-align="space-between">
-              <div class="md-media-xl card-media">
-                <img src="{{imgPerfil}}" alt="Empresa Img Perfil">
-              </div>             
-            </md-card-content>
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">Actividad</span>
-                <span class="md-subhead">
-                  <div layout="row">{{datos2.actividad_economica | lowercase}}
-                    {{datos2.razon_social}}, {{datos2.tipo_contribuyente}}
-                  </div>
-                </span>
-              </md-card-title-text>
-            </md-card-title>
+            <img src="{{imgPerfil}}" alt="Empresa Img Perfil" class="md-media-xl card-media">
           </md-card>
+          <md-list>
+            <md-subheader class="md-no-sticky">Menu</md-subheader>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+              <md-icon>change_history</md-icon>
+              <p md-colors="{color:'blue'}">Acceso Directo 1</p>
+            </md-list-item>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+              <md-icon>change_history</md-icon>
+              <p md-colors="{color:'blue'}">Acceso Directo 2</p>
+            </md-list-item>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+              <md-icon>change_history</md-icon>
+              <p md-colors="{color:'blue'}">Acceso Directo 3</p>
+            </md-list-item>
+          </md-list>
         </div>          
       </md-sidenav>
       <md-content flex>

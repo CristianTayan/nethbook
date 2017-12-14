@@ -16,23 +16,32 @@
                 </span>
               </md-card-title-text>
             </md-card-title>
-            <md-card-content layout="row" layout-align="space-between">
-              <div class="md-media-xl card-media">
-                <img ng-src="{{imgPerfil}}" alt="Sucursal Img Perfil">
-              </div>             
-            </md-card-content>
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">Actividad</span>
-                <span class="md-subhead">
-                  <div layout="row">{{datos2.actividad_economica | lowercase}}
-                    {{datos2.razon_social}}, {{datos2.tipo_contribuyente}}
-                  </div>
-                </span>
-              </md-card-title-text>
-            </md-card-title>
+            <img ng-src="{{imgPerfil}}" class="card-media" alt="Sucursal Img Perfil">
           </md-card>
-        </div>          
+          <md-list>
+            <md-subheader class="md-no-sticky">Menu</md-subheader>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+              <md-icon>photo_size_select_actual</md-icon>
+              <p md-colors="{color:'blue'}">Presentacion</p>
+            </md-list-item>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+              <md-icon>person</md-icon>
+              <p md-colors="{color:'blue'}">Biografia</p>
+            </md-list-item>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+              <md-icon>store</md-icon>
+              <p md-colors="{color:'blue'}">Catalogo</p>
+            </md-list-item>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+              <md-icon>supervisor_account</md-icon>
+              <p md-colors="{color:'blue'}">Amigos</p>
+            </md-list-item>
+            <md-list-item ng-click="navigateTo('data usage', $event)">
+              <md-icon>perm_contact_calendar</md-icon>
+              <p md-colors="{color:'blue'}">Empleados</p>
+            </md-list-item>
+          </md-list>
+        </div>
       </md-sidenav>
       <md-content flex>
         <md-card>

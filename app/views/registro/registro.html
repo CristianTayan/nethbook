@@ -18,12 +18,6 @@
               </div>
           </form>
         </div>
-        <md-tabs class="md-primary" md-selected="data.selectedIndex" md-center-tabs="true" md-selected="2">
-            <md-tab id="tab1" aria-controls="tab1-content">
-                <md-icon>dns</md-icon>
-                Registre su Empresas
-            </md-tab>
-        </md-tabs>
       </div>
     </md-toolbar>
   </div>
@@ -69,247 +63,268 @@
     <md-content flex>
       <div layout="row" layout-align="center center">
         <div flex="60">
-            <ng-switch on="data.selectedIndex" class="tabpanel-container">
-                <md-content id="tab1-content" aria-labelledby="tab1" ng-switch-when="0">
-                    <div class="sessionres1" layout-padding layout-wrap layout="row">
-                        <div flex="60">
-                            <form name="formvisualinfo" ng-show="elementview">
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Razon Social</label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <textarea ng-model="razon_social" autocomplete="off" disabled></textarea>
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Nombre Comercial</label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <textarea ng-model="nombre_comercial" autocomplete="off" disabled></textarea>
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Estado del Contribuyente en el ruc</label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <input ng-model="estado_contribuyente" autocomplete="off" disabled type="text">
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Clase de contribuyente </label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <input ng-model="clase_contribuyente" disabled type="text">
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Tipo de contribuyente </label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <input ng-model="tipo_contribuyente" autocomplete="off" disabled type="text">
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Obligado a llevar Contabilidad</label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <input ng-model="obligado_llevar_contabilidad" autocomplete="off" disabled type="text">
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Actividad Principal</label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <textarea ng-model="actividad_principal" autocomplete="off" disabled type="text"></textarea>
-                                </md-input-container>
-                            </form>
-                            <img src="images/registro/welcome.png" width="100%" class="animated zoomIn" ng-show="elemennotviewimg" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+          <div class="sessionres1" layout-padding layout-wrap layout="row">
+              <div flex="60">
+                  <form name="formvisualinfo" ng-show="elementview">
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Razon Social</label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <textarea ng-model="razon_social" autocomplete="off" disabled></textarea>
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Nombre Comercial</label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <textarea ng-model="nombre_comercial" autocomplete="off" disabled></textarea>
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Estado del Contribuyente en el ruc</label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <input ng-model="estado_contribuyente" autocomplete="off" disabled type="text">
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Clase de contribuyente </label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <input ng-model="clase_contribuyente" disabled type="text">
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Tipo de contribuyente </label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <input ng-model="tipo_contribuyente" autocomplete="off" disabled type="text">
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Obligado a llevar Contabilidad</label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <input ng-model="obligado_llevar_contabilidad" autocomplete="off" disabled type="text">
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Actividad Principal</label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <textarea ng-model="actividad_principal" autocomplete="off" disabled type="text"></textarea>
+                      </md-input-container>
+                  </form>
+                  <img src="images/registro/welcome.png" width="100%" class="animated zoomIn" ng-show="elemennotviewimg" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
 
-                            <div flex ng-show="elemennotviewsession" layout-align="center center">
-                                <h3 class="text-center" style="color:#757575">Inicios de sesión recientes</h3>
-                                <md-card layout="row" flex-gt-sm="90" flex-gt-md="80" ng-repeat="item in session | reverse">
-                                    <div flex="25">
-                                        <img ng-src="{{urlFoto(item.foto)}}" class="md-media-md card-media" />
-                                    </div>
-                                    <div flex="75" layout-align="center center" layout="row">
-                                        <md-list flex-gt-sm flex-gt-md>
-                                            <md-list-item class="md-3-line">
-                                                <div class="md-list-item-text" layout="column">
-                                                    <p>
-                                                        <md-icon>school</md-icon> {{ item.nick }}</p>
-                                                    <h4><md-icon>person</md-icon> {{ item.datos_usuario }}</h4>
-                                                    <p style="font-size: 12px;">{{ item.razon_social | limitTo: 30}}</p>
-                                                </div>
-                                                <div layout="column">
-                                                    <md-button class="md-icon-button" aria-label="send" ng-click="entrar_recordatorio(item)">
-                                                        <md-icon>send</md-icon>
-                                                        <md-tooltip md-direction="top">Cuenta de {{ item.datos_usuario}} </md-tooltip>
-                                                    </md-button>
-                                                    <md-button class="md-icon-button" aria-label="close" ng-click="quitar_recordatorio($index, item)">
-                                                        <md-icon>close</md-icon>
-                                                        <md-tooltip md-direction="top">Eliminar la cuenta de esta página </md-tooltip>
-                                                    </md-button>
-                                                </div>
-                                            </md-list-item>
-                                        </md-list>
-                                    </div>
-                                </md-card>
-                            </div>
+                  <div flex ng-show="elemennotviewsession" layout-align="center center">
+                      <h3 class="text-center" style="color:#757575">Inicios de sesión recientes</h3>
+                      <md-card layout="row" flex-gt-sm="90" flex-gt-md="80" ng-repeat="item in session | reverse">
+                          <div flex="25">
+                              <img ng-src="{{urlFoto(item.foto)}}" class="md-media-md card-media" />
+                          </div>
+                          <div flex="75" layout-align="center center" layout="row">
+                              <md-list flex-gt-sm flex-gt-md>
+                                  <md-list-item class="md-3-line">
+                                      <div class="md-list-item-text" layout="column">
+                                          <p>
+                                              <md-icon>school</md-icon> {{ item.nick }}</p>
+                                          <h4><md-icon>person</md-icon> {{ item.datos_usuario }}</h4>
+                                          <p style="font-size: 12px;">{{ item.razon_social | limitTo: 30}}</p>
+                                      </div>
+                                      <div layout="column">
+                                          <md-button class="md-icon-button" aria-label="send" ng-click="entrar_recordatorio(item)">
+                                              <md-icon>send</md-icon>
+                                              <md-tooltip md-direction="top">Cuenta de {{ item.datos_usuario}} </md-tooltip>
+                                          </md-button>
+                                          <md-button class="md-icon-button" aria-label="close" ng-click="quitar_recordatorio($index, item)">
+                                              <md-icon>close</md-icon>
+                                              <md-tooltip md-direction="top">Eliminar la cuenta de esta página </md-tooltip>
+                                          </md-button>
+                                      </div>
+                                  </md-list-item>
+                              </md-list>
+                          </div>
+                      </md-card>
+                  </div>
+              </div>
+              <div flex="40">
+                  <form name="formsearchruc" ng-submit="buscar_ruc()">
+                      <div layout="row" flex>
+                          <md-input-container class="md-icon-float md-block" flex-gt-xs>
+                              <label>{{cambioTexto}}</label>
+                              <md-icon class="md-accent">dns</md-icon>
+                              <input type="text" name="ruc" ng-model="formdata.ruc" maxlength="13"  autocomplete="off" required ng-keypress="validar()" ng-focus="cambio()" ng-blur="cambio2()">
+                              <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
+                                  <div ng-message="numbers" class="my-message">Número de ruc es requerido</div>
+                                  <div ng-message="required" class="my-message">Número de ruc es requerido</div>
+                                  
+                                  <div ng-message="pattern" class="my-message">Ingrese solo numeros</div>
+                                  <div ng-message="numbersOnly" class="my-message">Ingrese solo numeros</div>
+                              </div>
+                          </md-input-container>
+                          <md-button class="md-fab md-mini" type="submit" ng-disabled="formsearchruc.$invalid">
+                              <md-icon class="material-icons">search</md-icon>
+                          </md-button>
+                      </div>
+                  </form>
+                  <form name="formreg" ng-show="elementview">
+                      <!-- ng-show="elementview" -->
+                      <div layout="row" flex flex-gt-xs class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-input-container class="md-icon-float md-icon-right md-block" flex-gt-xs>
+                              <md-icon class="md-accent">airplay</md-icon>
+                              <label class="text-brand">Provincias</label>
+                              <md-select name="myselect" id="myselect" ng-change="update_phone()" ng-model="rucdata.provincia" required>
+                                  <md-option ng-repeat="state in states" ng-value="state" class='md-option2' id='md-option2'>
+                                      {{state.nombre}}
+                                  </md-option>
+                              </md-select>
+                              <div ng-messages="formreg.myOption.$error">
+                                  <div ng-message="required">myselect is required.</div>
+                              </div>
+                          </md-input-container>
+                      </div>
+                      <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-icon class="md-accent">phone</md-icon>
+                          <label>Teléfono 1</label>
+                          <input autocomplete="off" name="lastName" ng-click="select()" ng-model="rucdata.telefono" ng-minlength="7" required>
+                          <md-icon class="md-accent">airplay</md-icon>
+                          <div ng-messages="formreg.lastName.$error" ng-show="formreg.lastName.$dirty">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-icon class="md-accent">phone</md-icon>
+                          <label>Teléfono 2</label>
+                          <input autocomplete="off" name="lastName2" ng-model="rucdata.telefono1" ng-minlength="7">
+                          <md-icon class="md-accent">airplay</md-icon>
+                          <div ng-messages="formreg.lastName2.$error" ng-show="formreg.lastName2.$dirty">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-icon class="md-accent">settings_cell</md-icon>
+                          <label>Celular</label>
+                          <input name="fono" ng-model="rucdata.celular" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
+                          <md-icon class="md-accent">airplay</md-icon>
+                          <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
+                              <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
+                              <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-icon class="md-accent">settings_cell</md-icon>
+                          <label>Celular Adicional</label>
+                          <input name="fono1" ng-model="rucdata.celular2" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off">
+                          <md-icon class="md-accent">airplay</md-icon>
+                          <div ng-messages="formreg.fono1.$error" ng-show="formreg.fono1.$dirty">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
+                              <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
+                              <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-icon class="md-accent">mail_outline</md-icon>
+                          <label>Email</label>
+                          <input name="correo" ng-model="rucdata.correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
+                          <md-icon class="md-accent">airplay</md-icon>
+                          <div ng-messages="formreg.correo.$error" ng-show="formreg.correo.$dirty">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="pattern" class="my-message">correo invalido</div>
+                          </div>
+                      </md-input-container>
+                      <div layout="row" layout-align="center" class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-button class="md-raised md-primary" ng-click="registrar()" ng-disabled="formreg.$invalid">Enviar</md-button>
+                      </div>
+                  </form>
+                  <div ng-show="elemennotview">
+                      <img src="images/registro/reddenegios.png" class="animated zoomIn">
+                      <h4 class="content-sub-heading text-center" style="color:#757575; text-align: justify;text-justify: inter-word;">
+                        <span class="text-brand-accent">Ingresa </span> fácil, <span class="text-brand-accent">rápido</span>,
+                        efectivo y <span class="text-brand-accent">gratis</span>. 
+                        Publica tú negocio y <span class="text-brand-accent">muéstrate</span>
+                        al mundo, seguro incrementarás tús ventas.
+                      </h4>
+                  </div>
+              </div>
+          </div>
+          <div class="sessionres2" layout-wrap layout="row">
+              <div flex="100">
+                  <form name="formvisualinfo" ng-show="elementview">
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Razon Social</label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <textarea ng-model="razon_social" autocomplete="off" disabled></textarea>
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Nombre Comercial</label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <textarea ng-model="nombre_comercial" autocomplete="off" disabled></textarea>
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Estado del Contribuyente en el ruc</label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <input ng-model="estado_contribuyente" autocomplete="off" disabled type="text">
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Clase de contribuyente </label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <input ng-model="clase_contribuyente" disabled type="text">
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Tipo de contribuyente </label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <input ng-model="tipo_contribuyente" autocomplete="off" disabled type="text">
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Obligado a llevar Contabilidad</label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <input ng-model="obligado_llevar_contabilidad" autocomplete="off" disabled type="text">
+                      </md-input-container>
+                      <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <label>Actividad Principal</label>
+                          <md-icon class="md-primary">airplay</md-icon>
+                          <textarea ng-model="actividad_principal" autocomplete="off" disabled type="text"></textarea>
+                      </md-input-container>
+                  </form>
+                  <img src="images/registro/welcome.png" width="100%" class="animated zoomIn" ng-show="elemennotviewimg" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                  <div flex ng-show="elemennotviewsession">
+                      <div align="center">
+                          <h4 class="text-center" style="color:#757575">Inicios de sesión recientes</h4>
+                      </div>
+                      <md-card flex-gt-sm="100" flex-gt-md="90" ng-repeat="item in session | reverse">
+                        <div class="user1">
+                          <div flex="25">
+                              <img ng-src="{{urlFoto(item.foto)}}" class="md-media-md card-media" />
+                          </div>
+                          <div flex="75" layout-align="center center" layout="row">
+                            <md-list flex-gt-sm flex-gt-md>
+                              <md-list-item class="md-3-line">
+                                <div class="md-list-item-text" layout="column">
+                                    <p>
+                                      <md-icon>school</md-icon> {{ item.nick }}</p>
+                                    <h4>
+                                      <md-icon>person</md-icon> {{ item.datos_usuario }}
+                                    </h4>
+                                    <p style="font-size: 12px;">{{ item.razon_social | limitTo: 30}}</p>
+                                </div>
+                                <div layout="column">
+                                  <md-button class="md-icon-button" aria-label="send" ng-click="entrar_recordatorio(item)">
+                                      <md-icon>send</md-icon>
+                                      <md-tooltip md-direction="top">Cuenta de {{ item.datos_usuario}} </md-tooltip>
+                                  </md-button>
+                                  <md-button class="md-icon-button" aria-label="close" ng-click="quitar_recordatorio($index, item)">
+                                      <md-icon>close</md-icon>
+                                      <md-tooltip md-direction="top">Eliminar la cuenta de esta página </md-tooltip>
+                                  </md-button>
+                                </div>
+                              </md-list-item>
+                            </md-list>
+                          </div>
                         </div>
-                        <div flex="40">
-                            <form name="formsearchruc" ng-submit="buscar_ruc()">
-                                <div layout="row" flex>
-                                    <md-input-container class="md-icon-float md-block" flex-gt-xs>
-                                        <label>{{cambioTexto}}</label>
-                                        <md-icon class="md-accent">dns</md-icon>
-                                        <input type="text" name="ruc" ng-model="formdata.ruc" maxlength="13"  autocomplete="off" required ng-keypress="validar()" ng-focus="cambio()" ng-blur="cambio2()">
-                                        <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
-                                            <div ng-message="numbers" class="my-message">Número de ruc es requerido</div>
-                                            <div ng-message="required" class="my-message">Número de ruc es requerido</div>
-                                            
-                                            <div ng-message="pattern" class="my-message">Ingrese solo numeros</div>
-                                            <div ng-message="numbersOnly" class="my-message">Ingrese solo numeros</div>
-                                        </div>
-                                    </md-input-container>
-                                    <md-button class="md-fab md-mini" type="submit" ng-disabled="formsearchruc.$invalid">
-                                        <md-icon class="material-icons">search</md-icon>
-                                    </md-button>
-                                </div>
-                            </form>
-                            <form name="formreg" ng-show="elementview">
-                                <!-- ng-show="elementview" -->
-                                <div layout="row" flex flex-gt-xs class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-input-container class="md-icon-float md-icon-right md-block" flex-gt-xs>
-                                        <md-icon class="md-accent">airplay</md-icon>
-                                        <label class="text-brand">Provincias</label>
-                                        <md-select name="myselect" id="myselect" ng-change="update_phone()" ng-model="rucdata.provincia" required>
-                                            <md-option ng-repeat="state in states" ng-value="state" class='md-option2' id='md-option2'>
-                                                {{state.nombre}}
-                                            </md-option>
-                                        </md-select>
-                                        <div ng-messages="formreg.myOption.$error">
-                                            <div ng-message="required">myselect is required.</div>
-                                        </div>
-                                    </md-input-container>
-                                </div>
-                                <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-icon class="md-accent">phone</md-icon>
-                                    <label>Teléfono 1</label>
-                                    <input autocomplete="off" name="lastName" ng-click="select()" ng-model="rucdata.telefono" ng-minlength="7" required>
-                                    <md-icon class="md-accent">airplay</md-icon>
-                                    <div ng-messages="formreg.lastName.$error" ng-show="formreg.lastName.$dirty">
-                                        <div ng-message="required">Campo Requerido</div>
-                                        <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-icon class="md-accent">phone</md-icon>
-                                    <label>Teléfono 2</label>
-                                    <input autocomplete="off" name="lastName2" ng-model="rucdata.telefono1" ng-minlength="7">
-                                    <md-icon class="md-accent">airplay</md-icon>
-                                    <div ng-messages="formreg.lastName2.$error" ng-show="formreg.lastName2.$dirty">
-                                        <div ng-message="required">Campo Requerido</div>
-                                        <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-icon class="md-accent">settings_cell</md-icon>
-                                    <label>Celular</label>
-                                    <input name="fono" ng-model="rucdata.celular" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
-                                    <md-icon class="md-accent">airplay</md-icon>
-                                    <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
-                                        <div ng-message="required">Campo Requerido</div>
-                                        <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
-                                        <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
-                                        <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-icon class="md-accent">settings_cell</md-icon>
-                                    <label>Celular Adicional</label>
-                                    <input name="fono1" ng-model="rucdata.celular2" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off">
-                                    <md-icon class="md-accent">airplay</md-icon>
-                                    <div ng-messages="formreg.fono1.$error" ng-show="formreg.fono1.$dirty">
-                                        <div ng-message="required">Campo Requerido</div>
-                                        <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
-                                        <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
-                                        <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-icon class="md-accent">mail_outline</md-icon>
-                                    <label>Email</label>
-                                    <input name="correo" ng-model="rucdata.correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
-                                    <md-icon class="md-accent">airplay</md-icon>
-                                    <div ng-messages="formreg.correo.$error" ng-show="formreg.correo.$dirty">
-                                        <div ng-message="required">Campo Requerido</div>
-                                        <div ng-message="pattern" class="my-message">correo invalido</div>
-                                    </div>
-                                </md-input-container>
-                                <div layout="row" layout-align="center" class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-button class="md-raised md-primary" ng-click="registrar()" ng-disabled="formreg.$invalid">Enviar</md-button>
-                                </div>
-                            </form>
-                            <div ng-show="elemennotview">
-                                <img src="images/registro/reddenegios.png" class="animated zoomIn">
-                                <h4 class="content-sub-heading text-center" style="color:#757575; text-align: justify;text-justify: inter-word;">
-                                  <span class="text-brand-accent">Ingresa </span> fácil, <span class="text-brand-accent">rápido</span>,
-                                  efectivo y <span class="text-brand-accent">gratis</span>. 
-                                  Publica tú negocio y <span class="text-brand-accent">muéstrate</span>
-                                  al mundo, seguro incrementarás tús ventas.
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sessionres2" layout-wrap layout="row">
-                        <div flex="100">
-                            <form name="formvisualinfo" ng-show="elementview">
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Razon Social</label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <textarea ng-model="razon_social" autocomplete="off" disabled></textarea>
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Nombre Comercial</label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <textarea ng-model="nombre_comercial" autocomplete="off" disabled></textarea>
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Estado del Contribuyente en el ruc</label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <input ng-model="estado_contribuyente" autocomplete="off" disabled type="text">
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Clase de contribuyente </label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <input ng-model="clase_contribuyente" disabled type="text">
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Tipo de contribuyente </label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <input ng-model="tipo_contribuyente" autocomplete="off" disabled type="text">
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Obligado a llevar Contabilidad</label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <input ng-model="obligado_llevar_contabilidad" autocomplete="off" disabled type="text">
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <label>Actividad Principal</label>
-                                    <md-icon class="md-primary">airplay</md-icon>
-                                    <textarea ng-model="actividad_principal" autocomplete="off" disabled type="text"></textarea>
-                                </md-input-container>
-                            </form>
-                            <img src="images/registro/welcome.png" width="100%" class="animated zoomIn" ng-show="elemennotviewimg" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                            <div flex ng-show="elemennotviewsession">
-                                <div align="center">
-                                    <h4 class="text-center" style="color:#757575">Inicios de sesión recientes</h4>
-                                </div>
-                                <md-card flex-gt-sm="100" flex-gt-md="90" ng-repeat="item in session | reverse">
-                                  <div class="user1">
-                                    <div flex="25">
-                                        <img ng-src="{{urlFoto(item.foto)}}" class="md-media-md card-media" />
-                                    </div>
-                                    <div flex="75" layout-align="center center" layout="row">
-                                      <md-list flex-gt-sm flex-gt-md>
-                                        <md-list-item class="md-3-line">
-                                          <div class="md-list-item-text" layout="column">
-                                              <p>
+                        <div class="user2">
+                            <div flex="100" layout-align="center center">
+                                <md-list flex-gt-sm flex-gt-md>
+                                    <md-list-item class="md-3-line">
+                                        <div class="md-list-item-text" layout="column">
+                                            <p>
                                                 <md-icon>school</md-icon> {{ item.nick }}</p>
-                                              <h4>
-                                                <md-icon>person</md-icon> {{ item.datos_usuario }}
-                                              </h4>
-                                              <p style="font-size: 12px;">{{ item.razon_social | limitTo: 30}}</p>
-                                          </div>
-                                          <div layout="column">
+                                            <h4><md-icon>person</md-icon> {{ item.datos_usuario }}</h4>
+                                            <p style="font-size: 12px;">{{ item.razon_social | limitTo: 30}}</p>
+                                        </div>
+                                        <div layout="column">
                                             <md-button class="md-icon-button" aria-label="send" ng-click="entrar_recordatorio(item)">
                                                 <md-icon>send</md-icon>
                                                 <md-tooltip md-direction="top">Cuenta de {{ item.datos_usuario}} </md-tooltip>
@@ -318,152 +333,118 @@
                                                 <md-icon>close</md-icon>
                                                 <md-tooltip md-direction="top">Eliminar la cuenta de esta página </md-tooltip>
                                             </md-button>
-                                          </div>
-                                        </md-list-item>
-                                      </md-list>
-                                    </div>
-                                  </div>
-                                  <div class="user2">
-                                      <div flex="100" layout-align="center center">
-                                          <md-list flex-gt-sm flex-gt-md>
-                                              <md-list-item class="md-3-line">
-                                                  <div class="md-list-item-text" layout="column">
-                                                      <p>
-                                                          <md-icon>school</md-icon> {{ item.nick }}</p>
-                                                      <h4><md-icon>person</md-icon> {{ item.datos_usuario }}</h4>
-                                                      <p style="font-size: 12px;">{{ item.razon_social | limitTo: 30}}</p>
-                                                  </div>
-                                                  <div layout="column">
-                                                      <md-button class="md-icon-button" aria-label="send" ng-click="entrar_recordatorio(item)">
-                                                          <md-icon>send</md-icon>
-                                                          <md-tooltip md-direction="top">Cuenta de {{ item.datos_usuario}} </md-tooltip>
-                                                      </md-button>
-                                                      <md-button class="md-icon-button" aria-label="close" ng-click="quitar_recordatorio($index, item)">
-                                                          <md-icon>close</md-icon>
-                                                          <md-tooltip md-direction="top">Eliminar la cuenta de esta página </md-tooltip>
-                                                      </md-button>
-                                                  </div>
-                                              </md-list-item>
-                                          </md-list>
-                                      </div>
-                                  </div>
-                                </md-card>
-                            </div>
-
-                            <form name="formsearchruc" ng-submit="buscar_ruc()">
-                                <div layout="row" flex>
-                                    <md-input-container class="md-icon-float md-block" flex-gt-xs>
-                                        <label>Crea una cuenta/Ruc</label>
-                                        <md-icon class="md-accent">dns</md-icon>
-                                        <input type="text" id="ruc" name="ruc" ng-model="formdata.ruc" maxlength="13" ng-minlength="13" autocomplete="off" required>
-                                        <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
-                                            <div ng-message="numbers" class="my-message">Número de ruc es requerido</div>
-                                            <div ng-message="required" class="my-message">Número de ruc es requerido</div>
-                                            <div ng-message="minlength" class="my-message">Ruc invalido, minimo 13 digitos</div>
-                                            <div ng-message="pattern" class="my-message">Ingrese solo numeros</div>
-                                            <div ng-message="numbersOnly" class="my-message">fdsfdasdf solo numeros</div>
                                         </div>
-                                    </md-input-container>
-                                    <md-button class="md-fab md-mini" type="submit" ng-disabled="formsearchruc.$invalid">
-                                        <md-icon class="material-icons">search</md-icon>
-                                    </md-button>
-                                </div>
-                            </form>
-                            <form name="formreg" ng-show="elementview">
-                                <!-- ng-show="elementview" -->
-                                <div layout="row" flex flex-gt-xs class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-input-container class="md-icon-float md-icon-right md-block" flex-gt-xs>
-                                        <md-icon class="md-accent">airplay</md-icon>
-                                        <label class="text-brand">Provincias</label>
-                                        <md-select name="myselect" id="myselect" ng-change="update_phone()" ng-model="rucdata.provincia" required>
-                                            <md-option ng-repeat="state in states" ng-value="state" class='md-option2' id='md-option2'>
-                                                {{state.nombre}}
-                                            </md-option>
-                                        </md-select>
-                                        <div ng-messages="formreg.myOption.$error">
-                                            <div ng-message="required">myselect is required.</div>
-                                        </div>
-                                    </md-input-container>
-                                </div>
-                                <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-icon class="md-accent">phone</md-icon>
-                                    <label>Teléfono 1</label>
-                                    <input autocomplete="off" name="lastName" ng-click="select()" ng-model="rucdata.telefono" ng-minlength="7" required>
-                                    <md-icon class="md-accent">airplay</md-icon>
-                                    <div ng-messages="formreg.lastName.$error" ng-show="formreg.lastName.$dirty">
-                                        <div ng-message="required">Campo Requerido</div>
-                                        <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-icon class="md-accent">phone</md-icon>
-                                    <label>Teléfono 2</label>
-                                    <input autocomplete="off" name="lastName2" ng-model="rucdata.telefono1" ng-minlength="7">
-                                    <md-icon class="md-accent">airplay</md-icon>
-                                    <div ng-messages="formreg.lastName2.$error" ng-show="formreg.lastName2.$dirty">
-                                        <div ng-message="required">Campo Requerido</div>
-                                        <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-icon class="md-accent">settings_cell</md-icon>
-                                    <label>Celular</label>
-                                    <input name="fono" ng-model="rucdata.celular" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
-                                    <md-icon class="md-accent">airplay</md-icon>
-                                    <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
-                                        <div ng-message="required">Campo Requerido</div>
-                                        <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
-                                        <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
-                                        <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-icon class="md-accent">settings_cell</md-icon>
-                                    <label>Celular Adicional</label>
-                                    <input name="fono1" ng-model="rucdata.celular2" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off">
-                                    <md-icon class="md-accent">airplay</md-icon>
-                                    <div ng-messages="formreg.fono1.$error" ng-show="formreg.fono1.$dirty">
-                                        <div ng-message="required">Campo Requerido</div>
-                                        <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
-                                        <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
-                                        <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-icon class="md-accent">mail_outline</md-icon>
-                                    <label>Email</label>
-                                    <input name="correo" ng-model="rucdata.correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
-                                    <md-icon class="md-accent">airplay</md-icon>
-                                    <div ng-messages="formreg.correo.$error" ng-show="formreg.correo.$dirty">
-                                        <div ng-message="required">Campo Requerido</div>
-                                        <div ng-message="pattern" class="my-message">correo invalido</div>
-                                    </div>
-                                </md-input-container>
-                                <div layout="row" layout-align="center" class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                    <md-button class="md-raised md-primary" ng-click="registrar()" ng-disabled="formreg.$invalid">Enviar</md-button>
-                                </div>
-                            </form>
-
-                            <div ng-show="elemennotview" align="center">
-                                <img src="images/registro/reddenegios.png" class="animated zoomIn">
-                                <h4 class="content-sub-heading text-center" style="color:#757575; text-align: justify;text-justify: inter-word;">
-                      <span class="text-brand-accent">Ingresa </span> fácil, <span class="text-brand-accent">rápido</span>,
-                      efectivo y <span class="text-brand-accent">gratis</span>. 
-                      Publica tú negocio y <span class="text-brand-accent">muéstrate</span>
-                      al mundo, seguro incrementarás tús ventas.
-                  </h4>
+                                    </md-list-item>
+                                </md-list>
                             </div>
                         </div>
-                    </div>
-                </md-content>
+                      </md-card>
+                  </div>
 
-                <div id="tab2-content" aria-labelledby="tab2" ng-switch-when="1">
-                    migratorium blas
+                  <form name="formsearchruc" ng-submit="buscar_ruc()">
+                      <div layout="row" flex>
+                          <md-input-container class="md-icon-float md-block" flex-gt-xs>
+                              <label>Crea una cuenta/Ruc</label>
+                              <md-icon class="md-accent">dns</md-icon>
+                              <input type="text" id="ruc" name="ruc" ng-model="formdata.ruc" maxlength="13" ng-minlength="13" autocomplete="off" required>
+                              <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
+                                  <div ng-message="numbers" class="my-message">Número de ruc es requerido</div>
+                                  <div ng-message="required" class="my-message">Número de ruc es requerido</div>
+                                  <div ng-message="minlength" class="my-message">Ruc invalido, minimo 13 digitos</div>
+                                  <div ng-message="pattern" class="my-message">Ingrese solo numeros</div>
+                                  <div ng-message="numbersOnly" class="my-message">fdsfdasdf solo numeros</div>
+                              </div>
+                          </md-input-container>
+                          <md-button class="md-fab md-mini" type="submit" ng-disabled="formsearchruc.$invalid">
+                              <md-icon class="material-icons">search</md-icon>
+                          </md-button>
+                      </div>
+                  </form>
+                  <form name="formreg" ng-show="elementview">
+                      <!-- ng-show="elementview" -->
+                      <div layout="row" flex flex-gt-xs class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-input-container class="md-icon-float md-icon-right md-block" flex-gt-xs>
+                              <md-icon class="md-accent">airplay</md-icon>
+                              <label class="text-brand">Provincias</label>
+                              <md-select name="myselect" id="myselect" ng-change="update_phone()" ng-model="rucdata.provincia" required>
+                                  <md-option ng-repeat="state in states" ng-value="state" class='md-option2' id='md-option2'>
+                                      {{state.nombre}}
+                                  </md-option>
+                              </md-select>
+                              <div ng-messages="formreg.myOption.$error">
+                                  <div ng-message="required">myselect is required.</div>
+                              </div>
+                          </md-input-container>
+                      </div>
+                      <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-icon class="md-accent">phone</md-icon>
+                          <label>Teléfono 1</label>
+                          <input autocomplete="off" name="lastName" ng-click="select()" ng-model="rucdata.telefono" ng-minlength="7" required>
+                          <md-icon class="md-accent">airplay</md-icon>
+                          <div ng-messages="formreg.lastName.$error" ng-show="formreg.lastName.$dirty">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-icon class="md-accent">phone</md-icon>
+                          <label>Teléfono 2</label>
+                          <input autocomplete="off" name="lastName2" ng-model="rucdata.telefono1" ng-minlength="7">
+                          <md-icon class="md-accent">airplay</md-icon>
+                          <div ng-messages="formreg.lastName2.$error" ng-show="formreg.lastName2.$dirty">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-icon class="md-accent">settings_cell</md-icon>
+                          <label>Celular</label>
+                          <input name="fono" ng-model="rucdata.celular" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
+                          <md-icon class="md-accent">airplay</md-icon>
+                          <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
+                              <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
+                              <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-icon class="md-accent">settings_cell</md-icon>
+                          <label>Celular Adicional</label>
+                          <input name="fono1" ng-model="rucdata.celular2" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off">
+                          <md-icon class="md-accent">airplay</md-icon>
+                          <div ng-messages="formreg.fono1.$error" ng-show="formreg.fono1.$dirty">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
+                              <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
+                              <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container flex-gt-xs class="md-icon-float md-icon-right md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-icon class="md-accent">mail_outline</md-icon>
+                          <label>Email</label>
+                          <input name="correo" ng-model="rucdata.correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" autocomplete="off" required>
+                          <md-icon class="md-accent">airplay</md-icon>
+                          <div ng-messages="formreg.correo.$error" ng-show="formreg.correo.$dirty">
+                              <div ng-message="required">Campo Requerido</div>
+                              <div ng-message="pattern" class="my-message">correo invalido</div>
+                          </div>
+                      </md-input-container>
+                      <div layout="row" layout-align="center" class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                          <md-button class="md-raised md-primary" ng-click="registrar()" ng-disabled="formreg.$invalid">Enviar</md-button>
+                      </div>
+                  </form>
+
+                  <div ng-show="elemennotview" align="center">
+                      <img src="images/registro/reddenegios.png" class="animated zoomIn">
+                      <h4 class="content-sub-heading text-center" style="color:#757575; text-align: justify;text-justify: inter-word;">
+            <span class="text-brand-accent">Ingresa </span> fácil, <span class="text-brand-accent">rápido</span>,
+            efectivo y <span class="text-brand-accent">gratis</span>. 
+            Publica tú negocio y <span class="text-brand-accent">muéstrate</span>
+            al mundo, seguro incrementarás tús ventas.        
                 </div>
-                <div id="tab3-content" aria-labelledby="tab3" ng-switch-when="2">
-                    Quienes Somos
-                </div>
-            </ng-switch>
+            </div>
+          </div>
         </div>
       </div>
     </md-content>

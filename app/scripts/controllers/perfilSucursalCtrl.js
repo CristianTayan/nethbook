@@ -4,7 +4,7 @@ var app = angular.module('nextbook20App');
   app.controller('perfilSucursalCtrl', function($scope, $rootScope, $location, $localStorage, $mdDialog, $timeout, urlService, perfilSucursalService) {
     $scope.tabSelect = (value) => {
       $location.url('/nb/sucursal/' + value);
-    }
+    };
     
     perfilSucursalService.getImgPerfilAndPortadaSucursal().get().$promise.then((data) => {
       $scope.imgPerfil = urlService.server().dir() + data.imgPerfil;
