@@ -169,4 +169,42 @@ class Productos extends Controller
     $data=$this->funciones->paginarDatos($data,$currentPage,$limit);
     return response()->json(['respuesta' => $data], 200);
     }
+
+    public function downloadFileProductos($file){
+        $pathtoFile = public_path().'text/csv'.$file;
+      return response()->download($pathtoFile);
+
+    }
+    public function subirProducto(Request $request)
+   {
+     $existencia=DB::connection($this->name_bdd)->
+     table('inventario.productos')->
+     where('codigo_prod',$request->codigo_prod)->
+     get();
+       if (count($existencia)==0) {
+       DB::connection($this->name_bdd)->table('inventario.productos')->insert([
+       'nombre_corto' => $request->nombre_corto,
+       'vendible' => true,
+       'comprable' => true,
+       'precio' =>$request->precio,
+       'costo' => 0.0,
+       'estado_descriptivo' => 1,
+       'categoria' => 1,
+       'garantia' => 1,
+       'marca' => 1,
+       'modelo' => 1,
+       'ubicacion' => 1,
+       'cantidad' => $request->cantidad,
+       'descripcion' => 'Ingresar descripción',
+       'codigo_baras' => $request->codigo_baras,
+       'tipo_consumo' => 0,
+       'codigo_prod' => $request->codigo_prod
+       ]);
+         return response()->json(['respuesta' => true], 200);
+       }else
+       {
+         return response()->json(['respuesta' => $request->codigo_prod], 200);
+      }      
+       
+   }
 }

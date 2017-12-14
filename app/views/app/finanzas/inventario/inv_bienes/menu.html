@@ -1,4 +1,59 @@
-<h1 class="text-center">INVENTARIO BIENES</h1>
+<lx-tabs lx-color="blue" >
+    <lx-tab lx-label="Plantilla demo" >
+        <p class="p+">Descargue la plantilla, esta le servira de guía para el formato que se requiere para subir la lista de sus productos. Descargue la plantilla de acuerdo al formato que se adapte a sus recursos</p>
+        <center>
+        <lx-button lx-size="xl" href='http://localhost/nethbook/server/storage/formatos/productos.csv' lx-type="raised" ng-click="downloadFileProductos()">Descargar plantilla .csv <md-icon>file_download</md-icon>
+        </lx-button>
+        <lx-button lx-size="xl" href='http://localhost/nethbook/server/storage/formatos/productos.xlsx' lx-type="raised" ng-click="downloadFileProductos()">Descargar plantilla excel<md-icon>file_download</md-icon>
+        </lx-button>
+        <lx-button lx-size="xl" href='http://localhost/nethbook/server/storage/formatos/productos.ods' lx-type="raised" ng-click="downloadFileProductos()">Descargar plantilla .ods<md-icon>file_download</md-icon>
+        </lx-button>
+        </center>
+    </lx-tab>
+    <lx-tab lx-label="Subir productos">
+    <div ng-controller="inv_bienes_bienesCtrl">
+      <p class="p+"><strong>Requerimientos del archivo:</strong> Tamaño del archivo maximo <strong>5Mb</strong>, archivos tipo <strong>.csv</strong>, <strong>.xlsx</strong>,<strong> .ods</strong>.</p>
+        <center><input type="file" id="fileUpload" />
+        <md-button class="md-raised md-primary" type="button" id="upload" value="Upload">Subir plantilla <md-icon>file_upload</md-icon></md-button>
+        <br><br>
+        </center>
+        </div>
+    </div>
+    </lx-tab>
+    </lx-tabs>
+    </lx-tab>
+</lx-tabs>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h1 class="text-center">INVENTARIO BIENES</h1>
 <div layout-xs="column" layout="row">
     <md-card flex-xs flex-gt-xs="50" layout="column">
         <img class="md-card-image" src="images/app/tipos/tipo_consumo.png" alt="image caption">
@@ -66,4 +121,4 @@
     </md-card>
 </div>
 
-
+ -->

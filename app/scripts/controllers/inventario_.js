@@ -15,6 +15,9 @@ app.controller('inventario_Ctrl', function($scope, inventario_Service, $mdDialog
         var data = menuService.Get_Vistas_Loged_User();
         $scope.menu = $localStorage.submenu;
     // --------------------------------------fin generacion vista menu personalizacion-------------------------------------
+    $scope.downloadFileProductos = function(){
+        $scope.ruta= "/server/storage/formatos/producto.csv"
+    }
     
     $scope.go_menu=function(menu){
         $location.path(menu.path);
