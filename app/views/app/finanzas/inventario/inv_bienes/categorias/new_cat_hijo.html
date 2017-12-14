@@ -1,4 +1,4 @@
-<md-dialog aria-label="inve-tipo-">
+<md-dialog>
     <form name="categoria" ng-submit="data_inv_categoria_guardar()">
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -9,29 +9,31 @@
                 </md-button>
             </div>
         </md-toolbar>
+
         <md-dialog-content>
             <div class="md-dialog-content">
                 <md-content class="md-no-momentum">
-                     <div layout="row">
+                    <div layout="row">
                         <md-input-container class="md-icon-float md-icon-left md-block" flex>
                             <md-icon class="md-primary">add_alert</md-icon>
-                        <lx-select ng-model="ModelTipo_Cat.selectedTipo_Cat"
-                                   lx-allow-clear="true"
-                                   lx-choices="lista_tipos_categorias"
-                                   lx-display-filter="true"
-                                   lx-fixed-label="true"
-                                   lx-label="Tipo de Categoría"
-                                   required
-                                   >
-                            <lx-select-selected>
-                                {{ $selected.nombre }}
-                            </lx-select-selected>
-                            <lx-select-choices>
-                                {{ $choice.nombre }}
-                            </lx-select-choices>
-                        </lx-select>
+                            <lx-select ng-model="ModelTipo_Cat.selectedTipo_Cat"
+                                       lx-allow-clear="true"
+                                       lx-choices="lista_tipos_categorias"
+                                       lx-display-filter="true"
+                                       lx-fixed-label="true"
+                                       lx-label="Tipo de Categoría"
+                                       required
+                                       >
+                                <lx-select-selected>
+                                    {{ $selected.nombre }}
+                                </lx-select-selected>
+                                <lx-select-choices>
+                                    {{ $choice.nombre }}
+                                </lx-select-choices>
+                            </lx-select>
                         </md-input-container>
                     </div>
+
                     <div layout="row">
                         <md-input-container class="md-icon-float md-block" flex>
                             <md-icon class="md-primary">view_compact</md-icon>
@@ -43,6 +45,7 @@
                             </div>
                         </md-input-container>
                     </div>
+                    
                     <div layout="row">
                         <md-input-container md-no-float class="md-block">
                             <md-icon class="md-primary">description</md-icon>

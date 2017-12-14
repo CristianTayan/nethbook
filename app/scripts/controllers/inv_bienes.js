@@ -562,6 +562,7 @@ var app = angular.module('nextbook20App')
 		        $scope.data_estado_descriptivo_get();
 		    });
 	});
+
 	app.controller('inv_bienes_marcasCtrl', function($scope, $rootScope, $mdDialog, inventario_Service, $mdToast) {
 	    // -------------------------------------------------------PROCESO CREAR REGISTRO------------------------------------------------------------
 	    $scope.inv_marca_dialog_nuevo = function(event) {
@@ -2085,7 +2086,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_tipo_garantia_dialog_nuevo = function(event) {
 		        $mdDialog.show({
 		            controller: DialogController_nuevo,
-		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_garantia/new.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_garantias/new.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',
@@ -2142,7 +2143,7 @@ var app = angular.module('nextbook20App')
 		    $scope.inv_tipo_garantia_dialog_editar = function(categoria) {
 		        $mdDialog.show({
 		            controller: DialogController_editar,
-		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_garantia/update.html',
+		            templateUrl: 'views/app/finanzas/inventario/inv_bienes/tipo_garantias/update.html',
 		            parent: angular.element(document.body),
 		            targetEvent: event,
 		            ariaLabel: 'Respuesta Registro',

@@ -38,7 +38,7 @@ class Garantias extends Controller
 
    	public function Add_Garantia(Request $request)
     {
-    DB::connection($this->name_bdd)->table('inventario.garantias')->insert(['nombre' => $request->nombre , 'descripcion' => $request->descripcion ,'tipo_garantia' => $request->tipo_garantia,'duracion' => $request->duracion, 'estado' => 'A', 'fecha' => Carbon::now()->toDateString()]);
+    DB::connection($this->name_bdd)->table('inventario.garantias')->insert(['nombre' => $request->nombre , 'descripcion' => $request->descripcion ,'tipo_garantia' => $request->tipo_garantia,'duracion' => $request->duracion, 'estado' => 'A', 'fecha' => Carbon::now()->toDateString(),'id_padre' => 0]);
     return response()->json(['respuesta' => true], 200);
     }
 

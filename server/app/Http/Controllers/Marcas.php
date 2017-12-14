@@ -36,7 +36,7 @@ class Marcas extends Controller
     }
     public function Add_Marca(Request $request)
     {
-    DB::connection($this->name_bdd)->table('inventario.marcas')->insert(['nombre' => $request->nombre , 'descripcion' => $request->descripcion , 'estado' => 'A', 'fecha' => Carbon::now()->toDateString()]);
+    DB::connection($this->name_bdd)->table('inventario.marcas')->insert(['nombre' => $request->nombre , 'descripcion' => $request->descripcion , 'estado' => 'A', 'fecha' => Carbon::now()->toDateString(),'id_padre' => 0]);
     return response()->json(['respuesta' => true], 200);
     }
 

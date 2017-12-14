@@ -1,8 +1,8 @@
-<md-dialog aria-label="inve-tipo-">
+<md-dialog>
     <form name="form_inv_garantia" ng-submit="data_inv_garantia_update()">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Actualizar Garantia</h2>
+                <h2>Actualizar, Garantia</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon aria-label="Close dialog">close</md-icon>
@@ -15,21 +15,21 @@
                      <div layout="row">
                         <md-input-container class="md-icon-float md-icon-left md-block" flex>
                             <md-icon class="md-primary">add_alert</md-icon>
-                        <lx-select ng-model="selectModel.selectedPerson"
-                                   lx-allow-clear="true"
-                                   lx-choices="selectPeople"
-                                   lx-display-filter="true"
-                                   lx-fixed-label="true"
-                                   lx-label="Tipo de Categoría"
-                                   required
-                                   >
-                            <lx-select-selected>
-                                {{ $selected.nombre }}
-                            </lx-select-selected>
-                            <lx-select-choices>
-                                {{ $choice.nombre }}
-                            </lx-select-choices>
-                        </lx-select>
+                            <lx-select ng-model="selectModel.selectedPerson"
+                                       lx-allow-clear="true"
+                                       lx-choices="selectPeople"
+                                       lx-display-filter="true"
+                                       lx-fixed-label="true"
+                                       lx-label="Tipo de Categoría"
+                                       required
+                                       >
+                                <lx-select-selected>
+                                    {{ $selected.nombre }}
+                                </lx-select-selected>
+                                <lx-select-choices>
+                                    {{ $choice.nombre }}
+                                </lx-select-choices>
+                            </lx-select>
                         </md-input-container>
                     </div>
                     <div layout="row">

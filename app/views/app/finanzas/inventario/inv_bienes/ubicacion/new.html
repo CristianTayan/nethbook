@@ -1,8 +1,8 @@
-<md-dialog aria-label="FormProductos">
+<md-dialog>
     <form name="form_inv_ubicacion" ng-submit="inv_ubicacion_nuevo()">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Nuevo Ubicación</h2>
+                <h2>Nueva, Ubicación</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon aria-label="Close dialog">close</md-icon>
@@ -10,26 +10,24 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <div class="md-dialog-content">
-                <md-content class="md-no-momentum">
-                    <md-input-container class="md-icon-float md-block">
-                        <md-icon class="md-primary">view_compact</md-icon>
-                        <label>Nombre Ubicación</label>
-                        <input name="nom_ubicacion" ng-model="data_inv_ubicacion.nombre" type="text" required ubicacion-validator>
-                        <div ng-messages="form_inv_ubicacion.nom_ubicacion.$error" ng-show="form_inv_ubicacion.nom_ubicacion.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
-                            <div ng-message="campo">Registro Repetido</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container md-no-float class="md-block">
-                        <md-icon class="md-primary">description</md-icon>
-                        <label>Descripción</label>
-                        <textarea name="descripcion" ng-model="data_inv_ubicacion.descripcion" type="text" required></textarea>
-                        <div ng-messages="form_inv_ubicacion.descripcion.$error" ng-show="form_inv_ubicacion.descripcion.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
-                        </div>
-                    </md-input-container>
-                </md-content>
+            <div class="md-dialog-content" layout-padding>
+                <md-input-container class="md-icon-float md-block">
+                    <md-icon class="md-primary">view_compact</md-icon>
+                    <label>Nombre Ubicación</label>
+                    <input name="nom_ubicacion" ng-model="data_inv_ubicacion.nombre" type="text" required ubicacion-validator>
+                    <div ng-messages="form_inv_ubicacion.nom_ubicacion.$error" ng-show="form_inv_ubicacion.nom_ubicacion.$dirty">
+                        <div ng-message="required">Campo Requerido</div>
+                        <div ng-message="campo">Registro Repetido</div>
+                    </div>
+                </md-input-container>
+                <md-input-container md-no-float class="md-block">
+                    <md-icon class="md-primary">description</md-icon>
+                    <label>Descripción</label>
+                    <textarea name="descripcion" ng-model="data_inv_ubicacion.descripcion" type="text" required></textarea>
+                    <div ng-messages="form_inv_ubicacion.descripcion.$error" ng-show="form_inv_ubicacion.descripcion.$dirty">
+                        <div ng-message="required">Campo Requerido</div>
+                    </div>
+                </md-input-container>
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">

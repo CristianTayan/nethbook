@@ -1,4 +1,4 @@
-<md-dialog aria-label="inve-tipo-">
+<md-dialog>
     <form name="form_inv_tg" ng-submit="data_inv_tipo_garantia_update()">
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -10,29 +10,24 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <div class="md-dialog-content">
-                <md-content class="md-no-momentum">
-                    <md-input-container class="md-icon-float md-block">
-                        <md-icon class="md-primary">view_compact</md-icon>
-                        <label>Nombre Tipo Garantia</label>
-                        <input name="nom_tipo_categoria" ng-model="data_inv_tipo_garantia.nombre" type="text" required tipogarantiaupdate-validator>
-                        <div ng-messages="form_inv_tg.nom_tipo_categoria.$error" ng-show="form_inv_tg.nom_tipo_categoria.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
-                            <div ng-message="campo">Registro Repetido</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container md-no-float class="md-block">
-                        <md-icon class="md-primary">description</md-icon>
-                        <label>Descripcion</label>
-                        <textarea name="descripcion" ng-model="data_inv_tipo_garantia.descripcion" type="text" required></textarea>
-                        <div ng-messages="form_inv_tg.descripcion.$error" ng-show="form_inv_tg.descripcion.$dirty">
-                            <div ng-message="required">Campo Requerido</div>
-                        </div>
-                    </md-input-container>
-                    <div layout="row" class="md-block" layout-align="center">
-
+            <div class="md-dialog-content" layout-padding>
+                <md-input-container class="md-icon-float md-block">
+                    <md-icon class="md-primary">view_compact</md-icon>
+                    <label>Nombre Tipo Garantia</label>
+                    <input name="nom_tipo_categoria" ng-model="data_inv_tipo_garantia.nombre" type="text" required tipogarantiaupdate-validator>
+                    <div ng-messages="form_inv_tg.nom_tipo_categoria.$error" ng-show="form_inv_tg.nom_tipo_categoria.$dirty">
+                        <div ng-message="required">Campo Requerido</div>
+                        <div ng-message="campo">Registro Repetido</div>
                     </div>
-                </md-content>
+                </md-input-container>
+                <md-input-container md-no-float class="md-block">
+                    <md-icon class="md-primary">description</md-icon>
+                    <label>Descripcion</label>
+                    <textarea name="descripcion" ng-model="data_inv_tipo_garantia.descripcion" type="text" required></textarea>
+                    <div ng-messages="form_inv_tg.descripcion.$error" ng-show="form_inv_tg.descripcion.$dirty">
+                        <div ng-message="required">Campo Requerido</div>
+                    </div>
+                </md-input-container>
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
