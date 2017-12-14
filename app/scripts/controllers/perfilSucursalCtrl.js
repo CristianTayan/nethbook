@@ -6,11 +6,9 @@ var app = angular.module('nextbook20App');
       $location.url('/nb/sucursal/' + value);
     }
     
-    perfilSucursalService.Get_Img_Perfil().get({sucursal:$localStorage.sucursal.id}).$promise.then((data)=>{
-      $scope.imgPerfil = urlService.server().dir() + data.img;
-    });
-    perfilSucursalService.Get_Img_Portada().get({sucursal:$localStorage.sucursal.id}).$promise.then((data)=>{
-      $scope.imgPortada = urlService.server().dir() + data.img;
+    perfilSucursalService.getImgPerfilAndPortadaSucursal().get().$promise.then((data) => {
+      $scope.imgPerfil = urlService.server().dir() + data.imgPerfil;
+      $scope.imgPortada = urlService.server().dir() + data.imgPortada;
     });
 
     $scope.show_img = function(ev, tipo_img) {

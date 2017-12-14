@@ -103,4 +103,13 @@ angular.module('nextbook20App')
         }
     });
   };
+
+  this.getImgPerfilAndPortadaEmpresa = function() {
+    return $resource(urlService.server().appnext() + 'getImgPerfilAndPortadaEmpresa', {}, {
+      get: {
+        method: 'POST', isArray: false,
+        params: { token: $localStorage.token }
+      }
+    });
+  };
 });

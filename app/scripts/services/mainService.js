@@ -71,15 +71,6 @@ var app = angular.module('nextbook20App');
         }
       });
     };    
-    // IMAGENES DE LOGO 
-    this.Get_Img_Logo=function() {
-      return $resource(urlService.server().appnext()+'Get_Img_Logo', {}, {
-          get: {
-            method: 'POST', isArray: false, 
-            params: { token: $localStorage.token }
-          }
-      });
-    };
 
     this.Get_Datos_Empresa=function() {
       return $resource(urlService.server().appnext()+'Get_Datos_Empresa', {}, {

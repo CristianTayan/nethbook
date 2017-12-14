@@ -7,8 +7,7 @@ use Storage;
 use File;
 use DB;
 use Image;
-class Perfil extends Controller
-{
+class Perfil extends Controller {
 
 	public function __construct(Request $request){
          try{
@@ -128,28 +127,28 @@ class Perfil extends Controller
     // -----------< perfil Usuario >---------------------------------
     public function Add_Img_PerfilUsuario(Request $request){
     
-    $crop = $request->img['crop'];
-    $full = $request->img['full'];
-    // Guardar Recorte
-    $filename=$this->base64_to_img($crop,600,'PerfilUsuario',$this->name_bdd);
-    $img_dir_crop="storage/".$this->name_bdd.'/PerfilUsuario/'.$filename;
-    //Guardar imagen full
-    $filename=$this->base64_to_img($full,700,'PerfilUsuario',$this->name_bdd);
-    $img_dir_full="storage/".$this->name_bdd.'/PerfilUsuario/'.$filename;
+      $crop = $request->img['crop'];
+      $full = $request->img['full'];
+      // Guardar Recorte
+      $filename=$this->base64_to_img($crop,600,'PerfilUsuario',$this->name_bdd);
+      $img_dir_crop="storage/".$this->name_bdd.'/PerfilUsuario/'.$filename;
+      //Guardar imagen full
+      $filename=$this->base64_to_img($full,700,'PerfilUsuario',$this->name_bdd);
+      $img_dir_full="storage/".$this->name_bdd.'/PerfilUsuario/'.$filename;
 
-    DB::connection($this->name_bdd)->
-        table('administracion.imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','A')->where('tipo_imagen',5)->update(['estado'=>'P']);
-    $save=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->insert([
-        'sucursal'=>$request->sucursal,
-        'direccion_imagen_empresa'=>$img_dir_full,
-        'direccion_imagen_recorte'=>$img_dir_crop,
-        'estado'=>'A',
-        'tipo_imagen'=>5
-                 ]);
+      DB::connection($this->name_bdd)->
+          table('administracion.imagen_empresa')->where('sucursal',$request->sucursal)->where('estado','A')->where('tipo_imagen',5)->update(['estado'=>'P']);
+      $save=DB::connection($this->name_bdd)->table('administracion.imagen_empresa')->insert([
+          'sucursal'=>$request->sucursal,
+          'direccion_imagen_empresa'=>$img_dir_full,
+          'direccion_imagen_recorte'=>$img_dir_crop,
+          'estado'=>'A',
+          'tipo_imagen'=>5
+                   ]);
 
-    if ($save) {
-        return response()->json(["respuesta"=>true,"img"=>$img_dir_crop]);
-    }else return response()->json(["respuesta"=>false,"img"=>'']);
+      if ($save) {
+          return response()->json(["respuesta"=>true,"img"=>$img_dir_crop]);
+      }else {return response()->json(["respuesta"=>false,"img"=>'']);}
 
     }
 
@@ -188,12 +187,87 @@ class Perfil extends Controller
       ->where('estado','A')
       ->where('tipo_imagen', 4)
       ->first();
+      $resultado = array();
+      if ($imgPerfilPersona) {
+        $resultado['imgPerfil'] = $imgPerfilPersona->direccion_imagen_recorte;        
+      }
 
-      $resultado = array(
-        'imgPerfil' => $imgPerfilPersona->direccion_imagen_recorte,
-        'imgPortada' => $imgPortadaPersonal->direccion_imagen_recorte
-      );      
-      return response()->json($resultado);     
+      if ($imgPortadaPersonal) {
+        $resultado['imgPortada'] = $imgPortadaPersonal->direccion_imagen_recorte;
+      }
+
+      if (!$imgPerfilPersona) {
+        $resultado['imgPerfil'] = 'storage/default/avatar-default';        
+      }
+
+      if (!$imgPortadaPersonal) {
+        $resultado['imgPortada'] = 'storage/default/portada-default.jpg';
+      }
+      return response()->json($resultado);
+    }
+
+    public function getImgPerfilAndPortadaSucursal(Request $request){
+      $imgPerfilPersona = DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
+      ->select('direccion_imagen_recorte')
+      ->where('sucursal',$request->sucursal)
+      ->where('estado','A')
+      ->where('tipo_imagen', 2)
+      ->first();
+
+      $imgPortadaPersonal = DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
+      ->select('direccion_imagen_recorte')
+      ->where('sucursal',$request->sucursal)
+      ->where('estado','A')
+      ->where('tipo_imagen', 1)
+      ->first();
+      $resultado = array();
+      if ($imgPerfilPersona) {
+        $resultado['imgPerfil'] = $imgPerfilPersona->direccion_imagen_recorte;        
+      }
+
+      if ($imgPortadaPersonal) {
+        $resultado['imgPortada'] = $imgPortadaPersonal->direccion_imagen_recorte;
+      }
+
+      if (!$imgPerfilPersona) {
+        $resultado['imgPerfil'] = 'storage/default/avatar-default';        
+      }
+
+      if (!$imgPortadaPersonal) {
+        $resultado['imgPortada'] = 'storage/default/portada-default.jpg';
+      }
+      return response()->json($resultado);
+    }
+
+    public function getImgPerfilAndPortadaEmpresa(Request $request){
+      $imgPerfilPersona = DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
+      ->select('direccion_imagen_recorte')
+      ->where('estado','A')
+      ->where('tipo_imagen', 8)
+      ->first();
+
+      $imgPortadaPersonal = DB::connection($this->name_bdd)->table('administracion.imagen_empresa')
+      ->select('direccion_imagen_recorte')
+      ->where('estado','A')
+      ->where('tipo_imagen', 7)
+      ->first();
+      $resultado = array();
+      if ($imgPerfilPersona) {
+        $resultado['imgPerfil'] = $imgPerfilPersona->direccion_imagen_recorte;        
+      }
+
+      if ($imgPortadaPersonal) {
+        $resultado['imgPortada'] = $imgPortadaPersonal->direccion_imagen_recorte;
+      }
+
+      if (!$imgPerfilPersona) {
+        $resultado['imgPerfil'] = 'storage/default/avatar-default';        
+      }
+
+      if (!$imgPortadaPersonal) {
+        $resultado['imgPortada'] = 'storage/default/portada-default.jpg';
+      }
+      return response()->json($resultado);
     }
 
 

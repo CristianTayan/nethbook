@@ -2,16 +2,13 @@
 
 var app = angular.module('nextbook20App');
   app.controller('perfilEmpresaCtrl', function($scope, $rootScope, $location, $localStorage, colaboradores_Service, $mdDialog, $timeout, urlService, perfilEmpresaService) {
-    
     $scope.tabSelect = (value) => {
       $location.url('/nb/empresa/' + value);
     }
 
-    perfilEmpresaService.Load_Imgs_PortadaEmpresa().get().$promise.then((data) => {
-      $scope.imgPortada = urlService.server().dir() + data.imgs[0].direccion_imagen_recorte;
-    });
-    perfilEmpresaService.Load_Imgs_PerfilEmpresa().get().$promise.then((data) => {
-      $scope.imgPerfil = urlService.server().dir() + data.imgs[0].direccion_imagen_recorte;
+    perfilEmpresaService.getImgPerfilAndPortadaEmpresa().get().$promise.then((data) => {
+      $scope.imgPerfil = urlService.server().dir() + data.imgPerfil;
+      $scope.imgPortada = urlService.server().dir() + data.imgPortada;
     });
 
   });

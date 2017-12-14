@@ -54,4 +54,22 @@ angular.module('nextbook20App')
       }
     });
   };
+
+  this.getImgPerfilAndPortadaSucursal = function() {
+    return $resource(urlService.server().appnext() + 'getImgPerfilAndPortadaSucursal', {}, {
+      get: {
+        method: 'POST', isArray: false,
+        params: { token: $localStorage.token, sucursal:$localStorage.sucursal.id }
+      }
+    });
+  };
+
+  this.Get_Img_Logo=function() {
+      return $resource(urlService.server().appnext()+'Get_Img_Logo', {}, {
+          get: {
+            method: 'POST', isArray: false, 
+            params: { token: $localStorage.token}
+          }
+      });
+    };
 });
