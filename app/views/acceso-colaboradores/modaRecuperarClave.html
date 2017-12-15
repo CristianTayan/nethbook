@@ -1,0 +1,37 @@
+<md-dialog aria-label="Mango (Fruit)" style="width: 500px;">
+  <form name="formRecuperarClave" ng-submit="guardar()" flex>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Recuperar clave</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding>
+      <md-card-content layout="row" layout-align="center center">
+        {{datos.razon_social}}
+      </md-card-content>
+      <md-card-content>
+        <md-input-container class="md-icon-float md-block animated zoomIn">
+            <label>Nick / Correo Electronico </label>
+            <md-icon style="color: #3f51b5;">person_pin</md-icon>
+            <input type="text" name="nick" ng-model="data_ingreso_colaborador.nick" md-no-asterisk autocomplete="off" required>
+            <div ng-messages="formRecuperarClave.nick.$error">
+              <div ng-message="required">Campo requerido.</div>
+            </div>
+        </md-input-container>
+      </md-card-content>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="cancel()" >
+        Cancelar
+      </md-button>
+      <md-button class="md-raised md-accent" type="submit" ng-disabled="formRecuperarClave.$invalid">
+        Guardar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

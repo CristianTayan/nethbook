@@ -33,27 +33,28 @@
                                            
                 </md-toolbar>
                 <md-card-content>
-                    <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                    <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs>
                         <label>Usuario</label>
                         <md-icon style="color: #3f51b5;">person_pin</md-icon>
-                        <input type="text" ng-model="data_ingreso_colaborador.nick" md-no-asterisk autocomplete="off" required>
-                        <div ng-messages="projectForm.description.$error">
-                            <div ng-message="required">This is required.</div>
+                        <input type="text" name="nick" ng-model="data_ingreso_colaborador.nick" md-no-asterisk autocomplete="off" required>
+                        <div ng-messages="form_ingreso_colaborador.description.$error">
+                            <div ng-message="required">Campo requerido</div>
                         </div>
                     </md-input-container>
-                    <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                    <md-input-container class="md-icon-float md-block animated zoomIn" flex-gt-xs>
                         <label>Contraseña</label>
                         <md-icon style="color: #3f51b5;">vpn_key</md-icon>
-                        <input type="password" ng-model="data_ingreso_colaborador.clave" md-no-asterisk required>
-                        <div ng-messages="projectForm.description.$error">
-                            <div ng-message="required">This is required.</div>
+                        <input type="password" name="clave" ng-model="data_ingreso_colaborador.clave" md-no-asterisk required>
+                        <div ng-messages="form_ingreso_colaborador.description.$error">
+                            <div ng-message="required">Campo requerido</div>
                         </div>
                     </md-input-container>
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button href="#/" class="md-no-ink ">CANCELAR</md-button>
-                     <div style="width: 5px;"></div>
-                    <md-button class="md-raised md-primary" type="submit" ng-disabled="form_ingreso_colaborador.$invalid">INGRESAR</md-button>
+                    <a href="" ng-click="openModalRecuperarClave()">Recuperar Contraseña</a>
+                    <div flex></div>
+                    <md-button href="#/Registro" class="md-no-ink ">CANCELAR</md-button>
+                    <md-button class="md-raised md-accent" type="submit" ng-disabled="form_ingreso_colaborador.$invalid">INGRESAR</md-button>
                 </md-card-actions>
             </md-card>
         </form>
