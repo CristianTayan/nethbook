@@ -219,16 +219,16 @@ app.controller('inv_bienes_bienesCtrl', function($scope, $rootScope, $mdDialog, 
     });
     //  MENSAJE
     function mensajeSubirProductos(mensaje) {
-        $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title('Lo sentimos ( •́ﻩ•̀ ) ')
-            .textContent(mensaje)
-            .ok('Entendido')
-            .openFrom('#left')
-        );
-    }
+      $mdDialog.show(
+      $mdDialog.alert()
+      .parent(angular.element(document.querySelector('#dialogContainer')))
+      .clickOutsideToClose(true)
+      .title('Lo sentimos ( •́ﻩ•̀ ) ')
+      .textContent(mensaje)
+      .ok('Entendido')
+      .openFrom('#left')
+      );
+      }
     //  MENSAJE
     function mensajeSubirProductos(mensaje) {
         $mdDialog.show(
