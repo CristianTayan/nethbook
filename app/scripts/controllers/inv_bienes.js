@@ -229,19 +229,6 @@ app.controller('inv_bienes_bienesCtrl', function($scope, $rootScope, $mdDialog, 
       .openFrom('#left')
       );
       }
-    //  MENSAJE
-    function mensajeSubirProductos(mensaje) {
-        $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title('Lo sentimos :decepcionado:')
-            .textContent(mensaje)
-            .ok('Entendido')
-            .openFrom('#left')
-        );
-    }
-
     function DialogController_nuevo($scope, $localStorage, $mdExpansionPanel, select_impuestos, select_tipo_categoria, select_estado_descriptivo, select_garantias, select_marcas, select_modelos, select_ubicaciones, select_tipo_consumos, $mdToast, Servicios_Modal_Bienes) {
         $mdExpansionPanel().waitFor('expansionPanelOne').then(function(instance) {
             instance.expand();

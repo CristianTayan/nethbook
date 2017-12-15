@@ -2132,7 +2132,8 @@ CREATE TABLE productos (
     descripcion character varying(500) NOT NULL,
     codigo_baras character varying(15),
     tipo_consumo integer NOT NULL,
-    bodega integer
+    bodega integer,
+    codigo_prod character varying(150)
 );
 
 
@@ -4352,6 +4353,7 @@ COPY auditoria (id, tabla_afectada, operacion, variable_anterior, variable_nueva
 16	tipo_empresa                                 	I	\N	(3,"Cleinte                                           ","Empresas Clientes",A,"2017-12-08 08:01:07.113793")	2017-12-08 08:01:07.113793	postgres                                     
 17	tipo_empresa                                 	U	(0,"Propia                                            ","Empresa propietaria de la BDD",A,"2017-04-17 15:05:22.37072")	(0,"Propia                                            ","Empresa Propietaria del Sistema",A,"2017-04-17 15:05:22.37072")	2017-12-08 08:02:30.354737	postgres                                     
 18	tipo_empresa                                 	I	\N	(4,"Proveedor                                         ","Empresa Proveedora",A,"2017-12-08 08:02:51.864457")	2017-12-08 08:02:51.864457	postgres                                     
+19	tipo_consumo                                 	I	\N	(0,"Sin Asignar","Sin Asignar",A,"2017-12-14 10:26:30.497749-05")	2017-12-14 10:26:30.497749	postgres                                     
 \.
 
 
@@ -4359,7 +4361,7 @@ COPY auditoria (id, tabla_afectada, operacion, variable_anterior, variable_nueva
 -- Name: auditoria_id_seq; Type: SEQUENCE SET; Schema: auditoria; Owner: postgres
 --
 
-SELECT pg_catalog.setval('auditoria_id_seq', 18, true);
+SELECT pg_catalog.setval('auditoria_id_seq', 19, true);
 
 
 --
@@ -4857,7 +4859,7 @@ SELECT pg_catalog.setval('modelos_id_seq', 1, true);
 -- Data for Name: productos; Type: TABLE DATA; Schema: inventario; Owner: postgres
 --
 
-COPY productos (id, nombre_corto, vendible, comprable, precio, costo, estado_descriptivo, categoria, garantia, marca, modelo, ubicacion, cantidad, descripcion, codigo_baras, tipo_consumo, bodega) FROM stdin;
+COPY productos (id, nombre_corto, vendible, comprable, precio, costo, estado_descriptivo, categoria, garantia, marca, modelo, ubicacion, cantidad, descripcion, codigo_baras, tipo_consumo, bodega, codigo_prod) FROM stdin;
 \.
 
 
@@ -4909,6 +4911,7 @@ COPY tipo_consumo (id, nombre, descripcion, estado, fecha) FROM stdin;
 4	Vivienda	Vivienda	A	2017-02-13 09:53:39.446406-05
 5	Vestimenta	Vestimenta	A	2017-02-13 09:54:26.286261-05
 6	Otros	Los que no esten dentro de los tipos de consumo	A	2017-04-03 12:32:45.640883-05
+0	Sin Asignar	Sin Asignar	A	2017-12-14 10:26:30.497749-05
 \.
 
 
@@ -5693,6 +5696,14 @@ ALTER TABLE ONLY bodegas
 
 ALTER TABLE ONLY categorias
     ADD CONSTRAINT "categorias_PK" PRIMARY KEY (id);
+
+
+--
+-- Name: codigo_prod_uniq; Type: CONSTRAINT; Schema: inventario; Owner: postgres
+--
+
+ALTER TABLE ONLY productos
+    ADD CONSTRAINT codigo_prod_uniq UNIQUE (codigo_prod);
 
 
 --
@@ -6612,14 +6623,6 @@ ALTER TABLE ONLY sucursal_actividad_economica_tbl
 
 ALTER TABLE ONLY informacion_empresa_tbl
     ADD CONSTRAINT id_empresa_fq FOREIGN KEY (id_empresa) REFERENCES imagen_empresa(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: id_sucursal_fk; Type: FK CONSTRAINT; Schema: administracion; Owner: postgres
---
-
-ALTER TABLE ONLY informacion_empresa_tbl
-    ADD CONSTRAINT id_sucursal_fk FOREIGN KEY (id_sucursal) REFERENCES sucursales(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
