@@ -131,7 +131,7 @@ app.controller('inv_bienes_bienesCtrl', function($scope, $rootScope, $mdDialog, 
     }
     $(function() {
         $("#upload").bind("click", function() {
-            let regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.xls|.ods)$/;
+            let regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.xls|.ods|.xlsx)$/;
             if (regex.test($("#fileUpload").val().toLowerCase())) {
                 if (typeof(FileReader) != "undefined") {
                     let reader = new FileReader();
