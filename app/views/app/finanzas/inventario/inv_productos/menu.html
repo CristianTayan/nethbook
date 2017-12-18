@@ -1,5 +1,75 @@
-<h1 class="text-center">INVENTARIO PRODUCTOS</h1>
-<div layout-xs="column" layout="row">
+<div layout="column" flex="80" style="margin: 0px auto;"> 
+<h5>INVENTARIO PRODUCTOS</h5>
+</div>
+<br><br>
+<div layout="column" flex="80" style="margin: 0px auto;">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                    <md-icon style="color: greenyellow;">file_download</md-icon>
+                </md-button>
+                <h2 flex md-truncate>Descargar plantilla de demostración</h2>
+            </div>
+            <span flex></span>
+            <md-button class="md-fab md-mini" disable aria-label="Favorite">1
+            </md-button>
+        </div>
+    </md-toolbar>
+</div>
+<br>
+<md-content layout-padding layout-wrap>
+    <div layout="column" flex="80" style="margin: 0px auto;">
+        <div flex="50">
+            <p class="p+">Seleccione la plantilla, esta le servira de guía para el formato que se requiere para subir la lista de sus productos. Descargue la plantilla de acuerdo al formato que se adapte a sus recursos</p>
+            <center>
+                <lx-button lx-size="s" href='http://www.nethbook.com/nethbook/server/storage/formatos/productos.csv' lx-type="raised">Descargar plantilla .csv
+                    <md-icon>file_download</md-icon>
+                </lx-button>
+                <lx-button lx-size="s" href='http://www.nethbook.com/nethbook/server/storage/formatos/productos.xlsx' lx-type="raised">Descargar plantilla excel
+                    <md-icon>file_download</md-icon>
+                </lx-button>
+                <lx-button lx-size="s" href='http://www.nethbook.com/nethbook/server/storage/formatos/productos.ods' lx-type="raised">Descargar plantilla .ods
+                    <md-icon>file_download</md-icon>
+                </lx-button>
+            </center>
+        </div>
+    </div>
+</md-content>
+<br><br>
+<hr />
+<br>
+<div layout="column" flex="80" style="margin: 0px auto;">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                    <md-icon style="color: greenyellow;">file_upload</md-icon>
+                </md-button>
+                <h2 flex md-truncate>Cargar plantilla de productos</h2>
+            </div>
+            <span flex></span>
+            <md-button class="md-fab md-mini" disable aria-label="Favorite">2
+            </md-button>
+        </div>
+    </md-toolbar>
+</div>
+<md-content layout-padding layout-wrap>
+    <br>
+    <div flex="80" style="margin: 0px auto;" ng-controller="inv_productos_productosCtrl">
+        <p class="p+"><strong>Requerimientos del archivo:</strong> Tamaño del archivo maximo <strong>5Mb</strong>, archivos tipo <strong>.csv </strong>, <strong>.xlsx</strong>,<strong> .ods</strong>.</p>
+        <center>
+            <center><input type="file" id="fileUpload" />
+                <md-button class="md-raised md-accent" type="button" id="upload" value="Upload">Subir plantilla
+                    <md-icon>file_upload</md-icon>
+                </md-button>
+                <br><br>
+            </center>
+        </center>
+    </div>
+</md-content>
+
+<!-- <div layout-xs="column" layout="row">
     <md-card flex-xs flex-gt-xs="50" layout="column">
         <img class="md-card-image" src="images/app/tipos/tipo_consumo.png" alt="image caption">
         <md-list>
@@ -75,3 +145,5 @@
 </div>
 
 
+
+ -->

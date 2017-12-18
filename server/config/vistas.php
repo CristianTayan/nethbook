@@ -455,16 +455,16 @@ $array_vistas=[
                                                           'children'=>[                                                                                                                                       
                                                                       ]
                                                       ],
-                                                      [
-                                                          'label'=>'MODELOS',
-                                                          'nick_path'=>'Modelos',
-                                                          'selected'=>true,
-                                                          'nick_url'=>'modelos',
-                                                          'personalizacion'=>['icon'=>'burst_mode'],
-                                                          'children'=>[   
+                                                      // [
+                                                      //     'label'=>'MODELOS',
+                                                      //     'nick_path'=>'Modelos',
+                                                      //     'selected'=>true,
+                                                      //     'nick_url'=>'modelos',
+                                                      //     'personalizacion'=>['icon'=>'burst_mode'],
+                                                      //     'children'=>[   
                                                                           
-                                                                      ]
-                                                      ],
+                                                      //                 ]
+                                                      // ],
                                                       [
                                                           'label'=>'PRODUCTOS',
                                                           'nick_path'=>'Productos',
@@ -523,16 +523,16 @@ $array_vistas=[
                                                                           
                                                                       ]
                                                       ],
-                                                      [
-                                                          'label'=>'TIPO CATALOGO',
-                                                          'nick_path'=>'Tipo_Catalogo',
-                                                          'selected'=>true,
-                                                          'nick_url'=>'tipo_catalogo',
-                                                          'personalizacion'=>['icon'=>'import_contacts'],
-                                                          'children'=>[   
+                                                      // [
+                                                      //     'label'=>'TIPO CATALOGO',
+                                                      //     'nick_path'=>'Tipo_Catalogo',
+                                                      //     'selected'=>true,
+                                                      //     'nick_url'=>'tipo_catalogo',
+                                                      //     'personalizacion'=>['icon'=>'import_contacts'],
+                                                      //     'children'=>[   
                                                                           
-                                                                      ]
-                                                      ],
+                                                      //                 ]
+                                                      // ],
                                                       [
                                                           'label'=>'BODEGAS',
                                                           'nick_path'=>'Bodegas',

@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc service
- * @name nextbook20App.inventario
- * @description
- * # inventario
- * Service in the nextbook20App.
- */
 angular.module('nextbook20App')
   	.service('inventario_Service', function ($localStorage, $resource, urlService) {
     	
