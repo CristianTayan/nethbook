@@ -1,0 +1,35 @@
+codigo,nombre,precio,stock,codigoBarra
+cod1,Martillo,2,50,9000001
+cod2,Clavo 2 plg,4,51,9000002
+cod3,Carretilla,6,52,9000003
+cod4,Codo,8,53,9000004
+cod5,PVC T 1 plg,10,54,9000005
+cod6,PVC T 2 plg,12,55,9000006
+cod7,Tubo PVC 2 plg,14,56,9000007
+cod8,Tubo PVC 3 plg,16,57,9000008
+cod9,Tubo PVC 4 plg,18,58,9000009
+cod10,Sierra,20,59,9000010
+cod11,Cegueta,22,60,9000011
+cod12,Mordaza,24,61,9000012
+cod13,Cable Luz,26,62,9000013
+cod14,Cable ,28,63,9000014
+cod15,Bateria externa 4400mah con linterna,30,64,9000015
+cod16,Bateria externa/cargador portable powerpack,32,65,9000016
+cod17,Bateria powerbank 10.000mah,34,66,9000017
+cod18,Cargador 1a con salida lightning apple,36,67,9000018
+cod19,Cargador auto 2 usb sin cable negro,38,68,9000019
+cod20,Cargador coche 1a lightning apple,40,69,9000020
+cod21,Cargador para coche usb surtido,42,70,9000021
+cod22,Cargador salida microusb,44,71,9000022
+cod23,Docking station ipod - iphone mini r56,46,72,9000023
+cod24,Gafas 3d realidad virtual smartphone,48,73,9000024
+cod25,Moladora,50,74,9000025
+cod26,Talabro,52,75,9000026
+cod27,Cable UTP,54,76,9000027
+cod28,Cable Solido,56,77,9000028
+cod29,Bateria auxiliar portatil 2400mah-negra,58,78,9000029
+cod30,Bateria auxiliar 12v 4ah,60,79,9000030
+cod31,Adaptador enchufe para viaje mundial,62,80,9000031
+cod32,Acumulador bateria 2600 mah,64,81,9000032
+cod33,Abrazadera 1 pie zincada 12,66,82,9000033
+cod34,Abrazadera 1 pie zincada 10,10,100,9000034
