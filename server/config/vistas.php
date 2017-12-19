@@ -110,17 +110,6 @@ $array_vistas=[
                                                       ]                                                                                                         
                                                   ]
                                       ],
-
-                                      [
-                                      'label'=>'EJEMPLO MENU',
-                                      'nick_path'=>'Ejemplo',
-                                      'selected'=>false,
-                                      'nick_url'=>'ejmplo_menu',
-                                      'personalizacion'=>['icon'=>'home'],
-                                      'children'=>[
-                                                                               
-                                                  ]
-                                      ]
                                   ]
 
                   ],

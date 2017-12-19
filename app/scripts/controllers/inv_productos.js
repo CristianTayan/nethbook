@@ -1845,128 +1845,128 @@ var app = angular.module('nextbook20App')
 		        });
 		    }
 
-		    $scope.upload = function(event) {
-        $mdDialog.show({
-            controller: DialogController_nuevo,
-            templateUrl: 'views/app/finanzas/inventario/inv_bienes/bienes/upload.html',
-            parent: angular.element(document.body),
-            targetEvent: event,
-            ariaLabel: 'Respuesta Registro',
-            clickOutsideToClose: false,
-            fullscreen: true,
-            locals: {
-                select_tipo_categoria: $scope.categorias,
-                select_estado_descriptivo: $scope.estado_descriptivo,
-                select_garantias: $scope.garantias,
-                select_marcas: $scope.marcas,
-                select_modelos: $scope.modelos,
-                select_ubicaciones: $scope.ubicaciones,
-                select_tipo_consumos: $scope.tipo_consumos,
-                select_impuestos: $scope.impuestos
-            }
-
-        });
+$scope.upload = function(event) {
+  $mdDialog.show({
+    controller: DialogController_nuevo,
+    templateUrl: 'views/app/finanzas/inventario/inv_bienes/bienes/upload.html',
+    parent: angular.element(document.body),
+    targetEvent: event,
+    ariaLabel: 'Respuesta Registro',
+    clickOutsideToClose: false,
+    fullscreen: true,
+    locals: {
+      select_tipo_categoria: $scope.categorias,
+      select_estado_descriptivo: $scope.estado_descriptivo,
+      select_garantias: $scope.garantias,
+      select_marcas: $scope.marcas,
+      select_modelos: $scope.modelos,
+      select_ubicaciones: $scope.ubicaciones,
+      select_tipo_consumos: $scope.tipo_consumos,
+      select_impuestos: $scope.impuestos
     }
-    $(function() {
-        $("#upload").bind("click", function() {
-            let regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.xls|.ods|.xlsx)$/;
-            if (regex.test($("#fileUpload").val().toLowerCase())) {
-                if (typeof(FileReader) != "undefined") {
-                    let reader = new FileReader();
-                    reader.onload = function(e) {
-                        let prodValidar = e.target.result.split("\n");
-                        let prodDuplicados = e.target.result.split("\n");
-                        let prod = e.target.result.split("\n");
-                        let bandera = 0,
-                            c = 0;
-                        for (let i = 1; i < prodValidar.length - 1; i++) {
-                            if (prodValidar[i].indexOf("&") != -1 || prodValidar[i].indexOf("'") != -1 || prodValidar[i].indexOf("^") != -1) {
-                                mensajeSubirProductos('Símbolo invalido cerca del producto: ' + i);
-                                bandera = bandera + 1;
-                            }
-                        }
-                        if (bandera == 0) {
-                            let validar = [];
-                            for (let j = 1; j < prodDuplicados.length - 1; j++) {
-                                let cells = prodDuplicados[j].split(",");
-                                validar[j - 1] = cells;
-                            }
-                            for (let a = 0; a < validar.length; a++) {
-                                for (let l = a + 1; l < validar.length; l++) {
-                                    if (validar[a][0] == validar[l][0]) {
-                                        mensajeSubirProductos('El producto ' + validar[l][0] + ' se encuentra repetido');
-                                        c = c + 1;
-                                    }
-                                }
-                            }
-                            if (c == 0) {
-                                var totalGuardados = 0;
-                                var totalNoRegistrados = 0;
-                                var elementosNoGuardados = "";
-                                for (let a = 0; a < validar.length; a++) {
-                                    let myObj = {
-                                        "codigo_prod": validar[a][0],
-                                        "nombre_corto": validar[a][1],
-                                        "precio": validar[a][2],
-                                        "cantidad": validar[a][3],
-                                        "codigo_baras": validar[a][4]
-                                    };
-                                    inventario_Service.subirProducto().add(myObj).$promise.then(function(data) {
-                                        if (data.respuesta != true) {
-                                            totalNoRegistrados = totalNoRegistrados + 1;
-                                            elementosNoGuardados = elementosNoGuardados + data.respuesta + '  ';
-                                        } else {
-                                            totalGuardados = totalGuardados + 1;
-                                        }
-                                        if (totalGuardados == validar.length) {
-                                            $mdDialog.show(
-                                                $mdDialog.alert()
-                                                .parent(angular.element(document.querySelector('#dialogContainer')))
-                                                .clickOutsideToClose(true)
-                                                .title('NETHBOOK (^_^) ')
-                                                .textContent('Productos Ingresados Correctamente')
-                                                .ok('Entendido')
-                                                .openFrom('#left')
-                                            );
-                                        }
-                                        let verificar = totalNoRegistrados + totalGuardados;
-                                        if (elementosNoGuardados != "" && verificar == validar.length) {
-                                            $mdDialog.show(
-                                                $mdDialog.alert()
-                                                .parent(angular.element(document.querySelector('#dialogContainer')))
-                                                .clickOutsideToClose(true)
-                                                .title('NETBOOK (^_^) ')
-                                                .textContent(elementosNoGuardados)
-                                                .ok('Entendido')
-                                                .openFrom('#left')
-                                            );
-                                        }
-                                    });
-                                }
-                            }
-                        }
-                    }
-                    reader.readAsText($("#fileUpload")[0].files[0]);
-                } else {
-                    mensajeSubirProductos('Este navegador no es compatible con HTML5');
-                }
-            } else {
-                mensajeSubirProductos('Formato no compatible: .csv |.xls | .ods');
+
+  });
+}
+$(function() {
+  $("#upload").bind("click", function() {
+    let regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.xls|.ods|.xlsx)$/;
+    if (regex.test($("#fileUpload").val().toLowerCase())) {
+      if (typeof(FileReader) != "undefined") {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+          let prodValidar = e.target.result.split("\n");
+          let prodDuplicados = e.target.result.split("\n");
+          let prod = e.target.result.split("\n");
+          let bandera = 0,
+            c = 0;
+          for (let i = 1; i < prodValidar.length - 1; i++) {
+            if (prodValidar[i].indexOf("&") != -1 || prodValidar[i].indexOf("'") != -1 || prodValidar[i].indexOf("^") != -1) {
+              mensajeSubirProductos('Símbolo invalido cerca del producto: ' + i);
+              bandera = bandera + 1;
             }
-        });
-    });
-    //  MENSAJE
-    function mensajeSubirProductos(mensaje) {
-      $mdDialog.show(
-      $mdDialog.alert()
-      .parent(angular.element(document.querySelector('#dialogContainer')))
-      .clickOutsideToClose(true)
-      .title('Lo sentimos ( •́ﻩ•̀ ) ')
-      .textContent(mensaje)
-      .ok('Entendido')
-      .openFrom('#left')
-      );
+          }
+          if (bandera == 0) {
+            let validar = [];
+            for (let j = 1; j < prodDuplicados.length - 1; j++) {
+              let cells = prodDuplicados[j].split(",");
+              validar[j - 1] = cells;
+            }
+            for (let a = 0; a < validar.length; a++) {
+              for (let l = a + 1; l < validar.length; l++) {
+                if (validar[a][0] == validar[l][0]) {
+                  mensajeSubirProductos('El producto ' + validar[l][0] + ' se encuentra repetido');
+                  c = c + 1;
+                }
+              }
+            }
+            if (c == 0) {
+              var totalGuardados = 0;
+              var totalNoRegistrados = 0;
+              var elementosNoGuardados = "";
+              for (let a = 0; a < validar.length; a++) {
+                let myObj = {
+                  "codigo_prod": validar[a][0],
+                  "nombre_corto": validar[a][1],
+                  "precio": validar[a][2],
+                  "cantidad": validar[a][3],
+                  "codigo_baras": validar[a][4]
+                };
+                inventario_Service.subirProducto().add(myObj).$promise.then(function(data) {
+                  if (data.respuesta != true) {
+                    totalNoRegistrados = totalNoRegistrados + 1;
+                    elementosNoGuardados = elementosNoGuardados + data.respuesta + '  ';
+                  } else {
+                    totalGuardados = totalGuardados + 1;
+                  }
+                  if (totalGuardados == validar.length) {
+                    $mdDialog.show(
+                      $mdDialog.alert()
+                      .parent(angular.element(document.querySelector('#dialogContainer')))
+                      .clickOutsideToClose(true)
+                      .title('NETHBOOK (^_^) ')
+                      .textContent('Productos Ingresados Correctamente')
+                      .ok('Entendido')
+                      .openFrom('#left')
+                    );
+                  }
+                  let verificar = totalNoRegistrados + totalGuardados;
+                  if (elementosNoGuardados != "" && verificar == validar.length) {
+                    $mdDialog.show(
+                      $mdDialog.alert()
+                      .parent(angular.element(document.querySelector('#dialogContainer')))
+                      .clickOutsideToClose(true)
+                      .title('NETBOOK (^_^) ')
+                      .textContent(elementosNoGuardados)
+                      .ok('Entendido')
+                      .openFrom('#left')
+                    );
+                  }
+                });
+              }
+            }
+          }
+        }
+        reader.readAsText($("#fileUpload")[0].files[0]);
+      } else {
+        mensajeSubirProductos('Este navegador no es compatible con HTML5');
       }
+    } else {
+      mensajeSubirProductos('Formato no compatible: .csv |.xls | .ods');
+    }
+  });
+});
+//  MENSAJE
+function mensajeSubirProductos(mensaje) {
+  $mdDialog.show(
+    $mdDialog.alert()
+    .parent(angular.element(document.querySelector('#dialogContainer')))
+    .clickOutsideToClose(true)
+    .title('Lo sentimos ( •́ﻩ•̀ ) ')
+    .textContent(mensaje)
+    .ok('Entendido')
+    .openFrom('#left')
+  );
+}
 
 		    function DialogController_nuevo($scope, $localStorage, $mdExpansionPanel, select_impuestos,select_tipo_categoria,select_estado_descriptivo,select_garantias,select_marcas,select_modelos,select_ubicaciones,select_tipo_consumos, $mdToast,Servicios_Modal_Servicios) {
 		        $mdExpansionPanel().waitFor('expansionPanelOne').then(function (instance) { instance.expand(); });
