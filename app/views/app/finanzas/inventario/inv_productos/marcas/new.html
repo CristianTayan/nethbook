@@ -15,7 +15,7 @@
                     <md-input-container class="md-icon-float md-block">
                         <md-icon class="md-primary">view_compact</md-icon>
                         <label>Nombre Marca</label>
-                        <input name="nom_tipo_categoria" ng-model="data_inv_marca.nombre" type="text" required marca-validator>
+                        <input name="nom_tipo_categoria" ng-model="data_inv_marca.nombre" type="text" required marca-validator maxlength="50">
                         <div ng-messages="form_inv_marca.nom_tipo_categoria.$error" ng-show="form_inv_marca.nom_tipo_categoria.$dirty">
                             <div ng-message="required">Campo Requerido</div>
                             <div ng-message="campo">Registro Repetido</div>
@@ -24,7 +24,7 @@
                     <md-input-container md-no-float class="md-block">
                         <md-icon class="md-primary">description</md-icon>
                         <label>Descripción</label>
-                        <textarea name="descripcion" ng-model="data_inv_marca.descripcion" type="text" required></textarea>
+                        <textarea name="descripcion" ng-model="data_inv_marca.descripcion" type="text" required maxlength="2000"></textarea>
                         <div ng-messages="form_inv_marca.descripcion.$error" ng-show="form_inv_marca.descripcion.$dirty">
                             <div ng-message="required">Campo Requerido</div>
                         </div>

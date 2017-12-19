@@ -15,7 +15,7 @@
                     <md-input-container class="md-icon-float md-block">
                         <md-icon class="md-primary">view_compact</md-icon>
                         <label>Nombre Tipo Categoría</label>
-                        <input name="nom_tipo_categoria" ng-model="data_inv_estado_descriptivo.nombre" type="text" required tipocategoriaupdate-validator>
+                        <input name="nom_tipo_categoria" ng-model="data_inv_estado_descriptivo.nombre" type="text" required tipocategoriaupdate-validator maxlength="250">
                         <div ng-messages="form_inv_tc.nom_tipo_categoria.$error" ng-show="form_inv_tc.nom_tipo_categoria.$dirty">
                             <div ng-message="required">Campo Requerido</div>
                             <div ng-message="campo">Registro Repetido</div>
@@ -24,7 +24,7 @@
                     <md-input-container md-no-float class="md-block">
                         <md-icon class="md-primary">description</md-icon>
                         <label>Descripcion</label>
-                        <textarea name="descripcion" ng-model="data_inv_estado_descriptivo.descripcion" type="text" required></textarea>
+                        <textarea name="descripcion" ng-model="data_inv_estado_descriptivo.descripcion" type="text" required maxlength="2000"></textarea>
                         <div ng-messages="form_inv_tc.descripcion.$error" ng-show="form_inv_tc.descripcion.$dirty">
                             <div ng-message="required">Campo Requerido</div>
                         </div>
